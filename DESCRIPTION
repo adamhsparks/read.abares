@@ -1,0 +1,23 @@
+Package: agfd
+Type: Package
+Title: Provides automated downloading, parsing and formatting of Australian
+    Gridded Farm Data from Australian Department of Agriculture, Fisheries and
+    Forestry.
+Version: 0.1.0
+Author: Authors@R: c(
+    person("Adam H.", "Sparks", , "adamhsparks@gmail.com", role = c("cre", "aut"),
+           comment = c(ORCID = "0000-0002-0061-8359")))
+Description: Fetch, import and query data from the Australian Gridded Farm Data
+    set,
+    <https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data>
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    cli,
+    curl,
+    data.table,
+    stars,
+    terra,
+    withr
+RoxygenNote: 7.3.2

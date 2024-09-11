@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ---> R
 # History files
 .Rhistory
@@ -49,3 +50,9 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
+=======
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+>>>>>>> 5a5e496 (First commit)
