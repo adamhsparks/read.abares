@@ -26,5 +26,7 @@ get_agdf <- function(fixed = 1) {
 
   curl::curl_download(url = url, destfile = agfd_file)
 
-  withr::with_dir(tempdir(), utils::untar(agfd_file, exdir = tempdir()))
+  withr::with_dir(tempdir(), utils::untar(agfd_file,
+                                          exdir = tempdir(),
+                                          quiet = FALSE))
 }
