@@ -5,9 +5,6 @@
 #'  2022). Using `TRUE` will download simulations where global output and input
 #'  price indexes are fixed at values from the most recently completed financial
 #'  year.
-#' @param class `character` Return an object that is a [terra::rast()] object,
-#'   \dQuote{terra}, or a [`stars`] object, \dQuote{stars}.  Defaults to
-#'   \dQuote{terra}.
 #'
 #' @references N. Hughes, W.Y. Soh, C. Boult, K. Lawson, Defining drought from
 #'  the perspective of Australian farmers, Climate Risk Management, Volume 35,
@@ -19,12 +16,10 @@
 #'
 #' @export
 
-get_agdf <- function(fixed = FALSE, class = "terra") {
-  cache_dir <-  tools::R_user_dir(package = "agfd", which = "cache")
-  if (dir.exists(cache_dir)) {
-    files <- list.files(cache_dir, full.names = TRUE)
-    return(.read_agdf_nc(class))
-
+get_agdf <- function(fixed = FALSE, cache = FALSE) {
+  if (isTRUE(cache)) {
+    agfd_file <-  file.path(tools::R_user_dir(package = "agfd", which = "cache"),
+                            "agfd.zip")
   } else {
     agfd_file <- file.path(file.path(tempdir(), "agfd.zip"))
 
