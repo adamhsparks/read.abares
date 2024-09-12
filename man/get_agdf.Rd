@@ -4,14 +4,17 @@
 \alias{get_agdf}
 \title{Fetch Australian Gridded Farm Data}
 \usage{
-get_agdf(fixed = 1)
+get_agdf(fixed = FALSE, cache = FALSE)
 }
 \arguments{
-\item{fixed}{`numeric` Download fixed historical climate prices?  Defaults
-to `1`, downloads the data from ABARES farmpredict (Hughes *et al.*
-2022). Using `2` will download simulations where global output and input
+\item{fixed}{`Boolean` Download fixed historical climate prices?  Defaults
+to `FALSE`, downloads the data from ABARES farmpredict (Hughes *et al.*
+2022). Using `TRUE` will download simulations where global output and input
 price indexes are fixed at values from the most recently completed financial
 year.}
+}
+\value{
+A list object of NetCDF files
 }
 \description{
 Fetch Australian Gridded Farm Data
