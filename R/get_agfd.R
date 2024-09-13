@@ -24,36 +24,32 @@ get_agdf <- function(fixed = FALSE, cache = FALSE) {
                             "agfd.zip")
   } else {
     agfd_file <- file.path(file.path(tempdir(), "agfd.zip"))
-
-    agdf_file_dir <- dirname(agfd_file)
-
-    if (isTRUE(fixed)) {
-      url <- "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/2"
-    } else
-      url <- "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/3"
-
-    curl::curl_download(url = url,
-                        destfile = agfd_file,
-                        quiet = FALSE)
-
-    withr::with_dir(agdf_file_dir,
-                    utils::untar(agfd_file, exdir = agdf_file_dir))
-
-    if (isFALSE(fixed)) {
-      return(
-        list.files(
-          agdf_file_dir,
-          "historical_climate_and_prices",
-          full.names = TRUE
-        )
-      )
-    } else
-      return(
-        list.files(
-          agdf_file_dir,
-          "historical_climate_prices_fixed",
-          full.names = TRUE
-        )
-      )
   }
+  agdf_file_dir <- dirname(agfd_file)
+
+  if (isTRUE(fixed)) {
+    url <- "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/2"
+  } else {
+    url <- "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/3"
+  }
+
+  curl::curl_download(url = url,
+                      destfile = agfd_file,
+                      quiet = FALSE)
+
+  withr::with_dir(agdf_file_dir,
+                  utils::untar(agfd_file, exdir = agdf_file_dir))
+
+  if (isFALSE(fixed)) {
+    return(list.files(
+      agdf_file_dir,
+      "historical_climate_and_prices",
+      full.names = TRUE
+    ))
+  } else
+    return(list.files(
+      agdf_file_dir,
+      "historical_climate_prices_fixed",
+      full.names = TRUE
+    ))
 }
