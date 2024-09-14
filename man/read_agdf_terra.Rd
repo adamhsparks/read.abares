@@ -9,6 +9,10 @@ read_agdf_terra(class, files)
 \arguments{
 \item{files}{A list of NetCDF files to import}
 }
+\value{
+a \CRANpkg{terra} [terra::rast] object of the Australian Gridded Farm
+ Data
+}
 \description{
 Read AGDF NCDF Files
 }

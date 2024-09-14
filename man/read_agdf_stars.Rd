@@ -11,6 +11,9 @@ read_agdf_stars(files)
 
 \item{class}{Class of objec to return, `terra` or `stars`}
 }
+\value{
+a \CRANpkg{stars} object of the Australian Gridded Farm Data
+}
 \description{
 Read AGDF NCDF Files
 }

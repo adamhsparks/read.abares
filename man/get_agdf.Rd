@@ -8,13 +8,18 @@ get_agdf(fixed = FALSE, cache = FALSE)
 }
 \arguments{
 \item{fixed}{`Boolean` Download fixed historical climate prices?  Defaults
-to `FALSE`, downloads the data from ABARES farmpredict (Hughes *et al.*
-2022). Using `TRUE` will download simulations where global output and input
-price indexes are fixed at values from the most recently completed financial
-year.}
+to `FALSE`, downloads the data from ABARES \sQuote{farmpredict} (Hughes
+*et al.* 2022). Using `TRUE` will download simulations where global output
+and input price indexes are fixed at values from the most recently completed
+financial year.}
+
+\item{cache}{`Boolean` Cache the Australian Gridded Farm Data files after
+download using [tools::R_user_dir] to identify the proper directory for
+storing user data in a cache for this package.}
 }
 \value{
-A list object of NetCDF files
+A character `vector` of NetCDF files containing the Australian
+ Gridded Farm Data with fullnames.
 }
 \description{
 Fetch Australian Gridded Farm Data
