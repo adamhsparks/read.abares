@@ -136,7 +136,7 @@ Directly from the DAFF website:
 Please report any [issues or
 bugs](https://codeberg.org/adamhsparks/agfd/issues).
 
-License: [MIT](LICENSE)
+License: [MIT](LICENSE.md)
 
 Citing the data: Please refer to the ABARES website,
 <https://www.agriculture.gov.au/abares/products/citations> on how to
