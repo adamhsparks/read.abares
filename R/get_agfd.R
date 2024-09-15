@@ -49,10 +49,10 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
   )
 
   # only download if the files aren't already local
-  if (!file.exists(agfd_nc_dir)) {
+  if (!dir.exists(agfd_nc_dir)) {
     # if caching is enabled but the {agfd} cache dir doesn't exist, create it
     if (cache) {
-      dir.create(agfd_zip_dir)
+      dir.create(agfd_zip_dir, recursive = TRUE)
     }
 
     url <- data.table::fifelse(
