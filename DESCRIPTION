@@ -17,6 +17,7 @@ Imports:
     cli,
     curl,
     data.table,
+    dplyr,
     stars,
     terra,
     tidync,
