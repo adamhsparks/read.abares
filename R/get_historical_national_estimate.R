@@ -3,7 +3,7 @@
 #'
 #' @return A [data.table::data.table] object
 #' @export
-#' @examplesIf interactive
+#' @examplesIf interactive()
 #'
 #'  get_historical_national_estimates()
 #'
