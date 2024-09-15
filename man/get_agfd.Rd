@@ -4,7 +4,7 @@
 \alias{get_agfd}
 \title{Fetch Australian Gridded Farm Data}
 \usage{
-get_agfd(fixed = FALSE, cache = FALSE)
+get_agfd(fixed = FALSE, cache = TRUE)
 }
 \arguments{
 \item{fixed}{\code{Boolean} Download fixed historical climate prices?  Defaults
@@ -15,7 +15,9 @@ financial year.}
 
 \item{cache}{\code{Boolean} Cache the Australian Gridded Farm Data files after
 download using \link[tools:userdir]{tools::R_user_dir} to identify the proper directory for
-storing user data in a cache for this package.}
+storing user data in a cache for this package. Defaults to \code{TRUE}, caching
+the files locally. If \code{FALSE}, this function uses \code{tempdir()} and the files
+are deleted upon closing of the \R session.}
 }
 \value{
 A character \code{vector} of NetCDF files containing the Australian

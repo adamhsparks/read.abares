@@ -7,7 +7,9 @@
 #'  financial year.
 #' @param cache `Boolean` Cache the Australian Gridded Farm Data files after
 #'  download using [tools::R_user_dir] to identify the proper directory for
-#'  storing user data in a cache for this package.
+#'  storing user data in a cache for this package. Defaults to `TRUE`, caching
+#'  the files locally. If `FALSE`, this function uses `tempdir()` and the files
+#'  are deleted upon closing of the \R session.
 #'
 #' @references N. Hughes, W.Y. Soh, C. Boult, K. Lawson, Defining drought from
 #'  the perspective of Australian farmers, Climate Risk Management, Volume 35,
@@ -22,7 +24,7 @@
 #'
 #' @export
 
-get_agfd <- function(fixed = FALSE, cache = FALSE) {
+get_agfd <- function(fixed = FALSE, cache = TRUE) {
   agfd_zip <- data.table::fifelse(cache,
                                   file.path(.find_user_cache(), "agfd.zip"),
                                   file.path(file.path(tempdir(), "agfd.zip")))
