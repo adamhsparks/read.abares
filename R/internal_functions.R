@@ -1,3 +1,4 @@
+
 #' Find the File Path to Users' Cache Directory
 #'
 #' @return A `character` string value of a file path indicating the proper
