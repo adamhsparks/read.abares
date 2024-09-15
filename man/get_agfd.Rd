@@ -4,14 +4,16 @@
 \alias{get_agfd}
 \title{Fetch Australian Gridded Farm Data}
 \usage{
-get_agfd(fixed = FALSE, cache = TRUE)
+get_agfd(fixed_prices = TRUE, cache = TRUE)
 }
 \arguments{
-\item{fixed}{\code{Boolean} Download fixed historical climate prices?  Defaults
-to \code{FALSE}, downloads the data from ABARES \sQuote{farmpredict} (Hughes
-\emph{et al.} 2022). Using \code{TRUE} will download simulations where global output
-and input price indexes are fixed at values from the most recently completed
-financial year.}
+\item{fixed_prices}{\code{Boolean} Download historical climate and prices or
+historical climate and fixed prices as described in  (Hughes \emph{et al.} 2022).
+Defaults to \code{TRUE} and downloads the data with historical climate and fixed
+prices \dQuote{to isolate the effects of climate variability on financial
+incomes for broadacre farm businesses} (ABARES 2024). Using \code{TRUE} will
+download simulations where global output and input price indexes are fixed
+at values from the most recently completed financial year.}
 
 \item{cache}{\code{Boolean} Cache the Australian Gridded Farm Data files after
 download using \link[tools:userdir]{tools::R_user_dir} to identify the proper directory for
@@ -32,8 +34,12 @@ get_agfd()
 \dontshow{\}) # examplesIf}
 }
 \references{
-N. Hughes, W.Y. Soh, C. Boult, K. Lawson, Defining drought from
-the perspective of Australian farmers, Climate Risk Management, Volume 35,
-2022, 100420, ISSN 2212-0963, DOI
+\emph{Australian gridded farm data}, Australian Bureau of Agricultural and
+Resource Economics and Sciences, Canberra, July, DOI:
+\href{https://doi.org/10.25814/7n6z-ev41}{10.25814/7n6z-ev41}. CC BY 4.0.
+
+N. Hughes, W.Y. Soh, C. Boult, K. Lawson, \emph{Defining drought from
+the perspective of Australian farmers}, Climate Risk Management, Volume 35,
+2022, 100420, ISSN 2212-0963, DOI:
 \href{https://doi.org/10.1016/j.crm.2022.100420}{10.1016/j.crm.2022.100420}.
 }
