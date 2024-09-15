@@ -55,11 +55,14 @@ Caching is not mandatory, in fact the default is to not cache the files but just
 ### Multiple Classes Supported
 
 {agdf} supports multiple classes of objects to support your workflow.
-Select from:
+Select from spatial classes:
 
 - [{stars}](https://CRAN.R-project.org/package=stars),
-- [{terra}](https://CRAN.R-project.org/package=terra),
-- [{tidync}](https://CRAN.R-project.org/package=tidync) or even
+- [{terra}](https://CRAN.R-project.org/package=terra) or
+- [{tidync}](https://CRAN.R-project.org/package=tidync)
+
+or data.frames as {tibble} or {data.table} objects:
+
 - [{tibble}](https://CRAN.R-project.org/package=tibble), or
 - [{data.table}](https://CRAN.R-project.org/package=data.table)
 
