@@ -36,7 +36,8 @@ get_agfd()
 \references{
 \emph{Australian gridded farm data}, Australian Bureau of Agricultural and
 Resource Economics and Sciences, Canberra, July 2024, DOI:
-\href{https://doi.org/10.25814/7n6z-ev41}{10.25814/7n6z-ev41}. CC BY 4.0.
+\href{https://doi.org/10.25814/7n6z-ev41}{10.25814/7n6z-ev41}.
+\href{https://creativecommons.org/licenses/by/4.0/legalcode}{CC BY 4.0}.
 
 N. Hughes, W.Y. Soh, C. Boult, K. Lawson, \emph{Defining drought from
 the perspective of Australian farmers}, Climate Risk Management, Volume 35,
