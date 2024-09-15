@@ -7,19 +7,19 @@
 get_agfd(fixed = FALSE, cache = FALSE)
 }
 \arguments{
-\item{fixed}{`Boolean` Download fixed historical climate prices?  Defaults
-to `FALSE`, downloads the data from ABARES \sQuote{farmpredict} (Hughes
-*et al.* 2022). Using `TRUE` will download simulations where global output
+\item{fixed}{\code{Boolean} Download fixed historical climate prices?  Defaults
+to \code{FALSE}, downloads the data from ABARES \sQuote{farmpredict} (Hughes
+\emph{et al.} 2022). Using \code{TRUE} will download simulations where global output
 and input price indexes are fixed at values from the most recently completed
 financial year.}
 
-\item{cache}{`Boolean` Cache the Australian Gridded Farm Data files after
-download using [tools::R_user_dir] to identify the proper directory for
+\item{cache}{\code{Boolean} Cache the Australian Gridded Farm Data files after
+download using \link[tools:userdir]{tools::R_user_dir} to identify the proper directory for
 storing user data in a cache for this package.}
 }
 \value{
-A character `vector` of NetCDF files containing the Australian
- Gridded Farm Data with fullnames.
+A character \code{vector} of NetCDF files containing the Australian
+Gridded Farm Data with fullnames.
 }
 \description{
 Fetch Australian Gridded Farm Data
@@ -31,7 +31,7 @@ get_agfd()
 }
 \references{
 N. Hughes, W.Y. Soh, C. Boult, K. Lawson, Defining drought from
- the perspective of Australian farmers, Climate Risk Management, Volume 35,
- 2022, 100420, ISSN 2212-0963, DOI
- [10.1016/j.crm.2022.100420](https://doi.org/10.1016/j.crm.2022.100420).
+the perspective of Australian farmers, Climate Risk Management, Volume 35,
+2022, 100420, ISSN 2212-0963, DOI
+\href{https://doi.org/10.1016/j.crm.2022.100420}{10.1016/j.crm.2022.100420}.
 }

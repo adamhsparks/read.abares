@@ -10,8 +10,8 @@ read_agdf_stars(files)
 \item{files}{A list of NetCDF files to import}
 }
 \value{
-a `list` of \CRANpkg{stars} objects of the Australian Gridded Farm
- Data
+a \code{list} of \CRANpkg{stars} objects of the Australian Gridded Farm
+Data
 }
 \description{
 Read AGDF NCDF Files

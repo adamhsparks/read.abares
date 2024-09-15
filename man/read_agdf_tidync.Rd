@@ -10,8 +10,8 @@ read_agdf_tidync(files)
 \item{files}{A list of NetCDF files to import}
 }
 \value{
-a `list` of \CRANpkg{tidync} [tidync::tidync] objects of the
- Australian Gridded Farm Data
+a \code{list} of \CRANpkg{tidync} \link[tidync:tidync]{tidync::tidync} objects of the
+Australian Gridded Farm Data
 }
 \description{
 Read AGDF NCDF Files with tidync
