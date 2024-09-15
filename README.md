@@ -70,4 +70,6 @@ Directly from the DAFF website:
 
 ## Metadata
 
+Please report any [issues or bugs](https://codeberg.org/adamhsparks/agfd/issues).
 
+License: [MIT](LICENSE.md)
