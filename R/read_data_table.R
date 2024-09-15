@@ -1,5 +1,5 @@
 
-#' Read AGDF NCDF Files with tidync
+#' Read AGDF NCDF Files as a data.table
 #'
 #' @param files A list of NetCDF files to import
 #' @return a `list` of \CRANpkg{tidync} [tidync::tidync] objects of the
@@ -7,11 +7,12 @@
 #'
 #' @examplesIf interactive()
 #' get_agfd(cache = TRUE) |>
-#'   read_agdf_tidync()
+#'   read_agdf_dt()
 #'
 #' @family read_agdf
 #' @export
 
-read_agdf_tidync <- function(files) {
-  lapply(files, tidync::tidync)
+read_agdf_dt <- function(files) {
+  tnc_list <- lapply(files, tidync::tidync)
+  data.table::rbindlist(lapply(tnc_list, tidync::hyper_tibble))
 }

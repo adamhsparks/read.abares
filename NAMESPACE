@@ -3,6 +3,7 @@
 export(clear_cache)
 export(get_agfd)
 export(inspect_cache)
+export(read_agdf_dt)
 export(read_agdf_stars)
 export(read_agdf_terra)
 export(read_agdf_tidync)

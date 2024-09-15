@@ -18,12 +18,13 @@ Read AGDF NCDF Files
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-star_s <- get_agfd(cache = TRUE) |>
+get_agfd(cache = TRUE) |>
   read_agdf_stars()
 \dontshow{\}) # examplesIf}
 }
 \seealso{
 Other read_agdf: 
+\code{\link{read_agdf_dt}()},
 \code{\link{read_agdf_terra}()},
 \code{\link{read_agdf_tidync}()}
 }

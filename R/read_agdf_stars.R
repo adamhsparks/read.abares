@@ -5,7 +5,7 @@
 #' @return a `list` of \CRANpkg{stars} objects of the Australian Gridded Farm
 #'  Data
 #' @examplesIf interactive()
-#' star_s <- get_agfd(cache = TRUE) |>
+#' get_agfd(cache = TRUE) |>
 #'   read_agdf_stars()
 #'
 #' @family read_agdf

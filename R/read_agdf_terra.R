@@ -6,7 +6,7 @@
 #'  Data
 #'
 #' @examplesIf interactive()
-#' terr_a <- get_agfd(cache = TRUE) |>
+#' get_agfd(cache = TRUE) |>
 #'   read_agdf_terra()
 #'
 #' @family read_agdf
