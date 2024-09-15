@@ -7,6 +7,7 @@
 #' star_s <- get_agfd(cache = TRUE) |>
 #'   read_agdf_stars()
 #'
+#' @family read_agdf
 #' @export
 
 read_agdf_stars <- function(files) {

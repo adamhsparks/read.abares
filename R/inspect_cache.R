@@ -24,7 +24,7 @@
 #' # list all files in subdirectories, stripping the file path
 #' basename(inspect_cache(recursive_true))
 #'
-#'
+#' @family cache
 #' @return A `list` of directories or files in the cache
 #' @export
 

@@ -8,6 +8,7 @@
 #' terr_a <- get_agfd(cache = TRUE) |>
 #'   read_agdf_terra()
 #'
+#' @family read_agdf
 #' @export
 
 read_agdf_tidync <- function(files) {

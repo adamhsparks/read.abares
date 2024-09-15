@@ -22,3 +22,9 @@ terr_a <- get_agfd(cache = TRUE) |>
   read_agdf_terra()
 \dontshow{\}) # examplesIf}
 }
+\seealso{
+Other read_agdf: 
+\code{\link{read_agdf_stars}()},
+\code{\link{read_agdf_tidync}()}
+}
+\concept{read_agdf}
