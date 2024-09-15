@@ -61,7 +61,7 @@ Select from spatial classes:
 - [{terra}](https://CRAN.R-project.org/package=terra) or
 - [{tidync}](https://CRAN.R-project.org/package=tidync)
 
-or data.frames as {tibble} or {data.table} objects:
+or data.frame objects:
 
 - [{tibble}](https://CRAN.R-project.org/package=tibble), or
 - [{data.table}](https://CRAN.R-project.org/package=data.table)
