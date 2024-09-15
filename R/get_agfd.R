@@ -27,8 +27,8 @@
 #' @examplesIf interactive()
 #' get_agfd()
 #'
-#' @return A character `vector` of NetCDF files containing the Australian
-#'  Gridded Farm Data with fullnames.
+#' @return A `list` of NetCDF files containing the Australian Gridded Farm Data
+#'  with fullnames, *i.e.*, with the file path prepended to the file name
 #'
 #' @export
 
