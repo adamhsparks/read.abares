@@ -1,24 +1,27 @@
-Package: abares
 Type: Package
+Package: abares
 Title: Provides simple downloading, parsing and importing of Australian
-    Bureau of Agricultural and Resource Economics and Sciences data sources
+    Bureau of Agricultural and Resource Economics and Sciences data
+    sources
 Version: 0.1.0
-Author: Authors@R: c(
-    person("Adam H.", "Sparks", , "adamhsparks@gmail.com", role = c("cre", "aut"),
-           comment = c(ORCID = "0000-0002-0061-8359")))
-Description: Download and import data from the Australian Bureau of Agricultural
-    and Resource Economics and Sciences including the Historical National
-    Estimates, Historical State Estimates, Historical Regional Estimates,
-    Estimates by Size, Estimates by Performance Category,
+Author: Authors@R: c( person("Adam H.", "Sparks", ,
+    "adamhsparks@gmail.com", role = c("cre", "aut"), comment = c(ORCID =
+    "0000-0002-0061-8359")))
+Description: Download and import data from the Australian Bureau of
+    Agricultural and Resource Economics and Sciences including the
+    Historical National Estimates, Historical State Estimates, Historical
+    Regional Estimates, Estimates by Size, Estimates by Performance
+    Category,
     <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>;
     the Australian Gridded Farm Data set,
     <https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data>;
-    and the Australian Agricultural and Grazing Industries Survey (AAGIS) 
+    and the Australian Agricultural and Grazing Industries Survey (AAGIS)
     region mapping files,
     <https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data>.
 License: MIT + file LICENSE
-Encoding: UTF-8
-LazyData: true
+URL: https://codeberg.org/adamhsparks/abares,
+    https://adamhsparks.codeberg.page/abares
+BugReports: https://codeberg.org/adamhsparks/abares/issues
 Imports: 
     cli,
     curl,
@@ -28,5 +31,7 @@ Imports:
     terra,
     tidync,
     withr
-RoxygenNote: 7.3.2
+Encoding: UTF-8
+LazyData: true
 Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2

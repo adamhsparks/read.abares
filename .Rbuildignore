@@ -2,3 +2,6 @@
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^codemeta\.json$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

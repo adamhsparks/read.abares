@@ -8,4 +8,13 @@
 \description{
 Download and import data from the Australian Bureau of Agricultural and Resource Economics and Sciences including the Historical National Estimates, Historical State Estimates, Historical Regional Estimates, Estimates by Size, Estimates by Performance Category, \url{https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download}; the Australian Gridded Farm Data set, \url{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}; and the Australian Agricultural and Grazing Industries Survey (AAGIS) region mapping files, \url{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data}.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://codeberg.org/adamhsparks/abares}
+  \item \url{https://adamhsparks.codeberg.page/abares}
+  \item Report bugs at \url{https://codeberg.org/adamhsparks/abares/issues}
+}
+
+}
 \keyword{internal}
