@@ -24,10 +24,7 @@
 
 get_agfd <- function(fixed = FALSE, cache = FALSE) {
   agfd_zip <- data.table::fifelse(cache,
-                                  file.path(
-                                    tools::R_user_dir(package = "agfd", which = "cache"),
-                                    "agfd.zip"
-                                  ),
+                                  file.path(.find_user_cache(), "agfd.zip"),
                                   file.path(file.path(tempdir(), "agfd.zip")))
 
   # this is where the zip file is downloaded
