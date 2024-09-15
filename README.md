@@ -33,6 +33,14 @@ terr_a <- get_agfd(cache = TRUE) |>
 ## A list of {tidync} objects
 tnc <- get_agfd(cache = TRUE) |>
   read_agdf_tidync()
+
+## A {tibble} object
+tnc <- get_agfd(cache = TRUE) |>
+  read_agdf_tibble()
+  
+## A {data.table} object
+tnc <- get_agfd(cache = TRUE) |>
+  read_agdf_data.table()
 ```
 
 ## Features
