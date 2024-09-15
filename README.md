@@ -1,11 +1,12 @@
 # {abares}: Simple downloading and importing of ABARES Data
 
-An R package for automated downloading, parsing and formatting of data from the Australian Bureau of Agricultural and Resource Economics and Sciences including the [Historical National Estimates, Historical State Estimates, Historical Regional Estimates,
-Estimates by Size, Estimates by Performance Category](https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download);
-the [Australian Gridded Farm Data (AGFD) set](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data); and the [Australian Agricultural and Grazing Industries Survey (AAGIS)](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data)
-region mapping files.
+An R package for automated downloading, parsing and formatting of data from the Australian Bureau of Agricultural and Resource Economics and Sciences including the:
 
-The files are freely available as CSV files, zip archives of NetCDF files or a zip archive of a shape file.
+- [Historical National Estimates, Historical State Estimates, Historical Regional Estimates,
+Estimates by Size, Estimates by Performance Category](https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download);
+- the [Australian Gridded Farm Data (AGFD) set](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data); and the - [Australian Agricultural and Grazing Industries Survey (AAGIS)](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data) region mapping files.
+
+The files are freely available as CSV files, zip archives of NetCDF files or a zip archive of a geospatial shape file.
 {abares} facilitates downloading, caching and importing these files in your R session with your choice of the class of the resulting object(s).
 
 ## Get Started
