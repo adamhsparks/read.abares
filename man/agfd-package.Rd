@@ -4,7 +4,7 @@
 \name{agfd-package}
 \alias{agfd}
 \alias{agfd-package}
-\title{agfd: Provides automated downloading, parsing and formatting of Australian Gridded Farm Data from Australian Department of Agriculture, Fisheries and Forestry.}
+\title{agfd: Provides automated downloading, parsing and importing of Australian Gridded Farm Data from Australian Department of Agriculture, Fisheries and Forestry.}
 \description{
 Fetch, import and query data from the Australian Gridded Farm Data set, \url{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}
 }
