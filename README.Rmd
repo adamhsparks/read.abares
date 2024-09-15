@@ -1,3 +1,18 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
 # {abares}: Simple downloading and importing of ABARES Data
 
 An R package for automated downloading, parsing and formatting of data from the Australian Bureau of Agricultural and Resource Economics and Sciences including the:
@@ -28,12 +43,12 @@ remotes::install_git("https://codeberg.org/adamhsparks/abares")
 
 You can download the CSV files directly in your R session as illustrated below.
 
-```{r}
+```{ estimages}
 library(abares)
 
 nat <- get_hist_nat_est()
 
-sta <- get_hist_state_est()
+sta <- get_hist_sta_est()
 
 reg <- get_hist_reg_est()
 ```
@@ -42,7 +57,7 @@ reg <- get_hist_reg_est()
 
 You can download files and pipe directly into the class object that you desire for the AGFD data.
 
-```{r}
+```{r agfd}
 library(abares)
 
 ## A list of {stars} objects
@@ -59,7 +74,7 @@ tnc <- get_agfd(cache = TRUE) |>
 
 ## A {data.table} object
 dtb <- get_agfd(cache = TRUE) |>
-  read_agfd_data.table()
+  read_agfd_dt()
 ```
 
 ## Features
