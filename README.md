@@ -52,6 +52,7 @@ Select from:
 - [{stars}](https://CRAN.R-project.org/package=stars),
 - [{terra}](https://CRAN.R-project.org/package=terra),
 - [{tidync}](https://CRAN.R-project.org/package=tidync) or even
+- [{tibble}](https://CRAN.R-project.org/package=tibble), or
 - [{data.table}](https://CRAN.R-project.org/package=data.table)
 
 ## Description of the Data
