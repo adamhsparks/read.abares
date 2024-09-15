@@ -69,18 +69,6 @@
     },
     "4": {
       "@type": "SoftwareApplication",
-      "identifier": "dplyr",
-      "name": "dplyr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=dplyr"
-    },
-    "5": {
-      "@type": "SoftwareApplication",
       "identifier": "sf",
       "name": "sf",
       "provider": {
@@ -91,7 +79,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=sf"
     },
-    "6": {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "stars",
       "name": "stars",
@@ -103,7 +91,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stars"
     },
-    "7": {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "terra",
       "name": "terra",
@@ -115,7 +103,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=terra"
     },
-    "8": {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "tidync",
       "name": "tidync",
@@ -127,7 +115,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tidync"
     },
-    "9": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "withr",
       "name": "withr",
@@ -141,5 +129,5 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "33.073KB"
+  "fileSize": "32.855KB"
 }

@@ -2,9 +2,12 @@
 % Please edit documentation in R/get_historical_regional_estimates.R
 \name{get_historical_regional_estimates}
 \alias{get_historical_regional_estimates}
+\alias{get_hist_reg_est}
 \title{Get Historical Regional Estimates from ABARES}
 \usage{
 get_historical_regional_estimates()
+
+get_hist_reg_est()
 }
 \value{
 A \link[data.table:data.table]{data.table::data.table} object

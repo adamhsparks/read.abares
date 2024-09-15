@@ -2,9 +2,12 @@
 % Please edit documentation in R/get_estimates_by_size.R
 \name{get_estimates_by_size}
 \alias{get_estimates_by_size}
+\alias{get_est_by_size}
 \title{Get Estimates by Size From ABARES}
 \usage{
 get_estimates_by_size()
+
+get_est_by_size()
 }
 \value{
 A \link[data.table:data.table]{data.table::data.table} object

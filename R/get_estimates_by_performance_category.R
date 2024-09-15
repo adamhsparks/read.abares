@@ -14,3 +14,7 @@ get_estimates_by_performance_category <- get_est_by_perf_cat <- function() {
   x <- data.table::fread("https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv")
   return(x)
 }
+
+#' @export
+#' @rdname get_estimates_by_performance_category
+get_est_by_perf_cat <- get_estimates_by_performance_category

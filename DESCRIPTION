@@ -23,7 +23,6 @@ Imports:
     cli,
     curl,
     data.table,
-    dplyr,
     sf,
     stars,
     terra,

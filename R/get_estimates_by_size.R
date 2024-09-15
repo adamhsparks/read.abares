@@ -14,3 +14,7 @@ get_estimates_by_size <- get_est_by_size <- function() {
   x <- data.table::fread("https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-performance-by-size.csv")
   return(x)
 }
+
+#' @export
+#' @rdname get_estimates_by_size
+get_est_by_size <- get_estimates_by_size
