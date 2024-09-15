@@ -1,0 +1,28 @@
+
+#' Remove Files in Users' Cache Directory
+#'
+#' Removes all files in the \pkg{agfd} cache if they exist.
+#'
+#' @examples
+#' clear_cache()
+#'
+#' @family cache
+#' @return Nothing, called for its side-effects, clearing the cached files
+#' @export
+
+clear_cache <- function() {
+  f <- list.files(.find_user_cache(),
+                  recursive = TRUE,
+                  full.names = TRUE)
+
+  if (length(f > 0)) {
+    unlink(f, recursive = TRUE, force = TRUE)
+  } else {
+    cli::cli_inform(
+      c(
+        "There do not appear to be any files cached for {.pkg {{agdf}}} that
+        need to be cleared at this time."
+      )
+    )
+  }
+}
