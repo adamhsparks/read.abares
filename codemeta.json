@@ -1,9 +1,9 @@
 {
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
-  "identifier": "agfd",
-  "description": "Fetch, import and query data from the Australian Gridded Farm Data set, <https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data>",
-  "name": "agfd: Provides automated downloading, parsing and importing of Australian\n    Gridded Farm Data from Australian Department of Agriculture, Fisheries and\n    Forestry.",
+  "identifier": "abares",
+  "description": "Fetch, import and query data from the Australian Bureau of Agricultural and Resource Economics and Sciences including the Historical National Estimates, Historical State Estimates, Historical Regional Estimates, Estimates by Size, Estimates by Performance Category, <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>; Australian Gridded Farm Data set, <https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data>; and Australian Agricultural and Grazing Industries Survey (AAGIS) region mapping files.",
+  "name": "abares: Provides automated downloading, parsing and importing of Australian\n    Bureau of Agricultural and Resource Economics and Sciences data sources.",
   "license": "https://spdx.org/licenses/MIT",
   "version": "0.1.0",
   "programmingLanguage": {
@@ -141,5 +141,5 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "25.23KB"
+  "fileSize": "26.029KB"
 }
