@@ -2,13 +2,13 @@
 % Please edit documentation in R/get_historical_state_estimates.R
 \name{get_historical_state_estimates}
 \alias{get_historical_state_estimates}
-\alias{get_hist_state_est}
+\alias{get_hist_sta_est}
 \title{Get Historical State Estimates from ABARES}
 \usage{
 get_historical_state_estimates()
 }
 \value{
-a \link[data.table:data.table]{data.table::data.table} object
+A \link[data.table:data.table]{data.table::data.table} object
 }
 \description{
 Get Historical State Estimates from ABARES
@@ -16,5 +16,8 @@ Get Historical State Estimates from ABARES
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 get_hist_state_est()
+\dontshow{\}) # examplesIf}
+\dontshow{if (interactive) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+  get_hist_sta_est()
 \dontshow{\}) # examplesIf}
 }

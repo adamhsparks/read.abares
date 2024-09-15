@@ -5,10 +5,11 @@
 #' @examplesIf interactive()
 #' get_hist_state_est()
 #'
-#' @return a [data.table::data.table] object
+#' @return A [data.table::data.table] object
 #' @export
-#' @aliases get_hist_state_est
-#' @examples
+#' @aliases get_hist_sta_est
+#' @examplesIf interactive
+#'   get_hist_sta_est()
 #'
 get_historical_state_estimates <- function() {
   x <- data.table::fread("https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-state-historical.csv")

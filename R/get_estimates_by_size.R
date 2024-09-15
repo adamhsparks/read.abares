@@ -5,10 +5,11 @@
 #' @examplesIf interactive()
 #' get_est_by_size()
 #'
-#' @return a [data.table::data.table] object
+#' @return A [data.table::data.table] object
 #' @export
 #' @aliases get_est_by_size
-#' @examples
+#' @examplesIf interactive()
+#' get_est_by_size()
 #'
 get_estimates_by_size <- function() {
   x <- data.table::fread("https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-performance-by-size.csv")

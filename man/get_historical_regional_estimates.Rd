@@ -2,13 +2,13 @@
 % Please edit documentation in R/get_historical_regional_estimates.R
 \name{get_historical_regional_estimates}
 \alias{get_historical_regional_estimates}
-\alias{get_hist_regional_est}
+\alias{get_hist_reg_est}
 \title{Get Historical Regional Estimates from ABARES}
 \usage{
 get_historical_regional_estimates()
 }
 \value{
-a \link[data.table:data.table]{data.table::data.table} object
+A \link[data.table:data.table]{data.table::data.table} object
 }
 \description{
 Get Historical Regional Estimates from ABARES
@@ -16,5 +16,8 @@ Get Historical Regional Estimates from ABARES
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 get_hist_regional_est()
+\dontshow{\}) # examplesIf}
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+ get_hist_reg_est()
 \dontshow{\}) # examplesIf}
 }

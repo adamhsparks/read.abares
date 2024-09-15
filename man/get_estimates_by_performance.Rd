@@ -8,7 +8,7 @@
 get_estimates_by_performance()
 }
 \value{
-a \link[data.table:data.table]{data.table::data.table} object
+A \link[data.table:data.table]{data.table::data.table} object
 }
 \description{
 Get Estimates by Size From ABARES
@@ -16,5 +16,8 @@ Get Estimates by Size From ABARES
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 get_est_by_perf()
+\dontshow{\}) # examplesIf}
+\dontshow{if (interactive) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+ get_est_by_perf()
 \dontshow{\}) # examplesIf}
 }

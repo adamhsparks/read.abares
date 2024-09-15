@@ -8,7 +8,7 @@
 get_historical_national_est()
 }
 \value{
-a \link[data.table:data.table]{data.table::data.table} object
+A \link[data.table:data.table]{data.table::data.table} object
 }
 \description{
 Get Historical National Estimates from ABARES
@@ -16,5 +16,8 @@ Get Historical National Estimates from ABARES
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 get_hist_nat_est()
+\dontshow{\}) # examplesIf}
+\dontshow{if (interactive) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+ get_hist_nat_est()
 \dontshow{\}) # examplesIf}
 }

@@ -24,7 +24,21 @@ remotes::install_git("https://codeberg.org/adamhsparks/abares")
 
 ### Using {abares}
 
-You can download files and pipe directly into the class object that you desire.
+#### Estimates
+
+You can download the CSV files directly in your R session as illustrated below.
+
+```{r}
+nat <- get_hist_nat_est()
+
+sta <- get_hist_state_est()
+
+reg <- get_hist_reg_est()
+```
+
+#### AGFD Data
+
+You can download files and pipe directly into the class object that you desire for the AGFD data.
 
 ```r
 ## A list of {stars} objects
@@ -90,3 +104,5 @@ Directly from the DAFF website:
 Please report any [issues or bugs](https://codeberg.org/adamhsparks/agfd/issues).
 
 License: [MIT](LICENSE.md)
+
+Citing the data: Please refer to the ABARES website, <https://www.agriculture.gov.au/abares/products/citations> on how to cite this data when you use it.
