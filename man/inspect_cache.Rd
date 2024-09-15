@@ -22,6 +22,8 @@ you wish to strip the file path and only return the directory or filenames,
 use \code{basename()}. See examples for more.
 }
 \examples{
+# not run because cached files shouldn't exist on CRAN or testing envs
+\dontrun{
 # list directories in cache only
 inspect_cache()
 
@@ -33,7 +35,7 @@ inspect_cache(recursive = TRUE)
 
 # list all files in subdirectories, stripping the file path
 basename(inspect_cache(recursive_true))
-
+}
 }
 \seealso{
 Other cache: 

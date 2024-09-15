@@ -13,8 +13,10 @@ Nothing, called for its side-effects, clearing the cached files
 Removes all files in the \pkg{agfd} cache if they exist.
 }
 \examples{
+# not run because cached files shouldn't exist on CRAN or testing envs
+\dontrun{
 clear_cache()
-
+}
 }
 \seealso{
 Other cache: 

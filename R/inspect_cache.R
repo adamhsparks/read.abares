@@ -12,6 +12,8 @@
 #'  the top-level directories contained in the cache directory.
 #'
 #' @examples
+#' # not run because cached files shouldn't exist on CRAN or testing envs
+#' \dontrun{
 #' # list directories in cache only
 #' inspect_cache()
 #'
@@ -23,7 +25,7 @@
 #'
 #' # list all files in subdirectories, stripping the file path
 #' basename(inspect_cache(recursive_true))
-#'
+#' }
 #' @family cache
 #' @return A `list` of directories or files in the cache
 #' @export
