@@ -1,4 +1,4 @@
-# agfd
+# {agfd}: Simple downloading and importing of the Australian Gridded Farm Data
 
 Provides automated downloading, parsing and formatting of [Australian Gridded Farm Data](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data) from Australian Department of Agriculture, Fisheries and Forestry (DAFF).
 
