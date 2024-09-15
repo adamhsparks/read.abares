@@ -23,7 +23,8 @@ Sciences including the:
   Category](https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download);
 - the [Australian Gridded Farm Data (AGFD)
   set](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data);
-  and the - [Australian Agricultural and Grazing Industries Survey
+  and the
+- [Australian Agricultural and Grazing Industries Survey
   (AAGIS)](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data)
   region mapping files.
 
@@ -154,7 +155,7 @@ head(tnc[[1]])
 #> # A tibble: 1 × 2
 #>   access              source                                                    
 #>   <dttm>              <chr>                                                     
-#> 1 2024-09-16 06:54:25 /Users/adamsparks/Library/Caches/org.R-project.R/R/agfd/h…
+#> 1 2024-09-16 07:43:08 /Users/adamsparks/Library/Caches/org.R-project.R/R/agfd/h…
 #> 
 #> $axis
 #> # A tibble: 84 × 3
