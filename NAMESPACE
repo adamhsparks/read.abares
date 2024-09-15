@@ -3,7 +3,7 @@
 export(clear_cache)
 export(get_aagis_regions)
 export(get_agfd)
-export(get_estimates_by_performance)
+export(get_estimates_by_performance_category)
 export(get_estimates_by_size)
 export(get_historical_national_est)
 export(get_historical_regional_estimates)

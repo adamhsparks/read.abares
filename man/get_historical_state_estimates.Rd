@@ -2,7 +2,6 @@
 % Please edit documentation in R/get_historical_state_estimates.R
 \name{get_historical_state_estimates}
 \alias{get_historical_state_estimates}
-\alias{get_hist_sta_est}
 \title{Get Historical State Estimates from ABARES}
 \usage{
 get_historical_state_estimates()

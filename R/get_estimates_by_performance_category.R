@@ -7,11 +7,10 @@
 #'
 #' @return A [data.table::data.table] object
 #' @export
-#' @aliases get_est_by_perf
 #' @examplesIf interactive
-#'  get_est_by_perf()
+#'  get_est_by_perf_cat()
 #'
-get_estimates_by_performance <- function() {
+get_estimates_by_performance_category <- get_est_by_perf_cat <- function() {
   x <- data.table::fread("https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv")
   return(x)
 }

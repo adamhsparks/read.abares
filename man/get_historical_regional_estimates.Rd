@@ -2,7 +2,6 @@
 % Please edit documentation in R/get_historical_regional_estimates.R
 \name{get_historical_regional_estimates}
 \alias{get_historical_regional_estimates}
-\alias{get_hist_reg_est}
 \title{Get Historical Regional Estimates from ABARES}
 \usage{
 get_historical_regional_estimates()

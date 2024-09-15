@@ -2,7 +2,6 @@
 % Please edit documentation in R/get_historical_national_estimate.R
 \name{get_historical_national_est}
 \alias{get_historical_national_est}
-\alias{get_hist_nat_est}
 \title{Get Historical National Estimates from ABARES}
 \usage{
 get_historical_national_est()
