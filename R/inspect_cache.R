@@ -43,8 +43,8 @@ inspect_cache <- function(recursive = FALSE) {
   } else {
     cli::cli_inform(
       c(
-        "There do not appear to be any files cached for {.pkg {{agdf}}}.
-        You can download and cache files using {.fn get_agdf} and setting
+        "There do not appear to be any files cached for {.pkg {{agfd}}}.
+        You can download and cache files using {.fn get_agfd} and setting
         {.code cache = TRUE}."
       )
     )

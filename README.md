@@ -1,60 +1,64 @@
-# {agfd}: Simple downloading and importing of the Australian Gridded Farm Data
+# {abares}: Simple downloading and importing of ABARES Data
 
-An R package for automated downloading, parsing and formatting of [Australian Gridded Farm Data](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data) from Australian Department of Agriculture, Fisheries and Forestry (DAFF).
-The files are freely available as zip archives of NetCDF files.
-{agdf} facilitates downloading, caching and importing these files in your R session with your choice of the class of the resulting object(s).
+An R package for automated downloading, parsing and formatting of data from the Australian Bureau of Agricultural and Resource Economics and Sciences including the [Historical National Estimates, Historical State Estimates, Historical Regional Estimates,
+Estimates by Size, Estimates by Performance Category](https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download);
+the [Australian Gridded Farm Data (AGFD) set](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data); and the [Australian Agricultural and Grazing Industries Survey (AAGIS)](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data)
+region mapping files.
+
+The files are freely available as CSV files, zip archives of NetCDF files or a zip archive of a shape file.
+{abares} facilitates downloading, caching and importing these files in your R session with your choice of the class of the resulting object(s).
 
 ## Get Started
 
 ### Installation
 
-{agdf} is not available through CRAN (yet).
+{abares} is not available through CRAN (yet).
 But you can install it like so:
 
 ```r
 if (!require("remotes"))
   install.packages("remotes")
-remotes::install_git("https://codeberg.org/adamhsparks/agdf")
+remotes::install_git("https://codeberg.org/adamhsparks/abares")
 ```
 
-### Using {agdf}
+### Using {abares}
 
 You can download files and pipe directly into the class object that you desire.
 
 ```r
 ## A list of {stars} objects
-star_s <- get_agfd(cache = TRUE) |>
-  read_agdf_stars()
+sta <- get_agfd(cache = TRUE) |>
+  read_agfd_stars()
 
 ## A {terra} `rast` object
-terr_a <- get_agfd(cache = TRUE) |>
-  read_agdf_terra()
+ter <- get_agfd(cache = TRUE) |>
+  read_agfd_terra()
 
 ## A list of {tidync} objects
 tnc <- get_agfd(cache = TRUE) |>
-  read_agdf_tidync()
+  read_agfd_tidync()
 
 ## A {tibble} object
-tnc <- get_agfd(cache = TRUE) |>
-  read_agdf_tibble()
+tib <- get_agfd(cache = TRUE) |>
+  read_agfd_tibble()
   
 ## A {data.table} object
-tnc <- get_agfd(cache = TRUE) |>
-  read_agdf_data.table()
+dtb <- get_agfd(cache = TRUE) |>
+  read_agfd_data.table()
 ```
 
 ## Features
 
 ### Caching
 
-{agdf} supports caching the files using `tools::R_user_dir(package = "agfd", which = "cache")` to save the files in a standardised location across platforms so you don't have to worry about where the files went or if they're still there.
-When requesting the files, {agdf} will first check if they are available locally.
+{abares} supports caching the files using `tools::R_user_dir(package = "agfd", which = "cache")` to save the files in a standardised location across platforms so you don't have to worry about where the files went or if they're still there.
+When requesting the files, {abares} will first check if they are available locally.
 Caching is not mandatory, in fact the default is to not cache the files but just work with them out of `tempdir()`.
 `get_agfd()` will always check first if the files are available locally, either cached or in your current R session's `tempdir()` to save time by not downloading again if they are available already.
 
 ### Multiple Classes Supported
 
-{agdf} supports multiple classes of objects to support your workflow.
+{abares} supports multiple classes of objects to support your workflow.
 Select from spatial classes:
 
 - [{stars}](https://CRAN.R-project.org/package=stars),
@@ -66,7 +70,7 @@ or data.frame objects:
 - [{tibble}](https://CRAN.R-project.org/package=tibble), or
 - [{data.table}](https://CRAN.R-project.org/package=data.table)
 
-## Description of the Data
+## Description of the Australian Farm Gridded Data
 
 Directly from the DAFF website:
 

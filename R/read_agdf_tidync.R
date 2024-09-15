@@ -1,5 +1,5 @@
 
-#' Read AGDF NCDF Files with tidync
+#' Read agfd NCDF Files with tidync
 #'
 #' @param files A list of NetCDF files to import
 #' @return a `list` of \CRANpkg{tidync} [tidync::tidync] objects of the
@@ -7,11 +7,11 @@
 #'
 #' @examplesIf interactive()
 #' get_agfd(cache = TRUE) |>
-#'   read_agdf_tidync()
+#'   read_agfd_tidync()
 #'
-#' @family read_agdf
+#' @family read_agfd
 #' @export
 
-read_agdf_tidync <- function(files) {
+read_agfd_tidync <- function(files) {
   lapply(files, tidync::tidync)
 }

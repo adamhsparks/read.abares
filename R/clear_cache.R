@@ -22,7 +22,7 @@ clear_cache <- function() {
   } else {
     cli::cli_inform(
       c(
-        "There do not appear to be any files cached for {.pkg {{agdf}}} that
+        "There do not appear to be any files cached for {.pkg {{agfd}}} that
         need to be cleared at this time."
       )
     )
