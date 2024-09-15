@@ -17,9 +17,9 @@ Get Historical Regional Estimates from ABARES
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-get_hist_regional_est()
-\dontshow{\}) # examplesIf}
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+ get_historical_regional_estimates()
+
+ # or shorter
  get_hist_reg_est()
 \dontshow{\}) # examplesIf}
 }

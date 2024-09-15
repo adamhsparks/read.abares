@@ -16,10 +16,10 @@ A \link[data.table:data.table]{data.table::data.table} object
 Get Historical State Estimates from ABARES
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-get_hist_state_est()
-\dontshow{\}) # examplesIf}
 \dontshow{if (interactive) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-  get_hist_sta_est()
+ get_historical_state_estimates()
+
+ # or shorter
+ get_hist_sta_est()
 \dontshow{\}) # examplesIf}
 }

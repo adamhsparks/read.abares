@@ -1,13 +1,13 @@
 
 #' Get Historical National Estimates from ABARES
 #'
-#'
-#' @examplesIf interactive()
-#' get_hist_nat_est()
-#'
 #' @return A [data.table::data.table] object
 #' @export
 #' @examplesIf interactive
+#'
+#'  get_historical_national_estimates()
+#'
+#'  # or shorter
 #'  get_hist_nat_est()
 #'
 get_historical_national_estimates <- function() {

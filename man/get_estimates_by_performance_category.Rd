@@ -16,10 +16,11 @@ A \link[data.table:data.table]{data.table::data.table} object
 Get Estimates by Size From ABARES
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-get_est_by_perf()
-\dontshow{\}) # examplesIf}
 \dontshow{if (interactive) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+
+ get_estimates_by_performance_category()
+
+ # or shorter
  get_est_by_perf_cat()
 \dontshow{\}) # examplesIf}
 }

@@ -17,9 +17,10 @@ Get Estimates by Size From ABARES
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-get_est_by_size()
-\dontshow{\}) # examplesIf}
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+
+get_estimates_by_size()
+
+# or shorter
 get_est_by_size()
 \dontshow{\}) # examplesIf}
 }
