@@ -19,5 +19,6 @@ Imports:
     data.table,
     stars,
     terra,
+    tidync,
     withr
 RoxygenNote: 7.3.2

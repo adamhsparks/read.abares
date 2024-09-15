@@ -15,7 +15,7 @@
 #'  [10.1016/j.crm.2022.100420](https://doi.org/10.1016/j.crm.2022.100420).
 #'
 #' @examplesIf interactive()
-#' agfd <- get_agfd()
+#' get_agfd()
 #'
 #' @return A character `vector` of NetCDF files containing the Australian
 #'  Gridded Farm Data with fullnames.

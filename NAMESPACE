@@ -3,6 +3,7 @@
 export(get_agfd)
 export(read_agdf_stars)
 export(read_agdf_terra)
+export(read_agdf_tidync)
 importFrom(data.table,":=")
 importFrom(data.table,.BY)
 importFrom(data.table,.EACHI)
