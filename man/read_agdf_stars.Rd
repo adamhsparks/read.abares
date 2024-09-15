@@ -8,12 +8,17 @@ read_agdf_stars(files)
 }
 \arguments{
 \item{files}{A list of NetCDF files to import}
-
-\item{class}{Class of objec to return, `terra` or `stars`}
 }
 \value{
-a \CRANpkg{stars} object of the Australian Gridded Farm Data
+a `list` of \CRANpkg{stars} objects of the Australian Gridded Farm
+ Data
 }
 \description{
 Read AGDF NCDF Files
+}
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+star_s <- get_agfd(cache = TRUE) |>
+  read_agdf_stars()
+\dontshow{\}) # examplesIf}
 }

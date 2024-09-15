@@ -15,47 +15,51 @@
 #'  [10.1016/j.crm.2022.100420](https://doi.org/10.1016/j.crm.2022.100420).
 #'
 #' @examplesIf interactive()
-#' agfd <- get_agdf()
+#' agfd <- get_agfd()
 #'
 #' @return A character `vector` of NetCDF files containing the Australian
 #'  Gridded Farm Data with fullnames.
 #'
 #' @export
 
-get_agdf <- function(fixed = FALSE, cache = FALSE) {
-  if (isTRUE(cache)) {
-    agfd_file <-  file.path(tools::R_user_dir(package = "agfd",
-                                              which = "cache"),
-                            "agfd.zip")
-  } else {
-    agfd_file <- file.path(file.path(tempdir(), "agfd.zip"))
-  }
-  agdf_file_dir <- dirname(agfd_file)
+get_agfd <- function(fixed = FALSE, cache = FALSE) {
+  agfd_zip <- data.table::fifelse(cache,
+                                  file.path(
+                                    tools::R_user_dir(package = "agfd", which = "cache"),
+                                    "agfd.zip"
+                                  ),
+                                  file.path(file.path(tempdir(), "agfd.zip")))
 
-  if (!exists(agfd_file_dir)) {
-    if (isTRUE(fixed)) {
-      url <- "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/2"
-    } else {
-      url <- "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/3"
+  # this is where the zip file is downloaded
+  agfd_zip_dir <- dirname(agfd_zip)
+
+  # this is where the zip files are unzipped in `agfd_zip_dir`
+  agfd_nc_dir <- data.table::fifelse(
+    fixed,
+    file.path(agfd_zip_dir, "historical_climate_prices_fixed"),
+    file.path(agfd_zip_dir, "historical_climate_and_prices")
+  )
+
+  # only download if the files aren't already local
+  if (!file.exists(agfd_nc_dir)) {
+    # if caching is enabled but the {agfd} cache dir doesn't exist, create it
+    if (cache) {
+      dir.create(agfd_zip_dir)
     }
 
+    url <- data.table::fifelse(
+      fixed,
+      "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/3",
+      "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/2"
+    )
+
     curl::curl_download(url = url,
-                        destfile = agfd_file,
+                        destfile = agfd_zip,
                         quiet = FALSE)
 
-    withr::with_dir(agdf_file_dir,
-                    utils::untar(agfd_file, exdir = agdf_file_dir))
+    withr::with_dir(agfd_zip_dir, utils::untar(agfd_zip, exdir = agfd_zip_dir))
+    unlink(agfd_zip)
   }
-  if (isFALSE(fixed)) {
-    return(list.files(
-      agdf_file_dir,
-      "historical_climate_and_prices",
-      full.names = TRUE
-    ))
-  } else
-    return(list.files(
-      agdf_file_dir,
-      "historical_climate_prices_fixed",
-      full.names = TRUE
-    ))
+
+  list.files(agfd_nc_dir, full.names = TRUE)
 }

@@ -1,9 +1,14 @@
 #' Read AGDF NCDF Files
-#' @param class Class of objec to return, `terra` or `stars`
+#'
 #' @param files A list of NetCDF files to import
-#' @return a \CRANpkg{stars} object of the Australian Gridded Farm Data
+#' @return a `list` of \CRANpkg{stars} objects of the Australian Gridded Farm
+#'  Data
+#' @examplesIf interactive()
+#' star_s <- get_agfd(cache = TRUE) |>
+#'   read_agdf_stars()
+#'
+#' @export
 
 read_agdf_stars <- function(files) {
-    #TODO: furrr map to read stars objects?
-    s <- stars::read_ncdf(files)
+    s <- lapply(files, stars::read_ncdf)
 }

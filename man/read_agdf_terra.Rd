@@ -4,7 +4,7 @@
 \alias{read_agdf_terra}
 \title{Read AGDF NCDF Files}
 \usage{
-read_agdf_terra(class, files)
+read_agdf_terra(files)
 }
 \arguments{
 \item{files}{A list of NetCDF files to import}
@@ -15,4 +15,10 @@ a \CRANpkg{terra} [terra::rast] object of the Australian Gridded Farm
 }
 \description{
 Read AGDF NCDF Files
+}
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+terr_a <- get_agfd(cache = TRUE) |>
+  read_agdf_terra()
+\dontshow{\}) # examplesIf}
 }
