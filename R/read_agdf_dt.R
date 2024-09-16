@@ -13,5 +13,8 @@
 
 read_agfd_dt <- function(files) {
   tnc_list <- lapply(files, tidync::tidync)
-  data.table::rbindlist(lapply(tnc_list, tidync::hyper_tibble))
+  dt <- data.table::rbindlist(lapply(tnc_list, tidync::hyper_tibble))
+  dt[, lat := as.numeric(dt$lat)]
+  dt[, lon := as.numeric(dt$lon)]
+  return(dt[])
 }
