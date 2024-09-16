@@ -386,7 +386,7 @@ head(tnc[[1]])
 #> # A tibble: 1 × 2
 #>   access              source                                                    
 #>   <dttm>              <chr>                                                     
-#> 1 2024-09-16 22:31:57 /Users/adamsparks/Library/Caches/org.R-project.R/R/abares…
+#> 1 2024-09-17 07:14:07 /Users/adamsparks/Library/Caches/org.R-project.R/R/abares…
 #> 
 #> $axis
 #> # A tibble: 84 × 3
