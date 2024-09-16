@@ -6,5 +6,5 @@
 #' @noRd
 #' @keywords Internal
 .find_user_cache <- function() {
-  tools::R_user_dir(package = "agfd", which = "cache")
+  tools::R_user_dir(package = "abares", which = "cache")
 }
