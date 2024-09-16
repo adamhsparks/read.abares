@@ -14,7 +14,7 @@ the files locally as a native \R object. If \code{FALSE}, this function uses
 \code{tempdir()} and the files are deleted upon closing of the \R session.}
 }
 \value{
-an \CRANpkg{sf} object of the \acronym{AAGIS} regions
+An \CRANpkg{sf} object of the \acronym{AAGIS} regions
 }
 \description{
 Get AAGIS Region Mapping Files

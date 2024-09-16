@@ -10,7 +10,7 @@
 #' aagis <- get_aagis_regions()
 #' plot(aagis)
 #'
-#' @return an \CRANpkg{sf} object of the \acronym{AAGIS} regions
+#' @return An \CRANpkg{sf} object of the \acronym{AAGIS} regions
 #'
 #' @export
 
@@ -36,15 +36,21 @@ get_aagis_regions <- function(cache = TRUE) {
     url <-
       "https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip"
 
-    curl::curl_download(url = url,
-                        destfile = aagis_zip,
-                        quiet = FALSE)
+    curl::curl_download(
+      url = url,
+      destfile = aagis_zip,
+      quiet = FALSE
+    )
 
-    withr::with_dir(aagis_regions_dir,
-                    utils::untar(aagis_zip, exdir = aagis_regions_dir))
+    withr::with_dir(
+      aagis_regions_dir,
+      utils::untar(aagis_zip, exdir = aagis_regions_dir)
+    )
 
-    aagis_sf <- sf::read_sf(dsn = file.path(aagis_regions_dir,
-                                            "aagis_asgs16v1_g5a.shp"))
+    aagis_sf <- sf::read_sf(dsn = file.path(
+      aagis_regions_dir,
+      "aagis_asgs16v1_g5a.shp"
+    ))
 
     if (cache) {
       saveRDS(aagis_sf, file = aagis_rds)
