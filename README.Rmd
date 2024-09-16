@@ -113,7 +113,6 @@ Select from spatial classes:
 
 or data.frame objects:
 
-- [{tibble}](https://CRAN.R-project.org/package=tibble), or
 - [{data.table}](https://CRAN.R-project.org/package=data.table)
 
 ## Description of the Australian Farm Gridded Data

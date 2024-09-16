@@ -109,6 +109,237 @@ library(abares)
 ## A list of {stars} objects
 str <- get_agfd(cache = TRUE) |>
   read_agfd_stars()
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
+#> Will return stars object with 612226 cells.
+#> No projection information found in nc file. 
+#>  Coordinate variable units found to be degrees, 
+#>  assuming WGS84 Lat/Lon.
 
 head(str[[1]])
 #> stars object with 2 dimensions and 6 attributes
@@ -155,7 +386,7 @@ head(tnc[[1]])
 #> # A tibble: 1 × 2
 #>   access              source                                                    
 #>   <dttm>              <chr>                                                     
-#> 1 2024-09-16 07:43:08 /Users/adamsparks/Library/Caches/org.R-project.R/R/agfd/h…
+#> 1 2024-09-16 09:17:42 /Users/283204f/Library/Caches/org.R-project.R/R/agfd/hist…
 #> 
 #> $axis
 #> # A tibble: 84 × 3
@@ -340,7 +571,6 @@ Select from spatial classes:
 
 or data.frame objects:
 
-- [{tibble}](https://CRAN.R-project.org/package=tibble), or
 - [{data.table}](https://CRAN.R-project.org/package=data.table)
 
 ## Description of the Australian Farm Gridded Data

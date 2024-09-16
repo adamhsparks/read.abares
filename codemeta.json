@@ -132,5 +132,6 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "44.842KB"
+  "fileSize": "76.564KB",
+  "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html#experimental", "https://www.repostatus.org/#active"]
 }
