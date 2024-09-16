@@ -60,8 +60,10 @@ the files locally as a native <span style="R">R</span> object. If <code>FALSE</c
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">aagis</span> <span class="op">&lt;-</span> <span class="fu">get_aagis_regions</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot open compressed file '/Users/283204f/Library/Caches/org.R-project.R/R/agfd/aagis_regions_dir/aagis.rds', probable reason 'No such file or directory'</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in gzfile(file, "rb"):</span> cannot open the connection</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">aagis</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in data.matrix(x):</span> 'list' object cannot be coerced to type 'double'</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'aagis' not found</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
