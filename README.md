@@ -386,7 +386,7 @@ head(tnc[[1]])
 #> # A tibble: 1 × 2
 #>   access              source                                                    
 #>   <dttm>              <chr>                                                     
-#> 1 2024-09-16 09:17:42 /Users/283204f/Library/Caches/org.R-project.R/R/agfd/hist…
+#> 1 2024-09-16 22:31:57 /Users/adamsparks/Library/Caches/org.R-project.R/R/abares…
 #> 
 #> $axis
 #> # A tibble: 84 × 3
@@ -535,14 +535,14 @@ get_agfd(cache = TRUE) |>
 #> 4:     0.5688555  0.0223214940     0.000151675639       7.711993
 #> 5:     0.8337981  0.0416492516     0.000316535762      10.294743
 #> 6:     0.5575842  0.0293469147     0.000201161236       7.101658
-#>    farmland_per_cell              lon               lat
-#>                <num>           <char>            <char>
-#> 1:          62.26270 142.600006103516            -10.75
-#> 2:          61.71605           136.75 -11.0500001907349
-#> 3:          61.82964 132.899993896484 -11.1499996185303
-#> 4:          72.85995 136.699996948242 -11.1999998092651
-#> 5:          61.82964 133.449996948242 -11.6000003814697
-#> 6:          61.71605           136.25 -11.6000003814697
+#>    farmland_per_cell    lon    lat
+#>                <num>  <num>  <num>
+#> 1:          62.26270 142.60 -10.75
+#> 2:          61.71605 136.75 -11.05
+#> 3:          61.82964 132.90 -11.15
+#> 4:          72.85995 136.70 -11.20
+#> 5:          61.82964 133.45 -11.60
+#> 6:          61.71605 136.25 -11.60
 ```
 
 ## Features
@@ -604,7 +604,7 @@ Directly from the DAFF website:
 ## Metadata
 
 Please report any [issues or
-bugs](https://codeberg.org/adamhsparks/agfd/issues).
+bugs](https://codeberg.org/adamhsparks/abares/issues).
 
 License: [MIT](LICENSE.md)
 
