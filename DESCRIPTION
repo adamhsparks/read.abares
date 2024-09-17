@@ -26,6 +26,7 @@ Imports:
     cli,
     curl,
     data.table,
+    purrr,
     sf,
     stars,
     terra,

@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_agdf_stars.R
 \name{read_agfd_stars}
 \alias{read_agfd_stars}
-\title{Read agfd NCDF Files}
+\title{Read AGFD NCDF Files}
 \usage{
 read_agfd_stars(files)
 }
@@ -11,10 +11,10 @@ read_agfd_stars(files)
 }
 \value{
 a \code{list} of \CRANpkg{stars} objects of the Australian Gridded Farm
-Data
+Data with filenames as the list's object's names
 }
 \description{
-Read agfd NCDF Files
+Read Australian Gridded Farm Data, (\acronym{AGFD}) as a \link{stars} object.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
