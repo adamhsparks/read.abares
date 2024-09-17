@@ -86,6 +86,18 @@
     },
     "4": {
       "@type": "SoftwareApplication",
+      "identifier": "purrr",
+      "name": "purrr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=purrr"
+    },
+    "5": {
+      "@type": "SoftwareApplication",
       "identifier": "sf",
       "name": "sf",
       "provider": {
@@ -96,7 +108,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=sf"
     },
-    "5": {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "stars",
       "name": "stars",
@@ -108,7 +120,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stars"
     },
-    "6": {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "terra",
       "name": "terra",
@@ -120,7 +132,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=terra"
     },
-    "7": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "tidync",
       "name": "tidync",
@@ -132,7 +144,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tidync"
     },
-    "8": {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "withr",
       "name": "withr",
@@ -146,6 +158,6 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "76.822KB",
+  "fileSize": "51.233KB",
   "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html#experimental", "https://www.repostatus.org/#active"]
 }
