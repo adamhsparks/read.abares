@@ -11,7 +11,7 @@ read_agfd_terra(files)
 }
 \value{
 a \code{list} object of \link[terra:rast]{terra::rast} object of the Australian Gridded
-Farm Data with the file names as the \verb{rast's} layers' names
+Farm Data with the file names as the list's objects' names
 }
 \description{
 Read Australian Gridded Farm Data, (\acronym{AGFD}) as a \link[terra:rast]{terra::rast}
