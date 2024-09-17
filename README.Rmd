@@ -71,21 +71,22 @@ You can download files and pipe directly into the class object that you desire f
 library(abares)
 
 ## A list of {stars} objects
-str <- get_agfd(cache = TRUE) |>
+star <- get_agfd(cache = TRUE) |>
   read_agfd_stars()
 
-head(str[[1]])
+head(star[[1]])
 
 ## A {terra} `rast` object
-get_agfd(cache = TRUE) |>
-  read_agfd_terra() |>
-  head()
+terr <- get_agfd(cache = TRUE) |>
+  read_agfd_terra()
+
+head(terr[[1]])
 
 ## A list of {tidync} objects
-tnc <- get_agfd(cache = TRUE) |>
+tdnc <- get_agfd(cache = TRUE) |>
   read_agfd_tidync()
-  
-head(tnc[[1]])
+
+head(tdnc[[1]])
 
 ## A {data.table} object
 get_agfd(cache = TRUE) |>
