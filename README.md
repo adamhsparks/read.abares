@@ -160,7 +160,7 @@ head(tdnc[[1]])
 #> # A tibble: 1 × 2
 #>   access              source                                                    
 #>   <dttm>              <chr>                                                     
-#> 1 2024-09-17 21:20:55 /Users/adamsparks/Library/Caches/org.R-project.R/R/abares…
+#> 1 2024-09-18 06:34:31 /Users/adamsparks/Library/Caches/org.R-project.R/R/abares…
 #> 
 #> $axis
 #> # A tibble: 84 × 3
@@ -229,54 +229,54 @@ head(tdnc[[1]])
 get_agfd(cache = TRUE) |>
   read_agfd_dt() |>
   head()
-#>    farmno R_total_hat_ha C_total_hat_ha FBP_fci_hat_ha FBP_fbp_hat_ha
-#>     <num>          <num>          <num>          <num>          <num>
-#> 1:  15612       7.636519       4.405228       3.231292       1.766127
-#> 2:  21495      14.811169       9.165632       5.645538       6.178280
-#> 3:  23418      24.874456      14.858595      10.015861      15.504923
-#> 4:  24494      15.043653       9.326359       5.717294       7.212161
-#> 5:  32429      23.630099      13.681063       9.949036       9.612778
-#> 6:  32485      15.009926       9.815501       5.194425       6.582035
-#>    A_wheat_hat_ha H_wheat_dot_hat A_barley_hat_ha H_barley_dot_hat
-#>             <num>           <num>           <num>            <num>
-#> 1:            NaN             NaN             NaN              NaN
-#> 2:            NaN             NaN             NaN              NaN
-#> 3:            NaN             NaN             NaN              NaN
-#> 4:            NaN             NaN             NaN              NaN
-#> 5:            NaN             NaN             NaN              NaN
-#> 6:            NaN             NaN             NaN              NaN
-#>    A_sorghum_hat_ha H_sorghum_dot_hat A_oilseeds_hat_ha H_oilseeds_dot_hat
-#>               <num>             <num>             <num>              <num>
-#> 1:              NaN               NaN               NaN                NaN
-#> 2:              NaN               NaN               NaN                NaN
-#> 3:              NaN               NaN               NaN                NaN
-#> 4:              NaN               NaN               NaN                NaN
-#> 5:              NaN               NaN               NaN                NaN
-#> 6:              NaN               NaN               NaN                NaN
-#>    R_wheat_hat_ha R_sorghum_hat_ha R_oilseeds_hat_ha R_barley_hat_ha
-#>             <num>            <num>             <num>           <num>
-#> 1:            NaN              NaN               NaN             NaN
-#> 2:            NaN              NaN               NaN             NaN
-#> 3:            NaN              NaN               NaN             NaN
-#> 4:            NaN              NaN               NaN             NaN
-#> 5:            NaN              NaN               NaN             NaN
-#> 6:            NaN              NaN               NaN             NaN
-#>    Q_wheat_hat_ha Q_barley_hat_ha Q_sorghum_hat_ha Q_oilseeds_hat_ha
-#>             <num>           <num>            <num>             <num>
-#> 1:            NaN             NaN              NaN               NaN
-#> 2:            NaN             NaN              NaN               NaN
-#> 3:            NaN             NaN              NaN               NaN
-#> 4:            NaN             NaN              NaN               NaN
-#> 5:            NaN             NaN              NaN               NaN
-#> 6:            NaN             NaN              NaN               NaN
-#>    S_wheat_cl_hat_ha S_sheep_cl_hat_ha S_sheep_births_hat_ha
-#>                <num>             <num>                 <num>
-#> 1:               NaN    0.000046854152        0.000048411171
-#> 2:               NaN    0.000066325878        0.000057753874
-#> 3:               NaN    0.000007771546        0.000007320093
-#> 4:               NaN    0.000070963917        0.000062521929
-#> 5:               NaN    0.000007780997        0.000006834211
-#> 6:               NaN    0.000059600116        0.000053976389
+#>                            id farmno R_total_hat_ha C_total_hat_ha
+#>                        <char>  <num>          <num>          <num>
+#> 1: f2022.c1991.p2022.t2022.nc  15612       7.636519       4.405228
+#> 2: f2022.c1991.p2022.t2022.nc  21495      14.811169       9.165632
+#> 3: f2022.c1991.p2022.t2022.nc  23418      24.874456      14.858595
+#> 4: f2022.c1991.p2022.t2022.nc  24494      15.043653       9.326359
+#> 5: f2022.c1991.p2022.t2022.nc  32429      23.630099      13.681063
+#> 6: f2022.c1991.p2022.t2022.nc  32485      15.009926       9.815501
+#>    FBP_fci_hat_ha FBP_fbp_hat_ha A_wheat_hat_ha H_wheat_dot_hat A_barley_hat_ha
+#>             <num>          <num>          <num>           <num>           <num>
+#> 1:       3.231292       1.766127            NaN             NaN             NaN
+#> 2:       5.645538       6.178280            NaN             NaN             NaN
+#> 3:      10.015861      15.504923            NaN             NaN             NaN
+#> 4:       5.717294       7.212161            NaN             NaN             NaN
+#> 5:       9.949036       9.612778            NaN             NaN             NaN
+#> 6:       5.194425       6.582035            NaN             NaN             NaN
+#>    H_barley_dot_hat A_sorghum_hat_ha H_sorghum_dot_hat A_oilseeds_hat_ha
+#>               <num>            <num>             <num>             <num>
+#> 1:              NaN              NaN               NaN               NaN
+#> 2:              NaN              NaN               NaN               NaN
+#> 3:              NaN              NaN               NaN               NaN
+#> 4:              NaN              NaN               NaN               NaN
+#> 5:              NaN              NaN               NaN               NaN
+#> 6:              NaN              NaN               NaN               NaN
+#>    H_oilseeds_dot_hat R_wheat_hat_ha R_sorghum_hat_ha R_oilseeds_hat_ha
+#>                 <num>          <num>            <num>             <num>
+#> 1:                NaN            NaN              NaN               NaN
+#> 2:                NaN            NaN              NaN               NaN
+#> 3:                NaN            NaN              NaN               NaN
+#> 4:                NaN            NaN              NaN               NaN
+#> 5:                NaN            NaN              NaN               NaN
+#> 6:                NaN            NaN              NaN               NaN
+#>    R_barley_hat_ha Q_wheat_hat_ha Q_barley_hat_ha Q_sorghum_hat_ha
+#>              <num>          <num>           <num>            <num>
+#> 1:             NaN            NaN             NaN              NaN
+#> 2:             NaN            NaN             NaN              NaN
+#> 3:             NaN            NaN             NaN              NaN
+#> 4:             NaN            NaN             NaN              NaN
+#> 5:             NaN            NaN             NaN              NaN
+#> 6:             NaN            NaN             NaN              NaN
+#>    Q_oilseeds_hat_ha S_wheat_cl_hat_ha S_sheep_cl_hat_ha S_sheep_births_hat_ha
+#>                <num>             <num>             <num>                 <num>
+#> 1:               NaN               NaN    0.000046854152        0.000048411171
+#> 2:               NaN               NaN    0.000066325878        0.000057753874
+#> 3:               NaN               NaN    0.000007771546        0.000007320093
+#> 4:               NaN               NaN    0.000070963917        0.000062521929
+#> 5:               NaN               NaN    0.000007780997        0.000006834211
+#> 6:               NaN               NaN    0.000059600116        0.000053976389
 #>    S_sheep_deaths_hat_ha S_beef_cl_hat_ha S_beef_births_hat_ha
 #>                    <num>            <num>                <num>
 #> 1:        0.000007187978       0.02034820          0.005212591
