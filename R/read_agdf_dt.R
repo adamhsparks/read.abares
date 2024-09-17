@@ -1,5 +1,7 @@
 
-#' Read agfd NCDF Files as a data.table
+#' Read AGFD NCDF Files as a data.table
+#'
+#' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a [data.table] object.
 #'
 #' @param files A list of NetCDF files to import
 #' @return a [data.table::data.table] object of the Australian Gridded Farm Data
