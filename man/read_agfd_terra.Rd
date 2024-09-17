@@ -14,8 +14,8 @@ a \code{list} object of \link[terra:rast]{terra::rast} object of the Australian 
 Farm Data with the file names as the list's objects' names
 }
 \description{
-Read Australian Gridded Farm Data, (\acronym{AGFD}) as a \link[terra:rast]{terra::rast}
-object.
+Read Australian Gridded Farm Data, (\acronym{AGFD}) as a \code{list} of
+\link[terra:rast]{terra::rast} objects.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

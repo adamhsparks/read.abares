@@ -1,8 +1,8 @@
 
 #' Read AGFD NCDF Files
 #'
-#' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a [terra::rast]
-#'  object.
+#' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a `list` of
+#'  [terra::rast] objects.
 #'
 #' @param files A list of NetCDF files to import
 #' @return a `list` object of [terra::rast] object of the Australian Gridded
