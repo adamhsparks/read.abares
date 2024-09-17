@@ -13,6 +13,7 @@
 #'   read_agfd_stars()
 #'
 #' @family read_agfd
+#' @autoglobal
 #' @export
 
 read_agfd_stars <- function(files) {

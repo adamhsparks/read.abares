@@ -2,6 +2,7 @@
 #' Get Historical Regional Estimates from ABARES
 #'
 #' @return A [data.table::data.table] object
+#' @autoglobal
 #' @export
 #' @examplesIf interactive()
 #'  get_historical_regional_estimates()

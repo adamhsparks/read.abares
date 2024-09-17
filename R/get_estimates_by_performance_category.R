@@ -3,6 +3,7 @@
 #'
 #' @return A [data.table::data.table] object
 #' @export
+#' @autoglobal
 #' @examplesIf interactive()
 #'
 #'  get_estimates_by_performance_category()

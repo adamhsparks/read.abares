@@ -2,6 +2,7 @@
 #' Get Estimates by Size From ABARES
 #'
 #' @return A [data.table::data.table] object
+#' @autoglobal
 #' @export
 #' @examplesIf interactive()
 #'

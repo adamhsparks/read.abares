@@ -2,6 +2,7 @@
 #' Get Historical National Estimates from ABARES
 #'
 #' @return A [data.table::data.table] object
+#' @autoglobal
 #' @export
 #' @examplesIf interactive()
 #'

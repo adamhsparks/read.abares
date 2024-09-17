@@ -11,12 +11,17 @@
 #'   read_agfd_dt()
 #'
 #' @family read_agfd
+#' @autoglobal
 #' @export
 
 read_agfd_dt <- function(files) {
   tnc_list <- lapply(files, tidync::tidync)
-  dt <- data.table::rbindlist(lapply(tnc_list, tidync::hyper_tibble))
+  names(tnc_list) <- basename(files)
+  dt <- data.table::rbindlist(lapply(tnc_list, tidync::hyper_tibble),
+                              idcol = "id")
   dt[, lat := as.numeric(dt$lat)]
   dt[, lon := as.numeric(dt$lon)]
+  rm(tnc_list)
+  gc()
   return(dt[])
 }

@@ -13,6 +13,7 @@
 #'   read_agfd_terra()
 #'
 #' @family read_agfd
+#' @autoglobal
 #' @export
 
 read_agfd_terra <- function(files) {
