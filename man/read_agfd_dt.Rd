@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_agdf_dt.R
 \name{read_agfd_dt}
 \alias{read_agfd_dt}
-\title{Read agfd NCDF Files as a data.table}
+\title{Read AGFD NCDF Files as a data.table}
 \usage{
 read_agfd_dt(files)
 }
@@ -13,7 +13,7 @@ read_agfd_dt(files)
 a \link[data.table:data.table]{data.table::data.table} object of the Australian Gridded Farm Data
 }
 \description{
-Read agfd NCDF Files as a data.table
+Read Australian Gridded Farm Data, (\acronym{AGFD}) as a \link{data.table} object.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

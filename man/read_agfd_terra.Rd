@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_agdf_terra.R
 \name{read_agfd_terra}
 \alias{read_agfd_terra}
-\title{Read agfd NCDF Files}
+\title{Read AGFD NCDF Files}
 \usage{
 read_agfd_terra(files)
 }
@@ -14,7 +14,8 @@ a \CRANpkg{terra} \link[terra:rast]{terra::rast} object of the Australian Gridde
 Data
 }
 \description{
-Read agfd NCDF Files
+Read Australian Gridded Farm Data, (\acronym{AGFD}) as a \link[terra:rast]{terra::rast}
+object.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
