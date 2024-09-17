@@ -98,7 +98,7 @@ get_agfd(cache = TRUE) |>
 
 ### Caching
 
-{abares} supports caching the files using `tools::R_user_dir(package = "agfd", which = "cache")` to save the files in a standardised location across platforms so you don't have to worry about where the files went or if they're still there.
+{abares} supports caching the files using `tools::R_user_dir(package = "abares", which = "cache")` to save the files in a standardised location across platforms so you don't have to worry about where the files went or if they're still there.
 When requesting the files, {abares} will first check if they are available locally.
 Caching is not mandatory, you can just work with the downloaded files in `tempdir()`, which is cleaned up when your R session ends.
 `get_agfd()` will always check first if the files are available locally, either cached or in your current R session's `tempdir()` to save time by not downloading again if they are available already.

@@ -160,7 +160,7 @@ head(tdnc[[1]])
 #> # A tibble: 1 × 2
 #>   access              source                                                    
 #>   <dttm>              <chr>                                                     
-#> 1 2024-09-17 19:23:51 /Users/adamsparks/Library/Caches/org.R-project.R/R/abares…
+#> 1 2024-09-17 21:13:16 /Users/adamsparks/Library/Caches/org.R-project.R/R/abares…
 #> 
 #> $axis
 #> # A tibble: 84 × 3
@@ -324,15 +324,15 @@ get_agfd(cache = TRUE) |>
 ### Caching
 
 {abares} supports caching the files using
-`tools::R_user_dir(package = "agfd", which = "cache")` to save the files
-in a standardised location across platforms so you don’t have to worry
-about where the files went or if they’re still there. When requesting
-the files, {abares} will first check if they are available locally.
-Caching is not mandatory, you can just work with the downloaded files in
-`tempdir()`, which is cleaned up when your R session ends. `get_agfd()`
-will always check first if the files are available locally, either
-cached or in your current R session’s `tempdir()` to save time by not
-downloading again if they are available already.
+`tools::R_user_dir(package = "abares", which = "cache")` to save the
+files in a standardised location across platforms so you don’t have to
+worry about where the files went or if they’re still there. When
+requesting the files, {abares} will first check if they are available
+locally. Caching is not mandatory, you can just work with the downloaded
+files in `tempdir()`, which is cleaned up when your R session ends.
+`get_agfd()` will always check first if the files are available locally,
+either cached or in your current R session’s `tempdir()` to save time by
+not downloading again if they are available already.
 
 ### Multiple Classes Supported
 
