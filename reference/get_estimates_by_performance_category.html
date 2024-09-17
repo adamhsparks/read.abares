@@ -51,15 +51,35 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span> <span class="fu">get_estimates_by_performance_category</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>restarting interrupted promise evaluation</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>internal error -3 in R_decompress1</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> lazy-load database '/Users/adamsparks/Library/R/arm64/4.4/library/abares/R/abares.rdb' is corrupt</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                       Variable  Year   Size   Value   RSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                         &lt;char&gt; &lt;int&gt; &lt;char&gt;   &lt;num&gt; &lt;int&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:            Buildup in trading stocks ($)  1990   High   32041    23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                 Capital appreciation ($)  1990   High -107378    28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                    Capital at 1 July ($)  1990   High 2823904     8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                  Change in farm debt ($)  1990   High   11703    52</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                         Depreciation ($)  1990   High   52160     8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2273:                      Sample Contributing  2022    Low     187    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2274:                Total closing capital ($)  2022    Low 4468876     7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2275:                Total non farm income ($)  2022    Low   41979    15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2276:                 Total off farm wages ($)  2022    Low   24723    25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2277: Value of land and fixed improvements ($)  2022    Low 3816964     8</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span> <span class="co"># or shorter</span></span></span>
 <span class="r-in"><span> <span class="fu">get_est_by_perf_cat</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>restarting interrupted promise evaluation</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>internal error -3 in R_decompress1</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> lazy-load database '/Users/adamsparks/Library/R/arm64/4.4/library/abares/R/abares.rdb' is corrupt</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                       Variable  Year   Size   Value   RSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                         &lt;char&gt; &lt;int&gt; &lt;char&gt;   &lt;num&gt; &lt;int&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:            Buildup in trading stocks ($)  1990   High   32041    23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                 Capital appreciation ($)  1990   High -107378    28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                    Capital at 1 July ($)  1990   High 2823904     8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                  Change in farm debt ($)  1990   High   11703    52</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                         Depreciation ($)  1990   High   52160     8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2273:                      Sample Contributing  2022    Low     187    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2274:                Total closing capital ($)  2022    Low 4468876     7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2275:                Total non farm income ($)  2022    Low   41979    15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2276:                 Total off farm wages ($)  2022    Low   24723    25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2277: Value of land and fixed improvements ($)  2022    Low 3816964     8</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

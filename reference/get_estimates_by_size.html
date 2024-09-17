@@ -51,15 +51,61 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">get_estimates_by_size</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>restarting interrupted promise evaluation</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>internal error -3 in R_decompress1</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> lazy-load database '/Users/adamsparks/Library/R/arm64/4.4/library/abares/R/abares.rdb' is corrupt</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                 Variable  Year      Industry   Size   Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                   &lt;char&gt; &lt;int&gt;        &lt;char&gt; &lt;char&gt;   &lt;num&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     1: AI stud fees and herd testing ($)  1990 All Broadacre  Large 14646.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     2:           Accounting services ($)  1990 All Broadacre  Large 16432.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     3:             Advisory services ($)  1990 All Broadacre  Large  8056.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     4:        Age of owner manager (yrs)  1990 All Broadacre  Large    53.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     5:               Age of spouse (yrs)  1990 All Broadacre  Large    49.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83492:                Wheat receipts ($)  2022    Sheep-Beef  Small  5805.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83493:                    Wheat sold (t)  2022    Sheep-Beef  Small    19.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83494:            Wool cut per head (kg)  2022    Sheep-Beef  Small     3.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83495:                Wool produced (kg)  2022    Sheep-Beef  Small  4827.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83496:                 Wool receipts ($)  2022    Sheep-Beef  Small 54721.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          RSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;int&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     1:    87</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     2:    19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     3:    96</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     4:    14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     5:    15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    ---      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83492:    80</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83493:    81</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83494:    13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83495:    19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83496:    25</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># or shorter</span></span></span>
 <span class="r-in"><span><span class="fu">get_est_by_size</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>restarting interrupted promise evaluation</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>internal error -3 in R_decompress1</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> lazy-load database '/Users/adamsparks/Library/R/arm64/4.4/library/abares/R/abares.rdb' is corrupt</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                 Variable  Year      Industry   Size   Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                   &lt;char&gt; &lt;int&gt;        &lt;char&gt; &lt;char&gt;   &lt;num&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     1: AI stud fees and herd testing ($)  1990 All Broadacre  Large 14646.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     2:           Accounting services ($)  1990 All Broadacre  Large 16432.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     3:             Advisory services ($)  1990 All Broadacre  Large  8056.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     4:        Age of owner manager (yrs)  1990 All Broadacre  Large    53.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     5:               Age of spouse (yrs)  1990 All Broadacre  Large    49.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83492:                Wheat receipts ($)  2022    Sheep-Beef  Small  5805.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83493:                    Wheat sold (t)  2022    Sheep-Beef  Small    19.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83494:            Wool cut per head (kg)  2022    Sheep-Beef  Small     3.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83495:                Wool produced (kg)  2022    Sheep-Beef  Small  4827.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83496:                 Wool receipts ($)  2022    Sheep-Beef  Small 54721.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          RSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;int&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     1:    87</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     2:    19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     3:    96</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     4:    14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     5:    15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    ---      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83492:    80</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83493:    81</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83494:    13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83495:    19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83496:    25</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
