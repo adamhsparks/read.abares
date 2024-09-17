@@ -64,84 +64,84 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="get_agfd.html">get_agfd</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">read_agfd_dt</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          farmno R_total_hat_ha C_total_hat_ha FBP_fci_hat_ha FBP_fbp_hat_ha</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;num&gt;          &lt;num&gt;          &lt;num&gt;          &lt;num&gt;          &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       1:  15612       7.636519       4.405228       3.231292       1.766127</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       2:  21495      14.811169       9.165632       5.645538       6.178280</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       3:  23418      24.874456      14.858595      10.015861      15.504923</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       4:  24494      15.043653       9.326359       5.717294       7.212161</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       5:  32429      23.630099      13.681063       9.949036       9.612778</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      ---                                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554787: 668704     736.897286     460.817155     276.080132     356.686292</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554788: 668705     738.710884     474.410778     264.300107     302.316747</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554789: 668706     654.647906     457.160455     197.487451     199.890112</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554790: 668707     631.791102     427.709677     204.081425     153.518781</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554791: 669706     660.712058     439.941553     220.770505     218.792928</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          A_wheat_hat_ha H_wheat_dot_hat A_barley_hat_ha H_barley_dot_hat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   &lt;num&gt;           &lt;num&gt;           &lt;num&gt;            &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       1:            NaN             NaN             NaN              NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       2:            NaN             NaN             NaN              NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       3:            NaN             NaN             NaN              NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       4:            NaN             NaN             NaN              NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       5:            NaN             NaN             NaN              NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  id farmno R_total_hat_ha C_total_hat_ha</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              &lt;char&gt;  &lt;num&gt;          &lt;num&gt;          &lt;num&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       1: f2022.c1991.p2022.t2022.nc  15612       7.636519       4.405228</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       2: f2022.c1991.p2022.t2022.nc  21495      14.811169       9.165632</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       3: f2022.c1991.p2022.t2022.nc  23418      24.874456      14.858595</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       4: f2022.c1991.p2022.t2022.nc  24494      15.043653       9.326359</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       5: f2022.c1991.p2022.t2022.nc  32429      23.630099      13.681063</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      ---                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554787:              0             NaN               0              NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554788:              0             NaN               0              NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554789:              0             NaN               0              NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554790:              0             NaN               0              NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554791:              0             NaN               0              NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          A_sorghum_hat_ha H_sorghum_dot_hat A_oilseeds_hat_ha</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     &lt;num&gt;             &lt;num&gt;             &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       1:              NaN               NaN               NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       2:              NaN               NaN               NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       3:              NaN               NaN               NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       4:              NaN               NaN               NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       5:              NaN               NaN               NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      ---                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554787:              NaN               NaN                 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554788:              NaN               NaN                 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554789:              NaN               NaN                 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554790:              NaN               NaN                 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554791:              NaN               NaN                 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          H_oilseeds_dot_hat R_wheat_hat_ha R_sorghum_hat_ha R_oilseeds_hat_ha</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                       &lt;num&gt;          &lt;num&gt;            &lt;num&gt;             &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       1:                NaN            NaN              NaN               NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       2:                NaN            NaN              NaN               NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       3:                NaN            NaN              NaN               NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       4:                NaN            NaN              NaN               NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       5:                NaN            NaN              NaN               NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554787: f2022.c2023.p2022.t2022.nc 668704     736.897286     460.817155</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554788: f2022.c2023.p2022.t2022.nc 668705     738.710884     474.410778</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554789: f2022.c2023.p2022.t2022.nc 668706     654.647906     457.160455</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554790: f2022.c2023.p2022.t2022.nc 668707     631.791102     427.709677</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554791: f2022.c2023.p2022.t2022.nc 669706     660.712058     439.941553</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          FBP_fci_hat_ha FBP_fbp_hat_ha A_wheat_hat_ha H_wheat_dot_hat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   &lt;num&gt;          &lt;num&gt;          &lt;num&gt;           &lt;num&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       1:       3.231292       1.766127            NaN             NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       2:       5.645538       6.178280            NaN             NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       3:      10.015861      15.504923            NaN             NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       4:       5.717294       7.212161            NaN             NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       5:       9.949036       9.612778            NaN             NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      ---                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554787:     276.080132     356.686292              0             NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554788:     264.300107     302.316747              0             NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554789:     197.487451     199.890112              0             NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554790:     204.081425     153.518781              0             NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554791:     220.770505     218.792928              0             NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          A_barley_hat_ha H_barley_dot_hat A_sorghum_hat_ha H_sorghum_dot_hat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    &lt;num&gt;            &lt;num&gt;            &lt;num&gt;             &lt;num&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       1:             NaN              NaN              NaN               NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       2:             NaN              NaN              NaN               NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       3:             NaN              NaN              NaN               NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       4:             NaN              NaN              NaN               NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       5:             NaN              NaN              NaN               NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      ---                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554787:               0              NaN              NaN               NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554788:               0              NaN              NaN               NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554789:               0              NaN              NaN               NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554790:               0              NaN              NaN               NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554791:               0              NaN              NaN               NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          A_oilseeds_hat_ha H_oilseeds_dot_hat R_wheat_hat_ha R_sorghum_hat_ha</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      &lt;num&gt;              &lt;num&gt;          &lt;num&gt;            &lt;num&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       1:               NaN                NaN            NaN              NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       2:               NaN                NaN            NaN              NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       3:               NaN                NaN            NaN              NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       4:               NaN                NaN            NaN              NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       5:               NaN                NaN            NaN              NaN</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      ---                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554787:                NaN   0.0004348123              NaN                 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554788:                NaN   0.0005231921              NaN                 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554789:                NaN   0.0006084199              NaN                 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554790:                NaN   0.0007096869              NaN                 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554791:                NaN   0.0003611209              NaN                 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          R_barley_hat_ha Q_wheat_hat_ha Q_barley_hat_ha Q_sorghum_hat_ha</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                    &lt;num&gt;          &lt;num&gt;           &lt;num&gt;            &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       1:             NaN            NaN             NaN              NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       2:             NaN            NaN             NaN              NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       3:             NaN            NaN             NaN              NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       4:             NaN            NaN             NaN              NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       5:             NaN            NaN             NaN              NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      ---                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554787:     0.003709377 0.000001292824  0.000010061327              NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554788:     0.003525536 0.000001576272  0.000009648395              NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554789:     0.004337224 0.000001904677  0.000011629824              NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554790:     0.005920458 0.000002239960  0.000015683287              NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554791:     0.002440279 0.000001118544  0.000006533122              NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Q_oilseeds_hat_ha S_wheat_cl_hat_ha S_sheep_cl_hat_ha</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                      &lt;num&gt;             &lt;num&gt;             &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       1:               NaN               NaN    0.000046854152</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       2:               NaN               NaN    0.000066325878</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       3:               NaN               NaN    0.000007771546</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       4:               NaN               NaN    0.000070963917</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       5:               NaN               NaN    0.000007780997</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      ---                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554787:                 0    0.000002485484    0.117095277272</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554788:                 0    0.000002668840    0.153518713204</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554789:                 0    0.000002797019    0.187514077190</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554790:                 0    0.000002841685    0.211858527709</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5554791:                 0    0.000001604102    0.164533308643</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554787:                 0                NaN   0.0004348123              NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554788:                 0                NaN   0.0005231921              NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554789:                 0                NaN   0.0006084199              NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554790:                 0                NaN   0.0007096869              NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554791:                 0                NaN   0.0003611209              NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          R_oilseeds_hat_ha R_barley_hat_ha Q_wheat_hat_ha Q_barley_hat_ha</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      &lt;num&gt;           &lt;num&gt;          &lt;num&gt;           &lt;num&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       1:               NaN             NaN            NaN             NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       2:               NaN             NaN            NaN             NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       3:               NaN             NaN            NaN             NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       4:               NaN             NaN            NaN             NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       5:               NaN             NaN            NaN             NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      ---                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554787:                 0     0.003709377 0.000001292824  0.000010061327</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554788:                 0     0.003525536 0.000001576272  0.000009648395</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554789:                 0     0.004337224 0.000001904677  0.000011629824</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554790:                 0     0.005920458 0.000002239960  0.000015683287</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554791:                 0     0.002440279 0.000001118544  0.000006533122</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          Q_sorghum_hat_ha Q_oilseeds_hat_ha S_wheat_cl_hat_ha S_sheep_cl_hat_ha</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     &lt;num&gt;             &lt;num&gt;             &lt;num&gt;             &lt;num&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       1:              NaN               NaN               NaN    0.000046854152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       2:              NaN               NaN               NaN    0.000066325878</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       3:              NaN               NaN               NaN    0.000007771546</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       4:              NaN               NaN               NaN    0.000070963917</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       5:              NaN               NaN               NaN    0.000007780997</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      ---                                                                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554787:              NaN                 0    0.000002485484    0.117095277272</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554788:              NaN                 0    0.000002668840    0.153518713204</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554789:              NaN                 0    0.000002797019    0.187514077190</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554790:              NaN                 0    0.000002841685    0.211858527709</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5554791:              NaN                 0    0.000001604102    0.164533308643</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          S_sheep_births_hat_ha S_sheep_deaths_hat_ha S_beef_cl_hat_ha</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                          &lt;num&gt;                 &lt;num&gt;            &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       1:        0.000048411171        0.000007187978       0.02034820</span>
