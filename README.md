@@ -160,7 +160,7 @@ head(tdnc[[1]])
 #> # A tibble: 1 × 2
 #>   access              source                                                    
 #>   <dttm>              <chr>                                                     
-#> 1 2024-09-17 21:18:06 /Users/adamsparks/Library/Caches/org.R-project.R/R/abares…
+#> 1 2024-09-17 21:20:55 /Users/adamsparks/Library/Caches/org.R-project.R/R/abares…
 #> 
 #> $axis
 #> # A tibble: 84 × 3
@@ -383,8 +383,8 @@ bugs](https://codeberg.org/adamhsparks/abares/issues).
 License: [MIT](LICENSE.md)
 
 Citing the data: Please refer to the ABARES website,
-<https://www.agriculture.gov.au/abares/products/citations> on how to
-cite this data when you use it.
+<https://www.agriculture.gov.au/abares/products/citations>, on how to
+cite these data when you use them.
 
 ## Code of Conduct
 

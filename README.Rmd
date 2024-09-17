@@ -136,7 +136,7 @@ Please report any [issues or bugs](https://codeberg.org/adamhsparks/abares/issue
 
 License: [MIT](LICENSE.md)
 
-Citing the data: Please refer to the ABARES website, <https://www.agriculture.gov.au/abares/products/citations> on how to cite this data when you use it.
+Citing the data: Please refer to the ABARES website, <https://www.agriculture.gov.au/abares/products/citations>, on how to cite these data when you use them.
 
 ## Code of Conduct
 
