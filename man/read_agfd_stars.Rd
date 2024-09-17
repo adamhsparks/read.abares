@@ -11,7 +11,7 @@ read_agfd_stars(files)
 }
 \value{
 a \code{list} of \CRANpkg{stars} objects of the Australian Gridded Farm
-Data with filenames as the list's object's names
+Data with the file names as the list's objects' names
 }
 \description{
 Read Australian Gridded Farm Data, (\acronym{AGFD}) as a \link{stars} object.

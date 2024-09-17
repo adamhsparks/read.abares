@@ -11,7 +11,8 @@ read_agfd_tidync(files)
 }
 \value{
 a \code{list} of \CRANpkg{tidync} \link[tidync:tidync]{tidync::tidync} objects of the
-Australian Gridded Farm Data
+Australian Gridded Farm Data with the file names as the  list's objects'
+names.
 }
 \description{
 Read agfd NCDF Files with tidync

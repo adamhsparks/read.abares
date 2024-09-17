@@ -11,7 +11,7 @@ read_agfd_terra(files)
 }
 \value{
 a \CRANpkg{terra} \link[terra:rast]{terra::rast} object of the Australian Gridded Farm
-Data
+Data with the file names as the \verb{rast's} layers' names
 }
 \description{
 Read Australian Gridded Farm Data, (\acronym{AGFD}) as a \link[terra:rast]{terra::rast}
