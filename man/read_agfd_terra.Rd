@@ -10,7 +10,7 @@ read_agfd_terra(files)
 \item{files}{A list of NetCDF files to import}
 }
 \value{
-a \code{list} object of \link[terra:rast]{terra::rast} object of the Australian Gridded
+a \code{list} object of \link[terra:rast]{terra::rast} objects of the Australian Gridded
 Farm Data with the file names as the list's objects' names
 }
 \description{

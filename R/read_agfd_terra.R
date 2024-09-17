@@ -5,7 +5,7 @@
 #'  [terra::rast] objects.
 #'
 #' @param files A list of NetCDF files to import
-#' @return a `list` object of [terra::rast] object of the Australian Gridded
+#' @return a `list` object of [terra::rast] objects of the Australian Gridded
 #'  Farm Data with the file names as the list's objects' names
 #'
 #' @examplesIf interactive()
