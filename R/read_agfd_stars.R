@@ -5,8 +5,8 @@
 #'
 #' @param files A list of NetCDF files to import
 #'
-#' @return a `list` of \CRANpkg{stars} objects of the Australian Gridded Farm
-#'  Data with the file names as the list's objects' names
+#' @return a `list` object of \CRANpkg{stars} objects of the Australian Gridded
+#'  Farm Data with the file names as the list's objects' names
 #'
 #' @examplesIf interactive()
 #' get_agfd(cache = TRUE) |>

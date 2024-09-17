@@ -2,7 +2,8 @@
 #' Read agfd NCDF Files with tidync
 #'
 #' @param files A list of NetCDF files to import
-#' @return a `list` of \CRANpkg{tidync} [tidync::tidync] objects of the
+#'
+#' @return a `list` object of \CRANpkg{tidync} [tidync::tidync] objects of the
 #'  Australian Gridded Farm Data with the file names as the  list's objects'
 #'  names.
 #'
@@ -16,4 +17,5 @@
 read_agfd_tidync <- function(files) {
   tnc <- purrr::map(files, tidync::tidync)
   names(tnc) <-  basename(files)
+  return(tnc)
 }
