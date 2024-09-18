@@ -9,8 +9,9 @@
 #' @examplesIf interactive()
 #' get_soil_thickness()
 #'
-#' @return A named `list` object with the file path of the resulting
-#'  \acronym{ESRI} Grid file and text file of metadata
+#' @return An `abares.soil.thickness` object, which is a named `list` with the
+#'  file path of the resulting \acronym{ESRI} Grid file and text file of
+#'  metadata
 #'
 #' @references <https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6>
 #'
@@ -46,8 +47,10 @@ get_soil_thickness <- function(cache = TRUE) {
                 file.path(download_dir, "soil_thickness"))
     unlink(download_file)
   }
-  return(list(c(
-    metatada = file.path(download_dir, "soil_thickness/ANZCW1202000149.txt"),
+  soil_thickness <- list(c(
+    metatada = pander::pander(readtext::readtext(file.path(download_dir, "soil_thickness/ANZCW1202000149.txt"))),
     grid = file.path(download_dir, "soil_thickness/thpk_1")
-  )))
+  ))
+  class(soil_thickness) <- union("abares.soil.thickness", class(soil_thickness))
+  return(soil_thickness)
 }
