@@ -50,7 +50,7 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
 
   # only download if the files aren't already local
   if (!dir.exists(agfd_nc_dir)) {
-    # if caching is enabled but the {agfd} cache dir doesn't exist, create it
+    # if caching is enabled but the {abares} cache dir doesn't exist, create it
     if (cache) {
       dir.create(agfd_zip_dir, recursive = TRUE)
     }
@@ -65,7 +65,7 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
                         destfile = agfd_zip,
                         quiet = FALSE)
 
-    withr::with_dir(agfd_zip_dir, utils::untar(agfd_zip, exdir = agfd_zip_dir))
+    withr::with_dir(agfd_zip_dir, utils::unzip(agfd_zip, exdir = agfd_zip_dir))
     unlink(agfd_zip)
   }
 
