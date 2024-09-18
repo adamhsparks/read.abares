@@ -54,8 +54,9 @@ upon closing of the <span style="R">R</span> session.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A named <code>list</code> object with the file path of the resulting
-<acronym>ESRI</acronym> Grid file and text file of metadata</p>
+    <p>An <code>abares.soil.thickness</code> object, which is a named <code>list</code> with the
+file path of the resulting <acronym>ESRI</acronym> Grid file and text file of
+metadata</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -65,12 +66,574 @@ upon closing of the <span style="R">R</span> session.</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">get_soil_thickness</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                       metatada </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> "/Users/adamsparks/Library/Caches/org.R-project.R/R/abares/soil_thickness/ANZCW1202000149.txt" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                           grid </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              "/Users/adamsparks/Library/Caches/org.R-project.R/R/abares/soil_thickness/thpk_1" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        doc_id                       text              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------- --------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ANZCW1202000149.txt         Dataset ANZLIC ID        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         ANZCW1202000149  Title Soil   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Thickness for Australian areas </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         of intensive agriculture of   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Layer 1 (A Horizon - top-soil) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         (derived from soil mapping)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Custodian CSIRO, Land &amp; Water  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Jurisdiction Australia      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Description Abstract Surface  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        of predicted Thickness of soil </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        layer 1 (A Horizon - top-soil) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          surface for the intensive    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            agricultural areas of      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Australia.  Data modelled from </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         area based observations made  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         by soil agencies both State   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          and CSIRO and presented as   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          .0.01 degree grid cells.     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Topsoils (A horizons) are    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         defined as the surface soil   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        layers in which organic matter </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         accumulates, and may include  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          dominantly organic surface   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         layers (O and P horizons).    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           The depth of topsoil is     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        important because, with their  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            higher organic matter      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        contents, topsoils (A horizon) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         generally have more suitable  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         properties for agriculture,   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        including higher permeability  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          and higher levels of soil    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        nutrients.  Estimates of soil  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        depths are needed to calculate </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            the amount of any soil     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         constituent in either volume  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        or mass terms (bulk density is </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         also needed) - for example,   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        the volume of water stored in  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         the rooting zone potentially  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         available for plant use, to   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         assess total stores of soil   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            carbon for Greenhouse      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         inventory or to assess total  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          stores of nutrients.  The    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           pattern of soil depth is    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        strongly related to topography </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         - the shape and slope of the  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           land.  Deeper soils are     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         typically found in the river  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        valleys where soils accumulate </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          on floodplains and at the    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        footslopes of ranges (zones of </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         deposition), while soils on   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        hillslopes (zones of erosion)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         tend to be shallow.  Map of   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           thickness of topsoil was    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        derived from soil map data and </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          interpreted tables of soil   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         properties for specific soil  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         groups.  The quality of data  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        on soil depth in existing soil </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             profile datasets is       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           questionable and as the     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          thickness of soil horizons   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             varies locally with       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          topography, values for map   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         units are general averages.   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           The final ASRIS polygon     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          attributed surfaces are a    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          mosaic of all of the data    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         obtained from various state   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          and federal agencies. The    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        surfaces have been constructed </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         with the best available soil  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         survey information available  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        at the time. The surfaces also </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             rely on a number of       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        assumptions. One being that an </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         area weighted mean is a good  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             estimate of the soil      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        attributes for that polygon or </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         map-unit. Another assumption  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           made is that the look-up    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        tables provided by McKenzie et </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            al. (2000), state and      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        territories accurately depict  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        the soil attribute values for  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        each soil type.  The accuracy  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        of the maps is most dependent  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         on the scale of the original  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          polygon data sets and the    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        level of soil survey that has  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         taken place in each state.    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        The scale of the various soil  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        maps used in deriving this map </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        is available by accessing the  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        data-source grid, the scale is </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         used as an assessment of the  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            likely accuracy of the     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           modelling.  The Atlas of    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Australian Soils is considered </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           to be the least accurate    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        dataset and has therefore only </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         been used where there is no   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          state based data.  Of the    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            state datasets Western     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Australian sub-systems, South  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Australian land systems and   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           NSW soil landscapes and     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         reconnaissance mapping would  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        be the most reliable based on  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        scale. NSW soil landscapes and </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          reconnaissance mapping use   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         only one dominant soil type   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        per polygon in the estimation  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            of attributes.  South      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            Australia and Western      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Australia use several soil   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        types per polygon or map-unit. </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           The digital map data is     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           provided in geographical    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        coordinates based on the World </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Geodetic System 1984 (WGS84)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         datum. This raster data set   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        has a grid resolution of 0.001 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           degrees  (approximately     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         equivalent to 1.1 km).  The   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         data set is a product of the  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           National Land and Water     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Resources Audit (NLWRA) as a  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           base dataset.    Search     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Word(s) AGRICULTURE   SOIL   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Physics Models   Geographic   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Extent Name(s) GEN Category   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         GEN Custodial Jurisdiction    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        GEN Name  Geographic Bounding  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Box North Bounding Latitude   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          -10.707149 South Bounding    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Latitude -43.516831 East    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Bounding Longitude 113.19673  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           West Bounding Longitude     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        153.990779  Geographic Extent  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Polygon(s) 115.0 -33.5,115.7  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -33.3,115.7 -31.7,113.2     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -26.2,113.5 -25.4,114.1     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -26.4,114.3 -26.0,113.4     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -24.3,114.1 -21.8,122.3     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -18.2,122.2 -17.2,126.7     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -13.6,129.1 -14.9,130.6     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -12.3,132.6 -12.1,132.5     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -11.6,131.9 -11.3,132.0     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -11.1,137.0 -12.2,135.4     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -14.7,140.0 -17.7,140.8     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -17.4,141.7 -15.1,141.4     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -13.7,142.2 -10.9,142.7     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -10.7,143.9 -14.5,144.6     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -14.1,145.3 -14.9,146.3     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -18.8,148.9 -20.5,150.9     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -22.6,153.2 -25.9,153.7     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -28.8,153.0 -31.3,150.8     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -34.8,150.0 -37.5,147.8     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -37.9,146.3 -39.0,144.7     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -38.4,143.5 -38.8,141.3     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -38.4,139.7 -37.3,139.7     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -36.9,139.9 -36.7,138.9     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -35.5,138.1 -35.7,138.6     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -34.7,138.1 -34.2,137.8     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -35.1,136.9 -35.3,137.0     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -34.9,137.5 -34.9,137.4     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -34.0,137.9 -33.5,137.8     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -32.6,137.3 -33.6,135.9     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -34.7,136.1 -34.8,136.0     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -35.0,135.1 -34.6,135.2     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -34.5,135.4 -34.5,134.7     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -33.3,134.0 -32.9,133.7     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -32.1,133.3 -32.2,132.2     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -32.0,131.3 -31.5,127.3     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -32.3,126.0 -32.3,123.6     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -33.9,123.2 -34.0,122.1     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -34.0,121.9 -33.8,119.9     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -34.0,119.6 -34.4,118.0     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -35.1,116.0 -34.8,115.0     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -34.3,115.0 -33.5  147.8    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -42.9,147.9 -42.6,148.2     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -42.1,148.3 -42.3,148.3     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -41.3,148.3 -41.0,148.0     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -40.7,147.4 -41.0,146.7     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -41.1,146.6 -41.2,146.5     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -41.1,146.4 -41.2,145.3     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -40.8,145.3 -40.7,145.2     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -40.8,145.2 -40.8,145.2     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -40.8,145.0 -40.8,144.7     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -40.7,144.7 -41.2,145.2     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -42.2,145.4 -42.2,145.5     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -42.4,145.5 -42.5,145.2     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -42.3,145.5 -43.0,146.0     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -43.3,146.0 -43.6,146.9     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -43.6,146.9 -43.5,147.1     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -43.3,147.0 -43.1,147.2     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -43.3,147.3 -42.8,147.4     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -42.9,147.6 -42.8,147.5     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -42.8,147.8 -42.9,147.9     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -43.0,147.7 -43.0,147.8     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -43.2,147.9 -43.2,147.9     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -43.2,148.0 -43.2,148.0     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        -43.1,148.0 -42.9,147.8 -42.9  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        136.7 -13.8,136.7 -13.7,136.6  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -13.7,136.6 -13.8,136.4     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -13.8,136.4 -14.1,136.3     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -14.2,136.9 -14.3,137.0     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -14.2,136.9 -14.2,136.7     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -14.1,136.9 -13.8,136.7     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -13.8,136.7 -13.8  139.5    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -16.6,139.7 -16.5,139.4     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -16.5,139.2 -16.7,139.3     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -16.7,139.5 -16.6  153.0    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -25.2,153.0 -25.7,153.1     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -25.8,153.4 -25.0,153.2     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        -24.7,153.2 -25.0,153.0 -25.2  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        137.5 -36.1,137.7 -35.9,138.1  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -35.9,137.9 -35.7,137.6     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -35.7,137.6 -35.6,136.6     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -35.8,136.7 -36.1,137.2     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -36.0,137.5 -36.1  143.9    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -39.7,144.0 -39.6,144.1     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -39.8,143.9 -40.2,143.9     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -40.0,143.9 -39.7  148.0    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -39.7,147.7 -39.9,147.9     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -39.9,148.0 -40.1,148.1     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -40.3,148.3 -40.2,148.3     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -40.0,148.0 -39.7  148.1    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -40.4,148.0 -40.4,148.4     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        -40.3,148.4 -40.5,148.1 -40.4  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        130.4 -11.3,130.4 -11.2,130.6  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -11.3,130.7 -11.4,130.9     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -11.3,131.0 -11.4,131.1     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -11.3,131.2 -11.4,131.3     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -11.2,131.5 -11.4,131.5     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -11.5,131.0 -11.9,130.8     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -11.8,130.6 -11.7,130.0     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           -11.8,130.1 -11.7,130.3     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        -11.7,130.1 -11.5,130.4 -11.3  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Data Currency Beginning date  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           1999-09-01  Ending date     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          2001-03-31  Dataset Status   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Progress COMPLETE  Maintenance </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           and Update Frequency NOT    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         PLANNED  Access Stored Data   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Format DIGITAL - ESRI Arc/Info </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        integer GRID  Available Format </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Type DIGITAL - ESRI Arc/Info  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             integer GRID  Access      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Constraint Subject to the    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        terms &amp; condition of the data  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        access &amp; management agreement  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         between the National Land &amp;   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Water Audit and ANZLIC parties </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Data Quality Lineage The soil  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        attribute surface was created  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         using the following datasets  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            1. The digital polygon     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        coverage of the Soil-Landforms </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         of the Murray Darling Basis   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          (MDBSIS)(Bui et al. 1998),   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           classified as principal     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            profile forms (PPF's)      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           (Northcote 1979). 2. The    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         digital Atlas of Australian   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             Soils (Northcote et       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        al.1960-1968)(Leahy, 1993). 3. </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Western Australia land systems </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        coverage (Agriculture WA). 4.  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Western Australia sub-systems  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        coverage (Agriculture WA). 5.  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Ord river catchment soils    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        coverage (Agriculture WA). 6.  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Victoria soils coverage     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           (Victorian Department of    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            Natural Resources and      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Environment - NRE). 7. NSW   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             Soil Landscapes and       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        reconnaissance soil landscape  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          mapping (NSW Department of   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Land and Water Conservation -  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        DLWC). 8. New South Wales Land </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         systems west (NSW Department  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        of Land and Water Conservation </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         - DLWC). 9. South Australia   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          soil land-systems (Primary   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Industries and Resources South </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Australia - PIRSA). 10.     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Northern Territory soils    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         coverage (Northern Territory  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Department of Lands, Planning  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        and Environment). 11. A mosaic </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        of Queensland soils coverages  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          (Queensland Department of    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Natural Resources - QDNR). 12. </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         A look-up table linking PPF   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           values from the Atlas of    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            Australian Soils with      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         interpreted soil attributes   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         (McKenzie et al. 2000). 13.   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Look_up tables provided by WA  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Agriculture linking WA soil   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         groups with interpreted soil  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        attributes. 14. Look_up tables </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         provided by PIRSA linking SA  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         soil groups with interpreted  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            soil attributes.  The      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          continuous raster surface    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        representing Thickness of soil </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            layer 1 was created by     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         combining national and state  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         level digitised land systems  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         maps and soil surveys linked  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        to look-up tables listing soil </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            type and corresponding     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          attribute values.  Because   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        thickness is used sparingly in </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         the Factual Key, estimations  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         of thickness in the look-up   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            tables were made using     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          empirical correlations for   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          particular soil types.  To   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          estimate a soil attribute    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        where more than one soil type  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          was given for a polygon or   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         map-unit, the soil attribute  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         values related to each soil   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        type in the look-up table were </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        weighted according to the area </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          occupied by that soil type   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            within the polygon or      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           map-unit. The final soil    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         attribute values are an area  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        weighted average for a polygon </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        or map-unit.  The polygon data </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           was then converted to a     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          continuous raster surface    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           using the soil attribute    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          values calculated for each   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           polygon.  The ASRIS soil    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          attribute surfaces created   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          using polygon attribution    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          relied on a number of data   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           sets from various state     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         agencies.  Each polygon data  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            set was turned into a      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        continuous surface grid based  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            on the calculated soil     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           attribute value for that    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        polygon.  The grids where then </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          merged on the basis that,    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         where available, state data   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            replaced the Atlas of      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Australian Soils and MDBSIS.   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        MDBSIS derived soil attribute  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          values were restricted to    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        areas where MDBSIS was deemed  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         to be more accurate that the  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Atlas of Australian Soils (see </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Carlile et al (2001a).  In   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         cases where a soil type was   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        missing from the look-up table </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         or layer 2 did not exist for  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         that soil type, the percent   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         area of the soils remaining   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            were adjusted prior to     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          calculating the final soil   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         attribute value. The method   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        used to attribute polygons was </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        dependent on the data supplied </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        by individual State agencies.  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            The modelled grid was      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         resampled from 0.0025 degree  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          cells to 0.01 degree cells   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        using bilinear interpolation   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Positional Accuracy The     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        predictive surface is a 0.01 X </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          0.01 degree grid and has a   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         locational accurate of about  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         1m.  The positional accuracy  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        of the defining polygons have  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         variable positional accuracy  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        most locations are expected to </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        be within 100m of the recorded </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           location.  The vertical     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        accuracy is not relevant. The  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        positional assessment has been </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        made by considering the tools  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             used to generate the      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          locational information and   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        contacting the data providers. </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         The other parameters used in  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          the production of the led    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           surface have a range of     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         positional accuracy ranging   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             from + - 50 m to + -      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         kilometres.  This contribute  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           to the loss of attribute    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          accuracy in the surface.     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Attribute Accuracy Input    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          attribute accuracy for the   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        areas is highly variable.  The </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        predictive has a variable and  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        much lower attribute accuracy  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             due to the irregular      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         distribution and the limited  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          positional accuracy of the   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        parameters used for modelling. </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         There are several sources of  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        error in estimating soil depth </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        and thickness of horizons for  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         the look-up tables.  Because  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        thickness is used sparingly in </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         the Factual Key, estimations  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         of thickness in the look-up   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            tables were made using     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          empirical correlations for   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         particular soil types.  The   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        quality of data on soil depth  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           in existing soil profile    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         datasets is questionable, in  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          soil mapping, thickness of   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         soil horizons varies locally  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        with topography, so values for </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            map units are general      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         averages.  The definition of  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        the depth of soil or regolith  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          is imprecise and it can be   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          difficult to determine the   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          lower limit of soil.  The    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         assumption made that an area  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            weighted mean of soil      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        attribute values based on soil </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        type is a good estimation of a </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        soil property is debatable, in </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         that it does not supply the   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         soil attribute value at any   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         given location. Rather it is  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        designed to show national and  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          regional patterns in soil    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          properties. The use of the   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        surfaces at farm or catchment  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          scale modelling may prove    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         inaccurate. Also the use of   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         look-up tables to attribute   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        soil types is only as accurate </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        as the number of observations  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         used to estimate a attribute  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         value for a soil type. Some   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          soil types in the look-up    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             tables may have few       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        observations, yet the average  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        attribute value is still taken </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          as the attribute value for   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          that soil type. Different    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          states are using different   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          taxonomic schemes making a   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            national soil database     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        difficult. Another downfall of </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        the area weighted approach is  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         that some soil types may not  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         be listed in look-up tables.  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         If a soil type is a dominant  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           one within a polygon or     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         map-unit, but is not listed   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        within the look-up table or is </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          not attributed within the    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         look-up table then the final  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        soil attribute value for that  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        polygon will be biased towards </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         the minor soil types that do  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         exist. This may also happen   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        when a large area is occupied  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        by a soil type which has no B  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          horizon. In this case the    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          final soil attribute value   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         will be area weighted on the  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           soils with a B horizon,     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          ignoring a major soil type   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            within that polygon or     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        map-unit. The layer 2 surfaces </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         have large areas of no-data   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        because all soils listed for a </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        particular map-unit or polygon </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          had no B horizon.  Logical   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Consistency Surface is fully  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         logically consistent as only  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          one parameter is shown, as   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            predicted average Soil     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Thickness within each grid   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        cell   Completeness Surface is </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         nearly complete.  There are   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        some areas (about %1 missing)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            for which insufficient     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           parameters were known to    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         provide a useful prediction   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        and thus attributes are absent </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          in these areas.   Contact    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             Information Contact       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Organisation (s) CSIRO, Land &amp; </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Water  Contact Position     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Project Leader  Mail Address  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          ACLEP, GPO 1666  Locality    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Canberra  State ACT  Country  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          AUSTRALIA  Postcode 2601     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Telephone 02 6246 5922      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Facsimile 02 6246 5965      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Electronic Mail Address     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        neil.mckenzie@cbr.clw.csiro.au </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Metadata Date Metadata Date   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            2001-07-01  Additional     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Metadata Additional Metadata   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Entity and Attributes Entity  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Name Soil Thickness Layer 1   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           (derived from mapping)      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Entity description Estimated  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Soil Thickness (mm) of Layer 1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           on a cell by cell basis     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Feature attribute name VALUE   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Feature attribute definition  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Predicted average Thickness   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         (mm) of soil layer 1 in the   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         0.01 X 0.01 degree quadrat    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              Data Type Spatial        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         representation type RASTER    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Projection Map projection    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         GEOGRAPHIC  Datum WGS84  Map  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         units DECIMAL DEGREES  Scale  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Scale/ resolution 1:1 000 000  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Usage Purpose Estimates of   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          soil depths are needed to    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         calculate the amount of any   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          soil constituent in either   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          volume or mass terms (bulk   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        density is also needed) - for  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         example, the volume of water  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          stored in the rooting zone   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          potentially available for    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          plant use, to assess total   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          stores of soil carbon for    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Greenhouse inventory or to   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            assess total stores of     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             nutrients.  Provide       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           indications of probable     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Thickness  soil layer 1 in   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        agricultural areas where soil  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        thickness testing has not been </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             carried out  Use Use      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Limitation This dataset is   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        bound by the requirements set  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         down by the National Land &amp;   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            Water Resources Audit      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                              grid </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> "/Users/adamsparks/Library/Caches/org.R-project.R/R/abares/soil_thickness/thpk_1" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "abares.soil.thickness" "list"                 </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
