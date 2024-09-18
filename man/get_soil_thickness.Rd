@@ -15,7 +15,7 @@ upon closing of the \R session.}
 }
 \value{
 A character string with the file path of the resulting \acronym{ESRI}
-Grid file
+Grid file and text file of metadata
 }
 \description{
 Download Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1

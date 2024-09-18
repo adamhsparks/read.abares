@@ -10,7 +10,7 @@
 #' get_soil_thickness()
 #'
 #' @return A character string with the file path of the resulting \acronym{ESRI}
-#'  Grid file
+#'  Grid file and text file of metadata
 #'
 #' @export
 
@@ -44,5 +44,5 @@ get_soil_thickness <- function(cache = TRUE) {
                 file.path(download_dir, "soil_thickness"))
     unlink(download_file)
   }
-  return(file.path(download_dir, "soil_thickness/thpk_1"))
+  return(file.path(download_dir, "soil_thickness"))
 }
