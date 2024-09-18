@@ -14,8 +14,8 @@ locally. If \code{FALSE}, this function uses \code{tempdir()} and the files are 
 upon closing of the \R session.}
 }
 \value{
-A character string with the file path of the resulting \acronym{ESRI}
-Grid file and text file of metadata
+A named \code{list} object with the file path of the resulting
+\acronym{ESRI} Grid file and text file of metadata
 }
 \description{
 Download Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1

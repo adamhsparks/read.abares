@@ -9,8 +9,8 @@
 #' @examplesIf interactive()
 #' get_soil_thickness()
 #'
-#' @return A character string with the file path of the resulting \acronym{ESRI}
-#'  Grid file and text file of metadata
+#' @return A named `list` object with the file path of the resulting
+#'  \acronym{ESRI} Grid file and text file of metadata
 #'
 #' @export
 
@@ -44,5 +44,8 @@ get_soil_thickness <- function(cache = TRUE) {
                 file.path(download_dir, "soil_thickness"))
     unlink(download_file)
   }
-  return(file.path(download_dir, "soil_thickness"))
+  return(list(c(
+    metatada = file.path(download_dir, "soil_thickness/ANZCW1202000149.txt"),
+    grid = file.path(download_dir, "soil_thickness/thpk_1")
+  )))
 }
