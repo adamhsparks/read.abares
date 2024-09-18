@@ -41,7 +41,13 @@ reference:
 
 - title: Cache
   desc: >
-   Work with your local file cache
+    Work with your local file cache
   contents:
   - clear_cache
   - inspect_cache
+
+- title: Soil Thickness
+  desc: >
+    Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)
+  contents:
+  - get_soil_thickness
