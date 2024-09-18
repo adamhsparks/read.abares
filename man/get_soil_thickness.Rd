@@ -25,3 +25,6 @@ Download Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1
 get_soil_thickness()
 \dontshow{\}) # examplesIf}
 }
+\references{
+\url{https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6}
+}
