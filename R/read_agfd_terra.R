@@ -1,5 +1,5 @@
 
-#' Read AGFD NCDF Files
+#' Read AGFD NCDF Files With terra
 #'
 #' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a `list` of
 #'  [terra::rast] objects.

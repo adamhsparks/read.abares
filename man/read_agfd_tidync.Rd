@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_agfd_tidync.R
 \name{read_agfd_tidync}
 \alias{read_agfd_tidync}
-\title{Read agfd NCDF Files with tidync}
+\title{Read agfd NCDF Files With tidync}
 \usage{
 read_agfd_tidync(files)
 }
@@ -15,7 +15,7 @@ Australian Gridded Farm Data with the file names as the  list's objects'
 names.
 }
 \description{
-Read agfd NCDF Files with tidync
+Read agfd NCDF Files With tidync
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

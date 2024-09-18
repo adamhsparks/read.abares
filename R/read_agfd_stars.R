@@ -1,5 +1,5 @@
 
-#' Read AGFD NCDF Files
+#' Read AGFD NCDF Files With stars
 #'
 #' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a [stars] object.
 #'

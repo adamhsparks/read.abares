@@ -1,5 +1,5 @@
 
-#' Read agfd NCDF Files with tidync
+#' Read agfd NCDF Files With tidync
 #'
 #' @param files A list of NetCDF files to import
 #'

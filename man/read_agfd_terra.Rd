@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_agfd_terra.R
 \name{read_agfd_terra}
 \alias{read_agfd_terra}
-\title{Read AGFD NCDF Files}
+\title{Read AGFD NCDF Files With terra}
 \usage{
 read_agfd_terra(files)
 }

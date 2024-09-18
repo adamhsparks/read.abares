@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_agfd_stars.R
 \name{read_agfd_stars}
 \alias{read_agfd_stars}
-\title{Read AGFD NCDF Files}
+\title{Read AGFD NCDF Files With stars}
 \usage{
 read_agfd_stars(files)
 }
