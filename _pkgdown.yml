@@ -4,3 +4,44 @@ template:
   params:
     bootswatch: journal
 
+reference:
+
+- title: AAGIS Regions
+  desc: >
+    Fetch and read the AAGIS regions
+  contents:
+  - get_aagis_regions
+
+- title: AGFD
+
+- subtitle: Fetch
+  desc: >
+     Fetch the Australian Gridded Farm Data
+  contents:
+  - get_agfd
+
+- subtitle: Read
+  desc: >
+    Read the Australian Gridded Farm Data
+  contents:
+  - read_agfd_dt
+  - read_agfd_stars
+  - read_agfd_terra
+  - read_agfd_tidync
+
+- title: Estimates
+  desc: >
+    Fetch and read the ABARES Estimates data
+  contents:
+  - get_estimates_by_performance_category
+  - get_estimates_by_size
+  - get_historical_national_estimates
+  - get_historical_regional_estimates
+  - get_historical_state_estimates
+
+- title: Cache
+  desc: >
+   Work with your local file cache
+  contents:
+  - clear_cache
+  - inspect_cache
