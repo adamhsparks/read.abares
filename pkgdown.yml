@@ -1,8 +1,8 @@
 pandoc: '3.4'
-pkgdown: 2.1.0
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-09-18T22:46Z
+last_built: 2024-09-19T14:32Z
 urls:
   reference: https://adamhsparks.codeberg.page/abares/reference
   article: https://adamhsparks.codeberg.page/abares/articles
