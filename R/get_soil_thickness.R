@@ -43,10 +43,10 @@ get_soil_thickness <- function(cache = TRUE) {
   download_dir <- dirname(download_file)
 
   # this is where the zip files are unzipped in `soil_thick_dir`
-  soil_thick_adf_dir <- file.path(download_dir, "soil_thickness_dir")
+  soil_thick_adf_dir <- file.path(download_dir, "soil_thickness")
 
   # only download if the files aren't already local
-  if (!dir.exists(file.path(download_dir, "soil_thickness_dir"))) {
+  if (!dir.exists(file.path(download_dir, "soil_thickness"))) {
     # if caching is enabled but the {abares} cache dir doesn't exist, create it
     if (cache) {
       dir.create(soil_thick_adf_dir, recursive = TRUE)
@@ -60,7 +60,7 @@ get_soil_thickness <- function(cache = TRUE) {
                     utils::unzip(download_file,
                                  exdir = file.path(download_dir)))
     file.rename(file.path(download_dir, "staiar9cl__05911a01eg_geo___/"),
-                file.path(download_dir, "soil_thickness_dir"))
+                file.path(download_dir, "soil_thickness"))
     unlink(download_file)
   }
   metadata <- readtext::readtext(file.path(download_dir, "soil_thickness/ANZCW1202000149.txt"))
