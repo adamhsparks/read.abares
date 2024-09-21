@@ -6,8 +6,22 @@
 #' locally. If `FALSE`, this function uses `tempdir()` and the files are deleted
 #' upon closing of the \R session.
 #'
+#' A custom `print` method is provided that will print the metadata associated
+#'  with these data. Examples are provided for interacting with the metadata
+#'  directly.
+#'
 #' @examplesIf interactive()
-#' get_soil_thickness()
+#' x <- get_soil_thickness()
+#'
+#' # View the metadata with pretty printing
+#' x
+#'
+#' # Extract the metadata as an object in your R session and use it with
+#' # {pander}, useful for Markdown files
+#'
+#' library(pander)
+#' y <- x$metadata
+#' pander(y)
 #'
 #' @return An `abares.soil.thickness` object, which is a named `list` with the
 #'  file path of the resulting \acronym{ESRI} Grid file and text file of
@@ -47,10 +61,84 @@ get_soil_thickness <- function(cache = TRUE) {
                 file.path(download_dir, "soil_thickness_dir"))
     unlink(download_file)
   }
-  soil_thickness <- list(c(
-    metatada = readtext::readtext(file.path(download_dir, "soil_thickness/ANZCW1202000149.txt")),
-    grid = file.path(download_dir, "soil_thickness/thpk_1")
-  ))
-  class(soil_thickness) <- union("abares.soil.thickness", class(soil_thickness))
+  metadata <- readtext::readtext(file.path(download_dir, "soil_thickness/ANZCW1202000149.txt"))
+  loc <- stringr::str_locate(metadata$text, "Custodian")
+  metadata <- stringr::str_sub(metadata, loc[, "start"] - 1, nchar(metadata))
+
+  soil_thickness <- list(
+    "metadata" = metadata,
+    "grid" = file.path(download_dir, "soil_thickness/thpk_1")
+  )
+  class(soil_thickness) <- union("abares.soil.thickness.files", class(soil_thickness))
   return(soil_thickness)
+}
+
+#' Prints abares.soil.thickness.files Object
+#'
+#' Custom [print()] method for `abares.soil.thickness.files` objects.
+#'
+#' @param x an `abares.soil.thickness.files` object
+#' @param ... ignored
+#' @export
+#' @noRd
+print.abares.soil.thickness.files <- function(x) {
+  cli::cli_h1("Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil)")
+  cli::cli_h2("Dataset ANZLIC ID ANZCW1202000149")
+  cli::cli_text(
+    "Feature attribute definition Predicted average Thickness (mm) of soil layer
+    1 in the 0.01 X 0.01 degree quadrat.\n\n
+    {.strong Custodian:} CSIRO Land & Water\n\n
+    {.strong Jurisdiction} Australia\n\n
+    {.strong Short Description} The digital map data is provided in geographical
+    coordinates based on the World Geodetic System 1984 (WGS84) datum. This
+    raster data set has a grid resolution of 0.001 degrees  (approximately
+    equivalent to 1.1 km).\n\n
+    The data set is a product of the National Land and Water Resources Audit
+    (NLWRA) as a base dataset.\n\n
+    {.strong Data Type:} Spatial representation type RASTER\n\n
+    {.strong Projection Map:} projection GEOGRAPHIC\n\n
+    {.strong Datum:} WGS84\n\n
+    {.strong Map Units:} DECIMAL DEGREES\n\n
+    {.strong Scale:} Scale/ resolution 1:1 000 000\n\n
+    Usage Purpose Estimates of soil depths are needed to calculate the amount of
+    any soil constituent in either volume or mass terms (bulk density is also
+    needed) - for example, the volume of water stored in the rooting zone
+    potentially available for plant use, to assess total stores of soil carbon
+    for Greenhouse inventory or to assess total stores of nutrients.\n\n
+    Provide indications of probable Thickness soil layer 1 in agricultural areas
+    where soil thickness testing has not been carried out.\n\n
+    Use Limitation: This dataset is bound by the requirements set down by the
+    National Land & Water Resources Audit")
+  cli::cli_text("To see the full metadata, call
+    {.fn display_soil_thickness_metadata} in your R session.")
+  cat("\n")
+  invisible(x)
+}
+
+#' View Complete Metadata Associated with Soil Thickness Data
+#'
+#' @param x An `abares.soil.thickness.files` object
+#'
+#' @return Nothing, called for its side effects, it prints the complete
+#'   metadata file to the \R console
+#' @examplesIf interactive()
+#' display_soil_thickness_metadata(get_soil_thickness(cache = TRUE))
+#'
+#' @export
+
+display_soil_thickness_metadata <- function(x) {
+  if (missing(x) || !inherits(x, "abares.soil.thickness.files")) {
+    cli::cli_abort(
+      message = "You must provide an `abares.soil.thickness.files`
+                   object, {.emph e.g.},
+                   {.code display_soil_thickness_metadata(get_soil_thickness())}
+                   to download the files if they are not already cached and
+                   display the full metadata."
+    )
+  }
+  cli::cli_h1("Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil)\n")
+  cli::cli_h2("Dataset ANZLIC ID ANZCW1202000149")
+  cli::cli_text(x$metadata)
+  cat("\n")
+  invisible(x)
 }

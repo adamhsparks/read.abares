@@ -11,7 +11,11 @@ get_soil_thickness(cache = TRUE)
 using \link[tools:userdir]{tools::R_user_dir} to identify the proper directory for storing user
 data in a cache for this package. Defaults to \code{TRUE}, caching the files
 locally. If \code{FALSE}, this function uses \code{tempdir()} and the files are deleted
-upon closing of the \R session.}
+upon closing of the \R session.
+
+A custom \code{print} method is provided that will print the metadata associated
+with these data. Examples are provided for interacting with the metadata
+directly.}
 }
 \value{
 An \code{abares.soil.thickness} object, which is a named \code{list} with the
@@ -23,7 +27,17 @@ Download Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-get_soil_thickness()
+x <- get_soil_thickness()
+
+# View the metadata with pretty printing
+x
+
+# Extract the metadata as an object in your R session and use it with
+# {pander}, useful for Markdown files
+
+library(pander)
+y <- x$metadata
+pander(y)
 \dontshow{\}) # examplesIf}
 }
 \references{
