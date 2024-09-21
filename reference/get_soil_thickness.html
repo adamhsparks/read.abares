@@ -49,7 +49,10 @@
 using tools::R_user_dir to identify the proper directory for storing user
 data in a cache for this package. Defaults to <code>TRUE</code>, caching the files
 locally. If <code>FALSE</code>, this function uses <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> and the files are deleted
-upon closing of the <span style="R">R</span> session.</p></dd>
+upon closing of the <span style="R">R</span> session.</p>
+<p>A custom <code>print</code> method is provided that will print the metadata associated
+with these data. Examples are provided for interacting with the metadata
+directly.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -62,11 +65,31 @@ metadata</p>
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p><a href="https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6" class="external-link">https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6</a></p>
     </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other soil_thickness:
+<code><a href="display_soil_thickness_metadata.html">display_soil_thickness_metadata</a>()</code>,
+<code><a href="read_soil_thickness_stars.html">read_soil_thickness_stars</a>()</code>,
+<code><a href="read_soil_thickness_terra.html">read_soil_thickness_terra</a>()</code></p></div>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">get_soil_thickness</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in get_soil_thickness():</span> could not find function "get_soil_thickness"</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">get_soil_thickness</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in list_files(file, ignore_missing, TRUE, verbosity):</span> File '' does not exist.</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># View the metadata with pretty printing</span></span></span>
+<span class="r-in"><span><span class="va">x</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'x' not found</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Extract the metadata as an object in your R session and use it with</span></span></span>
+<span class="r-in"><span><span class="co"># {pander}, useful for Markdown files</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rapporter.github.io/pander/" class="external-link">pander</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">$</span><span class="va">metadata</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'x' not found</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/pander/man/pander.html" class="external-link">pander</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'y' not found</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
