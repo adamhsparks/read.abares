@@ -29,6 +29,8 @@
 #'
 #' @references <https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6>
 #'
+#' @family soil_thickness
+#'
 #' @export
 
 get_soil_thickness <- function(cache = TRUE) {
@@ -115,27 +117,30 @@ print.abares.soil.thickness.files <- function(x) {
   invisible(x)
 }
 
-#' View Complete Metadata Associated with Soil Thickness Data
+#' Display Complete Metadata Associated with Soil Thickness Data in the \R Console
+#'
+#' Displays the complete set of metadata associated with the soil thickness
+#'  data in your \R console. For including the metadata in documents or other
+#'  methods outside of \R, see [?get_soil_thickness] for an example using
+#'  [pander::pander] to print the metadata.
+#'
 #'
 #' @param x An `abares.soil.thickness.files` object
 #'
 #' @return Nothing, called for its side effects, it prints the complete
 #'   metadata file to the \R console
 #' @examplesIf interactive()
-#' display_soil_thickness_metadata(get_soil_thickness(cache = TRUE))
+#' get_soil_thickness(cache = TRUE) |>
+#' display_soil_thickness_metadata()
+#'
+#' @family soil_thickness
 #'
 #' @export
 
 display_soil_thickness_metadata <- function(x) {
-  if (missing(x) || !inherits(x, "abares.soil.thickness.files")) {
-    cli::cli_abort(
-      message = "You must provide an `abares.soil.thickness.files`
-                   object, {.emph e.g.},
-                   {.code display_soil_thickness_metadata(get_soil_thickness())}
-                   to download the files if they are not already cached and
-                   display the full metadata."
-    )
-  }
+
+  .check_class(x = x, class = "abares.soil.thickness.files")
+
   cli::cli_h1("Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil)\n")
   cli::cli_h2("Dataset ANZLIC ID ANZCW1202000149")
   cli::cli_text(x$metadata)
