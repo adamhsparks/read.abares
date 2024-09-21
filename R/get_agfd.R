@@ -44,8 +44,8 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
   # this is where the zip files are unzipped in `agfd_zip_dir`
   agfd_nc_dir <- data.table::fifelse(
     fixed_prices,
-    file.path(download_dir, "historical_climate_prices_fixed"),
-    file.path(download_dir, "historical_climate_and_prices")
+    file.path(download_dir, "historical_climate_prices_fixed_dir"),
+    file.path(download_dir, "historical_climate_and_prices_dir")
   )
 
   # only download if the files aren't already local
