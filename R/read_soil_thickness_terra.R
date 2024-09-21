@@ -10,8 +10,11 @@
 #'  Intensive Agriculture of Layer 1
 #'
 #' @examplesIf interactive()
-#' get_soil_thickness(cache = TRUE) |>
+#' x <- get_soil_thickness(cache = TRUE) |>
 #'   read_soil_thickness_terra()
+#'
+#' # terra::plot() is reexported for convience
+#' plot(x)
 #'
 #' @family soil_thickness
 #' @autoglobal
