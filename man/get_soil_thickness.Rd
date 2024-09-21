@@ -43,3 +43,9 @@ pander(y)
 \references{
 \url{https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6}
 }
+\seealso{
+Other soil_thickness: 
+\code{\link{display_soil_thickness_metadata}()},
+\code{\link{read_soil_thickness_terra}()}
+}
+\concept{soil_thickness}

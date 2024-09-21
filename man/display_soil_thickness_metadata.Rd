@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_soil_thickness.R
 \name{display_soil_thickness_metadata}
 \alias{display_soil_thickness_metadata}
-\title{View Complete Metadata Associated with Soil Thickness Data}
+\title{Display Complete Metadata Associated with Soil Thickness Data in the \R Console}
 \usage{
 display_soil_thickness_metadata(x)
 }
@@ -14,10 +14,20 @@ Nothing, called for its side effects, it prints the complete
 metadata file to the \R console
 }
 \description{
-View Complete Metadata Associated with Soil Thickness Data
+Displays the complete set of metadata associated with the soil thickness
+data in your \R console. For including the metadata in documents or other
+methods outside of \R, see \link{?get_soil_thickness} for an example using
+\link[pander:pander]{pander::pander} to print the metadata.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-display_soil_thickness_metadata(get_soil_thickness(cache = TRUE))
+get_soil_thickness(cache = TRUE) |>
+display_soil_thickness_metadata()
 \dontshow{\}) # examplesIf}
 }
+\seealso{
+Other soil_thickness: 
+\code{\link{get_soil_thickness}()},
+\code{\link{read_soil_thickness_terra}()}
+}
+\concept{soil_thickness}

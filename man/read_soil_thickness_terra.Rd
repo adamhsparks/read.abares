@@ -7,8 +7,8 @@
 read_soil_thickness_terra(files)
 }
 \arguments{
-\item{files}{An \pkg{abares} \code{soil_thickness} S3 object, a \code{list} with the
-\acronym{ESRI} grid file to import}
+\item{files}{An \pkg{abares} \code{abares.soil.thickness} object, a \code{list} that
+contains the \acronym{ESRI} grid file to import}
 }
 \value{
 a \link[terra:rast]{terra::rast} object of the Soil Thickness for Australian Areas of
@@ -23,5 +23,10 @@ data as \link[terra:rast]{terra::rast} objects.
 get_soil_thickness(cache = TRUE) |>
   read_soil_thickness_terra()
 \dontshow{\}) # examplesIf}
+}
+\seealso{
+Other soil_thickness: 
+\code{\link{display_soil_thickness_metadata}()},
+\code{\link{get_soil_thickness}()}
 }
 \concept{soil_thickness}
