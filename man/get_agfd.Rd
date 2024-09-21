@@ -22,8 +22,8 @@ the files locally. If \code{FALSE}, this function uses \code{tempdir()} and the 
 are deleted upon closing of the \R session.}
 }
 \value{
-A \code{list} of NetCDF files containing the Australian Gridded Farm Data
-with fullnames, \emph{i.e.}, with the file path prepended to the file name
+An \code{abares.agfd.nc.files} object, a \code{list} of NetCDF files containing
+the Australian Gridded Farm Data
 }
 \description{
 Fetch Australian Gridded Farm Data
