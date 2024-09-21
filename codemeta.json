@@ -36,6 +36,18 @@
   "softwareSuggestions": [
     {
       "@type": "SoftwareApplication",
+      "identifier": "pander",
+      "name": "pander",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=pander"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "roxyglobals",
       "name": "roxyglobals",
       "provider": {
@@ -194,6 +206,6 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "52.579KB",
+  "fileSize": "61.469KB",
   "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html#experimental", "https://www.repostatus.org/#active"]
 }
