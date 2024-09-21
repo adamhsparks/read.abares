@@ -16,7 +16,7 @@ Intensive Agriculture of Layer 1
 }
 \description{
 Read Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1
-data as \link[terra:rast]{terra::rast} objects.
+data as a \link[terra:rast]{terra::rast} object.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
@@ -27,6 +27,7 @@ get_soil_thickness(cache = TRUE) |>
 \seealso{
 Other soil_thickness: 
 \code{\link{display_soil_thickness_metadata}()},
-\code{\link{get_soil_thickness}()}
+\code{\link{get_soil_thickness}()},
+\code{\link{read_soil_thickness_stars}()}
 }
 \concept{soil_thickness}

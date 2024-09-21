@@ -28,6 +28,7 @@ display_soil_thickness_metadata()
 \seealso{
 Other soil_thickness: 
 \code{\link{get_soil_thickness}()},
+\code{\link{read_soil_thickness_stars}()},
 \code{\link{read_soil_thickness_terra}()}
 }
 \concept{soil_thickness}
