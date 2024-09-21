@@ -65,7 +65,8 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
                         destfile = download_file,
                         quiet = FALSE)
 
-    withr::with_dir(download_dir, utils::unzip(download_file, exdir = download_dir))
+    withr::with_dir(download_dir,
+                    utils::unzip(download_file, exdir = download_dir))
     unlink(download_file)
   }
 
