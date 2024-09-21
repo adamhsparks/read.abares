@@ -31,6 +31,8 @@
 #' @return An `abares.agfd.nc.files` object, a `list` of NetCDF files containing
 #'  the Australian Gridded Farm Data
 #'
+#' @autoglobal
+#'
 #' @export
 
 get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
@@ -86,7 +88,7 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
 #' @noRd
 print.abares.agfd.nc.files <- function(x) {
   cli::cli_h1("\nLocally Available ABARES AGFD NetCDF Files\n")
-  cli::cli_ul(basename(agfd_nc))
+  cli::cli_ul(basename(x))
   cat("\n")
   invisible(x)
 }

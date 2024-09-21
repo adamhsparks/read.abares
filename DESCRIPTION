@@ -26,11 +26,11 @@ Imports:
     cli,
     curl,
     data.table,
-    pander,
     purrr,
     readtext,
     sf,
     stars,
+    stringr,
     terra,
     tidync,
     withr
