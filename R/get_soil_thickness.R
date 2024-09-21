@@ -83,7 +83,7 @@ get_soil_thickness <- function(cache = TRUE) {
 #' @param ... ignored
 #' @export
 #' @noRd
-print.abares.soil.thickness.files <- function(x) {
+print.abares.soil.thickness.files <- function(x, ...) {
   cli::cli_h1("Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil)")
   cli::cli_h2("Dataset ANZLIC ID ANZCW1202000149")
   cli::cli_text(
