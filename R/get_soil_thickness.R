@@ -121,7 +121,7 @@ print.abares.soil.thickness.files <- function(x) {
 #'
 #' Displays the complete set of metadata associated with the soil thickness
 #'  data in your \R console. For including the metadata in documents or other
-#'  methods outside of \R, see [?get_soil_thickness] for an example using
+#'  methods outside of \R, see [get_soil_thickness] for an example using
 #'  [pander::pander] to print the metadata.
 #'
 #'
