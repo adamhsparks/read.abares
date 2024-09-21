@@ -38,7 +38,7 @@ inspect_cache <- function(recursive = FALSE) {
     f <- list.files(f, full.names = TRUE)
   }
 
-  if (length(f < 1)) {
+  if (length(f) < 1) {
     return(cli::cli_inform(
       c(
         "There do not appear to be any files cached for {.pkg {{agfd}}}.
