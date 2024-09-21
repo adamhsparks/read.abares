@@ -41,11 +41,11 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
   # this is where the zip file is downloaded
   download_dir <- dirname(download_file)
 
-  # this is where the zip files are unzipped in `agfd_zip_dir`
+  # this is where the zip files are unzipped and read from
   agfd_nc_dir <- data.table::fifelse(
     fixed_prices,
-    file.path(download_dir, "historical_climate_prices_fixed_dir"),
-    file.path(download_dir, "historical_climate_and_prices_dir")
+    file.path(download_dir, "historical_climate_prices_fixed"),
+    file.path(download_dir, "historical_climate_and_prices")
   )
 
   # only download if the files aren't already local
@@ -66,7 +66,8 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
                         quiet = FALSE)
 
     withr::with_dir(download_dir,
-                    utils::unzip(download_file, exdir = download_dir))
+                    utils::unzip(zipfile = download_file,
+                                 exdir = download_dir))
     unlink(download_file)
   }
 
@@ -75,7 +76,7 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
   return(agfd_nc)
 }
 
-#' Prints abares.agfd.nc.files Object
+#' Prints abares.agfd.nc.files Objects
 #'
 #' Custom [print()] method for `abares.agfd.nc.files` objects.
 #'
