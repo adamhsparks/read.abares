@@ -20,8 +20,11 @@ data as a \link[terra:rast]{terra::rast} object.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-get_soil_thickness(cache = TRUE) |>
+x <- get_soil_thickness(cache = TRUE) |>
   read_soil_thickness_terra()
+
+# terra::plot() is reexported for convience
+plot(x)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
