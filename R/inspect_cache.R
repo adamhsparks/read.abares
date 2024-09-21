@@ -38,15 +38,16 @@ inspect_cache <- function(recursive = FALSE) {
     f <- list.files(f, full.names = TRUE)
   }
 
-  if (length(f > 0)) {
-    return(f)
-  } else {
-    cli::cli_inform(
+  if (length(f < 1)) {
+    return(cli::cli_inform(
       c(
         "There do not appear to be any files cached for {.pkg {{agfd}}}.
         You can download and cache files using {.fn get_agfd} and setting
         {.code cache = TRUE}."
       )
-    )
+    ))
+  } else {
+    cli::cli_h1("\nLocally Available {{abares}} Cached Files\n")
+    cli::cli_ul(basename(f))
   }
 }
