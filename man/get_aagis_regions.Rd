@@ -25,3 +25,6 @@ aagis <- get_aagis_regions()
 plot(aagis)
 \dontshow{\}) # examplesIf}
 }
+\references{
+\url{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-definitions-methods#regions}
+}
