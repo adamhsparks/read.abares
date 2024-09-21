@@ -2,7 +2,7 @@
 #' Read Soil Thickness File With terra
 #'
 #' Read Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1
-#'  data as [terra::rast] objects.
+#'  data as a [terra::rast] object.
 #'
 #' @param files An \pkg{abares} `abares.soil.thickness` object, a `list` that
 #'  contains the \acronym{ESRI} grid file to import
