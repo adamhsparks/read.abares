@@ -28,31 +28,31 @@
 #' @examplesIf interactive()
 #' get_agfd()
 #'
-#' @return A `list` of NetCDF files containing the Australian Gridded Farm Data
-#'  with fullnames, *i.e.*, with the file path prepended to the file name
+#' @return An `abares.agfd.nc.files` object, a `list` of NetCDF files containing
+#'  the Australian Gridded Farm Data
 #'
 #' @export
 
 get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
-  agfd_zip <- data.table::fifelse(cache,
+  download_file <- data.table::fifelse(cache,
                                   file.path(.find_user_cache(), "agfd.zip"),
                                   file.path(file.path(tempdir(), "agfd.zip")))
 
   # this is where the zip file is downloaded
-  agfd_zip_dir <- dirname(agfd_zip)
+  download_dir <- dirname(download_file)
 
   # this is where the zip files are unzipped in `agfd_zip_dir`
   agfd_nc_dir <- data.table::fifelse(
     fixed_prices,
-    file.path(agfd_zip_dir, "historical_climate_prices_fixed"),
-    file.path(agfd_zip_dir, "historical_climate_and_prices")
+    file.path(download_dir, "historical_climate_prices_fixed"),
+    file.path(download_dir, "historical_climate_and_prices")
   )
 
   # only download if the files aren't already local
   if (!dir.exists(agfd_nc_dir)) {
     # if caching is enabled but the {abares} cache dir doesn't exist, create it
     if (cache) {
-      dir.create(agfd_zip_dir, recursive = TRUE)
+      dir.create(download_dir, recursive = TRUE)
     }
 
     url <- data.table::fifelse(
@@ -62,12 +62,29 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
     )
 
     curl::curl_download(url = url,
-                        destfile = agfd_zip,
+                        destfile = download_file,
                         quiet = FALSE)
 
-    withr::with_dir(agfd_zip_dir, utils::unzip(agfd_zip, exdir = agfd_zip_dir))
-    unlink(agfd_zip)
+    withr::with_dir(download_dir, utils::unzip(download_file, exdir = download_dir))
+    unlink(download_file)
   }
 
-  list.files(agfd_nc_dir, full.names = TRUE)
+  agfd_nc <- list.files(agfd_nc_dir, full.names = TRUE)
+  class(agfd_nc) <- union("abares.agfd.nc.files", class(agfd_nc))
+  return(agfd_nc)
+}
+
+#' Prints abares.agfd.nc.files Object
+#'
+#' Custom [print()] method for `abares.agfd.nc.files` objects.
+#'
+#' @param x an `abares.agfd.nc.files` object
+#' @param ... ignored
+#' @export
+#' @noRd
+print.abares.agfd.nc.files <- function(x) {
+  cli::cli_h1("\nLocally Available ABARES AGFD NetCDF Files\n")
+  cli::cli_ul(basename(agfd_nc))
+  cat("\n")
+  invisible(x)
 }
