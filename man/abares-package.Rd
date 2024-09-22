@@ -4,11 +4,11 @@
 \name{abares-package}
 \alias{abares}
 \alias{abares-package}
-\title{abares: Provides simple downloading, parsing and importing of Australian Bureau of Agricultural and Resource Economics and Sciences data sources}
+\title{abares: Provides simple downloading, parsing and importing of Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) data sources}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Download and import data from the Australian Bureau of Agricultural and Resource Economics and Sciences including the Historical National Estimates, Historical State Estimates, Historical Regional Estimates, Estimates by Size, Estimates by Performance Category, \url{https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download}; the Australian Gridded Farm Data set, \url{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}; and the Australian Agricultural and Grazing Industries Survey (AAGIS) region mapping files, \url{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data}.
+Download and import data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) including the Historical National Estimates, Historical State Estimates, Historical Regional Estimates, Estimates by Size, Estimates by Performance Category, \url{https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download}; the Australian Gridded Farm Data set, \url{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}; and the Australian Agricultural and Grazing Industries Survey (AAGIS) region mapping files, \url{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data} and the soil thickness map, \url{https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6}.
 }
 \seealso{
 Useful links:
