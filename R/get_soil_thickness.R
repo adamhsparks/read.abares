@@ -64,11 +64,8 @@ get_soil_thickness <- function(cache = TRUE) {
     unlink(download_file)
   }
   metadata <- readtext::readtext(file.path(download_dir, "soil_thickness/ANZCW1202000149.txt"))
-  loc <- stringr::str_locate(metadata$text, "Custodian")
-  metadata <- stringr::str_sub(metadata, loc[, "start"] - 1, nchar(metadata))
-
   soil_thickness <- list(
-    "metadata" = metadata,
+    "metadata" = metadata$text,
     "grid" = file.path(download_dir, "soil_thickness/thpk_1")
   )
   class(soil_thickness) <- union("abares.soil.thickness.files", class(soil_thickness))
@@ -140,7 +137,8 @@ print.abares.soil.thickness.files <- function(x, ...) {
 display_soil_thickness_metadata <- function(x) {
 
   .check_class(x = x, class = "abares.soil.thickness.files")
-
+  loc <- stringr::str_locate(x$metadata, "Custodian")
+  metadata <- stringr::str_sub(x$metadata, loc[, "start"] - 1, nchar(x$metadata))
   cli::cli_h1("Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil)\n")
   cli::cli_h2("Dataset ANZLIC ID ANZCW1202000149")
   cli::cli_text(x$metadata)
