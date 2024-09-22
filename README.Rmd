@@ -44,56 +44,6 @@ if (!require("remotes"))
 remotes::install_git("https://codeberg.org/adamhsparks/abares")
 ```
 
-### Using {abares}
-
-#### Estimates
-
-You can download the CSV files directly in your R session as illustrated below.
-
-```{r estimates}
-library(abares)
-
-get_hist_nat_est() |> 
-  head()
-
-get_hist_sta_est() |> 
-  head()
-
-get_hist_reg_est() |> 
-  head()
-```
-
-#### AGFD Data
-
-You can download files and pipe directly into the class object that you desire for the AGFD data.
-
-```{r agfd}
-library(abares)
-
-## A list of {stars} objects
-star <- get_agfd(cache = TRUE) |>
-  read_agfd_stars()
-
-head(star[[1]])
-
-## A {terra} `rast` object
-terr <- get_agfd(cache = TRUE) |>
-  read_agfd_terra()
-
-head(terr[[1]])
-
-## A list of {tidync} objects
-tdnc <- get_agfd(cache = TRUE) |>
-  read_agfd_tidync()
-
-head(tdnc[[1]])
-
-## A {data.table} object
-get_agfd(cache = TRUE) |>
-  read_agfd_dt() |>
-  head()
-```
-
 ## Features
 
 ### Caching
@@ -115,20 +65,6 @@ Select from spatial classes:
 or data.frame objects:
 
 - [{data.table}](https://CRAN.R-project.org/package=data.table)
-
-## Description of the Australian Farm Gridded Data
-
-Directly from the DAFF website:
-
->The Australian Gridded Farm Data are a set of national scale maps containing simulated data on historical broadacre farm business outcomes including farm profitability on an 0.05-degree (approximately 5 km) grid.
-
->These data have been produced by ABARES as part of the ongoing Australian Agricultural Drought Indicator (AADI) project (previously known as the Drought Early Warning System Project) and were derived using ABARES farmpredict model, which in turn is based on ABARES Agricultural and Grazing Industries Survey (AAGIS) data.
-
->These maps provide estimates of farm business profit, revenue, costs and production by location (grid cell) and year for the period 1990-91 to 2022-23. The data do not include actual observed outcomes but rather model predicted outcomes for representative or ‘typical' broadacre farm businesses at each location considering likely farm characteristics and prevailing weather conditions and commodity prices.
-
->The Australian Gridded Farm Data remain under active development, and as such should be considered experimental.
-
--- Australian Department of Agriculture, Fisheries and Forestry.
 
 ## Metadata
 
