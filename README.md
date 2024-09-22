@@ -14,20 +14,24 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 <!-- badges: end -->
 
-An R package for automated downloading, parsing and formatting of data
-from the Australian Bureau of Agricultural and Resource Economics and
-Sciences including the:
+An R package for automated downloading and ingestion of data from the
+Australian Bureau of Agricultural and Resource Economics and Sciences.
+Data serviced include:
 
-- [Historical National Estimates, Historical State Estimates, Historical
-  Regional Estimates, Estimates by Size, Estimates by Performance
-  Category](https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download);
+- [ABARES
+  Estimates](https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download);
+  - Historical National Estimates;
+  - Historical State Estimates;
+  - Historical Regional Estimates;
+  - Estimates by Size;
+  - Estimates by Performance Category;
 - the [Australian Gridded Farm Data (AGFD)
   set](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data);
-- [Australian Agricultural and Grazing Industries Survey
+- the [Australian Agricultural and Grazing Industries Survey
   (AAGIS)](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data)
   region mapping files and the
-- [Soil Thickness for Australian areas of intensive agriculture of Layer
-  1 (A Horizon - top-soil) (derived from soil
+- a [Soil Thickness for Australian areas of intensive agriculture of
+  Layer 1 (A Horizon - top-soil) (derived from soil
   mapping)](https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6)
   map.
 
