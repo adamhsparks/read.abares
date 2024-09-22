@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# {abares}: Simple downloading and importing of ABARES Data
+# {abares}: Simple downloading and importing of ABARES Data <img src="man/figures/logo.png" align="right"/>
 
 <!-- badges: start -->
 
