@@ -8,13 +8,13 @@ knitr::opts_chunk$set(
 ## ----estimates--------------------------------------------------------------------------------------------------
 library(abares)
 
-get_hist_nat_est() |> 
+get_hist_nat_est() |>
   head()
 
-get_hist_sta_est() |> 
+get_hist_sta_est() |>
   head()
 
-get_hist_reg_est() |> 
+get_hist_reg_est() |>
   head()
 
 
@@ -54,7 +54,7 @@ x <- get_soil_thickness(cache = TRUE) |>
   read_soil_thickness_terra()
 
 
-## ----plot-soil-depth--------------------------------------------------------------------------------------------
+## ----plot-soil-depth, fig.cap = "Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)"----
 plot(x)
 
 

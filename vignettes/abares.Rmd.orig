@@ -95,7 +95,7 @@ x <- get_soil_thickness(cache = TRUE) |>
 
 For your convenience, {abares} re-exports [terra::plot()], so you can just use:
 
-```{r plot-soil-depth}
+```{r plot-soil-depth, fig.cap = "Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)"}
 plot(x)
 ```
 

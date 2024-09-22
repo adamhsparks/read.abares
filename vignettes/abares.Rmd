@@ -19,16 +19,8 @@ You can download the CSV files directly in your R session as illustrated below.
 
 ``` r
 library(abares)
-#> 
-#> Attaching package: 'abares'
-#> The following object is masked from 'package:graphics':
-#> 
-#>     plot
-#> The following object is masked from 'package:base':
-#> 
-#>     plot
 
-get_hist_nat_est() |> 
+get_hist_nat_est() |>
   head()
 #>                             Variable  Year Value   RSE      Industry
 #>                               <char> <int> <num> <int>        <char>
@@ -39,7 +31,7 @@ get_hist_nat_est() |>
 #> 5:               Age of spouse (yrs)  1990    49     1 All Broadacre
 #> 6:                     Agistment ($)  1990  1950    36 All Broadacre
 
-get_hist_sta_est() |> 
+get_hist_sta_est() |>
   head()
 #>                             Variable  Year Value   RSE           State      Industry
 #>                               <char> <int> <num> <int>          <char>        <char>
@@ -50,7 +42,7 @@ get_hist_sta_est() |>
 #> 5:               Age of spouse (yrs)  1990    52     2 New South Wales All Broadacre
 #> 6:                     Agistment ($)  1990  2790    71 New South Wales All Broadacre
 
-get_hist_reg_est() |> 
+get_hist_reg_est() |>
   head()
 #>                             Variable  Year    ABARES region Value   RSE
 #>                               <char> <int>           <char> <num> <int>
@@ -132,7 +124,7 @@ head(tdnc[[1]])
 #> # A tibble: 1 × 2
 #>   access              source                                                                                      
 #>   <dttm>              <chr>                                                                                       
-#> 1 2024-09-22 09:21:20 /Users/adamsparks/Library/Caches/org.R-project.R/R/abares/historical_climate_prices_fixed/f…
+#> 1 2024-09-22 09:28:40 /Users/adamsparks/Library/Caches/org.R-project.R/R/abares/historical_climate_prices_fixed/f…
 #> 
 #> $axis
 #> # A tibble: 84 × 3
@@ -261,7 +253,7 @@ get_agfd(cache = TRUE) |>
 
 ## Working With the Soil Thickness Map
 
-You can download the soil depth map and import it as a [stars] or [terra::rast] object.
+You can download the soil depth map and import it as a {stars} or [terra::rast()] object.
 
 
 ``` r
@@ -281,14 +273,14 @@ x <- get_soil_thickness(cache = TRUE) |>
   read_soil_thickness_terra()
 ```
 
-For your convenience, {abares} re-exports [terra::plot], so you can just use:
+For your convenience, {abares} re-exports [terra::plot()], so you can just use:
 
 
 ``` r
 plot(x)
 ```
 
-![plot of chunk plot-soil-depth](plot-soil-depth-1.png)
+![Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)](plot-soil-depth-1.png)
 
 ### Soil Thickness Metadata
 
