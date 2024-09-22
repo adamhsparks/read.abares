@@ -40,9 +40,12 @@ Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
     "roxyglobals::global_roclet"))
 RoxygenNote: 7.3.2
 Suggests: 
+    knitr,
     pander,
+    rmarkdown,
     roxyglobals,
     spelling
 Language: en-US
 Config/roxyglobals/filename: globals.R
 Config/roxyglobals/unique: FALSE
+VignetteBuilder: knitr
