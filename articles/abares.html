@@ -68,16 +68,8 @@ Sparks</h4>
 illustrated below.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://codeberg.org/adamhsparks/abares" class="external-link">abares</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'abares'</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:graphics':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     plot</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     plot</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/get_historical_national_estimates.html">get_hist_nat_est</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span><span class="fu"><a href="../reference/get_historical_national_estimates.html">get_hist_nat_est</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                             Variable  Year Value   RSE      Industry</span></span>
 <span><span class="co">#&gt;                               &lt;char&gt; &lt;int&gt; &lt;num&gt; &lt;int&gt;        &lt;char&gt;</span></span>
@@ -88,7 +80,7 @@ illustrated below.</p>
 <span><span class="co">#&gt; 5:               Age of spouse (yrs)  1990    49     1 All Broadacre</span></span>
 <span><span class="co">#&gt; 6:                     Agistment ($)  1990  1950    36 All Broadacre</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/get_historical_state_estimates.html">get_hist_sta_est</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span><span class="fu"><a href="../reference/get_historical_state_estimates.html">get_hist_sta_est</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                             Variable  Year Value   RSE           State      Industry</span></span>
 <span><span class="co">#&gt;                               &lt;char&gt; &lt;int&gt; &lt;num&gt; &lt;int&gt;          &lt;char&gt;        &lt;char&gt;</span></span>
@@ -99,7 +91,7 @@ illustrated below.</p>
 <span><span class="co">#&gt; 5:               Age of spouse (yrs)  1990    52     2 New South Wales All Broadacre</span></span>
 <span><span class="co">#&gt; 6:                     Agistment ($)  1990  2790    71 New South Wales All Broadacre</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/get_historical_regional_estimates.html">get_hist_reg_est</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span><span class="fu"><a href="../reference/get_historical_regional_estimates.html">get_hist_reg_est</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                             Variable  Year    ABARES region Value   RSE</span></span>
 <span><span class="co">#&gt;                               &lt;char&gt; &lt;int&gt;           &lt;char&gt; &lt;num&gt; &lt;int&gt;</span></span>
@@ -195,7 +187,7 @@ as such should be considered experimental.</p>
 <span><span class="co">#&gt; # A tibble: 1 × 2</span></span>
 <span><span class="co">#&gt;   access              source                                                                                      </span></span>
 <span><span class="co">#&gt;   &lt;dttm&gt;              &lt;chr&gt;                                                                                       </span></span>
-<span><span class="co">#&gt; 1 2024-09-22 09:21:20 /Users/adamsparks/Library/Caches/org.R-project.R/R/abares/historical_climate_prices_fixed/f…</span></span>
+<span><span class="co">#&gt; 1 2024-09-22 09:28:40 /Users/adamsparks/Library/Caches/org.R-project.R/R/abares/historical_climate_prices_fixed/f…</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $axis</span></span>
 <span><span class="co">#&gt; # A tibble: 84 × 3</span></span>
@@ -325,8 +317,8 @@ as such should be considered experimental.</p>
 <div class="section level2">
 <h2 id="working-with-the-soil-thickness-map">Working With the Soil Thickness Map<a class="anchor" aria-label="anchor" href="#working-with-the-soil-thickness-map"></a>
 </h2>
-<p>You can download the soil depth map and import it as a [stars] or
-[terra::rast] object.</p>
+<p>You can download the soil depth map and import it as a {stars} or
+[terra::rast()] object.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://codeberg.org/adamhsparks/abares" class="external-link">abares</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/get_soil_thickness.html">get_soil_thickness</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -342,12 +334,14 @@ as such should be considered experimental.</p>
 <span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_soil_thickness.html">get_soil_thickness</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/read_soil_thickness_terra.html">read_soil_thickness_terra</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>For your convenience, {abares} re-exports [terra::plot], so you can
+<p>For your convenience, {abares} re-exports [terra::plot()], so you can
 just use:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
-<img src="plot-soil-depth-1.png" alt="plot of chunk plot-soil-depth"><div class="figcaption">plot of chunk plot-soil-depth</div>
+<img src="plot-soil-depth-1.png" alt="Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)"><div class="figcaption">Soil Thickness for Australian areas of intensive
+agriculture of Layer 1 (A Horizon - top-soil) (derived from soil
+mapping)</div>
 </div>
 <div class="section level3">
 <h3 id="soil-thickness-metadata">Soil Thickness Metadata<a class="anchor" aria-label="anchor" href="#soil-thickness-metadata"></a>
