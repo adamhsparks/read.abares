@@ -1,0 +1,128 @@
+---
+title: "Getting Started With {abares}"
+author: "Adam H. Sparks"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started With abares}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteDepends{pander}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Working With Estimates
+
+You can download the CSV files directly in your R session as illustrated below.
+
+```{r estimates}
+library(abares)
+
+get_hist_nat_est() |> 
+  head()
+
+get_hist_sta_est() |> 
+  head()
+
+get_hist_reg_est() |> 
+  head()
+```
+
+## Working With AGFD Data
+
+You can download files and pipe directly into the class object that you desire for the Australian Farm Gridded Data (AGFD) data.
+
+### Description of the Australian Farm Gridded Data
+
+Directly from the DAFF website:
+
+>The Australian Gridded Farm Data are a set of national scale maps containing simulated data on historical broadacre farm business outcomes including farm profitability on an 0.05-degree (approximately 5 km) grid.
+
+>These data have been produced by ABARES as part of the ongoing Australian Agricultural Drought Indicator (AADI) project (previously known as the Drought Early Warning System Project) and were derived using ABARES farmpredict model, which in turn is based on ABARES Agricultural and Grazing Industries Survey (AAGIS) data.
+
+>These maps provide estimates of farm business profit, revenue, costs and production by location (grid cell) and year for the period 1990-91 to 2022-23. The data do not include actual observed outcomes but rather model predicted outcomes for representative or ‘typical' broadacre farm businesses at each location considering likely farm characteristics and prevailing weather conditions and commodity prices.
+
+>The Australian Gridded Farm Data remain under active development, and as such should be considered experimental.
+
+-- Australian Department of Agriculture, Fisheries and Forestry.
+
+
+```{r agfd}
+library(abares)
+
+## A list of {stars} objects
+star <- get_agfd(cache = TRUE) |>
+  read_agfd_stars()
+
+head(star[[1]])
+
+## A {terra} `rast` object
+terr <- get_agfd(cache = TRUE) |>
+  read_agfd_terra()
+
+head(terr[[1]])
+
+## A list of {tidync} objects
+tdnc <- get_agfd(cache = TRUE) |>
+  read_agfd_tidync()
+
+head(tdnc[[1]])
+
+## A {data.table} object
+get_agfd(cache = TRUE) |>
+  read_agfd_dt() |>
+  head()
+```
+
+## Working With the Soil Thickness Map
+
+You can download the soil depth map and import it as a [stars] or [terra::rast] object.
+
+```{r soil-thickness}
+library(abares)
+get_soil_thickness(cache = TRUE) |>
+  read_soil_thickness_stars()
+
+x <- get_soil_thickness(cache = TRUE) |>
+  read_soil_thickness_terra()
+```
+
+For your convenience, {abares} re-exports [terra::plot], so you can just use:
+
+```{r plot-soil-depth}
+plot(x)
+```
+
+### Soil Thickness Metadata
+
+By default, a brief bit of metadata is printed to the console when you call the soil thickness object in your R session.
+
+```{r brief-metadata}
+library(abares)
+get_soil_thickness(cache = TRUE)
+```
+
+But, {abares} provides a function for you to browse the soil thickness metadata in your console.
+
+```{r soil-thickness-metadata}
+library(abares)
+get_soil_thickness(cache = TRUE) |>
+  display_soil_thickness_metadata()
+```
+
+But you can also access it directly and use [pander::pander] to include it in a document like this vignette.
+
+```{r soil-thickness-metada-pander}
+library(abares)
+library(pander)
+x <- get_soil_thickness(cache = TRUE)
+y <- x$metadata
+pander(y)
+```
+
