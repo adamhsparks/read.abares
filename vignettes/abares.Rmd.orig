@@ -24,13 +24,13 @@ You can download the CSV files directly in your R session as illustrated below.
 ```{r estimates}
 library(abares)
 
-get_hist_nat_est() |> 
+get_hist_nat_est() |>
   head()
 
-get_hist_sta_est() |> 
+get_hist_sta_est() |>
   head()
 
-get_hist_reg_est() |> 
+get_hist_reg_est() |>
   head()
 ```
 
@@ -82,7 +82,7 @@ get_agfd(cache = TRUE) |>
 
 ## Working With the Soil Thickness Map
 
-You can download the soil depth map and import it as a [stars] or [terra::rast] object.
+You can download the soil depth map and import it as a {stars} or [terra::rast()] object.
 
 ```{r soil-thickness}
 library(abares)
@@ -93,7 +93,7 @@ x <- get_soil_thickness(cache = TRUE) |>
   read_soil_thickness_terra()
 ```
 
-For your convenience, {abares} re-exports [terra::plot], so you can just use:
+For your convenience, {abares} re-exports [terra::plot()], so you can just use:
 
 ```{r plot-soil-depth}
 plot(x)
