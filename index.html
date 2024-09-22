@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Provides simple downloading, parsing and importing of Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) data sources • abares</title>
+<title>Provides simple downloading, parsing and importing of Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) data sources • read.abares</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -17,9 +17,9 @@
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Provides simple downloading, parsing and importing of Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) data sources">
-<meta name="description" content="Download and import data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) including the Historical National Estimates, Historical State Estimates, Historical Regional Estimates, Estimates by Size, Estimates by Performance Category, &lt;https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download&gt;; the Australian Gridded Farm Data set, &lt;https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data&gt;; and the Australian Agricultural and Grazing Industries Survey (AAGIS) region mapping files, &lt;https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data&gt; and the soil thickness map, &lt;https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6&gt;.">
-<meta property="og:description" content="Download and import data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) including the Historical National Estimates, Historical State Estimates, Historical Regional Estimates, Estimates by Size, Estimates by Performance Category, &lt;https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download&gt;; the Australian Gridded Farm Data set, &lt;https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data&gt;; and the Australian Agricultural and Grazing Industries Survey (AAGIS) region mapping files, &lt;https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data&gt; and the soil thickness map, &lt;https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6&gt;.">
-<meta property="og:image" content="https://adamhsparks.codeberg.page/abares/logo.png">
+<meta name="description" content="Download and import data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) &lt;https://www.agriculture.gov.au/abares&gt;.">
+<meta property="og:description" content="Download and import data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) &lt;https://www.agriculture.gov.au/abares&gt;.">
+<meta property="og:image" content="https://adamhsparks.codeberg.page/read.abares/logo.png">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -27,7 +27,7 @@
 
     <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
-    <a class="navbar-brand me-2" href="index.html">abares</a>
+    <a class="navbar-brand me-2" href="index.html">read.abares</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
@@ -38,8 +38,13 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="articles/abares.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="articles/read.abares.html">read.abares</a></li>
+  </ul>
+</li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
@@ -54,7 +59,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header">
-<img src="logo.png" class="logo" alt=""><h1 id="abares-simple-downloading-and-importing-of-abares-data-">{abares}: Simple downloading and importing of ABARES Data <a class="anchor" aria-label="anchor" href="#abares-simple-downloading-and-importing-of-abares-data-"></a>
+<img src="logo.png" class="logo" alt=""><h1 id="readabares-simple-downloading-and-importing-of-abares-data-">{read.abares}: Simple downloading and importing of ABARES Data <a class="anchor" aria-label="anchor" href="#readabares-simple-downloading-and-importing-of-abares-data-"></a>
 </h1>
 </div>
 <!-- badges: start -->
@@ -62,7 +67,7 @@
 <p>An R package for automated downloading and ingestion of data from the Australian Bureau of Agricultural and Resource Economics and Sciences. Data serviced include:</p>
 <ul>
 <li>
-<a href="https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download" class="external-link">ABARES Estimates</a>;
+<a href="https://www.agriculture.gov.au/read.abares/data/farm-data-portal#data-download" class="external-link">ABARES Estimates</a>;
 <ul>
 <li>Historical National Estimates;</li>
 <li>Historical State Estimates;</li>
@@ -71,22 +76,22 @@
 <li>Estimates by Performance Category;</li>
 </ul>
 </li>
-<li>the <a href="https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data" class="external-link">Australian Gridded Farm Data (AGFD) set</a>;</li>
-<li>the <a href="https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data" class="external-link">Australian Agricultural and Grazing Industries Survey (AAGIS)</a> region mapping files and the</li>
+<li>the <a href="https://www.agriculture.gov.au/read.abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data" class="external-link">Australian Gridded Farm Data (AGFD) set</a>;</li>
+<li>the <a href="https://www.agriculture.gov.au/read.abares/research-topics/surveys/farm-survey-data" class="external-link">Australian Agricultural and Grazing Industries Survey (AAGIS)</a> region mapping files and the</li>
 <li>a <a href="https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6" class="external-link">Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)</a> map.</li>
 </ul>
-<p>The files are freely available as CSV files, zip archives of NetCDF files or a zip archives of geospatial shape files. {abares} facilitates downloading, caching and importing these files in your R session with your choice of the class of the resulting object(s).</p>
+<p>The files are freely available as CSV files, zip archives of NetCDF files or a zip archives of geospatial shape files. {read.abares} facilitates downloading, caching and importing these files in your R session with your choice of the class of the resulting object(s).</p>
 <div class="section level2">
 <h2 id="get-started">Get Started<a class="anchor" aria-label="anchor" href="#get-started"></a>
 </h2>
 <div class="section level3">
 <h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h3>
-<p>{abares} is not available through CRAN (yet). But you can install it like so:</p>
+<p>{read.abares} is not available through CRAN (yet). But you can install it like so:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://remotes.r-lib.org" class="external-link">"remotes"</a></span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_git.html" class="external-link">install_git</a></span><span class="op">(</span><span class="st">"https://codeberg.org/adamhsparks/abares"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_git.html" class="external-link">install_git</a></span><span class="op">(</span><span class="st">"https://codeberg.org/adamhsparks/read.abares"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -95,12 +100,12 @@
 <div class="section level3">
 <h3 id="caching">Caching<a class="anchor" aria-label="anchor" href="#caching"></a>
 </h3>
-<p>{abares} supports caching the files using <code>tools::R_user_dir(package = "abares", which = "cache")</code> to save the files in a standardised location across platforms so you don’t have to worry about where the files went or if they’re still there. When requesting the files, {abares} will first check if they are available locally. Caching is not mandatory, you can just work with the downloaded files in <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code>, which is cleaned up when your R session ends. <code><a href="reference/get_agfd.html">get_agfd()</a></code> will always check first if the files are available locally, either cached or in your current R session’s <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> to save time by not downloading again if they are available already.</p>
+<p>{read.abares} supports caching the files using <code>tools::R_user_dir(package = "read.abares", which = "cache")</code> to save the files in a standardised location across platforms so you don’t have to worry about where the files went or if they’re still there. When requesting the files, {read.abares} will first check if they are available locally. Caching is not mandatory, you can just work with the downloaded files in <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code>, which is cleaned up when your R session ends. <code><a href="reference/get_agfd.html">get_agfd()</a></code> will always check first if the files are available locally, either cached or in your current R session’s <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> to save time by not downloading again if they are available already.</p>
 </div>
 <div class="section level3">
 <h3 id="multiple-classes-supported">Multiple Classes Supported<a class="anchor" aria-label="anchor" href="#multiple-classes-supported"></a>
 </h3>
-<p>{abares} supports multiple classes of objects to support your workflow. Select from spatial classes:</p>
+<p>{read.abares} supports multiple classes of objects to support your workflow. Select from spatial classes:</p>
 <ul>
 <li>
 <a href="https://CRAN.R-project.org/package=stars" class="external-link">{stars}</a>,</li>
@@ -117,20 +122,20 @@
 <div class="section level2">
 <h2 id="metadata">Metadata<a class="anchor" aria-label="anchor" href="#metadata"></a>
 </h2>
-<p>Please report any <a href="https://codeberg.org/adamhsparks/abares/issues" class="external-link">issues or bugs</a>.</p>
+<p>Please report any <a href="https://codeberg.org/adamhsparks/read.abares/issues" class="external-link">issues or bugs</a>.</p>
 <p>License: <a href="LICENSE.html">MIT</a></p>
-<p>Citing the data: Please refer to the ABARES website, <a href="https://www.agriculture.gov.au/abares/products/citations" class="external-link uri">https://www.agriculture.gov.au/abares/products/citations</a>, on how to cite these data when you use them.</p>
+<p>Citing the data: Please refer to the ABARES website, <a href="https://www.agriculture.gov.au/read.abares/products/citations" class="external-link uri">https://www.agriculture.gov.au/read.abares/products/citations</a>, on how to cite these data when you use them.</p>
 </div>
 <div class="section level2">
 <h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
 </h2>
-<p>Please note that the {abares} project is released with a <a href="https://adamhsparks.codeberg.page/abares/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+<p>Please note that the {read.abares} project is released with a <a href="https://adamhsparks.codeberg.page/read.abares/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li><a href="https://codeberg.org/adamhsparks/abares/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://codeberg.org/adamhsparks/read.abares/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -152,7 +157,7 @@
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html#citation">Citing abares</a></li>
+<li><a href="authors.html#citation">Citing read.abares</a></li>
 </ul>
 </div>
 
@@ -166,7 +171,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://CRAN.R-project.org/package=abares" class="external-link"><img src="https://www.r-pkg.org/badges/version/abares" alt="CRAN status"></a></li>
+<li><a href="https://CRAN.R-project.org/package=read.abares" class="external-link"><img src="https://www.r-pkg.org/badges/version/read.abares" alt="CRAN status"></a></li>
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
 <li><a href="https://www.repostatus.org/#active" class="external-link"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></li>
 </ul>

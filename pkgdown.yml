@@ -2,8 +2,8 @@ pandoc: '3.4'
 pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
-  abares: abares.html
-last_built: 2024-09-22T09:33Z
+  read.abares: read.abares.html
+last_built: 2024-09-22T12:48Z
 urls:
-  reference: https://adamhsparks.codeberg.page/abares/reference
-  article: https://adamhsparks.codeberg.page/abares/articles
+  reference: https://adamhsparks.codeberg.page/read.abares/reference
+  article: https://adamhsparks.codeberg.page/read.abares/articles
