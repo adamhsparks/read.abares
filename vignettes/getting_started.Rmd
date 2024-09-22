@@ -118,6 +118,7 @@ get_soil_thickness(cache = TRUE) |>
 
 But you can also access it directly and use [pander::pander] to include it in a document like this vignette.
 
+<blockquote>
 ```{r soil-thickness-metada-pander}
 library(abares)
 library(pander)
@@ -125,4 +126,4 @@ x <- get_soil_thickness(cache = TRUE)
 y <- x$metadata
 pander(y)
 ```
-
+</blockquote>
