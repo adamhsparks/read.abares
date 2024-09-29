@@ -7,7 +7,7 @@
 read_soil_thickness_stars(files)
 }
 \arguments{
-\item{files}{An \pkg{abares} \code{abares.soil.thickness} object, a \code{list} that
+\item{files}{An \pkg{read.abares} \code{read.abares.soil.thickness} object, a \code{list} that
 contains the \acronym{ESRI} grid file to import}
 }
 \value{

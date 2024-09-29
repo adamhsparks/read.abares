@@ -28,7 +28,7 @@
 #' @examplesIf interactive()
 #' get_agfd()
 #'
-#' @return An `abares.agfd.nc.files` object, a `list` of NetCDF files containing
+#' @return An `read.abares.agfd.nc.files` object, a `list` of NetCDF files containing
 #'  the Australian Gridded Farm Data
 #'
 #' @autoglobal
@@ -52,7 +52,7 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
 
   # only download if the files aren't already local
   if (!dir.exists(agfd_nc_dir)) {
-    # if caching is enabled but the {abares} cache dir doesn't exist, create it
+    # if caching is enabled but the {read.abares} cache dir doesn't exist, create it
     if (cache) {
       dir.create(download_dir, recursive = TRUE)
     }
@@ -74,19 +74,19 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
   }
 
   agfd_nc <- list.files(agfd_nc_dir, full.names = TRUE)
-  class(agfd_nc) <- union("abares.agfd.nc.files", class(agfd_nc))
+  class(agfd_nc) <- union("read.abares.agfd.nc.files", class(agfd_nc))
   return(agfd_nc)
 }
 
-#' Prints abares.agfd.nc.files Objects
+#' Prints read.abares.agfd.nc.files Objects
 #'
-#' Custom [print()] method for `abares.agfd.nc.files` objects.
+#' Custom [print()] method for `read.abares.agfd.nc.files` objects.
 #'
-#' @param x an `abares.agfd.nc.files` object
+#' @param x an `read.abares.agfd.nc.files` object
 #' @param ... ignored
 #' @export
 #' @noRd
-print.abares.agfd.nc.files <- function(x, ...) {
+print.read.abares.agfd.nc.files <- function(x, ...) {
   cli::cli_h1("\nLocally Available ABARES AGFD NetCDF Files\n")
   cli::cli_ul(basename(x))
   cat("\n")

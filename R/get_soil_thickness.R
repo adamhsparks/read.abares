@@ -23,7 +23,7 @@
 #' y <- x$metadata
 #' pander(y)
 #'
-#' @return An `abares.soil.thickness` object, which is a named `list` with the
+#' @return An `read.abares.soil.thickness` object, which is a named `list` with the
 #'  file path of the resulting \acronym{ESRI} Grid file and text file of
 #'  metadata
 #'
@@ -47,7 +47,7 @@ get_soil_thickness <- function(cache = TRUE) {
 
   # only download if the files aren't already local
   if (!dir.exists(file.path(download_dir, "soil_thickness_dir"))) {
-    # if caching is enabled but the {abares} cache dir doesn't exist, create it
+    # if caching is enabled but the {read.abares} cache dir doesn't exist, create it
     if (cache) {
       dir.create(soil_thick_adf_dir, recursive = TRUE)
     }
@@ -68,19 +68,19 @@ get_soil_thickness <- function(cache = TRUE) {
     "metadata" = metadata$text,
     "grid" = file.path(download_dir, "soil_thickness/thpk_1")
   )
-  class(soil_thickness) <- union("abares.soil.thickness.files", class(soil_thickness))
+  class(soil_thickness) <- union("read.abares.soil.thickness.files", class(soil_thickness))
   return(soil_thickness)
 }
 
-#' Prints abares.soil.thickness.files Object
+#' Prints read.abares.soil.thickness.files Object
 #'
-#' Custom [print()] method for `abares.soil.thickness.files` objects.
+#' Custom [print()] method for `read.abares.soil.thickness.files` objects.
 #'
-#' @param x an `abares.soil.thickness.files` object
+#' @param x an `read.abares.soil.thickness.files` object
 #' @param ... ignored
 #' @export
 #' @noRd
-print.abares.soil.thickness.files <- function(x, ...) {
+print.read.abares.soil.thickness.files <- function(x, ...) {
   cli::cli_h1("Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil)")
   cli::cli_h2("Dataset ANZLIC ID ANZCW1202000149")
   cli::cli_text(
@@ -122,7 +122,7 @@ print.abares.soil.thickness.files <- function(x, ...) {
 #'  [pander::pander] to print the metadata.
 #'
 #'
-#' @param x An `abares.soil.thickness.files` object
+#' @param x An `read.abares.soil.thickness.files` object
 #'
 #' @return Nothing, called for its side effects, it prints the complete
 #'   metadata file to the \R console
@@ -136,7 +136,7 @@ print.abares.soil.thickness.files <- function(x, ...) {
 
 display_soil_thickness_metadata <- function(x) {
 
-  .check_class(x = x, class = "abares.soil.thickness.files")
+  .check_class(x = x, class = "read.abares.soil.thickness.files")
   loc <- stringr::str_locate(x$metadata, "Custodian")
   metadata <- stringr::str_sub(x$metadata, loc[, "start"] - 1, nchar(x$metadata))
   cli::cli_h1("Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil)\n")

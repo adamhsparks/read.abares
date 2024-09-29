@@ -26,5 +26,5 @@ plot(aagis)
 \dontshow{\}) # examplesIf}
 }
 \references{
-\url{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-definitions-methods#regions}
+\url{https://www.agriculture.gov.au/read.abares/research-topics/surveys/farm-definitions-methods#regions}
 }

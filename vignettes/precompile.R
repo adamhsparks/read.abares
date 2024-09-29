@@ -3,11 +3,11 @@
 library(knitr)
 library(here)
 
-# abares vignette
-knit(input = "vignettes/abares.Rmd.orig",
-     output = "vignettes/abares.Rmd")
-purl("vignettes/abares.Rmd.orig",
-     output = "vignettes/abares.R")
+# read.abares vignette
+knit(input = "vignettes/read.abares.Rmd.orig",
+     output = "vignettes/read.abares.Rmd")
+purl("vignettes/read.abares.Rmd.orig",
+     output = "vignettes/read.abares.R")
 
 # move image files
 figs <-
@@ -22,11 +22,11 @@ file.remove(figs)
 file.remove(here("figure"))
 
 # remove file path such that vignettes will build with figures
-## abares vignette
-abares_replace <- readLines("vignettes/abares.Rmd")
+## read.abares vignette
+abares_replace <- readLines("vignettes/read.abares.Rmd")
 abares_replace <- gsub("\\(figure/", "\\(", abares_replace)
 
-abares_file_con <- file("vignettes/abares.Rmd")
+abares_file_con <- file("vignettes/read.abares.Rmd")
 writeLines(abares_replace, abares_file_con)
 close(abares_file_con)
 

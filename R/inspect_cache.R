@@ -47,7 +47,7 @@ inspect_cache <- function(recursive = FALSE) {
       )
     ))
   } else {
-    cli::cli_h1("\nLocally Available {{abares}} Cached Files\n")
+    cli::cli_h1("\nLocally Available {{read.abares}} Cached Files\n")
     cli::cli_ul(basename(f))
   }
 }

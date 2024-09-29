@@ -7,10 +7,10 @@
 #' @noRd
 #' @keywords Internal
 .find_user_cache <- function() {
-  tools::R_user_dir(package = "abares", which = "cache")
+  tools::R_user_dir(package = "read.abares", which = "cache")
 }
 
-#' Check for abares.soil.thickness Class
+#' Check for read.abares.soil.thickness Class
 #'
 #' @param x An object for validating
 #' @param class An S3 class to validate against

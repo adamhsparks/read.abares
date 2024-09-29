@@ -18,7 +18,7 @@ with these data. Examples are provided for interacting with the metadata
 directly.}
 }
 \value{
-An \code{abares.soil.thickness} object, which is a named \code{list} with the
+An \code{read.abares.soil.thickness} object, which is a named \code{list} with the
 file path of the resulting \acronym{ESRI} Grid file and text file of
 metadata
 }

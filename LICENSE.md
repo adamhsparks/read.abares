@@ -1,6 +1,6 @@
 # MIT License
 
-Copyright (c) 2024 abares authors
+Copyright (c) 2024 read.abares authors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -58,3 +58,5 @@ rsconnect/
 >>>>>>> 5a5e496 (First commit)
 docs
 inst/doc
+/doc/
+/Meta/

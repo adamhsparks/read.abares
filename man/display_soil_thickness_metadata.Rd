@@ -7,7 +7,7 @@
 display_soil_thickness_metadata(x)
 }
 \arguments{
-\item{x}{An \code{abares.soil.thickness.files} object}
+\item{x}{An \code{read.abares.soil.thickness.files} object}
 }
 \value{
 Nothing, called for its side effects, it prints the complete
