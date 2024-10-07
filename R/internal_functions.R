@@ -1,5 +1,4 @@
 
-
 #' Find the File Path to Users' Cache Directory
 #'
 #' @return A `character` string value of a file path indicating the proper
@@ -10,7 +9,7 @@
   tools::R_user_dir(package = "read.abares", which = "cache")
 }
 
-#' Check for read.abares.soil.thickness Class
+#' Check for read.abares.something S3 Class
 #'
 #' @param x An object for validating
 #' @param class An S3 class to validate against
