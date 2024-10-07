@@ -1,7 +1,7 @@
 
 #' Remove Files in Users' Cache Directory
 #'
-#' Removes all files in the \pkg{agfd} cache if they exist.
+#' Removes all files in the \pkg{read.abares} cache if they exist.
 #'
 #' @examples
 #' # not run because cached files shouldn't exist on CRAN or testing envs
@@ -22,8 +22,8 @@ clear_cache <- function() {
   } else {
     cli::cli_inform(
       c(
-        "There do not appear to be any files cached for {.pkg {{agfd}}} that
-        need to be cleared at this time."
+        "There do not appear to be any files cached for {.pkg {{read.abares}}}
+        that need to be cleared at this time."
       )
     )
   }

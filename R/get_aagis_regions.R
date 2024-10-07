@@ -27,7 +27,7 @@ get_aagis_regions <- function(cache = TRUE) {
 
   # only download if the files aren't already local
   if (!file.exists(aagis_regions_dir)) {
-    # if caching is enabled but the {agfd} cache dir doesn't exist, create it
+    # if caching is enabled but the {read.abares} cache dir doesn't exist, create it
     if (cache && !dir.exists(.find_user_cache())) {
       dir.create(.find_user_cache(), recursive = TRUE)
     }

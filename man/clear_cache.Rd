@@ -10,7 +10,7 @@ clear_cache()
 Nothing, called for its side-effects, clearing the cached files
 }
 \description{
-Removes all files in the \pkg{agfd} cache if they exist.
+Removes all files in the \pkg{read.abares} cache if they exist.
 }
 \examples{
 # not run because cached files shouldn't exist on CRAN or testing envs

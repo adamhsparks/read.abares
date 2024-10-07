@@ -15,11 +15,11 @@ the top-level directories contained in the cache directory.}
 A \code{list} of directories or files in the cache
 }
 \description{
-Check what files exist in your \pkg{agfd} file cache.  This function will
-always return full file names, \emph{i.e.}, the directory path is prepended.  See
-the help file for \code{list.files()} for more on the \code{full.names} argument. If
-you wish to strip the file path and only return the directory or filenames,
-use \code{basename()}. See examples for more.
+Check what files exist in your \pkg{read.abares} file cache.  This function
+will always return full file names, \emph{i.e.}, the directory path is prepended.
+See the help file for \code{list.files()} for more on the \code{full.names} argument.
+If you wish to strip the file path and only return the directory or
+file names, use \code{basename()}. See examples for more.
 }
 \examples{
 # not run because cached files shouldn't exist on CRAN or testing envs

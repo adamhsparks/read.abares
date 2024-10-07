@@ -1,11 +1,11 @@
 
 #' List the File Path to Users' Cache Directory
 #'
-#' Check what files exist in your \pkg{agfd} file cache.  This function will
-#' always return full file names, *i.e.*, the directory path is prepended.  See
-#' the help file for `list.files()` for more on the `full.names` argument. If
-#' you wish to strip the file path and only return the directory or filenames,
-#' use `basename()`. See examples for more.
+#' Check what files exist in your \pkg{read.abares} file cache.  This function
+#' will always return full file names, *i.e.*, the directory path is prepended.
+#' See the help file for `list.files()` for more on the `full.names` argument.
+#' If you wish to strip the file path and only return the directory or
+#' file names, use `basename()`. See examples for more.
 #'
 #' @param recursive `Boolean` value indicating whether or not to list files in
 #'  subdirectories of the cache directory. Defaults to `FALSE` returning only
@@ -41,9 +41,7 @@ inspect_cache <- function(recursive = FALSE) {
   if (length(f) < 1) {
     return(cli::cli_inform(
       c(
-        "There do not appear to be any files cached for {.pkg {{agfd}}}.
-        You can download and cache files using {.fn get_agfd} and setting
-        {.code cache = TRUE}."
+        "There do not appear to be any files cached for {.pkg {{read.abares}}}."
       )
     ))
   } else {
