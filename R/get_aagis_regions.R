@@ -12,7 +12,7 @@
 #'
 #' @return An \CRANpkg{sf} object of the \acronym{AAGIS} regions
 #'
-#' @references <https://www.agriculture.gov.au/read.abares/research-topics/surveys/farm-definitions-methods#regions>
+#' @references <https://www.agriculture.gov.au/abares/research-topics/surveys/farm-definitions-methods#regions>
 #'
 #' @export
 
