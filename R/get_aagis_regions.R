@@ -1,7 +1,7 @@
 #' Get AAGIS Region Mapping Files
 #'
 #' @param cache `Boolean` Cache the \acronym{AAGIS} regions shape files after
-#'  download using `[tools::R_user_dir()]` to identify the proper directory for
+#'  download using `tools::R_user_dir()` to identify the proper directory for
 #'  storing user data in a cache for this package. Defaults to `TRUE`, caching
 #'  the files locally as a native \R object. If `FALSE`, this function uses
 #'  `tempdir()` and the files are deleted upon closing of the \R session.

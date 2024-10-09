@@ -1,7 +1,7 @@
 #' Download Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1
 #'
 #' @param cache `Boolean` Cache the soil thickness data files after download
-#' using `[tools::R_user_dir()]` to identify the proper directory for storing
+#' using `tools::R_user_dir()` to identify the proper directory for storing
 #' user data in a cache for this package. Defaults to `TRUE`, caching the files
 #' locally. If `FALSE`, this function uses `tempdir()` and the files are deleted
 #' upon closing of the \R session.
