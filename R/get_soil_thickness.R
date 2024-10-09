@@ -63,7 +63,7 @@ get_soil_thickness <- function(cache = TRUE) {
                 file.path(download_dir, "soil_thickness_dir"))
     unlink(download_file)
   }
-  metadata <- readtext::readtext(file.path(download_dir, "soil_thickness/ANZCW1202000149.txt"))
+  metadata <- readtext::readtext(file.path(download_dir, "soil_thickness_dir/ANZCW1202000149.txt"))
   soil_thickness <- list(
     "metadata" = metadata$text,
     "grid" = file.path(download_dir, "soil_thickness/thpk_1")
