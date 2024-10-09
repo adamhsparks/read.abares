@@ -8,7 +8,7 @@ get_aagis_regions(cache = TRUE)
 }
 \arguments{
 \item{cache}{\code{Boolean} Cache the \acronym{AAGIS} regions shape files after
-download using \link[tools:userdir]{tools::R_user_dir} to identify the proper directory for
+download using \verb{[tools::R_user_dir()]} to identify the proper directory for
 storing user data in a cache for this package. Defaults to \code{TRUE}, caching
 the files locally as a native \R object. If \code{FALSE}, this function uses
 \code{tempdir()} and the files are deleted upon closing of the \R session.}
