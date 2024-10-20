@@ -113,7 +113,7 @@ But, {read.abares} provides a function for you to browse the soil thickness meta
 ```{r soil-thickness-metadata}
 library(read.abares)
 get_soil_thickness(cache = TRUE) |>
-  display_soil_thickness_metadata()
+  print_soil_thickness_metadata()
 ```
 
 But you can also access it directly and use [pander::pander()] to include it in a document like this vignette.

@@ -23,8 +23,8 @@
 #' y <- x$metadata
 #' pander(y)
 #'
-#' @return An `read.abares.soil.thickness` object, which is a named `list` with the
-#'  file path of the resulting \acronym{ESRI} Grid file and text file of
+#' @return An `read.abares.soil.thickness` object, which is a named `list` with
+#'  the file path of the resulting \acronym{ESRI} Grid file and text file of
 #'  metadata
 #'
 #' @references <https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6>
@@ -34,7 +34,86 @@
 #' @export
 
 get_soil_thickness <- function(cache = TRUE) {
-  # this should be turned into a generic function and shared between functions internally
+  soil_thick <- .check_existing_soil(cache)
+  if (is.null(soil_thick)) {
+    soil_thick <- .download_soil_thickness(cache)
+  } else {
+    return(soil_thick)
+  }
+}
+
+#' Check for Pre-existing File Before Downloading
+#'
+#' Checks the user cache first, then `tempdir()` for the files before
+#' returning a `NULL` value. If `cache == TRUE` and the file is not in the user
+#' cache, but is in `tempdir()`, it is saved to the cache before being returned
+#' in the current session.
+#'
+#'
+#' @return An `read.abares.soil.thickness` object, which is a named `list` with
+#'  the file path of the resulting \acronym{ESRI} Grid file and text file of
+#'  metadata
+#' @noRd
+#' @keywords Internal
+
+.check_existing_soil <- function(cache) {
+  thpk_1 <- file.path(.find_user_cache(), "soil_thickness_dir/thpk_1")
+  tmp_grd <- file.path(tempdir(), "staiar9cl__05911a01eg_geo___/thpk_1")
+
+  thpk_1_cache <- dirname(thpk_1)
+  if (file.exists(thpk_1)) {
+    return(.create_soil_thickness_list(thpk_1_cache))
+  } else if (file.exists(tmp_grd)) {
+    soil_thickness <- .create_soil_thickness_list(dirname(thpk_1))
+    if (cache) {
+      dir.create(thpk_1_cache, recursive = TRUE)
+      file.copy(
+        from = list.files(path = dirname(tmp_grd)),
+        to = thpk_1,
+        recursive = TRUE
+      )
+    }
+    return(soil_thickness)
+  } else {
+    return(NULL)
+  }
+}
+
+#' Create a Object of read.abares.soil.thickness.files
+#'
+#' @param download_dir File where files have been downloaded
+#'
+#' @return An `read.abares.soil.thickness` object, which is a named `list` with
+#'  the file path of the resulting \acronym{ESRI} Grid file and text file of
+#'  metadata
+#' @noRd
+#' @keywords Internal
+
+.create_soil_thickness_list <- function(download_dir) {
+  metadata <- readtext::readtext(file.path(download_dir,
+                                           "ANZCW1202000149.txt"))
+  soil_thickness <- list(
+    "metadata" = metadata$text,
+    "grid" = file.path(download_dir, "thpk_1")
+  )
+  class(soil_thickness) <- union("read.abares.soil.thickness.files",
+                                 class(soil_thickness))
+}
+
+#' Downloads Soil Thickness Data if Not Located Locally
+#' @param cache `Boolean` Cache the soil thickness data files after download
+#' using `tools::R_user_dir()` to identify the proper directory for storing
+#' user data in a cache for this package. Defaults to `TRUE`, caching the files
+#' locally. If `FALSE`, this function uses `tempdir()` and the files are deleted
+#' upon closing of the \R session.
+#'
+#' @return Nothing, called for its side-effects of downloading and unzipping
+#'  files
+#'
+#' @noRd
+#' @keywords Internal
+
+.download_soil_thickness <- function(cache) {
   download_file <- data.table::fifelse(cache,
                                        file.path(.find_user_cache(), "soil_thick.zip"),
                                        file.path(file.path(tempdir(), "soil_thick.zip")))
@@ -43,13 +122,13 @@ get_soil_thickness <- function(cache = TRUE) {
   download_dir <- dirname(download_file)
 
   # this is where the zip files are unzipped in `soil_thick_dir`
-  soil_thick_adf_dir <- file.path(download_dir, "soil_thickness_dir")
+  soil_thick_adf_file <- file.path(download_dir, "soil_thickness_dir")
 
   # only download if the files aren't already local
-  if (!dir.exists(file.path(download_dir, "soil_thickness_dir"))) {
+  if (!file.exists(soil_thick_adf_file)) {
     # if caching is enabled but the {read.abares} cache dir doesn't exist, create it
     if (cache) {
-      dir.create(soil_thick_adf_dir, recursive = TRUE)
+      dir.create(dirname(soil_thick_adf_file), recursive = TRUE)
     }
     url <- "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip"
     curl::curl_download(url = url,
@@ -59,20 +138,13 @@ get_soil_thickness <- function(cache = TRUE) {
     withr::with_dir(download_dir,
                     utils::unzip(download_file,
                                  exdir = file.path(download_dir)))
-    file.rename(file.path(download_dir, "staiar9cl__05911a01eg_geo___/"),
-                file.path(download_dir, "soil_thickness_dir"))
+    file.rename(
+      file.path(download_dir, "staiar9cl__05911a01eg_geo___/"),
+      file.path(download_dir, "soil_thickness_dir")
+    )
     unlink(download_file)
   }
-  metadata <- readtext::readtext(
-    file.path(download_dir,
-              "soil_thickness/ANZCW1202000149.txt"))
-  soil_thickness <- list(
-    "metadata" = metadata$text,
-    "grid" = file.path(download_dir, "soil_thickness/thpk_1")
-  )
-  class(soil_thickness) <- union("read.abares.soil.thickness.files",
-                                 class(soil_thickness))
-  return(soil_thickness)
+  return(invisible(NULL))
 }
 
 #' Prints read.abares.soil.thickness.files Object
@@ -112,7 +184,7 @@ print.read.abares.soil.thickness.files <- function(x, ...) {
     Use Limitation: This dataset is bound by the requirements set down by the
     National Land & Water Resources Audit")
   cli::cli_text("To see the full metadata, call
-    {.fn display_soil_thickness_metadata} in your R session.")
+    {.fn print_soil_thickness_metadata} in your R session.")
   cat("\n")
   invisible(x)
 }
@@ -131,13 +203,13 @@ print.read.abares.soil.thickness.files <- function(x, ...) {
 #'   metadata file to the \R console
 #' @examplesIf interactive()
 #' get_soil_thickness(cache = TRUE) |>
-#' display_soil_thickness_metadata()
+#' print_soil_thickness_metadata()
 #'
 #' @family soil_thickness
 #'
 #' @export
 
-display_soil_thickness_metadata <- function(x) {
+print_soil_thickness_metadata <- function(x) {
 
   .check_class(x = x, class = "read.abares.soil.thickness.files")
   loc <- stringr::str_locate(x$metadata, "Custodian")

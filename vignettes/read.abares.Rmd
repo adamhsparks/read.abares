@@ -315,7 +315,7 @@ But, {read.abares} provides a function for you to browse the soil thickness meta
 ``` r
 library(read.abares)
 get_soil_thickness(cache = TRUE) |>
-  display_soil_thickness_metadata()
+  print_soil_thickness_metadata()
 #> Error in list_files(file, ignore_missing, TRUE, verbosity): File '' does not exist.
 ```
 

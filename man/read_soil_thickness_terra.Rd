@@ -29,8 +29,8 @@ plot(x)
 }
 \seealso{
 Other soil_thickness: 
-\code{\link{display_soil_thickness_metadata}()},
 \code{\link{get_soil_thickness}()},
+\code{\link{print_soil_thickness_metadata}()},
 \code{\link{read_soil_thickness_stars}()}
 }
 \concept{soil_thickness}

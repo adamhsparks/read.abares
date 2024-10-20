@@ -53,4 +53,4 @@ reference:
   - get_soil_thickness
   - read_soil_thickness_stars
   - read_soil_thickness_terra
-  - display_soil_thickness_metadata
+  - print_soil_thickness_metadata

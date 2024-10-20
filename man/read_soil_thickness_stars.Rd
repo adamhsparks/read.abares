@@ -26,8 +26,8 @@ get_soil_thickness(cache = TRUE) |>
 }
 \seealso{
 Other soil_thickness: 
-\code{\link{display_soil_thickness_metadata}()},
 \code{\link{get_soil_thickness}()},
+\code{\link{print_soil_thickness_metadata}()},
 \code{\link{read_soil_thickness_terra}()}
 }
 \concept{soil_thickness}

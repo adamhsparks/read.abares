@@ -18,8 +18,8 @@ with these data. Examples are provided for interacting with the metadata
 directly.}
 }
 \value{
-An \code{read.abares.soil.thickness} object, which is a named \code{list} with the
-file path of the resulting \acronym{ESRI} Grid file and text file of
+An \code{read.abares.soil.thickness} object, which is a named \code{list} with
+the file path of the resulting \acronym{ESRI} Grid file and text file of
 metadata
 }
 \description{
@@ -45,7 +45,7 @@ pander(y)
 }
 \seealso{
 Other soil_thickness: 
-\code{\link{display_soil_thickness_metadata}()},
+\code{\link{print_soil_thickness_metadata}()},
 \code{\link{read_soil_thickness_stars}()},
 \code{\link{read_soil_thickness_terra}()}
 }
