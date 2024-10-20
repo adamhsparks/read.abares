@@ -17,17 +17,59 @@
 #' @export
 
 get_aagis_regions <- function(cache = TRUE) {
+  aagis_sf <- .check_existing_aagis(cache)
+  if (is.null(aagis_sf)) {
+    aagis_sf <- .download_aagis_shp(cache)
+  } else {
+    return(aagis_sf)
+  }
+}
+
+#' Check for Pre-existing File Before Downloading
+#'
+#' Checks the user cache first, then `tempdir()` for the files before
+#' returning a `NULL` value. If `cache == TRUE` and the file is not in the user
+#' cache, but is in `tempdir()`, it is saved to the cache before being returned
+#' in the current session.
+#'
+#'
+#' @return An \cranpkg{sf} object of AAGIS regions
+#' @noRd
+#' @keywords Internal
+
+.check_existing_aagis <- function(cache) {
   aagis_rds <- file.path(.find_user_cache(), "aagis_regions_dir/aagis.rds")
-
-  if (exists(aagis_rds)) {
-    readRDS(aagis_rds)
-  }
-
   tmp_shp <- file.path(tempdir(), "aagis_asgs16v1_g5a.shp")
-  if (exists(tmp_shp)) {
-    sf::sf_read(tmp_shp)
-  }
 
+  if (file.exists(aagis_rds)) {
+    return(readRDS(aagis_rds))
+  } else if (file.exists(tmp_shp)) {
+    aagis_sf <- sf::st_read(tmp_shp)
+    if (cache) {
+      dir.create(dirname(aagis_rds), recursive = TRUE)
+      saveRDS(aagis_sf, file = aagis_rds)
+    }
+    return(aagis_sf)
+  } else {
+    return(NULL)
+  }
+}
+
+#' Download the AAGI Regions Shapefile
+#'
+#' Handles downloading and caching (if requested) of AAGIS regions geospatial
+#' data.
+#'
+#' @param cache `Boolean` Cache the \acronym{AAGIS} regions shape files after
+#'  download using `tools::R_user_dir()` to identify the proper directory for
+#'  storing user data in a cache for this package. Defaults to `TRUE`, caching
+#'  the files locally as a native \R object. If `FALSE`, this function uses
+#'  `tempdir()` and the files are deleted upon closing of the \R session.
+#'
+#' @return An \cranpkg{sf} object of AAGIS regions
+#' @noRd
+#' @keywords Internal
+.download_aagis_shp <- function(cache) {
   # if you make it this far, the cached file doesn't exist, so we need to
   # download it either to `tempdir()` and dispose or cache it
   cached_zip <- file.path(.find_user_cache(), "aagis_regions_dir/aagis.zip")
@@ -51,16 +93,18 @@ get_aagis_regions <- function(cache = TRUE) {
     CONNECTTIMEOUT = 90,
     http_version = 2
   )
-  curl::curl_download(url = url,
-                      destfile = aagis_zip,
-                      quiet = FALSE,
-                      handle = h)
+  curl::curl_download(
+    url = url,
+    destfile = aagis_zip,
+    quiet = FALSE,
+    handle = h
+  )
 
   withr::with_dir(aagis_regions_dir,
                   utils::unzip(aagis_zip, exdir = aagis_regions_dir))
 
-  aagis_sf <- sf::read_sf(
-    dsn = file.path(aagis_regions_dir, "aagis_asgs16v1_g5a.shp"))
+  aagis_sf <- sf::read_sf(dsn = file.path(aagis_regions_dir,
+                                          "aagis_asgs16v1_g5a.shp"))
 
   if (cache) {
     saveRDS(aagis_sf, file = aagis_rds)
