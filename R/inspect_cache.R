@@ -36,7 +36,7 @@ inspect_cache <- function(recursive = FALSE) {
     f <- list.files(f, recursive = TRUE, full.names = TRUE)
   } else {
     f <- list.files(f, full.names = TRUE)
-  }
+  f}
 
   if (length(f) < 1) {
     return(cli::cli_inform(
