@@ -116,7 +116,7 @@ get_soil_thickness(cache = TRUE) |>
   print_soil_thickness_metadata()
 ```
 
-But you can also access it directly and use [pander::pander()] to include it in a document like this vignette.
+But you can also access it directly and use pander::pander() to include it in a document like this vignette.
 
 <blockquote>
 ```{r soil-thickness-metada-pander}
