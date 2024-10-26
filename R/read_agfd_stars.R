@@ -12,9 +12,9 @@
 #' agfd <- get_agfd(cache = TRUE) |>
 #'   read_agfd_stars()
 #'
-#' agfd
+#' head(agfd)
 #'
-#' plot(agfd)
+#' plot(agfd[[1]])
 #'
 #' @family read_agfd
 #' @autoglobal

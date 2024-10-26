@@ -21,9 +21,9 @@ Read Australian Gridded Farm Data, (\acronym{AGFD}) as a \link{stars} object.
 agfd <- get_agfd(cache = TRUE) |>
   read_agfd_stars()
 
-agfd
+head(agfd)
 
-plot(agfd)
+plot(agfd[[1]])
 \dontshow{\}) # examplesIf}
 }
 \seealso{
