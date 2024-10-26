@@ -187,8 +187,8 @@ print.read.abares.soil.thickness.files <- function(x, ...) {
     any soil constituent in either volume or mass terms (bulk density is also
     needed) - for example, the volume of water stored in the rooting zone
     potentially available for plant use, to assess total stores of soil carbon
-    for Greenhouse inventory or to assess total stores of nutrients.\n\n
-    Provide indications of probable Thickness soil layer 1 in agricultural areas
+    for greenhouse inventory or to assess total stores of nutrients.\n\n
+    Provide indications of probable thickness soil layer 1 in agricultural areas
     where soil thickness testing has not been carried out.\n\n
     Use Limitation: This dataset is bound by the requirements set down by the
     National Land & Water Resources Audit")
