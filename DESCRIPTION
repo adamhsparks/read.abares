@@ -20,7 +20,6 @@ Imports:
     data.table,
     purrr,
     readtext,
-    readxl,
     sf,
     stars,
     stringr,

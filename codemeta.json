@@ -171,18 +171,6 @@
     },
     "6": {
       "@type": "SoftwareApplication",
-      "identifier": "readxl",
-      "name": "readxl",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=readxl"
-    },
-    "7": {
-      "@type": "SoftwareApplication",
       "identifier": "sf",
       "name": "sf",
       "provider": {
@@ -193,7 +181,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=sf"
     },
-    "8": {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "stars",
       "name": "stars",
@@ -205,7 +193,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stars"
     },
-    "9": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "stringr",
       "name": "stringr",
@@ -217,7 +205,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stringr"
     },
-    "10": {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "terra",
       "name": "terra",
@@ -229,7 +217,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=terra"
     },
-    "11": {
+    "10": {
       "@type": "SoftwareApplication",
       "identifier": "tidync",
       "name": "tidync",
@@ -241,7 +229,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tidync"
     },
-    "12": {
+    "11": {
       "@type": "SoftwareApplication",
       "identifier": "withr",
       "name": "withr",
@@ -255,6 +243,6 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "279.813KB",
+  "fileSize": "279.815KB",
   "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html#experimental", "https://www.repostatus.org/#active"]
 }
