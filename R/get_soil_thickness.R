@@ -33,13 +33,14 @@
 #'
 #' @export
 
+
 get_soil_thickness <- function(cache = TRUE) {
   soil_thick <- .check_existing_soil(cache)
   if (is.null(soil_thick)) {
     .download_soil_thickness(cache)
-    soil_thick <- .create_soil_thickness_list(local_dir = file.path(file.path(
-      tempdir(), "staiar9cl__05911a01eg_geo___"
-    )))
+    soil_thick <- .create_soil_thickness_list(
+      soil_dir = file.path(tempdir(), "soil_thickness_dir"))
+    return(soil_thick)
   } else {
     return(soil_thick)
   }
@@ -59,24 +60,23 @@ get_soil_thickness <- function(cache = TRUE) {
 #' @noRd
 #' @keywords Internal
 
-.check_existing_soil <- function(cache, local_dir) {
-  thpk_1 <- file.path(.find_user_cache(), "soil_thickness_dir/thpk_1")
+.check_existing_soil <- function(cache) {
+
+  cache_grd <- file.path(.find_user_cache(), "soil_thickness_dir/thpk_1")
+  thpk_1_cache <- dirname(cache_grd)
   tmp_grd <- file.path(tempdir(), "soil_thickness_dir/thpk_1")
-  thpk_1_cache <- dirname(thpk_1)
 
-  download_file <- data.table::fifelse(cache,
-                                       file.path(.find_user_cache(), "soil_thick.zip"),
-                                       file.path(file.path(tempdir(), "soil_thick.zip")))
-
-  if (file.exists(thpk_1)) {
-    return(.create_soil_thickness_list(local_dir = thpk_1_cache))
+  if (file.exists(cache_grd)) {
+    soil_dir <- dirname(cache_grd)
+    return(.create_soil_thickness_list(soil_dir))
   } else if (file.exists(tmp_grd)) {
-    soil_thickness <- .create_soil_thickness_list(local_dir = dirname(tmp_grd))
-    if (cache) {
+    soil_dir <- dirname(tmp_grd)
+    soil_thickness <- .create_soil_thickness_list(soil_dir)
+    if (cache && !dir.exists(thpk_1_cache)) {
       dir.create(thpk_1_cache, recursive = TRUE)
       file.copy(
-        from = list.files(path = dirname(tmp_grd)),
-        to = thpk_1,
+        from = dirname(tmp_grd),
+        to = thpk_1_cache,
         recursive = TRUE
       )
     }
@@ -96,15 +96,17 @@ get_soil_thickness <- function(cache = TRUE) {
 #' @noRd
 #' @keywords Internal
 
-.create_soil_thickness_list <- function(local_dir) {
-  metadata <- readtext::readtext(file.path(local_dir,
+.create_soil_thickness_list <- function(soil_dir) {
+
+  metadata <- readtext::readtext(file.path(soil_dir,
                                            "ANZCW1202000149.txt"))
   soil_thickness <- list(
     "metadata" = metadata$text,
-    "grid" = file.path(local_dir, "thpk_1")
+    "grid" = file.path(soil_dir, "thpk_1")
   )
   class(soil_thickness) <- union("read.abares.soil.thickness.files",
                                  class(soil_thickness))
+  return(soil_thickness)
 }
 
 #' Downloads Soil Thickness Data if Not Located Locally
