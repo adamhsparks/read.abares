@@ -66,12 +66,14 @@ Farm Data with the file names as the list's objects' names</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="get_agfd.html">get_agfd</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">agfd</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_agfd.html">get_agfd</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">read_agfd_stars</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Will return stars object with 612226 cells.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> No projection information found in nc file. </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  Coordinate variable units found to be degrees, </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  assuming WGS84 Lat/Lon.</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">agfd</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $f2022.c1991.p2022.t2022.nc</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> stars object with 2 dimensions and 41 attributes</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attribute(s):</span>
@@ -3108,6 +3110,9 @@ Farm Data with the file names as the list's objects' names</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> lon    1 886 WGS 84 [886] 112,...,156.2 [x]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> lat    1 691 WGS 84 [691] -44.5,...,-10 [y]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">agfd</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in xy.coords(x, y, xlabel, ylabel, log):</span> 'x' is a list, but does not have components 'x' and 'y'</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
