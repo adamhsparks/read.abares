@@ -131,7 +131,7 @@ head(tdnc[[1]])
 #> # A tibble: 1 × 2
 #>   access              source                                                                  
 #>   <dttm>              <chr>                                                                   
-#> 1 2024-10-26 18:17:26 /Users/adamsparks/Library/Caches/org.R-project.R/R/read.abares/historic…
+#> 1 2024-10-26 18:24:24 /Users/adamsparks/Library/Caches/org.R-project.R/R/read.abares/historic…
 #> 
 #> $axis
 #> # A tibble: 84 × 3
@@ -276,7 +276,7 @@ get_agfd(cache = TRUE) |>
 
 ## Working With the Soil Thickness Map
 
-You can download the soil depth map and import it as a {stars} or [terra::rast()] object.
+You can download the soil depth map and import it as a {stars} or terra::rast() object.
 
 
 ``` r
