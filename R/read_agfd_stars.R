@@ -9,8 +9,12 @@
 #'  Farm Data with the file names as the list's objects' names
 #'
 #' @examplesIf interactive()
-#' get_agfd(cache = TRUE) |>
+#' agfd <- get_agfd(cache = TRUE) |>
 #'   read_agfd_stars()
+#'
+#' agfd
+#'
+#' plot(agfd)
 #'
 #' @family read_agfd
 #' @autoglobal

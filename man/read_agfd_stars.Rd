@@ -18,8 +18,12 @@ Read Australian Gridded Farm Data, (\acronym{AGFD}) as a \link{stars} object.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-get_agfd(cache = TRUE) |>
+agfd <- get_agfd(cache = TRUE) |>
   read_agfd_stars()
+
+agfd
+
+plot(agfd)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
