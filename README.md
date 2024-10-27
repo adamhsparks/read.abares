@@ -18,6 +18,10 @@ Not all ABARES data are serviced. The list is hand-picked to be
 reasonably useful and maintainable, *i.e.*, frequently updated values
 are not included in this, *e.g.*, [Australian crop
 reports](https://daff.ent.sirsidynix.net.au/client/en_AU/ABARES/search/results?te=ASSET&st=PD#).
+However, if there is a data set that you feel would be useful to be
+serviced by {read.abares}, please feel free to [open an
+issue](https://codeberg.org/adamhsparks/read.abares/issues/new) with
+details about the data set or better yet, open a pull request!
 
 Data serviced include:
 

@@ -23,6 +23,7 @@ knitr::opts_chunk$set(
 An R package for automated downloading and ingestion of data from the Australian Bureau of Agricultural and Resource Economics and Sciences.
 Not all ABARES data are serviced.
 The list is hand-picked to be reasonably useful and maintainable, _i.e._, frequently updated values are not included in this, _e.g._, [Australian crop reports](https://daff.ent.sirsidynix.net.au/client/en_AU/ABARES/search/results?te=ASSET&st=PD#).
+However, if there is a data set that you feel would be useful to be serviced by {read.abares}, please feel free to [open an issue](https://codeberg.org/adamhsparks/read.abares/issues/new) with details about the data set or better yet, open a pull request!
 
 Data serviced include:
 
