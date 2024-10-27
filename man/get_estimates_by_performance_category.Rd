@@ -4,6 +4,9 @@
 \alias{get_estimates_by_performance_category}
 \alias{get_est_by_perf_cat}
 \title{Get Estimates by Size From ABARES}
+\source{
+\url{https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download}
+}
 \usage{
 get_estimates_by_performance_category()
 
@@ -28,7 +31,6 @@ Get Estimates by Size From ABARES
 Other Estimates: 
 \code{\link{get_estimates_by_size}()},
 \code{\link{get_historical_national_estimates}()},
-\code{\link{get_historical_regional_estimates}()},
 \code{\link{get_historical_state_estimates}()}
 }
 \concept{Estimates}
