@@ -41,13 +41,15 @@ get_abares_trade_regions <- function(cache = TRUE) {
 
 .check_existing_trade_regions <- function(cache) {
   abares_trade_rds <- file.path(.find_user_cache(),
-                                "abares_trade/abares_trade.rds")
-  tmp_csv <- file.path(tempdir(), "abares_trade.csv")
+                                "abares_trade/abares_trade_regions.rds")
+  tmp_csv <- file.path(tempdir(), "abares_trade_regions.csv")
 
   if (file.exists(abares_trade_rds)) {
     return(readRDS(abares_trade_rds))
   } else if (file.exists(tmp_csv)) {
-    abares_trade <- data.table::fread(tmp_csv)
+    abares_trade <- data.table::fread(tmp_csv,
+                                      na.strings = c(""),
+                                      fill = TRUE)
     if (cache) {
       dir.create(dirname(abares_trade_rds), recursive = TRUE)
       saveRDS(abares_trade, file = abares_trade_rds)
@@ -75,10 +77,10 @@ get_abares_trade_regions <- function(cache = TRUE) {
   # if you make it this far, the cached file doesn't exist, so we need to
   # download it either to `tempdir()` and dispose or cache it
   cached_csv <- file.path(.find_user_cache(),
-                          "abares_trade_dir/trade_regions.csv")
-  tmp_csv <- file.path(file.path(tempdir(), "trade_regions.csv"))
-  trade_regions_csv <- data.table::fifelse(cache, cached_csv, tmp_csv)
-  abares_trade_dir <- dirname(trade_regions_csv)
+                          "abares_trade_dir/abares_trade_regions.csv")
+  tmp_csv <- file.path(file.path(tempdir(), "abares_trade_regions.csv"))
+  abares_trade_regions_csv <- data.table::fifelse(cache, cached_csv, tmp_csv)
+  abares_trade_dir <- dirname(abares_trade_regions_csv)
   abares_trade_regions_rds <- file.path(abares_trade_dir,
                                         "abares_trade_regions.rds")
 
@@ -99,13 +101,13 @@ get_abares_trade_regions <- function(cache = TRUE) {
   )
   curl::curl_download(
     url = url,
-    destfile = trade_regions_csv,
+    destfile = abares_trade_regions_csv,
     quiet = FALSE,
     handle = h
   )
 
   abares_trade_regions <- data.table::fread(file.path(abares_trade_dir,
-                                          "trade_regions.csv"),
+                                          "abares_trade_regions.csv"),
                                           na.strings = c(""),
                                           fill = TRUE)
   data.table::setnames(
@@ -129,7 +131,7 @@ get_abares_trade_regions <- function(cache = TRUE) {
   if (cache) {
     saveRDS(abares_trade_regions, file = abares_trade_regions_rds)
     unlink(c(
-      file.path(abares_trade_dir, "ABARES_trade_data.csv")
+      file.path(abares_trade_dir, "abares_trade_regions.csv")
     ))
   }
   return(abares_trade_regions)

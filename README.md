@@ -14,6 +14,11 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 An R package for automated downloading and ingestion of data from the
 Australian Bureau of Agricultural and Resource Economics and Sciences.
+Not all ABARES data are serviced. The list is hand-picked to be
+reasonably useful and maintainable, *i.e.*, frequently updated values
+are not included in this, *e.g.*, [Australian crop
+reports](https://daff.ent.sirsidynix.net.au/client/en_AU/ABARES/search/results?te=ASSET&st=PD#).
+
 Data serviced include:
 
 - [ABARES
@@ -31,7 +36,11 @@ Data serviced include:
 - a [Soil Thickness for Australian areas of intensive agriculture of
   Layer 1 (A Horizon - top-soil) (derived from soil
   mapping)](https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6)
-  map.
+  map;
+- [ABARES Trade
+  Data](https://www.agriculture.gov.au/abares/research-topics/trade/dashboard);
+  - Trade Data;
+  - Trade Region Data.
 
 The files are freely available as CSV files, zip archives of NetCDF
 files or a zip archives of geospatial shape files. {read.abares}

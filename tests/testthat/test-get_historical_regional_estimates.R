@@ -1,3 +1,4 @@
+
 test_that("get_historical_regional_estimates works", {
   skip_if_offline()
   x <- get_historical_regional_estimates()

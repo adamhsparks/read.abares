@@ -1,3 +1,4 @@
+
 test_that("get_historical_national_estimates works", {
   skip_if_offline()
   x <- get_historical_national_estimates()

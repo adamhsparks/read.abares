@@ -10,10 +10,14 @@ get_historical_national_estimates()
 get_hist_nat_est()
 }
 \value{
-A \link[data.table:data.table]{data.table::data.table} object
+A \link[data.table:data.table]{data.table::data.table} object with the \code{variable} field as the
+\code{key}.
 }
 \description{
 Get Historical National Estimates from ABARES
+}
+\note{
+Columns are renamed and reordered for consistency.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

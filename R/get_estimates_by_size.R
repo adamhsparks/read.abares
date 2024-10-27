@@ -1,7 +1,12 @@
 
 #' Get Estimates by Size From ABARES
 #'
-#' @return A [data.table::data.table] object
+#' @note
+#' Columns are renamed and reordered for consistency.
+#'
+#' @return A [data.table::data.table] object with the `variable` field as the
+#'  `key`.
+#'
 #' @autoglobal
 #' @export
 #' @examplesIf interactive()
@@ -12,7 +17,18 @@
 #' get_est_by_size()
 #'
 get_estimates_by_size <- get_est_by_size <- function() {
-  x <- data.table::fread("https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-performance-by-size.csv")
+  x <- data.table::fread(
+    "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-performance-by-size.csv"
+  )
+
+  data.table::setcolorder(x,
+                          neworder = c("Variable",
+                                       "Year",
+                                       "Value",
+                                       "RSE",
+                                       "Industry"))
+  data.table::setkey(x, "Variable")
+
   return(x)
 }
 
