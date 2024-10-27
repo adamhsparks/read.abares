@@ -93,7 +93,16 @@ Please report any [issues or bugs](https://codeberg.org/adamhsparks/read.abares/
 
 License: [MIT](LICENSE.md)
 
+### Citations
+
 Citing the data: Please refer to the ABARES website, <https://www.agriculture.gov.au/abares/products/citations>, on how to cite these data when you use them.
+
+Citing {read.abares}: When citing the use of this package, please use,
+
+```{r}
+library("read.abares")
+citation("read.abares")
+```
 
 ## Code of Conduct
 

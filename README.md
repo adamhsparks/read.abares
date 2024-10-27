@@ -114,9 +114,47 @@ bugs](https://codeberg.org/adamhsparks/read.abares/issues).
 
 License: [MIT](LICENSE.md)
 
+### Citations
+
 Citing the data: Please refer to the ABARES website,
 <https://www.agriculture.gov.au/abares/products/citations>, on how to
 cite these data when you use them.
+
+Citing {read.abares}: When citing the use of this package, please use,
+
+``` r
+library("read.abares")
+#> 
+#> Attaching package: 'read.abares'
+#> The following object is masked from 'package:graphics':
+#> 
+#>     plot
+#> The following object is masked from 'package:base':
+#> 
+#>     plot
+citation("read.abares")
+#> Warning in citation("read.abares"): could not determine year for 'read.abares'
+#> from package DESCRIPTION file
+#> To cite package 'read.abares' in publications use:
+#> 
+#>   Sparks A (????). _read.abares: Provides simple downloading, parsing
+#>   and importing of Australian Bureau of Agricultural and Resource
+#>   Economics and Sciences (ABARES) data sources_. R package version
+#>   0.1.0, https://adamhsparks.codeberg.page/read.abares,
+#>   <https://codeberg.org/adamhsparks/read.abares>.
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Manual{,
+#>     title = {read.abares: Provides simple downloading, parsing and importing of Australian
+#> Bureau of Agricultural and Resource Economics and Sciences (ABARES) data
+#> sources},
+#>     author = {Adam H. Sparks},
+#>     note = {R package version 0.1.0, 
+#> https://adamhsparks.codeberg.page/read.abares},
+#>     url = {https://codeberg.org/adamhsparks/read.abares},
+#>   }
+```
 
 ## Code of Conduct
 
