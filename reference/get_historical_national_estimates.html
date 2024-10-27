@@ -60,36 +60,36 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span> <span class="fu">get_historical_national_estimates</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Key: &lt;Variable&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                 Variable  Year  Value   RSE      Industry</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                   &lt;char&gt; &lt;int&gt;  &lt;num&gt; &lt;int&gt;        &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1: AI stud fees and herd testing ($)  1990    790    39 All Broadacre</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2: AI stud fees and herd testing ($)  1990   1840    59          Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3: AI stud fees and herd testing ($)  1990     80   123      Cropping</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4: AI stud fees and herd testing ($)  1990   4050     7         Dairy</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5: AI stud fees and herd testing ($)  1990    700    81         Mixed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                 Variable  Year      Industry  Value   RSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                   &lt;char&gt; &lt;int&gt;        &lt;char&gt;  &lt;num&gt; &lt;int&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     1: AI stud fees and herd testing ($)  1990 All Broadacre    790    39</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     2: AI stud fees and herd testing ($)  1990          Beef   1840    59</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     3: AI stud fees and herd testing ($)  1990      Cropping     80   123</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     4: AI stud fees and herd testing ($)  1990         Dairy   4050     7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     5: AI stud fees and herd testing ($)  1990         Mixed    700    81</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30059:                 Wool receipts ($)  2022   2400    76          Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30060:                 Wool receipts ($)  2022  35400    14      Cropping</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30061:                 Wool receipts ($)  2022  97300    10         Mixed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30062:                 Wool receipts ($)  2022 118100    14         Sheep</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30063:                 Wool receipts ($)  2022 150100    41    Sheep-Beef</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30059:                 Wool receipts ($)  2022          Beef   2400    76</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30060:                 Wool receipts ($)  2022      Cropping  35400    14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30061:                 Wool receipts ($)  2022         Mixed  97300    10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30062:                 Wool receipts ($)  2022         Sheep 118100    14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30063:                 Wool receipts ($)  2022    Sheep-Beef 150100    41</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span> <span class="co"># or shorter</span></span></span>
 <span class="r-in"><span> <span class="fu">get_hist_nat_est</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Key: &lt;Variable&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                 Variable  Year  Value   RSE      Industry</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                   &lt;char&gt; &lt;int&gt;  &lt;num&gt; &lt;int&gt;        &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1: AI stud fees and herd testing ($)  1990    790    39 All Broadacre</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2: AI stud fees and herd testing ($)  1990   1840    59          Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3: AI stud fees and herd testing ($)  1990     80   123      Cropping</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4: AI stud fees and herd testing ($)  1990   4050     7         Dairy</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5: AI stud fees and herd testing ($)  1990    700    81         Mixed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                 Variable  Year      Industry  Value   RSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                   &lt;char&gt; &lt;int&gt;        &lt;char&gt;  &lt;num&gt; &lt;int&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     1: AI stud fees and herd testing ($)  1990 All Broadacre    790    39</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     2: AI stud fees and herd testing ($)  1990          Beef   1840    59</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     3: AI stud fees and herd testing ($)  1990      Cropping     80   123</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     4: AI stud fees and herd testing ($)  1990         Dairy   4050     7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     5: AI stud fees and herd testing ($)  1990         Mixed    700    81</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30059:                 Wool receipts ($)  2022   2400    76          Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30060:                 Wool receipts ($)  2022  35400    14      Cropping</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30061:                 Wool receipts ($)  2022  97300    10         Mixed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30062:                 Wool receipts ($)  2022 118100    14         Sheep</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30063:                 Wool receipts ($)  2022 150100    41    Sheep-Beef</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30059:                 Wool receipts ($)  2022          Beef   2400    76</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30060:                 Wool receipts ($)  2022      Cropping  35400    14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30061:                 Wool receipts ($)  2022         Mixed  97300    10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30062:                 Wool receipts ($)  2022         Sheep 118100    14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30063:                 Wool receipts ($)  2022    Sheep-Beef 150100    41</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -60,62 +60,62 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">get_estimates_by_size</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Key: &lt;Variable&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                 Variable  Year  Value   RSE      Industry</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                   &lt;char&gt; &lt;int&gt;  &lt;num&gt; &lt;int&gt;        &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1: AI stud fees and herd testing ($)  1990  14646    87 All Broadacre</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2: AI stud fees and herd testing ($)  1990   4337    74 All Broadacre</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3: AI stud fees and herd testing ($)  1990    503    50 All Broadacre</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4: AI stud fees and herd testing ($)  1990  49173    95          Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5: AI stud fees and herd testing ($)  1990   2724    82          Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83492:                 Wool receipts ($)  2022 262019    18         Sheep</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83493:                 Wool receipts ($)  2022  57572    11         Sheep</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83494:                 Wool receipts ($)  2022 407320    54    Sheep-Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83495:                 Wool receipts ($)  2022  98513    26    Sheep-Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83496:                 Wool receipts ($)  2022  54721    25    Sheep-Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:  Large</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2: Medium</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:  Small</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:  Large</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5: Medium</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83492: Medium</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83493:  Small</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83494:  Large</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83495: Medium</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83496:  Small</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                 Variable  Year   Size      Industry  Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                   &lt;char&gt; &lt;int&gt; &lt;char&gt;        &lt;char&gt;  &lt;num&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     1: AI stud fees and herd testing ($)  1990  Large All Broadacre  14646</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     2: AI stud fees and herd testing ($)  1990 Medium All Broadacre   4337</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     3: AI stud fees and herd testing ($)  1990  Small All Broadacre    503</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     4: AI stud fees and herd testing ($)  1990  Large          Beef  49173</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     5: AI stud fees and herd testing ($)  1990 Medium          Beef   2724</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83492:                 Wool receipts ($)  2022 Medium         Sheep 262019</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83493:                 Wool receipts ($)  2022  Small         Sheep  57572</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83494:                 Wool receipts ($)  2022  Large    Sheep-Beef 407320</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83495:                 Wool receipts ($)  2022 Medium    Sheep-Beef  98513</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83496:                 Wool receipts ($)  2022  Small    Sheep-Beef  54721</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          RSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;int&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     1:    87</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     2:    74</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     3:    50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     4:    95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     5:    82</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    ---      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83492:    18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83493:    11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83494:    54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83495:    26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83496:    25</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># or shorter</span></span></span>
 <span class="r-in"><span><span class="fu">get_est_by_size</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Key: &lt;Variable&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                 Variable  Year  Value   RSE      Industry</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                   &lt;char&gt; &lt;int&gt;  &lt;num&gt; &lt;int&gt;        &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1: AI stud fees and herd testing ($)  1990  14646    87 All Broadacre</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2: AI stud fees and herd testing ($)  1990   4337    74 All Broadacre</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3: AI stud fees and herd testing ($)  1990    503    50 All Broadacre</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4: AI stud fees and herd testing ($)  1990  49173    95          Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5: AI stud fees and herd testing ($)  1990   2724    82          Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83492:                 Wool receipts ($)  2022 262019    18         Sheep</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83493:                 Wool receipts ($)  2022  57572    11         Sheep</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83494:                 Wool receipts ($)  2022 407320    54    Sheep-Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83495:                 Wool receipts ($)  2022  98513    26    Sheep-Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83496:                 Wool receipts ($)  2022  54721    25    Sheep-Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:  Large</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2: Medium</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:  Small</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:  Large</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5: Medium</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83492: Medium</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83493:  Small</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83494:  Large</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83495: Medium</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83496:  Small</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                 Variable  Year   Size      Industry  Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                   &lt;char&gt; &lt;int&gt; &lt;char&gt;        &lt;char&gt;  &lt;num&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     1: AI stud fees and herd testing ($)  1990  Large All Broadacre  14646</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     2: AI stud fees and herd testing ($)  1990 Medium All Broadacre   4337</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     3: AI stud fees and herd testing ($)  1990  Small All Broadacre    503</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     4: AI stud fees and herd testing ($)  1990  Large          Beef  49173</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     5: AI stud fees and herd testing ($)  1990 Medium          Beef   2724</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83492:                 Wool receipts ($)  2022 Medium         Sheep 262019</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83493:                 Wool receipts ($)  2022  Small         Sheep  57572</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83494:                 Wool receipts ($)  2022  Large    Sheep-Beef 407320</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83495:                 Wool receipts ($)  2022 Medium    Sheep-Beef  98513</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83496:                 Wool receipts ($)  2022  Small    Sheep-Beef  54721</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          RSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;int&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     1:    87</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     2:    74</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     3:    50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     4:    95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     5:    82</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    ---      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83492:    18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83493:    11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83494:    54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83495:    26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83496:    25</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
