@@ -4,10 +4,11 @@
 #' @note
 #' Columns are renamed and reordered for consistency.
 #'
-#' @return A [data.table::data.table] object with the `variable` field as the
+#' @return A [data.table::data.table] object with the `Variable` field as the
 #'  `key`.
 #' @autoglobal
-#' @family Estimates
+#' @family Estimates\
+#' @source <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
 #' @export
 #' @examplesIf interactive()
 #'  get_historical_regional_estimates()

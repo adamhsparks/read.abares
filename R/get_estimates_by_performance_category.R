@@ -3,6 +3,7 @@
 #'
 #' @return A [data.table::data.table] object
 #' @export
+#' @source <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
 #' @family Estimates
 #' @autoglobal
 #' @examplesIf interactive()

@@ -27,7 +27,7 @@
 #'  the file path of the resulting \acronym{ESRI} Grid file and text file of
 #'  metadata
 #'
-#' @references <https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6>
+#' @source <https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6>
 #' @autoglobal
 #' @family soil_thickness
 #' @export
