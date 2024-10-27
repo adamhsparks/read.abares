@@ -92,6 +92,21 @@ or data.frame objects:
 
 - [{data.table}](https://CRAN.R-project.org/package=data.table)
 
+## A Note on Testing
+
+I’ve aimed to make the testing for this package as complete as possible.
+Some of the files downloaded are \>1GB and may take several minutes or
+more than an hour to download and due to their size, I do not wish to
+include them in the package itself. Therefore, most of these tests do
+rely on already downloaded and locally cached files. If you wish to work
+with development of {read.abares} please be aware that it will take some
+time to establish your local cache before testing will be somewhat
+faster.
+
+I am considering including some pared down examples for tests as the
+data are released under a CC By 4.0 License, but for now have opted to
+just use locally cached data for simplicity.
+
 ## Metadata
 
 Please report any [issues or
