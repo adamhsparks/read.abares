@@ -110,23 +110,6 @@ get_abares_trade_regions <- function(cache = TRUE) {
                                           "abares_trade_regions.csv"),
                                           na.strings = c(""),
                                           fill = TRUE)
-  data.table::setnames(
-    abares_trade_regions,
-    old = c(
-      "Classification",
-      "Region",
-      "Subregion",
-      "SACC_Destination",
-      "Destination"
-    ),
-    new = c(
-      "classification",
-      "region",
-      "subregion",
-      "sacc_destination",
-      "destination"
-    )
-  )
 
   if (cache) {
     saveRDS(abares_trade_regions, file = abares_trade_regions_rds)

@@ -16,15 +16,17 @@
 #'
 get_historical_regional_estimates <- get_hist_reg_est <-  function() {
   x <- data.table::fread("https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-regional-historical.csv")
-  data.table::setnames(x, old = c("Variable", "Year", "ABARES region", "Value", "RSE"),
-                       new = c("Variable", "Year", "ABARES_region", "Value", "RSE"))
+  data.table::setnames(
+    x,
+    old = c("Variable", "Year", "ABARES region", "Value", "RSE"),
+    new = c("Variable", "Year", "ABARES_region", "Value", "RSE")
+  )
   data.table::setcolorder(x,
                           neworder = c("Variable",
                                        "Year",
                                        "ABARES_region",
                                        "Value",
-                                       "RSE",
-                                       "Industry"))
+                                       "RSE"))
   data.table::setkey(x, "Variable")
   return(x[])
 }

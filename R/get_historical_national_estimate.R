@@ -20,6 +20,12 @@ get_historical_national_estimates <- function() {
     "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-national-historical.csv"
   )
 
+  data.table::setcolorder(x,
+                          neworder = c("Variable",
+                                       "Year",
+                                       "Industry",
+                                       "Value",
+                                       "RSE"))
   data.table::setkey(x, "Variable")
   return(x[])
 }

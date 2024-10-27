@@ -123,20 +123,20 @@ get_abares_trade <- function(cache = TRUE) {
       "confidentiality_flag"
     ),
     new = c(
-      "fiscal_year",
-      "month",
-      "year_month",
-      "calendar_year",
-      "trade_code",
-      "overseas_location",
-      "state",
-      "australian_port",
-      "unit",
-      "trade_flow",
-      "mode_of_transport",
-      "falue",
-      "quantity",
-      "confidentiality_flag"
+      "Fiscal_year",
+      "Month",
+      "Year_month",
+      "Calendar_year",
+      "Trade_code",
+      "Overseas_location",
+      "State",
+      "Australian_port",
+      "Unit",
+      "Trade_flow",
+      "Mode_of_transport",
+      "Value",
+      "Quantity",
+      "Confidentiality_flag"
     )
   )
 

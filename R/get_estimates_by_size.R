@@ -24,9 +24,10 @@ get_estimates_by_size <- get_est_by_size <- function() {
   data.table::setcolorder(x,
                           neworder = c("Variable",
                                        "Year",
+                                       "Size",
+                                       "Industry",
                                        "Value",
-                                       "RSE",
-                                       "Industry"))
+                                       "RSE"))
   data.table::setkey(x, "Variable")
 
   return(x)
