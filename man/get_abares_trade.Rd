@@ -14,7 +14,7 @@ locally as a native \R object. If \code{FALSE}, this function uses \code{tempdir
 and the files are deleted upon closing of the \R session.}
 }
 \value{
-A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
+A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
 }
 \description{
 Fetches and imports  \acronym{ABARES} trade data.

@@ -14,11 +14,13 @@ the files locally as a native \R object. If \code{FALSE}, this function uses
 \code{tempdir()} and the files are deleted upon closing of the \R session.}
 }
 \value{
-A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
+A \CRANpkg{data.table} object of the \acronym{ABARES} trade data regions.
 }
 \description{
-Fetches and imports  \acronym{ABARES} trade regions data. Columns are renamed
-for consistency in this package using lower case, snake_case format.
+Fetches and imports  \acronym{ABARES} trade regions data.
+}
+\note{
+Columns are renamed for consistency in this package using lower case, snake_case format.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

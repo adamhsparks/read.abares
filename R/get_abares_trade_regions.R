@@ -1,7 +1,9 @@
 #' Get ABARES Trade Data Regions From the ABARES Trade Dashboard
 #'
-#' Fetches and imports  \acronym{ABARES} trade regions data. Columns are renamed
-#'  for consistency in this package using lower case, snake_case format.
+#' Fetches and imports  \acronym{ABARES} trade regions data.
+#'
+#' @note
+#' Columns are renamed for consistency in this package using lower case, snake_case format.
 #'
 #' @param cache `Boolean` Cache the \acronym{ABARES} trade regions data after
 #'  download using `tools::R_user_dir()` to identify the proper directory for
@@ -14,7 +16,7 @@
 #'
 #' trade_regions
 #'
-#' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
+#' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data regions.
 #' @family Trade
 #' @references <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0>
 #'
