@@ -8,6 +8,7 @@
 #'  `key`.
 #'
 #' @autoglobal
+#' @family Estimates
 #' @export
 #' @examplesIf interactive()
 #'

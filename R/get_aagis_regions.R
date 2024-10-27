@@ -8,12 +8,15 @@
 #'
 #' @examplesIf interactive()
 #' aagis <- get_aagis_regions()
+#'
 #' plot(aagis)
 #'
 #' @return An \CRANpkg{sf} object of the \acronym{AAGIS} regions
 #'
-#' @references <https://www.agriculture.gov.au/abares/research-topics/surveys/farm-definitions-methods#regions>
+#' @family AGFD
 #'
+#' @references <https://www.agriculture.gov.au/abares/research-topics/surveys/farm-definitions-methods#regions>
+#' @autoglobal
 #' @export
 
 get_aagis_regions <- function(cache = TRUE) {
@@ -35,6 +38,7 @@ get_aagis_regions <- function(cache = TRUE) {
 #'
 #' @return An \cranpkg{sf} object of AAGIS regions
 #' @noRd
+#' @autoglobal
 #' @keywords Internal
 
 .check_existing_aagis <- function(cache) {
@@ -68,6 +72,7 @@ get_aagis_regions <- function(cache = TRUE) {
 #'
 #' @return An \cranpkg{sf} object of AAGIS regions
 #' @noRd
+#' @autoglobal
 #' @keywords Internal
 .download_aagis_shp <- function(cache) {
   # if you make it this far, the cached file doesn't exist, so we need to

@@ -10,7 +10,7 @@
 #' get_agfd(cache = TRUE) |>
 #'   read_agfd_dt()
 #'
-#' @family read_agfd
+#' @family AGFD
 #' @autoglobal
 #' @export
 

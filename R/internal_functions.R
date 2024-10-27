@@ -5,6 +5,7 @@
 #'  directory to use for cached files
 #' @noRd
 #' @keywords Internal
+#' @autoglobal
 .find_user_cache <- function() {
   tools::R_user_dir(package = "read.abares", which = "cache")
 }
@@ -16,6 +17,7 @@
 #'
 #' @return Nothing, called for its side-effects of class validation
 #' @keywords Internal
+#' @autoglobal
 #' @noRd
 
 .check_class <- function(x, class) {

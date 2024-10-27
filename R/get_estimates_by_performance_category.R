@@ -3,6 +3,7 @@
 #'
 #' @return A [data.table::data.table] object
 #' @export
+#' @family Estimates
 #' @autoglobal
 #' @examplesIf interactive()
 #'

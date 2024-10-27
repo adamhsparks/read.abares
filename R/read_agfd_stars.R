@@ -16,7 +16,7 @@
 #'
 #' plot(agfd[[1]])
 #'
-#' @family read_agfd
+#' @family AGFD
 #' @autoglobal
 #' @export
 

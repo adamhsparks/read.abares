@@ -22,9 +22,19 @@ Get AAGIS Region Mapping Files
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 aagis <- get_aagis_regions()
+
 plot(aagis)
 \dontshow{\}) # examplesIf}
 }
 \references{
 \url{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-definitions-methods#regions}
 }
+\seealso{
+Other AGFD: 
+\code{\link{get_agfd}()},
+\code{\link{read_agfd_dt}()},
+\code{\link{read_agfd_stars}()},
+\code{\link{read_agfd_terra}()},
+\code{\link{read_agfd_tidync}()}
+}
+\concept{AGFD}

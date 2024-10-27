@@ -28,11 +28,10 @@
 #' @examplesIf interactive()
 #' get_agfd()
 #'
-#' @return An `read.abares.agfd.nc.files` object, a `list` of NetCDF files containing
-#'  the Australian Gridded Farm Data
-#'
+#' @return A `read.abares.agfd.nc.files` object, a `list` of NetCDF files
+#'  containing the Australian Gridded Farm Data
+#' @family AGFD
 #' @autoglobal
-#'
 #' @export
 
 get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
@@ -82,9 +81,10 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
 #'
 #' Custom [print()] method for `read.abares.agfd.nc.files` objects.
 #'
-#' @param x an `read.abares.agfd.nc.files` object
+#' @param x a `read.abares.agfd.nc.files` object
 #' @param ... ignored
 #' @export
+#' @autoglobal
 #' @noRd
 print.read.abares.agfd.nc.files <- function(x, ...) {
   cli::cli_h1("\nLocally Available ABARES AGFD NetCDF Files\n")

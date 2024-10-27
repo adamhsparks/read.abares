@@ -22,8 +22,8 @@ the files locally. If \code{FALSE}, this function uses \code{tempdir()} and the 
 are deleted upon closing of the \R session.}
 }
 \value{
-An \code{read.abares.agfd.nc.files} object, a \code{list} of NetCDF files containing
-the Australian Gridded Farm Data
+A \code{read.abares.agfd.nc.files} object, a \code{list} of NetCDF files
+containing the Australian Gridded Farm Data
 }
 \description{
 Fetch Australian Gridded Farm Data
@@ -44,3 +44,12 @@ the perspective of Australian farmers}, Climate Risk Management, Volume 35,
 2022, 100420, ISSN 2212-0963, DOI:
 \href{https://doi.org/10.1016/j.crm.2022.100420}{10.1016/j.crm.2022.100420}.
 }
+\seealso{
+Other AGFD: 
+\code{\link{get_aagis_regions}()},
+\code{\link{read_agfd_dt}()},
+\code{\link{read_agfd_stars}()},
+\code{\link{read_agfd_terra}()},
+\code{\link{read_agfd_tidync}()}
+}
+\concept{AGFD}

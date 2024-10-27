@@ -19,7 +19,7 @@
 #' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
 #' @family Trade
 #' @references <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0>
-#'
+#' @autoglobal
 #' @export
 
 get_abares_trade <- function(cache = TRUE) {
@@ -41,6 +41,7 @@ get_abares_trade <- function(cache = TRUE) {
 #'
 #' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
 #' @noRd
+#' @autoglobal
 #' @keywords Internal
 
 .check_existing_trade <- function(cache) {
@@ -74,6 +75,7 @@ get_abares_trade <- function(cache = TRUE) {
 #'
 #' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
 #' @noRd
+#' @autoglobal
 #' @keywords Internal
 .download_abares_trade <- function(cache) {
   # if you make it this far, the cached file doesn't exist, so we need to

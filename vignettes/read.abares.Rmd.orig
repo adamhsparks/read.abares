@@ -17,22 +17,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Working With Estimates
-
-You can download the CSV files directly in your R session as illustrated below.
-
-```{r estimates}
-library(read.abares)
-
-get_hist_nat_est() |>
-  head()
-
-get_hist_sta_est() |>
-  head()
-
-get_hist_reg_est() |>
-  head()
-```
+This vignette demonstrates some of the functionality of {read.abares}.
+Please note that not all functions are demonstrated here, please refer to the [documentation reference](https://adamhsparks.codeberg.page/read.abares/reference/) for a full list of functionality.
+The worked examples here show some of the more advanced features that {read.abares} offers beyond just fetching and importing data, _e.g._, the Australian Gridded Farm Data, which can be downloaded, cached and then imported using one of four types of object or the soil thickness data, which includes rich metadata.
 
 ## Working With AGFD Data
 
@@ -93,7 +80,7 @@ x <- get_soil_thickness(cache = TRUE) |>
   read_soil_thickness_terra()
 ```
 
-For your convenience, {read.abares} re-exports [terra::plot()], so you can just use:
+For your convenience, {read.abares} re-exports terra::plot(), so you can just use:
 
 ```{r plot-soil-depth, fig.cap = "Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)"}
 plot(x)

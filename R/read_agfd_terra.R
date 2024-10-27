@@ -12,7 +12,7 @@
 #' get_agfd(cache = TRUE) |>
 #'   read_agfd_terra()
 #'
-#' @family read_agfd
+#' @family AGFD
 #' @autoglobal
 #' @export
 

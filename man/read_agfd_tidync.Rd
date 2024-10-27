@@ -24,9 +24,11 @@ get_agfd(cache = TRUE) |>
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other read_agfd: 
+Other AGFD: 
+\code{\link{get_aagis_regions}()},
+\code{\link{get_agfd}()},
 \code{\link{read_agfd_dt}()},
 \code{\link{read_agfd_stars}()},
 \code{\link{read_agfd_terra}()}
 }
-\concept{read_agfd}
+\concept{AGFD}

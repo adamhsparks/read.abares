@@ -28,3 +28,11 @@ get_estimates_by_size()
 get_est_by_size()
 \dontshow{\}) # examplesIf}
 }
+\seealso{
+Other Estimates: 
+\code{\link{get_estimates_by_performance_category}()},
+\code{\link{get_historical_national_estimates}()},
+\code{\link{get_historical_regional_estimates}()},
+\code{\link{get_historical_state_estimates}()}
+}
+\concept{Estimates}

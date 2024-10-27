@@ -11,7 +11,7 @@
 #' get_agfd(cache = TRUE) |>
 #'   read_agfd_tidync()
 #'
-#' @family read_agfd
+#' @family AGFD
 #' @export
 
 read_agfd_tidync <- function(files) {

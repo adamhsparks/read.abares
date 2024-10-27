@@ -23,16 +23,14 @@
 #' y <- x$metadata
 #' pander(y)
 #'
-#' @return An `read.abares.soil.thickness` object, which is a named `list` with
+#' @return A `read.abares.soil.thickness` object, which is a named `list` with
 #'  the file path of the resulting \acronym{ESRI} Grid file and text file of
 #'  metadata
 #'
 #' @references <https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6>
-#'
+#' @autoglobal
 #' @family soil_thickness
-#'
 #' @export
-
 
 get_soil_thickness <- function(cache = TRUE) {
   soil_thick <- .check_existing_soil(cache)
@@ -54,10 +52,11 @@ get_soil_thickness <- function(cache = TRUE) {
 #' in the current session.
 #'
 #'
-#' @return An `read.abares.soil.thickness` object, which is a named `list` with
+#' @return A `read.abares.soil.thickness` object, which is a named `list` with
 #'  the file path of the resulting \acronym{ESRI} Grid file and text file of
 #'  metadata
 #' @noRd
+#' @autoglobal
 #' @keywords Internal
 
 .check_existing_soil <- function(cache) {
@@ -90,7 +89,7 @@ get_soil_thickness <- function(cache = TRUE) {
 #'
 #' @param dir File where files have been downloaded
 #'
-#' @return An `read.abares.soil.thickness` object, which is a named `list` with
+#' @return A `read.abares.soil.thickness` object, which is a named `list` with
 #'  the file path of the resulting \acronym{ESRI} Grid file and text file of
 #'  metadata
 #' @noRd
@@ -160,7 +159,7 @@ get_soil_thickness <- function(cache = TRUE) {
 #'
 #' Custom [print()] method for `read.abares.soil.thickness.files` objects.
 #'
-#' @param x an `read.abares.soil.thickness.files` object
+#' @param x a `read.abares.soil.thickness.files` object
 #' @param ... ignored
 #' @export
 #' @noRd
@@ -206,7 +205,7 @@ print.read.abares.soil.thickness.files <- function(x, ...) {
 #'  [pander::pander] to print the metadata.
 #'
 #'
-#' @param x An `read.abares.soil.thickness.files` object
+#' @param x A `read.abares.soil.thickness.files` object
 #'
 #' @return Nothing, called for its side effects, it prints the complete
 #'   metadata file to the \R console

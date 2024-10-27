@@ -7,6 +7,7 @@
 #' @return A [data.table::data.table] object with the `variable` field as the
 #'  `key`.
 #' @autoglobal
+#' @family Estimates
 #' @export
 #' @examplesIf interactive()
 #'  get_historical_state_estimates()
