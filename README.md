@@ -36,11 +36,11 @@ Data serviced include:
   set](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data);
 - the [Australian Agricultural and Grazing Industries Survey
   (AAGIS)](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data)
-  region mapping files and the
+  region mapping files;
 - a [Soil Thickness for Australian areas of intensive agriculture of
   Layer 1 (A Horizon - top-soil) (derived from soil
   mapping)](https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6)
-  map;
+  map and the;
 - [ABARES Trade
   Data](https://www.agriculture.gov.au/abares/research-topics/trade/dashboard);
   - Trade Data;
