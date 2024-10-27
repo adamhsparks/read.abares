@@ -64,7 +64,7 @@
 </div>
 <!-- badges: start -->
 
-<p>An R package for automated downloading and ingestion of data from the Australian Bureau of Agricultural and Resource Economics and Sciences. Not all ABARES data are serviced. The list is hand-picked to be reasonably useful and maintainable, <em>i.e.</em>, frequently updated values are not included in this, <em>e.g.</em>, <a href="https://daff.ent.sirsidynix.net.au/client/en_AU/ABARES/search/results?te=ASSET&amp;st=PD#" class="external-link">Australian crop reports</a>.</p>
+<p>An R package for automated downloading and ingestion of data from the Australian Bureau of Agricultural and Resource Economics and Sciences. Not all ABARES data are serviced. The list is hand-picked to be reasonably useful and maintainable, <em>i.e.</em>, frequently updated values are not included in this, <em>e.g.</em>, <a href="https://daff.ent.sirsidynix.net.au/client/en_AU/ABARES/search/results?te=ASSET&amp;st=PD#" class="external-link">Australian crop reports</a>. However, if there is a data set that you feel would be useful to be serviced by {read.abares}, please feel free to <a href="https://codeberg.org/adamhsparks/read.abares/issues/new" class="external-link">open an issue</a> with details about the data set or better yet, open a pull request!</p>
 <p>Data serviced include:</p>
 <ul>
 <li>
@@ -126,6 +126,12 @@
 <li><a href="https://CRAN.R-project.org/package=data.table" class="external-link">{data.table}</a></li>
 </ul>
 </div>
+</div>
+<div class="section level2">
+<h2 id="a-note-on-testing">A Note on Testing<a class="anchor" aria-label="anchor" href="#a-note-on-testing"></a>
+</h2>
+<p>I’ve aimed to make the testing for this package as complete as possible. Some of the files downloaded are &gt;1GB and may take several minutes or more than an hour to download and due to their size, I do not wish to include them in the package itself. Therefore, most of these tests do rely on already downloaded and locally cached files. If you wish to work with development of {read.abares} please be aware that it will take some time to establish your local cache before testing will be somewhat faster.</p>
+<p>I am considering including some pared down examples for tests as the data are released under a CC By 4.0 License, but for now have opted to just use locally cached data for simplicity.</p>
 </div>
 <div class="section level2">
 <h2 id="metadata">Metadata<a class="anchor" aria-label="anchor" href="#metadata"></a>
