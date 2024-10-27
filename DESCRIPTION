@@ -1,12 +1,12 @@
 Type: Package
 Package: read.abares
 Title: Provides simple downloading, parsing and importing of Australian
-    Bureau of Agricultural and Resource Economics and Sciences (ABARES) data
-    sources
+    Bureau of Agricultural and Resource Economics and Sciences (ABARES)
+    data sources
 Version: 0.1.0
-Authors@R: c( person("Adam H.", "Sparks", ,
-    "adamhsparks@gmail.com", role = c("cre", "aut"), comment = c(ORCID =
-    "0000-0002-0061-8359")))
+Authors@R: 
+    person("Adam H.", "Sparks", , "adamhsparks@gmail.com", role = c("cre", "aut"),
+           comment = c(ORCID = "0000-0002-0061-8359"))
 Description: Download and import data from the Australian Bureau of
     Agricultural and Resource Economics and Sciences (ABARES)
     <https://www.agriculture.gov.au/abares>.
@@ -28,11 +28,6 @@ Imports:
     terra,
     tidync,
     withr
-Encoding: UTF-8
-LazyData: true
-Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
-    "roxyglobals::global_roclet"))
-RoxygenNote: 7.3.2
 Suggests: 
     knitr,
     pander,
@@ -40,8 +35,14 @@ Suggests:
     roxyglobals,
     spelling,
     testthat (>= 3.0.0)
-Language: en-US
+VignetteBuilder: 
+    knitr
 Config/roxyglobals/filename: globals.R
 Config/roxyglobals/unique: FALSE
-VignetteBuilder: knitr
 Config/testthat/edition: 3
+Encoding: UTF-8
+Language: en-US
+LazyData: true
+Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
+    "roxyglobals::global_roclet"))
+RoxygenNote: 7.3.2
