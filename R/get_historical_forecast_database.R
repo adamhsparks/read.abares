@@ -96,9 +96,5 @@ get_historical_forecast_database <- function() {
 }
 
 #' @export
-#' @rdname get_estimates_by_size
-get_est_by_size <- get_estimates_by_size
-
-#' @export
 #' @rdname get_historical_forecast_database
 get_historical_forecast <- get_historical_forecast_database
