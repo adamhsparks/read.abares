@@ -73,113 +73,11 @@ value representing the month of year, <em>e.g.</em>, "March" is converted to <co
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">get_historical_forecast_database</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        Year_issued Month_issued Year_issued_FY Forecast_year_FY Forecast_value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              &lt;num&gt;        &lt;int&gt;         &lt;char&gt;           &lt;char&gt;          &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:        2006            3        2005-06          2010-11     160.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:        2007            3        2006-07          2010-11     160.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:        2008            3        2007-08          2010-11     172.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:        2009            3        2008-09          2010-11     186.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:        2000           12        2000-01          2000-01     177.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22530:        2022           12        2022-23          2022-23   10222.212794</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22531:        2022           12        2022-23          2022-23   46699.451861</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22532:        2022           12        2022-23          2022-23    3317.155774</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22533:        2022           12        2022-23          2022-23   72321.302230</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22534:        2022           12        2022-23          2022-23       0.651271</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        Actual_value         Commodity Estimate_type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               &lt;num&gt;            &lt;char&gt;        &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:     413.9996             Sheep         Price</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:     413.9996             Sheep         Price</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:     413.9996             Sheep         Price</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:     413.9996             Sheep         Price</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:     191.5945            Mutton Export volume</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22530:           NA              Beef  Export value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22531:           NA       Total Crops  Export value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22532:           NA              Wool  Export value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22533:           NA Total agriculture  Export value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22534:           NA Australian Dollar         Price</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                                                                      Estimate_description</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                                                                                    &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:                                                                                                                                   Saleyard price, weighted average</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:                                                                                                                                   Saleyard price, weighted average</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:                                                                                                                                   Saleyard price, weighted average</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:                                                                                                                                   Saleyard price, weighted average</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:                                                                                                                                                     Shipped weight</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                                                                                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22530:                                                                                                                                   Free on board value (Jul-Jun FY)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22531: Free on board value (Jul-Jun FY). Note change in definition of exports means actual values prior to 2019-20 are not comparable with estimates published elsewhere.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22532:                                                                                                                                   Free on board value (Jul-Jun FY)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22533: Free on board value (Jul-Jun FY). Note change in definition of exports means actual values prior to 2019-20 are not comparable with estimates published elsewhere.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22534:                                                                                                                           Ratio of Australian dollars to US dollar</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             Unit    Region</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;char&gt;    &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1: c/kg (cw) Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2: c/kg (cw) Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3: c/kg (cw) Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4: c/kg (cw) Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:   kt (sw) Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22530:        $m Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22531:        $m Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22532:        $m Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22533:        $m Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22534:    A$/US$ Australia</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in get_historical_forecast_database():</span> could not find function "get_historical_forecast_database"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># or shorter</span></span></span>
 <span class="r-in"><span><span class="fu">get_historical_forecast</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        Year_issued Month_issued Year_issued_FY Forecast_year_FY Forecast_value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              &lt;num&gt;        &lt;int&gt;         &lt;char&gt;           &lt;char&gt;          &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:        2006            3        2005-06          2010-11     160.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:        2007            3        2006-07          2010-11     160.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:        2008            3        2007-08          2010-11     172.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:        2009            3        2008-09          2010-11     186.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:        2000           12        2000-01          2000-01     177.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22530:        2022           12        2022-23          2022-23   10222.212794</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22531:        2022           12        2022-23          2022-23   46699.451861</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22532:        2022           12        2022-23          2022-23    3317.155774</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22533:        2022           12        2022-23          2022-23   72321.302230</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22534:        2022           12        2022-23          2022-23       0.651271</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        Actual_value         Commodity Estimate_type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               &lt;num&gt;            &lt;char&gt;        &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:     413.9996             Sheep         Price</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:     413.9996             Sheep         Price</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:     413.9996             Sheep         Price</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:     413.9996             Sheep         Price</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:     191.5945            Mutton Export volume</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22530:           NA              Beef  Export value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22531:           NA       Total Crops  Export value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22532:           NA              Wool  Export value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22533:           NA Total agriculture  Export value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22534:           NA Australian Dollar         Price</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                                                                      Estimate_description</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                                                                                    &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:                                                                                                                                   Saleyard price, weighted average</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:                                                                                                                                   Saleyard price, weighted average</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:                                                                                                                                   Saleyard price, weighted average</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:                                                                                                                                   Saleyard price, weighted average</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:                                                                                                                                                     Shipped weight</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                                                                                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22530:                                                                                                                                   Free on board value (Jul-Jun FY)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22531: Free on board value (Jul-Jun FY). Note change in definition of exports means actual values prior to 2019-20 are not comparable with estimates published elsewhere.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22532:                                                                                                                                   Free on board value (Jul-Jun FY)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22533: Free on board value (Jul-Jun FY). Note change in definition of exports means actual values prior to 2019-20 are not comparable with estimates published elsewhere.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22534:                                                                                                                           Ratio of Australian dollars to US dollar</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             Unit    Region</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;char&gt;    &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1: c/kg (cw) Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2: c/kg (cw) Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3: c/kg (cw) Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4: c/kg (cw) Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:   kt (sw) Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22530:        $m Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22531:        $m Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22532:        $m Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22533:        $m Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22534:    A$/US$ Australia</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in get_historical_forecast():</span> could not find function "get_historical_forecast"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -77,60 +77,10 @@ and the files are deleted upon closing of the <span style="R">R</span> session.<
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">trade</span> <span class="op">&lt;-</span> <span class="fu">get_abares_trade</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in get_abares_trade():</span> could not find function "get_abares_trade"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">trade</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Fiscal_year Month Year_month Calendar_year Trade_code</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                &lt;char&gt; &lt;int&gt;     &lt;Date&gt;         &lt;int&gt;      &lt;i64&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        1:     1999-00    10 1999-01-01          1999   20089216</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        2:     1999-00    12 1999-12-01          1999   20089216</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        3:     1994-95     7 1994-07-01          1994   20085000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        4:     1994-95     1 1995-01-01          1995   20085000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        5:     1996-97    11 1996-11-01          1996   20085000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       ---                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10684802:     2022-23     3 2023-03-01          2023 2521000025</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10684803:     2022-23     5 2023-05-01          2023 2521000025</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10684804:     2023-24     9 2023-09-01          2023 2521000025</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10684805:     2023-24    12 2023-12-01          2023 2521000025</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10684806:     2023-24     3 2024-03-01          2024 2521000025</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                              Overseas_location           State Australian_port</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                         &lt;char&gt;          &lt;char&gt;          &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        1:                               Canada South Australia        Adelaide</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        2:                               Canada South Australia        Adelaide</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        3: France (includes Andorra and Monaco) South Australia        Adelaide</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        4: France (includes Andorra and Monaco) South Australia        Adelaide</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        5: France (includes Andorra and Monaco) South Australia        Adelaide</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       ---                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10684802:                                Japan South Australia         Whyalla</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10684803:                                Japan South Australia         Whyalla</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10684804:                                Japan South Australia         Whyalla</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10684805:                                Japan South Australia         Whyalla</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10684806:                                Japan South Australia         Whyalla</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               Unit Trade_flow Mode_of_transport    Value Quantity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;char&gt;     &lt;char&gt;            &lt;char&gt;    &lt;num&gt;    &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        1: B Carton    Exports               AIR   1177.0   414.00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        2: B Carton    Exports               AIR   1829.0   202.00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        3: B Carton    Exports               AIR   1020.0    25.00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        4: B Carton    Exports               AIR   1509.0    37.00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        5: B Carton    Exports               AIR   8883.0   150.00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       ---                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10684802:   Tonnes    Imports               SEA 842441.3 10467.71</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10684803:   Tonnes    Imports               SEA 756946.3 40000.00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10684804:   Tonnes    Imports               SEA 872098.3 47300.00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10684805:   Tonnes    Imports               SEA 833927.2 47100.00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10684806:   Tonnes    Imports               SEA 710253.6  8825.22</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Confidentiality_flag</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                          &lt;int&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        1:                    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        2:                    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        3:                    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        4:                    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        5:                    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       ---                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10684802:                    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10684803:                    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10684804:                    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10684805:                    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10684806:                    0</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'trade' not found</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
