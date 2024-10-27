@@ -9,7 +9,7 @@
 ^CODE_OF_CONDUCT\.md$
 ^doc$
 ^Meta$
-
+^.covrignore$
 
 # flint files
 ^flint$
