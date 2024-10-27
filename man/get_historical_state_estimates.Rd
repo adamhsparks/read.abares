@@ -34,6 +34,7 @@ Columns are renamed and reordered for consistency.
 Other Estimates: 
 \code{\link{get_estimates_by_performance_category}()},
 \code{\link{get_estimates_by_size}()},
-\code{\link{get_historical_national_estimates}()}
+\code{\link{get_historical_national_estimates}()},
+\code{\link{get_historical_regional_estimates}()}
 }
 \concept{Estimates}

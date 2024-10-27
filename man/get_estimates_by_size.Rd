@@ -35,6 +35,7 @@ get_est_by_size()
 Other Estimates: 
 \code{\link{get_estimates_by_performance_category}()},
 \code{\link{get_historical_national_estimates}()},
+\code{\link{get_historical_regional_estimates}()},
 \code{\link{get_historical_state_estimates}()}
 }
 \concept{Estimates}

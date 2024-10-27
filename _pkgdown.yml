@@ -39,6 +39,12 @@ reference:
   - get_historical_regional_estimates
   - get_historical_state_estimates
 
+- title: Historical agricultural forecast database
+  desc: >
+    Fetch and read the historical agricultural forecast database
+  contents:
+  - get_historical_forecast_database
+
 - title: Cache
   desc: >
     Work with your local file cache

@@ -31,6 +31,7 @@ Get Estimates by Size From ABARES
 Other Estimates: 
 \code{\link{get_estimates_by_size}()},
 \code{\link{get_historical_national_estimates}()},
+\code{\link{get_historical_regional_estimates}()},
 \code{\link{get_historical_state_estimates}()}
 }
 \concept{Estimates}
