@@ -55,7 +55,7 @@ get_aagis_regions <- function(cache = TRUE) {
   }
 }
 
-#' Download the AAGI Regions Shapefile
+#' Download the AAGIS Regions Shapefile
 #'
 #' Handles downloading and caching (if requested) of AAGIS regions geospatial
 #' data.
