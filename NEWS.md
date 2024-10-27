@@ -1,3 +1,3 @@
 # read.abares 0.1.0
 
-- Initial CRAN submission.
+- Submission to rOpenSci for [peer code review](https://github.com/ropensci/software-review/issues)
