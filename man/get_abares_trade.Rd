@@ -18,7 +18,7 @@ A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
 }
 \description{
 Fetches and imports  \acronym{ABARES} trade data. Columns are renamed for
-consistency using lower case, snake_case format.
+consistency.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

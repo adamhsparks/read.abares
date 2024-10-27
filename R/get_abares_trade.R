@@ -1,7 +1,7 @@
 #' Get Data From the ABARES Trade Dashboard
 #'
 #' Fetches and imports  \acronym{ABARES} trade data. Columns are renamed for
-#'  consistency using lower case, snake_case format.
+#'  consistency.
 #'
 #' @param cache `Boolean` Cache the \acronym{ABARES} trade data after download
 #'  using `tools::R_user_dir()` to identify the proper directory for storing
