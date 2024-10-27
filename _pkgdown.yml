@@ -54,3 +54,10 @@ reference:
   - read_soil_thickness_stars
   - read_soil_thickness_terra
   - print_soil_thickness_metadata
+
+- title: Trade
+  desc: >
+    Fetch and read ABARES' Australian agricultural export data
+  contents:
+  - get_abares_trade
+  - get_abares_trade_regions

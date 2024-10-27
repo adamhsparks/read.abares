@@ -1,0 +1,151 @@
+#' Get Data From the ABARES Trade Dashboard
+#'
+#' Fetches and imports  \acronym{ABARES} trade data. Columns are renamed for
+#'  consistency using lower case, snake_case format.
+#'
+#' @param cache `Boolean` Cache the \acronym{ABARES} trade data after download
+#'  using `tools::R_user_dir()` to identify the proper directory for storing
+#'  user data in a cache for this package. Defaults to `TRUE`, caching the files
+#'  locally as a native \R object. If `FALSE`, this function uses `tempdir()`
+#'  and the files are deleted upon closing of the \R session.
+#'
+#' @examplesIf interactive()
+#' trade <- get_abares_trade()
+#'
+#' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
+#' @family Trade
+#' @references <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0>
+#'
+#' @export
+
+get_abares_trade <- function(cache = TRUE) {
+  trade <- .check_existing_trade(cache)
+  if (is.null(trade)) {
+    trade <- .download_abares_trade(cache)
+  } else {
+    return(trade)
+  }
+}
+
+#' Check for Pre-existing File Before Downloading
+#'
+#' Checks the user cache first, then `tempdir()` for the files before
+#' returning a `NULL` value. If `cache == TRUE` and the file is not in the user
+#' cache, but is in `tempdir()`, it is saved to the cache before being returned
+#' in the current session.
+#'
+#'
+#' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
+#' @noRd
+#' @keywords Internal
+
+.check_existing_trade <- function(cache) {
+  abares_trade_rds <- file.path(.find_user_cache(),
+                                "abares_trade/abares_trade.rds")
+  tmp_csv <- file.path(tempdir(), "abares_trade.csv")
+
+  if (file.exists(abares_trade_rds)) {
+    return(readRDS(abares_trade_rds))
+  } else if (file.exists(tmp_csv)) {
+    abares_trade <- data.table::fread(tmp_csv)
+    if (cache) {
+      dir.create(dirname(abares_trade_rds), recursive = TRUE)
+      saveRDS(abares_trade, file = abares_trade_rds)
+    }
+    return(abares_trade)
+  } else {
+    return(NULL)
+  }
+}
+
+#' Download the ABARES Trade CSV File
+#'
+#' Handles downloading and caching (if requested) of ABARES Trade data files.
+#'
+#' @param cache `Boolean` Cache the \acronym{ABARES} trade CSV file after
+#'  download using `tools::R_user_dir()` to identify the proper directory for
+#'  storing user data in a cache for this package. Defaults to `TRUE`, caching
+#'  the files locally as a native \R object. If `FALSE`, this function uses
+#'  `tempdir()` and the files are deleted upon closing of the \R session.
+#'
+#' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
+#' @noRd
+#' @keywords Internal
+.download_abares_trade <- function(cache) {
+  # if you make it this far, the cached file doesn't exist, so we need to
+  # download it either to `tempdir()` and dispose or cache it
+  cached_zip <- file.path(.find_user_cache(), "abares_trade_dir/trade.zip")
+  tmp_zip <- file.path(file.path(tempdir(), "trade.zip"))
+  trade_zip <- data.table::fifelse(cache, cached_zip, tmp_zip)
+  abares_trade_dir <- dirname(trade_zip)
+  abares_trade_rds <- file.path(abares_trade_dir, "abares_trade.rds")
+
+  # the user-cache may not exist if caching is enabled for the 1st time
+  if (cache && !dir.exists(abares_trade_dir)) {
+    dir.create(abares_trade_dir, recursive = TRUE)
+  }
+
+  url <-
+    "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/1"
+
+  h <- curl::new_handle()
+  curl::handle_setopt(
+    handle = h,
+    TCP_KEEPALIVE = 200000,
+    CONNECTTIMEOUT = 90,
+    http_version = 2
+  )
+  curl::curl_download(
+    url = url,
+    destfile = trade_zip,
+    quiet = FALSE,
+    handle = h
+  )
+
+  abares_trade <- data.table::fread(file.path(abares_trade_dir,
+                                          "trade.zip"))
+  data.table::setnames(
+    abares_trade,
+    old = c(
+      "Fiscal_year",
+      "Month",
+      "YearMonth",
+      "Calendar_year",
+      "TradeCode",
+      "Overseas_location",
+      "State",
+      "Australian_port",
+      "Unit",
+      "TradeFlow",
+      "ModeOfTransport",
+      "Value",
+      "Quantity",
+      "confidentiality_flag"
+    ),
+    new = c(
+      "fiscal_year",
+      "month",
+      "year_month",
+      "calendar_year",
+      "trade_code",
+      "overseas_location",
+      "state",
+      "australian_port",
+      "unit",
+      "trade_flow",
+      "mode_of_transport",
+      "falue",
+      "quantity",
+      "confidentiality_flag"
+    )
+  )
+
+  if (cache) {
+    saveRDS(abares_trade, file = abares_trade_rds)
+    unlink(c(
+      trade_zip,
+      file.path(abares_trade_dir, "ABARES_trade_data.csv")
+    ))
+  }
+  return(abares_trade)
+}
