@@ -23,6 +23,8 @@ for consistency in this package using lower case, snake_case format.
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 trade_regions <- get_abares_trade_regions()
+
+trade_regions
 \dontshow{\}) # examplesIf}
 }
 \references{

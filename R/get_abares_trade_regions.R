@@ -12,6 +12,8 @@
 #' @examplesIf interactive()
 #' trade_regions <- get_abares_trade_regions()
 #'
+#' trade_regions
+#'
 #' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
 #' @family Trade
 #' @references <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0>
@@ -20,10 +22,10 @@
 
 get_abares_trade_regions <- function(cache = TRUE) {
   trade_regions <- .check_existing_trade_regions(cache)
-  if (is.null(trade_regions)) {
-    trade_regions <- .download_abares_trade_regions(cache)
-  } else {
+  if (!is.null(trade_regions)) {
     return(trade_regions)
+  } else {
+    return(.download_abares_trade_regions(cache))
   }
 }
 
@@ -41,7 +43,7 @@ get_abares_trade_regions <- function(cache = TRUE) {
 
 .check_existing_trade_regions <- function(cache) {
   abares_trade_rds <- file.path(.find_user_cache(),
-                                "abares_trade/abares_trade_regions.rds")
+                                "abares_trade_dir/abares_trade_regions.rds")
   tmp_csv <- file.path(tempdir(), "abares_trade_regions.csv")
 
   if (file.exists(abares_trade_rds)) {

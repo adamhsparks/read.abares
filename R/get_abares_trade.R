@@ -1,7 +1,9 @@
 #' Get Data From the ABARES Trade Dashboard
 #'
-#' Fetches and imports  \acronym{ABARES} trade data. Columns are renamed for
-#'  consistency.
+#' Fetches and imports  \acronym{ABARES} trade data.
+#'
+#' @note
+#' Columns are renamed for consistency.
 #'
 #' @param cache `Boolean` Cache the \acronym{ABARES} trade data after download
 #'  using `tools::R_user_dir()` to identify the proper directory for storing
@@ -12,6 +14,8 @@
 #' @examplesIf interactive()
 #' trade <- get_abares_trade()
 #'
+#' trade
+#'
 #' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
 #' @family Trade
 #' @references <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0>
@@ -20,10 +24,10 @@
 
 get_abares_trade <- function(cache = TRUE) {
   trade <- .check_existing_trade(cache)
-  if (is.null(trade)) {
-    trade <- .download_abares_trade(cache)
-  } else {
+  if (!is.null(trade)) {
     return(trade)
+  } else {
+    return(.download_abares_trade(cache))
   }
 }
 
@@ -41,7 +45,7 @@ get_abares_trade <- function(cache = TRUE) {
 
 .check_existing_trade <- function(cache) {
   abares_trade_rds <- file.path(.find_user_cache(),
-                                "abares_trade/abares_trade.rds")
+                                "abares_trade_dir/abares_trade.rds")
   tmp_csv <- file.path(tempdir(), "abares_trade.csv")
 
   if (file.exists(abares_trade_rds)) {
@@ -75,7 +79,7 @@ get_abares_trade <- function(cache = TRUE) {
   # if you make it this far, the cached file doesn't exist, so we need to
   # download it either to `tempdir()` and dispose or cache it
   cached_zip <- file.path(.find_user_cache(), "abares_trade_dir/trade.zip")
-  tmp_zip <- file.path(file.path(tempdir(), "trade.zip"))
+  tmp_zip <- file.path(file.path(tempdir(), "abares_trade.zip"))
   trade_zip <- data.table::fifelse(cache, cached_zip, tmp_zip)
   abares_trade_dir <- dirname(trade_zip)
   abares_trade_rds <- file.path(abares_trade_dir, "abares_trade.rds")
@@ -102,8 +106,7 @@ get_abares_trade <- function(cache = TRUE) {
     handle = h
   )
 
-  abares_trade <- data.table::fread(file.path(abares_trade_dir,
-                                          "trade.zip"))
+  abares_trade <- data.table::fread(trade_zip)
   data.table::setnames(
     abares_trade,
     old = c(
@@ -140,11 +143,13 @@ get_abares_trade <- function(cache = TRUE) {
     )
   )
 
+  abares_trade[, Year_month := lubridate::ym(
+    gsub(".", "-", Year_month, fixed = TRUE))]
+
   if (cache) {
     saveRDS(abares_trade, file = abares_trade_rds)
     unlink(c(
-      trade_zip,
-      file.path(abares_trade_dir, "ABARES_trade_data.csv")
+      trade_zip
     ))
   }
   return(abares_trade)

@@ -17,12 +17,16 @@ and the files are deleted upon closing of the \R session.}
 A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
 }
 \description{
-Fetches and imports  \acronym{ABARES} trade data. Columns are renamed for
-consistency.
+Fetches and imports  \acronym{ABARES} trade data.
+}
+\note{
+Columns are renamed for consistency.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 trade <- get_abares_trade()
+
+trade
 \dontshow{\}) # examplesIf}
 }
 \references{
