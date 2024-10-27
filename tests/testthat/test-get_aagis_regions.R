@@ -28,6 +28,12 @@ test_that("get_aagis_regions caches", {
   expect_true(file.exists(
     file.path(.find_user_cache(), "aagis_regions_dir/aagis.rds")
   ))
+  expect_true(!file.exists(
+    file.path(.find_user_cache(), "aagis_regions_dir/aagis_zip")
+  ))
+  expect_true(!file.exists(file.path(
+    .find_user_cache(), "aagis_asgs16v1_g5a.*"
+  )))
 })
 
 test_that("get_aagis_regions skips downloading if cache is available", {
