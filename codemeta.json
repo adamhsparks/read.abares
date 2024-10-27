@@ -3,7 +3,7 @@
   "@type": "SoftwareSourceCode",
   "identifier": "read.abares",
   "description": "Download and import data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) <https://www.agriculture.gov.au/abares>.",
-  "name": "read.abares: Provides simple downloading, parsing and importing of Australian\n    Bureau of Agricultural and Resource Economics and Sciences (ABARES) data\n    sources",
+  "name": "read.abares: Provides simple downloading, parsing and importing of Australian\n    Bureau of Agricultural and Resource Economics and Sciences (ABARES)\n    data sources",
   "relatedLink": "https://adamhsparks.codeberg.page/read.abares",
   "codeRepository": "https://codeberg.org/adamhsparks/read.abares",
   "issueTracker": "https://codeberg.org/adamhsparks/read.abares/issues",
@@ -267,7 +267,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "327.405KB",
+  "fileSize": "327.675KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -283,5 +283,5 @@
       "description": "R package version 0.1.0"
     }
   ],
-  "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html#experimental", "https://www.repostatus.org/#active"]
+  "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html#stable", "https://www.repostatus.org/#active"]
 }
