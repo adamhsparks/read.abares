@@ -40,11 +40,15 @@
 #' get_historical_forecast()
 #'
 get_historical_forecast_database <- function() {
-  f <- file.path(tempdir(), "historical_db")
-  curl::curl_download(
-    url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0",
-    destfile = f,
-    handle = create_handle())
+  f <- file.path(tempdir(), "historical_db.xlsx")
+  response <-
+    httr2::request(
+      base_url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0") |>
+    httr2::req_retry(max_tries = 5) |>
+    httr2::req_perform()
+
+  writeBin(response$body, con = f)
+
   x <- data.table::as.data.table(openxlsx2::read_xlsx(f,
                                                       sheet = "Database",
                                                       na.strings = "na"))

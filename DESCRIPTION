@@ -18,6 +18,7 @@ Imports:
     cli,
     curl,
     data.table,
+    httr2,
     lubridate,
     openxlsx2,
     purrr,

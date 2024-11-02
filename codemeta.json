@@ -147,6 +147,18 @@
     },
     "4": {
       "@type": "SoftwareApplication",
+      "identifier": "httr2",
+      "name": "httr2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=httr2"
+    },
+    "5": {
+      "@type": "SoftwareApplication",
       "identifier": "lubridate",
       "name": "lubridate",
       "provider": {
@@ -157,7 +169,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=lubridate"
     },
-    "5": {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "openxlsx2",
       "name": "openxlsx2",
@@ -169,7 +181,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=openxlsx2"
     },
-    "6": {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
@@ -181,7 +193,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
     },
-    "7": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "readtext",
       "name": "readtext",
@@ -193,7 +205,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=readtext"
     },
-    "8": {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "sf",
       "name": "sf",
@@ -205,7 +217,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=sf"
     },
-    "9": {
+    "10": {
       "@type": "SoftwareApplication",
       "identifier": "stars",
       "name": "stars",
@@ -217,7 +229,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stars"
     },
-    "10": {
+    "11": {
       "@type": "SoftwareApplication",
       "identifier": "stringr",
       "name": "stringr",
@@ -229,7 +241,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stringr"
     },
-    "11": {
+    "12": {
       "@type": "SoftwareApplication",
       "identifier": "terra",
       "name": "terra",
@@ -241,7 +253,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=terra"
     },
-    "12": {
+    "13": {
       "@type": "SoftwareApplication",
       "identifier": "tidync",
       "name": "tidync",
@@ -253,7 +265,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tidync"
     },
-    "13": {
+    "14": {
       "@type": "SoftwareApplication",
       "identifier": "withr",
       "name": "withr",
@@ -267,7 +279,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "329.335KB",
+  "fileSize": "1628.623KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
