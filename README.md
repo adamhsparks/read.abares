@@ -27,27 +27,31 @@ Data serviced include:
 
 - [ABARES
   Estimates](https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download);
-  - Historical National Estimates;
-  - Historical State Estimates;
-  - Historical Regional Estimates;
-  - Estimates by Size;
-  - Estimates by Performance Category;
+  - Historical National Estimates, `get_historical_national_estimate()`;
+  - Historical State Estimates, `get_historical_state_estimates()`;
+  - Historical Regional Estimates,
+    `get_historical_regional_estimates()`;
+  - Estimates by Size, `get_estimates_by_size()`;
+  - Estimates by Performance Category,
+    `get_estimates_by_performance_category()`;
 - the [Australian Gridded Farm Data (AGFD)
-  set](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data);
+  set](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data),
+  `get_agfd()`;
 - the [Australian Agricultural and Grazing Industries Survey
   (AAGIS)](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data)
-  region mapping files;
+  region mapping files, `get_aagis_regions()`;
 - the [Historical Agricultural Forecast
-  Database](https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/historical-forecasts#:~:text=About%20the%20historical%20agricultural%20forecast,relevant%20to%20Australian%20agricultural%20markets);
+  Database](https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/historical-forecasts#:~:text=About%20the%20historical%20agricultural%20forecast,relevant%20to%20Australian%20agricultural%20markets),
+  `get_historical_forecast_database()`;
 - a [Soil Thickness for Australian areas of intensive agriculture of
   Layer 1 (A Horizon - top-soil) (derived from soil
   mapping)](https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6)
-  map and;
+  map, `get_soil_thickness()` and;
 - the [ABARES Trade
   Data](https://www.agriculture.gov.au/abares/research-topics/trade/dashboard)
   including;
-  - Trade Data;
-  - Trade Region Data.
+  - Trade Data, `get_abares_trade()` and;
+  - Trade Region Data, `get_abares_trade_regions()`.
 
 The files are freely available as CSV files, zip archives of NetCDF
 files or a zip archives of geospatial shape files. {read.abares}
