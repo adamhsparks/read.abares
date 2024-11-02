@@ -110,7 +110,7 @@
 <div class="section level3">
 <h3 id="caching">Caching<a class="anchor" aria-label="anchor" href="#caching"></a>
 </h3>
-<p>{read.abares} supports caching the files using <code>tools::R_user_dir(package = "read.abares", which = "cache")</code> to save the files in a standardised location across platforms so you don’t have to worry about where the files went or if they’re still there. When requesting the files, {read.abares} will first check if they are available locally. Caching is not mandatory, you can just work with the downloaded files in <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code>, which is cleaned up when your R session ends. {read.abares} will always check first if the files are available locally, either cached or in your current R session’s <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> to save time by not downloading again if they are available already.</p>
+<p>{read.abares} supports caching the files using <code>tools::R_user_dir(package = "read.abares", which = "cache")</code> to save the files in a standardised location across platforms so you don’t have to worry about where the files went or if they’re still there. When requesting the files, {read.abares} will first check if they are available locally either in cached or temporary storage. Caching is not mandatory, you can just work with the downloaded files in <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code>, which is cleaned up when your R session ends.</p>
 </div>
 <div class="section level3">
 <h3 id="multiple-classes-supported">Multiple Classes Supported<a class="anchor" aria-label="anchor" href="#multiple-classes-supported"></a>
