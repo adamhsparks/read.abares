@@ -1,0 +1,21 @@
+# Runs R CMD check for an R package while installing dependencies with pak.
+# https://github.com/r-lib/pak is used to install package dependencies.
+# The first command installs pak following the install instruction of package itself.
+#
+# When setting Ncpus (default=1) to a higher value, pak will download and install package in parallel.
+# pak automatically uses binary packages from the public Posit Package Manager.
+#
+# This example uses the rocker/r-base image to run the R CMD check. Any other image with R installed can be used.
+# Alternatively, the rcmdcheck package can be installed and use in replacement to `R CMD check``.
+
+steps:
+  'Check package':
+  when:
+  event: [push, pull_request]
+image: rocker/r-base
+secrets: [github_pat]
+commands:
+  - R -q -s -e 'install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))'
+- R -q -e 'options(Ncpus = 4)'
+- R -q -e 'pak::pak()'
+- R CMD check --as-cran .
