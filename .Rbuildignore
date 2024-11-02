@@ -13,3 +13,4 @@
 
 # flint files
 ^flint$
+^\.github$

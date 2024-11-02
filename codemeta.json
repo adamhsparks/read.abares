@@ -4,9 +4,9 @@
   "identifier": "read.abares",
   "description": "Download and import data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) <https://www.agriculture.gov.au/abares>.",
   "name": "read.abares: Provides simple downloading, parsing and importing of Australian\n    Bureau of Agricultural and Resource Economics and Sciences (ABARES)\n    data sources",
-  "relatedLink": "https://adamhsparks.codeberg.page/read.abares",
-  "codeRepository": "https://codeberg.org/adamhsparks/read.abares",
-  "issueTracker": "https://codeberg.org/adamhsparks/read.abares/issues",
+  "relatedLink": "https://github.org/adamhsparks/read.abares",
+  "codeRepository": "https://github.com/adamhsparks/read.abares",
+  "issueTracker": "https://github.com/adamhsparks/read.abares/issues",
   "license": "https://spdx.org/licenses/MIT",
   "version": "0.1.0",
   "programmingLanguage": {
@@ -267,7 +267,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "327.687KB",
+  "fileSize": "328.445KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -283,5 +283,8 @@
       "description": "R package version 0.1.0"
     }
   ],
-  "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html#stable", "https://www.repostatus.org/#active"]
+  "releaseNotes": "https://github.com/adamhsparks/read.abares/blob/master/NEWS.md",
+  "readme": "https://github.com/adamhsparks/read.abares/blob/main/README.md",
+  "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html#stable", "https://www.repostatus.org/#active"],
+  "keywords": ["agriculture", "australia", "data-retrieval", "open-data", "open-datasets", "r"]
 }

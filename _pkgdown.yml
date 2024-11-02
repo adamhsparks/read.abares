@@ -1,36 +1,28 @@
-url: https://adamhsparks.codeberg.page/read.abares
+url: https://adamhsparks.github.io/read.abares/
 template:
   bootstrap: 5
   params:
     bootswatch: journal
-
 reference:
-
 - title: AAGIS Regions
-  desc: >
+  desc: |
     Fetch and read the AAGIS regions
-  contents:
-  - get_aagis_regions
-
+  contents: get_aagis_regions
 - title: AGFD
-
 - subtitle: Fetch
-  desc: >
-     Fetch the Australian Gridded Farm Data
-  contents:
-  - get_agfd
-
+  desc: |
+    Fetch the Australian Gridded Farm Data
+  contents: get_agfd
 - subtitle: Read
-  desc: >
+  desc: |
     Read the Australian Gridded Farm Data
   contents:
   - read_agfd_dt
   - read_agfd_stars
   - read_agfd_terra
   - read_agfd_tidync
-
 - title: Estimates
-  desc: >
+  desc: |
     Fetch and read the ABARES Estimates data
   contents:
   - get_estimates_by_performance_category
@@ -38,32 +30,28 @@ reference:
   - get_historical_national_estimates
   - get_historical_regional_estimates
   - get_historical_state_estimates
-
 - title: Historical agricultural forecast database
-  desc: >
+  desc: |
     Fetch and read the historical agricultural forecast database
-  contents:
-  - get_historical_forecast_database
-
+  contents: get_historical_forecast_database
 - title: Cache
-  desc: >
+  desc: |
     Work with your local file cache
   contents:
   - clear_cache
   - inspect_cache
-
 - title: Soil Thickness
-  desc: >
+  desc: |
     Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)
   contents:
   - get_soil_thickness
   - read_soil_thickness_stars
   - read_soil_thickness_terra
   - print_soil_thickness_metadata
-
 - title: Trade
-  desc: >
+  desc: |
     Fetch and read ABARES' Australian agricultural export data
   contents:
   - get_abares_trade
   - get_abares_trade_regions
+

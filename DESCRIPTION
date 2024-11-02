@@ -11,9 +11,8 @@ Description: Download and import data from the Australian Bureau of
     Agricultural and Resource Economics and Sciences (ABARES)
     <https://www.agriculture.gov.au/abares>.
 License: MIT + file LICENSE
-URL: https://codeberg.org/adamhsparks/read.abares,
-    https://adamhsparks.codeberg.page/read.abares
-BugReports: https://codeberg.org/adamhsparks/read.abares/issues
+URL: https://github.org/adamhsparks/read.abares, https://adamhsparks.github.io/read.abares, https://adamhsparks.github.io/read.abares/
+BugReports: https://github.com/adamhsparks/read.abares/issues
 Imports: 
     cli,
     curl,
