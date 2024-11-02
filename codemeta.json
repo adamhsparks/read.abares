@@ -159,15 +159,15 @@
     },
     "5": {
       "@type": "SoftwareApplication",
-      "identifier": "openxlsx",
-      "name": "openxlsx",
+      "identifier": "openxlsx2",
+      "name": "openxlsx2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=openxlsx"
+      "sameAs": "https://CRAN.R-project.org/package=openxlsx2"
     },
     "6": {
       "@type": "SoftwareApplication",
@@ -267,7 +267,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "328.445KB",
+  "fileSize": "328.446KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

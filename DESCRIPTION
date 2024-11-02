@@ -18,7 +18,7 @@ Imports:
     curl,
     data.table,
     lubridate,
-    openxlsx,
+    openxlsx2,
     purrr,
     readtext,
     sf,
