@@ -71,61 +71,63 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span> <span class="fu">get_historical_state_estimates</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                  Variable  Year   Value   RSE             State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                    &lt;char&gt; &lt;int&gt;   &lt;num&gt; &lt;int&gt;            &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      1: AI stud fees and herd testing ($)  1990   210.0   118   New South Wales</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      2:           Accounting services ($)  1990  2740.0     7   New South Wales</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      3:             Advisory services ($)  1990   190.0   105   New South Wales</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      4:        Age of owner manager (yrs)  1990    55.0     2   New South Wales</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      5:               Age of spouse (yrs)  1990    52.0     2   New South Wales</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Key: &lt;Variable&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  Variable  Year             State      Industry</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                    &lt;char&gt; &lt;int&gt;            &lt;char&gt;        &lt;char&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      1: AI stud fees and herd testing ($)  1990   New South Wales All Broadacre</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      2: AI stud fees and herd testing ($)  1990   New South Wales          Beef</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      3: AI stud fees and herd testing ($)  1990   New South Wales      Cropping</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      4: AI stud fees and herd testing ($)  1990   New South Wales         Dairy</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      5: AI stud fees and herd testing ($)  1990   New South Wales         Mixed</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     ---                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184454:                Wheat receipts ($)  2022     0.0    NA Western Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184455:                    Wheat sold (t)  2022     0.0    NA Western Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184456:            Wool cut per head (kg)  2022     3.5     5 Western Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184457:                Wool produced (kg)  2022  9126.0    22 Western Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184458:                 Wool receipts ($)  2022 84500.0    22 Western Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Industry</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      1: All Broadacre</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      2: All Broadacre</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      3: All Broadacre</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      4: All Broadacre</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      5: All Broadacre</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ---              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184454:    Sheep-Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184455:    Sheep-Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184456:    Sheep-Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184457:    Sheep-Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184458:    Sheep-Beef</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184454:                 Wool receipts ($)  2022 Western Australia          Beef</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184455:                 Wool receipts ($)  2022 Western Australia      Cropping</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184456:                 Wool receipts ($)  2022 Western Australia         Mixed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184457:                 Wool receipts ($)  2022 Western Australia         Sheep</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184458:                 Wool receipts ($)  2022 Western Australia    Sheep-Beef</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          Value   RSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          &lt;num&gt; &lt;int&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      1:    210   118</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      2:    110    49</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      3:      0    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      4:   3260    12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      5:     60    98</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     ---             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184454:    100   108</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184455:  96000    19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184456: 162200    13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184457: 106500    19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184458:  84500    22</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span> <span class="co"># or shorter</span></span></span>
 <span class="r-in"><span> <span class="fu">get_hist_sta_est</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                  Variable  Year   Value   RSE             State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                    &lt;char&gt; &lt;int&gt;   &lt;num&gt; &lt;int&gt;            &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      1: AI stud fees and herd testing ($)  1990   210.0   118   New South Wales</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      2:           Accounting services ($)  1990  2740.0     7   New South Wales</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      3:             Advisory services ($)  1990   190.0   105   New South Wales</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      4:        Age of owner manager (yrs)  1990    55.0     2   New South Wales</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      5:               Age of spouse (yrs)  1990    52.0     2   New South Wales</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Key: &lt;Variable&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  Variable  Year             State      Industry</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                    &lt;char&gt; &lt;int&gt;            &lt;char&gt;        &lt;char&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      1: AI stud fees and herd testing ($)  1990   New South Wales All Broadacre</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      2: AI stud fees and herd testing ($)  1990   New South Wales          Beef</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      3: AI stud fees and herd testing ($)  1990   New South Wales      Cropping</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      4: AI stud fees and herd testing ($)  1990   New South Wales         Dairy</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      5: AI stud fees and herd testing ($)  1990   New South Wales         Mixed</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     ---                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184454:                Wheat receipts ($)  2022     0.0    NA Western Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184455:                    Wheat sold (t)  2022     0.0    NA Western Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184456:            Wool cut per head (kg)  2022     3.5     5 Western Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184457:                Wool produced (kg)  2022  9126.0    22 Western Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184458:                 Wool receipts ($)  2022 84500.0    22 Western Australia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Industry</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      1: All Broadacre</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      2: All Broadacre</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      3: All Broadacre</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      4: All Broadacre</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      5: All Broadacre</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ---              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184454:    Sheep-Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184455:    Sheep-Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184456:    Sheep-Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184457:    Sheep-Beef</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184458:    Sheep-Beef</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184454:                 Wool receipts ($)  2022 Western Australia          Beef</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184455:                 Wool receipts ($)  2022 Western Australia      Cropping</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184456:                 Wool receipts ($)  2022 Western Australia         Mixed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184457:                 Wool receipts ($)  2022 Western Australia         Sheep</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184458:                 Wool receipts ($)  2022 Western Australia    Sheep-Beef</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          Value   RSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          &lt;num&gt; &lt;int&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      1:    210   118</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      2:    110    49</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      3:      0    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      4:   3260    12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      5:     60    98</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     ---             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184454:    100   108</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184455:  96000    19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184456: 162200    13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184457: 106500    19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184458:  84500    22</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
