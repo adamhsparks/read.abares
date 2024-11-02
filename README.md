@@ -83,11 +83,9 @@ remotes::install_git("https://github.com/adamhsparks/read.abares")
 the files in a standardised location across platforms so you don’t have
 to worry about where the files went or if they’re still there. When
 requesting the files, {read.abares} will first check if they are
-available locally. Caching is not mandatory, you can just work with the
-downloaded files in `tempdir()`, which is cleaned up when your R session
-ends. {read.abares} will always check first if the files are available
-locally, either cached or in your current R session’s `tempdir()` to
-save time by not downloading again if they are available already.
+available locally either in cached or temporary storage. Caching is not
+mandatory, you can just work with the downloaded files in `tempdir()`,
+which is cleaned up when your R session ends.
 
 ### Multiple Classes Supported
 
