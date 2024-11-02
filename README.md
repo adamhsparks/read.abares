@@ -23,7 +23,7 @@ are not included in this, *e.g.*, [Australian crop
 reports](https://daff.ent.sirsidynix.net.au/client/en_AU/ABARES/search/results?te=ASSET&st=PD#).
 However, if there is a data set that you feel would be useful to be
 serviced by {read.abares}, please feel free to [open an
-issue](https://codeberg.org/adamhsparks/read.abares/issues/new) with
+issue](https://github.com/adamhsparks/read.abares/issues/new) with
 details about the data set or better yet, open a pull request!
 
 Data serviced include:
@@ -71,7 +71,7 @@ it like so:
 ``` r
 if (!require("remotes"))
   install.packages("remotes")
-remotes::install_git("https://codeberg.org/adamhsparks/read.abares")
+remotes::install_git("https://github.com/adamhsparks/read.abares")
 ```
 
 ## Features
@@ -120,7 +120,7 @@ just use locally cached data for simplicity.
 ## Metadata
 
 Please report any [issues or
-bugs](https://codeberg.org/adamhsparks/read.abares/issues).
+bugs](https://github.com/adamhsparks/read.abares/issues).
 
 License: [MIT](LICENSE.md)
 
@@ -170,5 +170,5 @@ citation("read.abares")
 
 Please note that the {read.abares} project is released with a
 [Contributor Code of
-Conduct](https://adamhsparks.codeberg.page/read.abares/CODE_OF_CONDUCT.html).
+Conduct](https://adamhsparks.github.io/read.abares/CODE_OF_CONDUCT.html).
 By contributing to this project, you agree to abide by its terms.

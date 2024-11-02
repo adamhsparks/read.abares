@@ -267,7 +267,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "328.381KB",
+  "fileSize": "328.371KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -285,6 +285,7 @@
   ],
   "releaseNotes": "https://github.com/adamhsparks/read.abares/blob/master/NEWS.md",
   "readme": "https://github.com/adamhsparks/read.abares/blob/main/README.md",
+  "contIntegration": ["https://github.com/adamhsparks/read.abares/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/adamhsparks/read.abares"],
   "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html#stable", "https://www.repostatus.org/#active"],
   "keywords": ["agriculture", "australia", "data-retrieval", "open-data", "open-datasets", "r"]
 }
