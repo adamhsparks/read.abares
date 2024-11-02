@@ -27,3 +27,18 @@
     )
   }
 }
+
+#' Create curl Handles
+#'
+#' @return a \CRANpkg{curl} handle for use in downloading files
+#' @noRd
+#' @keywords Internal
+create_handle <- function() {
+  h <- curl::new_handle()
+  curl::handle_setopt(
+    handle = h,
+    TCP_KEEPALIVE = 200000,
+    CONNECTTIMEOUT = 90,
+    http_version = 2
+  )
+}

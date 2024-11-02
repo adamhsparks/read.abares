@@ -18,10 +18,13 @@
 #'  get_hist_nat_est()
 #'
 get_historical_national_estimates <- function() {
-  x <- data.table::fread(
-    "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-national-historical.csv"
-  )
 
+  f <- file.path(tempdir(), "fdp-beta-national-historical.csv")
+  curl::curl_download(
+    url = "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-national-historical.csv",
+    destfile = f,
+    handle = create_handle())
+  x <- data.table::fread(f)
   data.table::setcolorder(x,
                           neworder = c("Variable",
                                        "Year",

@@ -1,4 +1,5 @@
 
+
 #' Get Historical Forecast Database From ABARES
 #'
 #' # Data Dictionary
@@ -39,13 +40,14 @@
 #' get_historical_forecast()
 #'
 get_historical_forecast_database <- function() {
-  x <- data.table::as.data.table(
-    openxlsx2::read_xlsx(
-      "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0",
-      sheet = "Database",
-      na.strings = "na"
-    )
-  )
+  f <- file.path(tempdir(), "historical_db")
+  curl::curl_download(
+    url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0",
+    destfile = f,
+    handle = create_handle())
+  x <- data.table::as.data.table(openxlsx2::read_xlsx(f,
+                                                      sheet = "Database",
+                                                      na.strings = "na"))
 
   data.table::setnames(
     x,
@@ -78,18 +80,30 @@ get_historical_forecast_database <- function() {
   )
 
   x[, Month_issued := data.table::fcase(
-    Month_issued == "January", 1L,
-    Month_issued == "Februrary", 2L,
-    Month_issued == "March", 3L,
-    Month_issued == "April", 4L,
-    Month_issued == "May", 5L,
-    Month_issued == "June", 6L,
-    Month_issued == "July", 7L,
-    Month_issued == "August", 8L,
-    Month_issued == "September", 9L,
-    Month_issued == "October", 10L,
-    Month_issued == "November", 11L,
-    Month_issued == "December", 12L
+    Month_issued == "January",
+    1L,
+    Month_issued == "Februrary",
+    2L,
+    Month_issued == "March",
+    3L,
+    Month_issued == "April",
+    4L,
+    Month_issued == "May",
+    5L,
+    Month_issued == "June",
+    6L,
+    Month_issued == "July",
+    7L,
+    Month_issued == "August",
+    8L,
+    Month_issued == "September",
+    9L,
+    Month_issued == "October",
+    10L,
+    Month_issued == "November",
+    11L,
+    Month_issued == "December",
+    12L
   )]
 
   return(x[])

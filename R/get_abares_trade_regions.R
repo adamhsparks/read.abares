@@ -98,18 +98,11 @@ get_abares_trade_regions <- function(cache = TRUE) {
   url <-
     "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/2"
 
-  h <- curl::new_handle()
-  curl::handle_setopt(
-    handle = h,
-    TCP_KEEPALIVE = 200000,
-    CONNECTTIMEOUT = 90,
-    http_version = 2
-  )
   curl::curl_download(
     url = url,
     destfile = abares_trade_regions_csv,
     quiet = FALSE,
-    handle = h
+    handle = create_handle()
   )
 
   abares_trade_regions <- data.table::fread(file.path(abares_trade_dir,

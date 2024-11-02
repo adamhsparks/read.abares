@@ -17,9 +17,12 @@
 #'  get_hist_sta_est()
 #'
 get_historical_state_estimates <- get_hist_sta_est <- function() {
-  x <- data.table::fread(
-    "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-state-historical.csv"
-  )
+  f <- file.path(tempdir(), "fdp-beta-state-historical.csv")
+  curl::curl_download(
+    url = "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-state-historical.csv",
+    destfile = f,
+    handle = create_handle())
+  x <- data.table::fread(f)
   data.table::setcolorder(
     x,
     c("Variable", "Year", "State", "Industry", "Value", "RSE")

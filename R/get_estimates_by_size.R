@@ -18,10 +18,11 @@
 #' get_est_by_size()
 #'
 get_estimates_by_size <- get_est_by_size <- function() {
-  x <- data.table::fread(
-    "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-performance-by-size.csv"
-  )
-
+  f <- file.path(tempdir(), "fdp-beta-performance-by-size.csv")
+  curl::curl_download(url = "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-performance-by-size.csv",
+                      destfile = f,
+                      handle =  create_handle())
+  x <- data.table::fread(f)
   data.table::setcolorder(x,
                           neworder = c("Variable",
                                        "Year",

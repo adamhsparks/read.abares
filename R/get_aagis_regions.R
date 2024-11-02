@@ -91,18 +91,11 @@ get_aagis_regions <- function(cache = TRUE) {
   url <-
     "https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip"
 
-  h <- curl::new_handle()
-  curl::handle_setopt(
-    handle = h,
-    TCP_KEEPALIVE = 200000,
-    CONNECTTIMEOUT = 90,
-    http_version = 2
-  )
   curl::curl_download(
     url = url,
     destfile = aagis_zip,
     quiet = FALSE,
-    handle = h
+    handle = create_handle()
   )
 
   withr::with_dir(aagis_regions_dir,

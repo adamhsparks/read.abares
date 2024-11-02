@@ -94,18 +94,11 @@ get_abares_trade <- function(cache = TRUE) {
   url <-
     "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/1"
 
-  h <- curl::new_handle()
-  curl::handle_setopt(
-    handle = h,
-    TCP_KEEPALIVE = 200000,
-    CONNECTTIMEOUT = 90,
-    http_version = 2
-  )
   curl::curl_download(
     url = url,
     destfile = trade_zip,
     quiet = FALSE,
-    handle = h
+    handle = create_handle()
   )
 
   abares_trade <- data.table::fread(trade_zip)
