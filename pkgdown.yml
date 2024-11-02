@@ -1,0 +1,9 @@
+pandoc: 3.1.11
+pkgdown: 2.1.1
+pkgdown_sha: ~
+articles:
+  read.abares: read.abares.html
+last_built: 2024-11-02T08:59Z
+urls:
+  reference: https://adamhsparks.github.io/read.abares/reference
+  article: https://adamhsparks.github.io/read.abares/articles
