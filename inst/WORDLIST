@@ -8,8 +8,10 @@ ANZLIC
 ASRIS
 Boult
 Bui
+CMD
 CSIRO
 Carlile
+Codecov
 DAFF
 DLWC
 DOI
@@ -38,6 +40,7 @@ WGS
 abares
 agfd
 al
+backcast
 broadacre
 coverages
 crm
@@ -54,6 +57,7 @@ locational
 modelled
 modelling
 quadrat
+rOpenSci
 rast
 regolith
 standardised
