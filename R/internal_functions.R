@@ -47,10 +47,10 @@
 
 .retry_download <- function(url, .f) {
 
-  response <- httr2::request(
-    base_url = url) |>
-  httr2::req_retry(max_tries = 5) |>
-  httr2::req_perform()
+  response <- httr2::request(base_url = url) |>
+    httr2::req_retry(max_tries = 5) |>
+    httr2::req_options(http_version = 2) |>
+    httr2::req_perform()
 
   writeBin(response$body, con = .f)
 }
