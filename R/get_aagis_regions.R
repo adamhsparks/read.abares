@@ -88,15 +88,8 @@ get_aagis_regions <- function(cache = TRUE) {
     dir.create(aagis_regions_dir, recursive = TRUE)
   }
 
-  url <-
-    "https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip"
-
-  curl::curl_download(
-    url = url,
-    destfile = aagis_zip,
-    quiet = FALSE,
-    handle = create_handle()
-  )
+  .retry_download("https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip",
+                  .f = aagis_zip)
 
   withr::with_dir(aagis_regions_dir,
                   utils::unzip(aagis_zip, exdir = aagis_regions_dir))

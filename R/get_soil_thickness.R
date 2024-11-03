@@ -138,11 +138,10 @@ get_soil_thickness <- function(cache = TRUE) {
     if (cache) {
       dir.create(dirname(soil_thick_adf_file), recursive = TRUE)
     }
-    url <- "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip"
-    curl::curl_download(url = url,
-                        destfile = download_file,
-                        quiet = FALSE,
-                        handle = create_handle())
+    .retry_download(
+      "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
+      .f = download_file)
+
     withr::with_dir(download_dir,
                     utils::unzip(download_file,
                                  exdir = file.path(download_dir)))

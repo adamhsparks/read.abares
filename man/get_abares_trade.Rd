@@ -3,6 +3,9 @@
 \name{get_abares_trade}
 \alias{get_abares_trade}
 \title{Get Data From the ABARES Trade Dashboard}
+\source{
+\url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0}
+}
 \usage{
 get_abares_trade(cache = TRUE)
 }
@@ -28,9 +31,6 @@ trade <- get_abares_trade()
 
 trade
 \dontshow{\}) # examplesIf}
-}
-\references{
-\url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0}
 }
 \seealso{
 Other Trade: 

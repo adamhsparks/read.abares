@@ -62,10 +62,8 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
       "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/2"
     )
 
-    curl::curl_download(url = url,
-                        destfile = download_file,
-                        quiet = FALSE,
-                        handle =  create_handle())
+    .retry_download(url = url,
+                    .f = download_file)
 
     withr::with_dir(download_dir,
                     utils::unzip(zipfile = download_file,

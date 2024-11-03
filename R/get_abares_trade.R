@@ -18,7 +18,7 @@
 #'
 #' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
 #' @family Trade
-#' @references <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0>
+#' @source <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0>
 #' @autoglobal
 #' @export
 
@@ -79,7 +79,7 @@ get_abares_trade <- function(cache = TRUE) {
 #' @keywords Internal
 .download_abares_trade <- function(cache) {
   # if you make it this far, the cached file doesn't exist, so we need to
-  # download it either to `tempdir()` and dispose or cache it
+  # download it either to `tempdir()` and dispose or cache it for later.
   cached_zip <- file.path(.find_user_cache(), "abares_trade_dir/trade.zip")
   tmp_zip <- file.path(file.path(tempdir(), "abares_trade.zip"))
   trade_zip <- data.table::fifelse(cache, cached_zip, tmp_zip)
@@ -91,9 +91,10 @@ get_abares_trade <- function(cache = TRUE) {
     dir.create(abares_trade_dir, recursive = TRUE)
   }
 
-  response <- .retry_download(
-    "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/1")
-  writeBin(response$body, con = trade_zip)
+  .retry_download(
+    "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/1",
+    .f = trade_zip)
+
   abares_trade <- data.table::fread(trade_zip)
   data.table::setnames(
     abares_trade,

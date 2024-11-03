@@ -18,7 +18,6 @@ Depends:
     R (>= 4.1.0)
 Imports: 
     cli,
-    curl,
     data.table,
     httr2,
     lubridate,

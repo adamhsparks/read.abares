@@ -10,7 +10,7 @@
 #'  `key`.
 #' @autoglobal
 #' @family Estimates
-#' @source <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
+#' @references <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
 #' @export
 #' @examplesIf interactive()
 #'

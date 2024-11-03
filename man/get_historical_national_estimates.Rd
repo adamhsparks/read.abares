@@ -4,9 +4,6 @@
 \alias{get_historical_national_estimates}
 \alias{get_hist_nat_est}
 \title{Get Historical National Estimates from ABARES}
-\source{
-\url{https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download}
-}
 \usage{
 get_historical_national_estimates()
 
@@ -30,6 +27,9 @@ Columns are renamed and reordered for consistency.
  # or shorter
  get_hist_nat_est()
 \dontshow{\}) # examplesIf}
+}
+\references{
+\url{https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download}
 }
 \seealso{
 Other Estimates: 

@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.1 (2024-06-14)",
+  "runtimePlatform": "R version 4.4.2 (2024-10-31)",
   "author": [
     {
       "@type": "Person",
@@ -129,18 +129,6 @@
     },
     "3": {
       "@type": "SoftwareApplication",
-      "identifier": "curl",
-      "name": "curl",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=curl"
-    },
-    "4": {
-      "@type": "SoftwareApplication",
       "identifier": "data.table",
       "name": "data.table",
       "provider": {
@@ -151,7 +139,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=data.table"
     },
-    "5": {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "httr2",
       "name": "httr2",
@@ -163,7 +151,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=httr2"
     },
-    "6": {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "lubridate",
       "name": "lubridate",
@@ -175,7 +163,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=lubridate"
     },
-    "7": {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "openxlsx2",
       "name": "openxlsx2",
@@ -187,7 +175,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=openxlsx2"
     },
-    "8": {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
@@ -199,7 +187,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
     },
-    "9": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "readtext",
       "name": "readtext",
@@ -211,7 +199,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=readtext"
     },
-    "10": {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "sf",
       "name": "sf",
@@ -223,7 +211,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=sf"
     },
-    "11": {
+    "10": {
       "@type": "SoftwareApplication",
       "identifier": "stars",
       "name": "stars",
@@ -235,7 +223,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stars"
     },
-    "12": {
+    "11": {
       "@type": "SoftwareApplication",
       "identifier": "stringr",
       "name": "stringr",
@@ -247,7 +235,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stringr"
     },
-    "13": {
+    "12": {
       "@type": "SoftwareApplication",
       "identifier": "terra",
       "name": "terra",
@@ -259,7 +247,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=terra"
     },
-    "14": {
+    "13": {
       "@type": "SoftwareApplication",
       "identifier": "tidync",
       "name": "tidync",
@@ -271,7 +259,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tidync"
     },
-    "15": {
+    "14": {
       "@type": "SoftwareApplication",
       "identifier": "withr",
       "name": "withr",
@@ -285,7 +273,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "328.884KB",
+  "fileSize": "328.431KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

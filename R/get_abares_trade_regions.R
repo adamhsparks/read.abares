@@ -18,7 +18,7 @@
 #'
 #' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data regions.
 #' @family Trade
-#' @references <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0>
+#' @source <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0>
 #' @autoglobal
 #' @export
 
@@ -95,15 +95,9 @@ get_abares_trade_regions <- function(cache = TRUE) {
     dir.create(abares_trade_dir, recursive = TRUE)
   }
 
-  url <-
-    "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/2"
-
-  curl::curl_download(
-    url = url,
-    destfile = abares_trade_regions_csv,
-    quiet = FALSE,
-    handle = create_handle()
-  )
+  .retry_download(
+    "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/2",
+    .f = abares_trade_regions_csv)
 
   abares_trade_regions <- data.table::fread(file.path(abares_trade_dir,
                                           "abares_trade_regions.csv"),
