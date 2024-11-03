@@ -1,5 +1,4 @@
 
-
 #' Get Historical Forecast Database From ABARES
 #'
 #' # Data Dictionary
@@ -40,18 +39,13 @@
 #' get_historical_forecast()
 #'
 get_historical_forecast_database <- function() {
+
   f <- file.path(tempdir(), "historical_db.xlsx")
-  response <-
-    httr2::request(
-      base_url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0") |>
-    httr2::req_retry(max_tries = 5) |>
-    httr2::req_perform()
 
-  writeBin(response$body, con = f)
+  .retry_download("https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0",
+                  .f = f)
 
-  x <- data.table::as.data.table(openxlsx2::read_xlsx(f,
-                                                      sheet = "Database",
-                                                      na.strings = "na"))
+  x <- data.table::as.data.table(openxlsx2::read_xlsx(f, sheet = "Database", na.strings = "na"))
 
   data.table::setnames(
     x,

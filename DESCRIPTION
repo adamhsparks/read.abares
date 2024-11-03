@@ -14,6 +14,8 @@ License: MIT + file LICENSE
 URL: https://github.org/adamhsparks/read.abares,
     https://adamhsparks.github.io/read.abares/
 BugReports: https://github.com/adamhsparks/read.abares/issues
+Depends: 
+    R (>= 4.1.0)
 Imports: 
     cli,
     curl,

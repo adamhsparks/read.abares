@@ -17,10 +17,13 @@
 #'  get_hist_reg_est()
 #'
 get_historical_regional_estimates <- get_hist_reg_est <-  function() {
+
   f <- file.path(tempdir(), "fdp-beta-regional-historical.csv")
-  curl::curl_download(url = "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-regional-historical.csv",
-                      destfile = f,
-                      handle = create_handle())
+
+  .retry_download(
+    "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-regional-historical.csv",
+    .f = f)
+
   x <- data.table::fread(f)
   data.table::setnames(
     x,
@@ -28,11 +31,7 @@ get_historical_regional_estimates <- get_hist_reg_est <-  function() {
     new = c("Variable", "Year", "ABARES_region", "Value", "RSE")
   )
   data.table::setcolorder(x,
-                          neworder = c("Variable",
-                                       "Year",
-                                       "ABARES_region",
-                                       "Value",
-                                       "RSE"))
+                          neworder = c("Variable", "Year", "ABARES_region", "Value", "RSE"))
   data.table::setkey(x, "Variable")
   return(x[])
 }

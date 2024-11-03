@@ -18,10 +18,11 @@
 #'
 get_historical_state_estimates <- get_hist_sta_est <- function() {
   f <- file.path(tempdir(), "fdp-beta-state-historical.csv")
-  curl::curl_download(
-    url = "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-state-historical.csv",
-    destfile = f,
-    handle = create_handle())
+
+  .retry_download(
+    "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-state-historical.csv",
+    .f = f)
+
   x <- data.table::fread(f)
   data.table::setcolorder(
     x,

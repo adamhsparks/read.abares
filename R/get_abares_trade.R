@@ -91,16 +91,9 @@ get_abares_trade <- function(cache = TRUE) {
     dir.create(abares_trade_dir, recursive = TRUE)
   }
 
-  url <-
-    "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/1"
-
-  curl::curl_download(
-    url = url,
-    destfile = trade_zip,
-    quiet = FALSE,
-    handle = create_handle()
-  )
-
+  response <- .retry_download(
+    "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/1")
+  writeBin(response$body, con = trade_zip)
   abares_trade <- data.table::fread(trade_zip)
   data.table::setnames(
     abares_trade,

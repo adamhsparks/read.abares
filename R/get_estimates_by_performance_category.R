@@ -14,10 +14,13 @@
 #'  get_est_by_perf_cat()
 #'
 get_estimates_by_performance_category <- get_est_by_perf_cat <- function() {
+
   f <- file.path(tempdir(), "fdp-BySize-ByPerformance.csv")
-  curl::curl_download(url = "https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv",
-                      destfile = f,
-                      handle =  create_handle())
+
+  .retry_download(
+    "https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv",
+    .f = f)
+
   x <- data.table::fread(f)
   return(x)
 }
