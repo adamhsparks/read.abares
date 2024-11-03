@@ -50,7 +50,7 @@
 .retry_download <- function(url, .f) {
 
   response <- httr2::request(base_url = url) |>
-    httr2::req_options(http_version = 2, timeout = 120) |>
+    httr2::req_options(http_version = 2, timeout = 500) |>
     httr2::req_retry(max_tries = 10) |>
     httr2::req_perform()
 
