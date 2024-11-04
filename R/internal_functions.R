@@ -73,7 +73,7 @@
         Sys.sleep(delay)
         attempt <- attempt + 1
       } else {
-        cli::cli_alert-danger("Download failed after {.code max_attempts} attempts.")
+        cli::cli_alert_danger("Download failed after {.code max_attempts} attempts.")
         stop(e)
       }
     })
