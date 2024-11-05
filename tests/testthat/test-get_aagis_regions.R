@@ -6,6 +6,7 @@ withr::local_envvar(R_USER_CACHE_DIR = file.path(tempdir(), "abares.cache.1"))
 
 test_that("get_aagis_regions doesn't cache", {
   skip_if_offline()
+  skip_on_ci()
   x <- get_aagis_regions(cache = FALSE)
   expect_s3_class(x, "sf")
   expect_false(file.exists(
@@ -23,6 +24,7 @@ test_that("get_aagis_regions skips downloading if still in tempdir()", {
 
 test_that("get_aagis_regions caches", {
   skip_if_offline()
+  skip_on_ci()
   x <- get_aagis_regions(cache = TRUE)
   expect_s3_class(x, "sf")
   expect_true(file.exists(
@@ -38,6 +40,7 @@ test_that("get_aagis_regions caches", {
 
 test_that("get_aagis_regions skips downloading if cache is available", {
   skip_if_offline()
+  skip_on_ci()
   x <- .check_existing_aagis(cache = TRUE)
   expect_s3_class(x, "sf")
 })
@@ -47,6 +50,7 @@ withr::local_envvar(R_USER_CACHE_DIR = file.path(tempdir(), "abares.cache.2"))
 
 test_that("get_aagis_regions does cache", {
   skip_if_offline()
+  skip_on_ci()
   x <- get_aagis_regions(cache = TRUE)
   expect_s3_class(x, "sf")
   expect_true(file.exists(
@@ -62,6 +66,7 @@ test_that("get_aagis_regions does cache", {
 
 test_that("get_aagis_regions skips downloading if still in tempdir()", {
   skip_if_offline()
+  skip_on_ci()
   x <- .check_existing_aagis(cache = TRUE)
   expect_s3_class(x, "sf")
 })

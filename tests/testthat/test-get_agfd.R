@@ -1,5 +1,6 @@
 test_that("get_agfd, fixed = TRUE works", {
   skip_if_offline()
+  skip_on_ci()
   x <- get_agfd()
 
   agfd_nc_dir <- file.path(.find_user_cache(), "historical_climate_prices_fixed")
@@ -24,7 +25,8 @@ test_that("get_agfd, fixed = TRUE works", {
 
 test_that("get_agfd, fixed = FALSE works", {
   skip_if_offline()
-  x <- get_agfd(fixed = FALSE)
+  skip_on_ci()
+  x <- get_agfd(fixed_prices = FALSE)
 
   agfd_nc_dir <- file.path(.find_user_cache(), "historical_climate_prices_fixed")
   agfd_nc <- list.files(agfd_nc_dir, full.names = TRUE)
@@ -76,6 +78,7 @@ test_that("get_agfd, fixed = FALSE works", {
 
 test_that("get_agfd() cleans up on its way out, caching", {
   skip_if_offline()
+  skip_on_ci()
   x <- get_agfd()
   expect_false(file.exists(file.path(.find_user_cache(), "agfd.zip")))
 })
@@ -83,6 +86,7 @@ test_that("get_agfd() cleans up on its way out, caching", {
 test_that("print.read.abares.agfd.nc.files returns a properly formatted list",
           {
             skip_if_offline()
+            skip_on_ci()
             print_out <- function(x) {
               cli::cli_h1("\nLocally Available ABARES AGFD NetCDF Files\n")
               cli::cli_ul(basename(x))

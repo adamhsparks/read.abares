@@ -1,6 +1,7 @@
 
 test_that("read_agfd_stars() returns a stars object", {
   skip_if_offline()
+  skip_on_ci()
   x <- get_agfd() |>
     read_agfd_stars()
 

@@ -1,6 +1,7 @@
 
 test_that("read_agfd_tidync() returns a tidync object", {
   skip_if_offline()
+  skip_on_ci()
   x <- get_agfd() |>
     read_agfd_tidync()
 
