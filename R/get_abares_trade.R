@@ -18,6 +18,7 @@
 #'
 #' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
 #' @family Trade
+#' @references <https://www.agriculture.gov.au/abares/research-topics/trade/dashboard>
 #' @source <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0>
 #' @autoglobal
 #' @export
@@ -47,7 +48,7 @@ get_abares_trade <- function(cache = TRUE) {
 .check_existing_trade <- function(cache) {
   abares_trade_rds <- file.path(.find_user_cache(),
                                 "abares_trade_dir/abares_trade.rds")
-  tmp_csv <- file.path(tempdir(), "abares_trade.csv")
+  tmp_csv <- file.path(tempdir(), "abares_trade.zip")
 
   if (file.exists(abares_trade_rds)) {
     return(readRDS(abares_trade_rds))
