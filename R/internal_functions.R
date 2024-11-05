@@ -70,13 +70,13 @@
         delay <- .initial_delay * 2 ^ (attempt - 1)
         cli::cli_alert(
           "Download failed on attempt {.code attempt}.
-                Retrying in {var delay} seconds..."
+                Retrying in {.var delay} seconds..."
         )
         Sys.sleep(delay)
         attempt <- attempt + 1
       } else {
         cli::cli_abort(
-          "Download failed after {var max_attempts} attempts.")
+          "Download failed after {.var max_attempts} attempts.")
         stop(e)
       }
     })
