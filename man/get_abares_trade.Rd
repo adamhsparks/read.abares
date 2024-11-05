@@ -32,6 +32,9 @@ trade <- get_abares_trade()
 trade
 \dontshow{\}) # examplesIf}
 }
+\references{
+\url{https://www.agriculture.gov.au/abares/research-topics/trade/dashboard}
+}
 \seealso{
 Other Trade: 
 \code{\link{get_abares_trade_regions}()}
