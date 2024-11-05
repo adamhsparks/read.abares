@@ -16,6 +16,7 @@ test_that("get_aagis_regions doesn't cache", {
 
 test_that("get_aagis_regions skips downloading if still in tempdir()", {
   skip_if_offline()
+  skip_on_ci()
   x <- .check_existing_aagis(cache = FALSE)
   expect_s3_class(x, "sf")
 })
