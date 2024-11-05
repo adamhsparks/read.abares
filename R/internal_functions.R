@@ -51,15 +51,15 @@
 
 .retry_download <- function(url,
                             .f,
-                            .max_tries = 5L,
-                            .initial_delay = 30L) {
+                            .max_tries = 3L,
+                            .initial_delay = 1L) {
   attempt <- 1
   success <- FALSE
 
   while (attempt <= .max_tries && !success) {
     tryCatch({
       response <- httr2::request(base_url = url) |>
-        httr2::req_options(http_version = 2, timeout = 500L) |>
+        httr2::req_options(http_version = 2, timeout = 120L) |>
         httr2::req_retry(max_tries = .max_tries) |>
         httr2::req_perform()
 
@@ -69,14 +69,13 @@
       if (attempt < .max_tries) {
         delay <- .initial_delay * 2 ^ (attempt - 1)
         cli::cli_alert(
-          "Download failed on attempt {.code attempt}.
-                Retrying in {.var delay} seconds..."
+          "Download failed on attempt { attempt }. Retrying in { delay } seconds..."
         )
         Sys.sleep(delay)
         attempt <- attempt + 1
       } else {
         cli::cli_abort(
-          "Download failed after {.var max_attempts} attempts.")
+          "Download failed after { .max_tries } attempts.")
         stop(e)
       }
     })
