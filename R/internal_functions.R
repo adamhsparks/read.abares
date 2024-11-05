@@ -22,9 +22,7 @@
 
 .check_class <- function(x, class) {
   if (missing(x) || !inherits(x, class)) {
-    cli::cli_abort(
-      message = "You must provide a {.code read.abares} class object."
-    )
+    cli::cli_abort("You must provide a {.code read.abares} class object.")
   }
 }
 
@@ -33,8 +31,12 @@
 #' Retries to download the requested resource five times before stopping.  Then
 #'   saves the resource in the `tempdir()` for importing.
 #'
-#' @param url The URL being requested
-#' @param .f a filepath to be written to local storage
+#' @param url `Character` The URL being requested
+#' @param .f `Character` A filepath to be written to local storage
+#' @param .max_tries `Integer` The number of times to retry a failed download
+#'   before emitting an error message
+#' @param .initial_delay `Integer` The number of seconds to delay before
+#'   retrying the download.  This increases as the tries increment.
 #'
 #' @examples
 #'
@@ -49,15 +51,15 @@
 
 .retry_download <- function(url,
                             .f,
-                            .max_tries = 5,
-                            .initial_delay = 30) {
+                            .max_tries = 5L,
+                            .initial_delay = 30L) {
   attempt <- 1
   success <- FALSE
 
   while (attempt <= .max_tries && !success) {
     tryCatch({
       response <- httr2::request(base_url = url) |>
-        httr2::req_options(http_version = 2, timeout = 500) |>
+        httr2::req_options(http_version = 2, timeout = 500L) |>
         httr2::req_retry(max_tries = .max_tries) |>
         httr2::req_perform()
 
@@ -73,7 +75,8 @@
         Sys.sleep(delay)
         attempt <- attempt + 1
       } else {
-        cli::cli_alert_danger("Download failed after {.code max_attempts} attempts.")
+        cli::cli_alert_danger(
+          "Download failed after {.code max_attempts} attempts.")
         stop(e)
       }
     })
