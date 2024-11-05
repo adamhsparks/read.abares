@@ -2,7 +2,6 @@
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^codemeta\.json$
-^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
 ^README\.Rmd$
@@ -10,7 +9,5 @@
 ^Meta$
 ^.covrignore$
 ^CONTRIBUTING\.md$
-
-# flint files
 ^flint$
 ^\.github$
