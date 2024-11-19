@@ -47,12 +47,12 @@ get_abares_trade_regions <- function(cache = TRUE) {
 .check_existing_trade_regions <- function(cache) {
   abares_trade_rds <- file.path(.find_user_cache(),
                                 "abares_trade_dir/abares_trade_regions.rds")
-  tmp_zip <- file.path(tempdir(), "abares_trade.zip")
+  tmp_csv <- file.path(tempdir(), "abares_trade.csv")
 
   if (file.exists(abares_trade_rds)) {
     return(readRDS(abares_trade_rds))
-  } else if (file.exists(tmp_zip)) {
-    abares_trade <- data.table::fread(tmp_zip,
+  } else if (file.exists(tmp_csv)) {
+    abares_trade <- data.table::fread(tmp_csv,
                                       na.strings = c(""),
                                       fill = TRUE)
     if (cache) {
@@ -99,15 +99,14 @@ get_abares_trade_regions <- function(cache = TRUE) {
     "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/2",
     .f = abares_trade_csv)
 
-  abares_trade_regions <- data.table::fread(file.path(abares_trade_dir,
-                                          tmp_csv),
+  abares_trade_regions <- data.table::fread(file.path(tmp_csv),
                                           na.strings = c(""),
                                           fill = TRUE)
 
   if (cache) {
     saveRDS(abares_trade_regions, file = abares_trade_regions_rds)
     unlink(c(
-      file.path(abares_trade_dir, "abares_trade_regions")
+      file.path(tmp_csv)
     ))
   }
   return(abares_trade_regions[])
