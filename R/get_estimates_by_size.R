@@ -1,5 +1,4 @@
 
-
 #' Get Estimates by Size From ABARES
 #'
 #' @note
@@ -31,7 +30,7 @@ get_estimates_by_size <- get_est_by_size <- function() {
                           neworder = c("Variable", "Year", "Size", "Industry", "Value", "RSE"))
   data.table::setkey(x, "Variable")
 
-  return(x)
+  return(x[])
 }
 
 #' @export

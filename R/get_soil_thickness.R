@@ -131,7 +131,7 @@ get_soil_thickness <- function(cache = TRUE) {
   download_dir <- dirname(download_file)
 
   # this is where the zip files are unzipped in `soil_thick_dir`
-  soil_thick_adf_file <- file.path(download_dir, "soil_thickness_dir")
+  soil_thick_adf_file <- file.path(download_dir, "soil_thickness_dir/thpk_1")
 
   # only download if the files aren't already local
   if (!file.exists(soil_thick_adf_file)) {

@@ -25,7 +25,7 @@
 get_abares_trade_regions <- function(cache = TRUE) {
   trade_regions <- .check_existing_trade_regions(cache)
   if (!is.null(trade_regions)) {
-    return(trade_regions)
+    return(trade_regions[])
   } else {
     return(.download_abares_trade_regions(cache))
   }
@@ -47,19 +47,19 @@ get_abares_trade_regions <- function(cache = TRUE) {
 .check_existing_trade_regions <- function(cache) {
   abares_trade_rds <- file.path(.find_user_cache(),
                                 "abares_trade_dir/abares_trade_regions.rds")
-  tmp_csv <- file.path(tempdir(), "abares_trade_regions.csv")
+  tmp_zip <- file.path(tempdir(), "abares_trade.zip")
 
   if (file.exists(abares_trade_rds)) {
     return(readRDS(abares_trade_rds))
-  } else if (file.exists(tmp_csv)) {
-    abares_trade <- data.table::fread(tmp_csv,
+  } else if (file.exists(tmp_zip)) {
+    abares_trade <- data.table::fread(tmp_zip,
                                       na.strings = c(""),
                                       fill = TRUE)
     if (cache) {
       dir.create(dirname(abares_trade_rds), recursive = TRUE)
       saveRDS(abares_trade, file = abares_trade_rds)
     }
-    return(abares_trade)
+    return(abares_trade[])
   } else {
     return(NULL)
   }
@@ -110,5 +110,5 @@ get_abares_trade_regions <- function(cache = TRUE) {
       file.path(abares_trade_dir, "abares_trade_regions.csv")
     ))
   }
-  return(abares_trade_regions)
+  return(abares_trade_regions[])
 }
