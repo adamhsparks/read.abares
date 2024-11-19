@@ -47,7 +47,7 @@ get_abares_trade_regions <- function(cache = TRUE) {
 .check_existing_trade_regions <- function(cache) {
   abares_trade_rds <- file.path(.find_user_cache(),
                                 "abares_trade_dir/abares_trade_regions.rds")
-  tmp_csv <- file.path(tempdir(), "abares_trade.csv")
+  tmp_csv <- file.path(tempdir(), "abares_trade_regions.csv")
 
   if (file.exists(abares_trade_rds)) {
     return(readRDS(abares_trade_rds))
@@ -105,9 +105,7 @@ get_abares_trade_regions <- function(cache = TRUE) {
 
   if (cache) {
     saveRDS(abares_trade_regions, file = abares_trade_regions_rds)
-    unlink(c(
-      file.path(tmp_csv)
-    ))
+    unlink(tmp_csv)
   }
   return(abares_trade_regions[])
 }
