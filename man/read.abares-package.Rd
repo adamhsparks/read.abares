@@ -13,7 +13,7 @@ Download and import data from the Australian Bureau of Agricultural and Resource
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.org/adamhsparks/read.abares}
+  \item \url{https://github.com/adamhsparks/read.abares}
   \item \url{https://adamhsparks.github.io/read.abares/}
   \item Report bugs at \url{https://github.com/adamhsparks/read.abares/issues}
 }
