@@ -1,8 +1,10 @@
 
 #' Fetch Australian Gridded Farm Data
 #'
-#' @description
-#' A short description...
+#' Downloads The Australian Gridded Farm Data (\acronym{AGFD}) data and unzips
+#'  the compressed files to NetCDF for importing.
+#'
+#' @details
 #'
 #' From the [ABARES website](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data):
 #' \dQuote{The Australian Gridded Farm Data (\acronym{AGFD}) are a set of national
@@ -16,6 +18,13 @@
 #'  [*farmpredict*](https://www.agriculture.gov.au/abares/research-topics/climate/drought/farmpredict)
 #'  model, which in turn is based on ABARES Agricultural and Grazing Industries
 #'  Survey (\acronym{AAGIS}) data.\cr
+#'  [Australian Agricultural Drought Indicator](https://www.agriculture.gov.au/abares/research-topics/climate/australian-agriculture-drought-indicators-project)
+#'  (\acronym{AADI}) project (previously known as the Drought Early Warning
+#'  System Project) and were derived using \acronym{ABARES}
+#'  [*farmpredict*](https://www.agriculture.gov.au/abares/research-topics/climate/drought/farmpredict)
+#'  model, which in turn is based on ABARES [Agricultural and Grazing Industries
+#'  Survey](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-definitions-methods)
+#'  (\acronym{AAGIS}) data.\cr
 #'  These maps provide estimates of farm business profit, revenue, costs and
 #'  production by location (grid cell) and year for the period 1990-91 to
 #'  2022-23. The data do not include actual observed outcomes but rather model

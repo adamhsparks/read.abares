@@ -1,9 +1,12 @@
 
 #' Read AGFD NCDF Files With stars
 #'
-#' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a [stars] object.
+#' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a list of [stars]
+#'  objects.
 #'
-#' @param files A list of NetCDF files to import
+#' @inherit get_agfd details
+#'
+#' @inheritParams read_agfd_dt
 #'
 #' @return a `list` object of \CRANpkg{stars} objects of the Australian Gridded
 #'  Farm Data with the file names as the list's objects' names
