@@ -1,14 +1,19 @@
 
 #' Read agfd NCDF Files With tidync
 #'
-#' @param files A list of NetCDF files to import
+#' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a list of [tidync]
+#'  objects
+#'
+#' @inherit get_agfd details
+#'
+#' @inheritParams read_agfd_dt
 #'
 #' @return a `list` object of \CRANpkg{tidync} [tidync::tidync] objects of the
 #'  Australian Gridded Farm Data with the file names as the  list's objects'
 #'  names.
 #'
 #' @examplesIf interactive()
-#' get_agfd(cache = TRUE) |>
+#' x <- get_agfd(cache = TRUE) |>
 #'   read_agfd_tidync()
 #'
 #' @family AGFD

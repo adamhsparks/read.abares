@@ -4,7 +4,7 @@
   "identifier": "read.abares",
   "description": "Download and import data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) <https://www.agriculture.gov.au/abares>.",
   "name": "read.abares: Provides simple downloading, parsing and importing of Australian\n    Bureau of Agricultural and Resource Economics and Sciences (ABARES)\n    data sources",
-  "relatedLink": "https://github.org/adamhsparks/read.abares",
+  "relatedLink": "https://adamhsparks.github.io/read.abares/",
   "codeRepository": "https://github.com/adamhsparks/read.abares",
   "issueTracker": "https://github.com/adamhsparks/read.abares/issues",
   "license": "https://spdx.org/licenses/MIT",
@@ -273,7 +273,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "330.574KB",
+  "fileSize": "343.019KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

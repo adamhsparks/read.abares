@@ -3,7 +3,10 @@
 #'
 #' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a [data.table] object.
 #'
+#' @inherit get_agfd details
+#'
 #' @param files A list of NetCDF files to import
+#'
 #' @return a [data.table::data.table] object of the Australian Gridded Farm Data
 #'
 #' @examplesIf interactive()

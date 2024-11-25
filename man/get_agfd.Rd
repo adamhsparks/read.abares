@@ -26,7 +26,38 @@ A \code{read.abares.agfd.nc.files} object, a \code{list} of NetCDF files
 containing the Australian Gridded Farm Data
 }
 \description{
-Fetch Australian Gridded Farm Data
+Downloads The Australian Gridded Farm Data (\acronym{AGFD}) data and unzips
+the compressed files to NetCDF for importing.
+}
+\details{
+From the \href{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}{ABARES website}:
+\dQuote{The Australian Gridded Farm Data (\acronym{AGFD}) are a set of national
+scale maps containing simulated data on historical broadacre farm business
+outcomes including farm profitability on an 0.05-degree (approximately 5 km)
+grid.\cr
+These data have been produced by \acronym{ABARES} as part of the ongoing
+Australian Agricultural Drought Indicator (\acronym{AADI}) project
+(previously known as the Drought Early Warning System Project) and were
+derived using \acronym{ABARES}
+\href{https://www.agriculture.gov.au/abares/research-topics/climate/drought/farmpredict}{\emph{farmpredict}}
+model, which in turn is based on ABARES Agricultural and Grazing Industries
+Survey (\acronym{AAGIS}) data.\cr
+\href{https://www.agriculture.gov.au/abares/research-topics/climate/australian-agriculture-drought-indicators-project}{Australian Agricultural Drought Indicator}
+(\acronym{AADI}) project (previously known as the Drought Early Warning
+System Project) and were derived using \acronym{ABARES}
+\href{https://www.agriculture.gov.au/abares/research-topics/climate/drought/farmpredict}{\emph{farmpredict}}
+model, which in turn is based on ABARES \href{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-definitions-methods}{Agricultural and Grazing Industries Survey}
+(\acronym{AAGIS}) data.\cr
+These maps provide estimates of farm business profit, revenue, costs and
+production by location (grid cell) and year for the period 1990-91 to
+2022-23. The data do not include actual observed outcomes but rather model
+predicted outcomes for representative or \sQuote{typical} broadacre farm
+businesses at each location considering likely farm characteristics and
+prevailing weather conditions and commodity prices.}\cr
+-- \acronym{ABARES}, 2024-11-25
+
+Both sets of data are large in file size, \emph{i.e.}, >1GB, and will require time
+to download.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
