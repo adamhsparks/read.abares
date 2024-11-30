@@ -48,7 +48,7 @@ get_aagis_regions <- function(cache = TRUE) {
   if (file.exists(aagis_rds)) {
     return(readRDS(aagis_rds))
   } else if (file.exists(tmp_shp)) {
-    aagis_sf <- sf::st_read(tmp_shp)
+    aagis_sf <- sf::st_read(tmp_shp, quiet = TRUE)
     if (cache) {
       dir.create(dirname(aagis_rds), recursive = TRUE)
       saveRDS(aagis_sf, file = aagis_rds)
