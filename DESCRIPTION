@@ -31,7 +31,6 @@ Imports:
     tidync,
     withr
 Suggests: 
-    httptest2,
     knitr,
     pander,
     rmarkdown,
