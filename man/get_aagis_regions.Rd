@@ -3,21 +3,28 @@
 \name{get_aagis_regions}
 \alias{get_aagis_regions}
 \title{Get AAGIS Region Mapping Files}
+\source{
+\url{https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip}
+}
 \usage{
 get_aagis_regions(cache = TRUE)
 }
 \arguments{
-\item{cache}{\code{Boolean} Cache the \acronym{AAGIS} regions shape files after
-download using \code{tools::R_user_dir()} to identify the proper directory for
-storing user data in a cache for this package. Defaults to \code{TRUE}, caching
-the files locally as a native \R object. If \code{FALSE}, this function uses
-\code{tempdir()} and the files are deleted upon closing of the \R session.}
+\item{cache}{\code{Boolean} Cache the \acronym{AAGIS} regions' geospatial file
+after downloading using \code{tools::R_user_dir("read.abares", "cache")} to
+identify the proper directory for storing user data in a cache for this
+package. Defaults to \code{TRUE}, caching the files locally as a Geopackage. If
+\code{FALSE}, this function uses \code{tempdir()} and the files are deleted upon
+closing of the \R session.}
 }
 \value{
 An \CRANpkg{sf} object of the \acronym{AAGIS} regions
 }
 \description{
-Get AAGIS Region Mapping Files
+Download, cache and import the Australian Agricultural and Grazing
+Industries Survey (\acronym{AAGIS} regions geospatial shapefile. Upon
+import, the geometries  are automatically corrected to fix invalid
+geometries that are present in the original shapefile.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

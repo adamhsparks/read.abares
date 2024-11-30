@@ -1,7 +1,7 @@
 
 #' Remove Files in Users' Cache Directory
 #'
-#' Removes all files in the \pkg{read.abares} cache if they exist.
+#' Removes all files in the \pkg{read.abares} cache if any exist.
 #'
 #' @examples
 #' # not run because cached files shouldn't exist on CRAN or testing envs
@@ -13,18 +13,14 @@
 #' @export
 
 clear_cache <- function() {
-  f <- list.files(.find_user_cache(),
-                  recursive = TRUE,
-                  full.names = TRUE)
+  f <- .find_user_cache()
 
-  if (length(f > 0)) {
-    unlink(f, recursive = TRUE, force = TRUE)
-  } else {
-    cli::cli_inform(
-      c(
-        "There do not appear to be any files cached for {.pkg {{read.abares}}}
+  if (unlink(f, recursive = TRUE, force = FALSE) == 0)
+    return(invisible(TRUE))
+  cli::cli_inform(
+    c(
+      "There do not appear to be any files cached for {.pkg {{read.abares}}}
         that need to be cleared at this time."
-      )
     )
-  }
+  )
 }
