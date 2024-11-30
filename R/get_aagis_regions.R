@@ -53,14 +53,14 @@ get_aagis_regions <- function(cache = TRUE) {
   tmp_shp <- file.path(tempdir(), "aagis_asgs16v1_g5a.shp")
 
   if (file.exists(aagis_gpkg)) {
-    return(readRDS(aagis_gpkg))
+    return(sf::st_read(aagis_gpkg, quiet = TRUE))
   } else if (file.exists(tmp_shp)) {
     aagis_sf <- sf::st_read(tmp_shp, quiet = TRUE)
     # From checking the unzipped file, some geometries are invalid, this corrects
     aagis_sf <- sf::st_make_valid(aagis_sf)
     if (cache) {
       dir.create(dirname(aagis_gpkg), recursive = TRUE)
-      sf::st_write(aagis_sf, file = aagis_gpkg, quiet = TRUE)
+      sf::st_write(obj = aagis_sf, dsn = aagis_gpkg, quiet = TRUE)
     }
     return(aagis_sf)
   } else {

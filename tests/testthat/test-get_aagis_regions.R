@@ -9,7 +9,7 @@ test_that("get_aagis_regions doesn't cache", {
   x <- get_aagis_regions(cache = FALSE)
   expect_s3_class(x, "sf")
   expect_false(file.exists(
-    file.path(.find_user_cache(), "aagis_regions_dir/aagis.rds")
+    file.path(.find_user_cache(), "aagis_regions_dir/aagis.gpkg")
   ))
 })
 
@@ -29,7 +29,7 @@ test_that("get_aagis_regions caches", {
   x <- get_aagis_regions(cache = TRUE)
   expect_s3_class(x, "sf")
   expect_true(file.exists(
-    file.path(.find_user_cache(), "aagis_regions_dir/aagis.rds")
+    file.path(.find_user_cache(), "aagis_regions_dir/aagis.gpkg")
   ))
   expect_true(!file.exists(
     file.path(.find_user_cache(), "aagis_regions_dir/aagis_zip")
@@ -56,7 +56,7 @@ test_that("get_aagis_regions does cache", {
   x <- get_aagis_regions(cache = TRUE)
   expect_s3_class(x, "sf")
   expect_true(file.exists(
-    file.path(.find_user_cache(), "aagis_regions_dir/aagis.rds")
+    file.path(.find_user_cache(), "aagis_regions_dir/aagis.gpkg")
   ))
   expect_false(file.exists(
     file.path(
@@ -71,7 +71,6 @@ test_that("get_aagis_regions skips downloading if still in tempdir()", {
   skip_on_ci()
   x <- .check_existing_aagis(cache = TRUE)
   expect_s3_class(x, "sf")
-})
 })
 
 withr::deferred_run()
