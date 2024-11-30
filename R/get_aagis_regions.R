@@ -7,10 +7,11 @@
 #'  geometries that are present in the original shapefile.
 #'
 #' @param cache `Boolean` Cache the \acronym{AAGIS} regions shape files after
-#'  download using `tools::R_user_dir()` to identify the proper directory for
-#'  storing user data in a cache for this package. Defaults to `TRUE`, caching
-#'  the files locally as a native \R object. If `FALSE`, this function uses
-#'  `tempdir()` and the files are deleted upon closing of the \R session.
+#'  download using `tools::R_user_dir("read.abares", "cache")` to identify the
+#'  proper directory for storing user data in a cache for this package. Defaults
+#'  to `TRUE`, caching the files locally as a native \R object. If `FALSE`, this
+#'  function uses `tempdir()` and the files are deleted upon closing of the \R
+#'  session.
 #'
 #' @examplesIf interactive()
 #' aagis <- get_aagis_regions()
@@ -27,11 +28,11 @@
 #' @export
 
 get_aagis_regions <- function(cache = TRUE) {
-  aagis_sf <- .check_existing_aagis(cache)
-  if (is.null(aagis_sf)) {
-    aagis_sf <- .download_aagis_shp(cache)
+  aagis <- .check_existing_aagis(cache)
+  if (is.null(aagis)) {
+    aagis <- .download_aagis_shp(cache)
   } else {
-    return(aagis_sf)
+    return(aagis)
   }
 }
 
@@ -42,27 +43,28 @@ get_aagis_regions <- function(cache = TRUE) {
 #' cache, but is in `tempdir()`, it is saved to the cache before being returned
 #' in the current session.
 #'
-#'
 #' @return An \cranpkg{sf} object of AAGIS regions
 #' @noRd
 #' @autoglobal
 #' @keywords Internal
 
 .check_existing_aagis <- function(cache) {
-  aagis_rds <- file.path(.find_user_cache(), "aagis_regions_dir/aagis.rds")
+  aagis_gpkg <- file.path(.find_user_cache(), "aagis_regions_dir/aagis.gpkg")
   tmp_shp <- file.path(tempdir(), "aagis_asgs16v1_g5a.shp")
 
-  if (file.exists(aagis_rds)) {
-    return(readRDS(aagis_rds))
+  if (file.exists(aagis_gpkg)) {
+    return(readRDS(aagis_gpkg))
   } else if (file.exists(tmp_shp)) {
     aagis_sf <- sf::st_read(tmp_shp, quiet = TRUE)
+    # From checking the unzipped file, some geometries are invalid, this corrects
+    aagis_sf <- sf::st_make_valid(aagis_sf)
     if (cache) {
-      dir.create(dirname(aagis_rds), recursive = TRUE)
-      saveRDS(aagis_sf, file = aagis_rds)
+      dir.create(dirname(aagis_gpkg), recursive = TRUE)
+      sf::st_write(aagis_sf, file = aagis_gpkg, quiet = TRUE)
     }
     return(aagis_sf)
   } else {
-    return(NULL)
+    return(invisible(NULL))
   }
 }
 
@@ -73,10 +75,11 @@ get_aagis_regions <- function(cache = TRUE) {
 #'  to the user.
 #'
 #' @param cache `Boolean` Cache the \acronym{AAGIS} regions shape files after
-#'  download using `tools::R_user_dir()` to identify the proper directory for
-#'  storing user data in a cache for this package. Defaults to `TRUE`, caching
-#'  the files locally as a native \R object. If `FALSE`, this function uses
-#'  `tempdir()` and the files are deleted upon closing of the \R session.
+#'  download using `tools::R_user_dir("read.abares")` to identify the proper
+#'  directory for storing user data in a cache for this package. Defaults to
+#'  `TRUE`, caching the files locally as a native \R object. If `FALSE`, this
+#'  function uses `tempdir()` and the files are deleted upon closing of the \R
+#'  session.
 #'
 #' @return An \cranpkg{sf} object of AAGIS regions
 #' @noRd
@@ -89,7 +92,7 @@ get_aagis_regions <- function(cache = TRUE) {
   tmp_zip <- file.path(file.path(tempdir(), "aagis.zip"))
   aagis_zip <- data.table::fifelse(cache, cached_zip, tmp_zip)
   aagis_regions_dir <- dirname(aagis_zip)
-  aagis_rds <- file.path(aagis_regions_dir, "aagis.rds")
+  aagis_rds <- file.path(aagis_regions_dir, "aagis.gpkg")
 
   # the user-cache may not exist if caching is enabled for the 1st time
   if (cache && !dir.exists(aagis_regions_dir)) {
@@ -110,8 +113,7 @@ get_aagis_regions <- function(cache = TRUE) {
   aagis_sf <- sf::st_make_valid(aagis_sf)
 
   if (cache) {
-    # saveRDS or save as geopackage? Which is faster?
-    saveRDS(aagis_sf, file = aagis_rds)
+    sf::st_write(obj = aagis_sf, dsn = aagis_gpkg, quiet = TRUE)
     unlink(c(
       aagis_zip,
       file.path(aagis_regions_dir, "aagis_asgs16v1_g5a.*")
