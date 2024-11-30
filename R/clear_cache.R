@@ -13,14 +13,18 @@
 #' @export
 
 clear_cache <- function() {
-  f <- .find_user_cache()
+  f <- list.files(.find_user_cache(),
+                  recursive = TRUE,
+                  full.names = TRUE)
 
-  if (unlink(f, recursive = TRUE, force = FALSE) == 0)
-    return(invisible(TRUE))
-  cli::cli_inform(
-    c(
-      "There do not appear to be any files cached for {.pkg {{read.abares}}}
+  if (length(f > 0)) {
+    unlink(.find_user_cache(), recursive = TRUE, force = TRUE)
+  } else {
+    cli::cli_inform(
+      c(
+        "There do not appear to be any files cached for {.pkg {{read.abares}}}
         that need to be cleared at this time."
+      )
     )
-  )
+  }
 }
