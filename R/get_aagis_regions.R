@@ -1,5 +1,10 @@
 #' Get AAGIS Region Mapping Files
 #'
+#' Download, cache and import the  Australian Agricultural and Grazing
+#'  Industries Survey (\acronym{AAGIS} regions geospatial shapefil. Upon import,
+#'  the geometries  are automatically corrected to fix invalid geometries that
+#'  are present in the original shapefile.
+#'
 #' @param cache `Boolean` Cache the \acronym{AAGIS} regions shape files after
 #'  download using `tools::R_user_dir()` to identify the proper directory for
 #'  storing user data in a cache for this package. Defaults to `TRUE`, caching
@@ -61,8 +66,9 @@ get_aagis_regions <- function(cache = TRUE) {
 
 #' Download the AAGIS Regions Shapefile
 #'
-#' Handles downloading and caching (if requested) of AAGIS regions geospatial
-#' data.
+#' Handles downloading, caching (if requested) and importing of AAGIS regions
+#'  geospatial data.  The geometries are corrected for validity before returning
+#'  to the user.
 #'
 #' @param cache `Boolean` Cache the \acronym{AAGIS} regions shape files after
 #'  download using `tools::R_user_dir()` to identify the proper directory for
@@ -95,9 +101,14 @@ get_aagis_regions <- function(cache = TRUE) {
                   utils::unzip(aagis_zip, exdir = aagis_regions_dir))
 
   aagis_sf <- sf::read_sf(dsn = file.path(aagis_regions_dir,
-                                          "aagis_asgs16v1_g5a.shp"))
+                                          "aagis_asgs16v1_g5a.shp"),
+                          quiet = TRUE)
+
+  # From checking the unzipped file, some geometries are invalid, this corrects
+  aagis_sf <- sf::st_make_valid(aagis_sf)
 
   if (cache) {
+    # saveRDS or save as geopackage? Which is faster?
     saveRDS(aagis_sf, file = aagis_rds)
     unlink(c(
       aagis_zip,

@@ -17,7 +17,10 @@ the files locally as a native \R object. If \code{FALSE}, this function uses
 An \CRANpkg{sf} object of the \acronym{AAGIS} regions
 }
 \description{
-Get AAGIS Region Mapping Files
+Download, cache and import the  Australian Agricultural and Grazing
+Industries Survey (\acronym{AAGIS} regions geospatial shapefil. Upon import,
+the geometries  are automatically corrected to fix invalid geometries that
+are present in the original shapefile.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
