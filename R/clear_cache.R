@@ -1,7 +1,7 @@
 
 #' Remove Files in Users' Cache Directory
 #'
-#' Removes all files in the \pkg{read.abares} cache if they exist.
+#' Removes all files in the \pkg{read.abares} cache if any exist.
 #'
 #' @examples
 #' # not run because cached files shouldn't exist on CRAN or testing envs
