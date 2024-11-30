@@ -21,6 +21,7 @@
 #' @family AGFD
 #'
 #' @references <https://www.agriculture.gov.au/abares/research-topics/surveys/farm-definitions-methods#regions>
+#' @source <https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip>
 #' @autoglobal
 #' @export
 

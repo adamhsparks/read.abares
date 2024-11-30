@@ -3,6 +3,9 @@
 \name{get_aagis_regions}
 \alias{get_aagis_regions}
 \title{Get AAGIS Region Mapping Files}
+\source{
+\url{https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip}
+}
 \usage{
 get_aagis_regions(cache = TRUE)
 }
