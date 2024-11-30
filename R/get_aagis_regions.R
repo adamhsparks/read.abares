@@ -6,12 +6,12 @@
 #'  import, the geometries  are automatically corrected to fix invalid
 #'  geometries that are present in the original shapefile.
 #'
-#' @param cache `Boolean` Cache the \acronym{AAGIS} regions shape files after
-#'  download using `tools::R_user_dir("read.abares", "cache")` to identify the
-#'  proper directory for storing user data in a cache for this package. Defaults
-#'  to `TRUE`, caching the files locally as a native \R object. If `FALSE`, this
-#'  function uses `tempdir()` and the files are deleted upon closing of the \R
-#'  session.
+#' @param cache `Boolean` Cache the \acronym{AAGIS} regions' geospatial file
+#'  after downloading using `tools::R_user_dir("read.abares", "cache")` to
+#'  identify the proper directory for storing user data in a cache for this
+#'  package. Defaults to `TRUE`, caching the files locally as a Geopackage. If
+#'  `FALSE`, this function uses `tempdir()` and the files are deleted upon
+#'  closing of the \R session.
 #'
 #' @examplesIf interactive()
 #' aagis <- get_aagis_regions()
@@ -92,7 +92,7 @@ get_aagis_regions <- function(cache = TRUE) {
   tmp_zip <- file.path(file.path(tempdir(), "aagis.zip"))
   aagis_zip <- data.table::fifelse(cache, cached_zip, tmp_zip)
   aagis_regions_dir <- dirname(aagis_zip)
-  aagis_rds <- file.path(aagis_regions_dir, "aagis.gpkg")
+  aagis_gpkg <- file.path(aagis_regions_dir, "aagis.gpkg")
 
   # the user-cache may not exist if caching is enabled for the 1st time
   if (cache && !dir.exists(aagis_regions_dir)) {
