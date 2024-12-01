@@ -58,7 +58,7 @@ test_that("get_abares_trade doesn't cache", {
 test_that("get_abares_trade skips downloading if still in tempdir()", {
   skip_if_offline()
   skip_on_ci()
-  x <- .check_existing_trade_regions(cache = FALSE)
+  x <- .check_existing_trade(cache = FALSE)
   expect_s3_class(x, c("data.table", "data.frame"))
 })
 
@@ -81,7 +81,7 @@ test_that("get_abares_trade caches", {
 test_that("get_abares_trade skips downloading if cache is available", {
   skip_if_offline()
   skip_on_ci()
-  x <- .check_existing_trade_regions(cache = TRUE)
+  x <- .check_existing_trade(cache = TRUE)
   expect_s3_class(x, c("data.table", "data.frame"))
 })
 
