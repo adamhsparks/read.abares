@@ -24,6 +24,7 @@ Imports:
     openxlsx2,
     purrr,
     readtext,
+    rlang,
     sf,
     stars,
     stringr,
@@ -31,6 +32,7 @@ Imports:
     tidync,
     withr
 Suggests: 
+    httptest2,
     knitr,
     pander,
     rmarkdown,
