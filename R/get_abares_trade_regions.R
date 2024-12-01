@@ -20,7 +20,7 @@
 #' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
 #'  regions.
 #' @family Trade
-#' @referencs <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0>
+#' @references <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0>
 #' @source <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/2>
 #' @autoglobal
 #' @export

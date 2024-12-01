@@ -34,6 +34,9 @@ trade_regions <- get_abares_trade_regions()
 trade_regions
 \dontshow{\}) # examplesIf}
 }
+\references{
+\url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0}
+}
 \seealso{
 Other Trade: 
 \code{\link{get_abares_trade}()}
