@@ -17,6 +17,7 @@ BugReports: https://github.com/adamhsparks/read.abares/issues
 Depends: 
     R (>= 4.1.0)
 Imports: 
+    brio,
     cli,
     data.table,
     httr2,
