@@ -49,35 +49,12 @@
 #' @keywords Internal
 #' @noRd
 
-.retry_download <- function(url,
-                            .f,
-                            .max_tries = 3L,
-                            .initial_delay = 1L) {
-  attempt <- 1
-  success <- FALSE
-
-  while (attempt <= .max_tries && !success) {
-    tryCatch({
-      response <- httr2::request(base_url = url) |>
-        httr2::req_options(http_version = 2, timeout = 120L) |>
-        httr2::req_retry(max_tries = .max_tries) |>
-        httr2::req_perform()
-
-      writeBin(response$body, con = .f)
-      success <- TRUE
-    }, error = function(e) {
-      if (attempt < .max_tries) {
-        delay <- .initial_delay * 2 ^ (attempt - 1)
-        cli::cli_alert(
-          "Download failed on attempt { attempt }. Retrying in { delay } seconds..."
-        )
-        Sys.sleep(delay)
-        attempt <- attempt + 1
-      } else {
-        cli::cli_abort(
-          "Download failed after { .max_tries } attempts.")
-        stop(e)
-      }
-    })
-  }
+.retry_download <- function(url, .f, .max_tries = 3L) {
+  tryCatch(
+    response <- httr2::request(base_url = url) |>
+      httr2::req_options(http_version = 2, timeout = 240L) |>
+      httr2::req_retry(max_tries = .max_tries) |>
+      httr2::req_perform(path = .f),
+    httr2_error = function(cnd) NULL
+  )
 }
