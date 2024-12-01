@@ -1,10 +1,9 @@
 
-
-
 #' Get Historical National Estimates from ABARES
 #'
 #' @note
-#' Columns are renamed and reordered for consistency.
+#' Columns are renamed for consistency with other \acronym{ABARES} products
+#'  serviced in this package using a snake_case format and ordered consistently.
 #'
 #' @return A [data.table::data.table] object with the `Variable` field as the
 #'  `key`.

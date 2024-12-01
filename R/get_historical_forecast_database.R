@@ -19,7 +19,8 @@
 #' | Actual_Value | Actual outcome observed. Note that historical time series can be revised. Latest available data at time of update, including any revisions, are included in database. |
 #'
 #' @note
-#' Columns are renamed for consistency.
+#' Columns are renamed for consistency with other \acronym{ABARES} products
+#'  serviced in this package using a snake_case format and ordered consistently.
 #'
 #' @note
 #' The "Month_issued" column is converted from a character string to a numeric

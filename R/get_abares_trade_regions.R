@@ -3,7 +3,8 @@
 #' Fetches and imports  \acronym{ABARES} trade regions data.
 #'
 #' @note
-#' Columns are renamed for consistency in this package using lower case, snake_case format.
+#' Columns are renamed for consistency with other \acronym{ABARES} products
+#'  serviced in this package using a snake_case format and ordered consistently.
 #'
 #' @param cache `Boolean` Cache the \acronym{ABARES} trade regions data after
 #'  download using `tools::R_user_dir()` to identify the proper directory for
