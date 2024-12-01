@@ -28,8 +28,8 @@
 
 #' Use httr2 to Fetch a File With Retries
 #'
-#' Retries to download the requested resource five times before stopping.  Then
-#'   saves the resource in the `tempdir()` for importing.
+#' Retries to download the requested resource before stopping. Uses {httr2} to
+#'  cache in-session results in the `tempdir()`.
 #'
 #' @param url `Character` The URL being requested
 #' @param .f `Character` A filepath to be written to local storage
@@ -54,7 +54,8 @@
     resp <- httr2::request(base_url = url) |>
       httr2::req_options(http_version = 2, timeout = 500L) |>
       httr2::req_retry(max_tries = .max_tries) |>
-      httr2::req_perform()
+      httr2::req_perform() |>
+      httr2::req_cache(path = tempdir())
   }, error = function(e) {
     cli::cli_abort("There was an error with this download, please retry.",
                    call = rlang::caller_env())
