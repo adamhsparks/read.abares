@@ -50,11 +50,22 @@
 #' @noRd
 
 .retry_download <- function(url, .f, .max_tries = 3L) {
-  tryCatch(
-    response <- httr2::request(base_url = url) |>
-      httr2::req_options(http_version = 2, timeout = 240L) |>
+  tryCatch({
+    resp <- httr2::request(base_url = url) |>
+      httr2::req_options(http_version = 2, timeout = 500L) |>
       httr2::req_retry(max_tries = .max_tries) |>
-      httr2::req_perform(path = .f),
-    httr2_error = function(cnd) NULL
-  )
+      httr2::req_perform()
+  }, error = function(e) {
+    cli::cli_abort("There was an error with this download, please retry.",
+                   call = rlang::caller_env())
+  })
+  if (httr2::resp_content_type(resp) == "application/x-zip-compressed") {
+    resp |>
+      httr2::resp_body_raw() |>
+      brio::write_file_raw(path = .f)
+  } else {
+    resp |>
+      httr2::resp_body_string() |>
+      brio::write_file(path = .f)
+  }
 }
