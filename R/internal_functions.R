@@ -54,8 +54,10 @@
     resp <- httr2::request(base_url = url) |>
       httr2::req_options(http_version = 2, timeout = 500L) |>
       httr2::req_retry(max_tries = .max_tries) |>
-      httr2::req_perform() |>
-      httr2::req_cache(path = tempdir())
+      httr2::req_progress() |>
+      httr2::req_cache(path = tempdir()) |>
+      httr2::req_perform()
+
   }, error = function(e) {
     cli::cli_abort("There was an error with this download, please retry.",
                    call = rlang::caller_env())
