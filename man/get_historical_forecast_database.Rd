@@ -35,7 +35,8 @@ Get Historical Forecast Database From ABARES
 }
 }
 \note{
-Columns are renamed for consistency.
+Columns are renamed for consistency with other \acronym{ABARES} products
+serviced in this package using a snake_case format and ordered consistently.
 
 The "Month_issued" column is converted from a character string to a numeric
 value representing the month of year, \emph{e.g.}, "March" is converted to \code{3}.

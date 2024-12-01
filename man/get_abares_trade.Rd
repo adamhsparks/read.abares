@@ -23,7 +23,8 @@ A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
 Fetches and imports  \acronym{ABARES} trade data.
 }
 \note{
-Columns are renamed for consistency.
+Columns are renamed for consistency with other \acronym{ABARES} products
+serviced in this package using a snake_case format and ordered consistently.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

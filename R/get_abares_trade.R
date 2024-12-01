@@ -3,7 +3,8 @@
 #' Fetches and imports  \acronym{ABARES} trade data.
 #'
 #' @note
-#' Columns are renamed for consistency.
+#' Columns are renamed for consistency with other \acronym{ABARES} products
+#'  serviced in this package using a snake_case format and ordered consistently.
 #'
 #' @param cache `Boolean` Cache the \acronym{ABARES} trade data after download
 #'  using `tools::R_user_dir()` to identify the proper directory for storing
@@ -60,7 +61,7 @@ get_abares_trade <- function(cache = TRUE) {
     }
     return(abares_trade)
   } else {
-    return(NULL)
+    return(invisible(NULL))
   }
 }
 
