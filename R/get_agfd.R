@@ -88,7 +88,7 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
   if (!dir.exists(agfd_nc_dir)) {
     # if caching is enabled but the {read.abares} cache dir doesn't exist, create it
     if (cache) {
-      dir.create(download_dir, recursive = TRUE)
+      dir.create(agfd_nc_dir, recursive = TRUE)
     }
 
     url <- data.table::fifelse(
@@ -100,10 +100,21 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
     .retry_download(url = url,
                     .f = download_file)
 
+    tryCatch({
     withr::with_dir(download_dir,
                     utils::unzip(zipfile = download_file,
                                  exdir = download_dir))
-    unlink(download_file)
+      },
+    error = function(e) {
+      unlink(download_file)
+      cli::cli_abort("There was an issue with the downloaded file. I've deleted
+                     this bad version of the downloaded file, please retry.",
+                     call = rlang::caller_env())
+    },
+    finally = {
+      # clean up on success!
+      unlink(download_file)
+    })
   }
 
   agfd_nc <- list.files(agfd_nc_dir, full.names = TRUE)
