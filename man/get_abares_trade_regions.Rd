@@ -4,7 +4,7 @@
 \alias{get_abares_trade_regions}
 \title{Get ABARES Trade Data Regions From the ABARES Trade Dashboard}
 \source{
-\url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0}
+\url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/2}
 }
 \usage{
 get_abares_trade_regions(cache = TRUE)
@@ -17,7 +17,8 @@ the files locally as a native \R object. If \code{FALSE}, this function uses
 \code{tempdir()} and the files are deleted upon closing of the \R session.}
 }
 \value{
-A \CRANpkg{data.table} object of the \acronym{ABARES} trade data regions.
+A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
+regions.
 }
 \description{
 Fetches and imports  \acronym{ABARES} trade regions data.
