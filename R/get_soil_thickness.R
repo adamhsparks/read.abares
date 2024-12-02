@@ -34,55 +34,13 @@
 #' @export
 
 get_soil_thickness <- function(cache = TRUE) {
-  soil_thick <- .check_existing_soil(cache)
-  if (is.null(soil_thick)) {
+  thpk_1_cache <- file.path(.find_user_cache(), "soil_thickness_dir/thpk_1")
+  if (file.exists(thpk_1_cache)) {
+    return(.create_soil_thickness_list(dirname(thpk_1_cache)))
+  } else {
     .download_soil_thickness(cache)
-    soil_thick <- .create_soil_thickness_list(
-      soil_dir = file.path(tempdir(), "soil_thickness_dir"))
-    return(soil_thick)
-  } else {
-    return(soil_thick)
-  }
-}
-
-#' Check for Pre-existing File Before Downloading
-#'
-#' Checks the user cache first, then `tempdir()` for the files before
-#' returning a `NULL` value. If `cache == TRUE` and the file is not in the user
-#' cache, but is in `tempdir()`, it is saved to the cache before being returned
-#' in the current session.
-#'
-#'
-#' @return A `read.abares.soil.thickness` object, which is a named `list` with
-#'  the file path of the resulting \acronym{ESRI} Grid file and text file of
-#'  metadata
-#' @noRd
-#' @autoglobal
-#' @keywords Internal
-
-.check_existing_soil <- function(cache) {
-
-  cache_grd <- file.path(.find_user_cache(), "soil_thickness_dir/thpk_1")
-  thpk_1_cache <- dirname(cache_grd)
-  tmp_grd <- file.path(tempdir(), "soil_thickness_dir/thpk_1")
-
-  if (file.exists(cache_grd)) {
-    soil_dir <- dirname(cache_grd)
-    return(.create_soil_thickness_list(soil_dir))
-  } else if (file.exists(tmp_grd)) {
-    soil_dir <- dirname(tmp_grd)
-    soil_thickness <- .create_soil_thickness_list(soil_dir)
-    if (cache && !dir.exists(thpk_1_cache)) {
-      dir.create(thpk_1_cache, recursive = TRUE)
-      file.copy(
-        from = dirname(tmp_grd),
-        to = thpk_1_cache,
-        recursive = TRUE
-      )
-    }
-    return(soil_thickness)
-  } else {
-    return(NULL)
+    return(.create_soil_thickness_list(soil_dir = file.path(tempdir(),
+                                                            "soil_thickness_dir")))
   }
 }
 
@@ -192,7 +150,8 @@ print.read.abares.soil.thickness.files <- function(x, ...) {
     Use Limitation: This dataset is bound by the requirements set down by the
     National Land & Water Resources Audit")
   cli::cli_text("To see the full metadata, call
-    {.fn print_soil_thickness_metadata} in your R session.")
+    {.fn print_soil_thickness_metadata} on a soil thickness object in your R
+                session.")
   cat("\n")
   invisible(x)
 }

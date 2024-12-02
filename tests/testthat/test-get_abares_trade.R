@@ -55,13 +55,6 @@ test_that("get_abares_trade doesn't cache", {
   ))
 })
 
-test_that("get_abares_trade skips downloading if still in tempdir()", {
-  skip_if_offline()
-  skip_on_ci()
-  x <- .check_existing_trade(cache = FALSE)
-  expect_s3_class(x, c("data.table", "data.frame"))
-})
-
 # with caching ----
 
 test_that("get_abares_trade caches", {
@@ -74,15 +67,8 @@ test_that("get_abares_trade caches", {
     file.path(.find_user_cache(), "abares_trade_dir/abares_trade.rds")
   ))
   expect_true(!file.exists(
-    file.path(.find_user_cache(), "abares_trade_dir/abares_trade.csv")
+    file.path(.find_user_cache(), "abares_trade_dir/abares_trade.zip")
   ))
-})
-
-test_that("get_abares_trade skips downloading if cache is available", {
-  skip_if_offline()
-  skip_on_ci()
-  x <- .check_existing_trade(cache = TRUE)
-  expect_s3_class(x, c("data.table", "data.frame"))
 })
 
 withr::deferred_run()
