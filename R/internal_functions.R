@@ -28,8 +28,8 @@
 
 #' Use httr2 to Fetch a File With Retries
 #'
-#' Retries to download the requested resource before stopping. Uses {httr2} to
-#'  cache in-session results in the `tempdir()`.
+#' Retries to download the requested resource before stopping. Uses
+#'  \CRANpkg{httr2} to cache in-session results in the `tempdir()`.
 #'
 #' @param url `Character` The URL being requested
 #' @param .f `Character` A filepath to be written to local storage
@@ -54,21 +54,17 @@
     resp <- httr2::request(base_url = url) |>
       httr2::req_options(http_version = 2, timeout = 500L) |>
       httr2::req_retry(max_tries = .max_tries) |>
-      httr2::req_progress() |>
       httr2::req_cache(path = tempdir()) |>
+      httr2::req_progress() |>
       httr2::req_perform()
 
   }, error = function(e) {
     cli::cli_abort("There was an error with this download, please retry.",
                    call = rlang::caller_env())
   })
-  if (httr2::resp_content_type(resp) == "application/x-zip-compressed") {
+
+  # save the file to be imported into the R session.
     resp |>
       httr2::resp_body_raw() |>
       brio::write_file_raw(path = .f)
-  } else {
-    resp |>
-      httr2::resp_body_string() |>
-      brio::write_file(path = .f)
-  }
 }

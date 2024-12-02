@@ -25,43 +25,13 @@
 #' @export
 
 get_abares_trade <- function(cache = TRUE) {
-  trade <- .check_existing_trade(cache)
-  if (!is.null(trade)) {
-    return(trade)
-  } else {
-    return(.download_abares_trade(cache))
-  }
-}
-
-#' Check for Pre-existing File Before Downloading
-#'
-#' Checks the user cache first, then `tempdir()` for the files before
-#' returning a `NULL` value. If `cache == TRUE` and the file is not in the user
-#' cache, but is in `tempdir()`, it is saved to the cache before being returned
-#' in the current session.
-#'
-#'
-#' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
-#' @noRd
-#' @autoglobal
-#' @keywords Internal
-
-.check_existing_trade <- function(cache) {
   abares_trade_rds <- file.path(.find_user_cache(),
                                 "abares_trade_dir/abares_trade.rds")
-  tmp_csv <- file.path(tempdir(), "abares_trade.zip")
 
   if (file.exists(abares_trade_rds)) {
     return(readRDS(abares_trade_rds))
-  } else if (file.exists(tmp_csv)) {
-    abares_trade <- data.table::fread(tmp_csv)
-    if (cache) {
-      dir.create(dirname(abares_trade_rds), recursive = TRUE)
-      saveRDS(abares_trade, file = abares_trade_rds)
-    }
-    return(abares_trade)
   } else {
-    return(invisible(NULL))
+    return(.download_abares_trade(cache))
   }
 }
 
@@ -82,7 +52,7 @@ get_abares_trade <- function(cache = TRUE) {
 .download_abares_trade <- function(cache) {
   # if you make it this far, the cached file doesn't exist, so we need to
   # download it either to `tempdir()` and dispose or cache it for later.
-  cached_zip <- file.path(.find_user_cache(), "abares_trade_dir/trade.zip")
+  cached_zip <- file.path(.find_user_cache(), "abares_trade_dir/trade.csv")
   tmp_zip <- file.path(file.path(tempdir(), "abares_trade.zip"))
   trade_zip <- data.table::fifelse(cache, cached_zip, tmp_zip)
   abares_trade_dir <- dirname(trade_zip)
@@ -94,7 +64,7 @@ get_abares_trade <- function(cache = TRUE) {
   }
 
   .retry_download(
-    "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/1",
+    url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/1",
     .f = trade_zip)
 
   abares_trade <- data.table::fread(trade_zip)

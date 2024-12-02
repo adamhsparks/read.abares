@@ -16,13 +16,6 @@ test_that("get_soil_thickness doesn't cache", {
   )))
 })
 
-test_that("get_soil_thickness skips downloading if still in tempdir()", {
-  skip_if_offline()
-  skip_on_ci()
-  x <- .check_existing_soil(cache = FALSE)
-  expect_s3_class(x, c("read.abares.soil.thickness", "list"))
-})
-
 withr::deferred_run()
 
 # with caching enabled after is was not initially enabled ----
@@ -39,13 +32,6 @@ test_that("get_soil_thickness caches", {
   )))
 })
 
-test_that("get_soil_thickness skips downloading if cache is available", {
-  skip_if_offline()
-  skip_on_ci()
-  x <- .check_existing_soil(cache = TRUE)
-  expect_s3_class(x, c("read.abares.soil.thickness", "list"))
-})
-
 test_that("get_soil_thickness does cache", {
   skip_if_offline()
   skip_on_ci()
@@ -57,13 +43,6 @@ test_that("get_soil_thickness does cache", {
   expect_true(dir.exists(file.path(
     .find_user_cache(), "soil_thickness_dir"
   )))
-})
-
-test_that("get_soil_thickness skips downloading if still in tempdir()", {
-  skip_if_offline()
-  skip_on_ci()
-  x <- .check_existing_soil(cache = TRUE)
-  expect_s3_class(x, c("read.abares.soil.thickness", "list"))
 })
 
 test_that("print.read.abares.thickness.files prints metadata", {
@@ -100,10 +79,9 @@ test_that("print.read.abares.thickness.files prints metadata", {
     Use Limitation: This dataset is bound by the requirements set down by the
     National Land & Water Resources Audit"
     )
-    cli::cli_text(
-      "To see the full metadata, call
-    {.fn print_soil_thickness_metadata} in your R session."
-    )
+    cli::cli_text("To see the full metadata, call
+    {.fn print_soil_thickness_metadata} on a soil thickness object in your R
+                session.")
     cat("\n")
   }
   print_out <- capture.output(out_text())
