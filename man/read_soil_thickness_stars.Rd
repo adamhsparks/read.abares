@@ -7,8 +7,8 @@
 read_soil_thickness_stars(files)
 }
 \arguments{
-\item{files}{An \pkg{read.abares} \code{read.abares.soil.thickness} object, a \code{list} that
-contains the \acronym{ESRI} grid file to import}
+\item{files}{An \pkg{read.abares} \code{read.abares.soil.thickness} object, a
+\code{list} that contains the \acronym{ESRI} grid file to import}
 }
 \value{
 a \link{stars} object of the Soil Thickness for Australian Areas of
@@ -16,7 +16,7 @@ Intensive Agriculture of Layer 1
 }
 \description{
 Read Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1
-data as a \link{stars} object.
+data as a \CRANpkg{stars} object.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
