@@ -5,7 +5,7 @@
 #'
 #' @inherit get_agfd details
 #'
-#' @param files A list of NetCDF files to import
+#' @param files A list of \acronym{AGFD} NetCDF files to import
 #'
 #' @return a [data.table::data.table] object of the Australian Gridded Farm Data
 #'
