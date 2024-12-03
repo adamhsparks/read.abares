@@ -3,7 +3,8 @@
 #'
 #' @return A [data.table::data.table] object
 #' @export
-#' @source <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
+#' @references <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
+#' @source <https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv>
 #' @family Estimates
 #' @autoglobal
 #' @examplesIf interactive()
