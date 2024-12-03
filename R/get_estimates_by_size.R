@@ -6,7 +6,8 @@
 #'
 #' @return A [data.table::data.table] object with the `Variable` field as the
 #'  `key`.
-#' @source <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
+#' @references <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
+#' @source <https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv>
 #' @autoglobal
 #' @family Estimates
 #' @export
@@ -22,7 +23,7 @@ get_estimates_by_size <- get_est_by_size <- function() {
   f <- file.path(tempdir(), "fdp-beta-performance-by-size.csv")
 
   .retry_download(
-    "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-performance-by-size.csv",
+    "https://www.agriculture.gov.au/sites/default/files/documents/fdp-performance-by-size.csv",
   .f = f)
 
   x <- data.table::fread(f)

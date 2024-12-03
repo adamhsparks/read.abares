@@ -10,6 +10,7 @@
 #' @autoglobal
 #' @family Estimates
 #' @references <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
+#' @source <https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv>
 #' @export
 #' @examplesIf interactive()
 #'
@@ -23,7 +24,7 @@ get_historical_national_estimates <- function() {
   f <- file.path(tempdir(), "fdp-beta-national-historical.csv")
 
   .retry_download(
-    "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-national-historical.csv",
+    "https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv",
   .f = f)
 
   x <- data.table::fread(f)

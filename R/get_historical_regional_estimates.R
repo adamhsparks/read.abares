@@ -9,7 +9,8 @@
 #'  `key`.
 #' @autoglobal
 #' @family Estimates
-#' @source <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
+#' @references <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
+#' @source <https://www.agriculture.gov.au/sites/default/files/documents/fdp-regional-historical.csv>
 #' @export
 #' @examplesIf interactive()
 #'  get_historical_regional_estimates()
@@ -22,7 +23,7 @@ get_historical_regional_estimates <- get_hist_reg_est <-  function() {
   f <- file.path(tempdir(), "fdp-beta-regional-historical.csv")
 
   .retry_download(
-    "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-regional-historical.csv",
+    "https://www.agriculture.gov.au/sites/default/files/documents/fdp-regional-historical.csv",
     .f = f)
 
   x <- data.table::fread(f)
