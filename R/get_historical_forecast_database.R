@@ -7,10 +7,10 @@
 #' | Field | Description |
 #' |-------|-------------|
 #' | Commodity | Broad description of commodity (includes the Australian dollar) |
-#' | Estimate_type | Broad grouping of estimate by theme e.g. animal numbers, area, production, price, export and volume measures. |
+#' | Estimate_type | Broad grouping of estimate by theme *e.g.*, animal numbers, area, production, price, export and volume measures. |
 #' | Estimate_description | Detailed description of each series. |
-#' | Unit | Measurement unit of series. e.g. kt, $m, $/t. |
-#' | Region | Relevant region for each series. "World" denotes relevant international market. |
+#' | Unit | Measurement unit of series. *e.g.*, kt, $m, $/t. |
+#' | Region | Relevant region for each series. \dQuote{World} denotes relevant international market. |
 #' | Year_Issued | Year that forecast was originally issued. |
 #' | Month_issued | Month that forecast was originally issued. |
 #' | Year_Issued_FY | Australian financial year (July-June) that forecast was originally issued. |
