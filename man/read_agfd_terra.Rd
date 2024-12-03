@@ -7,7 +7,7 @@
 read_agfd_terra(files)
 }
 \arguments{
-\item{files}{A list of NetCDF files to import}
+\item{files}{A list of \acronym{AGFD} NetCDF files to import}
 }
 \value{
 a \code{list} object of \link[terra:rast]{terra::rast} objects of the Australian Gridded
