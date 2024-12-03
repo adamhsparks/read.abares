@@ -5,7 +5,7 @@
 \alias{get_hist_sta_est}
 \title{Get Historical State Estimates from ABARES}
 \source{
-\url{https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download}
+\url{https://www.agriculture.gov.au/sites/default/files/documents/fdp-state-historical.csv}
 }
 \usage{
 get_historical_state_estimates()
@@ -30,6 +30,9 @@ serviced in this package using a snake_case format and ordered consistently.
  # or shorter
  get_hist_sta_est()
 \dontshow{\}) # examplesIf}
+}
+\references{
+\url{https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download}
 }
 \seealso{
 Other Estimates: 

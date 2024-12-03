@@ -13,7 +13,7 @@ test_that("get_estimates_by_size works", {
       Size = "character",
       Industry = "character",
       Value = "double",
-      RSE = "integer"
+      RSE = "double"
     )
   )
 })

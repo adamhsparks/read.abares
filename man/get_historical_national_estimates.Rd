@@ -4,6 +4,9 @@
 \alias{get_historical_national_estimates}
 \alias{get_hist_nat_est}
 \title{Get Historical National Estimates from ABARES}
+\source{
+\url{https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv}
+}
 \usage{
 get_historical_national_estimates()
 
