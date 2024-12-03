@@ -60,6 +60,10 @@
 #'  2022, 100420, ISSN 2212-0963, DOI:
 #'  [10.1016/j.crm.2022.100420](https://doi.org/10.1016/j.crm.2022.100420).
 #'
+#'  @source
+#'   * Historical climate prices fixed -- <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/3>,
+#'   * Historical climate and prices -- <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/2>
+#'
 #' @examplesIf interactive()
 #' get_agfd()
 #'
