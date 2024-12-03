@@ -7,7 +7,7 @@
 read_agfd_tidync(files)
 }
 \arguments{
-\item{files}{A list of NetCDF files to import}
+\item{files}{A list of \acronym{AGFD} NetCDF files to import}
 }
 \value{
 a \code{list} object of \CRANpkg{tidync} \link[tidync:tidync]{tidync::tidync} objects of the
