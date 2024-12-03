@@ -9,7 +9,8 @@
 #'  `key`.
 #' @autoglobal
 #' @family Estimates
-#' @source <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
+#' @references <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
+#' @source <https://www.agriculture.gov.au/sites/default/files/documents/fdp-state-historical.csv>
 #' @export
 #' @examplesIf interactive()
 #'  get_historical_state_estimates()
@@ -21,7 +22,7 @@ get_historical_state_estimates <- get_hist_sta_est <- function() {
   f <- file.path(tempdir(), "fdp-beta-state-historical.csv")
 
   .retry_download(
-    "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-state-historical.csv",
+    "https://www.agriculture.gov.au/sites/default/files/documents/fdp-state-historical.csv",
     .f = f)
 
   x <- data.table::fread(f)
