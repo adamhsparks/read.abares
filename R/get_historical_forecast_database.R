@@ -26,7 +26,8 @@
 #' The "Month_issued" column is converted from a character string to a numeric
 #'  value representing the month of year, _e.g._, "March" is converted to `3`.
 #'
-#' @source <https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/historical-forecasts#:~:text=About%20the%20historical%20agricultural%20forecast,relevant%20to%20Australian%20agricultural%20markets>
+#' @source <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0>
+#' @references <https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/historical-forecasts#:~:text=About%20the%20historical%20agricultural%20forecast,relevant%20to%20Australian%20agricultural%20markets>
 #'
 #' @return A [data.table::data.table] object.
 #'
