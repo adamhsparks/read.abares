@@ -12,7 +12,7 @@ test_that("get_historical_regional_estimates works", {
       Year = "integer",
       ABARES_region = "character",
       Value = "double",
-      RSE = "integer"
+      RSE = "double"
     )
   )
 })
