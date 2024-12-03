@@ -69,10 +69,11 @@
 #' @autoglobal
 #' @export
 
-get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
+get_agfd <- function(fixed_prices = TRUE,
+                     cache = TRUE) {
   download_file <- data.table::fifelse(cache,
-                                  file.path(.find_user_cache(), "agfd.zip"),
-                                  file.path(file.path(tempdir(), "agfd.zip")))
+                                       file.path(.find_user_cache(), "agfd.zip"),
+                                       file.path(file.path(tempdir(), "agfd.zip")))
 
   # this is where the zip file is downloaded
   download_dir <- dirname(download_file)
@@ -97,26 +98,20 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
       "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/2"
     )
 
-    .retry_download(url = url,
-                    .f = download_file)
+    .retry_download(url = url, .f = download_file)
 
     tryCatch({
-    withr::with_dir(download_dir,
-                    utils::unzip(zipfile = download_file,
-                                 exdir = download_dir))
-      },
-    error = function(e) {
-      unlink(download_file)
-      cli::cli_abort("There was an issue with the downloaded file. I've deleted
+      withr::with_dir(download_dir,
+                      utils::unzip(zipfile = download_file, exdir = download_dir))
+    }, error = function(e) {
+      cli::cli_abort(
+        "There was an issue with the downloaded file. I've deleted
                      this bad version of the downloaded file, please retry.",
-                     call = rlang::caller_env())
-    },
-    finally = {
-      # clean up on success!
-      unlink(download_file)
+        call = rlang::caller_env()
+      )
     })
+    unlink(download_file)
   }
-
   agfd_nc <- list.files(agfd_nc_dir, full.names = TRUE)
   class(agfd_nc) <- union("read.abares.agfd.nc.files", class(agfd_nc))
   return(agfd_nc)
