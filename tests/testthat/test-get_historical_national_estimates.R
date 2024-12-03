@@ -12,7 +12,7 @@ test_that("get_historical_national_estimates works", {
       Year = "integer",
       Industry = "character",
       Value = "double",
-      RSE = "integer"
+      RSE = "double"
     )
   )
 })

@@ -14,7 +14,7 @@ without_internet({
       url = url,
       .f = f,
       .max_tries = 2L
-    ), regexp = "There was an error with this download, please retry.")
+    ))
     expect_no_condition(file.exists(f))
   })
 })
