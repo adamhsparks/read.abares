@@ -152,7 +152,7 @@ print.read.abares.soil.thickness.files <- function(x, ...) {
   cli::cli_text("To see the full metadata, call
     {.fn print_soil_thickness_metadata} on a soil thickness object in your R
                 session.")
-  cat("\n")
+  cli::cat_line()
   invisible(x)
 }
 
