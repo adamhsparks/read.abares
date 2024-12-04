@@ -24,6 +24,22 @@
       "@id": "https://orcid.org/0000-0002-0061-8359"
     }
   ],
+  "copyrightHolder": [
+    {
+      "@type": "Organization",
+      "name": "Curtin University"
+    },
+    {
+      "@type": "Organization",
+      "name": "Grains Research and Development Corporation"
+    }
+  ],
+  "funder": [
+    {
+      "@type": "Organization",
+      "name": "Grains Research and Development Corporation"
+    }
+  ],
   "maintainer": [
     {
       "@type": "Person",
@@ -309,7 +325,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "327.685KB",
+  "fileSize": "328.06KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
