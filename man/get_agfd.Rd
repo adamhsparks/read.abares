@@ -74,6 +74,12 @@ N. Hughes, W.Y. Soh, C. Boult, K. Lawson, \emph{Defining drought from
 the perspective of Australian farmers}, Climate Risk Management, Volume 35,
 2022, 100420, ISSN 2212-0963, DOI:
 \href{https://doi.org/10.1016/j.crm.2022.100420}{10.1016/j.crm.2022.100420}.
+
+@source
+\itemize{
+\item Historical climate prices fixed -- \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/3},
+\item Historical climate and prices -- \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/2}
+}
 }
 \seealso{
 Other AGFD: 
