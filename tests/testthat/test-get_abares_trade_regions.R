@@ -52,7 +52,7 @@ test_that("get_abares_trade_regions caches", {
   expect_true(file.exists(
     file.path(.find_user_cache(), "abares_trade_dir/abares_trade_regions.rds")
   ))
-  expect_true(!file.exists(
+  expect_false(file.exists(
     file.path(.find_user_cache(), "abares_trade_dir/abares_trade_regions.csv")
   ))
 })

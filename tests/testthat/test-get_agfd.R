@@ -7,9 +7,9 @@ test_that("get_agfd, fixed = TRUE works", {
   agfd_nc <- list.files(agfd_nc_dir, full.names = TRUE)
 
   nc_files <- function(agfd_nc_dir) {
-    cli::cli_h1("\nLocally Available ABARES AGFD NetCDF Files\n")
+    cli::cli_h1("Locally Available ABARES AGFD NetCDF Files")
     cli::cli_ul(basename(list.files(agfd_nc_dir)))
-    cat("\n")
+    cli::cat_line()
   }
   print_out <- capture.output(nc_files)
 
@@ -32,9 +32,9 @@ test_that("get_agfd, fixed = FALSE works", {
   agfd_nc <- list.files(agfd_nc_dir, full.names = TRUE)
 
   nc_files <- function(agfd_nc_dir) {
-    cli::cli_h1("\nLocally Available ABARES AGFD NetCDF Files\n")
+    cli::cli_h1("Locally Available ABARES AGFD NetCDF Files")
     cli::cli_ul(basename(list.files(agfd_nc_dir)))
-    cat("\n")
+    cli::cat_line()
   }
   print_out <- capture.output(nc_files)
 
@@ -88,9 +88,9 @@ test_that("print.read.abares.agfd.nc.files returns a properly formatted list",
             skip_if_offline()
             skip_on_ci()
             print_out <- function(x) {
-              cli::cli_h1("\nLocally Available ABARES AGFD NetCDF Files\n")
+              cli::cli_h1("Locally Available ABARES AGFD NetCDF Files")
               cli::cli_ul(basename(x))
-              cat("\n")
+              cli::cat_line()
             }
 
             x <- get_agfd(cache = TRUE)

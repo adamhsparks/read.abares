@@ -7,8 +7,8 @@ test_that("read_agfd_terra() returns a terra object", {
 
   expect_type(x, "list")
   expect_s4_class(x[[1]], "SpatRaster")
-  expect_identical(
-    names(x),
+  expect_named(
+    x,
     c(
       "f2022.c1991.p2022.t2022.nc",
       "f2022.c1992.p2022.t2022.nc",
@@ -45,8 +45,8 @@ test_that("read_agfd_terra() returns a terra object", {
       "f2022.c2023.p2022.t2022.nc"
     )
   )
-  expect_identical(
-    names(x[[1]]),
+  expect_named(
+    x[[1]],
     c(
       "farmno",
       "R_total_hat_ha",
