@@ -24,8 +24,8 @@ Useful links:
 
 Other contributors:
 \itemize{
-  \item Curtin University [copyright holder]
-  \item Grains Research and Development Corporation (GRDC Project CUR2210-005OPX) [funder, copyright holder]
+  \item Curtin University of Technology (Provided support through Adam Sparks's time.) [copyright holder]
+  \item Grains Research and Development Corporation (GRDC Project CUR2210-005OPX (AAGI-CU)) [funder, copyright holder]
 }
 
 }

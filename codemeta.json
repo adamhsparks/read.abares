@@ -27,7 +27,7 @@
   "copyrightHolder": [
     {
       "@type": "Organization",
-      "name": "Curtin University"
+      "name": "Curtin University of Technology"
     },
     {
       "@type": "Organization",
@@ -325,7 +325,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "328.06KB",
+  "fileSize": "328.224KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

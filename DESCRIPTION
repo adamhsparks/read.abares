@@ -10,6 +10,10 @@ Authors@R: c(
     person("Curtin University", role = "cph"),
     person("Grains Research and Development Corporation", role = c("fnd", "cph"),
            comment = "GRDC Project CUR2210-005OPX")
+    person("Curtin University of Technology", role = "cph",
+           comment = "Provided support through Adam Sparks's time."),
+    person("Grains Research and Development Corporation", role = c("fnd", "cph"),
+           comment = "GRDC Project CUR2210-005OPX (AAGI-CU)")
   )
 Description: Download and import data from the Australian Bureau of
     Agricultural and Resource Economics and Sciences (ABARES)
