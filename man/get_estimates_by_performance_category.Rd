@@ -5,7 +5,7 @@
 \alias{get_est_by_perf_cat}
 \title{Get Estimates by Size From ABARES}
 \source{
-\url{https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download}
+\url{https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv}
 }
 \usage{
 get_estimates_by_performance_category()
@@ -26,6 +26,9 @@ Get Estimates by Size From ABARES
  # or shorter
  get_est_by_perf_cat()
 \dontshow{\}) # examplesIf}
+}
+\references{
+\url{https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download}
 }
 \seealso{
 Other Estimates: 
