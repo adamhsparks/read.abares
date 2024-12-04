@@ -1,4 +1,5 @@
 
+
 test_that("read_agfd_stars() returns a stars object", {
   skip_if_offline()
   skip_on_ci()
@@ -46,7 +47,7 @@ test_that("read_agfd_stars() returns a stars object", {
     )
   )
   expect_named(
-    names(x[[1]]),
+    x[[1]],
     c(
       "farmno",
       "R_total_hat_ha",
