@@ -127,7 +127,7 @@ get_agfd <- function(fixed_prices = TRUE,
 #' @autoglobal
 #' @noRd
 print.read.abares.agfd.nc.files <- function(x, ...) {
-  cli::cli_h1("\nLocally Available ABARES AGFD NetCDF Files\n")
+  cli::cli_h1("Locally Available ABARES AGFD NetCDF Files")
   cli::cli_ul(basename(x))
   cat("\n")
   invisible(x)

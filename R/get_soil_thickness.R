@@ -184,6 +184,6 @@ print_soil_thickness_metadata <- function(x) {
   cli::cli_h1("Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil)\n")
   cli::cli_h2("Dataset ANZLIC ID ANZCW1202000149")
   cli::cli_text(x$metadata)
-  cat("\n")
+  cli::cat_line()
   invisible(x)
 }

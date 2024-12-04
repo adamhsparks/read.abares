@@ -82,7 +82,7 @@ test_that("print.read.abares.thickness.files prints metadata", {
     cli::cli_text("To see the full metadata, call
     {.fn print_soil_thickness_metadata} on a soil thickness object in your R
                 session.")
-    cat("\n")
+    cli::cat_line()
   }
   print_out <- capture.output(out_text())
 
@@ -101,7 +101,7 @@ test_that("print_soil_thickness_metadata prints full metadata", {
     )
     cli::cli_h2("Dataset ANZLIC ID ANZCW1202000149")
     cli::cli_text(x$metadata)
-    cat("\n")
+    cli::cat_line()
   }
 
   x <- get_soil_thickness(cache = TRUE)
