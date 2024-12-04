@@ -7,8 +7,8 @@ test_that("read_agfd_tidync() returns a tidync object", {
 
   expect_type(x, "list")
   expect_s3_class(x[[1]], "tidync")
-  expect_identical(
-    names(x),
+  expect_named(
+    x,
     c(
       "f2022.c1991.p2022.t2022.nc",
       "f2022.c1992.p2022.t2022.nc",

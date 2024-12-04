@@ -31,10 +31,10 @@ test_that("get_aagis_regions caches", {
   expect_true(file.exists(
     file.path(.find_user_cache(), "aagis_regions_dir/aagis.gpkg")
   ))
-  expect_true(!file.exists(
+  expect_false(file.exists(
     file.path(.find_user_cache(), "aagis_regions_dir/aagis_zip")
   ))
-  expect_true(!file.exists(file.path(
+  expect_false(file.exists(file.path(
     .find_user_cache(), "aagis_asgs16v1_g5a.*"
   )))
 })
