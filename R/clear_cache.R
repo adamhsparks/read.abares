@@ -17,7 +17,7 @@ clear_cache <- function() {
                   recursive = TRUE,
                   full.names = TRUE)
 
-  if (length(f) > 0) {
+  if (length(f) > 0L) {
     unlink(.find_user_cache(), recursive = TRUE, force = TRUE)
   } else {
     cli::cli_inform(
