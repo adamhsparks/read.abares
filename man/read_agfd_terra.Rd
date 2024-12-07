@@ -89,14 +89,14 @@ Sciences (2024)
 Simulation output data are saved as multilayer NetCDF files, which are named
 using following convention:
 
-\emph{f< farm year >.c< climate year >.p< price year >.t< technology year >.nc}
+\code{\emph{f<farm year>.c<climate year>.p<price year>.t<technology year>.nc}}
 
 where:
 \itemize{
-\item \emph{< farm year >} = Financial year of farm business data is used in simulations.
-\item \emph{< climate year >} = Financial year of climate data is used in simulations.
-\item \emph{< price year >} = Financial year of output and input prices used in simulations.
-\item \emph{< technology year >} = Financial year of farm \sQuote{technology} (equal to farm year in all simulations)
+\item \code{\emph{<farm year>}} = Financial year of farm business data is used in simulations.
+\item \code{\emph{<climate year>}} = Financial year of climate data is used in simulations.
+\item \code{\emph{<price year>}} = Financial year of output and input prices used in simulations.
+\item \code{\emph{<technology year>}} = Financial year of farm \sQuote{technology} (equal to farm year in all simulations)
 Here financial years are referred to by the closing calendar year
 (\emph{e.g.}, 2022 = 1 July 2021 to 30 June 2022)."
 }

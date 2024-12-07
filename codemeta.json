@@ -24,6 +24,14 @@
       "@id": "https://orcid.org/0000-0002-0061-8359"
     }
   ],
+  "contributor": [
+    {
+      "@type": "Organization",
+      "name": "Jacob",
+      "email": "jacob@wujciak.de",
+      "@id": "https://orcid.org/0000-0002-7281-3989"
+    }
+  ],
   "copyrightHolder": [
     {
       "@type": "Organization",
@@ -325,7 +333,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "386.072KB",
+  "fileSize": "386.628KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
