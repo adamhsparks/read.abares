@@ -52,7 +52,6 @@
 .retry_download <- function(url, .f, .max_tries = 3L) {
   httr2::request(base_url = url) |>
     httr2::req_options(http_version = 2, timeout = 2000L) |>
-    httr2::req_user_agent("Mozilla/5.0") |>
     httr2::req_retry(max_tries = .max_tries) |>
     httr2::req_cache(path = tempdir()) |>
     httr2::req_progress() |>
