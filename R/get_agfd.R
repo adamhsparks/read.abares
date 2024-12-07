@@ -257,7 +257,7 @@ print.read.abares.agfd.nc.files <- function(x, ...) {
 #'
 #' @export
 #' @autoglobal
-#' @noRd
+
 print_agfd_nc_file_format <- function() {
   cli::cat_rule()
   cli::cli_text("Each of the layers in simulation output data is represented as
