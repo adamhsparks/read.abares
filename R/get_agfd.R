@@ -242,3 +242,39 @@ print.read.abares.agfd.nc.files <- function(x, ...) {
   cli::cat_line()
   invisible(x)
 }
+
+#' Prints File Format Information for the AGFD NetCDF Files
+#'
+#' Print the file format from section 3.2 in \cite{Australian Bureau of
+#'  Agricultural and Resource Economics and Sciences}.
+#'
+#' @references  Australian gridded farm data, Australian Bureau of Agricultural
+#'  and Resource Economics and Sciences, Canberra, July, DOI:
+#'  <https://doi.org/10.25814/7n6z-ev41. CC BY 4.0.>
+#' @source <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/0>
+#' @examples
+#' print_agfd_nc_file_format()
+#'
+#' @export
+#' @autoglobal
+#' @noRd
+print_agfd_nc_file_format <- function() {
+  cli::cat_rule()
+  cli::cli_text("Each of the layers in simulation output data is represented as
+  a 2D raster in NETCDF files, with the following grid format:")
+  cli::cat_line()
+  cli::cli_dl(
+    c(
+      "{.strong CRS}" = "EPSG:4326 - WGS 84 – Geographic",
+      "{.strong Extent}" = "111.975 -44.525 156.275 -9.975",
+      "{.strong Unit}" = "Degrees",
+      "{.strong Width}" = "886",
+      "{.strong Height}" = "691",
+      "{.strong Cell size}" = "0.05 degree x 0.05 degree"
+    )
+  )
+  cli::cat_rule()
+  cli::cli_text("For further details, see the ABARES website,
+                {.url https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}")
+}
+

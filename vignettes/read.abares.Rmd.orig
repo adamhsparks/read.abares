@@ -46,6 +46,12 @@ Load the {read.abares} library.
 library(read.abares)
 ```
 
+Check the file format information for the NetCDF files.
+
+```{r agfd-file-format}
+print_agfd_nc_file_format()
+```
+
 Download or load from the local cache and read the AGFD files as a list of {stars} objects.
 
 ```{r agfd-stars}
