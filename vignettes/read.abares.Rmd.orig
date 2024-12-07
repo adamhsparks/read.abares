@@ -40,27 +40,45 @@ Directly from the DAFF website:
 -- Australian Department of Agriculture, Fisheries and Forestry.
 
 
+Load the {read.abares} library.
+
 ```{r agfd}
 library(read.abares)
+```
 
+Download or load from the local cache and read the AGFD files as a list of {stars} objects.
+
+```{r agfd-stars}
 ## A list of {stars} objects
 star <- get_agfd(cache = TRUE) |>
   read_agfd_stars()
 
 head(star[[1]])
+```
 
+Download or load from the local cache and read the AGFD files as a `terra::rast` object.
+
+```{r agfd-terra}
 ## A {terra} `rast` object
 terr <- get_agfd(cache = TRUE) |>
   read_agfd_terra()
 
 head(terr[[1]])
+```
 
+Download or load from the local cache and read the AGFD files as a list of {tidync} objects.
+
+```{r agfd-tidync}
 ## A list of {tidync} objects
 tdnc <- get_agfd(cache = TRUE) |>
   read_agfd_tidync()
 
 head(tdnc[[1]])
+```
 
+Download or load from the local cache and read the AGFD files as a {data.table} object.
+
+```{r agfd-dt}
 ## A {data.table} object
 get_agfd(cache = TRUE) |>
   read_agfd_dt() |>
@@ -80,7 +98,7 @@ x <- get_soil_thickness(cache = TRUE) |>
   read_soil_thickness_terra()
 ```
 
-For your convenience, {read.abares} re-exports terra::plot(), so you can just use:
+For your convenience, {read.abares} re-exports terra::plot(), so you can just use `plot()` with {terra} objects in {read.abares}.
 
 ```{r plot-soil-depth, fig.cap = "Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)"}
 plot(x)
