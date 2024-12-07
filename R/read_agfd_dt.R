@@ -7,12 +7,15 @@
 #'
 #' @param files A list of \acronym{AGFD} NetCDF files to import
 #'
+#' @inheritSection get_agfd Data Layers
+#'
 #' @return a [data.table::data.table] object of the Australian Gridded Farm Data
 #'
 #' @examplesIf interactive()
 #' get_agfd(cache = TRUE) |>
 #'   read_agfd_dt()
 #'
+#' @inherit get_agfd references
 #' @family AGFD
 #' @autoglobal
 #' @export

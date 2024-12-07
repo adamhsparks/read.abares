@@ -48,11 +48,78 @@ prevailing weather conditions and commodity prices.}\cr
 Both sets of data are large in file size, \emph{i.e.}, >1GB, and will require time
 to download.
 }
+\section{Data Layers}{
+
+
+The data layers from the downloaded NetCDF files are described in Table 2
+from Australian Bureau of Agricultural and Resource Economics and Sciences
+(2024).
+
+Following is a copy of Table 2 for your convenience, please refer to the full
+document for all methods and metadata.
+
+\tabular{lll}{
+\strong{Layer} \tab \strong{Unit} \tab \strong{Description} \cr
+farmno                \tab -         \tab Row index and column index of the grid cell in the form of YYYXXX                                            \cr
+A_barley_hat_ha       \tab -         \tab Proportion of total farm area planted to barley                                                              \cr
+A_oilseeds_hat_ha     \tab -         \tab Proportion of total farm area planted to canola                                                              \cr
+A_sorghum_hat_ha      \tab -         \tab Proportion of total farm area planted to sorghum                                                             \cr
+A_total_cropped_ha    \tab -         \tab Proportion of total farm area planted to crops                                                               \cr
+A_wheat_hat_ha        \tab -         \tab Proportion of total farm area planted to wheat                                                               \cr
+C_chem_hat_ha         \tab $/ha      \tab Expenditure on crop and pasture chemicals per hectare                                                        \cr
+C_fert_hat_ha         \tab $/ha      \tab Expenditure on fertiliser per hectare                                                                        \cr
+C_fodder_hat_ha       \tab $/ha      \tab Expenditure on fodder per hectare                                                                            \cr
+C_fuel_hat_ha         \tab $/ha      \tab Expenditure on fuel, oil and grease per hectare                                                              \cr
+C_total_hat_ha        \tab $/ha      \tab Total cash costs per hectare                                                                                 \cr
+FBP_fci_hat_ha        \tab $/ha      \tab Farm cash income per hectare                                                                                 \cr
+FBP_fbp_hat_ha        \tab $/ha      \tab Farm business profit per hectare, cash income adjusted for family labour, depreciation, and changes in stocks\cr
+FBP_pfe_hat_ha        \tab $/ha      \tab Profit at full equity per hectare                                                                            \cr
+H_barley_dot_hat      \tab t/ha      \tab Barley yield (production per hectare planted)                                                                \cr
+H_oilseeds_dot_hat    \tab t/ha      \tab Oilseeds yield (production per hectare planted)                                                              \cr
+H_sorghum_dot_hat     \tab t/ha      \tab Sorghum yield (production per hectare planted)                                                               \cr
+H_wheat_dot_hat       \tab t/ha      \tab Wheat yield (production per hectare planted)                                                                 \cr
+Q_barley_hat_ha       \tab t/ha      \tab Barley sold per hectare (total farm area)                                                                    \cr
+Q_beef_hat_ha         \tab Number/ha \tab Beef number sold per hectare                                                                                 \cr
+Q_lamb_hat_ha         \tab Number/ha \tab Prime lamb number sold per hectare                                                                           \cr
+Q_oilseeds_hat_ha     \tab t/ha      \tab Canola sold per hectare (total farm area)                                                                    \cr
+Q_sheep_hat_ha        \tab Number/ha \tab Sheep number sold per hectare                                                                                \cr
+Q_sorghum_hat_ha      \tab t/ha      \tab Sorghum sold per hectare (total farm area)                                                                   \cr
+Q_wheat_hat_ha        \tab t/ha      \tab Wheat sold per hectare (total farm area)                                                                     \cr
+R_barley_hat_ha       \tab $/ha      \tab Barley gross receipts per hectare                                                                            \cr
+R_beef_hat_ha         \tab $/ha      \tab Beef cattle receipts per hectare                                                                             \cr
+R_lamb_hat_ha         \tab $/ha      \tab Prime lamb net receipts per hectare                                                                          \cr
+R_oilseeds_hat_ha     \tab $/ha      \tab Receipts for oilseeds this FY for oilseeds sold this FY or in previous FYs per hectare                       \cr
+R_sheep_hat_ha        \tab $/ha      \tab Sheep gross receipts per hectare                                                                             \cr
+R_sorghum_hat_ha      \tab $/ha      \tab Sorghum gross receipts per hectare                                                                           \cr
+R_total_hat_ha        \tab $/ha      \tab Total farm receipts per hectare                                                                              \cr
+R_wheat_hat_ha        \tab $/ha      \tab Wheat gross receipts per hectare                                                                             \cr
+S_beef_births_hat_ha  \tab Number/ha \tab Beef cattle births per hectare                                                                               \cr
+S_beef_cl_hat_ha      \tab Number/ha \tab Beef cattle on hand per hectare on 30 June                                                                   \cr
+S_beef_deaths_hat_ha  \tab Number/ha \tab Beef cattle deaths per hectare                                                                               \cr
+S_sheep_births_hat_ha \tab Number/ha \tab Sheep births per hectare                                                                                     \cr
+S_sheep_cl_hat_ha     \tab Number/ha \tab Sheep on hand per hectare on 30 June                                                                         \cr
+S_sheep_deaths_hat_ha \tab Number/ha \tab Sheep deaths per hectare                                                                                     \cr
+S_wheat_cl_hat_ha     \tab t/ha      \tab Wheat on hand per hectare on 30 June                                                                         \cr
+farmland_per_cell     \tab ha        \tab Indicative area of farmland in the grid cell
+}
+}
+
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 x <- get_agfd(cache = TRUE) |>
   read_agfd_tidync()
 \dontshow{\}) # examplesIf}
+}
+\references{
+\emph{Australian gridded farm data}, Australian Bureau of Agricultural and
+Resource Economics and Sciences, Canberra, July 2024, DOI:
+\href{https://doi.org/10.25814/7n6z-ev41}{10.25814/7n6z-ev41}.
+\href{https://creativecommons.org/licenses/by/4.0/legalcode}{CC BY 4.0}.
+
+N. Hughes, W.Y. Soh, C. Boult, K. Lawson, \emph{Defining drought from
+the perspective of Australian farmers}, Climate Risk Management, Volume 35,
+2022, 100420, ISSN 2212-0963, DOI:
+\href{https://doi.org/10.1016/j.crm.2022.100420}{10.1016/j.crm.2022.100420}.
 }
 \seealso{
 Other AGFD: 

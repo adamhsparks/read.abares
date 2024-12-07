@@ -5,8 +5,9 @@
 #'  objects
 #'
 #' @inherit get_agfd details
-#'
 #' @inheritParams read_agfd_dt
+#' @inheritSection get_agfd Data Layers
+#' @inherit get_agfd references
 #'
 #' @return a `list` object of \CRANpkg{tidync} [tidync::tidync] objects of the
 #'  Australian Gridded Farm Data with the file names as the  list's objects'
