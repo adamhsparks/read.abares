@@ -127,8 +127,8 @@ term trends in some real commodity prices (particularly sheep and lamb). The
 resulting simulation results and percentile indicators are intended to
 reflect the combined impacts of annual climate and commodity price
 variability."</p>
-<p>– Taken from Australian Bureau of Agricultural and Resource Economics and
-Sciences (2024)</p>
+<p>– Taken from  <cite>Australian Bureau of Agricultural and Resource
+Economics and Sciences (2024)</cite></p>
 </div>
 
     </div>
@@ -139,15 +139,15 @@ Sciences (2024)</p>
 
 <p>Simulation output data are saved as multilayer NetCDF files, which are named
 using following convention:</p>
-<p><em>f&lt; farm year &gt;.c&lt; climate year &gt;.p&lt; price year &gt;.t&lt; technology year &gt;.nc</em></p>
-<p>where:</p><ul><li><p><em>&lt; farm year &gt;</em> = Financial year of farm business data is used in simulations.</p></li>
-<li><p><em>&lt; climate year &gt;</em> = Financial year of climate data is used in simulations.</p></li>
-<li><p><em>&lt; price year &gt;</em> = Financial year of output and input prices used in simulations.</p></li>
-<li><p><em>&lt; technology year &gt;</em> = Financial year of farm ‘technology’ (equal to farm year in all simulations)
+<p><var>f&lt;farm year&gt;.c&lt;climate year&gt;.p&lt;price year&gt;.t&lt;technology year&gt;.nc</var></p>
+<p>where:</p><ul><li><p><var>&lt;farm year&gt;</var> = Financial year of farm business data is used in simulations.</p></li>
+<li><p><var>&lt;climate year&gt;</var> = Financial year of climate data is used in simulations.</p></li>
+<li><p><var>&lt;price year&gt;</var> = Financial year of output and input prices used in simulations.</p></li>
+<li><p><var>&lt;technology year&gt;</var> = Financial year of farm ‘technology’ (equal to farm year in all simulations)
 Here financial years are referred to by the closing calendar year
-(<em>e.g.</em>, 2022 = 1 July 2021 to 30 June 2022)."</p></li>
-</ul><p>– Taken from Australian Bureau of Agricultural and Resource Economics and
-Sciences (2024)</p>
+(<em>e.g.</em>, 2022 = 1 July 2021 to 30 June 2022).</p></li>
+</ul><p>– Taken from  <cite>Australian Bureau of Agricultural and Resource
+Economics and Sciences (2024)</cite></p>
     </div>
     <div class="section level2">
     <h2 id="data-layers">Data layers<a class="anchor" aria-label="anchor" href="#data-layers"></a></h2>
@@ -155,8 +155,8 @@ Sciences (2024)</p>
 
 
 <p>The data layers from the downloaded NetCDF files are described in Table 2
-as seen in Australian Bureau of Agricultural and Resource Economics and
-Sciences (2024).</p>
+as seen in <cite>Australian Bureau of Agricultural and Resource Economics
+and Sciences (2024)</cite>.</p>
 <p>Following is a copy of Table 2 for your convenience, please refer to the full
 document for all methods and metadata.</p>
 <table class="table table"><tr><td><strong>Layer</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr><tr><td>farmno</td><td>-</td><td>Row index and column index of the grid cell in the form of YYYXXX</td></tr><tr><td>A_barley_hat_ha</td><td>-</td><td>Proportion of total farm area planted to barley</td></tr><tr><td>A_oilseeds_hat_ha</td><td>-</td><td>Proportion of total farm area planted to canola</td></tr><tr><td>A_sorghum_hat_ha</td><td>-</td><td>Proportion of total farm area planted to sorghum</td></tr><tr><td>A_total_cropped_ha</td><td>-</td><td>Proportion of total farm area planted to crops</td></tr><tr><td>A_wheat_hat_ha</td><td>-</td><td>Proportion of total farm area planted to wheat</td></tr><tr><td>C_chem_hat_ha</td><td>$/ha</td><td>Expenditure on crop and pasture chemicals per hectare</td></tr><tr><td>C_fert_hat_ha</td><td>$/ha</td><td>Expenditure on fertiliser per hectare</td></tr><tr><td>C_fodder_hat_ha</td><td>$/ha</td><td>Expenditure on fodder per hectare</td></tr><tr><td>C_fuel_hat_ha</td><td>$/ha</td><td>Expenditure on fuel, oil and grease per hectare</td></tr><tr><td>C_total_hat_ha</td><td>$/ha</td><td>Total cash costs per hectare</td></tr><tr><td>FBP_fci_hat_ha</td><td>$/ha</td><td>Farm cash income per hectare</td></tr><tr><td>FBP_fbp_hat_ha</td><td>$/ha</td><td>Farm business profit per hectare, cash income adjusted for family labour, depreciation, and changes in stocks</td></tr><tr><td>FBP_pfe_hat_ha</td><td>$/ha</td><td>Profit at full equity per hectare</td></tr><tr><td>H_barley_dot_hat</td><td>t/ha</td><td>Barley yield (production per hectare planted)</td></tr><tr><td>H_oilseeds_dot_hat</td><td>t/ha</td><td>Oilseeds yield (production per hectare planted)</td></tr><tr><td>H_sorghum_dot_hat</td><td>t/ha</td><td>Sorghum yield (production per hectare planted)</td></tr><tr><td>H_wheat_dot_hat</td><td>t/ha</td><td>Wheat yield (production per hectare planted)</td></tr><tr><td>Q_barley_hat_ha</td><td>t/ha</td><td>Barley sold per hectare (total farm area)</td></tr><tr><td>Q_beef_hat_ha</td><td>Number/ha</td><td>Beef number sold per hectare</td></tr><tr><td>Q_lamb_hat_ha</td><td>Number/ha</td><td>Prime lamb number sold per hectare</td></tr><tr><td>Q_oilseeds_hat_ha</td><td>t/ha</td><td>Canola sold per hectare (total farm area)</td></tr><tr><td>Q_sheep_hat_ha</td><td>Number/ha</td><td>Sheep number sold per hectare</td></tr><tr><td>Q_sorghum_hat_ha</td><td>t/ha</td><td>Sorghum sold per hectare (total farm area)</td></tr><tr><td>Q_wheat_hat_ha</td><td>t/ha</td><td>Wheat sold per hectare (total farm area)</td></tr><tr><td>R_barley_hat_ha</td><td>$/ha</td><td>Barley gross receipts per hectare</td></tr><tr><td>R_beef_hat_ha</td><td>$/ha</td><td>Beef cattle receipts per hectare</td></tr><tr><td>R_lamb_hat_ha</td><td>$/ha</td><td>Prime lamb net receipts per hectare</td></tr><tr><td>R_oilseeds_hat_ha</td><td>$/ha</td><td>Receipts for oilseeds this FY for oilseeds sold this FY or in previous FYs per hectare</td></tr><tr><td>R_sheep_hat_ha</td><td>$/ha</td><td>Sheep gross receipts per hectare</td></tr><tr><td>R_sorghum_hat_ha</td><td>$/ha</td><td>Sorghum gross receipts per hectare</td></tr><tr><td>R_total_hat_ha</td><td>$/ha</td><td>Total farm receipts per hectare</td></tr><tr><td>R_wheat_hat_ha</td><td>$/ha</td><td>Wheat gross receipts per hectare</td></tr><tr><td>S_beef_births_hat_ha</td><td>Number/ha</td><td>Beef cattle births per hectare</td></tr><tr><td>S_beef_cl_hat_ha</td><td>Number/ha</td><td>Beef cattle on hand per hectare on 30 June</td></tr><tr><td>S_beef_deaths_hat_ha</td><td>Number/ha</td><td>Beef cattle deaths per hectare</td></tr><tr><td>S_sheep_births_hat_ha</td><td>Number/ha</td><td>Sheep births per hectare</td></tr><tr><td>S_sheep_cl_hat_ha</td><td>Number/ha</td><td>Sheep on hand per hectare on 30 June</td></tr><tr><td>S_sheep_deaths_hat_ha</td><td>Number/ha</td><td>Sheep deaths per hectare</td></tr><tr><td>S_wheat_cl_hat_ha</td><td>t/ha</td><td>Wheat on hand per hectare on 30 June</td></tr><tr><td>farmland_per_cell</td><td>ha</td><td>Indicative area of farmland in the grid cell</td></tr></table></div>
