@@ -79,32 +79,32 @@
 #'  reflect the combined impacts of annual climate and commodity price
 #'  variability."
 #'
-#'   -- Taken from Australian Bureau of Agricultural and Resource Economics and
-#'      Sciences (2024)
+#'   -- Taken from  \cite{Australian Bureau of Agricultural and Resource
+#'    Economics and Sciences (2024)}
 #'
 #' @section Data files:
 #'
 #' Simulation output data are saved as multilayer NetCDF files, which are named
 #'  using following convention:
 #'
-#'    *f< farm year >.c< climate year >.p< price year >.t< technology year >.nc*
+#' \var{f<farm year>.c<climate year>.p<price year>.t<technology year>.nc}
 #'
 #'  where:
-#'  * *< farm year >* = Financial year of farm business data is used in simulations.
-#'  * *< climate year >* = Financial year of climate data is used in simulations.
-#'  * *< price year >* = Financial year of output and input prices used in simulations.
-#'  * *< technology year >* = Financial year of farm \sQuote{technology} (equal to farm year in all simulations)
+#'  * \var{<farm year>} = Financial year of farm business data is used in simulations.
+#'  * \var{<climate year>} = Financial year of climate data is used in simulations.
+#'  * \var{<price year>} = Financial year of output and input prices used in simulations.
+#'  * \var{<technology year>} = Financial year of farm \sQuote{technology} (equal to farm year in all simulations)
 #'  Here financial years are referred to by the closing calendar year
-#'   (*e.g.*, 2022 = 1 July 2021 to 30 June 2022)."
+#'   (*e.g.*, 2022 = 1 July 2021 to 30 June 2022).
 #'
-#' -- Taken from Australian Bureau of Agricultural and Resource Economics and
-#'      Sciences (2024)
+#'   -- Taken from  \cite{Australian Bureau of Agricultural and Resource
+#'    Economics and Sciences (2024)}
 #'
 #' @section Data layers:
 #'
 #' The data layers from the downloaded NetCDF files are described in Table 2
-#'  as seen in Australian Bureau of Agricultural and Resource Economics and
-#'  Sciences (2024).
+#'  as seen in \cite{Australian Bureau of Agricultural and Resource Economics
+#'  and Sciences (2024)}.
 #'
 #' Following is a copy of Table 2 for your convenience, please refer to the full
 #' document for all methods and metadata.
