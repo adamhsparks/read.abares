@@ -106,6 +106,9 @@ farmland_per_cell     \tab ha        \tab Indicative area of farmland in the gri
 
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+
+# using piping, which can use the {read.abares} cache after the first DL
+
 x <- get_agfd(cache = TRUE) |>
   read_agfd_tidync()
 \dontshow{\}) # examplesIf}

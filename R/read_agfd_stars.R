@@ -13,6 +13,9 @@
 #'  Farm Data with the file names as the list's objects' names
 #'
 #' @examplesIf interactive()
+#'
+#' # using piping, which can use the {read.abares} cache after the first DL
+#'
 #' agfd <- get_agfd(cache = TRUE) |>
 #'   read_agfd_stars()
 #'

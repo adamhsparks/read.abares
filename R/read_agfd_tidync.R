@@ -14,6 +14,9 @@
 #'  names.
 #'
 #' @examplesIf interactive()
+#'
+#' # using piping, which can use the {read.abares} cache after the first DL
+#'
 #' x <- get_agfd(cache = TRUE) |>
 #'   read_agfd_tidync()
 #'

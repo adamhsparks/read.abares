@@ -12,6 +12,9 @@
 #' @return a [data.table::data.table] object of the Australian Gridded Farm Data
 #'
 #' @examplesIf interactive()
+#'
+#' # using piping, which can use the {read.abares} cache after the first DL
+#'
 #' get_agfd(cache = TRUE) |>
 #'   read_agfd_dt()
 #'
