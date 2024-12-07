@@ -42,6 +42,25 @@ Load the {read.abares} library.
 library(read.abares)
 ```
 
+Check the file format information for the NetCDF files.
+
+
+``` r
+print_agfd_nc_file_format()
+#> ────────────────────────────────────────────────────────────────────────────────────────
+#> Each of the layers in simulation output data is represented as a 2D raster in NETCDF
+#> files, with the following grid format:
+#> CRS: EPSG:4326 - WGS 84 – Geographic
+#> Extent: 111.975 -44.525 156.275 -9.975
+#> Unit: Degrees
+#> Width: 886
+#> Height: 691
+#> Cell size: 0.05 degree x 0.05 degree
+#> ────────────────────────────────────────────────────────────────────────────────────────
+#> For further details, see the ABARES website,
+#> <https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data>
+```
+
 Download or load from the local cache and read the AGFD files as a list of {stars} objects.
 
 
@@ -110,7 +129,7 @@ head(tdnc[[1]])
 #> # A tibble: 1 × 2
 #>   access              source                                                            
 #>   <dttm>              <chr>                                                             
-#> 1 2024-12-07 21:23:36 /Users/adamsparks/Library/Caches/org.R-project.R/R/read.abares/hi…
+#> 1 2024-12-07 23:43:59 /Users/adamsparks/Library/Caches/org.R-project.R/R/read.abares/hi…
 #> 
 #> $axis
 #> # A tibble: 84 × 3

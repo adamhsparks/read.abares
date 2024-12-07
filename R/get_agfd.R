@@ -274,5 +274,7 @@ print_agfd_nc_file_format <- function() {
     )
   )
   cli::cat_rule()
+  cli::cli_text("For further details, see the ABARES website,
+                {.url https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}")
 }
 
