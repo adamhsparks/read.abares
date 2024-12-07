@@ -87,15 +87,15 @@
 #' Simulation output data are saved as multilayer NetCDF files, which are named
 #'  using following convention:
 #'
-#' \code{\emph{f<farm year>.c<climate year>.p<price year>.t<technology year>.nc}}
+#' \code{f<farm year>.c<climate year>.p<price year>.t<technology year>.nc}
 #'
 #'  where:
-#'  * \code{\emph{<farm year>}} = Financial year of farm business data is used in simulations.
-#'  * \code{\emph{<climate year>}} = Financial year of climate data is used in simulations.
-#'  * \code{\emph{<price year>}} = Financial year of output and input prices used in simulations.
-#'  * \code{\emph{<technology year>}} = Financial year of farm \sQuote{technology} (equal to farm year in all simulations)
+#'  * \code{<farm year>} = Financial year of farm business data is used in simulations.
+#'  * \code{<climate year>} = Financial year of climate data is used in simulations.
+#'  * \code{<price year>} = Financial year of output and input prices used in simulations.
+#'  * \code{<technology year>} = Financial year of farm \sQuote{technology} (equal to farm year in all simulations)
 #'  Here financial years are referred to by the closing calendar year
-#'   (*e.g.*, 2022 = 1 July 2021 to 30 June 2022)."
+#'   (*e.g.*, 2022 = 1 July 2021 to 30 June 2022).
 #'
 #' -- Taken from Australian Bureau of Agricultural and Resource Economics and
 #'      Sciences (2024)
