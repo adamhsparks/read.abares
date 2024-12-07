@@ -65,12 +65,70 @@ prevailing weather conditions and commodity prices.}\cr
 Both sets of data are large in file size, \emph{i.e.}, >1GB, and will require time
 to download.
 }
-\section{Data Layers}{
+\section{Model scenarios}{
+
+\subsection{Historical climate (fixed prices)}{
+
+The Historical climate (fixed prices) scenario is similar to that described
+in Hughes \emph{et al.} (2022) and is intended to isolate the effects of climate
+variability on financial incomes for broadacre farm businesses. In these
+simulations, global output and input price indexes are fixed at values from
+the most recently completed financial year. However, in these scenarios the
+spread between domestic and global grain (wheat, barley and sorghum) prices,
+along with Australian fodder prices are allowed to vary in response to
+climate data (to capture domestic increases in grain and fodder prices in
+drought years, see Hughes \emph{et al.} 2022). A 33-year historical climate
+sequence (including historical simulated crop and pasture data from the
+\acronym{AADI} project) is simulated for each grid cell (1990-91 to
+2022-23).
+}
+
+\subsection{Historical climate and prices}{
+
+As part of the AADI project an additional scenario was developed accounting
+for changes in both climate conditions and output and input prices (\emph{i.e.},
+global commodity market variability). In this Historical climate and prices
+scenario the 33-year reference period allows for variation in both\
+historical climate conditions and historical prices. For this scenario,
+historical price indexes were de-trended, to account for consistent long-
+term trends in some real commodity prices (particularly sheep and lamb). The
+resulting simulation results and percentile indicators are intended to
+reflect the combined impacts of annual climate and commodity price
+variability."
+
+-- Taken from Australian Bureau of Agricultural and Resource Economics and
+Sciences (2024)
+}
+}
+
+\section{Data files}{
+
+
+Simulation output data are saved as multilayer NetCDF files, which are named
+using following convention:
+
+\emph{f< farm year >.c< climate year >.p< price year >.t< technology year >.nc}
+
+where:
+\itemize{
+\item \emph{< farm year >} = Financial year of farm business data is used in simulations.
+\item \emph{< climate year >} = Financial year of climate data is used in simulations.
+\item \emph{< price year >} = Financial year of output and input prices used in simulations.
+\item \emph{< technology year >} = Financial year of farm \sQuote{technology} (equal to farm year in all simulations)
+Here financial years are referred to by the closing calendar year
+(\emph{e.g.}, 2022 = 1 July 2021 to 30 June 2022)."
+}
+
+-- Taken from Australian Bureau of Agricultural and Resource Economics and
+Sciences (2024)
+}
+
+\section{Data layers}{
 
 
 The data layers from the downloaded NetCDF files are described in Table 2
-from Australian Bureau of Agricultural and Resource Economics and Sciences
-(2024).
+as seen in Australian Bureau of Agricultural and Resource Economics and
+Sciences (2024).
 
 Following is a copy of Table 2 for your convenience, please refer to the full
 document for all methods and metadata.

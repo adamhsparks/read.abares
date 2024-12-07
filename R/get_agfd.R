@@ -49,11 +49,62 @@
 #'  the files locally. If `FALSE`, this function uses `tempdir()` and the files
 #'  are deleted upon closing of the \R session.
 #'
-#' @section Data Layers:
+#' @section Model scenarios:
+#'
+#' ### Historical climate (fixed prices)
+#'
+#' The Historical climate (fixed prices) scenario is similar to that described
+#'  in Hughes *et al.* (2022) and is intended to isolate the effects of climate
+#'  variability on financial incomes for broadacre farm businesses. In these
+#'  simulations, global output and input price indexes are fixed at values from
+#'  the most recently completed financial year. However, in these scenarios the
+#'  spread between domestic and global grain (wheat, barley and sorghum) prices,
+#'  along with Australian fodder prices are allowed to vary in response to
+#'  climate data (to capture domestic increases in grain and fodder prices in
+#'  drought years, see Hughes *et al.* 2022). A 33-year historical climate
+#'  sequence (including historical simulated crop and pasture data from the
+#'  \acronym{AADI} project) is simulated for each grid cell (1990-91 to
+#'  2022-23).
+#'
+#'  ### Historical climate and prices
+#'
+#'  As part of the AADI project an additional scenario was developed accounting
+#'  for changes in both climate conditions and output and input prices (*i.e.*,
+#'  global commodity market variability). In this Historical climate and prices
+#'  scenario the 33-year reference period allows for variation in both\
+#'  historical climate conditions and historical prices. For this scenario,
+#'  historical price indexes were de-trended, to account for consistent long-
+#'  term trends in some real commodity prices (particularly sheep and lamb). The
+#'  resulting simulation results and percentile indicators are intended to
+#'  reflect the combined impacts of annual climate and commodity price
+#'  variability."
+#'
+#'   -- Taken from Australian Bureau of Agricultural and Resource Economics and
+#'      Sciences (2024)
+#'
+#' @section Data files:
+#'
+#' Simulation output data are saved as multilayer NetCDF files, which are named
+#'  using following convention:
+#'
+#'    *f< farm year >.c< climate year >.p< price year >.t< technology year >.nc*
+#'
+#'  where:
+#'  * *< farm year >* = Financial year of farm business data is used in simulations.
+#'  * *< climate year >* = Financial year of climate data is used in simulations.
+#'  * *< price year >* = Financial year of output and input prices used in simulations.
+#'  * *< technology year >* = Financial year of farm \sQuote{technology} (equal to farm year in all simulations)
+#'  Here financial years are referred to by the closing calendar year
+#'   (*e.g.*, 2022 = 1 July 2021 to 30 June 2022)."
+#'
+#' -- Taken from Australian Bureau of Agricultural and Resource Economics and
+#'      Sciences (2024)
+#'
+#' @section Data layers:
 #'
 #' The data layers from the downloaded NetCDF files are described in Table 2
-#'  from Australian Bureau of Agricultural and Resource Economics and Sciences
-#'  (2024).
+#'  as seen in Australian Bureau of Agricultural and Resource Economics and
+#'  Sciences (2024).
 #'
 #' Following is a copy of Table 2 for your convenience, please refer to the full
 #' document for all methods and metadata.
@@ -104,6 +155,7 @@
 #' }
 #'
 #' @references
+#'
 #' *Australian gridded farm data*, Australian Bureau of Agricultural and
 #'  Resource Economics and Sciences, Canberra, July 2024, DOI:
 #'  [10.25814/7n6z-ev41](https://doi.org/10.25814/7n6z-ev41).

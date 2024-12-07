@@ -6,7 +6,9 @@
 #'
 #' @inherit get_agfd details
 #' @inheritParams read_agfd_dt
-#' @inheritSection get_agfd Data Layers
+#' @inheritSection get_agfd Model scenarios
+#' @inheritSection get_agfd Data files
+#' @inheritSection get_agfd Data layers
 #' @inherit get_agfd references
 #'
 #' @return a `list` object of [terra::rast] objects of the Australian Gridded
