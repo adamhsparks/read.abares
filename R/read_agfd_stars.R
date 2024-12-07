@@ -5,13 +5,19 @@
 #'  objects.
 #'
 #' @inherit get_agfd details
-#'
 #' @inheritParams read_agfd_dt
+#' @inheritSection get_agfd Model scenarios
+#' @inheritSection get_agfd Data files
+#' @inheritSection get_agfd Data layers
+#' @inherit get_agfd references
 #'
 #' @return a `list` object of \CRANpkg{stars} objects of the Australian Gridded
 #'  Farm Data with the file names as the list's objects' names
 #'
 #' @examplesIf interactive()
+#'
+#' # using piping, which can use the {read.abares} cache after the first DL
+#'
 #' agfd <- get_agfd(cache = TRUE) |>
 #'   read_agfd_stars()
 #'
