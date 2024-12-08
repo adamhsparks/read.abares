@@ -21,6 +21,7 @@ FBP
 FYs
 GRDC
 Geopackage
+Geopackages
 Gridded
 ISSN
 Landforms
@@ -42,6 +43,7 @@ PIRSA
 PPF
 PPF's
 QDNR
+Rds
 Soh
 Topsoils
 WGS
@@ -50,11 +52,13 @@ abares
 agfd
 al
 backcast
+brio
 broadacre
 coverages
 crm
 de
 digitised
+doi
 et
 ev
 farmno
@@ -68,13 +72,15 @@ funder
 geospatial
 gridded
 hillslopes
+https
+httptest
+httr
 kilometres
 labour
 locational
 modelled
 modelling
 multilayer
-nc
 oilseeds
 pfe
 quadrat
