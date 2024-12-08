@@ -21,7 +21,7 @@ reference:
   - read_agfd_stars
   - read_agfd_terra
   - read_agfd_tidync
-  - subtitle: Meta
+- subtitle: Meta
   desc: |
     Information about the AGFD NetCDF files and contents
   contents:
