@@ -1,4 +1,3 @@
-
 test_that("read_historical_state_estimates works", {
   skip_if_offline()
   skip_on_ci()

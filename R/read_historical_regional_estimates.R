@@ -1,4 +1,3 @@
-
 #' Read Historical Regional Estimates from ABARES
 #'
 #' @note
@@ -13,18 +12,18 @@
 #' @source <https://www.agriculture.gov.au/sites/default/files/documents/fdp-regional-historical.csv>
 #' @export
 #' @examplesIf interactive()
-#'  read_historical_regional_estimates()
+#' read_historical_regional_estimates()
 #'
-#'  # or shorter
-#'  read_hist_reg_est()
+#' # or shorter
+#' read_hist_reg_est()
 #'
-read_historical_regional_estimates <- read_hist_reg_est <-  function() {
-
+read_historical_regional_estimates <- read_hist_reg_est <- function() {
   f <- file.path(tempdir(), "fdp-beta-regional-historical.csv")
 
   .retry_download(
     "https://www.agriculture.gov.au/sites/default/files/documents/fdp-regional-historical.csv",
-    .f = f)
+    .f = f
+  )
 
   x <- data.table::fread(f)
   data.table::setnames(
@@ -33,7 +32,8 @@ read_historical_regional_estimates <- read_hist_reg_est <-  function() {
     new = c("Variable", "Year", "ABARES_region", "Value", "RSE")
   )
   data.table::setcolorder(x,
-                          neworder = c("Variable", "Year", "ABARES_region", "Value", "RSE"))
+    neworder = c("Variable", "Year", "ABARES_region", "Value", "RSE")
+  )
   data.table::setkey(x, "Variable")
   return(x[])
 }

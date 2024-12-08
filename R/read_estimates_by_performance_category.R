@@ -1,4 +1,3 @@
-
 #' Read Estimates by Size From ABARES
 #'
 #' @return A [data.table::data.table] object
@@ -9,18 +8,18 @@
 #' @autoglobal
 #' @examplesIf interactive()
 #'
-#'  read_estimates_by_performance_category()
+#' read_estimates_by_performance_category()
 #'
-#'  # or shorter
-#'  read_est_by_perf_cat()
+#' # or shorter
+#' read_est_by_perf_cat()
 #'
 read_estimates_by_performance_category <- read_est_by_perf_cat <- function() {
-
   f <- file.path(tempdir(), "fdp-BySize-ByPerformance.csv")
 
   .retry_download(
     "https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv",
-    .f = f)
+    .f = f
+  )
 
   x <- data.table::fread(f)
   return(x)

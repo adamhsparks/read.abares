@@ -1,4 +1,3 @@
-
 #' Read Historical Forecast Database From ABARES
 #'
 #' # Data Dictionary
@@ -41,11 +40,11 @@
 #' read_historical_forecast()
 #'
 read_historical_forecast_database <- function() {
-
   f <- file.path(tempdir(), "historical_db.xlsx")
 
   .retry_download("https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0",
-                  .f = f)
+    .f = f
+  )
 
   x <- data.table::as.data.table(openxlsx2::read_xlsx(f, sheet = "Database", na.strings = "na"))
 

@@ -1,4 +1,3 @@
-
 #' Read AAGIS Region Mapping Files
 #'
 #' Download, cache and import the Australian Agricultural and Grazing
@@ -100,14 +99,21 @@ read_aagis_regions <- function(cache = TRUE) {
   }
 
   .retry_download("https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip",
-                  .f = aagis_zip)
+    .f = aagis_zip
+  )
 
-  withr::with_dir(aagis_regions_dir,
-                  utils::unzip(aagis_zip, exdir = aagis_regions_dir))
+  withr::with_dir(
+    aagis_regions_dir,
+    utils::unzip(aagis_zip, exdir = aagis_regions_dir)
+  )
 
-  aagis_sf <- sf::read_sf(dsn = file.path(aagis_regions_dir,
-                                          "aagis_asgs16v1_g5a.shp"),
-                          quiet = TRUE)
+  aagis_sf <- sf::read_sf(
+    dsn = file.path(
+      aagis_regions_dir,
+      "aagis_asgs16v1_g5a.shp"
+    ),
+    quiet = TRUE
+  )
 
   # From checking the unzipped file, some geometries are invalid, this corrects
   aagis_sf <- sf::st_make_valid(aagis_sf)

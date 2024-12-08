@@ -1,4 +1,3 @@
-
 #' Read Historical National Estimates from ABARES
 #'
 #' @note
@@ -14,18 +13,18 @@
 #' @export
 #' @examplesIf interactive()
 #'
-#'  read_historical_national_estimates()
+#' read_historical_national_estimates()
 #'
-#'  # or shorter
-#'  read_hist_nat_est()
+#' # or shorter
+#' read_hist_nat_est()
 #'
 read_historical_national_estimates <- function() {
-
   f <- file.path(tempdir(), "fdp-beta-national-historical.csv")
 
   .retry_download(
     "https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv",
-  .f = f)
+    .f = f
+  )
 
   x <- data.table::fread(f)
   data.table::setcolorder(x, neworder = c("Variable", "Year", "Industry", "Value", "RSE"))

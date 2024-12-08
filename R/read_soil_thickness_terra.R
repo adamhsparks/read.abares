@@ -1,4 +1,3 @@
-
 #' Read Soil Thickness File With terra
 #'
 #' Read Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1

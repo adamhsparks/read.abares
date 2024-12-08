@@ -1,4 +1,3 @@
-
 #' Get Australian Gridded Farm Data for Local Use
 #'
 #' Downloads The Australian Gridded Farm Data (\acronym{AGFD}) data and unzips
@@ -181,9 +180,11 @@
 
 get_agfd <- function(fixed_prices = TRUE,
                      cache = TRUE) {
-  download_file <- data.table::fifelse(cache,
-                                       file.path(.find_user_cache(), "agfd.zip"),
-                                       file.path(file.path(tempdir(), "agfd.zip")))
+  download_file <- data.table::fifelse(
+    cache,
+    file.path(.find_user_cache(), "agfd.zip"),
+    file.path(file.path(tempdir(), "agfd.zip"))
+  )
 
   # this is where the zip file is downloaded
   download_dir <- dirname(download_file)
@@ -210,16 +211,21 @@ get_agfd <- function(fixed_prices = TRUE,
 
     .retry_download(url = url, .f = download_file)
 
-    tryCatch({
-      withr::with_dir(download_dir,
-                      utils::unzip(zipfile = download_file, exdir = download_dir))
-    }, error = function(e) {
-      cli::cli_abort(
-        "There was an issue with the downloaded file. I've deleted
+    tryCatch(
+      {
+        withr::with_dir(
+          download_dir,
+          utils::unzip(zipfile = download_file, exdir = download_dir)
+        )
+      },
+      error = function(e) {
+        cli::cli_abort(
+          "There was an issue with the downloaded file. I've deleted
                      this bad version of the downloaded file, please retry.",
-        call = rlang::caller_env()
-      )
-    })
+          call = rlang::caller_env()
+        )
+      }
+    )
     unlink(download_file)
   }
   agfd_nc <- list.files(agfd_nc_dir, full.names = TRUE)
@@ -277,4 +283,3 @@ print_agfd_nc_file_format <- function() {
   cli::cli_text("For further details, see the ABARES website,
                 {.url https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}")
 }
-

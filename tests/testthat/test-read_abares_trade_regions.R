@@ -1,4 +1,3 @@
-
 # sets up a custom cache environment in `tempdir()` just for testing
 withr::local_envvar(R_USER_CACHE_DIR = file.path(tempdir(), "abares.cache.1"))
 
@@ -9,13 +8,16 @@ test_that("read_abares_trade_regions doesn't cache", {
   skip_on_ci()
   x <- read_abares_trade_regions(cache = FALSE)
   expect_s3_class(x, c("data.table", "data.frame"))
-  expect_named(x,
-               c("Classification",
-                 "Region",
-                 "Subregion",
-                 "SACC_Destination",
-                 "Destination"
-               ))
+  expect_named(
+    x,
+    c(
+      "Classification",
+      "Region",
+      "Subregion",
+      "SACC_Destination",
+      "Destination"
+    )
+  )
   expect_identical(
     lapply(x, typeof),
     list(

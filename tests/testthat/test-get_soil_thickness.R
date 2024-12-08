@@ -1,4 +1,3 @@
-
 # There are two files for this function due to caching tests
 
 # sets up a custom cache environment in `tempdir()` just for testing
@@ -87,7 +86,7 @@ test_that("print.read.abares.thickness.files prints metadata", {
   print_out <- capture.output(out_text())
 
   x <- get_soil_thickness(cache = TRUE)
-  expect_identical(x |>  capture.output(), print_out)
+  expect_identical(x |> capture.output(), print_out)
 })
 
 test_that("print_soil_thickness_metadata prints full metadata", {
@@ -107,9 +106,11 @@ test_that("print_soil_thickness_metadata prints full metadata", {
   x <- get_soil_thickness(cache = TRUE)
   print_out <- capture.output(out_text(x))
 
-  expect_identical(print_soil_thickness_metadata(x) |>
-                     capture.output(),
-                   print_out)
+  expect_identical(
+    print_soil_thickness_metadata(x) |>
+      capture.output(),
+    print_out
+  )
 })
 
 withr::deferred_run()

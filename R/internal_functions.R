@@ -1,4 +1,3 @@
-
 #' Find the File Path to Users' Cache Directory
 #'
 #' @return A `character` string value of a file path indicating the proper
@@ -41,8 +40,10 @@
 #' @examples
 #'
 #' f <- file.path(tempdir(), "fdp-beta-national-historical.csv")
-#' retry_download(url = "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-national-historical.csv",
-#' .f = f)
+#' retry_download(
+#'   url = "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-national-historical.csv",
+#'   .f = f
+#' )
 #'
 #' @return Called for its side-effects, writes an object to the `tempdir()` for
 #'   reading into the active \R session later.

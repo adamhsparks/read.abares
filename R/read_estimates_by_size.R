@@ -1,4 +1,3 @@
-
 #' Read Estimates by Size From ABARES
 #'
 #' @note
@@ -19,16 +18,17 @@
 #' read_est_by_size()
 #'
 read_estimates_by_size <- read_est_by_size <- function() {
-
   f <- file.path(tempdir(), "fdp-beta-performance-by-size.csv")
 
   .retry_download(
     "https://www.agriculture.gov.au/sites/default/files/documents/fdp-performance-by-size.csv",
-  .f = f)
+    .f = f
+  )
 
   x <- data.table::fread(f)
   data.table::setcolorder(x,
-                          neworder = c("Variable", "Year", "Size", "Industry", "Value", "RSE"))
+    neworder = c("Variable", "Year", "Size", "Industry", "Value", "RSE")
+  )
   data.table::setkey(x, "Variable")
 
   return(x[])

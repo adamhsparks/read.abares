@@ -1,4 +1,3 @@
-
 #' Remove Files in Users' Cache Directory
 #'
 #' Removes all files in the \pkg{read.abares} cache if any exist.
@@ -14,8 +13,9 @@
 
 clear_cache <- function() {
   f <- list.files(.find_user_cache(),
-                  recursive = TRUE,
-                  full.names = TRUE)
+    recursive = TRUE,
+    full.names = TRUE
+  )
 
   if (length(f) > 0L) {
     unlink(.find_user_cache(), recursive = TRUE, force = TRUE)

@@ -1,4 +1,3 @@
-
 #' Read Historical State Estimates from ABARES
 #'
 #' @note
@@ -13,17 +12,18 @@
 #' @source <https://www.agriculture.gov.au/sites/default/files/documents/fdp-state-historical.csv>
 #' @export
 #' @examplesIf interactive()
-#'  read_historical_state_estimates()
+#' read_historical_state_estimates()
 #'
-#'  # or shorter
-#'  read_hist_sta_est()
+#' # or shorter
+#' read_hist_sta_est()
 #'
 read_historical_state_estimates <- read_hist_sta_est <- function() {
   f <- file.path(tempdir(), "fdp-beta-state-historical.csv")
 
   .retry_download(
     "https://www.agriculture.gov.au/sites/default/files/documents/fdp-state-historical.csv",
-    .f = f)
+    .f = f
+  )
 
   x <- data.table::fread(f)
   data.table::setcolorder(

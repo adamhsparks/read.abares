@@ -1,4 +1,3 @@
-
 #' Get Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1 for Local Use
 #'
 #' @param cache `Boolean` Cache the soil thickness data files after download
@@ -40,8 +39,10 @@ get_soil_thickness <- function(cache = TRUE) {
     return(.create_soil_thickness_list(dirname(thpk_1_cache)))
   } else {
     .download_soil_thickness(cache)
-    return(.create_soil_thickness_list(soil_dir = file.path(tempdir(),
-                                                            "soil_thickness_dir")))
+    return(.create_soil_thickness_list(soil_dir = file.path(
+      tempdir(),
+      "soil_thickness_dir"
+    )))
   }
 }
 
@@ -56,15 +57,18 @@ get_soil_thickness <- function(cache = TRUE) {
 #' @keywords Internal
 
 .create_soil_thickness_list <- function(soil_dir) {
-
-  metadata <- readtext::readtext(file.path(soil_dir,
-                                           "ANZCW1202000149.txt"))
+  metadata <- readtext::readtext(file.path(
+    soil_dir,
+    "ANZCW1202000149.txt"
+  ))
   soil_thickness <- list(
     "metadata" = metadata$text,
     "grid" = file.path(soil_dir, "thpk_1")
   )
-  class(soil_thickness) <- union("read.abares.soil.thickness.files",
-                                 class(soil_thickness))
+  class(soil_thickness) <- union(
+    "read.abares.soil.thickness.files",
+    class(soil_thickness)
+  )
   return(soil_thickness)
 }
 
@@ -82,9 +86,11 @@ get_soil_thickness <- function(cache = TRUE) {
 #' @keywords Internal
 
 .download_soil_thickness <- function(cache) {
-  download_file <- data.table::fifelse(cache,
-                                       file.path(.find_user_cache(), "soil_thick.zip"),
-                                       file.path(file.path(tempdir(), "soil_thick.zip")))
+  download_file <- data.table::fifelse(
+    cache,
+    file.path(.find_user_cache(), "soil_thick.zip"),
+    file.path(file.path(tempdir(), "soil_thick.zip"))
+  )
 
   # this is where the zip file is downloaded
   download_dir <- dirname(download_file)
@@ -100,11 +106,15 @@ get_soil_thickness <- function(cache = TRUE) {
     }
     .retry_download(
       "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
-      .f = download_file)
+      .f = download_file
+    )
 
-    withr::with_dir(download_dir,
-                    utils::unzip(download_file,
-                                 exdir = file.path(download_dir)))
+    withr::with_dir(
+      download_dir,
+      utils::unzip(download_file,
+        exdir = file.path(download_dir)
+      )
+    )
     file.rename(
       file.path(download_dir, "staiar9cl__05911a01eg_geo___/"),
       file.path(download_dir, "soil_thickness_dir")
@@ -149,7 +159,8 @@ print.read.abares.soil.thickness.files <- function(x, ...) {
     Provide indications of probable thickness soil layer 1 in agricultural areas
     where soil thickness testing has not been carried out.\n\n
     Use Limitation: This dataset is bound by the requirements set down by the
-    National Land & Water Resources Audit")
+    National Land & Water Resources Audit"
+  )
   cli::cli_text("To see the full metadata, call
     {.fn print_soil_thickness_metadata} on a soil thickness object in your R
                 session.")
@@ -171,14 +182,13 @@ print.read.abares.soil.thickness.files <- function(x, ...) {
 #'   metadata file to the \R console
 #' @examplesIf interactive()
 #' get_soil_thickness(cache = TRUE) |>
-#' print_soil_thickness_metadata()
+#'   print_soil_thickness_metadata()
 #'
 #' @family soil_thickness
 #'
 #' @export
 
 print_soil_thickness_metadata <- function(x) {
-
   .check_class(x = x, class = "read.abares.soil.thickness.files")
   loc <- stringr::str_locate(x$metadata, "Custodian")
   metadata <- stringr::str_sub(x$metadata, loc[, "start"] - 1, nchar(x$metadata))

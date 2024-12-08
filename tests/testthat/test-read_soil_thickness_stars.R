@@ -1,4 +1,3 @@
-
 test_that("read_soil_thickness_stars returns a stars object", {
   skip_if_offline()
   skip_on_ci()

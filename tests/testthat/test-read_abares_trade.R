@@ -1,4 +1,3 @@
-
 # sets up a custom cache environment in `tempdir()` just for testing
 withr::local_envvar(R_USER_CACHE_DIR = file.path(tempdir(), "abares.cache.1"))
 

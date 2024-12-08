@@ -1,4 +1,3 @@
-
 #' Read Data From the ABARES Trade Dashboard
 #'
 #' Fetches and imports  \acronym{ABARES} trade data.
@@ -26,8 +25,10 @@
 #' @export
 
 read_abares_trade <- function(cache = TRUE) {
-  abares_trade_rds <- file.path(.find_user_cache(),
-                                "abares_trade_dir/abares_trade.rds")
+  abares_trade_rds <- file.path(
+    .find_user_cache(),
+    "abares_trade_dir/abares_trade.rds"
+  )
 
   if (file.exists(abares_trade_rds)) {
     return(readRDS(abares_trade_rds))
@@ -66,7 +67,8 @@ read_abares_trade <- function(cache = TRUE) {
 
   .retry_download(
     url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/1",
-    .f = trade_zip)
+    .f = trade_zip
+  )
 
   abares_trade <- data.table::fread(trade_zip)
   data.table::setnames(
@@ -106,7 +108,8 @@ read_abares_trade <- function(cache = TRUE) {
   )
 
   abares_trade[, Year_month := lubridate::ym(
-    gsub(".", "-", Year_month, fixed = TRUE))]
+    gsub(".", "-", Year_month, fixed = TRUE)
+  )]
 
   if (cache) {
     saveRDS(abares_trade, file = abares_trade_rds)

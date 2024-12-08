@@ -1,4 +1,3 @@
-
 #' Read AGFD NCDF Files With stars
 #'
 #' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a list of [stars]
@@ -30,7 +29,6 @@
 #' @export
 
 read_agfd_stars <- function(files) {
-
   var <- c(
     "farmno",
     "R_total_hat_ha",
@@ -85,11 +83,12 @@ read_agfd_stars <- function(files) {
   q_read_ncdf <- purrr::quietly(stars::read_ncdf)
   s2 <- purrr::modify_depth(
     purrr::map(files[2:length(files)], q_read_ncdf, var = var),
-    1, "result")
+    1, "result"
+  )
 
   out <- append(s1, s2)
 
-  names(out) <-  basename(files)
+  names(out) <- basename(files)
 
   rm(s1, s2)
   gc()

@@ -1,4 +1,3 @@
-
 test_that("read_historical_national_estimates works", {
   skip_if_offline()
   skip_on_ci()

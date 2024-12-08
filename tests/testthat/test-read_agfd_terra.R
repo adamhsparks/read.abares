@@ -1,4 +1,3 @@
-
 test_that("read_agfd_terra() returns a terra object", {
   skip_if_offline()
   skip_on_ci()

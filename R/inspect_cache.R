@@ -1,4 +1,3 @@
-
 #' List the File Path to Users' Cache Directory
 #'
 #' Check what files exist in your \pkg{read.abares} file cache.  This function
@@ -36,7 +35,8 @@ inspect_cache <- function(recursive = FALSE) {
     f <- list.files(f, recursive = TRUE, full.names = TRUE)
   } else {
     f <- list.files(f, full.names = TRUE)
-  f}
+    f
+  }
 
   if (length(f) < 1) {
     return(cli::cli_inform(

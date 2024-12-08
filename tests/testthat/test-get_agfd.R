@@ -14,9 +14,11 @@ test_that("get_agfd, fixed = TRUE works", {
   print_out <- capture.output(nc_files)
 
   expect_s3_class(x, c("read.abares.agfd.nc.files", "character"))
-  expect_identical(x |> capture_output(),
-                   nc_files(agfd_nc_dir) |>
-                     capture_output())
+  expect_identical(
+    x |> capture_output(),
+    nc_files(agfd_nc_dir) |>
+      capture_output()
+  )
   # cache dir created
   expect_true(dir.exists(
     file.path(.find_user_cache(), "historical_climate_prices_fixed")
@@ -39,9 +41,11 @@ test_that("get_agfd, fixed = FALSE works", {
   print_out <- capture.output(nc_files)
 
   expect_s3_class(x, c("read.abares.agfd.nc.files", "character"))
-  expect_identical(x |> capture_output(),
-                   nc_files(agfd_nc_dir) |>
-                     capture_output())
+  expect_identical(
+    x |> capture_output(),
+    nc_files(agfd_nc_dir) |>
+      capture_output()
+  )
   # cache dir created
   expect_true(dir.exists(
     file.path(.find_user_cache(), "historical_climate_and_prices")
@@ -83,20 +87,21 @@ test_that("get_agfd() cleans up on its way out, caching", {
   expect_false(file.exists(file.path(.find_user_cache(), "agfd.zip")))
 })
 
-test_that("print.read.abares.agfd.nc.files returns a properly formatted list",
-          {
-            skip_if_offline()
-            skip_on_ci()
-            print_out <- function(x) {
-              cli::cli_h1("Locally Available ABARES AGFD NetCDF Files")
-              cli::cli_ul(basename(x))
-              cli::cat_line()
-            }
+test_that("print.read.abares.agfd.nc.files returns a properly formatted list", {
+  skip_if_offline()
+  skip_on_ci()
+  print_out <- function(x) {
+    cli::cli_h1("Locally Available ABARES AGFD NetCDF Files")
+    cli::cli_ul(basename(x))
+    cli::cat_line()
+  }
 
-            x <- get_agfd(cache = TRUE)
+  x <- get_agfd(cache = TRUE)
 
-            expect_identical(x |>
-                               capture.output(),
-                             print_out(x) |>
-                               capture_output())
-          })
+  expect_identical(
+    x |>
+      capture.output(),
+    print_out(x) |>
+      capture_output()
+  )
+})

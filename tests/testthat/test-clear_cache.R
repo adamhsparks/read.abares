@@ -1,4 +1,3 @@
-
 test_that("clearing the cache deletes files", {
   withr::local_envvar(R_USER_CACHE_DIR = tempdir())
   temp_cache <- file.path(tempdir(), "R/read.abares/")
