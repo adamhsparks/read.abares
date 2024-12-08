@@ -8,6 +8,5 @@
 ^doc$
 ^Meta$
 ^.covrignore$
-^CONTRIBUTING\.md$
 ^flint$
 ^\.github$
