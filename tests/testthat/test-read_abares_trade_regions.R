@@ -4,10 +4,10 @@ withr::local_envvar(R_USER_CACHE_DIR = file.path(tempdir(), "abares.cache.1"))
 
 # without caching ----
 
-test_that("get_abares_trade_regions doesn't cache", {
+test_that("read_abares_trade_regions doesn't cache", {
   skip_if_offline()
   skip_on_ci()
-  x <- get_abares_trade_regions(cache = FALSE)
+  x <- read_abares_trade_regions(cache = FALSE)
   expect_s3_class(x, c("data.table", "data.frame"))
   expect_named(x,
                c("Classification",
@@ -34,7 +34,7 @@ test_that("get_abares_trade_regions doesn't cache", {
   ))
 })
 
-test_that("get_abares_trade_regions skips downloading if still in tempdir()", {
+test_that("read_abares_trade_regions skips downloading if still in tempdir()", {
   skip_if_offline()
   skip_on_ci()
   x <- .check_existing_trade_regions(cache = FALSE)
@@ -43,10 +43,10 @@ test_that("get_abares_trade_regions skips downloading if still in tempdir()", {
 
 # with caching ----
 
-test_that("get_abares_trade_regions caches", {
+test_that("read_abares_trade_regions caches", {
   skip_if_offline()
   skip_on_ci()
-  x <- get_abares_trade_regions(cache = TRUE)
+  x <- read_abares_trade_regions(cache = TRUE)
   expect_s3_class(x, c("data.table", "data.frame"))
   y <- list.files(file.path(.find_user_cache(), "abares_trade_dir"))
   expect_true(file.exists(
@@ -57,7 +57,7 @@ test_that("get_abares_trade_regions caches", {
   ))
 })
 
-test_that("get_abares_trade_regions skips downloading if cache is available", {
+test_that("read_abares_trade_regions skips downloading if cache is available", {
   skip_if_offline()
   skip_on_ci()
   x <- .check_existing_trade_regions(cache = TRUE)

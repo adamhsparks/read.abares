@@ -21,19 +21,24 @@ reference:
   - read_agfd_stars
   - read_agfd_terra
   - read_agfd_tidync
+  - subtitle: Meta
+  desc: |
+    Information about the AGFD NetCDF files and contents
+  contents:
+  - print_agfd_nc_file_format
 - title: Estimates
   desc: |
     Fetch and read the ABARES Estimates data
   contents:
-  - get_estimates_by_performance_category
-  - get_estimates_by_size
-  - get_historical_national_estimates
-  - get_historical_regional_estimates
-  - get_historical_state_estimates
+  - read_estimates_by_performance_category
+  - read_estimates_by_size
+  - read_historical_national_estimates
+  - read_historical_regional_estimates
+  - read_historical_state_estimates
 - title: Historical agricultural forecast database
   desc: |
     Fetch and read the historical agricultural forecast database
-  contents: get_historical_forecast_database
+  contents: read_historical_forecast_database
 - title: Cache
   desc: |
     Work with your local file cache
@@ -52,6 +57,6 @@ reference:
   desc: |
     Fetch and read ABARES' Australian agricultural export data
   contents:
-  - get_abares_trade
-  - get_abares_trade_regions
+  - read_abares_trade
+  - read_abares_trade_regions
 

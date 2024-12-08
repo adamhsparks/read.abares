@@ -1,4 +1,5 @@
-#' Get Data From the ABARES Trade Dashboard
+
+#' Read Data From the ABARES Trade Dashboard
 #'
 #' Fetches and imports  \acronym{ABARES} trade data.
 #'
@@ -13,7 +14,7 @@
 #'  and the files are deleted upon closing of the \R session.
 #'
 #' @examplesIf interactive()
-#' trade <- get_abares_trade()
+#' trade <- read_abares_trade()
 #'
 #' trade
 #'
@@ -24,7 +25,7 @@
 #' @autoglobal
 #' @export
 
-get_abares_trade <- function(cache = TRUE) {
+read_abares_trade <- function(cache = TRUE) {
   abares_trade_rds <- file.path(.find_user_cache(),
                                 "abares_trade_dir/abares_trade.rds")
 

@@ -1,5 +1,5 @@
 
-#' Get Historical Forecast Database From ABARES
+#' Read Historical Forecast Database From ABARES
 #'
 #' # Data Dictionary
 #' The resulting object will contain the following fields.
@@ -26,21 +26,21 @@
 #' The "Month_issued" column is converted from a character string to a numeric
 #'  value representing the month of year, _e.g._, "March" is converted to `3`.
 #'
-#' @source <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0>
 #' @references <https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/historical-forecasts#:~:text=About%20the%20historical%20agricultural%20forecast,relevant%20to%20Australian%20agricultural%20markets>
+#' @source <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0>
 #'
-#' @return A [data.table::data.table] object.
+#' @return A [data.table::data.table] object
 #'
 #' @autoglobal
 #' @export
 #' @examplesIf interactive()
 #'
-#' get_historical_forecast_database()
+#' read_historical_forecast_database()
 #'
 #' # or shorter
-#' get_historical_forecast()
+#' read_historical_forecast()
 #'
-get_historical_forecast_database <- function() {
+read_historical_forecast_database <- function() {
 
   f <- file.path(tempdir(), "historical_db.xlsx")
 
@@ -110,5 +110,5 @@ get_historical_forecast_database <- function() {
 }
 
 #' @export
-#' @rdname get_historical_forecast_database
-get_historical_forecast <- get_historical_forecast_database
+#' @rdname read_historical_forecast_database
+read_historical_forecast <- read_historical_forecast_database

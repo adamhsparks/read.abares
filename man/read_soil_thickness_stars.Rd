@@ -3,6 +3,9 @@
 \name{read_soil_thickness_stars}
 \alias{read_soil_thickness_stars}
 \title{Read Soil Thickness File With stars}
+\source{
+\url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
+}
 \usage{
 read_soil_thickness_stars(files)
 }
@@ -23,6 +26,9 @@ data as a \CRANpkg{stars} object.
 get_soil_thickness(cache = TRUE) |>
   read_soil_thickness_stars()
 \dontshow{\}) # examplesIf}
+}
+\references{
+\url{https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6}
 }
 \seealso{
 Other soil_thickness: 

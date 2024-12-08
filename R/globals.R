@@ -2,8 +2,8 @@
 
 utils::globalVariables(c(
   "Year_month", # <.download_abares_trade>
-  "Month_issued", # <get_historical_forecast_database>
   "lat", # <read_agfd_dt>
   "lon", # <read_agfd_dt>
+  "Month_issued", # <read_historical_forecast_database>
   NULL
 ))

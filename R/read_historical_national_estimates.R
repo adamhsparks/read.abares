@@ -1,5 +1,5 @@
 
-#' Get Historical National Estimates from ABARES
+#' Read Historical National Estimates from ABARES
 #'
 #' @note
 #' Columns are renamed for consistency with other \acronym{ABARES} products
@@ -14,12 +14,12 @@
 #' @export
 #' @examplesIf interactive()
 #'
-#'  get_historical_national_estimates()
+#'  read_historical_national_estimates()
 #'
 #'  # or shorter
-#'  get_hist_nat_est()
+#'  read_hist_nat_est()
 #'
-get_historical_national_estimates <- function() {
+read_historical_national_estimates <- function() {
 
   f <- file.path(tempdir(), "fdp-beta-national-historical.csv")
 
@@ -34,5 +34,5 @@ get_historical_national_estimates <- function() {
 }
 
 #' @export
-#' @rdname get_historical_national_estimates
-get_hist_nat_est <- get_historical_national_estimates
+#' @rdname read_historical_national_estimates
+read_hist_nat_est <- read_historical_national_estimates

@@ -1,5 +1,5 @@
 
-#' Fetch Australian Gridded Farm Data
+#' Get Australian Gridded Farm Data for Local Use
 #'
 #' Downloads The Australian Gridded Farm Data (\acronym{AGFD}) data and unzips
 #'  the compressed files to NetCDF for importing.

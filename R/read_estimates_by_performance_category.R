@@ -1,5 +1,5 @@
 
-#' Get Estimates by Size From ABARES
+#' Read Estimates by Size From ABARES
 #'
 #' @return A [data.table::data.table] object
 #' @export
@@ -9,12 +9,12 @@
 #' @autoglobal
 #' @examplesIf interactive()
 #'
-#'  get_estimates_by_performance_category()
+#'  read_estimates_by_performance_category()
 #'
 #'  # or shorter
-#'  get_est_by_perf_cat()
+#'  read_est_by_perf_cat()
 #'
-get_estimates_by_performance_category <- get_est_by_perf_cat <- function() {
+read_estimates_by_performance_category <- read_est_by_perf_cat <- function() {
 
   f <- file.path(tempdir(), "fdp-BySize-ByPerformance.csv")
 
@@ -27,5 +27,5 @@ get_estimates_by_performance_category <- get_est_by_perf_cat <- function() {
 }
 
 #' @export
-#' @rdname get_estimates_by_performance_category
-get_est_by_perf_cat <- get_estimates_by_performance_category
+#' @rdname read_estimates_by_performance_category
+read_est_by_perf_cat <- read_estimates_by_performance_category

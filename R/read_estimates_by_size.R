@@ -1,5 +1,5 @@
 
-#' Get Estimates by Size From ABARES
+#' Read Estimates by Size From ABARES
 #'
 #' @note
 #' Columns are renamed and reordered for consistency.
@@ -13,12 +13,12 @@
 #' @export
 #' @examplesIf interactive()
 #'
-#' get_estimates_by_size()
+#' read_estimates_by_size()
 #'
 #' # or shorter
-#' get_est_by_size()
+#' read_est_by_size()
 #'
-get_estimates_by_size <- get_est_by_size <- function() {
+read_estimates_by_size <- read_est_by_size <- function() {
 
   f <- file.path(tempdir(), "fdp-beta-performance-by-size.csv")
 
@@ -35,5 +35,5 @@ get_estimates_by_size <- get_est_by_size <- function() {
 }
 
 #' @export
-#' @rdname get_estimates_by_size
-get_est_by_size <- get_estimates_by_size
+#' @rdname read_estimates_by_size
+read_est_by_size <- read_estimates_by_size
