@@ -1,6 +1,6 @@
 # read.abares 1.0.0
 
-## Major changes
+## Breaking changes
 
 * Rename functions that both download and read files into active R session from `get_` to `read_` to avoid confusion with functions that only fetch data and have separate `read_` functions
 
@@ -10,17 +10,7 @@
 
 * Checks and corrects the geometries of the AAGIS Regions shapefile upon import and applies to the cached object if applicable
 
-## Bug fixes
-
-* No longer checks the length of a Boolean vector when checking the number of files in the cache before proceeding with removing them
-
-* Fixes bugs in `get_agfd()` when creating the directories for saving the downloaded file
-
-* Fixes bug in `get_aagis_regions()` when creating the cached object file
-
-* Fixes "URL" field in DESCRIPTION file, thanks @mpadge
-
-## Minor changes
+## New features
 
 * Improved documentation
 
@@ -44,6 +34,16 @@
 * Tests are run in parallel for quicker testing
 
 * {sf} operations are now quiet when reading data where possible
+
+## Minor improvements and fixes
+
+* No longer checks the length of a Boolean vector when checking the number of files in the cache before proceeding with removing them
+
+* Fixes bugs in `get_agfd()` when creating the directories for saving the downloaded file
+
+* Fixes bug in `get_aagis_regions()` when creating the cached object file
+
+* Fixes "URL" field in DESCRIPTION file (@mpadge <https://github.com/adamhsparks/read.abares/issues/1>)
 
 # read.abares 0.1.0
 
