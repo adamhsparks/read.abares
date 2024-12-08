@@ -7,7 +7,7 @@ reference:
 - title: AAGIS Regions
   desc: |
     Fetch and read the AAGIS regions
-  contents: get_aagis_regions
+  contents: read_aagis_regions
 - title: AGFD
 - subtitle: Fetch
   desc: |
