@@ -145,16 +145,16 @@ citation("read.abares")
 #> To cite package 'read.abares' in publications use:
 #> 
 #>   Sparks A (????). _read.abares: Simple downloading and importing of
-#>   ABARES Data_. R package version 0.1.0,
-#>   <https://adamhsparks.codeberg.page/read.abares/>.
+#>   ABARES Data_. R package version 1.0.0,
+#>   <https://adamhsparks.github.io/read.abares/>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
 #>     title = {{read.abares}: Simple downloading and importing of ABARES Data},
 #>     author = {Adam H. Sparks},
-#>     note = {R package version 0.1.0},
-#>     url = {https://adamhsparks.codeberg.page/read.abares/},
+#>     note = {R package version 1.0.0},
+#>     url = {https://adamhsparks.github.io/read.abares/},
 #>   }
 ```
 
