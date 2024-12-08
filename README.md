@@ -28,34 +28,24 @@ details about the data set or better yet, open a pull request!
 
 Data serviced include:
 
-- [ABARES
+- the [ABARES
   Estimates](https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download);
-  - Historical National Estimates,
-    `read_historical_national_estimate()`;
-  - Historical State Estimates, `read_historical_state_estimates()`;
-  - Historical Regional Estimates,
-    `read_historical_regional_estimates()`;
-  - Estimates by Size, `read_estimates_by_size()`;
-  - Estimates by Performance Category,
-    `read_estimates_by_performance_category()`;
 - the [Australian Gridded Farm Data (AGFD)
-  set](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data),
-  `get_agfd()`;
+  set](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data);
 - the [Australian Agricultural and Grazing Industries Survey
   (AAGIS)](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data)
-  region mapping files, `get_aagis_regions()`;
+  region mapping files;
 - the [Historical Agricultural Forecast
-  Database](https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/historical-forecasts#:~:text=About%20the%20historical%20agricultural%20forecast,relevant%20to%20Australian%20agricultural%20markets),
-  `read_historical_forecast_database()`;
-- a [Soil Thickness for Australian areas of intensive agriculture of
+  Database](https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/historical-forecasts#:~:text=About%20the%20historical%20agricultural%20forecast,relevant%20to%20Australian%20agricultural%20markets);
+- the [Soil Thickness for Australian areas of intensive agriculture of
   Layer 1 (A Horizon - top-soil) (derived from soil
   mapping)](https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6)
-  map, `get_soil_thickness()` and;
+  map and;
 - the [ABARES Trade
   Data](https://www.agriculture.gov.au/abares/research-topics/trade/dashboard)
   including;
-  - Trade Data, `read_abares_trade()` and;
-  - Trade Region Data, `read_abares_trade_regions()`.
+  - the trade data and;
+  - the trade region data.
 
 The files are freely available as CSV files, zip archives of NetCDF
 files or a zip archives of geospatial shape files. {read.abares}
@@ -91,30 +81,15 @@ which is cleaned up when your R session ends.
 ### Multiple Classes Supported
 
 {read.abares} supports multiple classes of objects to support your
-workflow. Select from spatial classes:
+workflow. Select from spatial classes for the AGFD NetCDF files:
 
 - [{stars}](https://CRAN.R-project.org/package=stars),
 - [{terra}](https://CRAN.R-project.org/package=terra) or
 - [{tidync}](https://CRAN.R-project.org/package=tidync)
 
-or data.frame objects:
+or data.frame (data.table) objects:
 
 - [{data.table}](https://CRAN.R-project.org/package=data.table)
-
-## A Note on Testing
-
-I’ve aimed to make the testing for this package as complete as possible.
-Some of the files downloaded are \>1GB and may take several minutes or
-more than an hour to download and due to their size, I do not wish to
-include them in the package itself. Therefore, most of these tests do
-rely on already downloaded and locally cached files. If you wish to work
-with development of {read.abares} please be aware that it will take some
-time to establish your local cache before testing will be somewhat
-faster.
-
-I am considering including some pared down examples for tests as the
-data are released under a CC By 4.0 License, but for now have opted to
-just use locally cached data for simplicity.
 
 ## Metadata
 
@@ -158,7 +133,24 @@ citation("read.abares")
 #>   }
 ```
 
-## Code of Conduct
+### Contributing
+
+#### A Note on Testing
+
+I’ve aimed to make the testing for this package as complete as possible.
+Some of the files downloaded are \>1GB and may take several minutes or
+more than an hour to download and due to their size, I do not wish to
+include them in the package itself. Therefore, most of these tests do
+rely on already downloaded and locally cached files. If you wish to work
+with development of {read.abares} please be aware that it will take some
+time to establish your local cache before testing will be somewhat
+faster.
+
+I am considering including some pared down examples for tests as the
+data are released under a CC By 4.0 License, but for now have opted to
+just use locally cached data for simplicity.
+
+### Code of Conduct
 
 Please note that the {read.abares} project is released with a
 [Contributor Code of
