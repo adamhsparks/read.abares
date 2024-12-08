@@ -33,6 +33,7 @@
 * Use {httr2} to handle downloads
 
   * Increase timeout values to deal with stubborn long-running file downloads
+  * Uses {httr2}'s caching functionality to simplify in-session caching
   
 * Use {brio} to write downloads to disk
 
