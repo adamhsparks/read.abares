@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">read.abares</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,10 +47,10 @@
 
       <dl><dt>
 
-          <code><a href="get_aagis_regions.html">get_aagis_regions()</a></code>
+          <code><a href="read_aagis_regions.html">read_aagis_regions()</a></code>
 
         </dt>
-        <dd>Get AAGIS Region Mapping Files</dd>
+        <dd>Read AAGIS Region Mapping Files</dd>
       </dl></div><div class="section level2">
       <h2 id="agfd">AGFD<a class="anchor" aria-label="anchor" href="#agfd"></a></h2>
 
@@ -73,7 +73,7 @@
           <code><a href="get_agfd.html">get_agfd()</a></code>
 
         </dt>
-        <dd>Fetch Australian Gridded Farm Data</dd>
+        <dd>Get Australian Gridded Farm Data for Local Use</dd>
       </dl></div><div class="section level2">
 
       <h3 id="read">Read<a class="anchor" aria-label="anchor" href="#read"></a></h3>
@@ -110,6 +110,23 @@
         </dt>
         <dd>Read agfd NCDF Files With tidync</dd>
       </dl></div><div class="section level2">
+
+      <h3 id="meta">Meta<a class="anchor" aria-label="anchor" href="#meta"></a></h3>
+      <div class="section-desc"><p>Information about the AGFD NetCDF files and contents</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="print_agfd_nc_file_format.html">print_agfd_nc_file_format()</a></code>
+
+        </dt>
+        <dd>Prints File Format Information for the AGFD NetCDF Files</dd>
+      </dl></div><div class="section level2">
       <h2 id="estimates">Estimates<a class="anchor" aria-label="anchor" href="#estimates"></a></h2>
 
       <div class="section-desc"><p>Fetch and read the ABARES Estimates data</p></div>
@@ -122,34 +139,34 @@
 
       <dl><dt>
 
-          <code><a href="get_estimates_by_performance_category.html">get_estimates_by_performance_category()</a></code> <code><a href="get_estimates_by_performance_category.html">get_est_by_perf_cat()</a></code>
+          <code><a href="read_estimates_by_performance_category.html">read_estimates_by_performance_category()</a></code> <code><a href="read_estimates_by_performance_category.html">read_est_by_perf_cat()</a></code>
 
         </dt>
-        <dd>Get Estimates by Size From ABARES</dd>
+        <dd>Read Estimates by Size From ABARES</dd>
       </dl><dl><dt>
 
-          <code><a href="get_estimates_by_size.html">get_estimates_by_size()</a></code> <code><a href="get_estimates_by_size.html">get_est_by_size()</a></code>
+          <code><a href="read_estimates_by_size.html">read_estimates_by_size()</a></code> <code><a href="read_estimates_by_size.html">read_est_by_size()</a></code>
 
         </dt>
-        <dd>Get Estimates by Size From ABARES</dd>
+        <dd>Read Estimates by Size From ABARES</dd>
       </dl><dl><dt>
 
-          <code><a href="get_historical_national_estimates.html">get_historical_national_estimates()</a></code> <code><a href="get_historical_national_estimates.html">get_hist_nat_est()</a></code>
+          <code><a href="read_historical_national_estimates.html">read_historical_national_estimates()</a></code> <code><a href="read_historical_national_estimates.html">read_hist_nat_est()</a></code>
 
         </dt>
-        <dd>Get Historical National Estimates from ABARES</dd>
+        <dd>Read Historical National Estimates from ABARES</dd>
       </dl><dl><dt>
 
-          <code><a href="get_historical_regional_estimates.html">get_historical_regional_estimates()</a></code> <code><a href="get_historical_regional_estimates.html">get_hist_reg_est()</a></code>
+          <code><a href="read_historical_regional_estimates.html">read_historical_regional_estimates()</a></code> <code><a href="read_historical_regional_estimates.html">read_hist_reg_est()</a></code>
 
         </dt>
-        <dd>Get Historical Regional Estimates from ABARES</dd>
+        <dd>Read Historical Regional Estimates from ABARES</dd>
       </dl><dl><dt>
 
-          <code><a href="get_historical_state_estimates.html">get_historical_state_estimates()</a></code> <code><a href="get_historical_state_estimates.html">get_hist_sta_est()</a></code>
+          <code><a href="read_historical_state_estimates.html">read_historical_state_estimates()</a></code> <code><a href="read_historical_state_estimates.html">read_hist_sta_est()</a></code>
 
         </dt>
-        <dd>Get Historical State Estimates from ABARES</dd>
+        <dd>Read Historical State Estimates from ABARES</dd>
       </dl></div><div class="section level2">
       <h2 id="historical-agricultural-forecast-database">Historical agricultural forecast database<a class="anchor" aria-label="anchor" href="#historical-agricultural-forecast-database"></a></h2>
 
@@ -163,10 +180,10 @@
 
       <dl><dt>
 
-          <code><a href="get_historical_forecast_database.html">get_historical_forecast_database()</a></code> <code><a href="get_historical_forecast_database.html">get_historical_forecast()</a></code>
+          <code><a href="read_historical_forecast_database.html">read_historical_forecast_database()</a></code> <code><a href="read_historical_forecast_database.html">read_historical_forecast()</a></code>
 
         </dt>
-        <dd>Get Historical Forecast Database From ABARES</dd>
+        <dd>Read Historical Forecast Database From ABARES</dd>
       </dl></div><div class="section level2">
       <h2 id="cache">Cache<a class="anchor" aria-label="anchor" href="#cache"></a></h2>
 
@@ -206,7 +223,7 @@
           <code><a href="get_soil_thickness.html">get_soil_thickness()</a></code>
 
         </dt>
-        <dd>Download Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1</dd>
+        <dd>Get Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1 for Local Use</dd>
       </dl><dl><dt>
 
           <code><a href="read_soil_thickness_stars.html">read_soil_thickness_stars()</a></code>
@@ -238,16 +255,16 @@
 
       <dl><dt>
 
-          <code><a href="get_abares_trade.html">get_abares_trade()</a></code>
+          <code><a href="read_abares_trade.html">read_abares_trade()</a></code>
 
         </dt>
-        <dd>Get Data From the ABARES Trade Dashboard</dd>
+        <dd>Read Data From the ABARES Trade Dashboard</dd>
       </dl><dl><dt>
 
-          <code><a href="get_abares_trade_regions.html">get_abares_trade_regions()</a></code>
+          <code><a href="read_abares_trade_regions.html">read_abares_trade_regions()</a></code>
 
         </dt>
-        <dd>Get ABARES Trade Data Regions From the ABARES Trade Dashboard</dd>
+        <dd>Read ABARES Trade Data Regions From the ABARES Trade Dashboard</dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

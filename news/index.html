@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">read.abares</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,11 +36,47 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.0.0" id="readabares-100">read.abares 1.0.0<a class="anchor" aria-label="anchor" href="#readabares-100"></a></h2>
+<div class="section level3">
+<h3 id="major-changes-1-0-0">Major changes<a class="anchor" aria-label="anchor" href="#major-changes-1-0-0"></a></h3>
+<ul><li><p>Rename functions that both download and read files into active R session from <code>get_</code> to <code>read_</code> to avoid confusion with functions that only fetch data and have separate <code>read_</code> functions</p></li>
+<li><p>Adds new function, <code><a href="../reference/print_agfd_nc_file_format.html">print_agfd_nc_file_format()</a></code> to provide details on the AGFD NetCDF files’ contents</p></li>
+<li><p>Uses Geopackages for {sf} objects rather than .Rds, faster and smaller file sizes when caching</p></li>
+<li><p>Checks and corrects the geometries of the AAGIS Regions shapefile upon import and applies to the cached object if applicable</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-1-0-0">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-0-0"></a></h3>
+<ul><li><p>No longer checks the length of a Boolean vector when checking the number of files in the cache before proceeding with removing them</p></li>
+<li><p>Fixes bugs in <code><a href="../reference/get_agfd.html">get_agfd()</a></code> when creating the directories for saving the downloaded file</p></li>
+<li><p>Fixes bug in <code>get_aagis_regions()</code> when creating the cached object file</p></li>
+<li><p>Fixes “URL” field in DESCRIPTION file, thanks <a href="https://github.com/mpadge" class="external-link">@mpadge</a></p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="minor-changes-1-0-0">Minor changes<a class="anchor" aria-label="anchor" href="#minor-changes-1-0-0"></a></h3>
+<ul><li>
+<p>Improved documentation</p>
+<ul><li><p>All data sets now have an <code>@source</code> field that points to the file being provided</p></li>
+<li><p>All data sets now have an <code>@references</code> field that points to references for the data</p></li>
+</ul></li>
+<li><p>Code linting thanks to <a href="https://flint.etiennebacher.com" class="external-link">{flint}</a></p></li>
+<li>
+<p>Use {httr2} to handle downloads</p>
+<ul><li>Increase timeout values to deal with stubborn long-running file downloads</li>
+</ul></li>
+<li><p>Use {brio} to write downloads to disk</p></li>
+<li><p>Use {httptest2} to help test downloads</p></li>
+<li><p>Gracefully handle errors when AGFD zip files are corrupted on download, provide the user with an informative message and remove corrupted download</p></li>
+<li><p>Tests are run in parallel for quicker testing</p></li>
+<li><p>{sf} operations are now quiet when reading data where possible</p></li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.0" id="readabares-010">read.abares 0.1.0<a class="anchor" aria-label="anchor" href="#readabares-010"></a></h2>
 <ul><li>Submission to rOpenSci for <a href="https://github.com/ropensci/software-review/issues" class="external-link">peer code review</a>
 </li>
 </ul></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">

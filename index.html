@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="index.html">read.abares</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,21 +72,21 @@
 <li>
 <a href="https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download" class="external-link">ABARES Estimates</a>;
 <ul>
-<li>Historical National Estimates, <code>get_historical_national_estimate()</code>;</li>
-<li>Historical State Estimates, <code><a href="reference/get_historical_state_estimates.html">get_historical_state_estimates()</a></code>;</li>
-<li>Historical Regional Estimates, <code><a href="reference/get_historical_regional_estimates.html">get_historical_regional_estimates()</a></code>;</li>
-<li>Estimates by Size, <code><a href="reference/get_estimates_by_size.html">get_estimates_by_size()</a></code>;</li>
-<li>Estimates by Performance Category, <code><a href="reference/get_estimates_by_performance_category.html">get_estimates_by_performance_category()</a></code>;</li>
+<li>Historical National Estimates, <code>read_historical_national_estimate()</code>;</li>
+<li>Historical State Estimates, <code><a href="reference/read_historical_state_estimates.html">read_historical_state_estimates()</a></code>;</li>
+<li>Historical Regional Estimates, <code><a href="reference/read_historical_regional_estimates.html">read_historical_regional_estimates()</a></code>;</li>
+<li>Estimates by Size, <code><a href="reference/read_estimates_by_size.html">read_estimates_by_size()</a></code>;</li>
+<li>Estimates by Performance Category, <code><a href="reference/read_estimates_by_performance_category.html">read_estimates_by_performance_category()</a></code>;</li>
 </ul>
 </li>
 <li>the <a href="https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data" class="external-link">Australian Gridded Farm Data (AGFD) set</a>, <code><a href="reference/get_agfd.html">get_agfd()</a></code>;</li>
-<li>the <a href="https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data" class="external-link">Australian Agricultural and Grazing Industries Survey (AAGIS)</a> region mapping files, <code><a href="reference/get_aagis_regions.html">get_aagis_regions()</a></code>;</li>
-<li>the <a href="https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/historical-forecasts#:~:text=About%20the%20historical%20agricultural%20forecast,relevant%20to%20Australian%20agricultural%20markets" class="external-link">Historical Agricultural Forecast Database</a>, <code><a href="reference/get_historical_forecast_database.html">get_historical_forecast_database()</a></code>;</li>
+<li>the <a href="https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data" class="external-link">Australian Agricultural and Grazing Industries Survey (AAGIS)</a> region mapping files, <code>get_aagis_regions()</code>;</li>
+<li>the <a href="https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/historical-forecasts#:~:text=About%20the%20historical%20agricultural%20forecast,relevant%20to%20Australian%20agricultural%20markets" class="external-link">Historical Agricultural Forecast Database</a>, <code><a href="reference/read_historical_forecast_database.html">read_historical_forecast_database()</a></code>;</li>
 <li>a <a href="https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6" class="external-link">Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)</a> map, <code><a href="reference/get_soil_thickness.html">get_soil_thickness()</a></code> and;</li>
 <li>the <a href="https://www.agriculture.gov.au/abares/research-topics/trade/dashboard" class="external-link">ABARES Trade Data</a> including;
 <ul>
-<li>Trade Data, <code><a href="reference/get_abares_trade.html">get_abares_trade()</a></code> and;</li>
-<li>Trade Region Data, <code><a href="reference/get_abares_trade_regions.html">get_abares_trade_regions()</a></code>.</li>
+<li>Trade Data, <code><a href="reference/read_abares_trade.html">read_abares_trade()</a></code> and;</li>
+<li>Trade Region Data, <code><a href="reference/read_abares_trade_regions.html">read_abares_trade_regions()</a></code>.</li>
 </ul>
 </li>
 </ul>
@@ -156,26 +156,19 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     plot</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"read.abares"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in citation("read.abares"): could not determine year for 'read.abares'</span></span>
-<span><span class="co">#&gt; from package DESCRIPTION file</span></span>
 <span><span class="co">#&gt; To cite package 'read.abares' in publications use:</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;   Sparks A (????). _read.abares: Provides simple downloading, parsing</span></span>
-<span><span class="co">#&gt;   and importing of Australian Bureau of Agricultural and Resource</span></span>
-<span><span class="co">#&gt;   Economics and Sciences (ABARES) data sources_. R package version</span></span>
-<span><span class="co">#&gt;   0.1.0, https://adamhsparks.codeberg.page/read.abares,</span></span>
-<span><span class="co">#&gt;   &lt;https://codeberg.org/adamhsparks/read.abares&gt;.</span></span>
+<span><span class="co">#&gt;   Sparks A (????). _read.abares: Simple downloading and importing of</span></span>
+<span><span class="co">#&gt;   ABARES Data_. R package version 1.0.0,</span></span>
+<span><span class="co">#&gt;   &lt;https://adamhsparks.github.io/read.abares/&gt;.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; A BibTeX entry for LaTeX users is</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;   @Manual{,</span></span>
-<span><span class="co">#&gt;     title = {read.abares: Provides simple downloading, parsing and importing of Australian</span></span>
-<span><span class="co">#&gt; Bureau of Agricultural and Resource Economics and Sciences (ABARES) data</span></span>
-<span><span class="co">#&gt; sources},</span></span>
+<span><span class="co">#&gt;     title = {{read.abares}: Simple downloading and importing of ABARES Data},</span></span>
 <span><span class="co">#&gt;     author = {Adam H. Sparks},</span></span>
-<span><span class="co">#&gt;     note = {R package version 0.1.0, </span></span>
-<span><span class="co">#&gt; https://adamhsparks.codeberg.page/read.abares},</span></span>
-<span><span class="co">#&gt;     url = {https://codeberg.org/adamhsparks/read.abares},</span></span>
+<span><span class="co">#&gt;     note = {R package version 1.0.0},</span></span>
+<span><span class="co">#&gt;     url = {https://adamhsparks.github.io/read.abares/},</span></span>
 <span><span class="co">#&gt;   }</span></span></code></pre></div>
 </div>
 </div>
