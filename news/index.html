@@ -38,21 +38,14 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.0" id="readabares-100">read.abares 1.0.0<a class="anchor" aria-label="anchor" href="#readabares-100"></a></h2>
 <div class="section level3">
-<h3 id="major-changes-1-0-0">Major changes<a class="anchor" aria-label="anchor" href="#major-changes-1-0-0"></a></h3>
+<h3 id="breaking-changes-1-0-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-1-0-0"></a></h3>
 <ul><li><p>Rename functions that both download and read files into active R session from <code>get_</code> to <code>read_</code> to avoid confusion with functions that only fetch data and have separate <code>read_</code> functions</p></li>
 <li><p>Adds new function, <code><a href="../reference/print_agfd_nc_file_format.html">print_agfd_nc_file_format()</a></code> to provide details on the AGFD NetCDF files’ contents</p></li>
 <li><p>Uses Geopackages for {sf} objects rather than .Rds, faster and smaller file sizes when caching</p></li>
 <li><p>Checks and corrects the geometries of the AAGIS Regions shapefile upon import and applies to the cached object if applicable</p></li>
 </ul></div>
 <div class="section level3">
-<h3 id="bug-fixes-1-0-0">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-0-0"></a></h3>
-<ul><li><p>No longer checks the length of a Boolean vector when checking the number of files in the cache before proceeding with removing them</p></li>
-<li><p>Fixes bugs in <code><a href="../reference/get_agfd.html">get_agfd()</a></code> when creating the directories for saving the downloaded file</p></li>
-<li><p>Fixes bug in <code>get_aagis_regions()</code> when creating the cached object file</p></li>
-<li><p>Fixes “URL” field in DESCRIPTION file, thanks <a href="https://github.com/mpadge" class="external-link">@mpadge</a></p></li>
-</ul></div>
-<div class="section level3">
-<h3 id="minor-changes-1-0-0">Minor changes<a class="anchor" aria-label="anchor" href="#minor-changes-1-0-0"></a></h3>
+<h3 id="new-features-1-0-0">New features<a class="anchor" aria-label="anchor" href="#new-features-1-0-0"></a></h3>
 <ul><li>
 <p>Improved documentation</p>
 <ul><li><p>All data sets now have an <code>@source</code> field that points to the file being provided</p></li>
@@ -69,6 +62,13 @@
 <li><p>Gracefully handle errors when AGFD zip files are corrupted on download, provide the user with an informative message and remove corrupted download</p></li>
 <li><p>Tests are run in parallel for quicker testing</p></li>
 <li><p>{sf} operations are now quiet when reading data where possible</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="minor-improvements-and-fixes-1-0-0">Minor improvements and fixes<a class="anchor" aria-label="anchor" href="#minor-improvements-and-fixes-1-0-0"></a></h3>
+<ul><li><p>No longer checks the length of a Boolean vector when checking the number of files in the cache before proceeding with removing them</p></li>
+<li><p>Fixes bugs in <code><a href="../reference/get_agfd.html">get_agfd()</a></code> when creating the directories for saving the downloaded file</p></li>
+<li><p>Fixes bug in <code>get_aagis_regions()</code> when creating the cached object file</p></li>
+<li><p>Fixes “URL” field in DESCRIPTION file (<a href="https://github.com/mpadge" class="external-link">@mpadge</a> <a href="https://github.com/adamhsparks/read.abares/issues/1" class="external-link uri">https://github.com/adamhsparks/read.abares/issues/1</a>)</p></li>
 </ul></div>
 </div>
     <div class="section level2">
