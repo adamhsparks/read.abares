@@ -4,10 +4,10 @@ withr::local_envvar(R_USER_CACHE_DIR = file.path(tempdir(), "abares.cache.1"))
 
 # without caching ----
 
-test_that("get_abares_trade doesn't cache", {
+test_that("read_abares_trade doesn't cache", {
   skip_if_offline()
   skip_on_ci()
-  x <- get_abares_trade(cache = FALSE)
+  x <- read_abares_trade(cache = FALSE)
   expect_s3_class(x, c("data.table", "data.frame"))
   expect_named(
     x,
@@ -57,10 +57,10 @@ test_that("get_abares_trade doesn't cache", {
 
 # with caching ----
 
-test_that("get_abares_trade caches", {
+test_that("read_abares_trade caches", {
   skip_if_offline()
   skip_on_ci()
-  x <- get_abares_trade(cache = TRUE)
+  x <- read_abares_trade(cache = TRUE)
   expect_s3_class(x, c("data.table", "data.frame"))
   y <- list.files(file.path(.find_user_cache(), "abares_trade_dir"))
   expect_true(file.exists(

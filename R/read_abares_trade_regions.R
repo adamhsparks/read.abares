@@ -1,4 +1,4 @@
-#' Get ABARES Trade Data Regions From the ABARES Trade Dashboard
+#' Read ABARES Trade Data Regions From the ABARES Trade Dashboard
 #'
 #' Fetches and imports  \acronym{ABARES} trade regions data.
 #'
@@ -13,7 +13,7 @@
 #'  `tempdir()` and the files are deleted upon closing of the \R session.
 #'
 #' @examplesIf interactive()
-#' trade_regions <- get_abares_trade_regions()
+#' trade_regions <- read_abares_trade_regions()
 #'
 #' trade_regions
 #'
@@ -25,7 +25,7 @@
 #' @autoglobal
 #' @export
 
-get_abares_trade_regions <- function(cache = TRUE) {
+read_abares_trade_regions <- function(cache = TRUE) {
   trade_regions <- .check_existing_trade_regions(cache)
   if (!is.null(trade_regions)) {
     return(trade_regions[])

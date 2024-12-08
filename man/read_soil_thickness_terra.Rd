@@ -3,12 +3,15 @@
 \name{read_soil_thickness_terra}
 \alias{read_soil_thickness_terra}
 \title{Read Soil Thickness File With terra}
+\source{
+\url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
+}
 \usage{
 read_soil_thickness_terra(files)
 }
 \arguments{
-\item{files}{An \pkg{read.abares} \code{read.abares.soil.thickness} object, a \code{list} that
-contains the \acronym{ESRI} grid file to import}
+\item{files}{An \pkg{read.abares} \code{read.abares.soil.thickness} object, a
+\code{list} that contains the \acronym{ESRI} grid file to import}
 }
 \value{
 a \link[terra:rast]{terra::rast} object of the Soil Thickness for Australian Areas of
@@ -26,6 +29,9 @@ x <- get_soil_thickness(cache = TRUE) |>
 # terra::plot() is reexported for convience
 plot(x)
 \dontshow{\}) # examplesIf}
+}
+\references{
+\url{https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6}
 }
 \seealso{
 Other soil_thickness: 

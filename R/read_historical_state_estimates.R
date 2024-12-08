@@ -1,5 +1,5 @@
 
-#' Get Historical State Estimates from ABARES
+#' Read Historical State Estimates from ABARES
 #'
 #' @note
 #' Columns are renamed for consistency with other \acronym{ABARES} products
@@ -13,12 +13,12 @@
 #' @source <https://www.agriculture.gov.au/sites/default/files/documents/fdp-state-historical.csv>
 #' @export
 #' @examplesIf interactive()
-#'  get_historical_state_estimates()
+#'  read_historical_state_estimates()
 #'
 #'  # or shorter
-#'  get_hist_sta_est()
+#'  read_hist_sta_est()
 #'
-get_historical_state_estimates <- get_hist_sta_est <- function() {
+read_historical_state_estimates <- read_hist_sta_est <- function() {
   f <- file.path(tempdir(), "fdp-beta-state-historical.csv")
 
   .retry_download(
@@ -35,5 +35,5 @@ get_historical_state_estimates <- get_hist_sta_est <- function() {
 }
 
 #' @export
-#' @rdname get_historical_state_estimates
-get_hist_sta_est <- get_historical_state_estimates
+#' @rdname read_historical_state_estimates
+read_hist_sta_est <- read_historical_state_estimates

@@ -30,13 +30,14 @@ Data serviced include:
 
 - [ABARES
   Estimates](https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download);
-  - Historical National Estimates, `get_historical_national_estimate()`;
-  - Historical State Estimates, `get_historical_state_estimates()`;
+  - Historical National Estimates,
+    `read_historical_national_estimate()`;
+  - Historical State Estimates, `read_historical_state_estimates()`;
   - Historical Regional Estimates,
-    `get_historical_regional_estimates()`;
-  - Estimates by Size, `get_estimates_by_size()`;
+    `read_historical_regional_estimates()`;
+  - Estimates by Size, `read_estimates_by_size()`;
   - Estimates by Performance Category,
-    `get_estimates_by_performance_category()`;
+    `read_estimates_by_performance_category()`;
 - the [Australian Gridded Farm Data (AGFD)
   set](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data),
   `get_agfd()`;
@@ -45,7 +46,7 @@ Data serviced include:
   region mapping files, `get_aagis_regions()`;
 - the [Historical Agricultural Forecast
   Database](https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/historical-forecasts#:~:text=About%20the%20historical%20agricultural%20forecast,relevant%20to%20Australian%20agricultural%20markets),
-  `get_historical_forecast_database()`;
+  `read_historical_forecast_database()`;
 - a [Soil Thickness for Australian areas of intensive agriculture of
   Layer 1 (A Horizon - top-soil) (derived from soil
   mapping)](https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6)
@@ -53,8 +54,8 @@ Data serviced include:
 - the [ABARES Trade
   Data](https://www.agriculture.gov.au/abares/research-topics/trade/dashboard)
   including;
-  - Trade Data, `get_abares_trade()` and;
-  - Trade Region Data, `get_abares_trade_regions()`.
+  - Trade Data, `read_abares_trade()` and;
+  - Trade Region Data, `read_abares_trade_regions()`.
 
 The files are freely available as CSV files, zip archives of NetCDF
 files or a zip archives of geospatial shape files. {read.abares}
@@ -141,26 +142,19 @@ library("read.abares")
 #> 
 #>     plot
 citation("read.abares")
-#> Warning in citation("read.abares"): could not determine year for 'read.abares'
-#> from package DESCRIPTION file
 #> To cite package 'read.abares' in publications use:
 #> 
-#>   Sparks A (????). _read.abares: Provides simple downloading, parsing
-#>   and importing of Australian Bureau of Agricultural and Resource
-#>   Economics and Sciences (ABARES) data sources_. R package version
-#>   0.1.0, https://adamhsparks.codeberg.page/read.abares,
-#>   <https://codeberg.org/adamhsparks/read.abares>.
+#>   Sparks A (????). _read.abares: Simple downloading and importing of
+#>   ABARES Data_. R package version 1.0.0,
+#>   <https://adamhsparks.github.io/read.abares/>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
-#>     title = {read.abares: Provides simple downloading, parsing and importing of Australian
-#> Bureau of Agricultural and Resource Economics and Sciences (ABARES) data
-#> sources},
+#>     title = {{read.abares}: Simple downloading and importing of ABARES Data},
 #>     author = {Adam H. Sparks},
-#>     note = {R package version 0.1.0, 
-#> https://adamhsparks.codeberg.page/read.abares},
-#>     url = {https://codeberg.org/adamhsparks/read.abares},
+#>     note = {R package version 1.0.0},
+#>     url = {https://adamhsparks.github.io/read.abares/},
 #>   }
 ```
 

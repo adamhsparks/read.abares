@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_soil_thickness.R
 \name{get_soil_thickness}
 \alias{get_soil_thickness}
-\title{Download Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1}
+\title{Get Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1 for Local Use}
 \source{
 \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
 }
@@ -26,7 +26,7 @@ the file path of the resulting \acronym{ESRI} Grid file and text file of
 metadata
 }
 \description{
-Download Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1
+Get Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1 for Local Use
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

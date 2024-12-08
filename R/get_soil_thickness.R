@@ -1,4 +1,5 @@
-#' Download Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1
+
+#' Get Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1 for Local Use
 #'
 #' @param cache `Boolean` Cache the soil thickness data files after download
 #' using `tools::R_user_dir()` to identify the proper directory for storing

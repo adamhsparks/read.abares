@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_agfd.R
 \name{get_agfd}
 \alias{get_agfd}
-\title{Fetch Australian Gridded Farm Data}
+\title{Get Australian Gridded Farm Data for Local Use}
 \source{
 \itemize{
 \item Historical climate prices fixed -- \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/3},
@@ -197,7 +197,7 @@ the perspective of Australian farmers}, Climate Risk Management, Volume 35,
 }
 \seealso{
 Other AGFD: 
-\code{\link{get_aagis_regions}()},
+\code{\link{read_aagis_regions}()},
 \code{\link{read_agfd_dt}()},
 \code{\link{read_agfd_stars}()},
 \code{\link{read_agfd_terra}()},

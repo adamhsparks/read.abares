@@ -1,5 +1,5 @@
 
-#' Fetch Australian Gridded Farm Data
+#' Get Australian Gridded Farm Data for Local Use
 #'
 #' Downloads The Australian Gridded Farm Data (\acronym{AGFD}) data and unzips
 #'  the compressed files to NetCDF for importing.
@@ -265,7 +265,7 @@ print_agfd_nc_file_format <- function() {
   cli::cat_line()
   cli::cli_dl(
     c(
-      "{.strong CRS}" = "EPSG:4326 - WGS 84 – Geographic",
+      "{.strong CRS}" = "EPSG:4326 - WGS 84 - Geographic",
       "{.strong Extent}" = "111.975 -44.525 156.275 -9.975",
       "{.strong Unit}" = "Degrees",
       "{.strong Width}" = "886",

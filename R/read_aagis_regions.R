@@ -1,5 +1,5 @@
 
-#' Get AAGIS Region Mapping Files
+#' Read AAGIS Region Mapping Files
 #'
 #' Download, cache and import the Australian Agricultural and Grazing
 #'  Industries Survey (\acronym{AAGIS} regions geospatial shapefile. Upon
@@ -14,7 +14,7 @@
 #'  closing of the \R session.
 #'
 #' @examplesIf interactive()
-#' aagis <- get_aagis_regions()
+#' aagis <- read_aagis_regions()
 #'
 #' plot(aagis)
 #'
@@ -27,7 +27,7 @@
 #' @autoglobal
 #' @export
 
-get_aagis_regions <- function(cache = TRUE) {
+read_aagis_regions <- function(cache = TRUE) {
   aagis <- .check_existing_aagis(cache)
   if (is.null(aagis)) {
     aagis <- .download_aagis_shp(cache)

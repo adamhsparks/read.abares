@@ -1,5 +1,5 @@
 
-#' Get Historical Regional Estimates from ABARES
+#' Read Historical Regional Estimates from ABARES
 #'
 #' @note
 #' Columns are renamed for consistency with other \acronym{ABARES} products
@@ -13,12 +13,12 @@
 #' @source <https://www.agriculture.gov.au/sites/default/files/documents/fdp-regional-historical.csv>
 #' @export
 #' @examplesIf interactive()
-#'  get_historical_regional_estimates()
+#'  read_historical_regional_estimates()
 #'
 #'  # or shorter
-#'  get_hist_reg_est()
+#'  read_hist_reg_est()
 #'
-get_historical_regional_estimates <- get_hist_reg_est <-  function() {
+read_historical_regional_estimates <- read_hist_reg_est <-  function() {
 
   f <- file.path(tempdir(), "fdp-beta-regional-historical.csv")
 
@@ -39,5 +39,5 @@ get_historical_regional_estimates <- get_hist_reg_est <-  function() {
 }
 
 #' @export
-#' @rdname get_historical_regional_estimates
-get_hist_reg_est <- get_historical_regional_estimates
+#' @rdname read_historical_regional_estimates
+read_hist_reg_est <- read_historical_regional_estimates

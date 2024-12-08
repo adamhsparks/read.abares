@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 ```
 
 This vignette demonstrates some of the functionality of {read.abares}.
-Please note that not all functions are demonstrated here, please refer to the [documentation reference](https://adamhsparks.codeberg.page/read.abares/reference/) for a full list of functionality.
+Please note that not all functions are demonstrated here, please refer to the [documentation reference](https://adamhsparks.github.io/read.abares/reference/) for a full list of functionality.
 The worked examples here show some of the more advanced features that {read.abares} offers beyond just fetching and importing data, _e.g._, the Australian Gridded Farm Data, which can be downloaded, cached and then imported using one of four types of object or the soil thickness data, which includes rich metadata.
 
 ## Working With AGFD Data
