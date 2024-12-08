@@ -22,7 +22,7 @@ methods outside of \R, see \link{get_soil_thickness} for an example using
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 get_soil_thickness(cache = TRUE) |>
-print_soil_thickness_metadata()
+  print_soil_thickness_metadata()
 \dontshow{\}) # examplesIf}
 }
 \seealso{

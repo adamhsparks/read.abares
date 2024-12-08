@@ -26,10 +26,10 @@ serviced in this package using a snake_case format and ordered consistently.
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
- read_historical_national_estimates()
+read_historical_national_estimates()
 
- # or shorter
- read_hist_nat_est()
+# or shorter
+read_hist_nat_est()
 \dontshow{\}) # examplesIf}
 }
 \references{

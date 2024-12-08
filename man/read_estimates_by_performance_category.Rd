@@ -21,10 +21,10 @@ Read Estimates by Size From ABARES
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
- read_estimates_by_performance_category()
+read_estimates_by_performance_category()
 
- # or shorter
- read_est_by_perf_cat()
+# or shorter
+read_est_by_perf_cat()
 \dontshow{\}) # examplesIf}
 }
 \references{

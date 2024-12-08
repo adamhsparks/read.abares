@@ -25,10 +25,10 @@ serviced in this package using a snake_case format and ordered consistently.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
- read_historical_regional_estimates()
+read_historical_regional_estimates()
 
- # or shorter
- read_hist_reg_est()
+# or shorter
+read_hist_reg_est()
 \dontshow{\}) # examplesIf}
 }
 \references{
