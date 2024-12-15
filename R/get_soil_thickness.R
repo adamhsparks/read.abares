@@ -126,7 +126,7 @@ get_soil_thickness <- function(cache = TRUE) {
 
 #' Prints read.abares.soil.thickness.files Object
 #'
-#' Custom [print()] method for `read.abares.soil.thickness.files` objects.
+#' Custom [print] method for `read.abares.soil.thickness.files` objects.
 #'
 #' @param x a `read.abares.soil.thickness.files` object
 #' @param ... ignored

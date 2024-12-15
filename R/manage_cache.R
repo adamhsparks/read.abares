@@ -6,13 +6,13 @@
 #' @name manage_cache
 #'
 #' @details The default cache directory is
-#' `tools::R_user_dir(package = "read.abares")`, but you can
-#' set your own path using `manage_cache$cache_path_set()`
+#' `tools::R_user_dir(package = "read.abares")`, but you can set your own path
+#' using `manage_cache$cache_path_set()`
 #'
 #' `manage_cache$cache_delete` only accepts one file name, while
 #' `manage_cache$cache_delete_all` does not accept any names, but deletes all
 #' files. For deleting many specific files, use `manage_cache$cache_delete`
-#' in an [base::lapply()] type call.
+#' in an [base::lapply] type call.
 #'
 #' @section Useful user functions:
 #' \itemize{
@@ -32,8 +32,8 @@
 #' # list files in cache
 #' manage_cache$list()
 #'
-#' # delete certain database files
-#' manage_cache$delete("file path")
+#' # delete certain files
+#' manage_cache$delete("file path/file")
 #' manage_cache$list()
 #'
 #' # delete all files in cache

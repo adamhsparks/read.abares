@@ -8,13 +8,13 @@ Manage cached \pkg{read.abares} files with \CRANpkg{hoardr}.
 }
 \details{
 The default cache directory is
-\code{tools::R_user_dir(package = "read.abares")}, but you can
-set your own path using \code{manage_cache$cache_path_set()}
+\code{tools::R_user_dir(package = "read.abares")}, but you can set your own path
+using \code{manage_cache$cache_path_set()}
 
 \code{manage_cache$cache_delete} only accepts one file name, while
 \code{manage_cache$cache_delete_all} does not accept any names, but deletes all
 files. For deleting many specific files, use \code{manage_cache$cache_delete}
-in an \code{\link[base:lapply]{base::lapply()}} type call.
+in an \link[base:lapply]{base::lapply} type call.
 }
 \section{Useful user functions}{
 
@@ -35,8 +35,8 @@ in an \code{\link[base:lapply]{base::lapply()}} type call.
 # list files in cache
 manage_cache$list()
 
-# delete certain database files
-manage_cache$delete("file path")
+# delete certain files
+manage_cache$delete("file path/file")
 manage_cache$list()
 
 # delete all files in cache
