@@ -2,10 +2,9 @@
 
 S3method(print,read.abares.agfd.nc.files)
 S3method(print,read.abares.soil.thickness.files)
-export(clear_cache)
 export(get_agfd)
 export(get_soil_thickness)
-export(inspect_cache)
+export(manage_cache)
 export(plot)
 export(print_agfd_nc_file_format)
 export(print_soil_thickness_metadata)
