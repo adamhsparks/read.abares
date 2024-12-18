@@ -1,6 +1,6 @@
-#' Get Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1 for Local Use
+#' Get soil thickness for 'Australian Areas of Intensive Agriculture of Layer 1' for local use
 #'
-#' @param cache `Boolean` Cache the soil thickness data files after download
+#' @param cache Caches the soil thickness data files after download
 #' using `tools::R_user_dir()` to identify the proper directory for storing
 #' user data in a cache for this package. Defaults to `TRUE`, caching the files
 #' locally. If `FALSE`, this function uses `tempdir()` and the files are deleted
@@ -25,7 +25,7 @@
 #'
 #' @return A `read.abares.soil.thickness` object, which is a named `list` with
 #'  the file path of the resulting \acronym{ESRI} Grid file and text file of
-#'  metadata
+#'  metadata.
 #'
 #' @references <https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6>
 #' @source <https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip>
@@ -46,13 +46,13 @@ get_soil_thickness <- function(cache = TRUE) {
   }
 }
 
-#' Create a Object of read.abares.soil.thickness.files
+#' Create a object of read.abares.soil.thickness.files
 #'
-#' @param dir File where files have been downloaded
+#' @param dir File where files have been downloaded.
 #'
 #' @return A `read.abares.soil.thickness` object, which is a named `list` with
 #'  the file path of the resulting \acronym{ESRI} Grid file and text file of
-#'  metadata
+#'  metadata.
 #' @noRd
 #' @keywords Internal
 
@@ -72,7 +72,7 @@ get_soil_thickness <- function(cache = TRUE) {
   return(soil_thickness)
 }
 
-#' Downloads Soil Thickness Data if Not Located Locally
+#' Downloads soil thickness data if not already found locally
 #' @param cache `Boolean` Cache the soil thickness data files after download
 #' using `tools::R_user_dir()` to identify the proper directory for storing
 #' user data in a cache for this package. Defaults to `TRUE`, caching the files
@@ -80,7 +80,7 @@ get_soil_thickness <- function(cache = TRUE) {
 #' upon closing of the \R session.
 #'
 #' @return Nothing, called for its side-effects of downloading and unzipping
-#'  files
+#'  files.
 #'
 #' @noRd
 #' @keywords Internal
@@ -124,12 +124,12 @@ get_soil_thickness <- function(cache = TRUE) {
   return(invisible(NULL))
 }
 
-#' Prints read.abares.soil.thickness.files Object
+#' Prints read.abares.soil.thickness.files object
 #'
 #' Custom [print()] method for `read.abares.soil.thickness.files` objects.
 #'
-#' @param x a `read.abares.soil.thickness.files` object
-#' @param ... ignored
+#' @param x a `read.abares.soil.thickness.files` object.
+#' @param ... ignored.
 #' @export
 #' @noRd
 print.read.abares.soil.thickness.files <- function(x, ...) {
@@ -168,7 +168,7 @@ print.read.abares.soil.thickness.files <- function(x, ...) {
   invisible(x)
 }
 
-#' Display Complete Metadata Associated with Soil Thickness Data in the \R Console
+#' Display complete metadata associated with soil thickness data
 #'
 #' Displays the complete set of metadata associated with the soil thickness
 #'  data in your \R console. For including the metadata in documents or other
@@ -176,10 +176,10 @@ print.read.abares.soil.thickness.files <- function(x, ...) {
 #'  [pander::pander] to print the metadata.
 #'
 #'
-#' @param x A `read.abares.soil.thickness.files` object
+#' @param x A `read.abares.soil.thickness.files` object.
 #'
 #' @return Nothing, called for its side effects, it prints the complete
-#'   metadata file to the \R console
+#'   metadata file to the \R console.
 #' @examplesIf interactive()
 #' get_soil_thickness(cache = TRUE) |>
 #'   print_soil_thickness_metadata()

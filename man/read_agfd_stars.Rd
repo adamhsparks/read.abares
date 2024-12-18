@@ -2,19 +2,19 @@
 % Please edit documentation in R/read_agfd_stars.R
 \name{read_agfd_stars}
 \alias{read_agfd_stars}
-\title{Read AGFD NCDF Files With stars}
+\title{Read 'Australian Gridded Farm Data' (AGFD) NCDF files with stars}
 \usage{
 read_agfd_stars(files)
 }
 \arguments{
-\item{files}{A list of \acronym{AGFD} NetCDF files to import}
+\item{files}{A list of \acronym{AGFD} NetCDF files to import.}
 }
 \value{
 a \code{list} object of \CRANpkg{stars} objects of the Australian Gridded
-Farm Data with the file names as the list's objects' names
+Farm Data with the file names as the list's objects' names.
 }
 \description{
-Read Australian Gridded Farm Data, (\acronym{AGFD}) as a list of \link{stars}
+Read 'Australian Gridded Farm Data', (\acronym{AGFD}) as a list of \link{stars}
 objects.
 }
 \details{
@@ -26,7 +26,7 @@ grid.\cr
 These data have been produced by \acronym{ABARES} as part of the ongoing
 Australian Agricultural Drought Indicator (\acronym{AADI}) project
 (previously known as the Drought Early Warning System Project) and were
-derived using \acronym{ABARES}
+derived using \acronym{ABARES}'s
 \href{https://www.agriculture.gov.au/abares/research-topics/climate/drought/farmpredict}{\emph{farmpredict}}
 model, which in turn is based on ABARES Agricultural and Grazing Industries
 Survey (\acronym{AAGIS}) data.\cr

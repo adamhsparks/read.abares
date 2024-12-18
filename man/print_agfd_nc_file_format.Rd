@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_agfd.R
 \name{print_agfd_nc_file_format}
 \alias{print_agfd_nc_file_format}
-\title{Prints File Format Information for the AGFD NetCDF Files}
+\title{Prints file format information for the AGFD NetCDF files}
 \source{
 \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/0}
 }

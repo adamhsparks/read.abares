@@ -2,15 +2,16 @@
 % Please edit documentation in R/read_agfd_dt.R
 \name{read_agfd_dt}
 \alias{read_agfd_dt}
-\title{Read AGFD NCDF Files as a data.table}
+\title{Read 'Australian Gridded Farm Data' (AGFD) NCDF files as a data.table}
 \usage{
 read_agfd_dt(files)
 }
 \arguments{
-\item{files}{A list of \acronym{AGFD} NetCDF files to import}
+\item{files}{A list of \acronym{AGFD} NetCDF files to import.}
 }
 \value{
-a \link[data.table:data.table]{data.table::data.table} object of the Australian Gridded Farm Data
+a \link[data.table:data.table]{data.table::data.table} object of the 'Australian Gridded Farm
+Data'.
 }
 \description{
 Read Australian Gridded Farm Data, (\acronym{AGFD}) as a \link{data.table} object.
@@ -24,7 +25,7 @@ grid.\cr
 These data have been produced by \acronym{ABARES} as part of the ongoing
 Australian Agricultural Drought Indicator (\acronym{AADI}) project
 (previously known as the Drought Early Warning System Project) and were
-derived using \acronym{ABARES}
+derived using \acronym{ABARES}'s
 \href{https://www.agriculture.gov.au/abares/research-topics/climate/drought/farmpredict}{\emph{farmpredict}}
 model, which in turn is based on ABARES Agricultural and Grazing Industries
 Survey (\acronym{AAGIS}) data.\cr

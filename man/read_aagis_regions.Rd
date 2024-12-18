@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_aagis_regions.R
 \name{read_aagis_regions}
 \alias{read_aagis_regions}
-\title{Read AAGIS Region Mapping Files}
+\title{Read 'Australian Agricultural and Grazing Industries Survey' (AAGIS) region mapping files}
 \source{
 \url{https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip}
 }
@@ -18,7 +18,7 @@ package. Defaults to \code{TRUE}, caching the files locally as a Geopackage. If
 closing of the \R session.}
 }
 \value{
-An \CRANpkg{sf} object of the \acronym{AAGIS} regions
+An \CRANpkg{sf} object of the \acronym{AAGIS} regions.
 }
 \description{
 Download, cache and import the Australian Agricultural and Grazing

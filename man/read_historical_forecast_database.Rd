@@ -13,7 +13,7 @@ read_historical_forecast_database()
 read_historical_forecast()
 }
 \value{
-A \link[data.table:data.table]{data.table::data.table} object
+A \link[data.table:data.table]{data.table::data.table} object.
 }
 \description{
 Read Historical Forecast Database From ABARES

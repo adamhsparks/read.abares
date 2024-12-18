@@ -2,16 +2,16 @@
 % Please edit documentation in R/read_agfd_terra.R
 \name{read_agfd_terra}
 \alias{read_agfd_terra}
-\title{Read AGFD NCDF Files With terra}
+\title{Read 'Australian Gridded Farm Data' (AGFD) NCDF files with terra}
 \usage{
 read_agfd_terra(files)
 }
 \arguments{
-\item{files}{A list of \acronym{AGFD} NetCDF files to import}
+\item{files}{A list of \acronym{AGFD} NetCDF files to import.}
 }
 \value{
 a \code{list} object of \link[terra:rast]{terra::rast} objects of the Australian Gridded
-Farm Data with the file names as the list's objects' names
+Farm Data with the file names as the list's objects' names.
 }
 \description{
 Read Australian Gridded Farm Data, (\acronym{AGFD}) as a \code{list} of
@@ -26,7 +26,7 @@ grid.\cr
 These data have been produced by \acronym{ABARES} as part of the ongoing
 Australian Agricultural Drought Indicator (\acronym{AADI}) project
 (previously known as the Drought Early Warning System Project) and were
-derived using \acronym{ABARES}
+derived using \acronym{ABARES}'s
 \href{https://www.agriculture.gov.au/abares/research-topics/climate/drought/farmpredict}{\emph{farmpredict}}
 model, which in turn is based on ABARES Agricultural and Grazing Industries
 Survey (\acronym{AAGIS}) data.\cr

@@ -1,4 +1,4 @@
-#' Read ABARES Trade Data Regions From the ABARES Trade Dashboard
+#' Read ABARES 'Trade Data Regions' from the ABARES Trade Dashboard
 #'
 #' Fetches and imports  \acronym{ABARES} trade regions data.
 #'
@@ -42,7 +42,7 @@ read_abares_trade_regions <- function(cache = TRUE) {
 #' in the current session.
 #'
 #'
-#' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
+#' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
 #' @noRd
 #' @autoglobal
 #' @keywords Internal
@@ -71,7 +71,7 @@ read_abares_trade_regions <- function(cache = TRUE) {
   }
 }
 
-#' Download the ABARES Trade CSV File
+#' Download the ABARES Trade CSV file
 #'
 #' Handles downloading and caching (if requested) of ABARES Trade data files.
 #'
@@ -81,7 +81,7 @@ read_abares_trade_regions <- function(cache = TRUE) {
 #'  the files locally as a native \R object. If `FALSE`, this function uses
 #'  `tempdir()` and the files are deleted upon closing of the \R session.
 #'
-#' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
+#' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
 #' @noRd
 #' @autoglobal
 #' @keywords Internal

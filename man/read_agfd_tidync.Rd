@@ -2,12 +2,12 @@
 % Please edit documentation in R/read_agfd_tidync.R
 \name{read_agfd_tidync}
 \alias{read_agfd_tidync}
-\title{Read agfd NCDF Files With tidync}
+\title{Read 'Australian Gridded Farm Data' (AGFD) NCDF files with tidync}
 \usage{
 read_agfd_tidync(files)
 }
 \arguments{
-\item{files}{A list of \acronym{AGFD} NetCDF files to import}
+\item{files}{A list of \acronym{AGFD} NetCDF files to import.}
 }
 \value{
 a \code{list} object of \CRANpkg{tidync} \link[tidync:tidync]{tidync::tidync} objects of the
@@ -16,7 +16,7 @@ names.
 }
 \description{
 Read Australian Gridded Farm Data, (\acronym{AGFD}) as a list of \link{tidync}
-objects
+objects.
 }
 \details{
 From the \href{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}{ABARES website}:
@@ -27,7 +27,7 @@ grid.\cr
 These data have been produced by \acronym{ABARES} as part of the ongoing
 Australian Agricultural Drought Indicator (\acronym{AADI}) project
 (previously known as the Drought Early Warning System Project) and were
-derived using \acronym{ABARES}
+derived using \acronym{ABARES}'s
 \href{https://www.agriculture.gov.au/abares/research-topics/climate/drought/farmpredict}{\emph{farmpredict}}
 model, which in turn is based on ABARES Agricultural and Grazing Industries
 Survey (\acronym{AAGIS}) data.\cr

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_agfd.R
 \name{get_agfd}
 \alias{get_agfd}
-\title{Get Australian Gridded Farm Data for Local Use}
+\title{Get 'Australian Gridded Farm Data' (AGFD) for local use}
 \source{
 \itemize{
 \item Historical climate prices fixed -- \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/3},
@@ -13,23 +13,23 @@
 get_agfd(fixed_prices = TRUE, cache = TRUE)
 }
 \arguments{
-\item{fixed_prices}{\code{Boolean} Download historical climate and prices or
-historical climate and fixed prices as described in  (Hughes \emph{et al.} 2022).
-Defaults to \code{TRUE} and downloads the data with historical climate and fixed
-prices \dQuote{to isolate the effects of climate variability on financial
-incomes for broadacre farm businesses} (ABARES 2024). Using \code{TRUE} will
-download simulations where global output and input price indexes are fixed
-at values from the most recently completed financial year.}
+\item{fixed_prices}{Download historical climate and prices or historical
+climate and fixed prices as described in  (Hughes \emph{et al.} 2022). Defaults
+to \code{TRUE} and downloads the data with historical climate and fixed prices
+\dQuote{to isolate the effects of climate variability on financial incomes
+for broadacre farm businesses} (ABARES 2024). Using \code{TRUE} will download
+simulations where global output and input price indexes are fixed at values
+from the most recently completed financial year.}
 
-\item{cache}{\code{Boolean} Cache the Australian Gridded Farm Data files after
-download using \link[tools:userdir]{tools::R_user_dir} to identify the proper directory for
-storing user data in a cache for this package. Defaults to \code{TRUE}, caching
-the files locally. If \code{FALSE}, this function uses \code{tempdir()} and the files
-are deleted upon closing of the \R session.}
+\item{cache}{Cache the Australian Gridded Farm Data files after download
+using \link[tools:userdir]{tools::R_user_dir} to identify the proper directory for storing user
+data in a cache for this package. Defaults to \code{TRUE}, caching the files
+locally. If \code{FALSE}, this function uses \code{tempdir()} and the files are deleted
+upon closing of the \R session.}
 }
 \value{
 A \code{read.abares.agfd.nc.files} object, a \code{list} of NetCDF files
-containing the Australian Gridded Farm Data
+containing the Australian Gridded Farm Data.
 }
 \description{
 Downloads The Australian Gridded Farm Data (\acronym{AGFD}) data and unzips
@@ -44,7 +44,7 @@ grid.\cr
 These data have been produced by \acronym{ABARES} as part of the ongoing
 Australian Agricultural Drought Indicator (\acronym{AADI}) project
 (previously known as the Drought Early Warning System Project) and were
-derived using \acronym{ABARES}
+derived using \acronym{ABARES}'s
 \href{https://www.agriculture.gov.au/abares/research-topics/climate/drought/farmpredict}{\emph{farmpredict}}
 model, which in turn is based on ABARES Agricultural and Grazing Industries
 Survey (\acronym{AAGIS}) data.\cr

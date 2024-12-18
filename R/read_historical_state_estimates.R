@@ -1,4 +1,4 @@
-#' Read Historical State Estimates from ABARES
+#' Read 'Historical State Estimates' from ABARES
 #'
 #' @note
 #' Columns are renamed for consistency with other \acronym{ABARES} products

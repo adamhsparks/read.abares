@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_abares_trade.R
 \name{read_abares_trade}
 \alias{read_abares_trade}
-\title{Read Data From the ABARES Trade Dashboard}
+\title{Read data from the ABARES Trade Dashboard}
 \source{
 \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0}
 }

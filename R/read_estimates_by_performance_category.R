@@ -1,6 +1,6 @@
-#' Read Estimates by Size From ABARES
+#' Read 'Estimates by Size' from ABARES
 #'
-#' @return A [data.table::data.table] object
+#' @return A [data.table::data.table] object.
 #' @export
 #' @references <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
 #' @source <https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv>

@@ -2,12 +2,12 @@
 % Please edit documentation in R/clear_cache.R
 \name{clear_cache}
 \alias{clear_cache}
-\title{Remove Files in Users' Cache Directory}
+\title{Remove files in users' cache directory}
 \usage{
 clear_cache()
 }
 \value{
-Nothing, called for its side-effects, clearing the cached files
+Nothing, called for its side-effects, clearing the cached files.
 }
 \description{
 Removes all files in the \pkg{read.abares} cache if any exist.

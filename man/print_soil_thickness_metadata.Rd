@@ -2,16 +2,16 @@
 % Please edit documentation in R/get_soil_thickness.R
 \name{print_soil_thickness_metadata}
 \alias{print_soil_thickness_metadata}
-\title{Display Complete Metadata Associated with Soil Thickness Data in the \R Console}
+\title{Display complete metadata associated with soil thickness data}
 \usage{
 print_soil_thickness_metadata(x)
 }
 \arguments{
-\item{x}{A \code{read.abares.soil.thickness.files} object}
+\item{x}{A \code{read.abares.soil.thickness.files} object.}
 }
 \value{
 Nothing, called for its side effects, it prints the complete
-metadata file to the \R console
+metadata file to the \R console.
 }
 \description{
 Displays the complete set of metadata associated with the soil thickness

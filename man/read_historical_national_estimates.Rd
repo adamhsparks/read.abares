@@ -3,7 +3,7 @@
 \name{read_historical_national_estimates}
 \alias{read_historical_national_estimates}
 \alias{read_hist_nat_est}
-\title{Read Historical National Estimates from ABARES}
+\title{Read 'Historical National Estimates' from ABARES}
 \source{
 \url{https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv}
 }
@@ -17,7 +17,7 @@ A \link[data.table:data.table]{data.table::data.table} object with the \code{Var
 \code{key}.
 }
 \description{
-Read Historical National Estimates from ABARES
+Read 'Historical National Estimates' from ABARES
 }
 \note{
 Columns are renamed for consistency with other \acronym{ABARES} products

@@ -1,4 +1,4 @@
-#' Read AAGIS Region Mapping Files
+#' Read 'Australian Agricultural and Grazing Industries Survey' (AAGIS) region mapping files
 #'
 #' Download, cache and import the Australian Agricultural and Grazing
 #'  Industries Survey (\acronym{AAGIS} regions geospatial shapefile. Upon
@@ -17,7 +17,7 @@
 #'
 #' plot(aagis)
 #'
-#' @return An \CRANpkg{sf} object of the \acronym{AAGIS} regions
+#' @return An \CRANpkg{sf} object of the \acronym{AAGIS} regions.
 #'
 #' @family AGFD
 #'
@@ -35,14 +35,14 @@ read_aagis_regions <- function(cache = TRUE) {
   }
 }
 
-#' Check for Pre-existing File Before Downloading
+#' Check for a pre-existing file before downloading
 #'
 #' Checks the user cache first, then `tempdir()` for the files before
 #' returning a `NULL` value. If `cache == TRUE` and the file is not in the user
 #' cache, but is in `tempdir()`, it is saved to the cache before being returned
 #' in the current session.
 #'
-#' @return An \cranpkg{sf} object of AAGIS regions
+#' @return An \cranpkg{sf} object of AAGIS regions.
 #' @noRd
 #' @autoglobal
 #' @keywords Internal
@@ -67,7 +67,7 @@ read_aagis_regions <- function(cache = TRUE) {
   }
 }
 
-#' Download the AAGIS Regions Shapefile
+#' Download the 'Australian Agricultural and Grazing Industries Survey' (AAGIS) regions shapefile
 #'
 #' Handles downloading, caching (if requested) and importing of AAGIS regions
 #'  geospatial data.  The geometries are corrected for validity before returning
@@ -80,7 +80,7 @@ read_aagis_regions <- function(cache = TRUE) {
 #'  function uses `tempdir()` and the files are deleted upon closing of the \R
 #'  session.
 #'
-#' @return An \cranpkg{sf} object of AAGIS regions
+#' @return An \cranpkg{sf} object of AAGIS regions.
 #' @noRd
 #' @autoglobal
 #' @keywords Internal

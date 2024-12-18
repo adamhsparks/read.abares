@@ -1,4 +1,4 @@
-#' Get Australian Gridded Farm Data for Local Use
+#' Get 'Australian Gridded Farm Data' (AGFD) for local use
 #'
 #' Downloads The Australian Gridded Farm Data (\acronym{AGFD}) data and unzips
 #'  the compressed files to NetCDF for importing.
@@ -13,7 +13,7 @@
 #'  These data have been produced by \acronym{ABARES} as part of the ongoing
 #'  Australian Agricultural Drought Indicator (\acronym{AADI}) project
 #'  (previously known as the Drought Early Warning System Project) and were
-#'  derived using \acronym{ABARES}
+#'  derived using \acronym{ABARES}'s
 #'  [*farmpredict*](https://www.agriculture.gov.au/abares/research-topics/climate/drought/farmpredict)
 #'  model, which in turn is based on ABARES Agricultural and Grazing Industries
 #'  Survey (\acronym{AAGIS}) data.\cr
@@ -35,18 +35,18 @@
 #' Both sets of data are large in file size, *i.e.*, >1GB, and will require time
 #'   to download.
 #'
-#' @param fixed_prices `Boolean` Download historical climate and prices or
-#'  historical climate and fixed prices as described in  (Hughes *et al.* 2022).
-#'  Defaults to `TRUE` and downloads the data with historical climate and fixed
-#'  prices \dQuote{to isolate the effects of climate variability on financial
-#'  incomes for broadacre farm businesses} (ABARES 2024). Using `TRUE` will
-#'  download simulations where global output and input price indexes are fixed
-#'  at values from the most recently completed financial year.
-#' @param cache `Boolean` Cache the Australian Gridded Farm Data files after
-#'  download using [tools::R_user_dir] to identify the proper directory for
-#'  storing user data in a cache for this package. Defaults to `TRUE`, caching
-#'  the files locally. If `FALSE`, this function uses `tempdir()` and the files
-#'  are deleted upon closing of the \R session.
+#' @param fixed_prices Download historical climate and prices or historical
+#'  climate and fixed prices as described in  (Hughes *et al.* 2022). Defaults
+#'  to `TRUE` and downloads the data with historical climate and fixed prices
+#'  \dQuote{to isolate the effects of climate variability on financial incomes
+#'  for broadacre farm businesses} (ABARES 2024). Using `TRUE` will download
+#'  simulations where global output and input price indexes are fixed at values
+#'  from the most recently completed financial year.
+#' @param cache Cache the Australian Gridded Farm Data files after download
+#' using [tools::R_user_dir] to identify the proper directory for storing user
+#' data in a cache for this package. Defaults to `TRUE`, caching the files
+#' locally. If `FALSE`, this function uses `tempdir()` and the files are deleted
+#' upon closing of the \R session.
 #'
 #' @section Model scenarios:
 #'
@@ -173,7 +173,7 @@
 #' get_agfd()
 #'
 #' @return A `read.abares.agfd.nc.files` object, a `list` of NetCDF files
-#'  containing the Australian Gridded Farm Data
+#'  containing the Australian Gridded Farm Data.
 #' @family AGFD
 #' @autoglobal
 #' @export
@@ -233,12 +233,12 @@ get_agfd <- function(fixed_prices = TRUE,
   return(agfd_nc)
 }
 
-#' Prints read.abares.agfd.nc.files Objects
+#' Prints read.abares.agfd.nc.files objects
 #'
 #' Custom [print()] method for `read.abares.agfd.nc.files` objects.
 #'
-#' @param x a `read.abares.agfd.nc.files` object
-#' @param ... ignored
+#' @param x a `read.abares.agfd.nc.files` object.
+#' @param ... ignored.
 #' @export
 #' @autoglobal
 #' @noRd
@@ -249,7 +249,7 @@ print.read.abares.agfd.nc.files <- function(x, ...) {
   invisible(x)
 }
 
-#' Prints File Format Information for the AGFD NetCDF Files
+#' Prints file format information for the AGFD NetCDF files
 #'
 #' Print the file format from section 3.2 in \cite{Australian Bureau of
 #'  Agricultural and Resource Economics and Sciences}.

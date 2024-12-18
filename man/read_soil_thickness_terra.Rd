@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_soil_thickness_terra.R
 \name{read_soil_thickness_terra}
 \alias{read_soil_thickness_terra}
-\title{Read Soil Thickness File With terra}
+\title{Read a Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1 file with terra}
 \source{
 \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
 }
@@ -11,11 +11,11 @@ read_soil_thickness_terra(files)
 }
 \arguments{
 \item{files}{An \pkg{read.abares} \code{read.abares.soil.thickness} object, a
-\code{list} that contains the \acronym{ESRI} grid file to import}
+\code{list} that contains the \acronym{ESRI} grid file to import.}
 }
 \value{
-a \link[terra:rast]{terra::rast} object of the Soil Thickness for Australian Areas of
-Intensive Agriculture of Layer 1
+a \link[terra:rast]{terra::rast} object of the 'Soil Thickness for Australian Areas of
+Intensive Agriculture of Layer 1'.
 }
 \description{
 Read Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1

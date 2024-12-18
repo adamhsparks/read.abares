@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_soil_thickness.R
 \name{get_soil_thickness}
 \alias{get_soil_thickness}
-\title{Get Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1 for Local Use}
+\title{Get soil thickness for 'Australian Areas of Intensive Agriculture of Layer 1' for local use}
 \source{
 \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
 }
@@ -10,7 +10,7 @@
 get_soil_thickness(cache = TRUE)
 }
 \arguments{
-\item{cache}{\code{Boolean} Cache the soil thickness data files after download
+\item{cache}{Caches the soil thickness data files after download
 using \code{tools::R_user_dir()} to identify the proper directory for storing
 user data in a cache for this package. Defaults to \code{TRUE}, caching the files
 locally. If \code{FALSE}, this function uses \code{tempdir()} and the files are deleted
@@ -23,10 +23,10 @@ directly.}
 \value{
 A \code{read.abares.soil.thickness} object, which is a named \code{list} with
 the file path of the resulting \acronym{ESRI} Grid file and text file of
-metadata
+metadata.
 }
 \description{
-Get Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1 for Local Use
+Get soil thickness for 'Australian Areas of Intensive Agriculture of Layer 1' for local use
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

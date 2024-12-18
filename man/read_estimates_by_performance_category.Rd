@@ -3,7 +3,7 @@
 \name{read_estimates_by_performance_category}
 \alias{read_estimates_by_performance_category}
 \alias{read_est_by_perf_cat}
-\title{Read Estimates by Size From ABARES}
+\title{Read 'Estimates by Size' from ABARES}
 \source{
 \url{https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv}
 }
@@ -13,10 +13,10 @@ read_estimates_by_performance_category()
 read_est_by_perf_cat()
 }
 \value{
-A \link[data.table:data.table]{data.table::data.table} object
+A \link[data.table:data.table]{data.table::data.table} object.
 }
 \description{
-Read Estimates by Size From ABARES
+Read 'Estimates by Size' from ABARES
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

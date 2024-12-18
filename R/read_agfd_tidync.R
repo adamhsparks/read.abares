@@ -1,7 +1,7 @@
-#' Read agfd NCDF Files With tidync
+#' Read 'Australian Gridded Farm Data' (AGFD) NCDF files with tidync
 #'
 #' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a list of [tidync]
-#'  objects
+#'  objects.
 #'
 #' @inherit get_agfd details
 #' @inheritParams read_agfd_dt

@@ -1,4 +1,4 @@
-#' Remove Files in Users' Cache Directory
+#' Remove files in users' cache directory
 #'
 #' Removes all files in the \pkg{read.abares} cache if any exist.
 #'
@@ -8,7 +8,7 @@
 #' clear_cache()
 #' }
 #' @family cache
-#' @return Nothing, called for its side-effects, clearing the cached files
+#' @return Nothing, called for its side-effects, clearing the cached files.
 #' @export
 
 clear_cache <- function() {
