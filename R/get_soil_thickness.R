@@ -4,7 +4,7 @@
 #' using `tools::R_user_dir()` to identify the proper directory for storing
 #' user data in a cache for this package. Defaults to `TRUE`, caching the files
 #' locally. If `FALSE`, this function uses `tempdir()` and the files are deleted
-#' upon closing of the \R session.
+#' upon closing of the active \R session.
 #'
 #' A custom `print` method is provided that will print the metadata associated
 #'  with these data. Examples are provided for interacting with the metadata
@@ -77,7 +77,7 @@ get_soil_thickness <- function(cache = TRUE) {
 #' using `tools::R_user_dir()` to identify the proper directory for storing
 #' user data in a cache for this package. Defaults to `TRUE`, caching the files
 #' locally. If `FALSE`, this function uses `tempdir()` and the files are deleted
-#' upon closing of the \R session.
+#' upon closing of the active \R session.
 #'
 #' @return Nothing, called for its side-effects of downloading and unzipping
 #'  files.

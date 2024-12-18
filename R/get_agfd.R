@@ -46,7 +46,7 @@
 #' using [tools::R_user_dir] to identify the proper directory for storing user
 #' data in a cache for this package. Defaults to `TRUE`, caching the files
 #' locally. If `FALSE`, this function uses `tempdir()` and the files are deleted
-#' upon closing of the \R session.
+#' upon closing of the active \R session.
 #'
 #' @section Model scenarios:
 #'

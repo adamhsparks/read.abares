@@ -10,12 +10,12 @@
 read_aagis_regions(cache = TRUE)
 }
 \arguments{
-\item{cache}{\code{Boolean} Cache the \acronym{AAGIS} regions' geospatial file
-after downloading using \code{tools::R_user_dir("read.abares", "cache")} to
-identify the proper directory for storing user data in a cache for this
-package. Defaults to \code{TRUE}, caching the files locally as a Geopackage. If
-\code{FALSE}, this function uses \code{tempdir()} and the files are deleted upon
-closing of the \R session.}
+\item{cache}{Cache the \acronym{AAGIS} regions' geospatial file after
+downloading using \code{tools::R_user_dir("read.abares", "cache")} to identify the
+proper directory for storing user data in a cache for this package. Defaults
+to \code{TRUE}, caching the files locally as a Geopackage. If \code{FALSE}, this
+function uses \code{tempdir()} and the files are deleted upon closing of the
+active \R session.}
 }
 \value{
 An \CRANpkg{sf} object of the \acronym{AAGIS} regions.

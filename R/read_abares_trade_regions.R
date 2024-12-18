@@ -10,7 +10,7 @@
 #'  download using `tools::R_user_dir()` to identify the proper directory for
 #'  storing user data in a cache for this package. Defaults to `TRUE`, caching
 #'  the files locally as a native \R object. If `FALSE`, this function uses
-#'  `tempdir()` and the files are deleted upon closing of the \R session.
+#'  `tempdir()` and the files are deleted upon closing of the active \R session.
 #'
 #' @examplesIf interactive()
 #' trade_regions <- read_abares_trade_regions()
@@ -79,7 +79,7 @@ read_abares_trade_regions <- function(cache = TRUE) {
 #'  download using `tools::R_user_dir()` to identify the proper directory for
 #'  storing user data in a cache for this package. Defaults to `TRUE`, caching
 #'  the files locally as a native \R object. If `FALSE`, this function uses
-#'  `tempdir()` and the files are deleted upon closing of the \R session.
+#'  `tempdir()` and the files are deleted upon closing of the active \R session.
 #'
 #' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
 #' @noRd

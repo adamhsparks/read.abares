@@ -5,12 +5,12 @@
 #'  import, the geometries  are automatically corrected to fix invalid
 #'  geometries that are present in the original shapefile.
 #'
-#' @param cache `Boolean` Cache the \acronym{AAGIS} regions' geospatial file
-#'  after downloading using `tools::R_user_dir("read.abares", "cache")` to
-#'  identify the proper directory for storing user data in a cache for this
-#'  package. Defaults to `TRUE`, caching the files locally as a Geopackage. If
-#'  `FALSE`, this function uses `tempdir()` and the files are deleted upon
-#'  closing of the \R session.
+#' @param cache Cache the \acronym{AAGIS} regions' geospatial file after
+#' downloading using `tools::R_user_dir("read.abares", "cache")` to identify the
+#' proper directory for storing user data in a cache for this package. Defaults
+#' to `TRUE`, caching the files locally as a Geopackage. If `FALSE`, this
+#' function uses `tempdir()` and the files are deleted upon closing of the
+#' active \R session.
 #'
 #' @examplesIf interactive()
 #' aagis <- read_aagis_regions()

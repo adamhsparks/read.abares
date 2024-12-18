@@ -14,7 +14,7 @@ get_soil_thickness(cache = TRUE)
 using \code{tools::R_user_dir()} to identify the proper directory for storing
 user data in a cache for this package. Defaults to \code{TRUE}, caching the files
 locally. If \code{FALSE}, this function uses \code{tempdir()} and the files are deleted
-upon closing of the \R session.
+upon closing of the active \R session.
 
 A custom \code{print} method is provided that will print the metadata associated
 with these data. Examples are provided for interacting with the metadata
