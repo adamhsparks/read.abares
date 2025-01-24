@@ -62,11 +62,10 @@ read_abares_trade <- function(cache = TRUE) {
   if (cache && !dir.exists(abares_trade_dir)) {
     dir.create(abares_trade_dir, recursive = TRUE)
   }
-  trade_zip <- file.path(tempdir(), "abares_trade_data.zip")
 
   .retry_download(
     url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/1",
-    .f = trade_zip
+    .f = file.path(tempdir(), "abares_trade_data.zip")
   )
 
   abares_trade <- data.table::fread(trade_zip)
