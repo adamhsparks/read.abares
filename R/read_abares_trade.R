@@ -1,6 +1,8 @@
 #' Read data from the ABARES Trade Dashboard
 #'
-#' Fetches and imports \acronym{ABARES} trade data.
+#' Fetches and imports \acronym{ABARES} trade data. As the data file is large,
+#' ~1.4GB uncompressed CSV file, caching is offered to save repeated
+#' downloading.
 #'
 #' @note
 #' Columns are renamed for consistency with other \acronym{ABARES} products
@@ -117,4 +119,4 @@ read_abares_trade <- function(cache = TRUE) {
     )
   }
   return(abares_trade[])
-f
+}
