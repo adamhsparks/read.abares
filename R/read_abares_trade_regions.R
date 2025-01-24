@@ -36,6 +36,8 @@ read_abares_trade_regions <- function(cache = TRUE) {
   } else {
     return(.download_abares_trade_regions(cache))
   }
+}
+
 #' Download the ABARES Trade CSV file
 #'
 #' Handles downloading and caching (if requested) of ABARES Trade data files.
@@ -51,12 +53,15 @@ read_abares_trade_regions <- function(cache = TRUE) {
 #' @autoglobal
 #' @keywords Internal
 .download_abares_trade_regions <- function(cache) {
-  abares_trade_regions_dir <- file.path(.find_user_cache(), "abares_trade_regions_dir/")
+  abares_trade_regions_dir <- file.path(
+    .find_user_cache(),
+    "abares_trade_regions_dir/"
+  )
   if (cache && !dir.exists(abares_trade_regions_dir)) {
     dir.create(abares_trade_regions_dir, recursive = TRUE)
   }
   trade_zip <- file.path(tempdir(), "abares_trade_regions_data.zip")
-    
+
   .retry_download(
     url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/1",
     .f = trade_zip
@@ -69,7 +74,9 @@ read_abares_trade_regions <- function(cache = TRUE) {
 
   if (cache) {
     data.table::fwrite(abares_trade_regions,
-      file = file.path(abares_trade_regions_dir, "abares_trade_regions.gz"))
+      file = file.path(abares_trade_regions_dir, "abares_trade_regions.gz")
+    )
   }
+
   return(abares_trade_regions[])
 }
