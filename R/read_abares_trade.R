@@ -1,16 +1,22 @@
 #' Read data from the ABARES Trade Dashboard
 #'
-#' Fetches and imports  \acronym{ABARES} trade data.
+#' Fetches and imports \acronym{ABARES} trade data.
 #'
 #' @note
 #' Columns are renamed for consistency with other \acronym{ABARES} products
-#'  serviced in this package using a snake_case format and ordered consistently.
+#'  serviced in this package using a snake_case format and ordered
+#'  consistently.
 #'
-#' @param cache `Boolean` Cache the \acronym{ABARES} trade data after download
-#'  using `tools::R_user_dir()` to identify the proper directory for storing
-#'  user data in a cache for this package. Defaults to `TRUE`, caching the files
-#'  locally as a native \R object. If `FALSE`, this function uses `tempdir()`
-#'  and the files are deleted upon closing of the active \R session.
+#' @param cache `Boolean` Cache the \acronym{ABARES} trade data locally after
+#'  download to save download time in the future. Uses `tools::R_user_dir()` to
+#'  identify the proper directory for storing user data in a cache for this
+#'  package. Defaults to `TRUE`, caching the file as a gzipped CSV file. If
+#'  `FALSE`, this function uses `tempdir()` and the files are deleted upon
+#'  closing of the active \R session.
+#'
+#' @note The cached file is not the same as the raw file that is available for
+#'  download. It will follow the renaming scheme and filling values that this
+#'  function will perform on the raw data.
 #'
 #' @examplesIf interactive()
 #' trade <- read_abares_trade()
@@ -25,13 +31,13 @@
 #' @export
 
 read_abares_trade <- function(cache = TRUE) {
-  abares_trade_rds <- file.path(
+  abares_trade_gz <- file.path(
     .find_user_cache(),
-    "abares_trade_dir/abares_trade.rds"
+    "abares_trade_dir/abares_trade.gz"
   )
 
-  if (file.exists(abares_trade_rds)) {
-    return(readRDS(abares_trade_rds))
+  if (file.exists(abares_trade_gz)) {
+    return(data.table::fread(abares_trade_gz))
   } else {
     return(.download_abares_trade(cache))
   }
@@ -44,7 +50,7 @@ read_abares_trade <- function(cache = TRUE) {
 #' @param cache `Boolean` Cache the \acronym{ABARES} trade CSV file after
 #'  download using `tools::R_user_dir()` to identify the proper directory for
 #'  storing user data in a cache for this package. Defaults to `TRUE`, caching
-#'  the files locally as a native \R object. If `FALSE`, this function uses
+#'  the files locally as a gzip file. If `FALSE`, this function uses
 #'  `tempdir()` and the files are deleted upon closing of the active \R session.
 #'
 #' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
@@ -52,18 +58,11 @@ read_abares_trade <- function(cache = TRUE) {
 #' @autoglobal
 #' @keywords Internal
 .download_abares_trade <- function(cache) {
-  # if you make it this far, the cached file doesn't exist, so we need to
-  # download it either to `tempdir()` and dispose or cache it for later.
-  cached_zip <- file.path(.find_user_cache(), "abares_trade_dir/trade.csv")
-  tmp_zip <- file.path(file.path(tempdir(), "abares_trade.zip"))
-  trade_zip <- data.table::fifelse(cache, cached_zip, tmp_zip)
-  abares_trade_dir <- dirname(trade_zip)
-  abares_trade_rds <- file.path(abares_trade_dir, "abares_trade.rds")
-
-  # the user-cache may not exist if caching is enabled for the 1st time
+  abares_trade_dir <- file.path(.find_user_cache(), "abares_trade_dir/")
   if (cache && !dir.exists(abares_trade_dir)) {
     dir.create(abares_trade_dir, recursive = TRUE)
   }
+  trade_zip <- file.path(tempdir(), "abares_trade_data.zip")
 
   .retry_download(
     url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/1",
@@ -112,10 +111,9 @@ read_abares_trade <- function(cache = TRUE) {
   )]
 
   if (cache) {
-    saveRDS(abares_trade, file = abares_trade_rds)
-    unlink(c(
-      trade_zip
-    ))
+    data.table::fwrite(abares_trade,
+      file = file.path(abares_trade_dir, "abares_trade.gz")
+    )
   }
-  return(abares_trade)
+  return(abares_trade[])
 }

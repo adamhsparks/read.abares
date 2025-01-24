@@ -10,21 +10,27 @@
 read_abares_trade(cache = TRUE)
 }
 \arguments{
-\item{cache}{\code{Boolean} Cache the \acronym{ABARES} trade data after download
-using \code{tools::R_user_dir()} to identify the proper directory for storing
-user data in a cache for this package. Defaults to \code{TRUE}, caching the files
-locally as a native \R object. If \code{FALSE}, this function uses \code{tempdir()}
-and the files are deleted upon closing of the active \R session.}
+\item{cache}{\code{Boolean} Cache the \acronym{ABARES} trade data locally after
+download to save download time in the future. Uses \code{tools::R_user_dir()} to
+identify the proper directory for storing user data in a cache for this
+package. Defaults to \code{TRUE}, caching the file as a gzipped CSV file. If
+\code{FALSE}, this function uses \code{tempdir()} and the files are deleted upon
+closing of the active \R session.}
 }
 \value{
 A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
 }
 \description{
-Fetches and imports  \acronym{ABARES} trade data.
+Fetches and imports \acronym{ABARES} trade data.
 }
 \note{
 Columns are renamed for consistency with other \acronym{ABARES} products
-serviced in this package using a snake_case format and ordered consistently.
+serviced in this package using a snake_case format and ordered
+consistently.
+
+The cached file is not the same as the raw file that is available for
+download. It will follow the renaming scheme and filling values that this
+function will perform on the raw data.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
