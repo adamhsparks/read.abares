@@ -7,14 +7,7 @@
 \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/2}
 }
 \usage{
-read_abares_trade_regions(cache = TRUE)
-}
-\arguments{
-\item{cache}{\code{Boolean} Cache the \acronym{ABARES} trade regions data after
-download using \code{tools::R_user_dir()} to identify the proper directory for
-storing user data in a cache for this package. Defaults to \code{TRUE}, caching
-the files locally as a native \R object. If \code{FALSE}, this function uses
-\code{tempdir()} and the files are deleted upon closing of the active \R session.}
+read_abares_trade_regions()
 }
 \value{
 A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
