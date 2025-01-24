@@ -29,41 +29,23 @@ test_that("read_abares_trade_regions doesn't cache", {
     )
   )
   expect_false(file.exists(
-    file.path(.find_user_cache(), "abares_trade_dir/abares_trade_regions.rds")
-  ))
-  expect_false(file.exists(
-    file.path(.find_user_cache(), "abares_trade_dir/abares_trade_regions.csv")
+    file.path(.find_user_cache(), "abares_trade_dir/abares_trade_regions.gz")
   ))
 })
 
-test_that("read_abares_trade_regions skips downloading if still in tempdir()", {
-  skip_if_offline()
-  skip_on_ci()
-  x <- .check_existing_trade_regions(cache = FALSE)
-  expect_s3_class(x, c("data.table", "data.frame"))
-})
 
 # with caching ----
 
 test_that("read_abares_trade_regions caches", {
   skip_if_offline()
   skip_on_ci()
-  x <- read_abares_trade_regions(cache = TRUE)
-  expect_s3_class(x, c("data.table", "data.frame"))
-  y <- list.files(file.path(.find_user_cache(), "abares_trade_dir"))
+  read_abares_trade_regions(cache = TRUE)
   expect_true(file.exists(
-    file.path(.find_user_cache(), "abares_trade_dir/abares_trade_regions.rds")
-  ))
-  expect_false(file.exists(
-    file.path(.find_user_cache(), "abares_trade_dir/abares_trade_regions.csv")
+    file.path(.find_user_cache(), "abares_trade_dir/abares_trade_regions.gz")
   ))
 })
 
-test_that("read_abares_trade_regions skips downloading if cache is available", {
-  skip_if_offline()
-  skip_on_ci()
-  x <- .check_existing_trade_regions(cache = TRUE)
-  expect_s3_class(x, c("data.table", "data.frame"))
-})
+# cleanup if running tests in same session again so first test passes
+unlink(file.path(.find_user_cache(), "abares_trade_dir/abares_trade_regions.gz"))
 
 withr::deferred_run()

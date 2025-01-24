@@ -55,22 +55,19 @@ read_abares_trade_regions <- function(cache = TRUE) {
 .download_abares_trade_regions <- function(cache) {
   abares_trade_regions_dir <- file.path(
     .find_user_cache(),
-    "abares_trade_regions_dir/"
+    "abares_trade_dir/"
   )
   if (cache && !dir.exists(abares_trade_regions_dir)) {
     dir.create(abares_trade_regions_dir, recursive = TRUE)
   }
-  trade_zip <- file.path(tempdir(), "abares_trade_regions_data.zip")
+  trade_regions_zip <- file.path(tempdir(), "abares_trade_regions_data.zip")
 
   .retry_download(
-    url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/1",
-    .f = trade_zip
+    url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/2",
+    .f = trade_regions_zip
   )
 
-  abares_trade_regions <- data.table::fread(file.path(trade_zip),
-    na.strings = c(""),
-    fill = TRUE
-  )
+  abares_trade_regions <- data.table::fread(trade_regions_zip)
 
   if (cache) {
     data.table::fwrite(abares_trade_regions,
