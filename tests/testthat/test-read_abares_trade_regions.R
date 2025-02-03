@@ -3,10 +3,10 @@ withr::local_envvar(R_USER_CACHE_DIR = file.path(tempdir(), "abares.cache.1"))
 
 # without caching ----
 
-test_that("read_abares_trade_regions doesn't cache", {
+test_that("read_abares_trade_regions works", {
   skip_if_offline()
   skip_on_ci()
-  x <- read_abares_trade_regions(cache = FALSE)
+  x <- read_abares_trade_regions()
   expect_s3_class(x, c("data.table", "data.frame"))
   expect_named(
     x,
@@ -28,24 +28,4 @@ test_that("read_abares_trade_regions doesn't cache", {
       Destination = "character"
     )
   )
-  expect_false(file.exists(
-    file.path(.find_user_cache(), "abares_trade_dir/abares_trade_regions.gz")
-  ))
 })
-
-
-# with caching ----
-
-test_that("read_abares_trade_regions caches", {
-  skip_if_offline()
-  skip_on_ci()
-  read_abares_trade_regions(cache = TRUE)
-  expect_true(file.exists(
-    file.path(.find_user_cache(), "abares_trade_dir/abares_trade_regions.gz")
-  ))
-})
-
-# cleanup if running tests in same session again so first test passes
-unlink(file.path(.find_user_cache(), "abares_trade_dir/abares_trade_regions.gz"))
-
-withr::deferred_run()
