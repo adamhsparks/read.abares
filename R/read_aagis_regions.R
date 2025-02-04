@@ -43,9 +43,8 @@ read_aagis_regions <- function(cache = TRUE) {
 #' in the current session.
 #'
 #' @return An \cranpkg{sf} object of AAGIS regions.
-#' @noRd
+#' @dev
 #' @autoglobal
-#' @keywords Internal
 
 .check_existing_aagis <- function(cache) {
   aagis_gpkg <- file.path(.find_user_cache(), "aagis_regions_dir/aagis.gpkg")
@@ -81,9 +80,9 @@ read_aagis_regions <- function(cache = TRUE) {
 #'  session.
 #'
 #' @return An \cranpkg{sf} object of AAGIS regions.
-#' @noRd
+#' @dev
 #' @autoglobal
-#' @keywords Internal
+
 .download_aagis_shp <- function(cache) {
   # if you make it this far, the cached file doesn't exist, so we need to
   # download it either to `tempdir()` and dispose or cache it

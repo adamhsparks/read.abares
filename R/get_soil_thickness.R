@@ -53,8 +53,7 @@ get_soil_thickness <- function(cache = TRUE) {
 #' @return A `read.abares.soil.thickness` object, which is a named `list` with
 #'  the file path of the resulting \acronym{ESRI} Grid file and text file of
 #'  metadata.
-#' @noRd
-#' @keywords Internal
+#' @dev
 
 .create_soil_thickness_list <- function(soil_dir) {
   metadata <- readtext::readtext(file.path(
@@ -82,8 +81,7 @@ get_soil_thickness <- function(cache = TRUE) {
 #' @return Nothing, called for its side-effects of downloading and unzipping
 #'  files.
 #'
-#' @noRd
-#' @keywords Internal
+#' @dev
 
 .download_soil_thickness <- function(cache) {
   download_file <- data.table::fifelse(
