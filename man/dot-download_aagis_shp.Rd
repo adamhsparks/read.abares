@@ -15,7 +15,7 @@ function uses \code{tempdir()} and the files are deleted upon closing of the \R
 session.}
 }
 \value{
-An \cranpkg{sf} object of AAGIS regions.
+An \CRANpkg{sf} object of AAGIS regions.
 }
 \description{
 Handles downloading, caching (if requested) and importing of AAGIS regions

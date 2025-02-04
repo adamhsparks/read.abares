@@ -7,7 +7,7 @@
 .check_existing_aagis(cache)
 }
 \value{
-An \cranpkg{sf} object of AAGIS regions.
+An \CRANpkg{sf} object of AAGIS regions.
 }
 \description{
 Checks the user cache first, then \code{tempdir()} for the files before
