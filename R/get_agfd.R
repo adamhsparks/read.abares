@@ -198,7 +198,7 @@ get_agfd <- function(fixed_prices = TRUE,
 
   # only download if the files aren't already local
   if (!dir.exists(agfd_nc_dir)) {
-    # if caching is enabled but the {read.abares} cache dir doesn't exist, create it
+    # if caching is enabled but {read.abares} cache doesn't exist, create it
     if (cache) {
       dir.create(agfd_nc_dir, recursive = TRUE)
     }
