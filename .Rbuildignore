@@ -10,3 +10,5 @@
 ^.covrignore$
 ^flint$
 ^\.github$
+^man/dot-check_class\.Rd$
+^man/dot-retry_download\.Rd$
