@@ -49,7 +49,6 @@ Topsoils
 WGS
 YYYXXX
 abares
-agfd
 al
 backcast
 brio
@@ -67,10 +66,12 @@ fbp
 fci
 fert
 fertiliser
+filepath
 footslopes
 funder
 geospatial
 gridded
+gzipped
 hillslopes
 https
 httptest
