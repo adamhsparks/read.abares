@@ -15,10 +15,8 @@
 #' @param class An S3 class to validate against.
 #'
 #' @return Nothing, called for its side-effects of class validation.
-#' @keywords Internal
 #' @autoglobal
-#' @noRd
-
+#' @dev
 .check_class <- function(x, class) {
   if (missing(x) || !inherits(x, class)) {
     cli::cli_abort("You must provide a {.code read.abares} class object.",
@@ -49,8 +47,7 @@
 #'
 #' @return Called for its side-effects, writes an object to the `tempdir()` for
 #'   reading into the active \R session later.
-#' @keywords Internal
-#' @noRd
+#' @dev
 
 .retry_download <- function(url, .f, .max_tries = 3L) {
   httr2::request(base_url = url) |>
