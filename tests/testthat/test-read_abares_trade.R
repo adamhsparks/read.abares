@@ -51,15 +51,13 @@ test_that("read_abares_trade doesn't cache", {
 })
 
 # with caching ----
-with_mock_dir("abares/trade", {
-  test_that("read_abares_trade caches", {
-    skip_if_offline()
-    skip_on_ci()
-    read_abares_trade(cache = TRUE)
-    expect_true(file.exists(
-      file.path(.find_user_cache(), "abares_trade_dir/abares_trade.gz")
-    ))
-  })
+test_that("read_abares_trade caches", {
+  skip_if_offline()
+  skip_on_ci()
+  read_abares_trade(cache = TRUE)
+  expect_true(file.exists(
+    file.path(.find_user_cache(), "abares_trade_dir/abares_trade.gz")
+  ))
 })
 
 # cleanup cache if rerunning tests in same R session so first test passes ----
