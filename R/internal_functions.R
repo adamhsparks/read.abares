@@ -1,6 +1,6 @@
 #' Find the file path to the users' cache directory
 #'
-#' @return A `character` string value of a file path indicating the proper
+#' @returns A `character` string value of a file path indicating the proper
 #'  directory to use for cached files.
 #' @dev
 #' @autoglobal
@@ -13,7 +13,7 @@
 #' @param x An object for validating.
 #' @param class An S3 class to validate against.
 #'
-#' @return Nothing, called for its side-effects of class validation.
+#' @returns Nothing, called for its side-effects of class validation.
 #' @autoglobal
 #' @dev
 .check_class <- function(x, class) {
@@ -44,7 +44,7 @@
 #'   .f = f
 #' )
 #'
-#' @return Called for its side-effects, writes an object to the `tempdir()` for
+#' @returns Called for its side-effects, writes an object to the `tempdir()` for
 #'   reading into the active \R session later.
 #' @dev
 

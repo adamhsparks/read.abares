@@ -11,7 +11,7 @@
 #'
 #' trade_regions
 #'
-#' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
+#' @returns A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
 #'  regions.
 #' @family Trade
 #' @references <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0>

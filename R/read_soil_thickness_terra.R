@@ -9,7 +9,7 @@
 #' @source <https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip>
 
 #'
-#' @return a [terra::rast] object of the 'Soil Thickness for Australian Areas of
+#' @returns a [terra::rast] object of the 'Soil Thickness for Australian Areas of
 #'  Intensive Agriculture of Layer 1'.
 #'
 #' @examplesIf interactive()

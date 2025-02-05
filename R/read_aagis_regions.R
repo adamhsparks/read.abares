@@ -17,7 +17,7 @@
 #'
 #' plot(aagis)
 #'
-#' @return An \CRANpkg{sf} object of the \acronym{AAGIS} regions.
+#' @returns An \CRANpkg{sf} object of the \acronym{AAGIS} regions.
 #'
 #' @family AGFD
 #'
@@ -42,7 +42,7 @@ read_aagis_regions <- function(cache = TRUE) {
 #' cache, but is in `tempdir()`, it is saved to the cache before being returned
 #' in the current session.
 #'
-#' @return An \CRANpkg{sf} object of AAGIS regions.
+#' @returns An \CRANpkg{sf} object of AAGIS regions.
 #' @dev
 #' @autoglobal
 
@@ -79,7 +79,7 @@ read_aagis_regions <- function(cache = TRUE) {
 #'  function uses `tempdir()` and the files are deleted upon closing of the \R
 #'  session.
 #'
-#' @return An \CRANpkg{sf} object of AAGIS regions.
+#' @returns An \CRANpkg{sf} object of AAGIS regions.
 #' @dev
 #' @autoglobal
 

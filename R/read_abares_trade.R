@@ -25,7 +25,7 @@
 #'
 #' trade
 #'
-#' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
+#' @returns A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
 #' @family Trade
 #' @references <https://www.agriculture.gov.au/abares/research-topics/trade/dashboard>
 #' @source <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0>
@@ -55,7 +55,7 @@ read_abares_trade <- function(cache = TRUE) {
 #'  the files locally as a gzip file. If `FALSE`, this function uses
 #'  `tempdir()` and the files are deleted upon closing of the active \R session.
 #'
-#' @return A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
+#' @returns A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
 #' @noRd
 #' @autoglobal
 #' @keywords Internal

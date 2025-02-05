@@ -10,7 +10,7 @@
 #' @inheritSection get_agfd Data layers
 #' @inherit get_agfd references
 #'
-#' @return a `list` object of \CRANpkg{stars} objects of the Australian Gridded
+#' @returns a `list` object of \CRANpkg{stars} objects of the Australian Gridded
 #'  Farm Data with the file names as the list's objects' names.
 #'
 #' @examplesIf interactive()

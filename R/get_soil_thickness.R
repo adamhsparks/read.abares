@@ -23,7 +23,7 @@
 #' y <- x$metadata
 #' pander(y)
 #'
-#' @return A `read.abares.soil.thickness` object, which is a named `list` with
+#' @returns A `read.abares.soil.thickness` object, which is a named `list` with
 #'  the file path of the resulting \acronym{ESRI} Grid file and text file of
 #'  metadata.
 #'
@@ -50,7 +50,7 @@ get_soil_thickness <- function(cache = TRUE) {
 #'
 #' @param dir File where files have been downloaded.
 #'
-#' @return A `read.abares.soil.thickness` object, which is a named `list` with
+#' @returns A `read.abares.soil.thickness` object, which is a named `list` with
 #'  the file path of the resulting \acronym{ESRI} Grid file and text file of
 #'  metadata.
 #' @dev
@@ -78,7 +78,7 @@ get_soil_thickness <- function(cache = TRUE) {
 #' locally. If `FALSE`, this function uses `tempdir()` and the files are deleted
 #' upon closing of the active \R session.
 #'
-#' @return Nothing, called for its side-effects of downloading and unzipping
+#' @returns Nothing, called for its side-effects of downloading and unzipping
 #'  files.
 #'
 #' @dev
@@ -176,7 +176,7 @@ print.read.abares.soil.thickness.files <- function(x, ...) {
 #'
 #' @param x A `read.abares.soil.thickness.files` object.
 #'
-#' @return Nothing, called for its side effects, it prints the complete
+#' @returns Nothing, called for its side effects, it prints the complete
 #'   metadata file to the \R console.
 #' @examplesIf interactive()
 #' get_soil_thickness(cache = TRUE) |>

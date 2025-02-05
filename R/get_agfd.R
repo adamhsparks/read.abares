@@ -172,7 +172,7 @@
 #' @examplesIf interactive()
 #' get_agfd()
 #'
-#' @return A `read.abares.agfd.nc.files` object, a `list` of NetCDF files
+#' @returns A `read.abares.agfd.nc.files` object, a `list` of NetCDF files
 #'  containing the Australian Gridded Farm Data.
 #' @family AGFD
 #' @autoglobal

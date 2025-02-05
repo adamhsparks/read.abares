@@ -8,7 +8,7 @@
 #' clear_cache()
 #' }
 #' @family cache
-#' @return Nothing, called for its side-effects, clearing the cached files.
+#' @returns Nothing, called for its side-effects, clearing the cached files.
 #' @export
 
 clear_cache <- function() {

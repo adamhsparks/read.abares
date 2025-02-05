@@ -3,7 +3,7 @@
 #' @note
 #' Columns are renamed and reordered for consistency.
 #'
-#' @return A [data.table::data.table] object with the `Variable` field as the
+#' @returns A [data.table::data.table] object with the `Variable` field as the
 #'  `key`.
 #' @references <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
 #' @source <https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv>

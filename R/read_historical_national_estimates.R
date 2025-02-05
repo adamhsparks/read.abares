@@ -4,7 +4,7 @@
 #' Columns are renamed for consistency with other \acronym{ABARES} products
 #'  serviced in this package using a snake_case format and ordered consistently.
 #'
-#' @return A [data.table::data.table] object with the `Variable` field as the
+#' @returns A [data.table::data.table] object with the `Variable` field as the
 #'  `key`.
 #' @autoglobal
 #' @family Estimates

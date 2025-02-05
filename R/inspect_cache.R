@@ -26,7 +26,7 @@
 #' basename(inspect_cache(recursive_true))
 #' }
 #' @family cache
-#' @return A `list` of directories or files in the cache
+#' @returns A `list` of directories or files in the cache
 #' @export
 
 inspect_cache <- function(recursive = FALSE) {
