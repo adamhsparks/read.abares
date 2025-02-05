@@ -1,3 +1,0 @@
-﻿Classification,Region,Subregion,SACC_Destination,Destination
-Geographical,Oceania and Antarctica,Australia (includes External Territories),Australia,Australia (Re-imports)
-Other groupings,Gulf Cooperation Council  ,Gulf Cooperation Council  ,Kuwait,Kuwait
