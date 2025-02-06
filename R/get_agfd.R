@@ -260,7 +260,8 @@ print.read.abares.agfd.nc.files <- function(x, ...) {
 #' @source <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/0>
 #' @examples
 #' print_agfd_nc_file_format()
-#'
+#' @returns Called for its side-effects, prints the NETCDF file details for the
+#' \acronym{AGFD} data.
 #' @export
 #' @autoglobal
 
