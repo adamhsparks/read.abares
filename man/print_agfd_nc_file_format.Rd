@@ -9,13 +9,16 @@
 \usage{
 print_agfd_nc_file_format()
 }
+\value{
+Called for its side-effects, prints the NETCDF file details for the
+\acronym{AGFD} data.
+}
 \description{
 Print the file format from section 3.2 in \cite{Australian Bureau of
 Agricultural and Resource Economics and Sciences}.
 }
 \examples{
 print_agfd_nc_file_format()
-
 }
 \references{
 Australian gridded farm data, Australian Bureau of Agricultural
