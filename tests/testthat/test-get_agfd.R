@@ -130,6 +130,6 @@ test_that("print_agfd_nc_files prints a proper message", {
                 {.url https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}"
     )
   }
-
+  y <- print_agfd_nc_files()
   expect_identical(capture_output(y), capture_output(x))
 })
