@@ -105,3 +105,31 @@ test_that("print.read.abares.agfd.nc.files returns a properly formatted list", {
       capture_output()
   )
 })
+
+test_that("print_agfd_nc_files prints a proper message", {
+  x <- function() {
+    cli::cat_rule()
+    cli::cli_text(
+      "Each of the layers in simulation output data is represented as
+  a 2D raster in NETCDF files, with the following grid format:"
+    )
+    cli::cat_line()
+    cli::cli_dl(
+      c(
+        "{.strong CRS}" = "EPSG:4326 - WGS 84 - Geographic",
+        "{.strong Extent}" = "111.975 -44.525 156.275 -9.975",
+        "{.strong Unit}" = "Degrees",
+        "{.strong Width}" = "886",
+        "{.strong Height}" = "691",
+        "{.strong Cell size}" = "0.05 degree x 0.05 degree"
+      )
+    )
+    cli::cat_rule()
+    cli::cli_text(
+      "For further details, see the ABARES website,
+                {.url https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}"
+    )
+  }
+
+  expect_identical(capture_output(y), capture_output(x))
+})
