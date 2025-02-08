@@ -49,9 +49,8 @@ The files are freely available as CSV files, zip archives of NetCDF files or a z
 But you can install it like so:
 
 ```r
-if (!require("remotes"))
-  install.packages("remotes")
-remotes::install_git("https://github.com/adamhsparks/read.abares")
+# install.packages("pak")
+pak::pak("adamhsparks/read.abares")
 ```
 
 ## Features
