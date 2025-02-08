@@ -90,9 +90,8 @@
 </h3>
 <p>{read.abares} is not available through CRAN (yet). But you can install it like so:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://remotes.r-lib.org" class="external-link">"remotes"</a></span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_git</span><span class="op">(</span><span class="st">"https://github.com/adamhsparks/read.abares"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"adamhsparks/read.abares"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -143,8 +142,8 @@
 <span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"read.abares"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; To cite package 'read.abares' in publications use:</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;   Sparks A (????). _read.abares: Simple downloading and importing of</span></span>
-<span><span class="co">#&gt;   ABARES Data_. R package version 1.0.0,</span></span>
+<span><span class="co">#&gt;   Sparks A (????). _read.abares: Simple downloading and importing</span></span>
+<span><span class="co">#&gt;   of ABARES Data_. R package version 1.0.0,</span></span>
 <span><span class="co">#&gt;   &lt;https://adamhsparks.github.io/read.abares/&gt;.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; A BibTeX entry for LaTeX users is</span></span>
