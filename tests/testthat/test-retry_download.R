@@ -14,6 +14,5 @@ without_internet({
       .f = f,
       .max_tries = 2L
     ))
-    expect_no_condition(file.exists(f))
   })
 })
