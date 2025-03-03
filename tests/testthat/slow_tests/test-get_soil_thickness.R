@@ -11,7 +11,8 @@ test_that("get_soil_thickness doesn't cache", {
   x <- get_soil_thickness(cache = FALSE)
   expect_s3_class(x, c("read.abares.soil.thickness", "list"))
   expect_false(dir.exists(file.path(
-    .find_user_cache(), "soil_thickness_dir"
+    .find_user_cache(),
+    "soil_thickness_dir"
   )))
 })
 
@@ -27,7 +28,8 @@ test_that("get_soil_thickness caches", {
   x <- get_soil_thickness(cache = TRUE)
   expect_s3_class(x, c("read.abares.soil.thickness", "list"))
   expect_true(file.exists(file.path(
-    .find_user_cache(), "soil_thickness_dir"
+    .find_user_cache(),
+    "soil_thickness_dir"
   )))
 })
 
@@ -37,10 +39,12 @@ test_that("get_soil_thickness does cache", {
   x <- get_soil_thickness(cache = TRUE)
   expect_s3_class(x, c("read.abares.soil.thickness", "list"))
   expect_true(file.exists(file.path(
-    .find_user_cache(), "soil_thickness_dir"
+    .find_user_cache(),
+    "soil_thickness_dir"
   )))
   expect_true(dir.exists(file.path(
-    .find_user_cache(), "soil_thickness_dir"
+    .find_user_cache(),
+    "soil_thickness_dir"
   )))
 })
 
@@ -78,9 +82,11 @@ test_that("print.read.abares.thickness.files prints metadata", {
     Use Limitation: This dataset is bound by the requirements set down by the
     National Land & Water Resources Audit"
     )
-    cli::cli_text("To see the full metadata, call
+    cli::cli_text(
+      "To see the full metadata, call
     {.fn print_soil_thickness_metadata} on a soil thickness object in your R
-                session.")
+                session."
+    )
     cli::cat_line()
   }
   print_out <- capture.output(out_text())
@@ -94,7 +100,11 @@ test_that("print_soil_thickness_metadata prints full metadata", {
   skip_on_ci()
   out_text <- function(x) {
     loc <- stringr::str_locate(x$metadata, "Custodian")
-    metadata <- stringr::str_sub(x$metadata, loc[, "start"] - 1, nchar(x$metadata))
+    metadata <- stringr::str_sub(
+      x$metadata,
+      loc[, "start"] - 1,
+      nchar(x$metadata)
+    )
     cli::cli_h1(
       "Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil)\n"
     )

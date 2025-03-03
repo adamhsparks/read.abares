@@ -20,8 +20,11 @@ test_that("inspect_cache() works, recursive = FALSE", {
 
   f <- .find_user_cache()
   f <- list.files(f, full.names = TRUE)
-  expect_identical(inspect_cache() |>
-    capture_output(), f |> capture_output())
+  expect_identical(
+    inspect_cache() |>
+      capture_output(),
+    f |> capture_output()
+  )
 })
 
 test_that("inspect_cache() works, recursive = TRUE", {

@@ -26,7 +26,8 @@ read_estimates_by_size <- read_est_by_size <- function() {
   )
 
   x <- data.table::fread(f)
-  data.table::setcolorder(x,
+  data.table::setcolorder(
+    x,
     neworder = c("Variable", "Year", "Size", "Industry", "Value", "RSE")
   )
   data.table::setkey(x, "Variable")

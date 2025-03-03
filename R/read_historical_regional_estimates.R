@@ -31,7 +31,8 @@ read_historical_regional_estimates <- read_hist_reg_est <- function() {
     old = c("Variable", "Year", "ABARES region", "Value", "RSE"),
     new = c("Variable", "Year", "ABARES_region", "Value", "RSE")
   )
-  data.table::setcolorder(x,
+  data.table::setcolorder(
+    x,
     neworder = c("Variable", "Year", "ABARES_region", "Value", "RSE")
   )
   data.table::setkey(x, "Variable")

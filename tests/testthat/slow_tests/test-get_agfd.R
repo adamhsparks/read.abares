@@ -3,7 +3,10 @@ test_that("get_agfd, fixed = TRUE works", {
   skip_on_ci()
   x <- get_agfd()
 
-  agfd_nc_dir <- file.path(.find_user_cache(), "historical_climate_prices_fixed")
+  agfd_nc_dir <- file.path(
+    .find_user_cache(),
+    "historical_climate_prices_fixed"
+  )
   agfd_nc <- list.files(agfd_nc_dir, full.names = TRUE)
 
   nc_files <- function(agfd_nc_dir) {

@@ -109,12 +109,15 @@ read_abares_trade <- function(cache = TRUE) {
     )
   )
 
-  abares_trade[, Year_month := lubridate::ym(
-    gsub(".", "-", Year_month, fixed = TRUE)
-  )]
+  abares_trade[,
+    Year_month := lubridate::ym(
+      gsub(".", "-", Year_month, fixed = TRUE)
+    )
+  ]
 
   if (cache) {
-    data.table::fwrite(abares_trade,
+    data.table::fwrite(
+      abares_trade,
       file = file.path(abares_trade_dir, "abares_trade.gz")
     )
   }

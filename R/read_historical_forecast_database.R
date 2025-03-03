@@ -42,11 +42,16 @@
 read_historical_forecast_database <- function() {
   f <- file.path(tempdir(), "historical_db.xlsx")
 
-  .retry_download("https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0",
+  .retry_download(
+    "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0",
     .f = f
   )
 
-  x <- data.table::as.data.table(openxlsx2::read_xlsx(f, sheet = "Database", na.strings = "na"))
+  x <- data.table::as.data.table(openxlsx2::read_xlsx(
+    f,
+    sheet = "Database",
+    na.strings = "na"
+  ))
 
   data.table::setnames(
     x,
@@ -78,32 +83,34 @@ read_historical_forecast_database <- function() {
     )
   )
 
-  x[, Month_issued := data.table::fcase(
-    Month_issued == "January",
-    1L,
-    Month_issued == "Februrary",
-    2L,
-    Month_issued == "March",
-    3L,
-    Month_issued == "April",
-    4L,
-    Month_issued == "May",
-    5L,
-    Month_issued == "June",
-    6L,
-    Month_issued == "July",
-    7L,
-    Month_issued == "August",
-    8L,
-    Month_issued == "September",
-    9L,
-    Month_issued == "October",
-    10L,
-    Month_issued == "November",
-    11L,
-    Month_issued == "December",
-    12L
-  )]
+  x[,
+    Month_issued := data.table::fcase(
+      Month_issued == "January",
+      1L,
+      Month_issued == "Februrary",
+      2L,
+      Month_issued == "March",
+      3L,
+      Month_issued == "April",
+      4L,
+      Month_issued == "May",
+      5L,
+      Month_issued == "June",
+      6L,
+      Month_issued == "July",
+      7L,
+      Month_issued == "August",
+      8L,
+      Month_issued == "September",
+      9L,
+      Month_issued == "October",
+      10L,
+      Month_issued == "November",
+      11L,
+      Month_issued == "December",
+      12L
+    )
+  ]
 
   return(x[])
 }

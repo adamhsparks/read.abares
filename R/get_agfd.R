@@ -178,8 +178,7 @@
 #' @autoglobal
 #' @export
 
-get_agfd <- function(fixed_prices = TRUE,
-                     cache = TRUE) {
+get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
   download_file <- data.table::fifelse(
     cache,
     file.path(.find_user_cache(), "agfd.zip"),
@@ -267,8 +266,10 @@ print.read.abares.agfd.nc.files <- function(x, ...) {
 
 print_agfd_nc_file_format <- function() {
   cli::cat_rule()
-  cli::cli_text("Each of the layers in simulation output data is represented as
-  a 2D raster in NETCDF files, with the following grid format:")
+  cli::cli_text(
+    "Each of the layers in simulation output data is represented as
+  a 2D raster in NETCDF files, with the following grid format:"
+  )
   cli::cat_line()
   cli::cli_dl(
     c(
@@ -281,6 +282,8 @@ print_agfd_nc_file_format <- function() {
     )
   )
   cli::cat_rule()
-  cli::cli_text("For further details, see the ABARES website,
-                {.url https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}")
+  cli::cli_text(
+    "For further details, see the ABARES website,
+                {.url https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}"
+  )
 }

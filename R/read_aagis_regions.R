@@ -97,7 +97,8 @@ read_aagis_regions <- function(cache = TRUE) {
     dir.create(aagis_regions_dir, recursive = TRUE)
   }
 
-  .retry_download("https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip",
+  .retry_download(
+    "https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip",
     .f = aagis_zip
   )
 

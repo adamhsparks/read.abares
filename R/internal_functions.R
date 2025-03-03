@@ -18,7 +18,8 @@
 #' @dev
 .check_class <- function(x, class) {
   if (missing(x) || !inherits(x, class)) {
-    cli::cli_abort("You must provide a {.code read.abares} class object.",
+    cli::cli_abort(
+      "You must provide a {.code read.abares} class object.",
       call = rlang::caller_env()
     )
   }

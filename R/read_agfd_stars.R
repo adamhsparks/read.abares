@@ -83,7 +83,8 @@ read_agfd_stars <- function(files) {
   q_read_ncdf <- purrr::quietly(stars::read_ncdf)
   s2 <- purrr::modify_depth(
     purrr::map(files[2:length(files)], q_read_ncdf, var = var),
-    1, "result"
+    1,
+    "result"
   )
 
   out <- append(s1, s2)

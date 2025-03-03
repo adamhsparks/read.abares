@@ -27,7 +27,10 @@ read_historical_national_estimates <- function() {
   )
 
   x <- data.table::fread(f)
-  data.table::setcolorder(x, neworder = c("Variable", "Year", "Industry", "Value", "RSE"))
+  data.table::setcolorder(
+    x,
+    neworder = c("Variable", "Year", "Industry", "Value", "RSE")
+  )
   data.table::setkey(x, "Variable")
   return(x[])
 }

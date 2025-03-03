@@ -34,7 +34,8 @@ test_that("read_aagis_regions caches", {
     file.path(.find_user_cache(), "aagis_regions_dir/aagis_zip")
   ))
   expect_false(file.exists(file.path(
-    .find_user_cache(), "aagis_asgs16v1_g5a.*"
+    .find_user_cache(),
+    "aagis_asgs16v1_g5a.*"
   )))
 })
 

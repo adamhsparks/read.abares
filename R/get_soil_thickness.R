@@ -39,10 +39,12 @@ get_soil_thickness <- function(cache = TRUE) {
     return(.create_soil_thickness_list(dirname(thpk_1_cache)))
   } else {
     .download_soil_thickness(cache)
-    return(.create_soil_thickness_list(soil_dir = file.path(
-      tempdir(),
-      "soil_thickness_dir"
-    )))
+    return(.create_soil_thickness_list(
+      soil_dir = file.path(
+        tempdir(),
+        "soil_thickness_dir"
+      )
+    ))
   }
 }
 
@@ -109,9 +111,7 @@ get_soil_thickness <- function(cache = TRUE) {
 
     withr::with_dir(
       download_dir,
-      utils::unzip(download_file,
-        exdir = file.path(download_dir)
-      )
+      utils::unzip(download_file, exdir = file.path(download_dir))
     )
     file.rename(
       file.path(download_dir, "staiar9cl__05911a01eg_geo___/"),
@@ -131,7 +131,9 @@ get_soil_thickness <- function(cache = TRUE) {
 #' @export
 #' @noRd
 print.read.abares.soil.thickness.files <- function(x, ...) {
-  cli::cli_h1("Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil)")
+  cli::cli_h1(
+    "Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil)"
+  )
   cli::cli_h2("Dataset ANZLIC ID ANZCW1202000149")
   cli::cli_text(
     "Feature attribute definition Predicted average Thickness (mm) of soil layer
@@ -159,9 +161,11 @@ print.read.abares.soil.thickness.files <- function(x, ...) {
     Use Limitation: This dataset is bound by the requirements set down by the
     National Land & Water Resources Audit"
   )
-  cli::cli_text("To see the full metadata, call
+  cli::cli_text(
+    "To see the full metadata, call
     {.fn print_soil_thickness_metadata} on a soil thickness object in your R
-                session.")
+                session."
+  )
   cli::cat_line()
   invisible(x)
 }
@@ -189,8 +193,14 @@ print.read.abares.soil.thickness.files <- function(x, ...) {
 print_soil_thickness_metadata <- function(x) {
   .check_class(x = x, class = "read.abares.soil.thickness.files")
   loc <- stringr::str_locate(x$metadata, "Custodian")
-  metadata <- stringr::str_sub(x$metadata, loc[, "start"] - 1, nchar(x$metadata))
-  cli::cli_h1("Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil)\n")
+  metadata <- stringr::str_sub(
+    x$metadata,
+    loc[, "start"] - 1,
+    nchar(x$metadata)
+  )
+  cli::cli_h1(
+    "Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil)\n"
+  )
   cli::cli_h2("Dataset ANZLIC ID ANZCW1202000149")
   cli::cli_text(x$metadata)
   cli::cat_line()
