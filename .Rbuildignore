@@ -10,6 +10,7 @@
 ^.covrignore$
 ^flint$
 ^\.github$
+^air\.toml$
 ^man/dot-create_soil_thickness_list\.Rd$
 ^man/dot-download_soil_thickness\.Rd$
 ^man/dot-find_user_cache\.Rd$
@@ -17,4 +18,3 @@
 ^man/dot-retry_download\.Rd$
 ^man/dot-check_existing_aagis\.Rd$
 ^man/dot-download_aagis_shp\.Rd$
-^air\.toml$
