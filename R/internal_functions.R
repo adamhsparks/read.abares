@@ -51,7 +51,7 @@
 
 .retry_download <- function(url, .f, .max_tries = 3L) {
   httr2::request(base_url = url) |>
-    httr2::req_user_agent("Mozilla/5.0") |>
+    httr2::req_user_agent("read.abares") |>
     httr2::req_headers("Accept-Encoding" = "identity") |>
     httr2::req_headers("Connection" = "Keep-Alive") |>
     httr2::req_options(http_version = 2, timeout = 2000L) |>
