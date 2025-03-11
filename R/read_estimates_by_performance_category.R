@@ -19,7 +19,7 @@ read_estimates_by_performance_category <- read_est_by_perf_cat <- function() {
     .f = "fdp-BySize-ByPerformance.csv"
   )
 
-  x <- data.table::fread(f)
+  x <- data.table::fread(.f)
   x[]
 }
 

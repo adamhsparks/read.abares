@@ -4,6 +4,7 @@ utils::globalVariables(c(
   "Year_month", # <.download_abares_trade>
   "lat", # <read_agfd_dt>
   "lon", # <read_agfd_dt>
+  ".f", # <read_estimates_by_performance_category>
   "Month_issued", # <read_historical_forecast_database>
   NULL
 ))
