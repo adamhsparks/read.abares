@@ -54,7 +54,6 @@
     httr2::req_user_agent("Mozilla/5.0") |>
     httr2::req_headers("Accept-Encoding" = "identity") |>
     httr2::req_headers("Connection" = "Keep-Alive") |>
-    httr2::req_perform(verbosity = 3) |>
     httr2::req_options(http_version = 2, timeout = 2000L) |>
     httr2::req_retry(max_tries = .max_tries) |>
     httr2::req_cache(path = tempdir()) |>
