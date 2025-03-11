@@ -1,7 +1,7 @@
 #' Read 'Australian Gridded Farm Data' (AGFD) NCDF files with tidync
 #'
-#' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a list of [tidync]
-#'  objects.
+#' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a list of
+#'   [tidync::tidync] objects.
 #'
 #' @inherit get_agfd details
 #' @inheritParams read_agfd_dt
@@ -27,5 +27,4 @@
 read_agfd_tidync <- function(files) {
   tnc <- purrr::map(files, tidync::tidync)
   names(tnc) <- basename(files)
-  return(tnc)
 }

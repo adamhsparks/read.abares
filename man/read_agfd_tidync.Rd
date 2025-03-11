@@ -15,8 +15,8 @@ Australian Gridded Farm Data with the file names as the  list's objects'
 names.
 }
 \description{
-Read Australian Gridded Farm Data, (\acronym{AGFD}) as a list of \link{tidync}
-objects.
+Read Australian Gridded Farm Data, (\acronym{AGFD}) as a list of
+\link[tidync:tidync]{tidync::tidync} objects.
 }
 \details{
 From the \href{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}{ABARES website}:

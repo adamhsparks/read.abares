@@ -14,7 +14,8 @@ a \link[data.table:data.table]{data.table::data.table} object of the 'Australian
 Data'.
 }
 \description{
-Read Australian Gridded Farm Data, (\acronym{AGFD}) as a \link{data.table} object.
+Read Australian Gridded Farm Data, (\acronym{AGFD}) as a
+\link[data.table:data.table]{data.table::data.table} object.
 }
 \details{
 From the \href{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}{ABARES website}:

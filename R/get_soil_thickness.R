@@ -39,12 +39,12 @@ get_soil_thickness <- function(cache = TRUE) {
     return(.create_soil_thickness_list(dirname(thpk_1_cache)))
   } else {
     .download_soil_thickness(cache)
-    return(.create_soil_thickness_list(
+    .create_soil_thickness_list(
       soil_dir = file.path(
         tempdir(),
         "soil_thickness_dir"
       )
-    ))
+    )
   }
 }
 
@@ -70,7 +70,6 @@ get_soil_thickness <- function(cache = TRUE) {
     "read.abares.soil.thickness.files",
     class(soil_thickness)
   )
-  return(soil_thickness)
 }
 
 #' Downloads soil thickness data if not already found locally

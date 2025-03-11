@@ -1,6 +1,7 @@
 #' Read 'Australian Gridded Farm Data' (AGFD) NCDF files as a data.table
 #'
-#' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a [data.table] object.
+#' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a
+#'  [data.table::data.table] object.
 #'
 #' @inherit get_agfd details
 #' @inheritSection get_agfd Model scenarios
@@ -34,5 +35,5 @@ read_agfd_dt <- function(files) {
   dt[, lon := as.numeric(dt$lon)]
   rm(tnc_list)
   gc()
-  return(dt[])
+  dt[]
 }

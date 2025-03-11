@@ -229,7 +229,6 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
   }
   agfd_nc <- list.files(agfd_nc_dir, full.names = TRUE)
   class(agfd_nc) <- union("read.abares.agfd.nc.files", class(agfd_nc))
-  return(agfd_nc)
 }
 
 #' Prints read.abares.agfd.nc.files objects
