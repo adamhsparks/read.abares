@@ -14,12 +14,14 @@
 #' read_est_by_perf_cat()
 #'
 read_estimates_by_performance_category <- read_est_by_perf_cat <- function() {
+  f <- "fdp-BySize-ByPerformance.csv"
+
   .retry_download(
     "https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv",
     .f = "fdp-BySize-ByPerformance.csv"
   )
 
-  x <- data.table::fread(.f)
+  x <- data.table::fread(f)
   x[]
 }
 
