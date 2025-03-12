@@ -1,5 +1,6 @@
 test_that("read_abares_trade_regions works", {
   skip_if_offline()
+  #  skip_on_ci()
   x <- read_abares_trade_regions()
   expect_s3_class(x, c("data.table", "data.frame"))
   expect_named(

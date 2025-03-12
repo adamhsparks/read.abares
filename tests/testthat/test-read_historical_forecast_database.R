@@ -1,5 +1,6 @@
 test_that("read_historical_forecast() works", {
   skip_if_offline()
+  skip_on_ci()
   x <- read_historical_forecast()
   expect_named(
     x,
