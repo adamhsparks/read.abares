@@ -8,8 +8,8 @@
 #' clear_cache()
 #' }
 #' @family cache
-#' @returns An ivisible `NULL`, called for its side-effects, clearing the cached
-#' files.
+#' @returns An invisible `NULL`, called for its side-effects, clearing the
+#' cached files and deleting the cache directory.
 #' @export
 
 clear_cache <- function() {
