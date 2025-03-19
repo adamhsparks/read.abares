@@ -34,7 +34,7 @@ test_that("inspect_cache() works, recurse = TRUE", {
   f <- .find_user_cache()
   f <- fs::dir_ls(f, recurse = TRUE, full.names = TRUE)
   expect_identical(
-    inspect_cache(recursive = TRUE) |>
+    inspect_cache(recurse = TRUE) |>
       capture_output(),
     f |> capture_output()
   )
