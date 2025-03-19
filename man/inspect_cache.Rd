@@ -4,10 +4,10 @@
 \alias{inspect_cache}
 \title{List the File Path to Users' Cache Directory}
 \usage{
-inspect_cache(recursive = FALSE)
+inspect_cache(recurse = FALSE)
 }
 \arguments{
-\item{recursive}{\code{Boolean} value indicating whether or not to list files in
+\item{recurse}{\code{Boolean} value indicating whether or not to \link[fs:dir_ls]{fs::dir_ls} in
 subdirectories of the cache directory. Defaults to \code{FALSE} returning only
 the top-level directories contained in the cache directory.}
 }
@@ -17,8 +17,8 @@ A \code{list} of directories or files in the cache
 \description{
 Check what files exist in your \pkg{read.abares} file cache.  This function
 will always return full file names, \emph{i.e.}, the directory path is prepended.
-See the help file for \code{list.files()} for more on the \code{full.names} argument.
-If you wish to strip the file path and only return the directory or
+See the help file for \code{fs::dir_ls()} for more on the \code{full.names} argument.
+If you wish to strip the fs::path and only return the directory or
 file names, use \code{basename()}. See examples for more.
 }
 \examples{
@@ -27,14 +27,14 @@ file names, use \code{basename()}. See examples for more.
 # list directories in cache only
 inspect_cache()
 
-# list directory names, stripping the file path
+# list directory names, stripping the fs::path
 basename(inspect_cache)
 
 # list all files in subdirectories of the cache
-inspect_cache(recursive = TRUE)
+inspect_cache(recurse = TRUE)
 
-# list all files in subdirectories, stripping the file path
-basename(inspect_cache(recursive_true))
+# list all files in subdirectories, stripping the [fs::path]
+basename(inspect_cache(recurse = true))
 }
 }
 \seealso{

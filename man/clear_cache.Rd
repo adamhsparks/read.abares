@@ -2,15 +2,16 @@
 % Please edit documentation in R/clear_cache.R
 \name{clear_cache}
 \alias{clear_cache}
-\title{Remove files in users' cache directory}
+\title{Remove the user's cache directory and all cached files}
 \usage{
 clear_cache()
 }
 \value{
-Nothing, called for its side-effects, clearing the cached files.
+An invisible \code{NULL}, called for its side-effects, clearing the
+cached files and deleting the cache directory.
 }
 \description{
-Removes all files in the \pkg{read.abares} cache if any exist.
+Removes the cache and all files in the \pkg{read.abares} cache if any exist.
 }
 \examples{
 # not run because cached files shouldn't exist on CRAN or testing envs
