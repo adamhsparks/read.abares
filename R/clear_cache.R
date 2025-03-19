@@ -1,6 +1,6 @@
-#' Remove files in users' cache directory
+#' Remove the user's cache directory and all cached files
 #'
-#' Removes all files in the \pkg{read.abares} cache if any exist.
+#' Removes the cache and all files in the \pkg{read.abares} cache if any exist.
 #'
 #' @examples
 #' # not run because cached files shouldn't exist on CRAN or testing envs
@@ -8,14 +8,15 @@
 #' clear_cache()
 #' }
 #' @family cache
-#' @returns Nothing, called for its side-effects, clearing the cached files.
+#' @returns An ivisible `NULL`, called for its side-effects, clearing the cached
+#' files.
 #' @export
 
 clear_cache <- function() {
-  f <- list.files(.find_user_cache(), recursive = TRUE, full.names = TRUE)
+  ra_cache <- fs::dir_exists(.find_user_cache())
 
-  if (length(f) > 0L) {
-    unlink(.find_user_cache(), recursive = TRUE, force = TRUE)
+  if (ra_cache) {
+    fs::dir_delete(names(ra_cache))
   } else {
     cli::cli_inform(
       c(
@@ -24,4 +25,5 @@ clear_cache <- function() {
       )
     )
   }
+  return(invisible(NULL))
 }
