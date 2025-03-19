@@ -24,7 +24,7 @@
 #' pander(y)
 #'
 #' @returns A `read.abares.soil.thickness` object, which is a named `list` with
-#'  the file path of the resulting \acronym{ESRI} Grid file and text file of
+#'  the file path of the resulting Esri Grid file and text file of
 #'  metadata.
 #'
 #' @references <https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6>
@@ -34,42 +34,47 @@
 #' @export
 
 get_soil_thickness <- function(cache = TRUE) {
-  thpk_1_cache <- file.path(.find_user_cache(), "soil_thickness_dir/thpk_1")
-  if (file.exists(thpk_1_cache)) {
-    return(.create_soil_thickness_list(dirname(thpk_1_cache)))
+  soil_cache <- fs::path(.find_user_cache(), "soil_thickness_dir")
+  if (fs::dir_exists(soil_cache)) {
+    return(.create_soil_thickness_list(soil_cache))
   } else {
-    .download_soil_thickness(cache)
+    download_file <- data.table::fifelse(
+      cache,
+      fs::path(.find_user_cache(), "soil_thick.zip"),
+      fs::path(tempdir(), "soil_thick.zip")
+    )
+
+    # this is where the zip file is downloaded
+    download_dir <- dirname(download_file)
+    .download_soil_thickness(cache, download_file, download_dir)
     .create_soil_thickness_list(
-      soil_dir = file.path(
-        tempdir(),
-        "soil_thickness_dir"
-      )
+      soil_dir = download_file
     )
   }
 }
 
 #' Create a object of read.abares.soil.thickness.files
 #'
-#' @param dir File where files have been downloaded.
+#' @param soil_dir File where files have been downloaded.
 #'
 #' @returns A `read.abares.soil.thickness` object, which is a named `list` with
-#'  the file path of the resulting \acronym{ESRI} Grid file and text file of
+#'  the file path of the resulting Esri Grid file and text file of
 #'  metadata.
 #' @dev
 
 .create_soil_thickness_list <- function(soil_dir) {
-  metadata <- readtext::readtext(file.path(
-    soil_dir,
-    "ANZCW1202000149.txt"
-  ))
   soil_thickness <- list(
-    "metadata" = metadata$text,
-    "grid" = file.path(soil_dir, "thpk_1")
+    "metadata" = readtext::readtext(fs::path(
+      soil_dir,
+      "ANZCW1202000149.txt"
+    ))$text,
+    "grid" = fs::path(soil_dir, "thpk_1")
   )
   class(soil_thickness) <- union(
     "read.abares.soil.thickness.files",
     class(soil_thickness)
   )
+  return(soil_thickness)
 }
 
 #' Downloads soil thickness data if not already found locally
@@ -84,24 +89,15 @@ get_soil_thickness <- function(cache = TRUE) {
 #'
 #' @dev
 
-.download_soil_thickness <- function(cache) {
-  download_file <- data.table::fifelse(
-    cache,
-    file.path(.find_user_cache(), "soil_thick.zip"),
-    file.path(file.path(tempdir(), "soil_thick.zip"))
-  )
-
-  # this is where the zip file is downloaded
-  download_dir <- dirname(download_file)
-
+.download_soil_thickness <- function(cache, download_file, download_dir) {
   # this is where the zip files are unzipped in `soil_thick_dir`
-  soil_thick_adf_file <- file.path(download_dir, "soil_thickness_dir/thpk_1")
+  soil_thick_adf_file <- fs::path(download_dir, "soil_thickness_dir/thpk_1")
 
   # only download if the files aren't already local
-  if (!file.exists(soil_thick_adf_file)) {
+  if (!fs::file_exists(soil_thick_adf_file)) {
     # if caching is enabled but the {read.abares} cache dir doesn't exist, create it
     if (cache) {
-      dir.create(dirname(soil_thick_adf_file), recursive = TRUE)
+      fs::dir_create(dirname(soil_thick_adf_file), recursive = TRUE)
     }
     .retry_download(
       "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
@@ -110,20 +106,20 @@ get_soil_thickness <- function(cache = TRUE) {
 
     withr::with_dir(
       download_dir,
-      utils::unzip(download_file, exdir = file.path(download_dir))
+      utils::unzip(download_file, exdir = fs::path(download_dir))
     )
     file.rename(
-      file.path(download_dir, "staiar9cl__05911a01eg_geo___/"),
-      file.path(download_dir, "soil_thickness_dir")
+      fs::path(download_dir, "staiar9cl__05911a01eg_geo___/"),
+      fs::path(download_dir, "soil_thickness_dir")
     )
-    unlink(download_file)
+    fs::file_delete(download_file)
   }
   return(invisible(NULL))
 }
 
 #' Prints read.abares.soil.thickness.files object
 #'
-#' Custom [print()] method for `read.abares.soil.thickness.files` objects.
+#' Custom [print] method for `read.abares.soil.thickness.files` objects.
 #'
 #' @param x a `read.abares.soil.thickness.files` object.
 #' @param ... ignored.
