@@ -7,7 +7,7 @@
 .create_soil_thickness_list(soil_dir)
 }
 \arguments{
-\item{dir}{File where files have been downloaded.}
+\item{soil_dir}{File where files have been downloaded.}
 }
 \value{
 A \code{read.abares.soil.thickness} object, which is a named \code{list} with
