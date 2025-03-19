@@ -45,7 +45,7 @@ get_soil_thickness <- function(cache = TRUE) {
     )
 
     # this is where the zip file is downloaded
-    download_dir <- dirname(download_file)
+    download_dir <- fs::path_dir(download_file)
     .download_soil_thickness(cache, download_file, download_dir)
     .create_soil_thickness_list(
       soil_dir = download_file
@@ -97,7 +97,7 @@ get_soil_thickness <- function(cache = TRUE) {
   if (!fs::file_exists(soil_thick_adf_file)) {
     # if caching is enabled but the {read.abares} cache dir doesn't exist, create it
     if (cache) {
-      fs::dir_create(dirname(soil_thick_adf_file), recursive = TRUE)
+      fs::dir_create(fs::path_dir(soil_thick_adf_file), recursive = TRUE)
     }
     .retry_download(
       "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
