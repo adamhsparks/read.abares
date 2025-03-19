@@ -40,7 +40,7 @@
 #' read_historical_forecast()
 #'
 read_historical_forecast_database <- function() {
-  f <- fs::path(tempdir(), "historical_db.xlsx")
+  f <- file.path(tempdir(), "historical_db.xlsx")
 
   .retry_download(
     "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0",

@@ -20,7 +20,7 @@
 #' @export
 
 read_abares_trade_regions <- function() {
-  trade_regions <- fs::path(tempdir(), "trade_regions")
+  trade_regions <- file.path(tempdir(), "trade_regions")
   .retry_download(
     url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/2",
     .f = trade_regions

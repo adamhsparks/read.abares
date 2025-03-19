@@ -18,7 +18,7 @@
 #' read_est_by_size()
 #'
 read_estimates_by_size <- read_est_by_size <- function() {
-  f <- fs::path(tempdir(), "fdp-beta-performance-by-size.csv")
+  f <- file.path(tempdir(), "fdp-beta-performance-by-size.csv")
 
   .retry_download(
     "https://www.agriculture.gov.au/sites/default/files/documents/fdp-performance-by-size.csv",

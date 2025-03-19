@@ -163,7 +163,7 @@
 #' N. Hughes, W.Y. Soh, C. Boult, K. Lawson, *Defining drought from
 #'  the perspective of Australian farmers*, Climate Risk Management, Volume 35,
 #'  2022, 100420, ISSN 2212-0963, DOI:
-#'  [10.1016/j.crm.2022.100420](https://doi.org/10.1016/j.crm.2022.100420).
+#'  \doi{10.1016/j.crm.2022.100420.org/10.1016/j.crm.2022.100420}.
 #'
 #' @source
 #'   * Historical climate prices fixed -- <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/3>,

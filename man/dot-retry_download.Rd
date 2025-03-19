@@ -27,7 +27,7 @@ Retries to download the requested resource before stopping. Uses
 }
 \examples{
 
-f <- fs::path(tempdir(), "fdp-beta-national-historical.csv")
+f <- file.path(tempdir(), "fdp-beta-national-historical.csv")
 retry_download(
   url = "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-national-historical.csv",
   .f = f

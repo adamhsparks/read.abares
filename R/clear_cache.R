@@ -13,10 +13,10 @@
 #' @export
 
 clear_cache <- function() {
-  ra_cache <- fs::dir_exists(.find_user_cache())
+  ra_cache <- dir.exists(.find_user_cache())
 
   if (ra_cache) {
-    fs::dir_delete(names(ra_cache))
+    unlink(names(ra_cache))
   } else {
     cli::cli_inform(
       c(

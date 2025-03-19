@@ -33,7 +33,7 @@
 #' @export
 
 read_abares_trade <- function(cache = TRUE) {
-  abares_trade_gz <- fs::path(
+  abares_trade_gz <- file.path(
     .find_user_cache(),
     "abares_trade_dir/abares_trade.gz"
   )
@@ -60,12 +60,12 @@ read_abares_trade <- function(cache = TRUE) {
 #' @autoglobal
 #' @keywords Internal
 .download_abares_trade <- function(cache) {
-  abares_trade_dir <- fs::path(.find_user_cache(), "abares_trade_dir/")
+  abares_trade_dir <- file.path(.find_user_cache(), "abares_trade_dir/")
   if (cache && !dir.exists(abares_trade_dir)) {
-    fs::dir_create(abares_trade_dir, recurse = TRUE)
+    dir.create(abares_trade_dir, recurse = TRUE)
   }
 
-  trade_zip <- fs::path(tempdir(), "abares_trade_data.zip")
+  trade_zip <- file.path(tempdir(), "abares_trade_data.zip")
 
   .retry_download(
     url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/1",
@@ -118,7 +118,7 @@ read_abares_trade <- function(cache = TRUE) {
   if (cache) {
     data.table::fwrite(
       abares_trade,
-      file = fs::path(abares_trade_dir, "abares_trade.gz")
+      file = file.path(abares_trade_dir, "abares_trade.gz")
     )
   }
   return(abares_trade[])
