@@ -2,11 +2,11 @@
 #'
 #' Check what files exist in your \pkg{read.abares} file cache.  This function
 #' will always return full file names, *i.e.*, the directory path is prepended.
-#' See the help file for `list.files()` for more on the `full.names` argument.
-#' If you wish to strip the file path and only return the directory or
+#' See the help file for `fs::dir_ls()` for more on the `full.names` argument.
+#' If you wish to strip the fs::path and only return the directory or
 #' file names, use `basename()`. See examples for more.
 #'
-#' @param recursive `Boolean` value indicating whether or not to list files in
+#' @param recurse `Boolean` value indicating whether or not to [fs::dir_ls] in
 #'  subdirectories of the cache directory. Defaults to `FALSE` returning only
 #'  the top-level directories contained in the cache directory.
 #'
@@ -16,25 +16,25 @@
 #' # list directories in cache only
 #' inspect_cache()
 #'
-#' # list directory names, stripping the file path
+#' # list directory names, stripping the fs::path
 #' basename(inspect_cache)
 #'
 #' # list all files in subdirectories of the cache
-#' inspect_cache(recursive = TRUE)
+#' inspect_cache(recurse = TRUE)
 #'
-#' # list all files in subdirectories, stripping the file path
-#' basename(inspect_cache(recursive_true))
+#' # list all files in subdirectories, stripping the [fs::path]
+#' basename(inspect_cache(recurse = true))
 #' }
 #' @family cache
 #' @returns A `list` of directories or files in the cache
 #' @export
 
-inspect_cache <- function(recursive = FALSE) {
+inspect_cache <- function(recurse = FALSE) {
   f <- .find_user_cache()
-  if (recursive) {
-    f <- list.files(f, recursive = TRUE, full.names = TRUE)
+  if (recurse) {
+    f <- fs::dir_ls(f, recurse = TRUE, full.names = TRUE)
   } else {
-    f <- list.files(f, full.names = TRUE)
+    f <- fs::dir_ls(f, full.names = TRUE)
     f
   }
 

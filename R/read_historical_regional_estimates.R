@@ -18,7 +18,7 @@
 #' read_hist_reg_est()
 #'
 read_historical_regional_estimates <- read_hist_reg_est <- function() {
-  f <- file.path(tempdir(), "fdp-beta-regional-historical.csv")
+  f <- fs::path(tempdir(), "fdp-beta-regional-historical.csv")
 
   .retry_download(
     "https://www.agriculture.gov.au/sites/default/files/documents/fdp-regional-historical.csv",

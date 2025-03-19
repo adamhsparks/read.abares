@@ -24,7 +24,7 @@
 #' pander(y)
 #'
 #' @returns A `read.abares.soil.thickness` object, which is a named `list` with
-#'  the file path of the resulting Esri Grid file and text file of
+#'  the fs::path of the resulting Esri Grid file and text file of
 #'  metadata.
 #'
 #' @references <https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6>
@@ -58,7 +58,7 @@ get_soil_thickness <- function(cache = TRUE) {
 #' @param soil_dir File where files have been downloaded.
 #'
 #' @returns A `read.abares.soil.thickness` object, which is a named `list` with
-#'  the file path of the resulting Esri Grid file and text file of
+#'  the fs::path of the resulting Esri Grid file and text file of
 #'  metadata.
 #' @dev
 
@@ -97,7 +97,7 @@ get_soil_thickness <- function(cache = TRUE) {
   if (!fs::file_exists(soil_thick_adf_file)) {
     # if caching is enabled but the {read.abares} cache dir doesn't exist, create it
     if (cache) {
-      fs::dir_create(fs::path_dir(soil_thick_adf_file), recursive = TRUE)
+      fs::dir_create(fs::path_dir(soil_thick_adf_file), recurse = TRUE)
     }
     .retry_download(
       "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",

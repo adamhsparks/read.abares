@@ -1,6 +1,6 @@
-#' Find the file path to the users' cache directory
+#' Find the fs::path to the users' cache directory
 #'
-#' @returns A `character` string value of a file path indicating the proper
+#' @returns A `character` string value of a fs::path indicating the proper
 #'  directory to use for cached files.
 #' @dev
 #' @autoglobal
@@ -39,7 +39,7 @@
 #'
 #' @examples
 #'
-#' f <- file.path(tempdir(), "fdp-beta-national-historical.csv")
+#' f <- fs::path(tempdir(), "fdp-beta-national-historical.csv")
 #' retry_download(
 #'   url = "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-national-historical.csv",
 #'   .f = f
