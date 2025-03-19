@@ -17,6 +17,7 @@ Curtin
 DAFF
 DLWC
 DOI
+Esri
 FBP
 FYs
 GRDC
@@ -29,6 +30,7 @@ Leahy
 Lifecycle
 MDBSIS
 NCDF
+NETCDF
 NLWRA
 NRE
 NSW
@@ -54,7 +56,6 @@ backcast
 brio
 broadacre
 coverages
-crm
 de
 digitised
 doi
@@ -68,6 +69,7 @@ fert
 fertiliser
 filepath
 footslopes
+fs
 funder
 geospatial
 gridded
@@ -84,6 +86,7 @@ modelling
 multilayer
 oilseeds
 pfe
+pre
 quadrat
 rOpenSci
 rast
