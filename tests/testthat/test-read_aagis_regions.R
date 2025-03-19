@@ -1,5 +1,5 @@
 # sets up a custom cache environment in `tempdir()` just for testing
-withr::local_envvar(R_USER_CACHE_DIR = file.path(tempdir(), "abares.cache.1"))
+withr::local_envvar(R_USER_CACHE_DIR = fs::path(tempdir(), "abares.cache.1"))
 
 # without caching ----
 test_that("read_aagis_regions doesn't cache", {
@@ -8,7 +8,7 @@ test_that("read_aagis_regions doesn't cache", {
   x <- read_aagis_regions(cache = FALSE)
   expect_s3_class(x, "sf")
   expect_false(file.exists(
-    file.path(.find_user_cache(), "aagis_regions_dir/aagis.gpkg")
+    fs::path(.find_user_cache(), "aagis_regions_dir/aagis.gpkg")
   ))
 })
 
@@ -28,12 +28,12 @@ test_that("read_aagis_regions caches", {
   x <- read_aagis_regions(cache = TRUE)
   expect_s3_class(x, "sf")
   expect_true(file.exists(
-    file.path(.find_user_cache(), "aagis_regions_dir/aagis.gpkg")
+    fs::path(.find_user_cache(), "aagis_regions_dir/aagis.gpkg")
   ))
   expect_false(file.exists(
-    file.path(.find_user_cache(), "aagis_regions_dir/aagis_zip")
+    fs::path(.find_user_cache(), "aagis_regions_dir/aagis_zip")
   ))
-  expect_false(file.exists(file.path(
+  expect_false(file.exists(fs::path(
     .find_user_cache(),
     "aagis_asgs16v1_g5a.*"
   )))
@@ -47,7 +47,7 @@ test_that("read_aagis_regions skips downloading if cache is available", {
 })
 
 # sets up a custom cache environment in `tempdir()` just for testing
-withr::local_envvar(R_USER_CACHE_DIR = file.path(tempdir(), "abares.cache.2"))
+withr::local_envvar(R_USER_CACHE_DIR = fs::path(tempdir(), "abares.cache.2"))
 
 
 test_that("read_aagis_regions does cache", {
@@ -56,10 +56,10 @@ test_that("read_aagis_regions does cache", {
   x <- read_aagis_regions(cache = TRUE)
   expect_s3_class(x, "sf")
   expect_true(file.exists(
-    file.path(.find_user_cache(), "aagis_regions_dir/aagis.gpkg")
+    fs::path(.find_user_cache(), "aagis_regions_dir/aagis.gpkg")
   ))
   expect_false(file.exists(
-    file.path(
+    fs::path(
       .find_user_cache(),
       "aagis_regions_dir/aagis_asgs16v1_g5a.shp"
     )
