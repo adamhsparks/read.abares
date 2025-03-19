@@ -22,7 +22,7 @@ directly.}
 }
 \value{
 A \code{read.abares.soil.thickness} object, which is a named \code{list} with
-the file path of the resulting \acronym{ESRI} Grid file and text file of
+the file path of the resulting Esri Grid file and text file of
 metadata.
 }
 \description{
