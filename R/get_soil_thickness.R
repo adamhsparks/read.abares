@@ -48,7 +48,7 @@ get_soil_thickness <- function(cache = TRUE) {
     download_dir <- fs::path_dir(download_file)
     .download_soil_thickness(cache, download_file, download_dir)
     .create_soil_thickness_list(
-      soil_dir = download_file
+      soil_dir = fs::path(download_dir, "soil_thickness_dir")
     )
   }
 }
