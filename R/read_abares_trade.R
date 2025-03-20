@@ -62,7 +62,7 @@ read_abares_trade <- function(cache = TRUE) {
 .download_abares_trade <- function(cache) {
   abares_trade_dir <- file.path(.find_user_cache(), "abares_trade_dir/")
   if (cache && !dir.exists(abares_trade_dir)) {
-    dir.create(abares_trade_dir, recurse = TRUE)
+    dir.create(abares_trade_dir, recursive = TRUE)
   }
 
   trade_zip <- file.path(tempdir(), "abares_trade_data.zip")

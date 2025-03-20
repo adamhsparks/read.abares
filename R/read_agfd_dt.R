@@ -35,5 +35,5 @@ read_agfd_dt <- function(files) {
   dt[, lon := as.numeric(dt$lon)]
   rm(tnc_list)
   gc()
-  dt[]
+  return(dt[])
 }

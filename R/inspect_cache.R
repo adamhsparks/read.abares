@@ -6,7 +6,7 @@
 #' If you wish to strip the file.path and only return the directory or
 #' file names, use `basename()`. See examples for more.
 #'
-#' @param recurse `Boolean` value indicating whether or not to [list.files] in
+#' @param recursive `Boolean` value indicating whether or not to [list.files] in
 #'  subdirectories of the cache directory. Defaults to `FALSE` returning only
 #'  the top-level directories contained in the cache directory.
 #'
@@ -20,19 +20,19 @@
 #' basename(inspect_cache)
 #'
 #' # list all files in subdirectories of the cache
-#' inspect_cache(recurse = TRUE)
+#' inspect_cache(recursive = TRUE)
 #'
 #' # list all files in subdirectories, stripping the [file.path]
-#' basename(inspect_cache(recurse = true))
+#' basename(inspect_cache(recursive = true))
 #' }
 #' @family cache
 #' @returns A `list` of directories or files in the cache
 #' @export
 
-inspect_cache <- function(recurse = FALSE) {
+inspect_cache <- function(recursive = FALSE) {
   f <- .find_user_cache()
-  if (recurse) {
-    f <- list.files(f, recurse = TRUE, full.names = TRUE)
+  if (recursive) {
+    f <- list.files(f, recursive = TRUE, full.names = TRUE)
   } else {
     f <- list.files(f, full.names = TRUE)
     f

@@ -19,8 +19,13 @@ test_that("read_aagis_regions skips downloading if still in tempdir()", {
   x <- .check_existing_aagis(cache = FALSE)
   expect_s3_class(x, "sf")
 })
+withr::deferred_run()
 
 # with caching ----
+# sets up a custom cache environment in `tempdir()` just for testing
+withr::local_envvar(R_USER_CACHE_DIR = file.path(tempdir(), "abares.cache.1"))
+
+unlink(file.path(.find_user_cache(), "aagis_regions_dir/aagis.gpkg"))
 
 test_that("read_aagis_regions caches", {
   skip_if_offline()
@@ -45,6 +50,7 @@ test_that("read_aagis_regions skips downloading if cache is available", {
   x <- .check_existing_aagis(cache = TRUE)
   expect_s3_class(x, "sf")
 })
+withr::deferred_run()
 
 # sets up a custom cache environment in `tempdir()` just for testing
 withr::local_envvar(R_USER_CACHE_DIR = file.path(tempdir(), "abares.cache.2"))

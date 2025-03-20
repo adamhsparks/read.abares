@@ -180,7 +180,7 @@ Resource Economics and Sciences, Canberra, July 2024, DOI:
 N. Hughes, W.Y. Soh, C. Boult, K. Lawson, \emph{Defining drought from
 the perspective of Australian farmers}, Climate Risk Management, Volume 35,
 2022, 100420, ISSN 2212-0963, DOI:
-\href{https://doi.org/10.1016/j.crm.2022.100420}{10.1016/j.crm.2022.100420}.
+\doi{10.1016/j.crm.2022.100420.org/10.1016/j.crm.2022.100420}.
 }
 \seealso{
 Other AGFD: 

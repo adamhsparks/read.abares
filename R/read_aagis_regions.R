@@ -57,7 +57,7 @@ read_aagis_regions <- function(cache = TRUE) {
     # From checking the unzipped file, some geometries are invalid, this corrects
     aagis_sf <- sf::st_make_valid(aagis_sf)
     if (cache) {
-      dir.create(file.path_dir(aagis_gpkg), recurse = TRUE)
+      dir.create(file.path(aagis_gpkg), recursive = TRUE)
       sf::st_write(obj = aagis_sf, dsn = aagis_gpkg, quiet = TRUE)
     }
     return(aagis_sf)
@@ -89,12 +89,12 @@ read_aagis_regions <- function(cache = TRUE) {
   cached_zip <- file.path(.find_user_cache(), "aagis_regions_dir/aagis.zip")
   tmp_zip <- file.path(file.path(tempdir(), "aagis.zip"))
   aagis_zip <- data.table::fifelse(cache, cached_zip, tmp_zip)
-  aagis_regions_dir <- file.path_dir(aagis_zip)
+  aagis_regions_dir <- dirname(aagis_zip)
   aagis_gpkg <- file.path(aagis_regions_dir, "aagis.gpkg")
 
   # the user-cache may not exist if caching is enabled for the 1st time
   if (cache && !dir.exists(aagis_regions_dir)) {
-    dir.create(aagis_regions_dir, recurse = TRUE)
+    dir.create(aagis_regions_dir, recursive = TRUE)
   }
 
   .retry_download(

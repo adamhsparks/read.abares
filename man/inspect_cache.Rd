@@ -4,10 +4,10 @@
 \alias{inspect_cache}
 \title{List the File Path to Users' Cache Directory}
 \usage{
-inspect_cache(recurse = FALSE)
+inspect_cache(recursive = FALSE)
 }
 \arguments{
-\item{recurse}{\code{Boolean} value indicating whether or not to \link{list.files} in
+\item{recursive}{\code{Boolean} value indicating whether or not to \link{list.files} in
 subdirectories of the cache directory. Defaults to \code{FALSE} returning only
 the top-level directories contained in the cache directory.}
 }
@@ -31,10 +31,10 @@ inspect_cache()
 basename(inspect_cache)
 
 # list all files in subdirectories of the cache
-inspect_cache(recurse = TRUE)
+inspect_cache(recursive = TRUE)
 
 # list all files in subdirectories, stripping the [file.path]
-basename(inspect_cache(recurse = true))
+basename(inspect_cache(recursive = true))
 }
 }
 \seealso{

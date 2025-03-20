@@ -32,4 +32,5 @@ read_agfd_tidync <- function(files) {
   }
   tnc <- purrr::map(files, tidync::tidync)
   names(tnc) <- basename(files)
+  return(tnc)
 }

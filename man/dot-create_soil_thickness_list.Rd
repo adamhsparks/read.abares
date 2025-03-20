@@ -7,11 +7,11 @@
 .create_soil_thickness_list(soil_dir)
 }
 \arguments{
-\item{soil_dir}{File where files have been downloaded.}
+\item{dir}{File where files have been downloaded.}
 }
 \value{
 A \code{read.abares.soil.thickness} object, which is a named \code{list} with
-the file.path of the resulting Esri Grid file and text file of
+the file path of the resulting \acronym{ESRI} Grid file and text file of
 metadata.
 }
 \description{
