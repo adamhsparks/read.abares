@@ -22,7 +22,7 @@ test_that("get_agfd, fixed = TRUE works", {
     nc_files(agfd_nc_dir) |>
       capture_output()
   )
-  # cache dir.created
+  # cache dir created
   expect_true(dir.exists(
     file.path(.find_user_cache(), "historical_climate_prices_fixed")
   ))
@@ -52,7 +52,7 @@ test_that("get_agfd, fixed = FALSE works", {
     nc_files(agfd_nc_dir) |>
       capture_output()
   )
-  # cache dir.created
+  # cache dir created
   expect_true(dir.exists(
     file.path(.find_user_cache(), "historical_climate_and_prices")
   ))
@@ -81,7 +81,7 @@ test_that("get_agfd, fixed = TRUE, no cache works", {
     nc_files(agfd_nc_dir) |>
       capture_output()
   )
-  # cache dir.created
+  # cache dir created
   expect_true(dir.exists(
     file.path(.find_user_cache(), "historical_climate_prices_fixed")
   ))
