@@ -54,14 +54,14 @@ file names, use <code><a href="https://rdrr.io/r/base/basename.html" class="exte
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">inspect_cache</span><span class="op">(</span>recurse <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">inspect_cache</span><span class="op">(</span>recursive <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-recurse">recurse<a class="anchor" aria-label="anchor" href="#arg-recurse"></a></dt>
+<dl><dt id="arg-recursive">recursive<a class="anchor" aria-label="anchor" href="#arg-recursive"></a></dt>
 <dd><p><code>Boolean</code> value indicating whether or not to <a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a> in
 subdirectories of the cache directory. Defaults to <code>FALSE</code> returning only
 the top-level directories contained in the cache directory.</p></dd>
@@ -88,10 +88,10 @@ the top-level directories contained in the cache directory.</p></dd>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/basename.html" class="external-link">basename</a></span><span class="op">(</span><span class="va">inspect_cache</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># list all files in subdirectories of the cache</span></span></span>
-<span class="r-in"><span><span class="fu">inspect_cache</span><span class="op">(</span>recurse <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">inspect_cache</span><span class="op">(</span>recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># list all files in subdirectories, stripping the [file.path]</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/basename.html" class="external-link">basename</a></span><span class="op">(</span><span class="fu">inspect_cache</span><span class="op">(</span>recurse <span class="op">=</span> <span class="va">true</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/basename.html" class="external-link">basename</a></span><span class="op">(</span><span class="fu">inspect_cache</span><span class="op">(</span>recursive <span class="op">=</span> <span class="va">true</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
