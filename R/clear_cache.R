@@ -16,7 +16,7 @@ clear_cache <- function() {
   ra_cache <- dir.exists(.find_user_cache())
 
   if (ra_cache) {
-    unlink(names(ra_cache))
+    unlink(.find_user_cache(), recursive = TRUE)
   } else {
     cli::cli_inform(
       c(
