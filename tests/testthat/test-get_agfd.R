@@ -59,6 +59,7 @@ test_that("get_agfd, fixed = FALSE works", {
 })
 
 test_that("get_agfd, fixed = TRUE, no cache works", {
+  skip_on_ci()
   skip_if_offline()
   x <- get_agfd(cache = FALSE)
 
