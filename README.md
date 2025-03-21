@@ -82,6 +82,14 @@ Citing {read.abares}: When citing the use of this package, please use,
 
 ``` r
 library("read.abares")
+#> 
+#> Attaching package: 'read.abares'
+#> The following object is masked from 'package:graphics':
+#> 
+#>     plot
+#> The following object is masked from 'package:base':
+#> 
+#>     plot
 citation("read.abares")
 #> To cite package 'read.abares' in publications use:
 #> 
@@ -107,13 +115,6 @@ I've aimed to make the testing for this package as complete as possible.
 Some of the files downloaded are >1GB and may take several minutes or more than an hour to download and due to their size, I do not wish to include them in the package itself.
 Therefore, most of these tests do rely on already downloaded and locally cached files.
 If you wish to work with development of {read.abares} please be aware that it will take some time to establish your local cache before testing will be somewhat faster.
-Therefore, the slowest tests are not run by default.
-To run the slowest tests, use:
-
-
-``` r
-testthat::test_dir("tests/testthat/slow_tests")
-```
 
 ### Code of Conduct
 
