@@ -29,6 +29,11 @@
 #' @export
 
 read_agfd_stars <- function(files) {
+  if (!inherits(files, "read.abares.agfd.nc.files")) {
+    cli::cli_abort(
+      "{.var files} must be a list of class 'read.abares.agfd.nc.files'"
+    )
+  }
   var <- c(
     "farmno",
     "R_total_hat_ha",

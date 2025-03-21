@@ -105,3 +105,6 @@ test_that("read_agfd_dt returns a data.table object", {
     )
   )
 })
+test_that("read_agfd_dt() fails if the input is not a proper object", {
+  expect_error(read_agfd_dt(list(list.files(tempdir()))))
+})
