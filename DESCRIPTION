@@ -49,6 +49,7 @@ Suggests:
     testthat (>= 3.0.0)
 VignetteBuilder: 
     knitr
+Config/Needs/build: moodymudskipper/devtag
 Config/roxyglobals/filename: globals.R
 Config/roxyglobals/unique: FALSE
 Config/roxylint: list(linters = roxylint::tidy)
@@ -56,6 +57,7 @@ Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
 Language: en-US
-Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd", "roxyglobals::global_roclet", "roxylint::roxylint", "devtag::dev_roclet"))
+Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
+    "roxyglobals::global_roclet", "roxylint::roxylint",
+    "devtag::dev_roclet"))
 RoxygenNote: 7.3.2
-Config/Needs/build: moodymudskipper/devtag
