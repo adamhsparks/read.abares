@@ -2,15 +2,15 @@
 % Please edit documentation in R/internal_functions.R
 \name{.find_user_cache}
 \alias{.find_user_cache}
-\title{Find the fs::path_file to the users' cache directory}
+\title{Find the file path to your local \R cache directory}
 \usage{
 .find_user_cache()
 }
 \value{
-A \code{character} string value of a fs::path_file indicating the proper
+A \code{character} string value of a file path indicating the proper
 directory to use for cached files.
 }
 \description{
-Find the fs::path_file to the users' cache directory
+Find the file path to your local \R cache directory
 }
 \keyword{internal}

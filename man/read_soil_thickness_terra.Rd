@@ -14,8 +14,8 @@ read_soil_thickness_terra(files)
 \code{list} that contains the \acronym{ESRI} grid file to import.}
 }
 \value{
-a \link[terra:rast]{terra::rast} object of the 'Soil Thickness for Australian Areas of
-Intensive Agriculture of Layer 1'.
+a \link[terra:rast]{terra::rast} object of the 'Soil Thickness for Australian Areas
+of Intensive Agriculture of Layer 1'.
 }
 \description{
 Read Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1
@@ -26,7 +26,7 @@ data as a \link[terra:rast]{terra::rast} object.
 x <- get_soil_thickness(cache = TRUE) |>
   read_soil_thickness_terra()
 
-# terra::plot() is reexported for convience
+# terra::plot() is reexported for convenience
 plot(x)
 \dontshow{\}) # examplesIf}
 }
