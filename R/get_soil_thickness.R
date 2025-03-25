@@ -33,31 +33,21 @@
 #' @export
 
 get_soil_thickness <- function(cache = TRUE) {
-  thpk_1_cache <- fs::path_file(.find_user_cache(), "soil_thickness_dir/thpk_1")
+  thpk_1_cache <- fs::path(.find_user_cache(), "soil_thickness_dir/thpk_1")
   if (fs::file_exists(thpk_1_cache)) {
     return(.create_soil_thickness_list(thpk_1_cache))
   } else {
-    .download_soil_thickness(cache)
-
-    data.table::fifelse(
-      cache,
-      .create_soil_thickness_list(thpk_1_cache),
-      .create_soil_thickness_list(
-        fs::path(
-          tempdir(),
-          "soil_thickness_dir"
-        )
-      )
-    )
+    return(.download_soil_thickness(cache))
   }
 }
 
 #' Create a object of read.abares.soil.thickness.files
 #'
-#' @param dir File where files have been downloaded.
+#' @param dir File where files have been stored.
 #'
 #' @returns A `read.abares.soil.thickness` object, which is a named `list` with
-#'  the fs::path_file of the resulting Esri Grid file and text file of metadata.
+#' the [fs::path_file] of the resulting Esri Grid file and text file of
+#' metadata.
 #' @dev
 
 .create_soil_thickness_list <- function(soil_dir) {
@@ -83,49 +73,50 @@ get_soil_thickness <- function(cache = TRUE) {
 #' locally. If `FALSE`, this function uses `tempdir()` and the files are deleted
 #' upon closing of the active \R session.
 #'
-#' @returns Nothing, called for its side-effects of downloading and unzipping
-#'  files.
+#' @returns An [fs::path] of the resulting Esri Grid file and text file of
+#'  metadata.
 #'
 #' @dev
 
 .download_soil_thickness <- function(cache) {
-  download_file <- data.table::fifelse(
-    cache,
-    fs::path(.find_user_cache(), "soil_thick.zip"),
-    fs::path(fs::path_file(tempdir(), "soil_thick.zip"))
-  )
-
-  # this is where the zip file is downloaded
-  download_dir <- fs::path_dir(download_file)
-
-  # this is where the zip files are unzipped in `soil_thick_dir`
-  soil_thick_adf_file <- fs::path(
-    download_dir,
-    "soil_thickness_dir/thpk_1"
-  )
+  download_file <- fs::path(tempdir(), "soil_thick.zip")
+  tempdir_soil_thick_dir <- fs::path(tempdir(), "soil_thick_dir")
 
   # only download if the files aren't already local
-  if (!file.exists(soil_thick_adf_file)) {
-    # if caching is enabled but the {read.abares} cache dir doesn't exist, create it
-    if (cache) {
-      fs::dir_create(fs::path_dir(soil_thick_adf_file), recurse = TRUE)
-    }
+  if (!fs::dir_exists(tempdir_soil_thick_dir)) {
     .retry_download(
       "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
       .f = download_file
     )
 
     withr::with_dir(
-      download_dir,
-      utils::unzip(download_file, exdir = download_dir)
+      tempdir(),
+      utils::unzip(download_file, exdir = )
     )
     fs::file_move(
-      fs::path(download_dir, "staiar9cl__05911a01eg_geo___/"),
-      fs::path(download_dir, "soil_thickness_dir")
+      fs::path(tempdir(), "staiar9cl__05911a01eg_geo___/"),
+      tempdir_soil_thick_dir
     )
     fs::file_delete(download_file)
   }
-  return(invisible(NULL))
+
+  # now move the files to the cache if caching is requested
+  if (cache) {
+    soil_cache_dir <- fs::path(.find_user_cache(), "soil_thickness_dir")
+    if (!fs::dir_exists(soil_cache_dir)) {
+      fs::dir_create(soil_cache_dir, recurse = TRUE)
+    }
+    fs::file_move(
+      tempdir_soil_thick_dir,
+      soil_cache_dir
+    )
+  }
+
+  return(data.table::fifelse(
+    cache,
+    soil_cache_dir,
+    tempdir_soil_thick_dir
+  ))
 }
 
 #' Prints read.abares.soil.thickness.files object
