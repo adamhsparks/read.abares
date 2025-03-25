@@ -25,6 +25,5 @@
 
 read_soil_thickness_terra <- function(files) {
   .check_class(x = files, class = "read.abares.soil.thickness.files")
-  r <- terra::rast(files$grid)
-  return(r)
+  terra::rast(files$grid)
 }

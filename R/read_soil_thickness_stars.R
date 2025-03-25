@@ -22,6 +22,5 @@
 
 read_soil_thickness_stars <- function(files) {
   .check_class(x = files, class = "read.abares.soil.thickness.files")
-  s <- stars::read_stars(files$grid)
-  return(s)
+  stars::read_stars(files$grid)
 }
