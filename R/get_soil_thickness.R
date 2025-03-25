@@ -37,7 +37,7 @@ get_soil_thickness <- function(cache = TRUE) {
   if (fs::file_exists(thpk_1_cache)) {
     return(.create_soil_thickness_list(thpk_1_cache))
   } else {
-    return(.download_soil_thickness(cache))
+    return(.create_soil_thickness_list(.download_soil_thickness(cache)))
   }
 }
 
