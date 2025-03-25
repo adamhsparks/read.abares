@@ -25,11 +25,7 @@
 #' @export
 
 read_agfd_tidync <- function(files) {
-  if (!inherits(files, "read.abares.agfd.nc.files")) {
-    cli::cli_abort(
-      "{.var files} must be a list of class 'read.abares.agfd.nc.files'"
-    )
-  }
+  .check_class(x = files, class = "read.abares.nc.files")
   tnc <- purrr::map(files, tidync::tidync)
   names(tnc) <- basename(files)
   return(tnc)
