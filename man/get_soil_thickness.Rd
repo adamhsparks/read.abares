@@ -22,7 +22,7 @@ directly.}
 }
 \value{
 A \code{read.abares.soil.thickness} object, which is a named \code{list} with
-the file path of the resulting Esri Grid file and text file of metadata.
+the fs::path_file of the resulting Esri Grid file and text file of metadata.
 }
 \description{
 Get soil thickness for 'Australian Areas of Intensive Agriculture of Layer 1' for local use

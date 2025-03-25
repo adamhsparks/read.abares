@@ -93,5 +93,5 @@ test_that("read_agfd_stars() returns a stars object", {
 })
 
 test_that("read_agfd_stars() fails if the input is not a proper object", {
-  expect_error(read_agfd_stars(list(list.files(tempdir()))))
+  expect_error(read_agfd_stars(list(fs::dir_ls(tempdir()))))
 })

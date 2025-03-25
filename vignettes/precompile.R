@@ -11,7 +11,7 @@ purl("vignettes/read.abares.Rmd.orig",
 
 # move image files
 figs <-
-  list.files(here("figure/"),
+  fs::dir_ls(here("figure/"),
              pattern = ".png$",
              full.names = TRUE)
 file.copy(from = figs,
@@ -21,7 +21,7 @@ file.copy(from = figs,
 file.remove(figs)
 file.remove(here("figure"))
 
-# remove file path such that vignettes will build with figures
+# remove fs::path_file such that vignettes will build with figures
 ## read.abares vignette
 abares_replace <- readLines("vignettes/read.abares.Rmd")
 abares_replace <- gsub("\\(figure/", "\\(", abares_replace)
@@ -36,7 +36,7 @@ build_vignettes()
 
 # move resource files (images) to /doc
 resources <-
-  list.files(here("vignettes/"),
+  fs::dir_ls(here("vignettes/"),
              pattern = ".png$",
              full.names = TRUE)
 file.copy(from = resources,

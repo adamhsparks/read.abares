@@ -47,17 +47,21 @@ read_aagis_regions <- function(cache = TRUE) {
 #' @autoglobal
 
 .check_existing_aagis <- function(cache) {
-  aagis_gpkg <- file.path(.find_user_cache(), "aagis_regions_dir/aagis.gpkg")
-  tmp_shp <- file.path(tempdir(), "aagis_asgs16v1_g5a.shp")
+  # TODO: streamline this check function with the way that get_soil_thickness works
+  aagis_gpkg <- fs::path(
+    .find_user_cache(),
+    "aagis_regions_dir/aagis.gpkg"
+  )
+  tmp_shp <- fs::path(tempdir(), "aagis_asgs16v1_g5a.shp")
 
-  if (file.exists(aagis_gpkg)) {
+  if (fs::file_exists(aagis_gpkg)) {
     return(sf::st_read(aagis_gpkg, quiet = TRUE))
-  } else if (file.exists(tmp_shp)) {
+  } else if (fs::file_exists(tmp_shp)) {
     aagis_sf <- sf::st_read(tmp_shp, quiet = TRUE)
     # From checking the unzipped file, some geometries are invalid, this corrects
     aagis_sf <- sf::st_make_valid(aagis_sf)
     if (cache) {
-      dir.create(file.path(aagis_gpkg), recursive = TRUE)
+      fs::dir_create(fs::path_dir(aagis_gpkg), recurse = TRUE)
       sf::st_write(obj = aagis_sf, dsn = aagis_gpkg, quiet = TRUE)
     }
     return(aagis_sf)
@@ -86,15 +90,15 @@ read_aagis_regions <- function(cache = TRUE) {
 .download_aagis_shp <- function(cache) {
   # if you make it this far, the cached file doesn't exist, so we need to
   # download it either to `tempdir()` and dispose or cache it
-  cached_zip <- file.path(.find_user_cache(), "aagis_regions_dir/aagis.zip")
-  tmp_zip <- file.path(file.path(tempdir(), "aagis.zip"))
+  cached_zip <- fs::path(.find_user_cache(), "aagis_regions_dir/aagis.zip")
+  tmp_zip <- fs::path(fs::path_file(tempdir(), "aagis.zip"))
   aagis_zip <- data.table::fifelse(cache, cached_zip, tmp_zip)
-  aagis_regions_dir <- dirname(aagis_zip)
-  aagis_gpkg <- file.path(aagis_regions_dir, "aagis.gpkg")
+  aagis_regions_dir <- fs::path_dir(aagis_zip)
+  aagis_gpkg <- fs::path(aagis_regions_dir, "aagis.gpkg")
 
   # the user-cache may not exist if caching is enabled for the 1st time
-  if (cache && !dir.exists(aagis_regions_dir)) {
-    dir.create(aagis_regions_dir, recursive = TRUE)
+  if (cache && !fs::dir_exists(aagis_regions_dir)) {
+    fs::dir_create(aagis_regions_dir, recurse = TRUE)
   }
 
   .retry_download(
@@ -107,8 +111,8 @@ read_aagis_regions <- function(cache = TRUE) {
     utils::unzip(aagis_zip, exdir = aagis_regions_dir)
   )
 
-  aagis_sf <- sf::read_sf(
-    dsn = file.path(
+  aagis_sf <- sf::st_read(
+    dsn = fs::path(
       aagis_regions_dir,
       "aagis_asgs16v1_g5a.shp"
     ),
@@ -120,9 +124,9 @@ read_aagis_regions <- function(cache = TRUE) {
 
   if (cache) {
     sf::st_write(obj = aagis_sf, dsn = aagis_gpkg, quiet = TRUE)
-    unlink(c(
+    fs::file_delete(c(
       aagis_zip,
-      file.path(aagis_regions_dir, "aagis_asgs16v1_g5a.*")
+      fs::path(aagis_regions_dir, "aagis_asgs16v1_g5a.*")
     ))
   }
   return(aagis_sf)

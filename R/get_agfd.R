@@ -181,25 +181,25 @@
 get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
   download_file <- data.table::fifelse(
     cache,
-    file.path(.find_user_cache(), "agfd.zip"),
-    file.path(file.path(tempdir(), "agfd.zip"))
+    fs::path_file(.find_user_cache(), "agfd.zip"),
+    fs::path_file(fs::path_file(tempdir(), "agfd.zip"))
   )
 
   # this is where the zip file is downloaded
-  download_dir <- dirname(download_file)
+  download_dir <- fs::path_dir(download_file)
 
   # this is where the zip files are unzipped and read from
   agfd_nc_dir <- data.table::fifelse(
     fixed_prices,
-    file.path(download_dir, "historical_climate_prices_fixed"),
-    file.path(download_dir, "historical_climate_and_prices")
+    fs::path_file(download_dir, "historical_climate_prices_fixed"),
+    fs::path_file(download_dir, "historical_climate_and_prices")
   )
 
   # only download if the files aren't already local
-  if (!dir.exists(agfd_nc_dir)) {
+  if (!fs::dir_exists(agfd_nc_dir)) {
     # if caching is enabled but {read.abares} cache doesn't exist, create it
     if (cache) {
-      dir.create(agfd_nc_dir, recursive = TRUE)
+      fs::dir_create(agfd_nc_dir, recursive = TRUE)
     }
 
     url <- data.table::fifelse(
@@ -220,21 +220,21 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
       error = function(e) {
         cli::cli_abort(
           "There was an issue with the downloaded file. I've deleted
-                     this bad version of the downloaded file, please retry.",
+           this bad version of the downloaded file, please retry.",
           call = rlang::caller_env()
         )
       }
     )
     unlink(download_file)
   }
-  agfd_nc <- list.files(agfd_nc_dir, full.names = TRUE)
+  agfd_nc <- fs::dir_ls(agfd_nc_dir, full.names = TRUE)
   class(agfd_nc) <- union("read.abares.agfd.nc.files", class(agfd_nc))
   return(agfd_nc)
 }
 
 #' Prints read.abares.agfd.nc.files objects
 #'
-#' Custom [print()] method for `read.abares.agfd.nc.files` objects.
+#' Custom [print] method for `read.abares.agfd.nc.files` objects.
 #'
 #' @param x a `read.abares.agfd.nc.files` object.
 #' @param ... ignored.

@@ -1,8 +1,8 @@
-withr::local_envvar(R_USER_CACHE_DIR = file.path(tempdir()))
+withr::local_envvar(R_USER_CACHE_DIR = fs::path_file(tempdir()))
 # check message with no files present ----
 
 test_that("inspect_cache() works w/ no files", {
-  dir.create(file.path(.find_user_cache()), recursive = TRUE)
+  fs::dir_create(fs::path_file(.find_user_cache()), recursive = TRUE)
   cli_out <- function() {
     return(cli::cli_inform(c(
       "There do not appear to be any files cached for {.pkg {{read.abares}}}."
@@ -15,11 +15,11 @@ test_that("inspect_cache() works w/ no files", {
 # Now create a file to check when files are present ----
 
 test_that("inspect_cache() works, recursive = FALSE", {
-  test_file <- file.path(.find_user_cache(), "test.R")
+  test_file <- fs::path_file(.find_user_cache(), "test.R")
   file.create(test_file)
 
   f <- .find_user_cache()
-  f <- list.files(f, full.names = TRUE)
+  f <- fs::dir_ls(f, full.names = TRUE)
   expect_identical(
     inspect_cache() |>
       capture_output(),
@@ -28,11 +28,11 @@ test_that("inspect_cache() works, recursive = FALSE", {
 })
 
 test_that("inspect_cache() works, recursive = TRUE", {
-  test_file <- file.path(.find_user_cache(), "test.R")
+  test_file <- fs::path_file(.find_user_cache(), "test.R")
   file.create(test_file)
 
   f <- .find_user_cache()
-  f <- list.files(f, recursive = TRUE, full.names = TRUE)
+  f <- fs::dir_ls(f, recursive = TRUE, full.names = TRUE)
   expect_identical(
     inspect_cache(recursive = TRUE) |>
       capture_output(),

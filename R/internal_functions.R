@@ -1,6 +1,6 @@
-#' Find the file.path to the users' cache directory
+#' Find the file path to your local \R cache directory
 #'
-#' @returns A `character` string value of a file.path indicating the proper
+#' @returns A `character` string value of a file path indicating the proper
 #'  directory to use for cached files.
 #' @dev
 #' @autoglobal
@@ -19,7 +19,7 @@
 .check_class <- function(x, class) {
   if (missing(x) || !inherits(x, class)) {
     cli::cli_abort(
-      "You must provide a {.code read.abares} class object.",
+      "You must provide a {.var class} class object for this function.",
       call = rlang::caller_env()
     )
   }
@@ -39,7 +39,7 @@
 #'
 #' @examples
 #'
-#' f <- file.path(tempdir(), "fdp-beta-national-historical.csv")
+#' f <- fs::path_file(tempdir(), "fdp-beta-national-historical.csv")
 #' retry_download(
 #'   url = "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-national-historical.csv",
 #'   .f = f

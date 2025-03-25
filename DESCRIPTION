@@ -27,6 +27,7 @@ Imports:
     brio,
     cli,
     data.table,
+    fs,
     httr2,
     lubridate,
     openxlsx2,

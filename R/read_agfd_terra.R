@@ -25,12 +25,8 @@
 #' @export
 
 read_agfd_terra <- function(files) {
-  if (!inherits(files, "read.abares.agfd.nc.files")) {
-    cli::cli_abort(
-      "{.var files} must be a list of class 'read.abares.agfd.nc.files'"
-    )
-  }
+  .check_class(x = files, class = "read.abares.agfd.nc.files")
   r <- purrr::map(.x = files, .f = terra::rast)
-  names(r) <- basename(files)
+  names(r) <- fs::path_file(files)
   return(r)
 }

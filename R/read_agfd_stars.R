@@ -29,11 +29,7 @@
 #' @export
 
 read_agfd_stars <- function(files) {
-  if (!inherits(files, "read.abares.agfd.nc.files")) {
-    cli::cli_abort(
-      "{.var files} must be a list of class 'read.abares.agfd.nc.files'"
-    )
-  }
+  .check_class(x = files, class = "read.abares.agfd.nc.files")
   var <- c(
     "farmno",
     "R_total_hat_ha",
@@ -94,7 +90,7 @@ read_agfd_stars <- function(files) {
 
   out <- append(s1, s2)
 
-  names(out) <- basename(files)
+  names(out) <- fs::path_file(files)
 
   rm(s1, s2)
   gc()

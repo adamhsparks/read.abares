@@ -25,13 +25,9 @@
 #' @export
 
 read_agfd_dt <- function(files) {
-  if (!inherits(files, "read.abares.agfd.nc.files")) {
-    cli::cli_abort(
-      "{.var files} must be a list of class 'read.abares.agfd.nc.files'"
-    )
-  }
+  .check_class(x = files, class = "read.abares.agfd.nc.files")
   tnc_list <- lapply(files, tidync::tidync)
-  names(tnc_list) <- basename(files)
+  names(tnc_list) <- fs::path_file(files)
   dt <- data.table::rbindlist(
     lapply(tnc_list, tidync::hyper_tibble),
     idcol = "id"

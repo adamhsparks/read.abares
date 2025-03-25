@@ -18,7 +18,7 @@
 #' read_hist_sta_est()
 #'
 read_historical_state_estimates <- read_hist_sta_est <- function() {
-  f <- file.path(tempdir(), "fdp-beta-state-historical.csv")
+  f <- fs::path(tempdir(), "fdp-beta-state-historical.csv")
 
   .retry_download(
     "https://www.agriculture.gov.au/sites/default/files/documents/fdp-state-historical.csv",

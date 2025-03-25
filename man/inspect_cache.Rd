@@ -2,24 +2,24 @@
 % Please edit documentation in R/inspect_cache.R
 \name{inspect_cache}
 \alias{inspect_cache}
-\title{List the File Path to Users' Cache Directory}
+\title{List the directories and files in your cache directory}
 \usage{
-inspect_cache(recursive = FALSE)
+inspect_cache(recurse = FALSE)
 }
 \arguments{
-\item{recursive}{\code{Boolean} value indicating whether or not to \link{list.files} in
+\item{recurse}{\code{Boolean} value indicating whether or not to \link[fs:dir_ls]{fs::dir_ls} in
 subdirectories of the cache directory. Defaults to \code{FALSE} returning only
-the top-level directories contained in the cache directory.}
+the top-level directories and files contained in the cache directory.}
 }
 \value{
-A \code{list} of directories or files in the cache
+An \link[fs:path]{fs::path} object containing directories or files in the cache.
 }
 \description{
 Check what files exist in your \pkg{read.abares} file cache.  This function
-will always return full file names, \emph{i.e.}, the directory path is prepended.
-See the help file for \code{list.files()} for more on the \code{full.names} argument.
-If you wish to strip the file.path and only return the directory or
-file names, use \code{basename()}. See examples for more.
+will always return full file names, \emph{i.e.}, the directory path is prepended
+by default.  See the help file for \code{fs::dir_ls()} for more on returning full
+paths.  If you wish to strip the full path and only return the directory or
+file names, see \link[fs:path_file]{fs::path_file} or \link[fs:path_file]{fs::path_dir}. See examples for more.
 }
 \examples{
 # not run because cached files shouldn't exist on CRAN or testing envs
@@ -27,14 +27,15 @@ file names, use \code{basename()}. See examples for more.
 # list directories in cache only
 inspect_cache()
 
-# list directory names, stripping the file.path
+# list directory names, stripping the fs::path_file
 basename(inspect_cache)
 
 # list all files in subdirectories of the cache
-inspect_cache(recursive = TRUE)
+inspect_cache(recurse = TRUE)
 
-# list all files in subdirectories, stripping the [file.path]
-basename(inspect_cache(recursive = true))
+# list all files in subdirectories, stripping the [fs::path_file]
+library(fs)
+path_file(inspect_cache(recurse = TRUE))
 }
 }
 \seealso{

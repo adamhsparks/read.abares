@@ -93,5 +93,5 @@ test_that("read_agfd_terra() returns a terra object", {
 })
 
 test_that("read_agfd_terra() fails if the input is not a proper object", {
-  expect_error(read_agfd_terra(list(list.files(tempdir()))))
+  expect_error(read_agfd_terra(list(fs::dir_ls(tempdir()))))
 })

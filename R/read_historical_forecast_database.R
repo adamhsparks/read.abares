@@ -40,7 +40,7 @@
 #' read_historical_forecast()
 #'
 read_historical_forecast_database <- function() {
-  f <- file.path(tempdir(), "historical_db.xlsx")
+  f <- fs::path(tempdir(), "historical_db.xlsx")
 
   .retry_download(
     "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0",
@@ -83,7 +83,8 @@ read_historical_forecast_database <- function() {
     )
   )
 
-  x[,
+  x[
+    ,
     Month_issued := data.table::fcase(
       Month_issued == "January",
       1L,
