@@ -88,7 +88,7 @@ read_historical_forecast_database <- function() {
     Month_issued := data.table::fcase(
       Month_issued == "January",
       1L,
-      Month_issued == "Februrary",
+      Month_issued == "February",
       2L,
       Month_issued == "March",
       3L,
