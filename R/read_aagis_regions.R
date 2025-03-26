@@ -2,13 +2,13 @@
 #'
 #' Download, cache and import the Australian Agricultural and Grazing
 #'  Industries Survey (\acronym{AAGIS} regions geospatial shapefile. Upon
-#'  import, the geometries  are automatically corrected to fix invalid
+#'  import, the geometries are automatically corrected to fix invalid
 #'  geometries that are present in the original shapefile.
 #'
 #' @param cache Cache the \acronym{AAGIS} regions' geospatial file after
 #' downloading using `tools::R_user_dir("read.abares", "cache")` to identify the
 #' proper directory for storing user data in a cache for this package. Defaults
-#' to `TRUE`, caching the files locally as a Geopackage. If `FALSE`, this
+#' to `TRUE`, caching the files locally as a GeoPackage. If `FALSE`, this
 #' function uses `tempdir()` and the files are deleted upon closing of the
 #' active \R session.
 #'
@@ -19,7 +19,7 @@
 #'
 #' @returns An \CRANpkg{sf} object of the \acronym{AAGIS} regions.
 #'
-#' @family AGFD
+#' @family AAGIS
 #'
 #' @references <https://www.agriculture.gov.au/abares/research-topics/surveys/farm-definitions-methods#regions>
 #' @source <https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip>
@@ -27,46 +27,17 @@
 #' @export
 
 read_aagis_regions <- function(cache = TRUE) {
-  aagis <- .check_existing_aagis(cache)
-  if (is.null(aagis)) {
-    aagis <- .download_aagis_shp(cache)
+  aagis_regions_cache <- fs::path(.find_user_cache(), "aagis_regions_dir")
+  if (fs::dir_exists(aagis_regions_cache)) {
+    return(sf::st_read(
+      fs::path(
+        aagis_regions_cache,
+        "aagis.gpkg"
+      ),
+      quiet = TRUE
+    ))
   } else {
-    return(aagis)
-  }
-}
-
-#' Check for a pre-existing file before downloading
-#'
-#' Checks the user cache first, then `tempdir()` for the files before
-#' returning a `NULL` value. If `cache == TRUE` and the file is not in the user
-#' cache, but is in `tempdir()`, it is saved to the cache before being returned
-#' in the current session.
-#'
-#' @returns An \CRANpkg{sf} object of AAGIS regions.
-#' @dev
-#' @autoglobal
-
-.check_existing_aagis <- function(cache) {
-  # TODO: streamline this check function with the way that get_soil_thickness works
-  aagis_gpkg <- fs::path(
-    .find_user_cache(),
-    "aagis_regions_dir/aagis.gpkg"
-  )
-  tmp_shp <- fs::path(tempdir(), "aagis_asgs16v1_g5a.shp")
-
-  if (fs::file_exists(aagis_gpkg)) {
-    return(sf::st_read(aagis_gpkg, quiet = TRUE))
-  } else if (fs::file_exists(tmp_shp)) {
-    aagis_sf <- sf::st_read(tmp_shp, quiet = TRUE)
-    # From checking the unzipped file, some geometries are invalid, this corrects
-    aagis_sf <- sf::st_make_valid(aagis_sf)
-    if (cache) {
-      fs::dir_create(fs::path_dir(aagis_gpkg), recurse = TRUE)
-      sf::st_write(obj = aagis_sf, dsn = aagis_gpkg, quiet = TRUE)
-    }
-    return(aagis_sf)
-  } else {
-    return(invisible(NULL))
+    return(.download_aagis_shp(cache))
   }
 }
 
@@ -88,32 +59,23 @@ read_aagis_regions <- function(cache = TRUE) {
 #' @autoglobal
 
 .download_aagis_shp <- function(cache) {
-  # if you make it this far, the cached file doesn't exist, so we need to
-  # download it either to `tempdir()` and dispose or cache it
-  cached_zip <- fs::path(.find_user_cache(), "aagis_regions_dir/aagis.zip")
-  tmp_zip <- fs::path(fs::path_file(tempdir(), "aagis.zip"))
-  aagis_zip <- data.table::fifelse(cache, cached_zip, tmp_zip)
-  aagis_regions_dir <- fs::path_dir(aagis_zip)
-  aagis_gpkg <- fs::path(aagis_regions_dir, "aagis.gpkg")
-
-  # the user-cache may not exist if caching is enabled for the 1st time
-  if (cache && !fs::dir_exists(aagis_regions_dir)) {
-    fs::dir_create(aagis_regions_dir, recurse = TRUE)
-  }
+  download_file <- fs::path(tempdir(), "aagis.zip")
+  tempdir_aagis_dir <- fs::path(tempdir(), "aagis_regions_dir")
+  cache_aagis_dir <- fs::path(.find_user_cache(), "aagis_regions_dir")
 
   .retry_download(
     "https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip",
-    .f = aagis_zip
+    .f = download_file
   )
 
   withr::with_dir(
-    aagis_regions_dir,
-    utils::unzip(aagis_zip, exdir = aagis_regions_dir)
+    tempdir(),
+    utils::unzip(download_file, exdir = tempdir_aagis_dir)
   )
 
   aagis_sf <- sf::st_read(
     dsn = fs::path(
-      aagis_regions_dir,
+      tempdir_aagis_dir,
       "aagis_asgs16v1_g5a.shp"
     ),
     quiet = TRUE
@@ -123,11 +85,17 @@ read_aagis_regions <- function(cache = TRUE) {
   aagis_sf <- sf::st_make_valid(aagis_sf)
 
   if (cache) {
-    sf::st_write(obj = aagis_sf, dsn = aagis_gpkg, quiet = TRUE)
-    fs::file_delete(c(
-      aagis_zip,
-      fs::path(aagis_regions_dir, "aagis_asgs16v1_g5a.*")
-    ))
+    if (!fs::dir_exists(.find_user_cache())) {
+      fs::dir_create(.find_user_cache(), recurse = TRUE)
+    }
+    sf::st_write(
+      obj = aagis_sf,
+      layer = "aagis.gpkg",
+      dsn = cache_aagis_dir,
+      quiet = TRUE
+    )
+    fs::file_delete(download_file)
   }
+
   return(aagis_sf)
 }
