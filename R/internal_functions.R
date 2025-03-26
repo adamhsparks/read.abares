@@ -19,7 +19,7 @@
 .check_class <- function(x, class) {
   if (missing(x) || !inherits(x, class)) {
     cli::cli_abort(
-      "You must provide a {.var class} class object for this function.",
+      "You must provide a {class} class object for this function.",
       call = rlang::caller_env()
     )
   }
