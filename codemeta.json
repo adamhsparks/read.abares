@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/adamhsparks/read.abares",
   "issueTracker": "https://github.com/adamhsparks/read.abares/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -189,6 +189,18 @@
     },
     "5": {
       "@type": "SoftwareApplication",
+      "identifier": "fs",
+      "name": "fs",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=fs"
+    },
+    "6": {
+      "@type": "SoftwareApplication",
       "identifier": "httr2",
       "name": "httr2",
       "provider": {
@@ -199,7 +211,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=httr2"
     },
-    "6": {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "lubridate",
       "name": "lubridate",
@@ -211,7 +223,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=lubridate"
     },
-    "7": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "openxlsx2",
       "name": "openxlsx2",
@@ -223,7 +235,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=openxlsx2"
     },
-    "8": {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
@@ -235,7 +247,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
     },
-    "9": {
+    "10": {
       "@type": "SoftwareApplication",
       "identifier": "readtext",
       "name": "readtext",
@@ -247,7 +259,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=readtext"
     },
-    "10": {
+    "11": {
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
@@ -259,7 +271,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     },
-    "11": {
+    "12": {
       "@type": "SoftwareApplication",
       "identifier": "sf",
       "name": "sf",
@@ -271,7 +283,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=sf"
     },
-    "12": {
+    "13": {
       "@type": "SoftwareApplication",
       "identifier": "stars",
       "name": "stars",
@@ -283,7 +295,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stars"
     },
-    "13": {
+    "14": {
       "@type": "SoftwareApplication",
       "identifier": "stringr",
       "name": "stringr",
@@ -295,7 +307,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stringr"
     },
-    "14": {
+    "15": {
       "@type": "SoftwareApplication",
       "identifier": "terra",
       "name": "terra",
@@ -307,7 +319,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=terra"
     },
-    "15": {
+    "16": {
       "@type": "SoftwareApplication",
       "identifier": "tidync",
       "name": "tidync",
@@ -319,7 +331,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tidync"
     },
-    "16": {
+    "17": {
       "@type": "SoftwareApplication",
       "identifier": "withr",
       "name": "withr",
@@ -333,7 +345,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "388.751KB",
+  "fileSize": "387.586KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -346,7 +358,7 @@
       ],
       "name": "{read.abares}: Simple downloading and importing of ABARES Data",
       "url": "https://adamhsparks.github.io/read.abares/",
-      "description": "R package version 1.0.0"
+      "description": "R package version 1.0.1"
     }
   ],
   "releaseNotes": "https://github.com/adamhsparks/read.abares/blob/master/NEWS.md",
