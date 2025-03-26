@@ -56,12 +56,11 @@ test_that("read_abares_trade caches", {
   skip_on_ci()
   read_abares_trade(cache = TRUE)
   expect_true(fs::file_exists(
-    fs::path_file(.find_user_cache(), "abares_trade_dir/abares_trade.gz")
+    fs::path(.find_user_cache(), "abares_trade_dir/abares_trade.gz")
   ))
 })
 
 # cleanup cache if rerunning tests in same R session so first test passes ----
 
-unlink(fs::path_file(.find_user_cache(), "abares_trade_dir/abares_trade.gz"))
-
+clear_cache()
 withr::deferred_run()
