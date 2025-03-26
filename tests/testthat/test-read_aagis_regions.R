@@ -31,6 +31,5 @@ test_that("read_aagis_regions doesn't cache", {
     fs::path(.find_user_cache(), "aagis_regions_dir/aagis.gpkg")
   ))
 })
-
-
+clear_cache()
 withr::deferred_run()
