@@ -1,5 +1,5 @@
 # sets up a custom cache environment in `tempdir()` just for testing
-withr::local_envvar(R_USER_CACHE_DIR = fs::path_file(tempdir(), "abares.cache.1"))
+withr::local_envvar(R_USER_CACHE_DIR = tempdir())
 
 # without caching ----
 test_that("read_abares_trade doesn't cache", {
@@ -46,7 +46,7 @@ test_that("read_abares_trade doesn't cache", {
     )
   )
   expect_false(fs::file_exists(
-    fs::path_file(.find_user_cache(), "abares_trade_dir/abares_trade.gz")
+    fs::path(.find_user_cache(), "abares_trade_dir/abares_trade.gz")
   ))
 })
 
