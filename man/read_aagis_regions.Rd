@@ -13,7 +13,7 @@ read_aagis_regions(cache = TRUE)
 \item{cache}{Cache the \acronym{AAGIS} regions' geospatial file after
 downloading using \code{tools::R_user_dir("read.abares", "cache")} to identify the
 proper directory for storing user data in a cache for this package. Defaults
-to \code{TRUE}, caching the files locally as a Geopackage. If \code{FALSE}, this
+to \code{TRUE}, caching the files locally as a GeoPackage. If \code{FALSE}, this
 function uses \code{tempdir()} and the files are deleted upon closing of the
 active \R session.}
 }
@@ -23,7 +23,7 @@ An \CRANpkg{sf} object of the \acronym{AAGIS} regions.
 \description{
 Download, cache and import the Australian Agricultural and Grazing
 Industries Survey (\acronym{AAGIS} regions geospatial shapefile. Upon
-import, the geometries  are automatically corrected to fix invalid
+import, the geometries are automatically corrected to fix invalid
 geometries that are present in the original shapefile.
 }
 \examples{
@@ -36,12 +36,4 @@ plot(aagis)
 \references{
 \url{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-definitions-methods#regions}
 }
-\seealso{
-Other AGFD: 
-\code{\link{get_agfd}()},
-\code{\link{read_agfd_dt}()},
-\code{\link{read_agfd_stars}()},
-\code{\link{read_agfd_terra}()},
-\code{\link{read_agfd_tidync}()}
-}
-\concept{AGFD}
+\concept{AAGIS}

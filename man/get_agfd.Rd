@@ -197,7 +197,6 @@ the perspective of Australian farmers}, Climate Risk Management, Volume 35,
 }
 \seealso{
 Other AGFD: 
-\code{\link{read_aagis_regions}()},
 \code{\link{read_agfd_dt}()},
 \code{\link{read_agfd_stars}()},
 \code{\link{read_agfd_terra}()},
