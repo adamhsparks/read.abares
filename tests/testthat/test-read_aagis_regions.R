@@ -16,7 +16,7 @@ test_that("read_aagis_regions does cache", {
       "aagis_regions_dir/aagis_asgs16v1_g5a.shp"
     )
   ))
-  file.remove(fs::path_file(.find_user_cache(), "aagis_regions_dir/aagis.gpkg"))
+  file.remove(fs::path(.find_user_cache(), "aagis_regions_dir/aagis.gpkg"))
   expect_no_message(clear_cache())
 })
 
@@ -32,12 +32,5 @@ test_that("read_aagis_regions doesn't cache", {
   ))
 })
 
-
-test_that("read_aagis_regions skips downloading if still in tempdir()", {
-  skip_if_offline()
-  skip_on_ci()
-  x <- .check_existing_aagis(cache = FALSE)
-  expect_s3_class(x, "sf")
-})
 
 withr::deferred_run()

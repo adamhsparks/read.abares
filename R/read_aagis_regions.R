@@ -85,17 +85,16 @@ read_aagis_regions <- function(cache = TRUE) {
   aagis_sf <- sf::st_make_valid(aagis_sf)
 
   if (cache) {
-    if (!fs::dir_exists(.find_user_cache())) {
-      fs::dir_create(.find_user_cache(), recurse = TRUE)
+    if (!fs::dir_exists(cache_aagis_dir)) {
+      fs::dir_create(cache_aagis_dir, recurse = TRUE)
     }
     sf::st_write(
       obj = aagis_sf,
-      layer = "aagis.gpkg",
-      dsn = cache_aagis_dir,
+      dsn = fs::path(cache_aagis_dir, "aagis.gpkg"),
       quiet = TRUE
     )
-    fs::file_delete(download_file)
   }
 
+  fs::file_delete(download_file)
   return(aagis_sf)
 }
