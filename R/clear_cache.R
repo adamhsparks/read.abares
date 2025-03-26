@@ -1,6 +1,7 @@
 #' Remove the user's cache directory and all cached files
 #'
-#' Removes the cache and all files in the \pkg{read.abares} cache if any exist.
+#' Removes the cache directory and all files in the \pkg{read.abares} cache if
+#' any exist locally.
 #'
 #' @examples
 #' # not run because cached files shouldn't exist on CRAN or testing envs
@@ -16,7 +17,7 @@ clear_cache <- function() {
   ra_cache <- fs::dir_exists(.find_user_cache())
 
   if (ra_cache) {
-    fs::dir_delete(.find_user_cache(), recurse = TRUE)
+    fs::dir_delete(.find_user_cache())
   } else {
     cli::cli_inform(
       c(

@@ -11,7 +11,8 @@ An invisible \code{NULL}, called for its side-effects, clearing the
 cached files and deleting the cache directory.
 }
 \description{
-Removes the cache and all files in the \pkg{read.abares} cache if any exist.
+Removes the cache directory and all files in the \pkg{read.abares} cache if
+any exist locally.
 }
 \examples{
 # not run because cached files shouldn't exist on CRAN or testing envs

@@ -14,8 +14,8 @@ locally. If \code{FALSE}, this function uses \code{tempdir()} and the files are 
 upon closing of the active \R session.}
 }
 \value{
-Nothing, called for its side-effects of downloading and unzipping
-files.
+An \link[fs:path]{fs::path} of the resulting Esri Grid file and text file of
+metadata.
 }
 \description{
 Downloads soil thickness data if not already found locally
