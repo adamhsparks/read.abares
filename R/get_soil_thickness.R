@@ -33,9 +33,9 @@
 #' @export
 
 get_soil_thickness <- function(cache = TRUE) {
-  thpk_1_cache <- fs::path(.find_user_cache(), "soil_thickness_dir/thpk_1")
-  if (fs::file_exists(thpk_1_cache)) {
-    return(.create_soil_thickness_list(thpk_1_cache))
+  soil_thickness_cache <- fs::path(.find_user_cache(), "soil_thickness_dir")
+  if (fs::dir_exists(soil_thickness_cache)) {
+    return(.create_soil_thickness_list(soil_thickness_cache))
   } else {
     return(.create_soil_thickness_list(.download_soil_thickness(cache)))
   }
@@ -80,10 +80,11 @@ get_soil_thickness <- function(cache = TRUE) {
 
 .download_soil_thickness <- function(cache) {
   download_file <- fs::path(tempdir(), "soil_thick.zip")
-  tempdir_soil_thick_dir <- fs::path(tempdir(), "soil_thick_dir")
+  tempdir_soil_dir <- fs::path(tempdir(), "soil_thickness_dir")
+  cache_soil_dir <- fs::path(.find_user_cache(), "soil_thickness_dir")
 
   # only download if the files aren't already local
-  if (!fs::dir_exists(tempdir_soil_thick_dir)) {
+  if (!fs::dir_exists(tempdir_soil_dir)) {
     .retry_download(
       "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
       .f = download_file
@@ -95,27 +96,26 @@ get_soil_thickness <- function(cache = TRUE) {
     )
     fs::file_move(
       fs::path(tempdir(), "staiar9cl__05911a01eg_geo___/"),
-      tempdir_soil_thick_dir
+      tempdir_soil_dir
     )
     fs::file_delete(download_file)
   }
 
   # now move the files to the cache if caching is requested
   if (cache) {
-    soil_cache_dir <- fs::path(.find_user_cache(), "soil_thickness_dir")
-    if (!fs::dir_exists(soil_cache_dir)) {
-      fs::dir_create(soil_cache_dir, recurse = TRUE)
+    if (!fs::dir_exists(.find_user_cache())) {
+      fs::dir_create(.find_user_cache(), recurse = TRUE)
     }
     fs::file_move(
-      tempdir_soil_thick_dir,
-      soil_cache_dir
+      tempdir_soil_dir,
+      cache_soil_dir
     )
   }
 
   return(data.table::fifelse(
     cache,
-    soil_cache_dir,
-    tempdir_soil_thick_dir
+    cache_soil_dir,
+    tempdir_soil_dir
   ))
 }
 

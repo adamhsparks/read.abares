@@ -1,7 +1,7 @@
 # There are two files for this function due to caching tests
 
 # sets up a custom cache environment in `tempdir()` just for testing
-withr::local_envvar(R_USER_CACHE_DIR = fs::path_file(tempdir(), "abares.cache.1"))
+withr::local_envvar(R_USER_CACHE_DIR = tempdir())
 
 # without caching enabled ----
 
@@ -10,27 +10,27 @@ test_that("get_soil_thickness doesn't cache", {
   skip_on_ci()
   x <- get_soil_thickness(cache = FALSE)
   expect_s3_class(x, c("read.abares.soil.thickness", "list"))
-  expect_false(fs::dir_exists(fs::path_file(
+  expect_false(fs::dir_exists(fs::path(
     .find_user_cache(),
     "soil_thickness_dir"
   )))
+  # cleanup on the way out for the next test
+  expect_message(clear_cache())
 })
 
-withr::deferred_run()
 
 # with caching enabled after is was not initially enabled ----
-
-withr::local_envvar(R_USER_CACHE_DIR = fs::path_file(tempdir(), "abares.cache.2"))
 
 test_that("get_soil_thickness caches", {
   skip_if_offline()
   skip_on_ci()
   x <- get_soil_thickness(cache = TRUE)
   expect_s3_class(x, c("read.abares.soil.thickness", "list"))
-  expect_true(fs::file_exists(fs::path_file(
+  expect_true(fs::file_exists(fs::path(
     .find_user_cache(),
     "soil_thickness_dir"
   )))
+  expect_no_message(clear_cache())
 })
 
 test_that("get_soil_thickness does cache", {
@@ -38,11 +38,11 @@ test_that("get_soil_thickness does cache", {
   skip_on_ci()
   x <- get_soil_thickness(cache = TRUE)
   expect_s3_class(x, c("read.abares.soil.thickness", "list"))
-  expect_true(fs::file_exists(fs::path_file(
+  expect_true(fs::file_exists(fs::path(
     .find_user_cache(),
     "soil_thickness_dir"
   )))
-  expect_true(fs::dir_exists(fs::path_file(
+  expect_true(fs::dir_exists(fs::path(
     .find_user_cache(),
     "soil_thickness_dir"
   )))
