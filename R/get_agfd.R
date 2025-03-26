@@ -160,8 +160,8 @@
 #'  [10.25814/7n6z-ev41](https://doi.org/10.25814/7n6z-ev41).
 #'  [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/legalcode).
 #'
-#' N. Hughes, W.Y. Soh, C. Boult, K. Lawson, *Defining drought from
-#'  the perspective of Australian farmers*, Climate Risk Management, Volume 35,
+#' N. Hughes, W.Y. Soh, C. Boult, K. Lawson, *Defining drought from the
+#'  perspective of Australian farmers*, Climate Risk Management, Volume 35,
 #'  2022, 100420, ISSN 2212-0963, DOI:
 #'  \doi{10.1016/j.crm.2022.100420.org/10.1016/j.crm.2022.100420}.
 #'
@@ -179,55 +179,54 @@
 #' @export
 
 get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
-  download_file <- data.table::fifelse(
-    cache,
-    fs::path(.find_user_cache(), "agfd.zip"),
-    fs::path(tempdir(), "agfd.zip")
-  )
-
-  # this is where the zip file is downloaded
-  download_dir <- fs::path_dir(download_file)
-
-  # this is where the zip files are unzipped and read from
   agfd_nc_dir <- data.table::fifelse(
     fixed_prices,
-    fs::path(download_dir, "historical_climate_prices_fixed"),
-    fs::path(download_dir, "historical_climate_and_prices")
+    fs::path(tempdir(), "historical_climate_prices_fixed"),
+    fs::path(tempdir(), "historical_climate_and_prices")
   )
 
-  # only download if the files aren't already local
-  if (!fs::dir_exists(agfd_nc_dir)) {
-    # if caching is enabled but {read.abares} cache doesn't exist, create it
-    if (cache) {
-      fs::dir_create(agfd_nc_dir, recurse = TRUE)
-    }
-
-    url <- data.table::fifelse(
-      fixed_prices,
-      "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/3",
-      "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/2"
-    )
-
-    .retry_download(url = url, .f = download_file)
-
-    tryCatch(
-      {
-        withr::with_dir(
-          download_dir,
-          utils::unzip(zipfile = download_file, exdir = download_dir)
-        )
-      },
-      error = function(e) {
-        cli::cli_abort(
-          "There was an issue with the downloaded file. I've deleted
-           this bad version of the downloaded file, please retry.",
-          call = rlang::caller_env()
-        )
-      }
-    )
-    unlink(download_file)
+  agfd_path <- fs::path(.find_user_cache(), "soil_thickness_dir")
+  if (fs::dir_exists(soil_thickness_cache)) {
+    return(.create_soil_thickness_list(soil_thickness_cache))
+  } else {
+    return(.create_soil_thickness_list(.download_soil_thickness(cache)))
   }
+
+  url <- data.table::fifelse(
+    fixed_prices,
+    "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/3",
+    "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/2"
+  )
+
+  download_file <- fs::path(tempdir(), "agfd.zip")
+  # this is where the zip files are unzipped and read from
+
+  .retry_download(url = url, .f = download_file)
+
+  tryCatch(
+    {
+      withr::with_dir(
+        tempdir(),
+        utils::unzip(zipfile = download_file, exdir = tempdir())
+      )
+    },
+    error = function(e) {
+      cli::cli_abort(
+        "There was an issue with the downloaded file. I've deleted
+           this bad version of the downloaded file, please retry.",
+        call = rlang::caller_env()
+      )
+    }
+  )
+  unlink(download_file)
+
   agfd_nc <- fs::dir_ls(agfd_nc_dir, full.names = TRUE)
+
+  # if caching is enabled but {read.abares} cache doesn't exist, create it
+  if (cache && !fs::file_exists(.find_user_cache(), basename(agfd_nc_dir))) {
+    fs::dir_create(.find_user_cache(), basename(agfd_nc_dir), recurse = TRUE)
+  }
+
   class(agfd_nc) <- union("read.abares.agfd.nc.files", class(agfd_nc))
   return(agfd_nc)
 }
