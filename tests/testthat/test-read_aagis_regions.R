@@ -1,6 +1,6 @@
 # with caching ----
 # sets up a custom cache environment in `tempdir()` just for testing
-withr::local_envvar(R_USER_CACHE_DIR = fs::path_file(tempdir(), "abares.cache.20"))
+withr::local_envvar(R_USER_CACHE_DIR = tempdir())
 
 test_that("read_aagis_regions does cache", {
   skip_if_offline()
@@ -8,20 +8,18 @@ test_that("read_aagis_regions does cache", {
   x <- read_aagis_regions(cache = TRUE)
   expect_s3_class(x, "sf")
   expect_true(fs::file_exists(
-    fs::path_file(.find_user_cache(), "aagis_regions_dir/aagis.gpkg")
+    fs::path(.find_user_cache(), "aagis_regions_dir/aagis.gpkg")
   ))
   expect_false(fs::file_exists(
-    fs::path_file(
+    fs::path(
       .find_user_cache(),
       "aagis_regions_dir/aagis_asgs16v1_g5a.shp"
     )
   ))
   file.remove(fs::path_file(.find_user_cache(), "aagis_regions_dir/aagis.gpkg"))
+  expect_no_message(clear_cache())
 })
 
-withr::deferred_run()
-# sets up a custom cache environment in `tempdir()` just for testing
-withr::local_envvar(R_USER_CACHE_DIR = fs::path_file(tempdir(), "abares.cache.1"))
 
 # without caching ----
 test_that("read_aagis_regions doesn't cache", {
@@ -30,7 +28,7 @@ test_that("read_aagis_regions doesn't cache", {
   x <- read_aagis_regions(cache = FALSE)
   expect_s3_class(x, "sf")
   expect_false(fs::file_exists(
-    fs::path_file(.find_user_cache(), "aagis_regions_dir/aagis.gpkg")
+    fs::path(.find_user_cache(), "aagis_regions_dir/aagis.gpkg")
   ))
 })
 
