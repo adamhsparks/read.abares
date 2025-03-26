@@ -123,4 +123,7 @@ test_that("print_soil_thickness_metadata prints full metadata", {
   )
 })
 
+# this hopefully cleans up the cache for the next tests
+clear_cache()
+
 withr::deferred_run()
