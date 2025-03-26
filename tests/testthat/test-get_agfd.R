@@ -3,7 +3,7 @@ test_that("get_agfd, fixed = TRUE works", {
   skip_on_ci()
   x <- get_agfd()
 
-  agfd_nc_dir <- fs::path_file(
+  agfd_nc_dir <- fs::path(
     .find_user_cache(),
     "historical_climate_prices_fixed"
   )
@@ -24,7 +24,7 @@ test_that("get_agfd, fixed = TRUE works", {
   )
   # cache fs::dir_created
   expect_true(fs::dir_exists(
-    fs::path_file(.find_user_cache(), "historical_climate_prices_fixed")
+    fs::path(.find_user_cache(), "historical_climate_prices_fixed")
   ))
 })
 
@@ -33,7 +33,7 @@ test_that("get_agfd, fixed = FALSE works", {
   skip_on_ci()
   x <- get_agfd(fixed_prices = FALSE)
 
-  agfd_nc_dir <- fs::path_file(
+  agfd_nc_dir <- fs::path(
     .find_user_cache(),
     "historical_climate_prices_fixed"
   )
@@ -54,7 +54,7 @@ test_that("get_agfd, fixed = FALSE works", {
   )
   # cache fs::dir_created
   expect_true(fs::dir_exists(
-    fs::path_file(.find_user_cache(), "historical_climate_and_prices")
+    fs::path(.find_user_cache(), "historical_climate_and_prices")
   ))
 })
 
@@ -63,7 +63,7 @@ test_that("get_agfd, fixed = TRUE, no cache works", {
   skip_if_offline()
   x <- get_agfd(cache = FALSE)
 
-  agfd_nc_dir <- fs::path_file(
+  agfd_nc_dir <- fs::path(
     .find_user_cache(),
     "historical_climate_prices_fixed"
   )
@@ -84,7 +84,7 @@ test_that("get_agfd, fixed = TRUE, no cache works", {
   )
   # cache fs::dir_created
   expect_true(fs::dir_exists(
-    fs::path_file(.find_user_cache(), "historical_climate_prices_fixed")
+    fs::path(.find_user_cache(), "historical_climate_prices_fixed")
   ))
 })
 
@@ -92,7 +92,7 @@ test_that("get_agfd() cleans up on its way out, caching", {
   skip_if_offline()
   skip_on_ci()
   x <- get_agfd()
-  expect_false(fs::file_exists(fs::path_file(.find_user_cache(), "agfd.zip")))
+  expect_false(fs::file_exists(fs::path(.find_user_cache(), "agfd.zip")))
 })
 
 test_that("print.read.abares.agfd.nc.files returns a properly formatted list", {
