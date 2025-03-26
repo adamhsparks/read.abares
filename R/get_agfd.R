@@ -199,7 +199,7 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
   if (!fs::dir_exists(agfd_nc_dir)) {
     # if caching is enabled but {read.abares} cache doesn't exist, create it
     if (cache) {
-      fs::dir_create(agfd_nc_dir, recursive = TRUE)
+      fs::dir_create(agfd_nc_dir, recurse = TRUE)
     }
 
     url <- data.table::fifelse(
