@@ -48,6 +48,28 @@ test_that("get_soil_thickness does cache", {
   )))
 })
 
+# test reading with stars ----
+
+test_that("read_soil_thickness_stars returns a stars object", {
+  skip_if_offline()
+  skip_on_ci()
+  x <- get_soil_thickness(cache = TRUE) |>
+    read_soil_thickness_stars()
+  expect_s3_class(x, "stars")
+  expect_named(x, "thpk_1")
+})
+
+# test reading with terra ----
+
+test_that("read_soil_thickness_stars returns a terra object", {
+  skip_if_offline()
+  skip_on_ci()
+  x <- get_soil_thickness(cache = TRUE) |>
+    read_soil_thickness_terra()
+  expect_s4_class(x, "SpatRaster")
+  expect_named(x, "thpk_1")
+})
+
 test_that("print.read.abares.thickness.files prints metadata", {
   skip_if_offline()
   skip_on_ci()
@@ -123,7 +145,6 @@ test_that("print_soil_thickness_metadata prints full metadata", {
   )
 })
 
-# this hopefully cleans up the cache for the next tests
 clear_cache()
 
 withr::deferred_run()
