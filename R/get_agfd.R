@@ -225,8 +225,12 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
         )
       }
     )
-    unlink(download_file)
   }
+
+  if (fs::file_exists(download_file)) {
+    fs::file_delete(download_file)
+  }
+
   agfd_nc <- fs::dir_ls(agfd_nc_dir, full.names = TRUE)
   class(agfd_nc) <- union("read.abares.agfd.nc.files", class(agfd_nc))
   return(agfd_nc)

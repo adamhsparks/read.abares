@@ -1,4 +1,6 @@
-test_that("get_agfd, fixed = TRUE works", {
+withr::local_envvar(R_USER_CACHE_DIR = tempdir())
+
+test_that("get_agfd, fixed = TRUE, cache = TRUE, works", {
   skip_if_offline()
   skip_on_ci()
   x <- get_agfd()
@@ -7,7 +9,6 @@ test_that("get_agfd, fixed = TRUE works", {
     .find_user_cache(),
     "historical_climate_prices_fixed"
   )
-  agfd_nc <- fs::dir_ls(agfd_nc_dir, full.names = TRUE)
 
   nc_files <- function(agfd_nc_dir) {
     cli::cli_h1("Locally Available ABARES AGFD NetCDF Files")
@@ -23,12 +24,10 @@ test_that("get_agfd, fixed = TRUE works", {
       capture_output()
   )
   # cache fs::dir_created
-  expect_true(fs::dir_exists(
-    fs::path(.find_user_cache(), "historical_climate_prices_fixed")
-  ))
+  expect_true(fs::dir_exists(agfd_nc_dir))
 })
 
-test_that("get_agfd, fixed = FALSE works", {
+test_that("get_agfd, fixed = FALSE, cache = TRUE, works", {
   skip_if_offline()
   skip_on_ci()
   x <- get_agfd(fixed_prices = FALSE)
@@ -37,7 +36,6 @@ test_that("get_agfd, fixed = FALSE works", {
     .find_user_cache(),
     "historical_climate_prices_fixed"
   )
-  agfd_nc <- fs::dir_ls(agfd_nc_dir, full.names = TRUE)
 
   nc_files <- function(agfd_nc_dir) {
     cli::cli_h1("Locally Available ABARES AGFD NetCDF Files")
@@ -53,45 +51,8 @@ test_that("get_agfd, fixed = FALSE works", {
       capture_output()
   )
   # cache fs::dir_created
-  expect_true(fs::dir_exists(
-    fs::path(.find_user_cache(), "historical_climate_and_prices")
-  ))
-})
+  expect_true(fs::dir_exists(agfd_nc_dir))
 
-test_that("get_agfd, fixed = TRUE, no cache works", {
-  skip_on_ci()
-  skip_if_offline()
-  x <- get_agfd(cache = FALSE)
-
-  agfd_nc_dir <- fs::path(
-    .find_user_cache(),
-    "historical_climate_prices_fixed"
-  )
-  agfd_nc <- fs::dir_ls(agfd_nc_dir, full.names = TRUE)
-
-  nc_files <- function(agfd_nc_dir) {
-    cli::cli_h1("\nLocally Available ABARES AGFD NetCDF Files\n")
-    cli::cli_ul(basename(fs::dir_ls(agfd_nc_dir)))
-    cat("\n")
-  }
-  print_out <- capture.output(nc_files)
-
-  expect_s3_class(x, c("read.abares.agfd.nc.files", "character"))
-  expect_identical(
-    x |> capture_output(),
-    nc_files(agfd_nc_dir) |>
-      capture_output()
-  )
-  # cache fs::dir_created
-  expect_true(fs::dir_exists(
-    fs::path(.find_user_cache(), "historical_climate_prices_fixed")
-  ))
-})
-
-test_that("get_agfd() cleans up on its way out, caching", {
-  skip_if_offline()
-  skip_on_ci()
-  x <- get_agfd()
   expect_false(fs::file_exists(fs::path(.find_user_cache(), "agfd.zip")))
 })
 
@@ -141,3 +102,37 @@ test_that("print_agfd_nc_files prints a proper message", {
   y <- print_agfd_nc_file_format()
   expect_identical(capture_output(y), capture_output(x))
 })
+
+clear_cache()
+
+test_that("get_agfd, fixed = TRUE, cache = FALSE, works", {
+  skip_on_ci()
+  skip_if_offline()
+  x <- get_agfd(cache = FALSE)
+
+  agfd_nc_dir <- fs::path(
+    tempdir(),
+    "historical_climate_prices_fixed"
+  )
+
+  nc_files <- function(agfd_nc_dir) {
+    cli::cli_h1("\nLocally Available ABARES AGFD NetCDF Files\n")
+    cli::cli_ul(basename(fs::dir_ls(agfd_nc_dir)))
+    cat("\n")
+  }
+  print_out <- capture.output(nc_files)
+
+  expect_s3_class(x, c("read.abares.agfd.nc.files", "character"))
+  expect_identical(
+    x |> capture_output(),
+    nc_files(agfd_nc_dir) |>
+      capture_output()
+  )
+  # cache fs::dir_created
+  expect_false(fs::dir_exists(fs::path(
+    .find_user_cache(),
+    "historical_climate_prices_fixed"
+  )))
+})
+
+withr::deferred_run()
