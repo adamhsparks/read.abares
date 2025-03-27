@@ -12,7 +12,6 @@ Bui
 CMD
 CSIRO
 Carlile
-Codecov
 Curtin
 DAFF
 DLWC
@@ -21,7 +20,7 @@ Esri
 FBP
 FYs
 GRDC
-Geopackage
+GeoPackage
 Geopackages
 Gridded
 ISSN
@@ -55,6 +54,7 @@ al
 backcast
 brio
 broadacre
+codecov
 coverages
 de
 digitised
@@ -86,7 +86,6 @@ modelling
 multilayer
 oilseeds
 pfe
-pre
 quadrat
 rOpenSci
 rast
