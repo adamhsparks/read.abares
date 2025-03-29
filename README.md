@@ -82,7 +82,7 @@ uses snake_case for all colnames with the first letter capitalised of
 every column to help you do your work more efficiently. Columns are
 formatted correctly for the data type, *e.g.*, dates are converted to
 `Date` class, and numbers are converted to `numeric` class where
-necessary.
+necessary, etc.
 
 ### Automated Repairing of Geospatial Data
 
