@@ -28,7 +28,7 @@ locally. If \code{FALSE}, this function uses \code{tempdir()} and the files are 
 upon closing of the active \R session.}
 }
 \value{
-A \code{read.abares.agfd.nc.files} object, a \code{list} of NetCDF files
+A \code{read.abares.agfd.nc.files} object, a list of NetCDF files
 containing the Australian Gridded Farm Data.
 }
 \description{
