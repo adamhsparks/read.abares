@@ -101,12 +101,19 @@ which is cleaned up when your R session ends.
 ### Multiple NetCDF Data Classes Supported
 
 {read.abares} supports multiple classes of objects to support your
-workflow with the NetCDF data. Select from spatial classes for the AGFD
-NetCDF files:
+workflow with the NetCDF data. Select from spatial classes for the
+Australian Gridded Farm Data (AGFD) NetCDF files:
 
 - [{stars}](https://CRAN.R-project.org/package=stars),
 - [{terra}](https://CRAN.R-project.org/package=terra) or
 - [{tidync}](https://CRAN.R-project.org/package=tidync)
+
+Or for the Soil Thickness for Australian areas of intensive agriculture
+of Layer 1 (A Horizon - top-soil) (derived from soil mapping) data
+select from:
+
+- [{stars}](https://CRAN.R-project.org/package=stars),
+- [{terra}](https://CRAN.R-project.org/package=terra)
 
 ## About Data Serviced
 
