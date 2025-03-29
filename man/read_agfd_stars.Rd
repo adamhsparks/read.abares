@@ -176,13 +176,13 @@ plot(agfd[[1]])
 }
 \references{
 \emph{Australian gridded farm data}, Australian Bureau of Agricultural and
-Resource Economics and Sciences, Canberra, July 2024, DOI:
+Resource Economics and Sciences, Canberra, July 2024,
 \doi{https://doi.org/10.25814/7n6z-ev41}.
 \href{https://creativecommons.org/licenses/by/4.0/legalcode}{CC BY 4.0}.
 
 N. Hughes, W.Y. Soh, C. Boult, K. Lawson, \emph{Defining drought from
 the perspective of Australian farmers}, Climate Risk Management, Volume 35,
-2022, 100420, ISSN 2212-0963, DOI:
+2022, 100420, ISSN 2212-0963,
 \doi{10.1016/j.crm.2022.100420.org/10.1016/j.crm.2022.100420}.
 }
 \seealso{
