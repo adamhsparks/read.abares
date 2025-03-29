@@ -115,8 +115,8 @@ Or for the Soil Thickness for Australian areas of intensive agriculture
 of Layer 1 (A Horizon - top-soil) (derived from soil mapping) data
 select from:
 
-- [{stars}](https://CRAN.R-project.org/package=stars),
-- [{terra}](https://CRAN.R-project.org/package=terra)
+- [{stars}](https://CRAN.R-project.org/package=stars), or
+- [{terra}](https://CRAN.R-project.org/package=terra).
 
 ## About Data Serviced
 
@@ -147,14 +147,6 @@ Citing {read.abares}: When citing the use of this package, please use,
 
 ``` r
 library("read.abares")
-#> 
-#> Attaching package: 'read.abares'
-#> The following object is masked from 'package:graphics':
-#> 
-#>     plot
-#> The following object is masked from 'package:base':
-#> 
-#>     plot
 citation("read.abares")
 #> To cite package 'read.abares' in publications use:
 #> 

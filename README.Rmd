@@ -91,8 +91,8 @@ Select from spatial classes for the Australian Gridded Farm Data (AGFD) NetCDF f
 
 Or for the Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping) data select from:
 
-- [{stars}](https://CRAN.R-project.org/package=stars),
-- [{terra}](https://CRAN.R-project.org/package=terra)
+- [{stars}](https://CRAN.R-project.org/package=stars), or
+- [{terra}](https://CRAN.R-project.org/package=terra).
 
 ## About Data Serviced
 
