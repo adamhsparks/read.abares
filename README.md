@@ -168,11 +168,10 @@ citation("read.abares")
 I’ve aimed to make the testing for this package as complete as possible.
 Some of the files downloaded are \>1GB and may take several minutes or
 more than an hour to download and due to their size, I do not wish to
-include them in the package itself. Therefore, most of these tests do
-rely on already downloaded and locally cached files. If you wish to work
-with development of {read.abares} please be aware that it will take some
-time to establish your local cache before testing will be somewhat
-faster.
+include them in the package itself. If you wish to work with development
+of {read.abares} please be aware that it will take some time to as the
+tests use `tempdir()` for tests that involve caching and it will take a
+bit to establish your test environment cache.
 
 ### Code of Conduct
 
