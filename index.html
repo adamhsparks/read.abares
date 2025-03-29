@@ -66,7 +66,17 @@
 </div>
 <!-- badges: start -->
 
-<p>An R package for automated downloading and ingestion of data from the Australian Bureau of Agricultural and Resource Economics and Sciences. Not all ABARES data are serviced. The list is hand-picked to be reasonably useful and maintainable, <em>i.e.</em>, frequently updated values are not included in this, <em>e.g.</em>, <a href="https://daff.ent.sirsidynix.net.au/client/en_AU/ABARES/search/results?te=ASSET&amp;st=PD#" class="external-link">Australian crop reports</a>. However, if there is a data set that you feel would be useful to be serviced by {read.abares}, please feel free to <a href="https://github.com/adamhsparks/read.abares/issues/new" class="external-link">open an issue</a> with details about the data set or better yet, open a pull request!</p>
+<p>An R package for automated downloading and ingestion of data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES).</p>
+<div class="section level2">
+<h2 id="about-abares">About ABARES<a class="anchor" aria-label="anchor" href="#about-abares"></a>
+</h2>
+<p>ABARES is the research arm of the Australian federal Government Department of Agriculture, Fisheries and Forestry (DAFF). ABARES’ main role is “to provide”professionally independent data, research, analysis and advice that informs public and private decisions affecting Australian agriculture, fisheries and forestry”<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content="&lt;p&gt;1&lt;/p&gt;"><sup>1</sup></a>.</p>
+<p>The data provided by ABARES is extensive and varied, and includes data on agricultural production, trade, and forecasts, as well as spatial data on farm locations and top-soil thickness. ABARES data are not available from other sources but are mostly available under Creative Commons Licences for reuse.</p>
+</div>
+<div class="section level2">
+<h2 id="about-readabares-why-this-package">About {read.abares}: why this package?<a class="anchor" aria-label="anchor" href="#about-readabares-why-this-package"></a>
+</h2>
+<p>ABARES makes several data sets freely available as spreadsheets in Microsoft Excel or CSV file formats and zip archives of geospatial data as NetCDF or shape files. {read.abares} facilitates downloading, caching and importing these files in your R session as a {<a href="https://cran.r-project.org/package=data.table" class="external-link">data.table</a>} object for spreadsheet data, {<a href="https://cran.r-project.org/package=sf" class="external-link">sf</a>} for shape file data and your choice of the class of the resulting object(s) for the NetCDF data.</p>
 <p>Data serviced include:</p>
 <ul>
 <li>the <a href="https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download" class="external-link">ABARES Estimates</a>;</li>
@@ -81,7 +91,7 @@
 </ul>
 </li>
 </ul>
-<p>The files are freely available as CSV files, zip archives of NetCDF files or a zip archives of geospatial shape files. {read.abares} facilitates downloading, caching and importing these files in your R session with your choice of the class of the resulting object(s).</p>
+</div>
 <div class="section level2">
 <h2 id="get-started">Get Started<a class="anchor" aria-label="anchor" href="#get-started"></a>
 </h2>
@@ -98,14 +108,24 @@
 <h2 id="features">Features<a class="anchor" aria-label="anchor" href="#features"></a>
 </h2>
 <div class="section level3">
-<h3 id="caching">Caching<a class="anchor" aria-label="anchor" href="#caching"></a>
+<h3 id="standardised-column-names-and-orders">Standardised Column Names and Orders<a class="anchor" aria-label="anchor" href="#standardised-column-names-and-orders"></a>
 </h3>
-<p>{read.abares} supports caching the files using <code>tools::R_user_dir(package = "read.abares", which = "cache")</code> to save the files in a standardised location across platforms so you don’t have to worry about where the files went or if they’re still there. When requesting the files, {read.abares} will first check if they are available locally either in cached or temporary storage. Caching is not mandatory, you can just work with the downloaded files in <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code>, which is cleaned up when your R session ends.</p>
+<p>ABARES spreadhsheet data are not always consistent in their column names or orders. {read.abares} standardises the column names and orders for the data sets it services to help you do your work more efficiently.</p>
 </div>
 <div class="section level3">
-<h3 id="multiple-classes-supported">Multiple Classes Supported<a class="anchor" aria-label="anchor" href="#multiple-classes-supported"></a>
+<h3 id="automated-repairing-of-geospatial-data">Automated Repairing of Geospatial Data<a class="anchor" aria-label="anchor" href="#automated-repairing-of-geospatial-data"></a>
 </h3>
-<p>{read.abares} supports multiple classes of objects to support your workflow. Select from spatial classes for the AGFD NetCDF files:</p>
+<p>The Australian Agricultural and Grazing Industries Survey (AAGIS) region mapping files report geometry errors that can be repaired using the <code><a href="https://r-spatial.github.io/sf/reference/valid.html" class="external-link">sf::st_make_valid()</a></code> function. {read.abaes} automatically repairs these geometries for you when you import the data.</p>
+</div>
+<div class="section level3">
+<h3 id="file-caching">File Caching<a class="anchor" aria-label="anchor" href="#file-caching"></a>
+</h3>
+<p>{read.abares} supports caching the files using <code>tools::R_user_dir(package = "read.abares", which = "cache")</code> to save the files in a standardised location across platforms so you don’t have to worry about where the files went or if they’re still there. When requesting the files {read.abares} will first check if they are available locally either in cached or temporary storage. Caching is not mandatory, you can just work with the downloaded files in <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code>, which is cleaned up when your R session ends.</p>
+</div>
+<div class="section level3">
+<h3 id="multiple-netcdf-data-classes-supported">Multiple NetCDF Data Classes Supported<a class="anchor" aria-label="anchor" href="#multiple-netcdf-data-classes-supported"></a>
+</h3>
+<p>{read.abares} supports multiple classes of objects to support your workflow with the NetCDF data. Select from spatial classes for the AGFD NetCDF files:</p>
 <ul>
 <li>
 <a href="https://CRAN.R-project.org/package=stars" class="external-link">{stars}</a>,</li>
@@ -113,11 +133,12 @@
 <a href="https://CRAN.R-project.org/package=terra" class="external-link">{terra}</a> or</li>
 <li><a href="https://CRAN.R-project.org/package=tidync" class="external-link">{tidync}</a></li>
 </ul>
-<p>or data.frame (data.table) objects:</p>
-<ul>
-<li><a href="https://CRAN.R-project.org/package=data.table" class="external-link">{data.table}</a></li>
-</ul>
 </div>
+</div>
+<div class="section level2">
+<h2 id="about-data-serviced">About Data Serviced<a class="anchor" aria-label="anchor" href="#about-data-serviced"></a>
+</h2>
+<p>You might note that not all ABARES data are serviced by this package. The list is hand-picked to be reasonably useful and maintainable, <em>i.e.</em>, frequently updated values are not included in this, <em>e.g.</em>, <a href="https://daff.ent.sirsidynix.net.au/client/en_AU/ABARES/search/results?te=ASSET&amp;st=PD#" class="external-link">Australian crop reports</a>. However, if there is a data set that you feel would be useful to be serviced by {read.abares}, please feel free to <a href="https://github.com/adamhsparks/read.abares/issues/new" class="external-link">open an issue</a> with details about the data set or better yet, open a pull request!</p>
 </div>
 <div class="section level2">
 <h2 id="metadata">Metadata<a class="anchor" aria-label="anchor" href="#metadata"></a>
@@ -131,19 +152,11 @@
 <p>Citing {read.abares}: When citing the use of this package, please use,</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/adamhsparks/read.abares" class="external-link">"read.abares"</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'read.abares'</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:graphics':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     plot</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     plot</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"read.abares"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; To cite package 'read.abares' in publications use:</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;   Sparks A (????). _read.abares: Simple downloading and importing</span></span>
-<span><span class="co">#&gt;   of ABARES Data_. R package version 1.0.0,</span></span>
+<span><span class="co">#&gt;   Sparks A (????). _read.abares: Simple downloading and importing of</span></span>
+<span><span class="co">#&gt;   ABARES Data_. R package version 1.0.1,</span></span>
 <span><span class="co">#&gt;   &lt;https://adamhsparks.github.io/read.abares/&gt;.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; A BibTeX entry for LaTeX users is</span></span>
@@ -151,7 +164,7 @@
 <span><span class="co">#&gt;   @Manual{,</span></span>
 <span><span class="co">#&gt;     title = {{read.abares}: Simple downloading and importing of ABARES Data},</span></span>
 <span><span class="co">#&gt;     author = {Adam H. Sparks},</span></span>
-<span><span class="co">#&gt;     note = {R package version 1.0.0},</span></span>
+<span><span class="co">#&gt;     note = {R package version 1.0.1},</span></span>
 <span><span class="co">#&gt;     url = {https://adamhsparks.github.io/read.abares/},</span></span>
 <span><span class="co">#&gt;   }</span></span></code></pre></div>
 </div>
@@ -168,9 +181,12 @@
 <h3 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
 </h3>
 <p>Please note that the {read.abares} project is released with a <a href="https://adamhsparks.github.io/read.abares/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+<p>[^1](<a href="https://www.agriculture.gov.au/abares/about" class="external-link uri">https://www.agriculture.gov.au/abares/about</a>)</p>
 </div>
 </div>
 </div>
+
+
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
