@@ -37,11 +37,7 @@ Commons Licences for reuse.
 ABARES makes several data sets freely available as spreadsheets in
 Microsoft Excel or CSV file formats and zip archives of geospatial data
 as NetCDF or shape files. {read.abares} facilitates downloading, caching
-and importing these files in your R session as a
-{[data.table](https://cran.r-project.org/package=data.table)} object for
-spreadsheet data, {[sf](https://cran.r-project.org/package=sf)} for
-shape file data and your choice of the class of the resulting object(s)
-for the NetCDF data.
+and importing these files in your R session.
 
 Data serviced include:
 
