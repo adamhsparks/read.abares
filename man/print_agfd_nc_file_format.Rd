@@ -22,6 +22,6 @@ print_agfd_nc_file_format()
 }
 \references{
 Australian gridded farm data, Australian Bureau of Agricultural
-and Resource Economics and Sciences, Canberra, July, DOI:
-<https://doi.org/10.25814/7n6z-ev41. CC BY 4.0.>
+and Resource Economics and Sciences, Canberra, July,
+\doi{https://doi.org/10.25814/7n6z-ev41}. CC BY 4.0.
 }

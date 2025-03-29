@@ -65,11 +65,11 @@
 #'  \acronym{AADI} project) is simulated for each grid cell (1990-91 to
 #'  2022-23).
 #'
-#'  ### Historical climate and prices
+#' ### Historical climate and prices
 #'
-#'  As part of the AADI project an additional scenario was developed accounting
+#' As part of the AADI project an additional scenario was developed accounting
 #'  for changes in both climate conditions and output and input prices (*i.e.*,
-#'  global commodity market variability). In this Historical climate and prices
+#'  global commodity market variability). In this historical climate and prices
 #'  scenario the 33-year reference period allows for variation in both\
 #'  historical climate conditions and historical prices. For this scenario,
 #'  historical price indexes were de-trended, to account for consistent long-
@@ -170,7 +170,7 @@
 #'   * Historical climate and prices -- <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/2>
 #'
 #' @examplesIf interactive()
-#' get_agfd()
+# gg' get_agfd()
 #'
 #' @returns A `read.abares.agfd.nc.files` object, a list of NetCDF files
 #'  containing the Australian Gridded Farm Data.
@@ -258,8 +258,8 @@ print.read.abares.agfd.nc.files <- function(x, ...) {
 #'  Agricultural and Resource Economics and Sciences}.
 #'
 #' @references  Australian gridded farm data, Australian Bureau of Agricultural
-#'  and Resource Economics and Sciences, Canberra, July, DOI:
-#'  <https://doi.org/10.25814/7n6z-ev41. CC BY 4.0.>
+#'  and Resource Economics and Sciences, Canberra, July,
+#'  \doi{https://doi.org/10.25814/7n6z-ev41}. CC BY 4.0.
 #' @source <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/0>
 #' @examples
 #' print_agfd_nc_file_format()

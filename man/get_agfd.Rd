@@ -87,7 +87,7 @@ sequence (including historical simulated crop and pasture data from the
 
 As part of the AADI project an additional scenario was developed accounting
 for changes in both climate conditions and output and input prices (\emph{i.e.},
-global commodity market variability). In this Historical climate and prices
+global commodity market variability). In this historical climate and prices
 scenario the 33-year reference period allows for variation in both\
 historical climate conditions and historical prices. For this scenario,
 historical price indexes were de-trended, to account for consistent long-
@@ -181,7 +181,6 @@ farmland_per_cell     \tab ha        \tab Indicative area of farmland in the gri
 
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-get_agfd()
 \dontshow{\}) # examplesIf}
 }
 \references{
