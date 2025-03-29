@@ -66,7 +66,7 @@ pak::pak("adamhsparks/read.abares")
 ### Standardised Column Names and Orders
 
 ABARES spreadhsheet data are not always consistent in their column names or orders.
-{read.abares} standardises the column names and orders for the data sets it services to help you do your work more efficiently.
+{read.abares} standardises the column names and orders and uses snake_case for all colnames with the first letter capitalised of every column to help you do your work more efficiently.
 
 ### Automated Repairing of Geospatial Data
 
