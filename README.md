@@ -98,7 +98,7 @@ available locally either in cached or temporary storage. Caching is not
 mandatory, you can just work with the downloaded files in `tempdir()`,
 which is cleaned up when your R session ends.
 
-### Multiple NetCDF Data Classes Supported
+### Multiple Geospatial Data Classes Supported
 
 {read.abares} supports multiple classes of objects to support your
 workflow with the NetCDF data. Select from spatial classes for the

@@ -79,7 +79,7 @@ The Australian Agricultural and Grazing Industries Survey (AAGIS) region mapping
 When requesting the files {read.abares} will first check if they are available locally either in cached or temporary storage.
 Caching is not mandatory, you can just work with the downloaded files in `tempdir()`, which is cleaned up when your R session ends.
 
-### Multiple NetCDF Data Classes Supported
+### Multiple Geospatial Data Classes Supported
 
 {read.abares} supports multiple classes of objects to support your workflow with the NetCDF data.
 Select from spatial classes for the Australian Gridded Farm Data (AGFD) NetCDF files:
