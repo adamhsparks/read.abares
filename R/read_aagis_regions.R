@@ -1,7 +1,7 @@
 #' Read 'Australian Agricultural and Grazing Industries Survey' (AAGIS) region mapping files
 #'
 #' Download, cache and import the Australian Agricultural and Grazing
-#'  Industries Survey (\acronym{AAGIS} regions geospatial shapefile. Upon
+#'  Industries Survey (\acronym{AAGIS}) regions geospatial shapefile. Upon
 #'  import, the geometries are automatically corrected to fix invalid
 #'  geometries that are present in the original shapefile.
 #'
