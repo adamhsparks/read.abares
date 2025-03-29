@@ -105,8 +105,11 @@ workflow with the NetCDF data. Select from spatial classes for the
 Australian Gridded Farm Data (AGFD) NetCDF files:
 
 - [{stars}](https://CRAN.R-project.org/package=stars),
-- [{terra}](https://CRAN.R-project.org/package=terra) or
-- [{tidync}](https://CRAN.R-project.org/package=tidync)
+- [{terra}](https://CRAN.R-project.org/package=terra),
+- [{tidync}](https://CRAN.R-project.org/package=tidync), or if you
+  prefer,
+- a [{data.table}](https://CRAN.R-project.org/package=data.table)
+  data.frame of the whole data set.
 
 Or for the Soil Thickness for Australian areas of intensive agriculture
 of Layer 1 (A Horizon - top-soil) (derived from soil mapping) data
@@ -144,11 +147,19 @@ Citing {read.abares}: When citing the use of this package, please use,
 
 ``` r
 library("read.abares")
+#> 
+#> Attaching package: 'read.abares'
+#> The following object is masked from 'package:graphics':
+#> 
+#>     plot
+#> The following object is masked from 'package:base':
+#> 
+#>     plot
 citation("read.abares")
 #> To cite package 'read.abares' in publications use:
 #> 
 #>   Sparks A (????). _read.abares: Simple downloading and importing of
-#>   ABARES Data_. R package version 1.0.1,
+#>   ABARES Data_. R package version 1.0.0,
 #>   <https://adamhsparks.github.io/read.abares/>.
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -156,7 +167,7 @@ citation("read.abares")
 #>   @Manual{,
 #>     title = {{read.abares}: Simple downloading and importing of ABARES Data},
 #>     author = {Adam H. Sparks},
-#>     note = {R package version 1.0.1},
+#>     note = {R package version 1.0.0},
 #>     url = {https://adamhsparks.github.io/read.abares/},
 #>   }
 ```

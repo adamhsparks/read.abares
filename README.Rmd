@@ -85,8 +85,9 @@ Caching is not mandatory, you can just work with the downloaded files in `tempdi
 Select from spatial classes for the Australian Gridded Farm Data (AGFD) NetCDF files:
 
 - [{stars}](https://CRAN.R-project.org/package=stars),
-- [{terra}](https://CRAN.R-project.org/package=terra) or
-- [{tidync}](https://CRAN.R-project.org/package=tidync)
+- [{terra}](https://CRAN.R-project.org/package=terra),
+- [{tidync}](https://CRAN.R-project.org/package=tidync), or if you prefer,
+- a [{data.table}](https://CRAN.R-project.org/package=data.table) data.frame of the whole data set.
 
 Or for the Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping) data select from:
 
