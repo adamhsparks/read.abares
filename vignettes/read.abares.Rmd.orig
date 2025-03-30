@@ -37,6 +37,27 @@ This vignette demonstrates some of the functionality of {read.abares}.
 Please note that not all functions are demonstrated here, please refer to the [documentation reference](https://adamhsparks.github.io/read.abares/reference/) for a full list of functionality.
 The worked examples here show some of the more advanced features that {read.abares} offers beyond just fetching and importing data, _e.g._, the Australian Gridded Farm Data, which can be downloaded, cached and then imported using one of four types of object or the soil thickness data, which includes rich metadata.
 
+## Working with AAGIS Regions Spatial Data
+
+### Obtaining the AAGIS Regions Spatial Data
+
+You can download files and pipe directly into the class object that you desire for the ABARES Agriculture and Grazing Industries Survey data.
+
+```{r aagis-regions}
+aagis_regions <- read_aagis_regions(cache = TRUE)
+
+plot(aagis_regions)
+```
+
+### Obtaining AAGIS Data by Region
+
+{read.abares} offers functions to download the ABARES estimates based on the AAGIS results for national level, `read_historical_national_estimates()`, regional level `read_historical_regional_estimates()`, and state level `read_historical_state_estimates()` and also by performance category `read_estimates_by_performance_category()` and size category `read_estimates_by_size()`.
+For this example, w ill use the `read_historical_regional_estimates()` function to download the AAGIS data for the regions in the AAGIS regions shapefile and join the data and visualise some of the data.
+
+```{r aagis-regions-data}
+aagis_region_data <- read_historical_regional_estimates(cache = TRUE)
+```
+
 ## Working With AGFD Data
 
 You can download files and pipe directly into the class object that you desire for the Australian Farm Gridded Data (AGFD) data.
