@@ -11,7 +11,7 @@
 #' @inherit get_agfd references
 #' @param files A list of \acronym{AGFD} NetCDF files to import.
 #'
-#' @returns a [data.table::data.table] object of the 'Australian Gridded Farm
+#' @returns A [data.table::data.table] object of the 'Australian Gridded Farm
 #'  Data'.
 #'
 #' @examplesIf interactive()

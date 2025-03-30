@@ -10,7 +10,7 @@ read_agfd_dt(files)
 \item{files}{A list of \acronym{AGFD} NetCDF files to import.}
 }
 \value{
-a \link[data.table:data.table]{data.table::data.table} object of the 'Australian Gridded Farm
+A \link[data.table:data.table]{data.table::data.table} object of the 'Australian Gridded Farm
 Data'.
 }
 \description{
