@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   read.abares: read.abares.html
-last_built: 2025-03-30T09:35Z
+last_built: 2025-03-30T09:52Z
 urls:
   reference: https://adamhsparks.github.io/read.abares/reference
   article: https://adamhsparks.github.io/read.abares/articles
