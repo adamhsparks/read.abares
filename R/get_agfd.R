@@ -157,7 +157,7 @@
 #'
 #' *Australian gridded farm data*, Australian Bureau of Agricultural and
 #'  Resource Economics and Sciences, Canberra, July 2024,
-#'  \doi{https://doi.org/10.25814/7n6z-ev41}.
+#'  \doi{10.25814/7n6z-ev41}.
 #'  [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/legalcode).
 #'
 #' N. Hughes, W.Y. Soh, C. Boult, K. Lawson, *Defining drought from
@@ -260,7 +260,7 @@ print.read.abares.agfd.nc.files <- function(x, ...) {
 #'
 #' @references  Australian gridded farm data, Australian Bureau of Agricultural
 #'  and Resource Economics and Sciences, Canberra, July,
-#'  \doi{https://doi.org/10.25814/7n6z-ev41}. CC BY 4.0.
+#'  \doi{10.25814/7n6z-ev41}. CC BY 4.0.
 #' @source <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/0>
 #' @examples
 #' print_agfd_nc_file_format()
