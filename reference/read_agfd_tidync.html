@@ -58,9 +58,8 @@ tidync::tidync objects."><meta property="og:image" content="https://adamhsparks.
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>a <code>list</code> object of <a href="https://CRAN.R-project.org/package=tidync" class="external-link"><span class="pkg">tidync</span></a> <a href="https://docs.ropensci.org/tidync/reference/tidync.html" class="external-link">tidync::tidync</a> objects of the
-Australian Gridded Farm Data with the file names as the  list's objects'
-names.</p>
+    <p>a <code>list</code> object of <a href="https://CRAN.R-project.org/package=tidync" class="external-link"><span class="pkg">tidync</span></a> objects of the Australian
+Gridded Farm Data with the file names as the  list's objects' names.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -72,7 +71,7 @@ grid.<br>
 These data have been produced by <acronym>ABARES</acronym> as part of the ongoing
 Australian Agricultural Drought Indicator (<acronym>AADI</acronym>) project
 (previously known as the Drought Early Warning System Project) and were
-derived using <acronym>ABARES</acronym>'s
+derived using <acronym>ABARES</acronym>
 <a href="https://www.agriculture.gov.au/abares/research-topics/climate/drought/farmpredict" class="external-link"><em>farmpredict</em></a>
 model, which in turn is based on ABARES Agricultural and Grazing Industries
 Survey (<acronym>AAGIS</acronym>) data.<br><a href="https://www.agriculture.gov.au/abares/research-topics/climate/australian-agriculture-drought-indicators-project" class="external-link">Australian Agricultural Drought Indicator</a>
@@ -188,8 +187,10 @@ the perspective of Australian farmers</em>, Climate Risk Management, Volume 35,
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># using piping, which can use the {read.abares} cache after the first DL</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_agfd.html">get_agfd</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span><span class="va">agfd_tnc</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_agfd.html">get_agfd</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">read_agfd_tidync</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">agfd_tnc</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
