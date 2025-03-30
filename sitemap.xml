@@ -11,17 +11,17 @@
 <url><loc>https://adamhsparks.github.io/read.abares/news/index.html</loc></url>
 <url><loc>https://adamhsparks.github.io/read.abares/reference/clear_cache.html</loc></url>
 <url><loc>https://adamhsparks.github.io/read.abares/reference/dot-check_class.html</loc></url>
-<url><loc>https://adamhsparks.github.io/read.abares/reference/dot-create_soil_thickness_list.html</loc></url>
+<url><loc>https://adamhsparks.github.io/read.abares/reference/dot-create_topsoil_thickness_list.html</loc></url>
 <url><loc>https://adamhsparks.github.io/read.abares/reference/dot-download_aagis_shp.html</loc></url>
-<url><loc>https://adamhsparks.github.io/read.abares/reference/dot-download_soil_thickness.html</loc></url>
+<url><loc>https://adamhsparks.github.io/read.abares/reference/dot-download_topsoil_thickness.html</loc></url>
 <url><loc>https://adamhsparks.github.io/read.abares/reference/dot-find_user_cache.html</loc></url>
 <url><loc>https://adamhsparks.github.io/read.abares/reference/dot-retry_download.html</loc></url>
 <url><loc>https://adamhsparks.github.io/read.abares/reference/get_agfd.html</loc></url>
-<url><loc>https://adamhsparks.github.io/read.abares/reference/get_soil_thickness.html</loc></url>
+<url><loc>https://adamhsparks.github.io/read.abares/reference/get_topsoil_thickness.html</loc></url>
 <url><loc>https://adamhsparks.github.io/read.abares/reference/index.html</loc></url>
 <url><loc>https://adamhsparks.github.io/read.abares/reference/inspect_cache.html</loc></url>
 <url><loc>https://adamhsparks.github.io/read.abares/reference/print_agfd_nc_file_format.html</loc></url>
-<url><loc>https://adamhsparks.github.io/read.abares/reference/print_soil_thickness_metadata.html</loc></url>
+<url><loc>https://adamhsparks.github.io/read.abares/reference/print_topsoil_thickness_metadata.html</loc></url>
 <url><loc>https://adamhsparks.github.io/read.abares/reference/read.abares-package.html</loc></url>
 <url><loc>https://adamhsparks.github.io/read.abares/reference/read_aagis_regions.html</loc></url>
 <url><loc>https://adamhsparks.github.io/read.abares/reference/read_abares_trade.html</loc></url>
@@ -36,8 +36,8 @@
 <url><loc>https://adamhsparks.github.io/read.abares/reference/read_historical_national_estimates.html</loc></url>
 <url><loc>https://adamhsparks.github.io/read.abares/reference/read_historical_regional_estimates.html</loc></url>
 <url><loc>https://adamhsparks.github.io/read.abares/reference/read_historical_state_estimates.html</loc></url>
-<url><loc>https://adamhsparks.github.io/read.abares/reference/read_soil_thickness_stars.html</loc></url>
-<url><loc>https://adamhsparks.github.io/read.abares/reference/read_soil_thickness_terra.html</loc></url>
+<url><loc>https://adamhsparks.github.io/read.abares/reference/read_topsoil_thickness_stars.html</loc></url>
+<url><loc>https://adamhsparks.github.io/read.abares/reference/read_topsoil_thickness_terra.html</loc></url>
 <url><loc>https://adamhsparks.github.io/read.abares/reference/reexports.html</loc></url>
 </urlset>
 
