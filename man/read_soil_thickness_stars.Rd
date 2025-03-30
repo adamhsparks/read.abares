@@ -14,7 +14,7 @@ read_soil_thickness_stars(files)
 \code{list} that contains the \acronym{ESRI} grid file to import.}
 }
 \value{
-a \link{stars} object of the 'Soil Thickness for Australian Areas of
+A \link{stars} object of the 'Soil Thickness for Australian Areas of
 Intensive Agriculture of Layer 1'.
 }
 \description{

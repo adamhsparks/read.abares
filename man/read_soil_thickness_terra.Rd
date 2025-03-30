@@ -14,7 +14,7 @@ read_soil_thickness_terra(files)
 \code{list} that contains the \acronym{ESRI} grid file to import.}
 }
 \value{
-a \link[terra:rast]{terra::rast} object of the 'Soil Thickness for Australian Areas
+A \link[terra:rast]{terra::rast} object of the 'Soil Thickness for Australian Areas
 of Intensive Agriculture of Layer 1'.
 }
 \description{
