@@ -6,7 +6,7 @@ template:
 reference:
   - title: AAGIS Regions
     desc: |
-      Fetch and read the Abares agricultural and Grazing Industries Survey (AAGIS) regions
+      Fetch and read the Abares Agricultural and Grazing Industries Survey (AAGIS) regions
     contents: read_aagis_regions
   - title: AGFD
   - subtitle: Fetch
@@ -47,7 +47,7 @@ reference:
       - inspect_cache
   - title: Soil Thickness
     desc: |
-      Topsoil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)
+      Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)
     contents:
       - get_topsoil_thickness
       - read_topsoil_thickness_stars
