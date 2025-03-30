@@ -14,7 +14,7 @@ A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
 regions.
 }
 \description{
-Fetches and imports  \acronym{ABARES} trade regions data.
+Fetches and imports \acronym{ABARES} trade regions data.
 }
 \note{
 Columns are renamed for consistency with other \acronym{ABARES} products

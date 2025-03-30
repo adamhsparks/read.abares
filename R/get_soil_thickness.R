@@ -6,7 +6,7 @@
 #' locally. If `FALSE`, this function uses `tempdir()` and the files are deleted
 #' upon closing of the active \R session.
 #'
-#' A custom `print` method is provided that will print the metadata associated
+#' A custom `print()` method is provided that will print the metadata associated
 #'  with these data. Examples are provided for interacting with the metadata
 #'  directly.
 #'
@@ -23,8 +23,9 @@
 #' y <- x$metadata
 #' pander(y)
 #'
-#' @returns A `read.abares.soil.thickness` object, which is a named `list` with
-#'  the fs::path_file of the resulting Esri Grid file and text file of metadata.
+#' @returns A `read.abares.soil.thickness` object, which is a named `list()`
+#'  with the [fs::path_file] of the resulting Esri Grid file and text file of
+#'  metadata.
 #'
 #' @references <https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6>
 #' @source <https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip>

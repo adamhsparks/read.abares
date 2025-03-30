@@ -10,9 +10,8 @@ read_agfd_tidync(files)
 \item{files}{A list of \acronym{AGFD} NetCDF files to import.}
 }
 \value{
-a \code{list} object of \CRANpkg{tidync} \link[tidync:tidync]{tidync::tidync} objects of the
-Australian Gridded Farm Data with the file names as the  list's objects'
-names.
+a \code{list} object of \CRANpkg{tidync} objects of the Australian
+Gridded Farm Data with the file names as the  list's objects' names.
 }
 \description{
 Read Australian Gridded Farm Data, (\acronym{AGFD}) as a list of
@@ -27,7 +26,7 @@ grid.\cr
 These data have been produced by \acronym{ABARES} as part of the ongoing
 Australian Agricultural Drought Indicator (\acronym{AADI}) project
 (previously known as the Drought Early Warning System Project) and were
-derived using \acronym{ABARES}'s
+derived using \acronym{ABARES}
 \href{https://www.agriculture.gov.au/abares/research-topics/climate/drought/farmpredict}{\emph{farmpredict}}
 model, which in turn is based on ABARES Agricultural and Grazing Industries
 Survey (\acronym{AAGIS}) data.\cr
@@ -167,8 +166,10 @@ farmland_per_cell     \tab ha        \tab Indicative area of farmland in the gri
 
 # using piping, which can use the {read.abares} cache after the first DL
 
-x <- get_agfd(cache = TRUE) |>
+agfd_tnc <- get_agfd(cache = TRUE) |>
   read_agfd_tidync()
+
+head(agfd_tnc[[1]])
 \dontshow{\}) # examplesIf}
 }
 \references{

@@ -2,7 +2,7 @@
 #'
 #' Check what files exist in your \pkg{read.abares} file cache.  This function
 #' will always return full file names, *i.e.*, the directory path is prepended
-#' by default.  See the help file for `fs::dir_ls()` for more on returning full
+#' by default.  See the help file for [fs::dir_ls] for more on returning full
 #' paths.  If you wish to strip the full path and only return the directory or
 #' file names, see [fs::path_file] or [fs::path_dir]. See examples for more.
 #'

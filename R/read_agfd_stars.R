@@ -1,7 +1,7 @@
 #' Read 'Australian Gridded Farm Data' (AGFD) NCDF files with stars
 #'
-#' Read 'Australian Gridded Farm Data', (\acronym{AGFD}) as a list of [stars]
-#'  objects.
+#' Read 'Australian Gridded Farm Data' (\acronym{AGFD}) as a list of
+#'  \CRANpkg{stars} objects.
 #'
 #' @inherit get_agfd details
 #' @inheritParams read_agfd_dt
@@ -17,12 +17,12 @@
 #'
 #' # using piping, which can use the {read.abares} cache after the first DL
 #'
-#' agfd <- get_agfd(cache = TRUE) |>
+#' agfd_stars <- get_agfd(cache = TRUE) |>
 #'   read_agfd_stars()
 #'
-#' head(agfd)
+#' head(agfd_stars)
 #'
-#' plot(agfd[[1]])
+#' plot(agfd_stars[[1]])
 #'
 #' @family AGFD
 #' @autoglobal

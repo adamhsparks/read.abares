@@ -1,7 +1,8 @@
 #' Read 'Australian Gridded Farm Data' (AGFD) NCDF files as a data.table
 #'
 #' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a
-#'  [data.table::data.table] object.
+#'  [data.table::data.table] object from a local file either in the user cache
+#'  or \R's `tempdir()` if caching is not enabled.
 #'
 #' @inherit get_agfd details
 #' @inheritSection get_agfd Model scenarios
@@ -17,8 +18,10 @@
 #'
 #' # using piping, which can use the {read.abares} cache after the first DL
 #'
-#' get_agfd(cache = TRUE) |>
+#' agfd_dt <- get_agfd(cache = TRUE) |>
 #'   read_agfd_dt()
+#'
+#' agfd_dt
 #'
 #' @family AGFD
 #' @autoglobal

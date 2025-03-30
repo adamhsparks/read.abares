@@ -14,8 +14,8 @@ a \code{list} object of \CRANpkg{stars} objects of the Australian Gridded
 Farm Data with the file names as the list's objects' names.
 }
 \description{
-Read 'Australian Gridded Farm Data', (\acronym{AGFD}) as a list of \link{stars}
-objects.
+Read 'Australian Gridded Farm Data' (\acronym{AGFD}) as a list of
+\CRANpkg{stars} objects.
 }
 \details{
 From the \href{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}{ABARES website}:
@@ -26,7 +26,7 @@ grid.\cr
 These data have been produced by \acronym{ABARES} as part of the ongoing
 Australian Agricultural Drought Indicator (\acronym{AADI}) project
 (previously known as the Drought Early Warning System Project) and were
-derived using \acronym{ABARES}'s
+derived using \acronym{ABARES}
 \href{https://www.agriculture.gov.au/abares/research-topics/climate/drought/farmpredict}{\emph{farmpredict}}
 model, which in turn is based on ABARES Agricultural and Grazing Industries
 Survey (\acronym{AAGIS}) data.\cr
@@ -166,12 +166,12 @@ farmland_per_cell     \tab ha        \tab Indicative area of farmland in the gri
 
 # using piping, which can use the {read.abares} cache after the first DL
 
-agfd <- get_agfd(cache = TRUE) |>
+agfd_stars <- get_agfd(cache = TRUE) |>
   read_agfd_stars()
 
-head(agfd)
+head(agfd_stars)
 
-plot(agfd[[1]])
+plot(agfd_stars[[1]])
 \dontshow{\}) # examplesIf}
 }
 \references{

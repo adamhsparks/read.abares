@@ -16,10 +16,17 @@ read_historical_forecast()
 A \link[data.table:data.table]{data.table::data.table} object.
 }
 \description{
-Read Historical Forecast Database From ABARES
+Fetches and imports \acronym{ABARES} historical forecast performance data.
 }
-\details{
-\tabular{ll}{
+\note{
+Columns are renamed for consistency with other \acronym{ABARES} products
+serviced in this package using a snake_case format and ordered consistently.
+
+The "Month_issued" column is converted from a character string to a numeric
+value representing the month of year, \emph{e.g.}, "March" is converted to \code{3}.
+}
+\section{Data Dictionary}{
+The resulting object will contain the following fields.\tabular{ll}{
    Field \tab Description \cr
    Commodity \tab Broad description of commodity (includes the Australian dollar) \cr
    Estimate_type \tab Broad grouping of estimate by theme \emph{e.g.}, animal numbers, area, production, price, export and volume measures. \cr
@@ -33,16 +40,6 @@ Read Historical Forecast Database From ABARES
    Forecast_Value \tab Forecast as originally issued. \cr
    Actual_Value \tab Actual outcome observed. Note that historical time series can be revised. Latest available data at time of update, including any revisions, are included in database. \cr
 }
-}
-\note{
-Columns are renamed for consistency with other \acronym{ABARES} products
-serviced in this package using a snake_case format and ordered consistently.
-
-The "Month_issued" column is converted from a character string to a numeric
-value representing the month of year, \emph{e.g.}, "March" is converted to \code{3}.
-}
-\section{Data Dictionary}{
-The resulting object will contain the following fields.
 }
 
 \examples{

@@ -1,7 +1,10 @@
 #' Read Estimates by Size From ABARES
 #'
+#' Fetches and imports \acronym{ABARES} estimates by size data.
+#'
 #' @note
-#' Columns are renamed and reordered for consistency.
+#' Columns are renamed for consistency with other \acronym{ABARES} products
+#'  serviced in this package using a snake_case format and ordered consistently.
 #'
 #' @returns A [data.table::data.table] object with the `Variable` field as the
 #'  `key`.

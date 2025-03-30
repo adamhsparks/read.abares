@@ -16,13 +16,14 @@ user data in a cache for this package. Defaults to \code{TRUE}, caching the file
 locally. If \code{FALSE}, this function uses \code{tempdir()} and the files are deleted
 upon closing of the active \R session.
 
-A custom \code{print} method is provided that will print the metadata associated
+A custom \code{print()} method is provided that will print the metadata associated
 with these data. Examples are provided for interacting with the metadata
 directly.}
 }
 \value{
-A \code{read.abares.soil.thickness} object, which is a named \code{list} with
-the fs::path_file of the resulting Esri Grid file and text file of metadata.
+A \code{read.abares.soil.thickness} object, which is a named \code{list()}
+with the \link[fs:path_file]{fs::path_file} of the resulting Esri Grid file and text file of
+metadata.
 }
 \description{
 Get soil thickness for 'Australian Areas of Intensive Agriculture of Layer 1' for local use

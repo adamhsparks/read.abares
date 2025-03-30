@@ -23,8 +23,10 @@ data as a \CRANpkg{stars} object.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-get_soil_thickness(cache = TRUE) |>
+st_stars <- get_soil_thickness(cache = TRUE) |>
   read_soil_thickness_stars()
+
+plot(st_stars)
 \dontshow{\}) # examplesIf}
 }
 \references{

@@ -1,5 +1,7 @@
 #' Read Historical Forecast Database From ABARES
 #'
+#' Fetches and imports \acronym{ABARES} historical forecast performance data.
+#'
 #' # Data Dictionary
 #' The resulting object will contain the following fields.
 #'

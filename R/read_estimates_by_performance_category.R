@@ -1,5 +1,11 @@
 #' Read 'Estimates by Size' from ABARES
 #'
+#' Fetches and imports \acronym{ABARES} estimates by performance category data.
+#'
+#' @note
+#' Columns are renamed for consistency with other \acronym{ABARES} products
+#'  serviced in this package using a snake_case format and ordered consistently.
+#'
 #' @returns A [data.table::data.table] object.
 #' @export
 #' @references <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>

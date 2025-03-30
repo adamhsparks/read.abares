@@ -1,6 +1,6 @@
 #' Read 'Australian Gridded Farm Data' (AGFD) NCDF files with terra
 #'
-#' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a `list` of
+#' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a `list()` of
 #'  [terra::rast] objects.
 #'
 #' @inherit get_agfd details
@@ -10,7 +10,7 @@
 #' @inheritSection get_agfd Data layers
 #' @inherit get_agfd references
 #'
-#' @returns a `list` object of [terra::rast] objects of the Australian Gridded
+#' @returns a `list()` object of [terra::rast] objects of the Australian Gridded
 #'  Farm Data with the file names as the list's objects' names.
 #'
 #' @examplesIf interactive()
@@ -19,6 +19,8 @@
 #'
 #' get_agfd(cache = TRUE) |>
 #'   read_agfd_terra()
+#'
+#' plot(agfd_terra[[1]])
 #'
 #' @family AGFD
 #' @autoglobal

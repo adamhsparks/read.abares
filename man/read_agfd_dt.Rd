@@ -15,7 +15,8 @@ Data'.
 }
 \description{
 Read Australian Gridded Farm Data, (\acronym{AGFD}) as a
-\link[data.table:data.table]{data.table::data.table} object.
+\link[data.table:data.table]{data.table::data.table} object from a local file either in the user cache
+or \R's \code{tempdir()} if caching is not enabled.
 }
 \details{
 From the \href{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}{ABARES website}:
@@ -26,7 +27,7 @@ grid.\cr
 These data have been produced by \acronym{ABARES} as part of the ongoing
 Australian Agricultural Drought Indicator (\acronym{AADI}) project
 (previously known as the Drought Early Warning System Project) and were
-derived using \acronym{ABARES}'s
+derived using \acronym{ABARES}
 \href{https://www.agriculture.gov.au/abares/research-topics/climate/drought/farmpredict}{\emph{farmpredict}}
 model, which in turn is based on ABARES Agricultural and Grazing Industries
 Survey (\acronym{AAGIS}) data.\cr
@@ -166,8 +167,10 @@ farmland_per_cell     \tab ha        \tab Indicative area of farmland in the gri
 
 # using piping, which can use the {read.abares} cache after the first DL
 
-get_agfd(cache = TRUE) |>
+agfd_dt <- get_agfd(cache = TRUE) |>
   read_agfd_dt()
+
+agfd_dt
 \dontshow{\}) # examplesIf}
 }
 \references{

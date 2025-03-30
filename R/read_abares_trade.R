@@ -1,8 +1,8 @@
 #' Read data from the ABARES Trade Dashboard
 #'
 #' Fetches and imports \acronym{ABARES} trade data. As the data file is large,
-#' ~1.4GB uncompressed CSV file, caching is offered to save repeated
-#' downloading.
+#'  ~1.4GB uncompressed CSV file, caching is offered to save repeated
+#'  downloading.
 #'
 #' @note
 #' Columns are renamed for consistency with other \acronym{ABARES} products
@@ -10,7 +10,7 @@
 #'  consistently.
 #'
 #' @param cache `Boolean` Cache the \acronym{ABARES} trade data locally after
-#'  download to save download time in the future. Uses `tools::R_user_dir()` to
+#'  download to save download time in the future. Uses [tools::R_user_dir] to
 #'  identify the proper directory for storing user data in a cache for this
 #'  package. Defaults to `TRUE`, caching the file as a gzipped CSV file. If
 #'  `FALSE`, this function uses `tempdir()` and the files are deleted upon

@@ -17,10 +17,11 @@ A \link[data.table:data.table]{data.table::data.table} object with the \code{Var
 \code{key}.
 }
 \description{
-Read Estimates by Size From ABARES
+Fetches and imports \acronym{ABARES} estimates by size data.
 }
 \note{
-Columns are renamed and reordered for consistency.
+Columns are renamed for consistency with other \acronym{ABARES} products
+serviced in this package using a snake_case format and ordered consistently.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

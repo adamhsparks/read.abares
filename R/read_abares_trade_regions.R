@@ -1,6 +1,6 @@
 #' Read ABARES 'Trade Data Regions' from the ABARES Trade Dashboard
 #'
-#' Fetches and imports  \acronym{ABARES} trade regions data.
+#' Fetches and imports \acronym{ABARES} trade regions data.
 #'
 #' @note
 #' Columns are renamed for consistency with other \acronym{ABARES} products

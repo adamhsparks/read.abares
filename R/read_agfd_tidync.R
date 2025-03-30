@@ -10,16 +10,17 @@
 #' @inheritSection get_agfd Data layers
 #' @inherit get_agfd references
 #'
-#' @returns a `list` object of \CRANpkg{tidync} [tidync::tidync] objects of the
-#'  Australian Gridded Farm Data with the file names as the  list's objects'
-#'  names.
+#' @returns a `list` object of \CRANpkg{tidync} objects of the Australian
+#'  Gridded Farm Data with the file names as the  list's objects' names.
 #'
 #' @examplesIf interactive()
 #'
 #' # using piping, which can use the {read.abares} cache after the first DL
 #'
-#' x <- get_agfd(cache = TRUE) |>
+#' agfd_tnc <- get_agfd(cache = TRUE) |>
 #'   read_agfd_tidync()
+#'
+#' head(agfd_tnc[[1]])
 #'
 #' @family AGFD
 #' @export
@@ -27,6 +28,6 @@
 read_agfd_tidync <- function(files) {
   .check_class(x = files, class = "read.abares.agfd.nc.files")
   tnc <- purrr::map(files, tidync::tidync)
-  names(tnc) <- basename(files)
+  names(tnc) <- fs::path_file(files)
   return(tnc)
 }

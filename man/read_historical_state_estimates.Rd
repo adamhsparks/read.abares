@@ -17,7 +17,7 @@ A \link[data.table:data.table]{data.table::data.table} object with the \code{Var
 \code{key}.
 }
 \description{
-Read 'Historical State Estimates' from ABARES
+Fetches and imports \acronym{ABARES} historical state estimates data.
 }
 \note{
 Columns are renamed for consistency with other \acronym{ABARES} products

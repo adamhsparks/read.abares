@@ -1,5 +1,7 @@
 #' Read 'Historical State Estimates' from ABARES
 #'
+#' Fetches and imports \acronym{ABARES} historical state estimates data.
+#'
 #' @note
 #' Columns are renamed for consistency with other \acronym{ABARES} products
 #'  serviced in this package using a snake_case format and ordered consistently.

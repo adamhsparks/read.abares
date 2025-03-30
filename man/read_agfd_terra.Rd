@@ -10,11 +10,11 @@ read_agfd_terra(files)
 \item{files}{A list of \acronym{AGFD} NetCDF files to import.}
 }
 \value{
-a \code{list} object of \link[terra:rast]{terra::rast} objects of the Australian Gridded
+a \code{list()} object of \link[terra:rast]{terra::rast} objects of the Australian Gridded
 Farm Data with the file names as the list's objects' names.
 }
 \description{
-Read Australian Gridded Farm Data, (\acronym{AGFD}) as a \code{list} of
+Read Australian Gridded Farm Data, (\acronym{AGFD}) as a \code{list()} of
 \link[terra:rast]{terra::rast} objects.
 }
 \details{
@@ -26,7 +26,7 @@ grid.\cr
 These data have been produced by \acronym{ABARES} as part of the ongoing
 Australian Agricultural Drought Indicator (\acronym{AADI}) project
 (previously known as the Drought Early Warning System Project) and were
-derived using \acronym{ABARES}'s
+derived using \acronym{ABARES}
 \href{https://www.agriculture.gov.au/abares/research-topics/climate/drought/farmpredict}{\emph{farmpredict}}
 model, which in turn is based on ABARES Agricultural and Grazing Industries
 Survey (\acronym{AAGIS}) data.\cr
@@ -168,6 +168,8 @@ farmland_per_cell     \tab ha        \tab Indicative area of farmland in the gri
 
 get_agfd(cache = TRUE) |>
   read_agfd_terra()
+
+plot(agfd_terra[[1]])
 \dontshow{\}) # examplesIf}
 }
 \references{

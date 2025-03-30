@@ -16,7 +16,11 @@ read_est_by_perf_cat()
 A \link[data.table:data.table]{data.table::data.table} object.
 }
 \description{
-Read 'Estimates by Size' from ABARES
+Fetches and imports \acronym{ABARES} estimates by performance category data.
+}
+\note{
+Columns are renamed for consistency with other \acronym{ABARES} products
+serviced in this package using a snake_case format and ordered consistently.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

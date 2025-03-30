@@ -1,5 +1,7 @@
 #' Read 'Historical Regional Estimates' from ABARES
 #'
+#' Fetches and imports \acronym{ABARES} historical regional estimates data.
+#'
 #' @note
 #' Columns are renamed for consistency with other \acronym{ABARES} products
 #'  serviced in this package using a snake_case format and ordered consistently.
