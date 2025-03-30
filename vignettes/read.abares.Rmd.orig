@@ -9,6 +9,9 @@ vignette: >
   %\VignetteEncoding{UTF-8}
   %\VignetteDepends{pander}
   %VignetteDepends{DT}
+  %\VignetteDepends{dplyr}
+  %\VignetteDepends{sf}
+  %\VignetteDepends{data.table}
 ---
 
 ```{r setup, include = FALSE}
@@ -55,7 +58,35 @@ plot(aagis_regions)
 For this example, w ill use the `read_historical_regional_estimates()` function to download the AAGIS data for the regions in the AAGIS regions shapefile and join the data and visualise some of the data.
 
 ```{r aagis-regions-data}
-aagis_region_data <- read_historical_regional_estimates(cache = TRUE)
+aagis_region_data <- read_historical_regional_estimates()
+```
+
+### Merging the AAGIS Regions Spatial Data with the AAGIS Regional Data
+
+Using `read_aagis_regions()` and `read_historical_regional_estimates()`, we can merge the two datasets together to visualise the data.
+To join the data, we will use the `left_join()` function from the {dplyr} package.
+
+```{r aagis-regions-merge}
+library(dplyr)
+aagis_dat <- left_join(aagis_regions,
+  aagis_region_data,
+  by = c("ABARES_region" = "ABARES_region")
+)
+```
+
+Once we've joined the data, we can visualise it using {ggplot2}.
+Here we can plot the farm business profit by region.
+
+```{r aagis-regions-plot}
+library(ggplot2)
+ggplot(aagis_dat) +
+  geom_sf(aes(fill = `Farm business profit`)) +
+  scale_fill_viridis_c() +
+  labs(
+    title = "Farm Business Profit by Region",
+    fill = "Farm Business Profit"
+  ) +
+  theme_minimal()
 ```
 
 ## Working With AGFD Data
