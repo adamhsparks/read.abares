@@ -6,7 +6,7 @@ template:
 reference:
   - title: AAGIS Regions
     desc: |
-      Fetch and read the Abares Agricultural and Grazing Industries Survey (AAGIS) regions
+      Fetch and read the ABARES Agricultural and Grazing Industries Survey (AAGIS) regions
     contents: read_aagis_regions
   - title: AGFD
   - subtitle: Fetch
