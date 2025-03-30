@@ -13,7 +13,8 @@ vignette: >
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.path = "vigfig-"
 )
 ```
 
@@ -106,7 +107,7 @@ x <- get_topsoil_thickness(cache = TRUE) |>
 
 For your convenience, {read.abares} re-exports terra::plot(), so you can just use `plot()` with {terra} objects in {read.abares}.
 
-```{r plot-soil-depth, fig.cap = "Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)"}
+```{r plot-topsoil-depth, fig.cap = "Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)"}
 plot(x)
 ```
 

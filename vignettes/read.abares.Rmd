@@ -40,14 +40,6 @@ Load the {read.abares} library.
 
 ``` r
 library(read.abares)
-#> 
-#> Attaching package: 'read.abares'
-#> The following object is masked from 'package:graphics':
-#> 
-#>     plot
-#> The following object is masked from 'package:base':
-#> 
-#>     plot
 ```
 
 Check the file format information for the NetCDF files.
@@ -137,7 +129,7 @@ head(tdnc[[1]])
 #> # A tibble: 1 × 2
 #>   access              source                                                    
 #>   <dttm>              <chr>                                                     
-#> 1 2025-03-30 16:06:29 /Users/adamsparks/Library/Caches/org.R-project.R/R/read.a…
+#> 1 2025-03-30 17:17:03 /Users/adamsparks/Library/Caches/org.R-project.R/R/read.a…
 #> 
 #> $axis
 #> # A tibble: 84 × 3
@@ -330,7 +322,7 @@ For your convenience, {read.abares} re-exports terra::plot(), so you can just us
 plot(x)
 ```
 
-![Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)](figure/plot-soil-depth-1.png)
+![Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)](vigfig-plot-topsoil-depth-1.png)
 
 ### Soil Thickness Metadata
 
