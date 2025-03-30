@@ -170,7 +170,9 @@
 #'   * Historical climate and prices -- <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/2>
 #'
 #' @examplesIf interactive()
-# gg' get_agfd()
+#' agfd <- get_agfd()
+#'
+#' agfd
 #'
 #' @returns A `read.abares.agfd.nc.files` object, a list of NetCDF files
 #'  containing the Australian Gridded Farm Data.
