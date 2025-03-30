@@ -122,7 +122,7 @@ get_soil_thickness <- function(cache = TRUE) {
 
 #' Prints read.abares.soil.thickness.files object
 #'
-#' Custom [print] method for `read.abares.soil.thickness.files` objects.
+#' Custom [base::print()] method for `read.abares.soil.thickness.files` objects.
 #'
 #' @param x a `read.abares.soil.thickness.files` object.
 #' @param ... ignored.
@@ -172,8 +172,8 @@ print.read.abares.soil.thickness.files <- function(x, ...) {
 #'
 #' Displays the complete set of metadata associated with the soil thickness
 #'  data in your \R console. For including the metadata in documents or other
-#'  methods outside of \R, see [get_soil_thickness] for an example using
-#'  [pander::pander] to print the metadata.
+#'  methods outside of \R, see [get_soil_thickness()] for an example using
+#'  [pander::pander()] to print the metadata.
 #'
 #'
 #' @param x A `read.abares.soil.thickness.files` object.
@@ -187,7 +187,6 @@ print.read.abares.soil.thickness.files <- function(x, ...) {
 #' @family soil_thickness
 #'
 #' @export
-# TODO: check this function, why don't I use `metadata`?
 print_soil_thickness_metadata <- function(x) {
   .check_class(x = x, class = "read.abares.soil.thickness.files")
   loc <- stringr::str_locate(x$metadata, "Custodian")
@@ -200,7 +199,7 @@ print_soil_thickness_metadata <- function(x) {
     "Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil)\n"
   )
   cli::cli_h2("Dataset ANZLIC ID ANZCW1202000149")
-  cli::cli_text(x$metadata)
+  cli::cli_text(metadata)
   cli::cat_line()
   invisible(x)
 }

@@ -239,7 +239,7 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
 
 #' Prints read.abares.agfd.nc.files objects
 #'
-#' Custom [print] method for `read.abares.agfd.nc.files` objects.
+#' Custom [base::print()] method for `read.abares.agfd.nc.files` objects.
 #'
 #' @param x a `read.abares.agfd.nc.files` object.
 #' @param ... ignored.

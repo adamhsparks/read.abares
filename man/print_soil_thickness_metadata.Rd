@@ -16,8 +16,8 @@ metadata file to the \R console.
 \description{
 Displays the complete set of metadata associated with the soil thickness
 data in your \R console. For including the metadata in documents or other
-methods outside of \R, see \link{get_soil_thickness} for an example using
-\link[pander:pander]{pander::pander} to print the metadata.
+methods outside of \R, see \code{\link[=get_soil_thickness]{get_soil_thickness()}} for an example using
+\code{\link[pander:pander]{pander::pander()}} to print the metadata.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
