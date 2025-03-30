@@ -1,9 +1,13 @@
 #' Read 'Australian Agricultural and Grazing Industries Survey' (AAGIS) region mapping files
 #'
 #' Download, cache and import the Australian Agricultural and Grazing
-#'  Industries Survey (\acronym{AAGIS}) regions geospatial shapefile. Upon
-#'  import, the geometries are automatically corrected to fix invalid
-#'  geometries that are present in the original shapefile.
+#'  Industries Survey (\acronym{AAGIS}) regions geospatial shapefile.
+#'
+#'  @note Upon import, the geometries are automatically corrected to fix invalid
+#'  geometries that are present in the original shapefile and column names are
+#'  set to start with an upper-case letter and "name" is set to "AAGIS_region"
+#'  to align with the [data.table::data.table()] provided by
+#'  [read_historical_regional_estimates()] to allow for easier merging of data.
 #'
 #' @param cache Cache the \acronym{AAGIS} regions' geospatial file after
 #' downloading using `tools::R_user_dir("read.abares", "cache")` to identify the
@@ -83,6 +87,10 @@ read_aagis_regions <- function(cache = TRUE) {
 
   # From checking the unzipped file, some geometries are invalid, this corrects
   aagis_sf <- sf::st_make_valid(aagis_sf)
+  aagis_sf[aagis] <- NULL # drop an identical column with class
+  names(aagis_sf)[names(aagis_sf) == "name"] <- "ABARES_region"
+  names(aagis_sf)[names(aagis_sf) == "class"] <- "Class"
+  names(aagis_sf)[names(aagis_sf) == "zone"] <- "Zone"
 
   if (cache) {
     if (!fs::dir_exists(cache_aagis_dir)) {
