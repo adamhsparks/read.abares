@@ -97,11 +97,11 @@ You can download the soil depth map and import it as a {stars} or terra::rast() 
 
 ```{r soil-thickness}
 library(read.abares)
-get_soil_thickness(cache = TRUE) |>
-  read_soil_thickness_stars()
+get_topsoil_thickness(cache = TRUE) |>
+  read_topsoil_thickness_stars()
 
-x <- get_soil_thickness(cache = TRUE) |>
-  read_soil_thickness_terra()
+x <- get_topsoil_thickness(cache = TRUE) |>
+  read_topsoil_thickness_terra()
 ```
 
 For your convenience, {read.abares} re-exports terra::plot(), so you can just use `plot()` with {terra} objects in {read.abares}.
@@ -116,15 +116,15 @@ By default, a brief bit of metadata is printed to the console when you call the 
 
 ```{r brief-metadata}
 library(read.abares)
-get_soil_thickness(cache = TRUE)
+get_topsoil_thickness(cache = TRUE)
 ```
 
 But, {read.abares} provides a function for you to browse the soil thickness metadata in your console.
 
 ```{r soil-thickness-metadata}
 library(read.abares)
-get_soil_thickness(cache = TRUE) |>
-  print_soil_thickness_metadata()
+get_topsoil_thickness(cache = TRUE) |>
+  print_topsoil_thickness_metadata()
 ```
 
 But you can also access it directly and use pander::pander() to include it in a document like this vignette.
@@ -133,7 +133,7 @@ But you can also access it directly and use pander::pander() to include it in a 
 ```{r soil-thickness-metada-pander}
 library(read.abares)
 library(pander)
-x <- get_soil_thickness(cache = TRUE)
+x <- get_topsoil_thickness(cache = TRUE)
 y <- x$metadata
 pander(y)
 ```

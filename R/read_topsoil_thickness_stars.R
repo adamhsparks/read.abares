@@ -3,7 +3,7 @@
 #' Read Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1
 #'  data as a \CRANpkg{stars} object.
 #'
-#' @param files An \pkg{read.abares} `read.abares.soil.thickness` object, a
+#' @param files An \pkg{read.abares} `read.abares.topsoil.thickness` object, a
 #'  `list` that contains the \acronym{ESRI} grid file to import.
 #'
 #' @references <https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6>
@@ -13,16 +13,16 @@
 #'  Intensive Agriculture of Layer 1'.
 #'
 #' @examplesIf interactive()
-#' st_stars <- get_soil_thickness(cache = TRUE) |>
-#'   read_soil_thickness_stars()
+#' st_stars <- get_topsoil_thickness(cache = TRUE) |>
+#'   read_topsoil_thickness_stars()
 #'
 #' plot(st_stars)
 #'
-#' @family soil_thickness
+#' @family topsoil_thickness
 #' @autoglobal
 #' @export
 
-read_soil_thickness_stars <- function(files) {
-  .check_class(x = files, class = "read.abares.soil.thickness.files")
+read_topsoil_thickness_stars <- function(files) {
+  .check_class(x = files, class = "read.abares.topsoil.thickness.files")
   stars::read_stars(files$grid)
 }

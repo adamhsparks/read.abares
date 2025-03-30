@@ -1,6 +1,6 @@
-#' Get soil thickness for 'Australian Areas of Intensive Agriculture of Layer 1' for local use
+#' Get topsoil thickness for 'Australian Areas of Intensive Agriculture of Layer 1' for local use
 #'
-#' @param cache Caches the soil thickness data files after download
+#' @param cache Caches the topsoil thickness data files after download
 #' using `tools::R_user_dir()` to identify the proper directory for storing
 #' user data in a cache for this package. Defaults to `TRUE`, caching the files
 #' locally. If `FALSE`, this function uses `tempdir()` and the files are deleted
@@ -11,7 +11,7 @@
 #'  directly.
 #'
 #' @examplesIf interactive()
-#' x <- get_soil_thickness()
+#' x <- get_topsoil_thickness()
 #'
 #' # View the metadata with pretty printing
 #' x
@@ -23,26 +23,29 @@
 #' y <- x$metadata
 #' pander(y)
 #'
-#' @returns A `read.abares.soil.thickness` object, which is a named `list()`
-#'  with the [fs::path_file] of the resulting Esri Grid file and text file of
+#' @returns A `read.abares.topsoil.thickness` object, which is a named `list()`
+#'  with the [fs::path_file()] of the resulting Esri Grid file and text file of
 #'  metadata.
 #'
 #' @references <https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6>
 #' @source <https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip>
 #' @autoglobal
-#' @family soil_thickness
+#' @family topsoil_thickness
 #' @export
 
-get_soil_thickness <- function(cache = TRUE) {
-  soil_thickness_cache <- fs::path(.find_user_cache(), "soil_thickness_dir")
-  if (fs::dir_exists(soil_thickness_cache)) {
-    return(.create_soil_thickness_list(soil_thickness_cache))
+get_topsoil_thickness <- function(cache = TRUE) {
+  topsoil_thickness_cache <- fs::path(
+    .find_user_cache(),
+    "topsoil_thickness_dir"
+  )
+  if (fs::dir_exists(topsoil_thickness_cache)) {
+    return(.create_topsoil_thickness_list(topsoil_thickness_cache))
   } else {
-    return(.create_soil_thickness_list(.download_soil_thickness(cache)))
+    return(.create_topsoil_thickness_list(.download_topsoil_thickness(cache)))
   }
 }
 
-#' Create a object of read.abares.soil.thickness.files
+#' Create a object of read.abares.topsoil.thickness.files
 #'
 #' @param dir File where files have been stored.
 #'
@@ -51,41 +54,41 @@ get_soil_thickness <- function(cache = TRUE) {
 #' metadata.
 #' @dev
 
-.create_soil_thickness_list <- function(soil_dir) {
+.create_topsoil_thickness_list <- function(topsoil_dir) {
   metadata <- readtext::readtext(fs::path(
-    soil_dir,
+    topsoil_dir,
     "ANZCW1202000149.txt"
   ))
-  soil_thickness <- list(
+  topsoil_thickness <- list(
     "metadata" = metadata$text,
-    "grid" = fs::path(soil_dir, "thpk_1")
+    "grid" = fs::path(topsoil_dir, "thpk_1")
   )
-  class(soil_thickness) <- union(
-    "read.abares.soil.thickness.files",
-    class(soil_thickness)
+  class(topsoil_thickness) <- union(
+    "read.abares.topsoil.thickness.files",
+    class(topsoil_thickness)
   )
-  return(soil_thickness)
+  return(topsoil_thickness)
 }
 
-#' Downloads soil thickness data if not already found locally
+#' Downloads Topsoil thickness data if not already found locally
 #' @param cache `Boolean` Cache the soil thickness data files after download
 #' using `tools::R_user_dir()` to identify the proper directory for storing
 #' user data in a cache for this package. Defaults to `TRUE`, caching the files
 #' locally. If `FALSE`, this function uses `tempdir()` and the files are deleted
 #' upon closing of the active \R session.
 #'
-#' @returns An [fs::path] of the resulting Esri Grid file and text file of
+#' @returns An [fs::path()] of the resulting Esri Grid file and text file of
 #'  metadata.
 #'
 #' @dev
 
-.download_soil_thickness <- function(cache) {
-  download_file <- fs::path(tempdir(), "soil_thick.zip")
-  tempdir_soil_dir <- fs::path(tempdir(), "soil_thickness_dir")
-  cache_soil_dir <- fs::path(.find_user_cache(), "soil_thickness_dir")
+.download_topsoil_thickness <- function(cache) {
+  download_file <- fs::path(tempdir(), "topsoil_thick.zip")
+  tempdir_topsoil_dir <- fs::path(tempdir(), "topsoil_thickness_dir")
+  cache_topsoil_dir <- fs::path(.find_user_cache(), "topsoil_thickness_dir")
 
   # only download if the files aren't already local
-  if (!fs::dir_exists(tempdir_soil_dir)) {
+  if (!fs::dir_exists(tempdir_topsoil_dir)) {
     .retry_download(
       "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
       .f = download_file
@@ -97,7 +100,7 @@ get_soil_thickness <- function(cache = TRUE) {
     )
     fs::file_move(
       fs::path(tempdir(), "staiar9cl__05911a01eg_geo___/"),
-      tempdir_soil_dir
+      tempdir_topsoil_dir
     )
     fs::file_delete(download_file)
   }
@@ -108,27 +111,28 @@ get_soil_thickness <- function(cache = TRUE) {
       fs::dir_create(.find_user_cache(), recurse = TRUE)
     }
     fs::file_move(
-      tempdir_soil_dir,
-      cache_soil_dir
+      tempdir_topsoil_dir,
+      cache_topsoil_dir
     )
   }
 
   return(data.table::fifelse(
     cache,
-    cache_soil_dir,
-    tempdir_soil_dir
+    cache_topsoil_dir,
+    tempdir_topsoil_dir
   ))
 }
 
-#' Prints read.abares.soil.thickness.files object
+#' Prints read.abares.topsoil.thickness.files object
 #'
-#' Custom [base::print()] method for `read.abares.soil.thickness.files` objects.
+#' Custom [base::print()] method for `read.abares.topsoil.thickness.files`
+#' objects.
 #'
-#' @param x a `read.abares.soil.thickness.files` object.
+#' @param x a `read.abares.topsoil.thickness.files` object.
 #' @param ... ignored.
 #' @export
 #' @noRd
-print.read.abares.soil.thickness.files <- function(x, ...) {
+print.read.abares.topsoil.thickness.files <- function(x, ...) {
   cli::cli_h1(
     "Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil)"
   )
@@ -161,7 +165,7 @@ print.read.abares.soil.thickness.files <- function(x, ...) {
   )
   cli::cli_text(
     "To see the full metadata, call
-    {.fn print_soil_thickness_metadata} on a soil thickness object in your R
+    {.fn print_topsoil_thickness_metadata} on a soil thickness object in your R
                 session."
   )
   cli::cat_line()
@@ -172,23 +176,27 @@ print.read.abares.soil.thickness.files <- function(x, ...) {
 #'
 #' Displays the complete set of metadata associated with the soil thickness
 #'  data in your \R console. For including the metadata in documents or other
-#'  methods outside of \R, see [get_soil_thickness()] for an example using
+#'  methods outside of \R, see [get_topsoil_thickness()] for an example using
 #'  [pander::pander()] to print the metadata.
 #'
+#' @param x A `read.abares.topsoil.thickness.files` object.
 #'
-#' @param x A `read.abares.soil.thickness.files` object.
+#' @note
+#' The original metadata use a title of "Soil Thickness", in the context of this
+#' package, we refer to it as "Topsoil Thickness" to be consistent with the
+#' actual values in the data.
 #'
 #' @returns Nothing, called for its side effects, it prints the complete
 #'   metadata file to the \R console.
 #' @examplesIf interactive()
-#' get_soil_thickness(cache = TRUE) |>
-#'   print_soil_thickness_metadata()
+#' get_topsoil_thickness(cache = TRUE) |>
+#'   print_topsoil_thickness_metadata()
 #'
-#' @family soil_thickness
+#' @family topsoil_thickness
 #'
 #' @export
-print_soil_thickness_metadata <- function(x) {
-  .check_class(x = x, class = "read.abares.soil.thickness.files")
+print_topsoil_thickness_metadata <- function(x) {
+  .check_class(x = x, class = "read.abares.topsoil.thickness.files")
   loc <- stringr::str_locate(x$metadata, "Custodian")
   metadata <- stringr::str_sub(
     x$metadata,
@@ -196,7 +204,7 @@ print_soil_thickness_metadata <- function(x) {
     nchar(x$metadata)
   )
   cli::cli_h1(
-    "Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil)\n"
+    "Topsoil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil)\n"
   )
   cli::cli_h2("Dataset ANZLIC ID ANZCW1202000149")
   cli::cli_text(metadata)

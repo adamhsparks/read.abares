@@ -47,12 +47,12 @@ reference:
       - inspect_cache
   - title: Soil Thickness
     desc: |
-      Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)
+      Topsoil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)
     contents:
-      - get_soil_thickness
-      - read_soil_thickness_stars
-      - read_soil_thickness_terra
-      - print_soil_thickness_metadata
+      - get_topsoil_thickness
+      - read_topsoil_thickness_stars
+      - read_topsoil_thickness_terra
+      - print_topsoil_thickness_metadata
   - title: Trade
     desc: |
       Fetch and read ABARES' Australian agricultural export data

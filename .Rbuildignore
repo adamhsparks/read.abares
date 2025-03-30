@@ -11,8 +11,8 @@
 ^flint$
 ^\.github$
 ^air\.toml$
-^man/dot-create_soil_thickness_list\.Rd$
-^man/dot-download_soil_thickness\.Rd$
+^man/dot-create_topsoil_thickness_list\.Rd$
+^man/dot-download_topsoil_thickness\.Rd$
 ^man/dot-find_user_cache\.Rd$
 ^man/dot-check_class\.Rd$
 ^man/dot-retry_download\.Rd$
