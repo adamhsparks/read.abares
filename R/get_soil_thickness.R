@@ -93,7 +93,7 @@ get_soil_thickness <- function(cache = TRUE) {
 
     withr::with_dir(
       tempdir(),
-      utils::unzip(download_file, exdir = )
+      utils::unzip(download_file, exdir = tempdir())
     )
     fs::file_move(
       fs::path(tempdir(), "staiar9cl__05911a01eg_geo___/"),
