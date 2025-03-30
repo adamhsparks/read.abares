@@ -8,6 +8,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
   %\VignetteDepends{pander}
+  %VignetteDepends{DT}
 ---
 
 
@@ -129,7 +130,7 @@ head(tdnc[[1]])
 #> # A tibble: 1 × 2
 #>   access              source                                                    
 #>   <dttm>              <chr>                                                     
-#> 1 2025-03-30 17:17:03 /Users/adamsparks/Library/Caches/org.R-project.R/R/read.a…
+#> 1 2025-03-30 17:28:33 /Users/adamsparks/Library/Caches/org.R-project.R/R/read.a…
 #> 
 #> $axis
 #> # A tibble: 84 × 3
@@ -202,100 +203,16 @@ Download or load from the local cache and read the AGFD files as a {data.table} 
 ## A {data.table} object
 get_agfd(cache = TRUE) |>
   read_agfd_dt() |>
-  head()
-#>                            id farmno R_total_hat_ha C_total_hat_ha
-#>                        <char>  <num>          <num>          <num>
-#> 1: f2022.c1991.p2022.t2022.nc  15612       7.636519       4.405228
-#> 2: f2022.c1991.p2022.t2022.nc  21495      14.811169       9.165632
-#> 3: f2022.c1991.p2022.t2022.nc  23418      24.874456      14.858595
-#> 4: f2022.c1991.p2022.t2022.nc  24494      15.043653       9.326359
-#> 5: f2022.c1991.p2022.t2022.nc  32429      23.630099      13.681063
-#> 6: f2022.c1991.p2022.t2022.nc  32485      15.009926       9.815501
-#>    FBP_fci_hat_ha FBP_fbp_hat_ha A_wheat_hat_ha H_wheat_dot_hat A_barley_hat_ha
-#>             <num>          <num>          <num>           <num>           <num>
-#> 1:       3.231292       1.766127            NaN             NaN             NaN
-#> 2:       5.645538       6.178280            NaN             NaN             NaN
-#> 3:      10.015861      15.504923            NaN             NaN             NaN
-#> 4:       5.717294       7.212161            NaN             NaN             NaN
-#> 5:       9.949036       9.612778            NaN             NaN             NaN
-#> 6:       5.194425       6.582035            NaN             NaN             NaN
-#>    H_barley_dot_hat A_sorghum_hat_ha H_sorghum_dot_hat A_oilseeds_hat_ha
-#>               <num>            <num>             <num>             <num>
-#> 1:              NaN              NaN               NaN               NaN
-#> 2:              NaN              NaN               NaN               NaN
-#> 3:              NaN              NaN               NaN               NaN
-#> 4:              NaN              NaN               NaN               NaN
-#> 5:              NaN              NaN               NaN               NaN
-#> 6:              NaN              NaN               NaN               NaN
-#>    H_oilseeds_dot_hat R_wheat_hat_ha R_sorghum_hat_ha R_oilseeds_hat_ha
-#>                 <num>          <num>            <num>             <num>
-#> 1:                NaN            NaN              NaN               NaN
-#> 2:                NaN            NaN              NaN               NaN
-#> 3:                NaN            NaN              NaN               NaN
-#> 4:                NaN            NaN              NaN               NaN
-#> 5:                NaN            NaN              NaN               NaN
-#> 6:                NaN            NaN              NaN               NaN
-#>    R_barley_hat_ha Q_wheat_hat_ha Q_barley_hat_ha Q_sorghum_hat_ha
-#>              <num>          <num>           <num>            <num>
-#> 1:             NaN            NaN             NaN              NaN
-#> 2:             NaN            NaN             NaN              NaN
-#> 3:             NaN            NaN             NaN              NaN
-#> 4:             NaN            NaN             NaN              NaN
-#> 5:             NaN            NaN             NaN              NaN
-#> 6:             NaN            NaN             NaN              NaN
-#>    Q_oilseeds_hat_ha S_wheat_cl_hat_ha S_sheep_cl_hat_ha S_sheep_births_hat_ha
-#>                <num>             <num>             <num>                 <num>
-#> 1:               NaN               NaN    0.000046854152        0.000048411171
-#> 2:               NaN               NaN    0.000066325878        0.000057753874
-#> 3:               NaN               NaN    0.000007771546        0.000007320093
-#> 4:               NaN               NaN    0.000070963917        0.000062521929
-#> 5:               NaN               NaN    0.000007780997        0.000006834211
-#> 6:               NaN               NaN    0.000059600116        0.000053976389
-#>    S_sheep_deaths_hat_ha S_beef_cl_hat_ha S_beef_births_hat_ha
-#>                    <num>            <num>                <num>
-#> 1:        0.000007187978       0.02034820          0.005212591
-#> 2:        0.000009039695       0.02974461          0.007970856
-#> 3:        0.000000000000       0.05393181          0.014745383
-#> 4:        0.000009726773       0.03057606          0.008602196
-#> 5:        0.000000000000       0.04944272          0.011527594
-#> 6:        0.000008478467       0.03322463          0.008456550
-#>    S_beef_deaths_hat_ha Q_beef_hat_ha Q_sheep_hat_ha Q_lamb_hat_ha
-#>                   <num>         <num>          <num>         <num>
-#> 1:          0.000989490   0.004790528  0.00007117650             0
-#> 2:          0.001468278   0.009646485  0.00009448864             0
-#> 3:          0.002867331   0.014401773  0.00001299674             0
-#> 4:          0.001446424   0.009577272  0.00010191595             0
-#> 5:          0.002491037   0.014668761  0.00001283228             0
-#> 6:          0.001627910   0.009281578  0.00008869032             0
-#>    R_beef_hat_ha R_sheep_hat_ha R_lamb_hat_ha C_fodder_hat_ha C_fert_hat_ha
-#>            <num>          <num>         <num>           <num>         <num>
-#> 1:      7.392679    0.010222802             0       0.3553107  0.0007795925
-#> 2:     14.281910    0.014485890             0       0.7040333  0.0670951492
-#> 3:     24.308574    0.001821158             0       0.9473936  0.1475929946
-#> 4:     14.518771    0.015352095             0       0.7060111  0.0764850563
-#> 5:     23.060943    0.001892115             0       1.0269189  0.1592835324
-#> 6:     14.474964    0.013278806             0       0.7019839  0.0997758317
-#>    C_fuel_hat_ha C_chem_hat_ha A_total_cropped_ha FBP_pfe_hat_ha
-#>            <num>         <num>              <num>          <num>
-#> 1:     0.4282799  0.0002169123     0.000001588013       2.142158
-#> 2:     0.5663560  0.0212989625     0.000144292922       6.679382
-#> 3:     0.9244438  0.0398376851     0.000296036096      16.185389
-#> 4:     0.5688555  0.0223214940     0.000151675639       7.711993
-#> 5:     0.8337981  0.0416492516     0.000316535762      10.294743
-#> 6:     0.5575842  0.0293469147     0.000201161236       7.101658
-#>    farmland_per_cell    lon    lat
-#>                <num>  <num>  <num>
-#> 1:          62.26270 142.60 -10.75
-#> 2:          61.71605 136.75 -11.05
-#> 3:          61.82964 132.90 -11.15
-#> 4:          72.85995 136.70 -11.20
-#> 5:          61.82964 133.45 -11.60
-#> 6:          61.71605 136.25 -11.60
+  create_dt()
+#> Warning in instance$preRenderHook(instance): It seems your data is too big for
+#> client-side DataTables. You may consider server-side processing:
+#> https://rstudio.github.io/DT/server.html
+#> Error in collapse(tmp, inner = FALSE, indent): R character strings are limited to 2^31-1 bytes
 ```
 
 ## Working With the Soil Thickness Map
 
-You can download the soil depth map and import it as a {stars} or terra::rast() object.
+You can download the soil depth map and import it as a {stars} or [terra::rast()] object.
 
 
 ``` r
@@ -315,7 +232,7 @@ x <- get_topsoil_thickness(cache = TRUE) |>
   read_topsoil_thickness_terra()
 ```
 
-For your convenience, {read.abares} re-exports terra::plot(), so you can just use `plot()` with {terra} objects in {read.abares}.
+For your convenience, {read.abares} re-exports [terra::plot()], so you can just use `plot()` with the {terra} objects in {read.abares}.
 
 
 ``` r
@@ -326,7 +243,7 @@ plot(x)
 
 ### Soil Thickness Metadata
 
-By default, a brief bit of metadata is printed to the console when you call the soil thickness object in your R session.
+By default, a brief bit of metadata is printed to the console when you call the topsoil thickness object in your R session.
 
 
 ``` r
@@ -376,7 +293,7 @@ get_topsoil_thickness(cache = TRUE)
 #> thickness object in your R session.
 ```
 
-But, {read.abares} provides a function for you to browse the soil thickness metadata in your console.
+But, {read.abares} provides a function for you to browse the topsoil thickness metadata in your console.
 
 
 ``` r
@@ -693,7 +610,7 @@ get_topsoil_thickness(cache = TRUE) |>
 #> National Land & Water Resources Audit
 ```
 
-But you can also access it directly and use pander::pander() to include it in a document like this vignette.
+But you can also access it directly and use [pander::pander()] to include it in a document like this vignette.
 
 <blockquote>
 

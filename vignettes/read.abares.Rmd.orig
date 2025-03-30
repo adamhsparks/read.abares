@@ -8,6 +8,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
   %\VignetteDepends{pander}
+  %VignetteDepends{DT}
 ---
 
 ```{r setup, include = FALSE}
@@ -16,6 +17,20 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "vigfig-"
 )
+
+create_dt <- function(x) {
+  DT::datatable(x,
+    extensions = "Buttons",
+    options = list(
+      dom = "Blfrtip",
+      buttons = c("copy", "csv", "excel", "pdf", "print"),
+      lengthMenu = list(
+        c(10, 25, 50, -1),
+        c(10, 25, 50, "All")
+      )
+    )
+  ) # from https://martinctc.github.io/blog/vignette-downloadable-tables-in-rmarkdown-with-the-dt-package/
+}
 ```
 
 This vignette demonstrates some of the functionality of {read.abares}.
@@ -89,12 +104,12 @@ Download or load from the local cache and read the AGFD files as a {data.table} 
 ## A {data.table} object
 get_agfd(cache = TRUE) |>
   read_agfd_dt() |>
-  head()
+  create_dt()
 ```
 
 ## Working With the Soil Thickness Map
 
-You can download the soil depth map and import it as a {stars} or terra::rast() object.
+You can download the soil depth map and import it as a {stars} or [terra::rast()] object.
 
 ```{r soil-thickness}
 library(read.abares)
@@ -105,7 +120,7 @@ x <- get_topsoil_thickness(cache = TRUE) |>
   read_topsoil_thickness_terra()
 ```
 
-For your convenience, {read.abares} re-exports terra::plot(), so you can just use `plot()` with {terra} objects in {read.abares}.
+For your convenience, {read.abares} re-exports [terra::plot()], so you can just use `plot()` with the {terra} objects in {read.abares}.
 
 ```{r plot-topsoil-depth, fig.cap = "Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)"}
 plot(x)
@@ -113,14 +128,14 @@ plot(x)
 
 ### Soil Thickness Metadata
 
-By default, a brief bit of metadata is printed to the console when you call the soil thickness object in your R session.
+By default, a brief bit of metadata is printed to the console when you call the topsoil thickness object in your R session.
 
 ```{r brief-metadata}
 library(read.abares)
 get_topsoil_thickness(cache = TRUE)
 ```
 
-But, {read.abares} provides a function for you to browse the soil thickness metadata in your console.
+But, {read.abares} provides a function for you to browse the topsoil thickness metadata in your console.
 
 ```{r soil-thickness-metadata}
 library(read.abares)
@@ -128,10 +143,10 @@ get_topsoil_thickness(cache = TRUE) |>
   print_topsoil_thickness_metadata()
 ```
 
-But you can also access it directly and use pander::pander() to include it in a document like this vignette.
+But you can also access it directly and use [pander::pander()] to include it in a document like this vignette.
 
 <blockquote>
-```{r soil-thickness-metada-pander}
+```{r soil-thickness-metadata-pander}
 library(read.abares)
 library(pander)
 x <- get_topsoil_thickness(cache = TRUE)
