@@ -13,11 +13,11 @@
 #'  of Intensive Agriculture of Layer 1'.
 #'
 #' @examplesIf interactive()
-#' x <- get_soil_thickness(cache = TRUE) |>
+#' st_terra <- get_soil_thickness(cache = TRUE) |>
 #'   read_soil_thickness_terra()
 #'
 #' # terra::plot() is reexported for convenience
-#' plot(x)
+#' plot(st_terra)
 #'
 #' @family soil_thickness
 #' @autoglobal
@@ -25,5 +25,7 @@
 
 read_soil_thickness_terra <- function(files) {
   .check_class(x = files, class = "read.abares.soil.thickness.files")
-  terra::rast(files$grid)
+  x <- terra::rast(files$grid)
+  # as per Lauren O'Brien's excellent suggestion to deal with an unwiedly legend
+  return(terra::init(x, x[]))
 }
