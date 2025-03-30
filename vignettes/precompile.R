@@ -10,7 +10,7 @@ knit(
 purl("vignettes/read.abares.Rmd.orig", output = "vignettes/read.abares.R")
 
 # Move figures into vignettes/ folder
-figs <- fs::dir_ls(glob = "vigfig-")
+figs <- fs::dir_ls(glob = "vigfig-*")
 fs::file_move(figs, fs::path("vignettes/", figs))
 
 # remove fs::path_file such that vignettes will build with figures
@@ -27,6 +27,5 @@ library("devtools")
 build_vignettes()
 
 # move resource files (images) to /doc
-resources <-
-  fs::dir_ls(here("vignettes/"), glob = ".png$")
+resources <- fs::dir_ls(here("vignettes/"), glob = "*.png")
 file.copy(from = resources, to = here("doc"), overwrite = TRUE)
