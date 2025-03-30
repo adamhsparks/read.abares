@@ -76,7 +76,7 @@ pak::pak("adamhsparks/read.abares")
 
 ### Standardised Column Names and Orders
 
-ABARES spreadhsheet data are not always consistent in their column names
+ABARES spreadsheet data are not always consistent in their column names
 or orders. {read.abares} standardises the column names and orders and
 uses snake_case for all colnames with the first letter capitalised of
 every column to help you do your work more efficiently. Columns are
@@ -88,7 +88,7 @@ necessary, etc.
 
 The Australian Agricultural and Grazing Industries Survey (AAGIS) region
 mapping files report geometry errors that can be repaired using the
-`sf::st_make_valid()` function. {read.abaes} automatically repairs these
+`sf::st_make_valid()` function. {read.abares} automatically repairs these
 geometries for you when you import the data.
 
 ### File Caching
