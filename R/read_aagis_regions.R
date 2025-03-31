@@ -87,7 +87,7 @@ read_aagis_regions <- function(cache = TRUE) {
 
   # From checking the unzipped file, some geometries are invalid, this corrects
   aagis_sf <- sf::st_make_valid(aagis_sf)
-  aagis_sf[aagis] <- NULL # drop an identical column with class
+  aagis_sf["aagis"] <- NULL # drop an identical column with class
   names(aagis_sf)[names(aagis_sf) == "name"] <- "ABARES_region"
   names(aagis_sf)[names(aagis_sf) == "class"] <- "Class"
   names(aagis_sf)[names(aagis_sf) == "zone"] <- "Zone"
