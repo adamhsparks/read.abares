@@ -68,10 +68,7 @@ To join the data, we will use the `left_join()` function from the {dplyr} packag
 
 ```{r aagis-regions-merge}
 library(dplyr)
-aagis_dat <- left_join(aagis_regions,
-  aagis_region_data,
-  by = c("ABARES_region" = "ABARES_region")
-)
+aagis_dat <- left_join(aagis_regions, aagis_region_data)
 ```
 
 Once we've joined the data, we can visualise it using {ggplot2}.
@@ -79,6 +76,9 @@ Here we can plot the farm business profit by region.
 
 ```{r aagis-regions-plot}
 library(ggplot2)
+
+aagis_dat <- filter(aagis_dat, !is.na(`Farm business profit`))
+
 ggplot(aagis_dat) +
   geom_sf(aes(fill = `Farm business profit`)) +
   scale_fill_viridis_c() +
