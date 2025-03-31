@@ -68,6 +68,9 @@ To join the data, we will use the `left_join()` function from the {dplyr} packag
 
 ```{r aagis-regions-merge}
 library(dplyr)
+
+aagis_regions <- arrange(aagis_regions, ABARES_region)
+aagis_region_data <- arrange(aagis_region_data, ABARES_region)
 aagis_dat <- left_join(aagis_regions, aagis_region_data)
 ```
 
