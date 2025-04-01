@@ -18,18 +18,24 @@ function uses \code{tempdir()} and the files are deleted upon closing of the
 active \R session.}
 }
 \value{
-An \CRANpkg{sf} object of the \acronym{AAGIS} regions.
+An \CRANpkg{sf} object of the \acronym{AAGIS} regions and a
+cached geopackage file if requested.
 }
 \description{
 Download, cache and import the Australian Agricultural and Grazing
 Industries Survey (\acronym{AAGIS}) regions geospatial shapefile.
 }
 \details{
-@note Upon import, the geometries are automatically corrected to fix invalid
-geometries that are present in the original shapefile and column names are
-set to start with an upper-case letter and "name" is set to "AAGIS_region"
-to align with the \code{\link[data.table:data.table]{data.table::data.table()}} provided by
+@note Upon import a few operations are carried out,
+\itemize{
+\item the geometries are automatically corrected to fix invalid geometries that
+are present in the original shapefile,
+\item a new column, "State" is added to be used for mapping state estimates with
+data provided by \code{\link[=read_historical_state_estimates]{read_historical_state_estimates()}}, and
+\item column names are set to start with an upper-case letter and "name" is set
+to "AAGIS_region" to align with the \code{\link[data.table:data.table]{data.table::data.table()}} provided by
 \code{\link[=read_historical_regional_estimates]{read_historical_regional_estimates()}} to allow for easier merging of data.
+}
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
