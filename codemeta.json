@@ -60,18 +60,6 @@
   "softwareSuggestions": [
     {
       "@type": "SoftwareApplication",
-      "identifier": "DT",
-      "name": "DT",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=DT"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "httptest2",
       "name": "httptest2",
       "provider": {
@@ -357,7 +345,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "661.429KB",
+  "fileSize": "857.37KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
