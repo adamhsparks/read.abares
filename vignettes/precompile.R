@@ -1,32 +1,33 @@
-# vignettes that depend on Internet access need to be precompiled
+# vignettes that depend on Internet access need to be precompiled and take a
+# while to run
 library(knitr)
 library(here)
 
-# read.abares vignette
+devtools::install() # ensure we're building with the latest version of the package
+
 knit(
   input = "vignettes/read.abares.Rmd.orig",
   output = "vignettes/read.abares.Rmd"
 )
+
 purl("vignettes/read.abares.Rmd.orig", output = "vignettes/read.abares.R")
 
-# Move figures into vignettes/ folder
-figs <- fs::dir_ls(glob = "*.png")
-fs::file_move(figs, fs::path("vignettes/", figs))
-
-# remove fs::path_file such that vignettes will build with figures
-## read.abares vignette
-abares_replace <- readLines("vignettes/read.abares.Rmd")
-abares_replace <- gsub("\\(figure/", "\\(", abares_replace)
-
-abares_file_con <- file("vignettes/read.abares.Rmd")
-writeLines(abares_replace, abares_file_con)
-close(abares_file_con)
+# remove file path such that vignettes will build with figures
+ra_replace <- readLines("vignettes/read.abares.Rmd")
+ra_replace <- gsub("<img src=\"vignettes/", "<img src=\"", ra_replace)
+ra_file_conn <- file("vignettes/read.abares.Rmd")
+writeLines(ra_replace, ra_file_conn)
+close(ra_file_conn)
 
 # build vignettes
 library("devtools")
 build_vignettes()
 
-# move resource files to /doc
+# move resource files to /docs
 resources <-
-  list.files(pattern = ".png$", full.names = TRUE)
-file.copy(from = resources, to = "doc", overwrite = TRUE)
+  list.files("vignettes/", pattern = ".png$", full.names = TRUE)
+file.copy(
+  from = resources,
+  to = here("doc"),
+  overwrite = TRUE
+)
