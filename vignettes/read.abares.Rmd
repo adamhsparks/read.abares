@@ -17,7 +17,8 @@ vignette: >
 ``` r
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  dev = "png"
 )
 ```
 
@@ -204,7 +205,7 @@ head(tdnc[[1]])
 #> # A tibble: 1 × 2
 #>   access              source                                                    
 #>   <dttm>              <chr>                                                     
-#> 1 2025-04-01 14:42:14 /Users/283204f/Library/Caches/org.R-project.R/R/read.abar…
+#> 1 2025-04-01 14:55:04 /Users/283204f/Library/Caches/org.R-project.R/R/read.abar…
 #> 
 #> $axis
 #> # A tibble: 84 × 3

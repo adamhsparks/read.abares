@@ -26,6 +26,7 @@ close(abares_file_con)
 library("devtools")
 build_vignettes()
 
-# move resource files (images) to /doc
-resources <- fs::dir_ls(here("vignettes/"), glob = "*.png")
-file.copy(from = resources, to = here("doc"), overwrite = TRUE)
+# move resource files to /doc
+resources <-
+  list.files(pattern = ".png$", full.names = TRUE)
+file.copy(from = resources, to = "doc", overwrite = TRUE)
