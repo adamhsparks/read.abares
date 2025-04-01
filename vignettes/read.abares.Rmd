@@ -77,7 +77,7 @@ library(ggplot2)
 total_area <- filter(aagis_dat, Variable == ("Total area cropped (ha)"))
 
 ggplot(total_area) +
-  geom_sf(aes(fill = Value, colour = NA)) +
+  geom_sf(aes(fill = Value), colour = NA) +
   scale_fill_viridis_c() +
   labs(
     fill = "Total Area Cropped (ha)",
@@ -204,7 +204,7 @@ head(tdnc[[1]])
 #> # A tibble: 1 × 2
 #>   access              source                                                    
 #>   <dttm>              <chr>                                                     
-#> 1 2025-04-01 15:33:53 /Users/283204f/Library/Caches/org.R-project.R/R/read.abar…
+#> 1 2025-04-01 15:40:33 /Users/283204f/Library/Caches/org.R-project.R/R/read.abar…
 #> 
 #> $axis
 #> # A tibble: 84 × 3
