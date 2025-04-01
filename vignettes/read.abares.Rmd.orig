@@ -40,7 +40,7 @@ library(read.abares)
 
 ABARES offers spatial data for the Australian Agricultural and Grazing Industries Survey (AAGIS) regions that can be used for mapping tabular data from the estimates, _e.g._, `read_historical_regional_estimates()` or `read_state_estimates()`.
 
-```{r aagis-regions}
+```{r aagis-regions, fig.cap="AAGIS regions shapefile"}
 aagis_regions <- read_aagis_regions(cache = TRUE)
 
 plot(aagis_regions)
@@ -69,7 +69,7 @@ aagis_dat <- left_join(aagis_regions, aagis_region_data)
 Once we've joined the data, we can visualise it using {ggplot2}.
 Here we can plot the total area cropped (ha) and facet by year for all of Australia.
 
-```{r aagis-regions-plot}
+```{r aagis-regions-plot, "Plot of AAGIS estimated total area cropped by year and region."}
 library(ggplot2)
 
 total_area <- filter(aagis_dat, Variable == ("Total area cropped (ha)"))

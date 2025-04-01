@@ -40,8 +40,8 @@ plot(aagis_regions)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="aagis-regions-1.png" alt="plot of chunk aagis-regions"  />
-<p class="caption">plot of chunk aagis-regions</p>
+<img src="aagis-regions-1.png" alt="AAGIS regions shapefile"  />
+<p class="caption">AAGIS regions shapefile</p>
 </div>
 
 ### Obtaining AAGIS Data by Region
@@ -87,8 +87,8 @@ ggplot(total_area) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="aagis-regions-plot-1.png" alt="plot of chunk aagis-regions-plot"  />
-<p class="caption">plot of chunk aagis-regions-plot</p>
+<img src="aagis-regions-plot, "Plot of AAGIS estimated total area cropped by year and region."-1.png" alt="plot of chunk aagis-regions-plot, "Plot of AAGIS estimated total area cropped by year and region.""  />
+<p class="caption">plot of chunk aagis-regions-plot, "Plot of AAGIS estimated total area cropped by year and region."</p>
 </div>
 
 ## Working With AGFD Data
@@ -204,7 +204,7 @@ head(tdnc[[1]])
 #> # A tibble: 1 × 2
 #>   access              source                                                    
 #>   <dttm>              <chr>                                                     
-#> 1 2025-04-01 15:40:33 /Users/283204f/Library/Caches/org.R-project.R/R/read.abar…
+#> 1 2025-04-01 15:48:16 /Users/283204f/Library/Caches/org.R-project.R/R/read.abar…
 #> 
 #> $axis
 #> # A tibble: 84 × 3
