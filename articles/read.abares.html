@@ -77,7 +77,10 @@ Sparks</h4>
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html" class="external-link">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span></span>
 <span>  collapse <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  comment <span class="op">=</span> <span class="st">"#&gt;"</span>,</span>
-<span>  dev <span class="op">=</span> <span class="st">"png"</span></span>
+<span>  fig.width <span class="op">=</span> <span class="fl">7</span>,</span>
+<span>  fig.height <span class="op">=</span> <span class="fl">7</span>,</span>
+<span>  fig.align <span class="op">=</span> <span class="st">"center"</span>,</span>
+<span>  fig.path <span class="op">=</span> <span class="st">"vignettes/"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>This vignette demonstrates some of the functionality of {read.abares}
 and how to work with some of the spatial and tabular data available
@@ -93,7 +96,15 @@ using one of four types of object or the soil thickness data, which
 includes rich metadata.</p>
 <p>First we need to load the {read.abares} library.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'read.abares'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:graphics':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     plot</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     plot</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="working-with-aagis-regions-spatial-data">Working with AAGIS Regions Spatial Data<a class="anchor" aria-label="anchor" href="#working-with-aagis-regions-spatial-data"></a>
 </h2>
@@ -107,12 +118,12 @@ tabular data from the estimates, <em>e.g.</em>,
 <code>read_state_estimates()</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">aagis_regions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_aagis_regions.html">read_aagis_regions</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
-<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">aagis_regions</span><span class="op">)</span></span></code></pre></div>
-<div class="float">
-<img src="figure/aagis-regions-1.png" alt="plot of chunk aagis-regions"><div class="figcaption">plot of chunk aagis-regions</div>
+<div class="figure" style="text-align: center">
+<img src="aagis-regions-1.png" alt="plot of chunk aagis-regions"><p class="caption">
+plot of chunk aagis-regions
+</p>
 </div>
 </div>
 <div class="section level3">
@@ -129,9 +140,7 @@ will use the <code><a href="../reference/read_historical_regional_estimates.html
 to download the AAGIS data for the regions in the AAGIS regions
 shapefile and join the data and visualise some of the data.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">aagis_region_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_historical_regional_estimates.html">read_historical_regional_estimates</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
-<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">aagis_region_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_historical_regional_estimates.html">read_historical_regional_estimates</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="merging-the-aagis-regions-spatial-data-with-the-aagis-regional-data">Merging the AAGIS Regions Spatial Data with the AAGIS Regional
@@ -143,6 +152,14 @@ datasets together to visualise the data. To join the data, we will use
 the <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join()</a></code> function from the {dplyr} package.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     filter, lag</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
 <span></span>
 <span><span class="va">aagis_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">aagis_regions</span>, <span class="va">aagis_region_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(ABARES_region)`</span></span></code></pre></div>
@@ -162,8 +179,10 @@ Australia.</p>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">Year</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="float">
-<img src="figure/aagis-regions-plot-1.png" alt="plot of chunk aagis-regions-plot"><div class="figcaption">plot of chunk aagis-regions-plot</div>
+<div class="figure" style="text-align: center">
+<img src="aagis-regions-plot-1.png" alt="plot of chunk aagis-regions-plot"><p class="caption">
+plot of chunk aagis-regions-plot
+</p>
 </div>
 </div>
 </div>
@@ -208,34 +227,46 @@ as such should be considered experimental.</p>
 <p>Check the file format information for the NetCDF files.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/print_agfd_nc_file_format.html">print_agfd_nc_file_format</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
-<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span></code></pre></div>
+<span><span class="co">#&gt; ──────────────────────────────────────────────────────────────────────────</span></span>
+<span><span class="co">#&gt; Each of the layers in simulation output data is represented as a 2D</span></span>
+<span><span class="co">#&gt; raster in NETCDF files, with the following grid format:</span></span>
+<span><span class="co">#&gt; CRS: EPSG:4326 - WGS 84 - Geographic</span></span>
+<span><span class="co">#&gt; Extent: 111.975 -44.525 156.275 -9.975</span></span>
+<span><span class="co">#&gt; Unit: Degrees</span></span>
+<span><span class="co">#&gt; Width: 886</span></span>
+<span><span class="co">#&gt; Height: 691</span></span>
+<span><span class="co">#&gt; Cell size: 0.05 degree x 0.05 degree</span></span>
+<span><span class="co">#&gt; ──────────────────────────────────────────────────────────────────────────</span></span>
+<span><span class="co">#&gt; For further details, see the ABARES website,</span></span>
+<span><span class="co">#&gt; &lt;https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data&gt;</span></span></code></pre></div>
 <p>Download or load from the local cache and read the AGFD files as a
 list of {stars} objects.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## A list of {stars} objects</span></span>
 <span><span class="va">star</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_agfd.html">get_agfd</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/read_agfd_stars.html">read_agfd_stars</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
-<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span>
+<span><span class="co">#&gt; Will return stars object with 612226 cells.</span></span>
+<span><span class="co">#&gt; No projection information found in nc file. </span></span>
+<span><span class="co">#&gt;  Coordinate variable units found to be degrees, </span></span>
+<span><span class="co">#&gt;  assuming WGS84 Lat/Lon.</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">star</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt; stars object with 2 dimensions and 6 attributes</span></span>
 <span><span class="co">#&gt; attribute(s):</span></span>
-<span><span class="co">#&gt;                         Min.         1st Qu.         Median           Mean</span></span>
-<span><span class="co">#&gt; farmno          15612.000000 233091.50000000 329567.0000000 324737.7187618</span></span>
-<span><span class="co">#&gt; R_total_hat_ha      2.954396      7.88312157     21.7520529    169.5139301</span></span>
-<span><span class="co">#&gt; C_total_hat_ha      1.304440      4.34079101      9.9449849     93.2210542</span></span>
-<span><span class="co">#&gt; FBP_fci_hat_ha   -143.759785      3.60529967     11.5796641     76.2928759</span></span>
-<span><span class="co">#&gt; FBP_fbp_hat_ha   -349.521639      3.36599833     11.5074294     60.0750936</span></span>
-<span><span class="co">#&gt; A_wheat_hat_ha      0.000000      0.04062786      0.1114289      0.1365683</span></span>
-<span><span class="co">#&gt;                        3rd Qu.           Max.   NA's</span></span>
-<span><span class="co">#&gt; farmno          418508.5000000 669706.0000000 443899</span></span>
-<span><span class="co">#&gt; R_total_hat_ha     174.8553843   2415.7556059 443899</span></span>
-<span><span class="co">#&gt; C_total_hat_ha      95.7221857   1853.5385298 443899</span></span>
-<span><span class="co">#&gt; FBP_fci_hat_ha      77.6748501   1186.5830232 443899</span></span>
-<span><span class="co">#&gt; FBP_fbp_hat_ha      62.8596117   1240.6003218 443899</span></span>
-<span><span class="co">#&gt; A_wheat_hat_ha       0.2112845      0.5047761 565224</span></span>
+<span><span class="co">#&gt;                         Min.         1st Qu.         Median</span></span>
+<span><span class="co">#&gt; farmno          15612.000000 233091.50000000 329567.0000000</span></span>
+<span><span class="co">#&gt; R_total_hat_ha      2.954396      7.88312157     21.7520529</span></span>
+<span><span class="co">#&gt; C_total_hat_ha      1.304440      4.34079101      9.9449849</span></span>
+<span><span class="co">#&gt; FBP_fci_hat_ha   -143.759785      3.60529967     11.5796641</span></span>
+<span><span class="co">#&gt; FBP_fbp_hat_ha   -349.521639      3.36599833     11.5074294</span></span>
+<span><span class="co">#&gt; A_wheat_hat_ha      0.000000      0.04062786      0.1114289</span></span>
+<span><span class="co">#&gt;                           Mean        3rd Qu.           Max.   NA's</span></span>
+<span><span class="co">#&gt; farmno          324737.7187618 418508.5000000 669706.0000000 443899</span></span>
+<span><span class="co">#&gt; R_total_hat_ha     169.5139301    174.8553843   2415.7556059 443899</span></span>
+<span><span class="co">#&gt; C_total_hat_ha      93.2210542     95.7221857   1853.5385298 443899</span></span>
+<span><span class="co">#&gt; FBP_fci_hat_ha      76.2928759     77.6748501   1186.5830232 443899</span></span>
+<span><span class="co">#&gt; FBP_fbp_hat_ha      60.0750936     62.8596117   1240.6003218 443899</span></span>
+<span><span class="co">#&gt; A_wheat_hat_ha       0.1365683      0.2112845      0.5047761 565224</span></span>
 <span><span class="co">#&gt; dimension(s):</span></span>
 <span><span class="co">#&gt;     from  to refsys              values x/y</span></span>
 <span><span class="co">#&gt; lon    1 886 WGS 84 [886] 112,...,156.2 [x]</span></span>
@@ -246,8 +277,6 @@ list of {stars} objects.</p>
 <code class="sourceCode R"><span><span class="co">## A {terra} `rast` object</span></span>
 <span><span class="va">terr</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_agfd.html">get_agfd</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/read_agfd_terra.html">read_agfd_terra</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
-<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">terr</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt; class       : SpatRaster </span></span>
@@ -265,15 +294,13 @@ list of {tidync} objects.</p>
 <code class="sourceCode R"><span><span class="co">## A list of {tidync} objects</span></span>
 <span><span class="va">tdnc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_agfd.html">get_agfd</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/read_agfd_tidync.html">read_agfd_tidync</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
-<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">tdnc</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $source</span></span>
 <span><span class="co">#&gt; # A tibble: 1 × 2</span></span>
-<span><span class="co">#&gt;   access              source                                                    </span></span>
-<span><span class="co">#&gt;   &lt;dttm&gt;              &lt;chr&gt;                                                     </span></span>
-<span><span class="co">#&gt; 1 2025-04-01 14:55:04 /Users/283204f/Library/Caches/org.R-project.R/R/read.abar…</span></span>
+<span><span class="co">#&gt;   access              source                                              </span></span>
+<span><span class="co">#&gt;   &lt;dttm&gt;              &lt;chr&gt;                                               </span></span>
+<span><span class="co">#&gt; 1 2025-04-01 15:14:48 /Users/283204f/Library/Caches/org.R-project.R/R/rea…</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $axis</span></span>
 <span><span class="co">#&gt; # A tibble: 84 × 3</span></span>
@@ -344,9 +371,94 @@ list of {tidync} objects.</p>
 <span><span class="fu"><a href="../reference/get_agfd.html">get_agfd</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/read_agfd_dt.html">read_agfd_dt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in head(read_agfd_dt(get_agfd(cache = TRUE))): internal error 1 in</span></span>
-<span><span class="co">#&gt; R_decompress1 with libdeflate</span></span>
-<span><span class="co">#&gt; Error in head(read_agfd_dt(get_agfd(cache = TRUE))): lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span></code></pre></div>
+<span><span class="co">#&gt;                            id farmno R_total_hat_ha C_total_hat_ha</span></span>
+<span><span class="co">#&gt;                        &lt;char&gt;  &lt;num&gt;          &lt;num&gt;          &lt;num&gt;</span></span>
+<span><span class="co">#&gt; 1: f2022.c1991.p2022.t2022.nc  15612       7.636519       4.405228</span></span>
+<span><span class="co">#&gt; 2: f2022.c1991.p2022.t2022.nc  21495      14.811169       9.165632</span></span>
+<span><span class="co">#&gt; 3: f2022.c1991.p2022.t2022.nc  23418      24.874456      14.858595</span></span>
+<span><span class="co">#&gt; 4: f2022.c1991.p2022.t2022.nc  24494      15.043653       9.326359</span></span>
+<span><span class="co">#&gt; 5: f2022.c1991.p2022.t2022.nc  32429      23.630099      13.681063</span></span>
+<span><span class="co">#&gt; 6: f2022.c1991.p2022.t2022.nc  32485      15.009926       9.815501</span></span>
+<span><span class="co">#&gt;    FBP_fci_hat_ha FBP_fbp_hat_ha A_wheat_hat_ha H_wheat_dot_hat</span></span>
+<span><span class="co">#&gt;             &lt;num&gt;          &lt;num&gt;          &lt;num&gt;           &lt;num&gt;</span></span>
+<span><span class="co">#&gt; 1:       3.231292       1.766127            NaN             NaN</span></span>
+<span><span class="co">#&gt; 2:       5.645538       6.178280            NaN             NaN</span></span>
+<span><span class="co">#&gt; 3:      10.015861      15.504923            NaN             NaN</span></span>
+<span><span class="co">#&gt; 4:       5.717294       7.212161            NaN             NaN</span></span>
+<span><span class="co">#&gt; 5:       9.949036       9.612778            NaN             NaN</span></span>
+<span><span class="co">#&gt; 6:       5.194425       6.582035            NaN             NaN</span></span>
+<span><span class="co">#&gt;    A_barley_hat_ha H_barley_dot_hat A_sorghum_hat_ha H_sorghum_dot_hat</span></span>
+<span><span class="co">#&gt;              &lt;num&gt;            &lt;num&gt;            &lt;num&gt;             &lt;num&gt;</span></span>
+<span><span class="co">#&gt; 1:             NaN              NaN              NaN               NaN</span></span>
+<span><span class="co">#&gt; 2:             NaN              NaN              NaN               NaN</span></span>
+<span><span class="co">#&gt; 3:             NaN              NaN              NaN               NaN</span></span>
+<span><span class="co">#&gt; 4:             NaN              NaN              NaN               NaN</span></span>
+<span><span class="co">#&gt; 5:             NaN              NaN              NaN               NaN</span></span>
+<span><span class="co">#&gt; 6:             NaN              NaN              NaN               NaN</span></span>
+<span><span class="co">#&gt;    A_oilseeds_hat_ha H_oilseeds_dot_hat R_wheat_hat_ha R_sorghum_hat_ha</span></span>
+<span><span class="co">#&gt;                &lt;num&gt;              &lt;num&gt;          &lt;num&gt;            &lt;num&gt;</span></span>
+<span><span class="co">#&gt; 1:               NaN                NaN            NaN              NaN</span></span>
+<span><span class="co">#&gt; 2:               NaN                NaN            NaN              NaN</span></span>
+<span><span class="co">#&gt; 3:               NaN                NaN            NaN              NaN</span></span>
+<span><span class="co">#&gt; 4:               NaN                NaN            NaN              NaN</span></span>
+<span><span class="co">#&gt; 5:               NaN                NaN            NaN              NaN</span></span>
+<span><span class="co">#&gt; 6:               NaN                NaN            NaN              NaN</span></span>
+<span><span class="co">#&gt;    R_oilseeds_hat_ha R_barley_hat_ha Q_wheat_hat_ha Q_barley_hat_ha</span></span>
+<span><span class="co">#&gt;                &lt;num&gt;           &lt;num&gt;          &lt;num&gt;           &lt;num&gt;</span></span>
+<span><span class="co">#&gt; 1:               NaN             NaN            NaN             NaN</span></span>
+<span><span class="co">#&gt; 2:               NaN             NaN            NaN             NaN</span></span>
+<span><span class="co">#&gt; 3:               NaN             NaN            NaN             NaN</span></span>
+<span><span class="co">#&gt; 4:               NaN             NaN            NaN             NaN</span></span>
+<span><span class="co">#&gt; 5:               NaN             NaN            NaN             NaN</span></span>
+<span><span class="co">#&gt; 6:               NaN             NaN            NaN             NaN</span></span>
+<span><span class="co">#&gt;    Q_sorghum_hat_ha Q_oilseeds_hat_ha S_wheat_cl_hat_ha S_sheep_cl_hat_ha</span></span>
+<span><span class="co">#&gt;               &lt;num&gt;             &lt;num&gt;             &lt;num&gt;             &lt;num&gt;</span></span>
+<span><span class="co">#&gt; 1:              NaN               NaN               NaN    0.000046854152</span></span>
+<span><span class="co">#&gt; 2:              NaN               NaN               NaN    0.000066325878</span></span>
+<span><span class="co">#&gt; 3:              NaN               NaN               NaN    0.000007771546</span></span>
+<span><span class="co">#&gt; 4:              NaN               NaN               NaN    0.000070963917</span></span>
+<span><span class="co">#&gt; 5:              NaN               NaN               NaN    0.000007780997</span></span>
+<span><span class="co">#&gt; 6:              NaN               NaN               NaN    0.000059600116</span></span>
+<span><span class="co">#&gt;    S_sheep_births_hat_ha S_sheep_deaths_hat_ha S_beef_cl_hat_ha</span></span>
+<span><span class="co">#&gt;                    &lt;num&gt;                 &lt;num&gt;            &lt;num&gt;</span></span>
+<span><span class="co">#&gt; 1:        0.000048411171        0.000007187978       0.02034820</span></span>
+<span><span class="co">#&gt; 2:        0.000057753874        0.000009039695       0.02974461</span></span>
+<span><span class="co">#&gt; 3:        0.000007320093        0.000000000000       0.05393181</span></span>
+<span><span class="co">#&gt; 4:        0.000062521929        0.000009726773       0.03057606</span></span>
+<span><span class="co">#&gt; 5:        0.000006834211        0.000000000000       0.04944272</span></span>
+<span><span class="co">#&gt; 6:        0.000053976389        0.000008478467       0.03322463</span></span>
+<span><span class="co">#&gt;    S_beef_births_hat_ha S_beef_deaths_hat_ha Q_beef_hat_ha Q_sheep_hat_ha</span></span>
+<span><span class="co">#&gt;                   &lt;num&gt;                &lt;num&gt;         &lt;num&gt;          &lt;num&gt;</span></span>
+<span><span class="co">#&gt; 1:          0.005212591          0.000989490   0.004790528  0.00007117650</span></span>
+<span><span class="co">#&gt; 2:          0.007970856          0.001468278   0.009646485  0.00009448864</span></span>
+<span><span class="co">#&gt; 3:          0.014745383          0.002867331   0.014401773  0.00001299674</span></span>
+<span><span class="co">#&gt; 4:          0.008602196          0.001446424   0.009577272  0.00010191595</span></span>
+<span><span class="co">#&gt; 5:          0.011527594          0.002491037   0.014668761  0.00001283228</span></span>
+<span><span class="co">#&gt; 6:          0.008456550          0.001627910   0.009281578  0.00008869032</span></span>
+<span><span class="co">#&gt;    Q_lamb_hat_ha R_beef_hat_ha R_sheep_hat_ha R_lamb_hat_ha</span></span>
+<span><span class="co">#&gt;            &lt;num&gt;         &lt;num&gt;          &lt;num&gt;         &lt;num&gt;</span></span>
+<span><span class="co">#&gt; 1:             0      7.392679    0.010222802             0</span></span>
+<span><span class="co">#&gt; 2:             0     14.281910    0.014485890             0</span></span>
+<span><span class="co">#&gt; 3:             0     24.308574    0.001821158             0</span></span>
+<span><span class="co">#&gt; 4:             0     14.518771    0.015352095             0</span></span>
+<span><span class="co">#&gt; 5:             0     23.060943    0.001892115             0</span></span>
+<span><span class="co">#&gt; 6:             0     14.474964    0.013278806             0</span></span>
+<span><span class="co">#&gt;    C_fodder_hat_ha C_fert_hat_ha C_fuel_hat_ha C_chem_hat_ha</span></span>
+<span><span class="co">#&gt;              &lt;num&gt;         &lt;num&gt;         &lt;num&gt;         &lt;num&gt;</span></span>
+<span><span class="co">#&gt; 1:       0.3553107  0.0007795925     0.4282799  0.0002169123</span></span>
+<span><span class="co">#&gt; 2:       0.7040333  0.0670951492     0.5663560  0.0212989625</span></span>
+<span><span class="co">#&gt; 3:       0.9473936  0.1475929946     0.9244438  0.0398376851</span></span>
+<span><span class="co">#&gt; 4:       0.7060111  0.0764850563     0.5688555  0.0223214940</span></span>
+<span><span class="co">#&gt; 5:       1.0269189  0.1592835324     0.8337981  0.0416492516</span></span>
+<span><span class="co">#&gt; 6:       0.7019839  0.0997758317     0.5575842  0.0293469147</span></span>
+<span><span class="co">#&gt;    A_total_cropped_ha FBP_pfe_hat_ha farmland_per_cell    lon    lat</span></span>
+<span><span class="co">#&gt;                 &lt;num&gt;          &lt;num&gt;             &lt;num&gt;  &lt;num&gt;  &lt;num&gt;</span></span>
+<span><span class="co">#&gt; 1:     0.000001588013       2.142158          62.26270 142.60 -10.75</span></span>
+<span><span class="co">#&gt; 2:     0.000144292922       6.679382          61.71605 136.75 -11.05</span></span>
+<span><span class="co">#&gt; 3:     0.000296036096      16.185389          61.82964 132.90 -11.15</span></span>
+<span><span class="co">#&gt; 4:     0.000151675639       7.711993          72.85995 136.70 -11.20</span></span>
+<span><span class="co">#&gt; 5:     0.000316535762      10.294743          61.82964 133.45 -11.60</span></span>
+<span><span class="co">#&gt; 6:     0.000201161236       7.101658          61.71605 136.25 -11.60</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -358,19 +470,28 @@ list of {tidync} objects.</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/get_topsoil_thickness.html">get_topsoil_thickness</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/read_topsoil_thickness_stars.html">read_topsoil_thickness_stars</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
-<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span>
+<span><span class="co">#&gt; stars object with 2 dimensions and 1 attribute</span></span>
+<span><span class="co">#&gt; attribute(s), summary of first 100000 cells:</span></span>
+<span><span class="co">#&gt;         Min. 1st Qu. Median Mean 3rd Qu. Max.   NA's</span></span>
+<span><span class="co">#&gt; thpk_1    NA      NA     NA  NaN      NA   NA 100000</span></span>
+<span><span class="co">#&gt; dimension(s):</span></span>
+<span><span class="co">#&gt;   from   to offset delta refsys x/y</span></span>
+<span><span class="co">#&gt; x    1 4150  112.5  0.01 WGS 84 [x]</span></span>
+<span><span class="co">#&gt; y    1 3401 -9.995 -0.01 WGS 84 [y]</span></span>
 <span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_topsoil_thickness.html">get_topsoil_thickness</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/read_topsoil_thickness_terra.html">read_topsoil_thickness_terra</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
-<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/read_topsoil_thickness_terra.html">read_topsoil_thickness_terra</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>For your convenience, {read.abares} re-exports [terra::plot()], so
 you can just use <code><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot()</a></code> with the {terra} objects in
 {read.abares}.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'plot': object 'x' not found</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="plot-topsoil-depth-1.png" alt="Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)"><p class="caption">
+Soil Thickness for Australian areas of intensive agriculture of Layer 1
+(A Horizon - top-soil) (derived from soil mapping)
+</p>
+</div>
 <div class="section level3">
 <h3 id="soil-thickness-metadata">Soil Thickness Metadata<a class="anchor" aria-label="anchor" href="#soil-thickness-metadata"></a>
 </h3>
@@ -379,16 +500,375 @@ you call the topsoil thickness object in your R session.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/get_topsoil_thickness.html">get_topsoil_thickness</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
-<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span></code></pre></div>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ── Soil Thickness for Australian areas of intensive agriculture of Layer 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ── Dataset ANZLIC ID ANZCW1202000149 ──</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Feature attribute definition Predicted average Thickness (mm) of soil</span></span>
+<span><span class="co">#&gt; layer 1 in the 0.01 X 0.01 degree quadrat.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Custodian: CSIRO Land &amp; Water</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Jurisdiction Australia</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Short Description The digital map data is provided in geographical</span></span>
+<span><span class="co">#&gt; coordinates based on the World Geodetic System 1984 (WGS84) datum. This</span></span>
+<span><span class="co">#&gt; raster data set has a grid resolution of 0.001 degrees (approximately</span></span>
+<span><span class="co">#&gt; equivalent to 1.1 km).</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; The data set is a product of the National Land and Water Resources Audit</span></span>
+<span><span class="co">#&gt; (NLWRA) as a base dataset.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Data Type: Spatial representation type RASTER</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Projection Map: projection GEOGRAPHIC</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Datum: WGS84</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Map Units: DECIMAL DEGREES</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Scale: Scale/ resolution 1:1 000 000</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Usage Purpose Estimates of soil depths are needed to calculate the amount</span></span>
+<span><span class="co">#&gt; of any soil constituent in either volume or mass terms (bulk density is</span></span>
+<span><span class="co">#&gt; also needed) - for example, the volume of water stored in the rooting</span></span>
+<span><span class="co">#&gt; zone potentially available for plant use, to assess total stores of soil</span></span>
+<span><span class="co">#&gt; carbon for greenhouse inventory or to assess total stores of nutrients.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Provide indications of probable thickness soil layer 1 in agricultural</span></span>
+<span><span class="co">#&gt; areas where soil thickness testing has not been carried out.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Use Limitation: This dataset is bound by the requirements set down by the</span></span>
+<span><span class="co">#&gt; National Land &amp; Water Resources Audit</span></span>
+<span><span class="co">#&gt; To see the full metadata, call `print_topsoil_thickness_metadata()` on a</span></span>
+<span><span class="co">#&gt; soil thickness object in your R session.</span></span></code></pre></div>
 <p>But, {read.abares} provides a function for you to browse the topsoil
 thickness metadata in your console.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/get_topsoil_thickness.html">get_topsoil_thickness</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/print_topsoil_thickness_metadata.html">print_topsoil_thickness_metadata</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
-<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span></code></pre></div>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ── Topsoil Thickness for Australian areas of intensive agriculture of Laye</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ── Dataset ANZLIC ID ANZCW1202000149 ──</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Custodian CSIRO, Land &amp; Water</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Jurisdiction Australia</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Description Abstract Surface of predicted Thickness of soil layer 1 (A</span></span>
+<span><span class="co">#&gt; Horizon - top-soil) surface for the intensive agricultural areas of</span></span>
+<span><span class="co">#&gt; Australia.  Data modelled from area based observations made by soil</span></span>
+<span><span class="co">#&gt; agencies both State and CSIRO and presented as .0.01 degree grid cells.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Topsoils (A horizons) are defined as the surface soil layers in which</span></span>
+<span><span class="co">#&gt; organic matter accumulates, and may include dominantly organic surface</span></span>
+<span><span class="co">#&gt; layers (O and P horizons).</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; The depth of topsoil is important because, with their higher organic</span></span>
+<span><span class="co">#&gt; matter contents, topsoils (A horizon) generally have more suitable</span></span>
+<span><span class="co">#&gt; properties for agriculture, including higher permeability and higher</span></span>
+<span><span class="co">#&gt; levels of soil nutrients.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Estimates of soil depths are needed to calculate the amount of any soil</span></span>
+<span><span class="co">#&gt; constituent in either volume or mass terms (bulk density is also needed)</span></span>
+<span><span class="co">#&gt; - for example, the volume of water stored in the rooting zone potentially</span></span>
+<span><span class="co">#&gt; available for plant use, to assess total stores of soil carbon for</span></span>
+<span><span class="co">#&gt; Greenhouse inventory or to assess total stores of nutrients.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; The pattern of soil depth is strongly related to topography - the shape</span></span>
+<span><span class="co">#&gt; and slope of the land.  Deeper soils are typically found in the river</span></span>
+<span><span class="co">#&gt; valleys where soils accumulate on floodplains and at the footslopes of</span></span>
+<span><span class="co">#&gt; ranges (zones of deposition), while soils on hillslopes (zones of</span></span>
+<span><span class="co">#&gt; erosion) tend to be shallow.  Map of thickness of topsoil was derived</span></span>
+<span><span class="co">#&gt; from soil map data and interpreted tables of soil properties for specific</span></span>
+<span><span class="co">#&gt; soil groups.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; The quality of data on soil depth in existing soil profile datasets is</span></span>
+<span><span class="co">#&gt; questionable and as the thickness of soil horizons varies locally with</span></span>
+<span><span class="co">#&gt; topography, values for map units are general averages.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; The final ASRIS polygon attributed surfaces are a mosaic of all of the</span></span>
+<span><span class="co">#&gt; data obtained from various state and federal agencies. The surfaces have</span></span>
+<span><span class="co">#&gt; been constructed with the best available soil survey information</span></span>
+<span><span class="co">#&gt; available at the time. The surfaces also rely on a number of assumptions.</span></span>
+<span><span class="co">#&gt; One being that an area weighted mean is a good estimate of the soil</span></span>
+<span><span class="co">#&gt; attributes for that polygon or map-unit. Another assumption made is that</span></span>
+<span><span class="co">#&gt; the look-up tables provided by McKenzie et al. (2000), state and</span></span>
+<span><span class="co">#&gt; territories accurately depict the soil attribute values for each soil</span></span>
+<span><span class="co">#&gt; type.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; The accuracy of the maps is most dependent on the scale of the original</span></span>
+<span><span class="co">#&gt; polygon data sets and the level of soil survey that has taken place in</span></span>
+<span><span class="co">#&gt; each state.  The scale of the various soil maps used in deriving this map</span></span>
+<span><span class="co">#&gt; is available by accessing the data-source grid, the scale is used as an</span></span>
+<span><span class="co">#&gt; assessment of the likely accuracy of the modelling.  The Atlas of</span></span>
+<span><span class="co">#&gt; Australian Soils is considered to be the least accurate dataset and has</span></span>
+<span><span class="co">#&gt; therefore only been used where there is no state based data.  Of the</span></span>
+<span><span class="co">#&gt; state datasets Western Australian sub-systems, South Australian land</span></span>
+<span><span class="co">#&gt; systems and NSW soil landscapes and reconnaissance mapping would be the</span></span>
+<span><span class="co">#&gt; most reliable based on scale. NSW soil landscapes and reconnaissance</span></span>
+<span><span class="co">#&gt; mapping use only one dominant soil type per polygon in the estimation of</span></span>
+<span><span class="co">#&gt; attributes.  South Australia and Western Australia use several soil types</span></span>
+<span><span class="co">#&gt; per polygon or map-unit.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; The digital map data is provided in geographical coordinates based on the</span></span>
+<span><span class="co">#&gt; World Geodetic System 1984 (WGS84) datum. This raster data set has a grid</span></span>
+<span><span class="co">#&gt; resolution of 0.001 degrees (approximately equivalent to 1.1 km).</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; The data set is a product of the National Land and Water Resources Audit</span></span>
+<span><span class="co">#&gt; (NLWRA) as a base dataset.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Search Word(s) AGRICULTURE SOIL Physics Models</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Geographic Extent Name(s) GEN Category</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; GEN Custodial Jurisdiction</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; GEN Name</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Geographic Bounding Box North Bounding Latitude -10.707149 South Bounding</span></span>
+<span><span class="co">#&gt; Latitude -43.516831 East Bounding Longitude 113.19673 West Bounding</span></span>
+<span><span class="co">#&gt; Longitude 153.990779</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Geographic Extent Polygon(s) 115.0 -33.5,115.7 -33.3,115.7 -31.7,113.2</span></span>
+<span><span class="co">#&gt; -26.2,113.5 -25.4,114.1 -26.4,114.3 -26.0,113.4 -24.3,114.1 -21.8,122.3</span></span>
+<span><span class="co">#&gt; -18.2,122.2 -17.2,126.7 -13.6,129.1 -14.9,130.6 -12.3,132.6 -12.1,132.5</span></span>
+<span><span class="co">#&gt; -11.6,131.9 -11.3,132.0 -11.1,137.0 -12.2,135.4 -14.7,140.0 -17.7,140.8</span></span>
+<span><span class="co">#&gt; -17.4,141.7 -15.1,141.4 -13.7,142.2 -10.9,142.7 -10.7,143.9 -14.5,144.6</span></span>
+<span><span class="co">#&gt; -14.1,145.3 -14.9,146.3 -18.8,148.9 -20.5,150.9 -22.6,153.2 -25.9,153.7</span></span>
+<span><span class="co">#&gt; -28.8,153.0 -31.3,150.8 -34.8,150.0 -37.5,147.8 -37.9,146.3 -39.0,144.7</span></span>
+<span><span class="co">#&gt; -38.4,143.5 -38.8,141.3 -38.4,139.7 -37.3,139.7 -36.9,139.9 -36.7,138.9</span></span>
+<span><span class="co">#&gt; -35.5,138.1 -35.7,138.6 -34.7,138.1 -34.2,137.8 -35.1,136.9 -35.3,137.0</span></span>
+<span><span class="co">#&gt; -34.9,137.5 -34.9,137.4 -34.0,137.9 -33.5,137.8 -32.6,137.3 -33.6,135.9</span></span>
+<span><span class="co">#&gt; -34.7,136.1 -34.8,136.0 -35.0,135.1 -34.6,135.2 -34.5,135.4 -34.5,134.7</span></span>
+<span><span class="co">#&gt; -33.3,134.0 -32.9,133.7 -32.1,133.3 -32.2,132.2 -32.0,131.3 -31.5,127.3</span></span>
+<span><span class="co">#&gt; -32.3,126.0 -32.3,123.6 -33.9,123.2 -34.0,122.1 -34.0,121.9 -33.8,119.9</span></span>
+<span><span class="co">#&gt; -34.0,119.6 -34.4,118.0 -35.1,116.0 -34.8,115.0 -34.3,115.0 -33.5</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 147.8 -42.9,147.9 -42.6,148.2 -42.1,148.3 -42.3,148.3 -41.3,148.3</span></span>
+<span><span class="co">#&gt; -41.0,148.0 -40.7,147.4 -41.0,146.7 -41.1,146.6 -41.2,146.5 -41.1,146.4</span></span>
+<span><span class="co">#&gt; -41.2,145.3 -40.8,145.3 -40.7,145.2 -40.8,145.2 -40.8,145.2 -40.8,145.0</span></span>
+<span><span class="co">#&gt; -40.8,144.7 -40.7,144.7 -41.2,145.2 -42.2,145.4 -42.2,145.5 -42.4,145.5</span></span>
+<span><span class="co">#&gt; -42.5,145.2 -42.3,145.5 -43.0,146.0 -43.3,146.0 -43.6,146.9 -43.6,146.9</span></span>
+<span><span class="co">#&gt; -43.5,147.1 -43.3,147.0 -43.1,147.2 -43.3,147.3 -42.8,147.4 -42.9,147.6</span></span>
+<span><span class="co">#&gt; -42.8,147.5 -42.8,147.8 -42.9,147.9 -43.0,147.7 -43.0,147.8 -43.2,147.9</span></span>
+<span><span class="co">#&gt; -43.2,147.9 -43.2,148.0 -43.2,148.0 -43.1,148.0 -42.9,147.8 -42.9</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 136.7 -13.8,136.7 -13.7,136.6 -13.7,136.6 -13.8,136.4 -13.8,136.4</span></span>
+<span><span class="co">#&gt; -14.1,136.3 -14.2,136.9 -14.3,137.0 -14.2,136.9 -14.2,136.7 -14.1,136.9</span></span>
+<span><span class="co">#&gt; -13.8,136.7 -13.8,136.7 -13.8</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 139.5 -16.6,139.7 -16.5,139.4 -16.5,139.2 -16.7,139.3 -16.7,139.5 -16.6</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 153.0 -25.2,153.0 -25.7,153.1 -25.8,153.4 -25.0,153.2 -24.7,153.2</span></span>
+<span><span class="co">#&gt; -25.0,153.0 -25.2</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 137.5 -36.1,137.7 -35.9,138.1 -35.9,137.9 -35.7,137.6 -35.7,137.6</span></span>
+<span><span class="co">#&gt; -35.6,136.6 -35.8,136.7 -36.1,137.2 -36.0,137.5 -36.1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 143.9 -39.7,144.0 -39.6,144.1 -39.8,143.9 -40.2,143.9 -40.0,143.9 -39.7</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 148.0 -39.7,147.7 -39.9,147.9 -39.9,148.0 -40.1,148.1 -40.3,148.3</span></span>
+<span><span class="co">#&gt; -40.2,148.3 -40.0,148.0 -39.7</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 148.1 -40.4,148.0 -40.4,148.4 -40.3,148.4 -40.5,148.1 -40.4</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 130.4 -11.3,130.4 -11.2,130.6 -11.3,130.7 -11.4,130.9 -11.3,131.0</span></span>
+<span><span class="co">#&gt; -11.4,131.1 -11.3,131.2 -11.4,131.3 -11.2,131.5 -11.4,131.5 -11.5,131.0</span></span>
+<span><span class="co">#&gt; -11.9,130.8 -11.8,130.6 -11.7,130.0 -11.8,130.1 -11.7,130.3 -11.7,130.1</span></span>
+<span><span class="co">#&gt; -11.5,130.4 -11.3</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Data Currency Beginning date 1999-09-01</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Ending date 2001-03-31</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Dataset Status Progress COMPLETE</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Maintenance and Update Frequency NOT PLANNED</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Access Stored Data Format DIGITAL - ESRI Arc/Info integer GRID</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Available Format Type DIGITAL - ESRI Arc/Info integer GRID</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Access Constraint Subject to the terms &amp; condition of the data access &amp;</span></span>
+<span><span class="co">#&gt; management agreement between the National Land &amp; Water Audit and ANZLIC</span></span>
+<span><span class="co">#&gt; parties</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Data Quality Lineage The soil attribute surface was created using the</span></span>
+<span><span class="co">#&gt; following datasets 1. The digital polygon coverage of the Soil-Landforms</span></span>
+<span><span class="co">#&gt; of the Murray Darling Basis (MDBSIS)(Bui et al. 1998), classified as</span></span>
+<span><span class="co">#&gt; principal profile forms (PPF's) (Northcote 1979). 2. The digital Atlas of</span></span>
+<span><span class="co">#&gt; Australian Soils (Northcote et al.1960-1968)(Leahy, 1993). 3. Western</span></span>
+<span><span class="co">#&gt; Australia land systems coverage (Agriculture WA). 4. Western Australia</span></span>
+<span><span class="co">#&gt; sub-systems coverage (Agriculture WA). 5. Ord river catchment soils</span></span>
+<span><span class="co">#&gt; coverage (Agriculture WA). 6. Victoria soils coverage (Victorian</span></span>
+<span><span class="co">#&gt; Department of Natural Resources and Environment - NRE). 7. NSW Soil</span></span>
+<span><span class="co">#&gt; Landscapes and reconnaissance soil landscape mapping (NSW Department of</span></span>
+<span><span class="co">#&gt; Land and Water Conservation - DLWC). 8. New South Wales Land systems west</span></span>
+<span><span class="co">#&gt; (NSW Department of Land and Water Conservation - DLWC). 9. South</span></span>
+<span><span class="co">#&gt; Australia soil land-systems (Primary Industries and Resources South</span></span>
+<span><span class="co">#&gt; Australia - PIRSA). 10. Northern Territory soils coverage (Northern</span></span>
+<span><span class="co">#&gt; Territory Department of Lands, Planning and Environment). 11. A mosaic of</span></span>
+<span><span class="co">#&gt; Queensland soils coverages (Queensland Department of Natural Resources -</span></span>
+<span><span class="co">#&gt; QDNR). 12. A look-up table linking PPF values from the Atlas of</span></span>
+<span><span class="co">#&gt; Australian Soils with interpreted soil attributes (McKenzie et al. 2000).</span></span>
+<span><span class="co">#&gt; 13. Look_up tables provided by WA Agriculture linking WA soil groups with</span></span>
+<span><span class="co">#&gt; interpreted soil attributes. 14. Look_up tables provided by PIRSA linking</span></span>
+<span><span class="co">#&gt; SA soil groups with interpreted soil attributes.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; The continuous raster surface representing Thickness of soil layer 1 was</span></span>
+<span><span class="co">#&gt; created by combining national and state level digitised land systems maps</span></span>
+<span><span class="co">#&gt; and soil surveys linked to look-up tables listing soil type and</span></span>
+<span><span class="co">#&gt; corresponding attribute values.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Because thickness is used sparingly in the Factual Key, estimations of</span></span>
+<span><span class="co">#&gt; thickness in the look-up tables were made using empirical correlations</span></span>
+<span><span class="co">#&gt; for particular soil types.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; To estimate a soil attribute where more than one soil type was given for</span></span>
+<span><span class="co">#&gt; a polygon or map-unit, the soil attribute values related to each soil</span></span>
+<span><span class="co">#&gt; type in the look-up table were weighted according to the area occupied by</span></span>
+<span><span class="co">#&gt; that soil type within the polygon or map-unit. The final soil attribute</span></span>
+<span><span class="co">#&gt; values are an area weighted average for a polygon or map-unit.  The</span></span>
+<span><span class="co">#&gt; polygon data was then converted to a continuous raster surface using the</span></span>
+<span><span class="co">#&gt; soil attribute values calculated for each polygon.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; The ASRIS soil attribute surfaces created using polygon attribution</span></span>
+<span><span class="co">#&gt; relied on a number of data sets from various state agencies.  Each</span></span>
+<span><span class="co">#&gt; polygon data set was turned into a continuous surface grid based on the</span></span>
+<span><span class="co">#&gt; calculated soil attribute value for that polygon.  The grids where then</span></span>
+<span><span class="co">#&gt; merged on the basis that, where available, state data replaced the Atlas</span></span>
+<span><span class="co">#&gt; of Australian Soils and MDBSIS.  MDBSIS derived soil attribute values</span></span>
+<span><span class="co">#&gt; were restricted to areas where MDBSIS was deemed to be more accurate that</span></span>
+<span><span class="co">#&gt; the Atlas of Australian Soils (see Carlile et al (2001a).</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; In cases where a soil type was missing from the look-up table or layer 2</span></span>
+<span><span class="co">#&gt; did not exist for that soil type, the percent area of the soils remaining</span></span>
+<span><span class="co">#&gt; were adjusted prior to calculating the final soil attribute value. The</span></span>
+<span><span class="co">#&gt; method used to attribute polygons was dependent on the data supplied by</span></span>
+<span><span class="co">#&gt; individual State agencies.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; The modelled grid was resampled from 0.0025 degree cells to 0.01 degree</span></span>
+<span><span class="co">#&gt; cells using bilinear interpolation</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Positional Accuracy The predictive surface is a 0.01 X 0.01 degree grid</span></span>
+<span><span class="co">#&gt; and has a locational accurate of about 1m.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; The positional accuracy of the defining polygons have variable positional</span></span>
+<span><span class="co">#&gt; accuracy most locations are expected to be within 100m of the recorded</span></span>
+<span><span class="co">#&gt; location.  The vertical accuracy is not relevant. The positional</span></span>
+<span><span class="co">#&gt; assessment has been made by considering the tools used to generate the</span></span>
+<span><span class="co">#&gt; locational information and contacting the data providers.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; The other parameters used in the production of the led surface have a</span></span>
+<span><span class="co">#&gt; range of positional accuracy ranging from + - 50 m to + - kilometres.</span></span>
+<span><span class="co">#&gt; This contribute to the loss of attribute accuracy in the surface.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attribute Accuracy Input attribute accuracy for the areas is highly</span></span>
+<span><span class="co">#&gt; variable.  The predictive has a variable and much lower attribute</span></span>
+<span><span class="co">#&gt; accuracy due to the irregular distribution and the limited positional</span></span>
+<span><span class="co">#&gt; accuracy of the parameters used for modelling.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; There are several sources of error in estimating soil depth and thickness</span></span>
+<span><span class="co">#&gt; of horizons for the look-up tables.  Because thickness is used sparingly</span></span>
+<span><span class="co">#&gt; in the Factual Key, estimations of thickness in the look-up tables were</span></span>
+<span><span class="co">#&gt; made using empirical correlations for particular soil types.  The quality</span></span>
+<span><span class="co">#&gt; of data on soil depth in existing soil profile datasets is questionable,</span></span>
+<span><span class="co">#&gt; in soil mapping, thickness of soil horizons varies locally with</span></span>
+<span><span class="co">#&gt; topography, so values for map units are general averages.  The definition</span></span>
+<span><span class="co">#&gt; of the depth of soil or regolith is imprecise and it can be difficult to</span></span>
+<span><span class="co">#&gt; determine the lower limit of soil.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; The assumption made that an area weighted mean of soil attribute values</span></span>
+<span><span class="co">#&gt; based on soil type is a good estimation of a soil property is debatable,</span></span>
+<span><span class="co">#&gt; in that it does not supply the soil attribute value at any given</span></span>
+<span><span class="co">#&gt; location. Rather it is designed to show national and regional patterns in</span></span>
+<span><span class="co">#&gt; soil properties. The use of the surfaces at farm or catchment scale</span></span>
+<span><span class="co">#&gt; modelling may prove inaccurate. Also the use of look-up tables to</span></span>
+<span><span class="co">#&gt; attribute soil types is only as accurate as the number of observations</span></span>
+<span><span class="co">#&gt; used to estimate a attribute value for a soil type. Some soil types in</span></span>
+<span><span class="co">#&gt; the look-up tables may have few observations, yet the average attribute</span></span>
+<span><span class="co">#&gt; value is still taken as the attribute value for that soil type. Different</span></span>
+<span><span class="co">#&gt; states are using different taxonomic schemes making a national soil</span></span>
+<span><span class="co">#&gt; database difficult. Another downfall of the area weighted approach is</span></span>
+<span><span class="co">#&gt; that some soil types may not be listed in look-up tables. If a soil type</span></span>
+<span><span class="co">#&gt; is a dominant one within a polygon or map-unit, but is not listed within</span></span>
+<span><span class="co">#&gt; the look-up table or is not attributed within the look-up table then the</span></span>
+<span><span class="co">#&gt; final soil attribute value for that polygon will be biased towards the</span></span>
+<span><span class="co">#&gt; minor soil types that do exist. This may also happen when a large area is</span></span>
+<span><span class="co">#&gt; occupied by a soil type which has no B horizon. In this case the final</span></span>
+<span><span class="co">#&gt; soil attribute value will be area weighted on the soils with a B horizon,</span></span>
+<span><span class="co">#&gt; ignoring a major soil type within that polygon or map-unit. The layer 2</span></span>
+<span><span class="co">#&gt; surfaces have large areas of no-data because all soils listed for a</span></span>
+<span><span class="co">#&gt; particular map-unit or polygon had no B horizon.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Logical Consistency Surface is fully logically consistent as only one</span></span>
+<span><span class="co">#&gt; parameter is shown, as predicted average Soil Thickness within each grid</span></span>
+<span><span class="co">#&gt; cell</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Completeness Surface is nearly complete.  There are some areas (about %1</span></span>
+<span><span class="co">#&gt; missing) for which insufficient parameters were known to provide a useful</span></span>
+<span><span class="co">#&gt; prediction and thus attributes are absent in these areas.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Contact Information Contact Organisation (s) CSIRO, Land &amp; Water</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Contact Position Project Leader</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Mail Address ACLEP, GPO 1666</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Locality Canberra</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; State ACT</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Country AUSTRALIA</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Postcode 2601</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Telephone 02 6246 5922</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Facsimile 02 6246 5965</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Electronic Mail Address neil.mckenzie@cbr.clw.csiro.au</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Metadata Date Metadata Date 2001-07-01</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Additional Metadata Additional Metadata</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Entity and Attributes Entity Name Soil Thickness Layer 1 (derived from</span></span>
+<span><span class="co">#&gt; mapping)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Entity description Estimated Soil Thickness (mm) of Layer 1 on a cell by</span></span>
+<span><span class="co">#&gt; cell basis</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Feature attribute name VALUE</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Feature attribute definition Predicted average Thickness (mm) of soil</span></span>
+<span><span class="co">#&gt; layer 1 in the 0.01 X 0.01 degree quadrat</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Data Type Spatial representation type RASTER</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Projection Map projection GEOGRAPHIC</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Datum WGS84</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Map units DECIMAL DEGREES</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Scale Scale/ resolution 1:1 000 000</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Usage Purpose Estimates of soil depths are needed to calculate the amount</span></span>
+<span><span class="co">#&gt; of any soil constituent in either volume or mass terms (bulk density is</span></span>
+<span><span class="co">#&gt; also needed) - for example, the volume of water stored in the rooting</span></span>
+<span><span class="co">#&gt; zone potentially available for plant use, to assess total stores of soil</span></span>
+<span><span class="co">#&gt; carbon for Greenhouse inventory or to assess total stores of nutrients.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Provide indications of probable Thickness soil layer 1 in agricultural</span></span>
+<span><span class="co">#&gt; areas where soil thickness testing has not been carried out</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Use Use Limitation This dataset is bound by the requirements set down by</span></span>
+<span><span class="co">#&gt; the National Land &amp; Water Resources Audit</span></span></code></pre></div>
 <p>But you can also access it directly and use [pander::pander()] to
 include it in a document like this vignette.</p>
 <blockquote>
@@ -396,14 +876,265 @@ include it in a document like this vignette.</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rapporter.github.io/pander/" class="external-link">pander</a></span><span class="op">)</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_topsoil_thickness.html">get_topsoil_thickness</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: restarting interrupted promise evaluation</span></span>
-<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
-<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">$</span><span class="va">metadata</span></span>
-<span><span class="co">#&gt; Error: object 'x' not found</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/pander/man/pander.html" class="external-link">pander</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error: object 'y' not found</span></span>
-<span><span class="co">#&gt; Error in if (tail(stdout, 1) == "") {: argument is of length zero</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/pander/man/pander.html" class="external-link">pander</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></code></pre></div>
+<p>Dataset ANZLIC ID ANZCW1202000149</p>
+<p>Title Soil Thickness for Australian areas of intensive agriculture of
+Layer 1 (A Horizon - top-soil) (derived from soil mapping)</p>
+<p>Custodian CSIRO, Land &amp; Water</p>
+<p>Jurisdiction Australia</p>
+<p>Description Abstract Surface of predicted Thickness of soil layer 1
+(A Horizon - top-soil) surface for the intensive agricultural areas of
+Australia. Data modelled from area based observations made by soil
+agencies both State and CSIRO and presented as .0.01 degree grid
+cells.</p>
+<p>Topsoils (A horizons) are defined as the surface soil layers in which
+organic matter accumulates, and may include dominantly organic surface
+layers (O and P horizons).</p>
+<p>The depth of topsoil is important because, with their higher organic
+matter contents, topsoils (A horizon) generally have more suitable
+properties for agriculture, including higher permeability and higher
+levels of soil nutrients.</p>
+<p>Estimates of soil depths are needed to calculate the amount of any
+soil constituent in either volume or mass terms (bulk density is also
+needed) - for example, the volume of water stored in the rooting zone
+potentially available for plant use, to assess total stores of soil
+carbon for Greenhouse inventory or to assess total stores of
+nutrients.</p>
+<p>The pattern of soil depth is strongly related to topography - the
+shape and slope of the land. Deeper soils are typically found in the
+river valleys where soils accumulate on floodplains and at the
+footslopes of ranges (zones of deposition), while soils on hillslopes
+(zones of erosion) tend to be shallow. Map of thickness of topsoil was
+derived from soil map data and interpreted tables of soil properties for
+specific soil groups.</p>
+<p>The quality of data on soil depth in existing soil profile datasets
+is questionable and as the thickness of soil horizons varies locally
+with topography, values for map units are general averages.</p>
+<p>The final ASRIS polygon attributed surfaces are a mosaic of all of
+the data obtained from various state and federal agencies. The surfaces
+have been constructed with the best available soil survey information
+available at the time. The surfaces also rely on a number of
+assumptions. One being that an area weighted mean is a good estimate of
+the soil attributes for that polygon or map-unit. Another assumption
+made is that the look-up tables provided by McKenzie et al. (2000),
+state and territories accurately depict the soil attribute values for
+each soil type.</p>
+<p>The accuracy of the maps is most dependent on the scale of the
+original polygon data sets and the level of soil survey that has taken
+place in each state. The scale of the various soil maps used in deriving
+this map is available by accessing the data-source grid, the scale is
+used as an assessment of the likely accuracy of the modelling. The Atlas
+of Australian Soils is considered to be the least accurate dataset and
+has therefore only been used where there is no state based data. Of the
+state datasets Western Australian sub-systems, South Australian land
+systems and NSW soil landscapes and reconnaissance mapping would be the
+most reliable based on scale. NSW soil landscapes and reconnaissance
+mapping use only one dominant soil type per polygon in the estimation of
+attributes. South Australia and Western Australia use several soil types
+per polygon or map-unit.</p>
+<p>The digital map data is provided in geographical coordinates based on
+the World Geodetic System 1984 (WGS84) datum. This raster data set has a
+grid resolution of 0.001 degrees (approximately equivalent to 1.1
+km).</p>
+<p>The data set is a product of the National Land and Water Resources
+Audit (NLWRA) as a base dataset.</p>
+<p>Search Word(s) AGRICULTURE<br>
+SOIL Physics Models</p>
+<p>Geographic Extent Name(s) GEN Category</p>
+<p>GEN Custodial Jurisdiction</p>
+<p>GEN Name</p>
+<p>Geographic Bounding Box North Bounding Latitude -10.707149 South
+Bounding Latitude -43.516831 East Bounding Longitude 113.19673 West
+Bounding Longitude 153.990779</p>
+<p>Geographic Extent Polygon(s) 115.0 -33.5,115.7 -33.3,115.7
+-31.7,113.2 -26.2,113.5 -25.4,114.1 -26.4,114.3 -26.0,113.4 -24.3,114.1
+-21.8,122.3 -18.2,122.2 -17.2,126.7 -13.6,129.1 -14.9,130.6 -12.3,132.6
+-12.1,132.5 -11.6,131.9 -11.3,132.0 -11.1,137.0 -12.2,135.4 -14.7,140.0
+-17.7,140.8 -17.4,141.7 -15.1,141.4 -13.7,142.2 -10.9,142.7 -10.7,143.9
+-14.5,144.6 -14.1,145.3 -14.9,146.3 -18.8,148.9 -20.5,150.9 -22.6,153.2
+-25.9,153.7 -28.8,153.0 -31.3,150.8 -34.8,150.0 -37.5,147.8 -37.9,146.3
+-39.0,144.7 -38.4,143.5 -38.8,141.3 -38.4,139.7 -37.3,139.7 -36.9,139.9
+-36.7,138.9 -35.5,138.1 -35.7,138.6 -34.7,138.1 -34.2,137.8 -35.1,136.9
+-35.3,137.0 -34.9,137.5 -34.9,137.4 -34.0,137.9 -33.5,137.8 -32.6,137.3
+-33.6,135.9 -34.7,136.1 -34.8,136.0 -35.0,135.1 -34.6,135.2 -34.5,135.4
+-34.5,134.7 -33.3,134.0 -32.9,133.7 -32.1,133.3 -32.2,132.2 -32.0,131.3
+-31.5,127.3 -32.3,126.0 -32.3,123.6 -33.9,123.2 -34.0,122.1 -34.0,121.9
+-33.8,119.9 -34.0,119.6 -34.4,118.0 -35.1,116.0 -34.8,115.0 -34.3,115.0
+-33.5</p>
+<p>147.8 -42.9,147.9 -42.6,148.2 -42.1,148.3 -42.3,148.3 -41.3,148.3
+-41.0,148.0 -40.7,147.4 -41.0,146.7 -41.1,146.6 -41.2,146.5 -41.1,146.4
+-41.2,145.3 -40.8,145.3 -40.7,145.2 -40.8,145.2 -40.8,145.2 -40.8,145.0
+-40.8,144.7 -40.7,144.7 -41.2,145.2 -42.2,145.4 -42.2,145.5 -42.4,145.5
+-42.5,145.2 -42.3,145.5 -43.0,146.0 -43.3,146.0 -43.6,146.9 -43.6,146.9
+-43.5,147.1 -43.3,147.0 -43.1,147.2 -43.3,147.3 -42.8,147.4 -42.9,147.6
+-42.8,147.5 -42.8,147.8 -42.9,147.9 -43.0,147.7 -43.0,147.8 -43.2,147.9
+-43.2,147.9 -43.2,148.0 -43.2,148.0 -43.1,148.0 -42.9,147.8 -42.9</p>
+<p>136.7 -13.8,136.7 -13.7,136.6 -13.7,136.6 -13.8,136.4 -13.8,136.4
+-14.1,136.3 -14.2,136.9 -14.3,137.0 -14.2,136.9 -14.2,136.7 -14.1,136.9
+-13.8,136.7 -13.8,136.7 -13.8</p>
+<p>139.5 -16.6,139.7 -16.5,139.4 -16.5,139.2 -16.7,139.3 -16.7,139.5
+-16.6</p>
+<p>153.0 -25.2,153.0 -25.7,153.1 -25.8,153.4 -25.0,153.2 -24.7,153.2
+-25.0,153.0 -25.2</p>
+<p>137.5 -36.1,137.7 -35.9,138.1 -35.9,137.9 -35.7,137.6 -35.7,137.6
+-35.6,136.6 -35.8,136.7 -36.1,137.2 -36.0,137.5 -36.1</p>
+<p>143.9 -39.7,144.0 -39.6,144.1 -39.8,143.9 -40.2,143.9 -40.0,143.9
+-39.7</p>
+<p>148.0 -39.7,147.7 -39.9,147.9 -39.9,148.0 -40.1,148.1 -40.3,148.3
+-40.2,148.3 -40.0,148.0 -39.7</p>
+<p>148.1 -40.4,148.0 -40.4,148.4 -40.3,148.4 -40.5,148.1 -40.4</p>
+<p>130.4 -11.3,130.4 -11.2,130.6 -11.3,130.7 -11.4,130.9 -11.3,131.0
+-11.4,131.1 -11.3,131.2 -11.4,131.3 -11.2,131.5 -11.4,131.5 -11.5,131.0
+-11.9,130.8 -11.8,130.6 -11.7,130.0 -11.8,130.1 -11.7,130.3 -11.7,130.1
+-11.5,130.4 -11.3</p>
+<p>Data Currency Beginning date 1999-09-01</p>
+<p>Ending date 2001-03-31</p>
+<p>Dataset Status Progress COMPLETE</p>
+<p>Maintenance and Update Frequency NOT PLANNED</p>
+<p>Access Stored Data Format DIGITAL - ESRI Arc/Info integer GRID</p>
+<p>Available Format Type DIGITAL - ESRI Arc/Info integer GRID</p>
+<p>Access Constraint Subject to the terms &amp; condition of the data
+access &amp; management agreement between the National Land &amp; Water
+Audit and ANZLIC parties</p>
+<p>Data Quality Lineage The soil attribute surface was created using the
+following datasets 1. The digital polygon coverage of the Soil-Landforms
+of the Murray Darling Basis (MDBSIS)(Bui et al. 1998), classified as
+principal profile forms (PPF’s) (Northcote 1979). 2. The digital Atlas
+of Australian Soils (Northcote et al.1960-1968)(Leahy, 1993). 3. Western
+Australia land systems coverage (Agriculture WA). 4. Western Australia
+sub-systems coverage (Agriculture WA). 5. Ord river catchment soils
+coverage (Agriculture WA). 6. Victoria soils coverage (Victorian
+Department of Natural Resources and Environment - NRE). 7. NSW Soil
+Landscapes and reconnaissance soil landscape mapping (NSW Department of
+Land and Water Conservation - DLWC). 8. New South Wales Land systems
+west (NSW Department of Land and Water Conservation - DLWC). 9. South
+Australia soil land-systems (Primary Industries and Resources South
+Australia - PIRSA). 10. Northern Territory soils coverage (Northern
+Territory Department of Lands, Planning and Environment). 11. A mosaic
+of Queensland soils coverages (Queensland Department of Natural
+Resources - QDNR). 12. A look-up table linking PPF values from the Atlas
+of Australian Soils with interpreted soil attributes (McKenzie et
+al. 2000). 13. Look_up tables provided by WA Agriculture linking WA soil
+groups with interpreted soil attributes. 14. Look_up tables provided by
+PIRSA linking SA soil groups with interpreted soil attributes.</p>
+<p>The continuous raster surface representing Thickness of soil layer 1
+was created by combining national and state level digitised land systems
+maps and soil surveys linked to look-up tables listing soil type and
+corresponding attribute values.</p>
+<p>Because thickness is used sparingly in the Factual Key, estimations
+of thickness in the look-up tables were made using empirical
+correlations for particular soil types.</p>
+<p>To estimate a soil attribute where more than one soil type was given
+for a polygon or map-unit, the soil attribute values related to each
+soil type in the look-up table were weighted according to the area
+occupied by that soil type within the polygon or map-unit. The final
+soil attribute values are an area weighted average for a polygon or
+map-unit. The polygon data was then converted to a continuous raster
+surface using the soil attribute values calculated for each polygon.</p>
+<p>The ASRIS soil attribute surfaces created using polygon attribution
+relied on a number of data sets from various state agencies. Each
+polygon data set was turned into a continuous surface grid based on the
+calculated soil attribute value for that polygon. The grids where then
+merged on the basis that, where available, state data replaced the Atlas
+of Australian Soils and MDBSIS. MDBSIS derived soil attribute values
+were restricted to areas where MDBSIS was deemed to be more accurate
+that the Atlas of Australian Soils (see Carlile et al (2001a).</p>
+<p>In cases where a soil type was missing from the look-up table or
+layer 2 did not exist for that soil type, the percent area of the soils
+remaining were adjusted prior to calculating the final soil attribute
+value. The method used to attribute polygons was dependent on the data
+supplied by individual State agencies.</p>
+<p>The modelled grid was resampled from 0.0025 degree cells to 0.01
+degree cells using bilinear interpolation</p>
+<p>Positional Accuracy The predictive surface is a 0.01 X 0.01 degree
+grid and has a locational accurate of about 1m.</p>
+<p>The positional accuracy of the defining polygons have variable
+positional accuracy most locations are expected to be within 100m of the
+recorded location. The vertical accuracy is not relevant. The positional
+assessment has been made by considering the tools used to generate the
+locational information and contacting the data providers.</p>
+<p>The other parameters used in the production of the led surface have a
+range of positional accuracy ranging from + - 50 m to + - kilometres.
+This contribute to the loss of attribute accuracy in the surface.</p>
+<p>Attribute Accuracy Input attribute accuracy for the areas is highly
+variable. The predictive has a variable and much lower attribute
+accuracy due to the irregular distribution and the limited positional
+accuracy of the parameters used for modelling.</p>
+<p>There are several sources of error in estimating soil depth and
+thickness of horizons for the look-up tables. Because thickness is used
+sparingly in the Factual Key, estimations of thickness in the look-up
+tables were made using empirical correlations for particular soil types.
+The quality of data on soil depth in existing soil profile datasets is
+questionable, in soil mapping, thickness of soil horizons varies locally
+with topography, so values for map units are general averages. The
+definition of the depth of soil or regolith is imprecise and it can be
+difficult to determine the lower limit of soil.</p>
+<p>The assumption made that an area weighted mean of soil attribute
+values based on soil type is a good estimation of a soil property is
+debatable, in that it does not supply the soil attribute value at any
+given location. Rather it is designed to show national and regional
+patterns in soil properties. The use of the surfaces at farm or
+catchment scale modelling may prove inaccurate. Also the use of look-up
+tables to attribute soil types is only as accurate as the number of
+observations used to estimate a attribute value for a soil type. Some
+soil types in the look-up tables may have few observations, yet the
+average attribute value is still taken as the attribute value for that
+soil type. Different states are using different taxonomic schemes making
+a national soil database difficult. Another downfall of the area
+weighted approach is that some soil types may not be listed in look-up
+tables. If a soil type is a dominant one within a polygon or map-unit,
+but is not listed within the look-up table or is not attributed within
+the look-up table then the final soil attribute value for that polygon
+will be biased towards the minor soil types that do exist. This may also
+happen when a large area is occupied by a soil type which has no B
+horizon. In this case the final soil attribute value will be area
+weighted on the soils with a B horizon, ignoring a major soil type
+within that polygon or map-unit. The layer 2 surfaces have large areas
+of no-data because all soils listed for a particular map-unit or polygon
+had no B horizon.</p>
+<p>Logical Consistency Surface is fully logically consistent as only one
+parameter is shown, as predicted average Soil Thickness within each grid
+cell</p>
+<p>Completeness Surface is nearly complete. There are some areas (about
+%1 missing) for which insufficient parameters were known to provide a
+useful prediction and thus attributes are absent in these areas.</p>
+<p>Contact Information Contact Organisation (s) CSIRO, Land &amp;
+Water</p>
+<p>Contact Position Project Leader</p>
+<p>Mail Address ACLEP, GPO 1666</p>
+<p>Locality Canberra</p>
+<p>State ACT</p>
+<p>Country AUSTRALIA</p>
+<p>Postcode 2601</p>
+<p>Telephone 02 6246 5922</p>
+<p>Facsimile 02 6246 5965</p>
+<p>Electronic Mail Address <a href="mailto:neil.mckenzie@cbr.clw.csiro.au" class="email">neil.mckenzie@cbr.clw.csiro.au</a></p>
+<p>Metadata Date Metadata Date 2001-07-01</p>
+<p>Additional Metadata Additional Metadata</p>
+<p>Entity and Attributes Entity Name Soil Thickness Layer 1 (derived
+from mapping)</p>
+<p>Entity description Estimated Soil Thickness (mm) of Layer 1 on a cell
+by cell basis</p>
+<p>Feature attribute name VALUE</p>
+<p>Feature attribute definition Predicted average Thickness (mm) of soil
+layer 1 in the 0.01 X 0.01 degree quadrat</p>
+<p>Data Type Spatial representation type RASTER</p>
+<p>Projection Map projection GEOGRAPHIC</p>
+<p>Datum WGS84</p>
+<p>Map units DECIMAL DEGREES</p>
+<p>Scale Scale/ resolution 1:1 000 000</p>
+<p>Usage Purpose Estimates of soil depths are needed to calculate the
+amount of any soil constituent in either volume or mass terms (bulk
+density is also needed) - for example, the volume of water stored in the
+rooting zone potentially available for plant use, to assess total stores
+of soil carbon for Greenhouse inventory or to assess total stores of
+nutrients.</p>
+<p>Provide indications of probable Thickness soil layer 1 in
+agricultural areas where soil thickness testing has not been carried
+out</p>
+Use Use Limitation This dataset is bound by the requirements set down by
+the National Land &amp; Water Resources Audit
 </blockquote>
 </div>
 </div>
