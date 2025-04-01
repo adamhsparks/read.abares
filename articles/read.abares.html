@@ -107,10 +107,12 @@ tabular data from the estimates, <em>e.g.</em>,
 <code>read_state_estimates()</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">aagis_regions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_aagis_regions.html">read_aagis_regions</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
+<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">aagis_regions</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
-<img src="aagis-regions-1.png" alt="plot of chunk aagis-regions"><div class="figcaption">plot of chunk aagis-regions</div>
+<img src="figure/aagis-regions-1.png" alt="plot of chunk aagis-regions"><div class="figcaption">plot of chunk aagis-regions</div>
 </div>
 </div>
 <div class="section level3">
@@ -127,7 +129,9 @@ will use the <code><a href="../reference/read_historical_regional_estimates.html
 to download the AAGIS data for the regions in the AAGIS regions
 shapefile and join the data and visualise some of the data.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">aagis_region_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_historical_regional_estimates.html">read_historical_regional_estimates</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">aagis_region_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_historical_regional_estimates.html">read_historical_regional_estimates</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
+<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="merging-the-aagis-regions-spatial-data-with-the-aagis-regional-data">Merging the AAGIS Regions Spatial Data with the AAGIS Regional
@@ -159,7 +163,7 @@ Australia.</p>
 <span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">Year</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
-<img src="aagis-regions-plot-1.png" alt="plot of chunk aagis-regions-plot"><div class="figcaption">plot of chunk aagis-regions-plot</div>
+<img src="figure/aagis-regions-plot-1.png" alt="plot of chunk aagis-regions-plot"><div class="figcaption">plot of chunk aagis-regions-plot</div>
 </div>
 </div>
 </div>
@@ -204,28 +208,16 @@ as such should be considered experimental.</p>
 <p>Check the file format information for the NetCDF files.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/print_agfd_nc_file_format.html">print_agfd_nc_file_format</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ────────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">#&gt; Each of the layers in simulation output data is represented as a 2D raster in</span></span>
-<span><span class="co">#&gt; NETCDF files, with the following grid format:</span></span>
-<span><span class="co">#&gt; CRS: EPSG:4326 - WGS 84 - Geographic</span></span>
-<span><span class="co">#&gt; Extent: 111.975 -44.525 156.275 -9.975</span></span>
-<span><span class="co">#&gt; Unit: Degrees</span></span>
-<span><span class="co">#&gt; Width: 886</span></span>
-<span><span class="co">#&gt; Height: 691</span></span>
-<span><span class="co">#&gt; Cell size: 0.05 degree x 0.05 degree</span></span>
-<span><span class="co">#&gt; ────────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">#&gt; For further details, see the ABARES website,</span></span>
-<span><span class="co">#&gt; &lt;https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
+<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span></code></pre></div>
 <p>Download or load from the local cache and read the AGFD files as a
 list of {stars} objects.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## A list of {stars} objects</span></span>
 <span><span class="va">star</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_agfd.html">get_agfd</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/read_agfd_stars.html">read_agfd_stars</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Will return stars object with 612226 cells.</span></span>
-<span><span class="co">#&gt; No projection information found in nc file. </span></span>
-<span><span class="co">#&gt;  Coordinate variable units found to be degrees, </span></span>
-<span><span class="co">#&gt;  assuming WGS84 Lat/Lon.</span></span>
+<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
+<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">star</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt; stars object with 2 dimensions and 6 attributes</span></span>
@@ -254,6 +246,8 @@ list of {stars} objects.</p>
 <code class="sourceCode R"><span><span class="co">## A {terra} `rast` object</span></span>
 <span><span class="va">terr</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_agfd.html">get_agfd</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/read_agfd_terra.html">read_agfd_terra</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
+<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">terr</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt; class       : SpatRaster </span></span>
@@ -271,6 +265,8 @@ list of {tidync} objects.</p>
 <code class="sourceCode R"><span><span class="co">## A list of {tidync} objects</span></span>
 <span><span class="va">tdnc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_agfd.html">get_agfd</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/read_agfd_tidync.html">read_agfd_tidync</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
+<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">tdnc</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $source</span></span>
@@ -348,94 +344,9 @@ list of {tidync} objects.</p>
 <span><span class="fu"><a href="../reference/get_agfd.html">get_agfd</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/read_agfd_dt.html">read_agfd_dt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                            id farmno R_total_hat_ha C_total_hat_ha</span></span>
-<span><span class="co">#&gt;                        &lt;char&gt;  &lt;num&gt;          &lt;num&gt;          &lt;num&gt;</span></span>
-<span><span class="co">#&gt; 1: f2022.c1991.p2022.t2022.nc  15612       7.636519       4.405228</span></span>
-<span><span class="co">#&gt; 2: f2022.c1991.p2022.t2022.nc  21495      14.811169       9.165632</span></span>
-<span><span class="co">#&gt; 3: f2022.c1991.p2022.t2022.nc  23418      24.874456      14.858595</span></span>
-<span><span class="co">#&gt; 4: f2022.c1991.p2022.t2022.nc  24494      15.043653       9.326359</span></span>
-<span><span class="co">#&gt; 5: f2022.c1991.p2022.t2022.nc  32429      23.630099      13.681063</span></span>
-<span><span class="co">#&gt; 6: f2022.c1991.p2022.t2022.nc  32485      15.009926       9.815501</span></span>
-<span><span class="co">#&gt;    FBP_fci_hat_ha FBP_fbp_hat_ha A_wheat_hat_ha H_wheat_dot_hat A_barley_hat_ha</span></span>
-<span><span class="co">#&gt;             &lt;num&gt;          &lt;num&gt;          &lt;num&gt;           &lt;num&gt;           &lt;num&gt;</span></span>
-<span><span class="co">#&gt; 1:       3.231292       1.766127            NaN             NaN             NaN</span></span>
-<span><span class="co">#&gt; 2:       5.645538       6.178280            NaN             NaN             NaN</span></span>
-<span><span class="co">#&gt; 3:      10.015861      15.504923            NaN             NaN             NaN</span></span>
-<span><span class="co">#&gt; 4:       5.717294       7.212161            NaN             NaN             NaN</span></span>
-<span><span class="co">#&gt; 5:       9.949036       9.612778            NaN             NaN             NaN</span></span>
-<span><span class="co">#&gt; 6:       5.194425       6.582035            NaN             NaN             NaN</span></span>
-<span><span class="co">#&gt;    H_barley_dot_hat A_sorghum_hat_ha H_sorghum_dot_hat A_oilseeds_hat_ha</span></span>
-<span><span class="co">#&gt;               &lt;num&gt;            &lt;num&gt;             &lt;num&gt;             &lt;num&gt;</span></span>
-<span><span class="co">#&gt; 1:              NaN              NaN               NaN               NaN</span></span>
-<span><span class="co">#&gt; 2:              NaN              NaN               NaN               NaN</span></span>
-<span><span class="co">#&gt; 3:              NaN              NaN               NaN               NaN</span></span>
-<span><span class="co">#&gt; 4:              NaN              NaN               NaN               NaN</span></span>
-<span><span class="co">#&gt; 5:              NaN              NaN               NaN               NaN</span></span>
-<span><span class="co">#&gt; 6:              NaN              NaN               NaN               NaN</span></span>
-<span><span class="co">#&gt;    H_oilseeds_dot_hat R_wheat_hat_ha R_sorghum_hat_ha R_oilseeds_hat_ha</span></span>
-<span><span class="co">#&gt;                 &lt;num&gt;          &lt;num&gt;            &lt;num&gt;             &lt;num&gt;</span></span>
-<span><span class="co">#&gt; 1:                NaN            NaN              NaN               NaN</span></span>
-<span><span class="co">#&gt; 2:                NaN            NaN              NaN               NaN</span></span>
-<span><span class="co">#&gt; 3:                NaN            NaN              NaN               NaN</span></span>
-<span><span class="co">#&gt; 4:                NaN            NaN              NaN               NaN</span></span>
-<span><span class="co">#&gt; 5:                NaN            NaN              NaN               NaN</span></span>
-<span><span class="co">#&gt; 6:                NaN            NaN              NaN               NaN</span></span>
-<span><span class="co">#&gt;    R_barley_hat_ha Q_wheat_hat_ha Q_barley_hat_ha Q_sorghum_hat_ha</span></span>
-<span><span class="co">#&gt;              &lt;num&gt;          &lt;num&gt;           &lt;num&gt;            &lt;num&gt;</span></span>
-<span><span class="co">#&gt; 1:             NaN            NaN             NaN              NaN</span></span>
-<span><span class="co">#&gt; 2:             NaN            NaN             NaN              NaN</span></span>
-<span><span class="co">#&gt; 3:             NaN            NaN             NaN              NaN</span></span>
-<span><span class="co">#&gt; 4:             NaN            NaN             NaN              NaN</span></span>
-<span><span class="co">#&gt; 5:             NaN            NaN             NaN              NaN</span></span>
-<span><span class="co">#&gt; 6:             NaN            NaN             NaN              NaN</span></span>
-<span><span class="co">#&gt;    Q_oilseeds_hat_ha S_wheat_cl_hat_ha S_sheep_cl_hat_ha S_sheep_births_hat_ha</span></span>
-<span><span class="co">#&gt;                &lt;num&gt;             &lt;num&gt;             &lt;num&gt;                 &lt;num&gt;</span></span>
-<span><span class="co">#&gt; 1:               NaN               NaN    0.000046854152        0.000048411171</span></span>
-<span><span class="co">#&gt; 2:               NaN               NaN    0.000066325878        0.000057753874</span></span>
-<span><span class="co">#&gt; 3:               NaN               NaN    0.000007771546        0.000007320093</span></span>
-<span><span class="co">#&gt; 4:               NaN               NaN    0.000070963917        0.000062521929</span></span>
-<span><span class="co">#&gt; 5:               NaN               NaN    0.000007780997        0.000006834211</span></span>
-<span><span class="co">#&gt; 6:               NaN               NaN    0.000059600116        0.000053976389</span></span>
-<span><span class="co">#&gt;    S_sheep_deaths_hat_ha S_beef_cl_hat_ha S_beef_births_hat_ha</span></span>
-<span><span class="co">#&gt;                    &lt;num&gt;            &lt;num&gt;                &lt;num&gt;</span></span>
-<span><span class="co">#&gt; 1:        0.000007187978       0.02034820          0.005212591</span></span>
-<span><span class="co">#&gt; 2:        0.000009039695       0.02974461          0.007970856</span></span>
-<span><span class="co">#&gt; 3:        0.000000000000       0.05393181          0.014745383</span></span>
-<span><span class="co">#&gt; 4:        0.000009726773       0.03057606          0.008602196</span></span>
-<span><span class="co">#&gt; 5:        0.000000000000       0.04944272          0.011527594</span></span>
-<span><span class="co">#&gt; 6:        0.000008478467       0.03322463          0.008456550</span></span>
-<span><span class="co">#&gt;    S_beef_deaths_hat_ha Q_beef_hat_ha Q_sheep_hat_ha Q_lamb_hat_ha</span></span>
-<span><span class="co">#&gt;                   &lt;num&gt;         &lt;num&gt;          &lt;num&gt;         &lt;num&gt;</span></span>
-<span><span class="co">#&gt; 1:          0.000989490   0.004790528  0.00007117650             0</span></span>
-<span><span class="co">#&gt; 2:          0.001468278   0.009646485  0.00009448864             0</span></span>
-<span><span class="co">#&gt; 3:          0.002867331   0.014401773  0.00001299674             0</span></span>
-<span><span class="co">#&gt; 4:          0.001446424   0.009577272  0.00010191595             0</span></span>
-<span><span class="co">#&gt; 5:          0.002491037   0.014668761  0.00001283228             0</span></span>
-<span><span class="co">#&gt; 6:          0.001627910   0.009281578  0.00008869032             0</span></span>
-<span><span class="co">#&gt;    R_beef_hat_ha R_sheep_hat_ha R_lamb_hat_ha C_fodder_hat_ha C_fert_hat_ha</span></span>
-<span><span class="co">#&gt;            &lt;num&gt;          &lt;num&gt;         &lt;num&gt;           &lt;num&gt;         &lt;num&gt;</span></span>
-<span><span class="co">#&gt; 1:      7.392679    0.010222802             0       0.3553107  0.0007795925</span></span>
-<span><span class="co">#&gt; 2:     14.281910    0.014485890             0       0.7040333  0.0670951492</span></span>
-<span><span class="co">#&gt; 3:     24.308574    0.001821158             0       0.9473936  0.1475929946</span></span>
-<span><span class="co">#&gt; 4:     14.518771    0.015352095             0       0.7060111  0.0764850563</span></span>
-<span><span class="co">#&gt; 5:     23.060943    0.001892115             0       1.0269189  0.1592835324</span></span>
-<span><span class="co">#&gt; 6:     14.474964    0.013278806             0       0.7019839  0.0997758317</span></span>
-<span><span class="co">#&gt;    C_fuel_hat_ha C_chem_hat_ha A_total_cropped_ha FBP_pfe_hat_ha</span></span>
-<span><span class="co">#&gt;            &lt;num&gt;         &lt;num&gt;              &lt;num&gt;          &lt;num&gt;</span></span>
-<span><span class="co">#&gt; 1:     0.4282799  0.0002169123     0.000001588013       2.142158</span></span>
-<span><span class="co">#&gt; 2:     0.5663560  0.0212989625     0.000144292922       6.679382</span></span>
-<span><span class="co">#&gt; 3:     0.9244438  0.0398376851     0.000296036096      16.185389</span></span>
-<span><span class="co">#&gt; 4:     0.5688555  0.0223214940     0.000151675639       7.711993</span></span>
-<span><span class="co">#&gt; 5:     0.8337981  0.0416492516     0.000316535762      10.294743</span></span>
-<span><span class="co">#&gt; 6:     0.5575842  0.0293469147     0.000201161236       7.101658</span></span>
-<span><span class="co">#&gt;    farmland_per_cell    lon    lat</span></span>
-<span><span class="co">#&gt;                &lt;num&gt;  &lt;num&gt;  &lt;num&gt;</span></span>
-<span><span class="co">#&gt; 1:          62.26270 142.60 -10.75</span></span>
-<span><span class="co">#&gt; 2:          61.71605 136.75 -11.05</span></span>
-<span><span class="co">#&gt; 3:          61.82964 132.90 -11.15</span></span>
-<span><span class="co">#&gt; 4:          72.85995 136.70 -11.20</span></span>
-<span><span class="co">#&gt; 5:          61.82964 133.45 -11.60</span></span>
-<span><span class="co">#&gt; 6:          61.71605 136.25 -11.60</span></span></code></pre></div>
+<span><span class="co">#&gt; Warning in head(read_agfd_dt(get_agfd(cache = TRUE))): internal error 1 in</span></span>
+<span><span class="co">#&gt; R_decompress1 with libdeflate</span></span>
+<span><span class="co">#&gt; Error in head(read_agfd_dt(get_agfd(cache = TRUE))): lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -447,11 +358,13 @@ list of {tidync} objects.</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/get_topsoil_thickness.html">get_topsoil_thickness</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/read_topsoil_thickness_stars.html">read_topsoil_thickness_stars</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in read_topsoil_thickness_stars(get_topsoil_thickness(cache = TRUE)): could not find function "read_topsoil_thickness_stars"</span></span>
+<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
+<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span>
 <span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_topsoil_thickness.html">get_topsoil_thickness</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/read_topsoil_thickness_terra.html">read_topsoil_thickness_terra</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in read_topsoil_thickness_terra(get_topsoil_thickness(cache = TRUE)): could not find function "read_topsoil_thickness_terra"</span></span></code></pre></div>
+<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
+<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span></code></pre></div>
 <p>For your convenience, {read.abares} re-exports [terra::plot()], so
 you can just use <code><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot()</a></code> with the {terra} objects in
 {read.abares}.</p>
@@ -466,14 +379,16 @@ you call the topsoil thickness object in your R session.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/get_topsoil_thickness.html">get_topsoil_thickness</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in get_topsoil_thickness(cache = TRUE): could not find function "get_topsoil_thickness"</span></span></code></pre></div>
+<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
+<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span></code></pre></div>
 <p>But, {read.abares} provides a function for you to browse the topsoil
 thickness metadata in your console.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/get_topsoil_thickness.html">get_topsoil_thickness</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/print_topsoil_thickness_metadata.html">print_topsoil_thickness_metadata</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in print_topsoil_thickness_metadata(get_topsoil_thickness(cache = TRUE)): could not find function "print_topsoil_thickness_metadata"</span></span></code></pre></div>
+<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
+<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span></code></pre></div>
 <p>But you can also access it directly and use [pander::pander()] to
 include it in a document like this vignette.</p>
 <blockquote>
@@ -481,7 +396,9 @@ include it in a document like this vignette.</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rapporter.github.io/pander/" class="external-link">pander</a></span><span class="op">)</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_topsoil_thickness.html">get_topsoil_thickness</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in get_topsoil_thickness(cache = TRUE): could not find function "get_topsoil_thickness"</span></span>
+<span><span class="co">#&gt; Warning: restarting interrupted promise evaluation</span></span>
+<span><span class="co">#&gt; Warning: internal error 1 in R_decompress1 with libdeflate</span></span>
+<span><span class="co">#&gt; Error: lazy-load database '/Users/283204f/Library/R/arm64/4.4/library/read.abares/R/read.abares.rdb' is corrupt</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">$</span><span class="va">metadata</span></span>
 <span><span class="co">#&gt; Error: object 'x' not found</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/pander/man/pander.html" class="external-link">pander</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
