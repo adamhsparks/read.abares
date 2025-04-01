@@ -28,7 +28,7 @@ library(read.abares)
 
 ### Obtaining the AAGIS Regions Spatial Data
 
-Now you can download files and pipe directly into the class object that you desire for the ABARES Agriculture and Grazing Industries Survey data.
+ABARES offers spatial data for the Australian Agricultural and Grazing Industries Survey (AAGIS) regions that can be used for mapping tabular data from the estimates, _e.g._, `read_historical_regional_estimates()` or `read_state_estimates()`.
 
 ```{r aagis-regions}
 aagis_regions <- read_aagis_regions(cache = TRUE)
@@ -39,7 +39,7 @@ plot(aagis_regions)
 ### Obtaining AAGIS Data by Region
 
 {read.abares} offers functions to download the ABARES estimates based on the AAGIS results for national level, `read_historical_national_estimates()`, regional level `read_historical_regional_estimates()`, and state level `read_historical_state_estimates()` and also by performance category `read_estimates_by_performance_category()` and size category `read_estimates_by_size()`.
-For this example, w ill use the `read_historical_regional_estimates()` function to download the AAGIS data for the regions in the AAGIS regions shapefile and join the data and visualise some of the data.
+For this example, we will use the `read_historical_regional_estimates()` function to download the AAGIS data for the regions in the AAGIS regions shapefile and join the data and visualise some of the data.
 
 ```{r aagis-regions-data}
 aagis_region_data <- read_historical_regional_estimates()
