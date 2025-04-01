@@ -62,6 +62,7 @@ codecov
 coverages
 de
 digitised
+dplyr
 et
 farmno
 farmpredict
@@ -72,7 +73,9 @@ fertiliser
 filepath
 footslopes
 funder
+geopackage
 geospatial
+ggplot
 gridded
 gzipped
 hillslopes
@@ -95,3 +98,4 @@ standardises
 terra
 tidync
 topsoils
+visualise
