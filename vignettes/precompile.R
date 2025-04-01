@@ -3,8 +3,6 @@
 library(knitr)
 library(here)
 
-devtools::install() # ensure we're building with the latest version of the package
-
 knit(
   input = "vignettes/read.abares.Rmd.orig",
   output = "vignettes/read.abares.Rmd"
