@@ -40,7 +40,7 @@
 #' @examples
 #'
 #' f <- fs::path_file(tempdir(), "fdp-beta-national-historical.csv")
-#' retry_download(
+#' .retry_download(
 #'   url = "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-national-historical.csv",
 #'   .f = f
 #' )
