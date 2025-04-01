@@ -17,8 +17,7 @@ vignette: >
 ``` r
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
-  fig.path = "vigfig-"
+  comment = "#>"
 )
 ```
 
@@ -31,14 +30,6 @@ First we need to load the {read.abares} library.
 
 ``` r
 library(read.abares)
-#> 
-#> Attaching package: 'read.abares'
-#> The following object is masked from 'package:graphics':
-#> 
-#>     plot
-#> The following object is masked from 'package:base':
-#> 
-#>     plot
 ```
 
 ## Working with AAGIS Regions Spatial Data
@@ -54,7 +45,7 @@ aagis_regions <- read_aagis_regions(cache = TRUE)
 plot(aagis_regions)
 ```
 
-![plot of chunk aagis-regions](vigfig-aagis-regions-1.png)
+![plot of chunk aagis-regions](aagis-regions-1.png)
 
 ### Obtaining AAGIS Data by Region
 
@@ -74,14 +65,6 @@ To join the data, we will use the `left_join()` function from the {dplyr} packag
 
 ``` r
 library(dplyr)
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 
 aagis_dat <- left_join(aagis_regions, aagis_region_data)
 #> Joining with `by = join_by(ABARES_region)`
@@ -106,7 +89,7 @@ ggplot(total_area) +
   theme_minimal()
 ```
 
-![plot of chunk aagis-regions-plot](vigfig-aagis-regions-plot-1.png)
+![plot of chunk aagis-regions-plot](aagis-regions-plot-1.png)
 
 ## Working With AGFD Data
 
@@ -221,7 +204,7 @@ head(tdnc[[1]])
 #> # A tibble: 1 × 2
 #>   access              source                                                    
 #>   <dttm>              <chr>                                                     
-#> 1 2025-04-01 14:25:26 /Users/283204f/Library/Caches/org.R-project.R/R/read.abar…
+#> 1 2025-04-01 14:42:14 /Users/283204f/Library/Caches/org.R-project.R/R/read.abar…
 #> 
 #> $axis
 #> # A tibble: 84 × 3

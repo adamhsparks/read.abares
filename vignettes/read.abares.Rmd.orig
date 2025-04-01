@@ -16,8 +16,7 @@ vignette: >
 ```{r setup}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
-  fig.path = "vigfig-"
+  comment = "#>"
 )
 ```
 
