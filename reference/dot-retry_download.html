@@ -79,8 +79,7 @@ reading into the active <span style="R">R</span> session later.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/path_file.html" class="external-link">path_file</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"fdp-beta-national-historical.csv"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in fs::path_file(tempdir(), "fdp-beta-national-historical.csv"):</span> unused argument ("fdp-beta-national-historical.csv")</span>
+<span class="r-in"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/path.html" class="external-link">path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"fdp-beta-national-historical.csv"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">.retry_download</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  url <span class="op">=</span> <span class="st">"https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-national-historical.csv"</span>,</span></span>
 <span class="r-in"><span>  .f <span class="op">=</span> <span class="va">f</span></span></span>
