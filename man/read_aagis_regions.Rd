@@ -30,11 +30,14 @@ Industries Survey (\acronym{AAGIS}) regions geospatial shapefile.
 \itemize{
 \item the geometries are automatically corrected to fix invalid geometries that
 are present in the original shapefile,
+\item column names are set to start with an upper-case letter,
+\item the original column named, "name", is set to "AAGIS_region" to align with
+column names that the \code{\link[data.table:data.table]{data.table::data.table()}} provided by
+\code{\link[=read_historical_regional_estimates]{read_historical_regional_estimates()}} to allow for easier merging of data
+for mapping, and,
 \item a new column, "State" is added to be used for mapping state estimates with
-data provided by \code{\link[=read_historical_state_estimates]{read_historical_state_estimates()}}, and
-\item column names are set to start with an upper-case letter and "name" is set
-to "AAGIS_region" to align with the \code{\link[data.table:data.table]{data.table::data.table()}} provided by
-\code{\link[=read_historical_regional_estimates]{read_historical_regional_estimates()}} to allow for easier merging of data.
+data for mapping state historical estimate values found in the
+\code{\link[data.table:data.table]{data.table::data.table()}} from \code{\link[=read_historical_state_estimates]{read_historical_state_estimates()}}.
 }
 }
 \examples{

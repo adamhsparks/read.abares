@@ -6,11 +6,15 @@
 #'  @note Upon import a few operations are carried out,
 #'  * the geometries are automatically corrected to fix invalid geometries that
 #'  are present in the original shapefile,
+#'  * column names are set to start with an upper-case letter,
+#'  * the original column named, "name", is set to "AAGIS_region" to align with
+#'  column names that the [data.table::data.table()] provided by
+#'  [read_historical_regional_estimates()] to allow for easier merging of data
+#'  for mapping, and,
 #'  * a new column, "State" is added to be used for mapping state estimates with
-#'  data provided by [read_historical_state_estimates()], and
-#'  * column names are set to start with an upper-case letter and "name" is set
-#'  to "AAGIS_region" to align with the [data.table::data.table()] provided by
-#'  [read_historical_regional_estimates()] to allow for easier merging of data.
+#'  data for mapping state historical estimate values found in the
+#'  [data.table::data.table()] from [read_historical_state_estimates()].
+#'
 #'
 #' @param cache Cache the \acronym{AAGIS} regions' geospatial file after
 #' downloading using `tools::R_user_dir("read.abares", "cache")` to identify the
