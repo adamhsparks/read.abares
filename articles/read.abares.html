@@ -135,6 +135,14 @@ datasets together to visualise the data. To join the data, we will use
 the <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join()</a></code> function from the {dplyr} package.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     filter, lag</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
 <span></span>
 <span><span class="va">aagis_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">aagis_regions</span>, <span class="va">aagis_region_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(ABARES_region)`</span></span></code></pre></div>
@@ -246,8 +254,8 @@ list of {stars} objects.</p>
 <span><span class="co">#&gt;     from  to refsys              values x/y</span></span>
 <span><span class="co">#&gt; lon    1 886 WGS 84 [886] 112,...,156.2 [x]</span></span>
 <span><span class="co">#&gt; lat    1 691 WGS 84 [691] -44.5,...,-10 [y]</span></span></code></pre></div>
-<p>Download or load from the local cache and read the AGFD files as a
-<code><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">terra::rast</a></code> object.</p>
+<p>Download or load from the local cache and read the AGFD files as a <a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">terra::rast</a>
+object.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## A {terra} `rast` object</span></span>
 <span><span class="va">terr</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_agfd.html">get_agfd</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -275,7 +283,7 @@ list of {tidync} objects.</p>
 <span><span class="co">#&gt; # A tibble: 1 × 2</span></span>
 <span><span class="co">#&gt;   access              source                                                    </span></span>
 <span><span class="co">#&gt;   &lt;dttm&gt;              &lt;chr&gt;                                                     </span></span>
-<span><span class="co">#&gt; 1 2025-04-01 15:54:01 /Users/283204f/Library/Caches/org.R-project.R/R/read.abar…</span></span>
+<span><span class="co">#&gt; 1 2025-04-01 16:45:43 /Users/283204f/Library/Caches/org.R-project.R/R/read.abar…</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $axis</span></span>
 <span><span class="co">#&gt; # A tibble: 84 × 3</span></span>
@@ -439,8 +447,8 @@ list of {tidync} objects.</p>
 <div class="section level2">
 <h2 id="working-with-the-soil-thickness-map">Working With the Soil Thickness Map<a class="anchor" aria-label="anchor" href="#working-with-the-soil-thickness-map"></a>
 </h2>
-<p>You can download the soil depth map and import it as a {stars} or
-[terra::rast()] object.</p>
+<p>You can download the soil depth map and import it as a {stars} or <a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">terra::rast()</a>
+object.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/get_topsoil_thickness.html">get_topsoil_thickness</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -456,8 +464,8 @@ list of {tidync} objects.</p>
 <span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_topsoil_thickness.html">get_topsoil_thickness</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/read_topsoil_thickness_terra.html">read_topsoil_thickness_terra</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>For your convenience, {read.abares} re-exports [terra::plot()], so
-you can just use <code><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot()</a></code> with the {terra} objects in
+<p>For your convenience, {read.abares} re-exports <a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">terra::plot()</a>,
+so you can just use <code><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot()</a></code> with the {terra} objects in
 {read.abares}.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
