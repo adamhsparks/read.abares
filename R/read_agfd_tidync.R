@@ -20,7 +20,7 @@
 #' agfd_tnc <- get_agfd(cache = TRUE) |>
 #'   read_agfd_tidync()
 #'
-#' head(agfd_tnc[[1]])
+#' head(agfd_tnc)
 #'
 #' @family AGFD
 #' @export

@@ -169,7 +169,7 @@ farmland_per_cell     \tab ha        \tab Indicative area of farmland in the gri
 agfd_tnc <- get_agfd(cache = TRUE) |>
   read_agfd_tidync()
 
-head(agfd_tnc[[1]])
+head(agfd_tnc)
 \dontshow{\}) # examplesIf}
 }
 \references{
