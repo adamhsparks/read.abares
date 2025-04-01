@@ -11,6 +11,7 @@ test_that("read_aagis_regions does cache", {
   ))
   x <- read_aagis_regions(cache = TRUE)
   expect_s3_class(x, "sf")
+  expect_named(x, c("Class", "ABARES_region", "Zone", "State", "geom"))
   expect_false(fs::file_exists(
     fs::path(
       .find_user_cache(),
