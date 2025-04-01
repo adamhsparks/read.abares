@@ -73,15 +73,6 @@ Sparks</h4>
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html" class="external-link">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span></span>
-<span>  collapse <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  comment <span class="op">=</span> <span class="st">"#&gt;"</span>,</span>
-<span>  fig.width <span class="op">=</span> <span class="fl">7</span>,</span>
-<span>  fig.height <span class="op">=</span> <span class="fl">7</span>,</span>
-<span>  fig.align <span class="op">=</span> <span class="st">"center"</span>,</span>
-<span>  fig.path <span class="op">=</span> <span class="st">"vignettes/"</span></span>
-<span><span class="op">)</span></span></code></pre></div>
 <p>This vignette demonstrates some of the functionality of {read.abares}
 and how to work with some of the spatial and tabular data available
 through {read.abares}. Please note that not all functions are
@@ -95,16 +86,8 @@ Gridded Farm Data, which can be downloaded, cached and then imported
 using one of four types of object or the soil thickness data, which
 includes rich metadata.</p>
 <p>First we need to load the {read.abares} library.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'read.abares'</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:graphics':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     plot</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     plot</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="working-with-aagis-regions-spatial-data">Working with AAGIS Regions Spatial Data<a class="anchor" aria-label="anchor" href="#working-with-aagis-regions-spatial-data"></a>
 </h2>
@@ -116,7 +99,7 @@ Grazing Industries Survey (AAGIS) regions that can be used for mapping
 tabular data from the estimates, <em>e.g.</em>,
 <code><a href="../reference/read_historical_regional_estimates.html">read_historical_regional_estimates()</a></code> or
 <code>read_state_estimates()</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">aagis_regions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_aagis_regions.html">read_aagis_regions</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">aagis_regions</span><span class="op">)</span></span></code></pre></div>
@@ -139,7 +122,7 @@ category <code><a href="../reference/read_estimates_by_size.html">read_estimates
 will use the <code><a href="../reference/read_historical_regional_estimates.html">read_historical_regional_estimates()</a></code> function
 to download the AAGIS data for the regions in the AAGIS regions
 shapefile and join the data and visualise some of the data.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">aagis_region_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_historical_regional_estimates.html">read_historical_regional_estimates</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -150,29 +133,21 @@ Data<a class="anchor" aria-label="anchor" href="#merging-the-aagis-regions-spati
 <code><a href="../reference/read_historical_regional_estimates.html">read_historical_regional_estimates()</a></code>, we can merge the two
 datasets together to visualise the data. To join the data, we will use
 the <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join()</a></code> function from the {dplyr} package.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     filter, lag</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
 <span></span>
 <span><span class="va">aagis_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">aagis_regions</span>, <span class="va">aagis_region_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(ABARES_region)`</span></span></code></pre></div>
 <p>Once we’ve joined the data, we can visualise it using {ggplot2}. Here
 we can plot the total area cropped (ha) and facet by year for all of
 Australia.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">total_area</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">aagis_dat</span>, <span class="va">Variable</span> <span class="op">==</span> <span class="op">(</span><span class="st">"Total area cropped (ha)"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="va">total_area</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_sf</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">Value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_sf</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">Value</span>, colour <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">scale_fill_viridis_c</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">labs</span><span class="op">(</span></span>
 <span>    fill <span class="op">=</span> <span class="st">"Total Area Cropped (ha)"</span>,</span>
@@ -222,10 +197,10 @@ as such should be considered experimental.</p>
 </blockquote>
 <p>– Australian Department of Agriculture, Fisheries and Forestry.</p>
 <p>Load the {read.abares} library.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span></code></pre></div>
 <p>Check the file format information for the NetCDF files.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/print_agfd_nc_file_format.html">print_agfd_nc_file_format</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ────────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">#&gt; Each of the layers in simulation output data is represented as a 2D raster in</span></span>
@@ -241,7 +216,7 @@ as such should be considered experimental.</p>
 <span><span class="co">#&gt; &lt;https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data&gt;</span></span></code></pre></div>
 <p>Download or load from the local cache and read the AGFD files as a
 list of {stars} objects.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## A list of {stars} objects</span></span>
 <span><span class="va">star</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_agfd.html">get_agfd</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/read_agfd_stars.html">read_agfd_stars</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -273,7 +248,7 @@ list of {stars} objects.</p>
 <span><span class="co">#&gt; lat    1 691 WGS 84 [691] -44.5,...,-10 [y]</span></span></code></pre></div>
 <p>Download or load from the local cache and read the AGFD files as a
 <code><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">terra::rast</a></code> object.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## A {terra} `rast` object</span></span>
 <span><span class="va">terr</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_agfd.html">get_agfd</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/read_agfd_terra.html">read_agfd_terra</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -290,7 +265,7 @@ list of {stars} objects.</p>
 <span><span class="co">#&gt; max values  :    NaN,         NaN,         NaN,         NaN,         NaN,         NaN, ...</span></span></code></pre></div>
 <p>Download or load from the local cache and read the AGFD files as a
 list of {tidync} objects.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## A list of {tidync} objects</span></span>
 <span><span class="va">tdnc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_agfd.html">get_agfd</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/read_agfd_tidync.html">read_agfd_tidync</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -300,7 +275,7 @@ list of {tidync} objects.</p>
 <span><span class="co">#&gt; # A tibble: 1 × 2</span></span>
 <span><span class="co">#&gt;   access              source                                                    </span></span>
 <span><span class="co">#&gt;   &lt;dttm&gt;              &lt;chr&gt;                                                     </span></span>
-<span><span class="co">#&gt; 1 2025-04-01 15:23:49 /Users/283204f/Library/Caches/org.R-project.R/R/read.abar…</span></span>
+<span><span class="co">#&gt; 1 2025-04-01 15:33:53 /Users/283204f/Library/Caches/org.R-project.R/R/read.abar…</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $axis</span></span>
 <span><span class="co">#&gt; # A tibble: 84 × 3</span></span>
@@ -366,7 +341,7 @@ list of {tidync} objects.</p>
 <span><span class="co">#&gt; # ℹ 39 more rows</span></span></code></pre></div>
 <p>Download or load from the local cache and read the AGFD files as a
 {data.table} object.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## A {data.table} object</span></span>
 <span><span class="fu"><a href="../reference/get_agfd.html">get_agfd</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/read_agfd_dt.html">read_agfd_dt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -466,7 +441,7 @@ list of {tidync} objects.</p>
 </h2>
 <p>You can download the soil depth map and import it as a {stars} or
 [terra::rast()] object.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/get_topsoil_thickness.html">get_topsoil_thickness</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/read_topsoil_thickness_stars.html">read_topsoil_thickness_stars</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -484,7 +459,7 @@ list of {tidync} objects.</p>
 <p>For your convenience, {read.abares} re-exports [terra::plot()], so
 you can just use <code><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot()</a></code> with the {terra} objects in
 {read.abares}.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="plot-topsoil-depth-1.png" alt="Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)"><p class="caption">
@@ -497,7 +472,7 @@ Soil Thickness for Australian areas of intensive agriculture of Layer 1
 </h3>
 <p>By default, a brief bit of metadata is printed to the console when
 you call the topsoil thickness object in your R session.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/get_topsoil_thickness.html">get_topsoil_thickness</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -544,7 +519,7 @@ you call the topsoil thickness object in your R session.</p>
 <span><span class="co">#&gt; thickness object in your R session.</span></span></code></pre></div>
 <p>But, {read.abares} provides a function for you to browse the topsoil
 thickness metadata in your console.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/get_topsoil_thickness.html">get_topsoil_thickness</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/print_topsoil_thickness_metadata.html">print_topsoil_thickness_metadata</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -859,7 +834,7 @@ thickness metadata in your console.</p>
 <p>But you can also access it directly and use [pander::pander()] to
 include it in a document like this vignette.</p>
 <blockquote>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rapporter.github.io/pander/" class="external-link">pander</a></span><span class="op">)</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_topsoil_thickness.html">get_topsoil_thickness</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
