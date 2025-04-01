@@ -62,6 +62,14 @@ To join the data, we will use the `left_join()` function from the {dplyr} packag
 
 ``` r
 library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
 
 aagis_dat <- left_join(aagis_regions, aagis_region_data)
 #> Joining with `by = join_by(ABARES_region)`
@@ -171,7 +179,7 @@ head(star[[1]])
 #> lat    1 691 WGS 84 [691] -44.5,...,-10 [y]
 ```
 
-Download or load from the local cache and read the AGFD files as a `terra::rast` object.
+Download or load from the local cache and read the AGFD files as a [terra::rast](https://rspatial.github.io/terra/reference/rast.html) object.
 
 
 ``` r
@@ -204,7 +212,7 @@ head(tdnc[[1]])
 #> # A tibble: 1 × 2
 #>   access              source                                                    
 #>   <dttm>              <chr>                                                     
-#> 1 2025-04-01 15:54:01 /Users/283204f/Library/Caches/org.R-project.R/R/read.abar…
+#> 1 2025-04-01 16:45:43 /Users/283204f/Library/Caches/org.R-project.R/R/read.abar…
 #> 
 #> $axis
 #> # A tibble: 84 × 3
@@ -370,7 +378,7 @@ get_agfd(cache = TRUE) |>
 
 ## Working With the Soil Thickness Map
 
-You can download the soil depth map and import it as a {stars} or [terra::rast()] object.
+You can download the soil depth map and import it as a {stars} or [terra::rast()](https://rspatial.github.io/terra/reference/rast.html) object.
 
 
 ``` r
@@ -390,7 +398,7 @@ x <- get_topsoil_thickness(cache = TRUE) |>
   read_topsoil_thickness_terra()
 ```
 
-For your convenience, {read.abares} re-exports [terra::plot()], so you can just use `plot()` with the {terra} objects in {read.abares}.
+For your convenience, {read.abares} re-exports [terra::plot()](https://rspatial.github.io/terra/reference/plot.html), so you can just use `plot()` with the {terra} objects in {read.abares}.
 
 
 ``` r

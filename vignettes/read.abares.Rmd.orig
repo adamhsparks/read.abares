@@ -125,7 +125,7 @@ star <- get_agfd(cache = TRUE) |>
 head(star[[1]])
 ```
 
-Download or load from the local cache and read the AGFD files as a `terra::rast` object.
+Download or load from the local cache and read the AGFD files as a [terra::rast](https://rspatial.github.io/terra/reference/rast.html) object.
 
 ```{r agfd-terra}
 ## A {terra} `rast` object
@@ -156,7 +156,7 @@ get_agfd(cache = TRUE) |>
 
 ## Working With the Soil Thickness Map
 
-You can download the soil depth map and import it as a {stars} or [terra::rast()] object.
+You can download the soil depth map and import it as a {stars} or [terra::rast()](https://rspatial.github.io/terra/reference/rast.html) object.
 
 ```{r soil-thickness}
 library(read.abares)
@@ -167,7 +167,7 @@ x <- get_topsoil_thickness(cache = TRUE) |>
   read_topsoil_thickness_terra()
 ```
 
-For your convenience, {read.abares} re-exports [terra::plot()], so you can just use `plot()` with the {terra} objects in {read.abares}.
+For your convenience, {read.abares} re-exports [terra::plot()](https://rspatial.github.io/terra/reference/plot.html), so you can just use `plot()` with the {terra} objects in {read.abares}.
 
 ```{r plot-topsoil-depth, fig.cap = "Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)"}
 plot(x)
