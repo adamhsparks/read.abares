@@ -1,5 +1,5 @@
 ---
-title: "read.abares"
+title: "Working with spatial data available through read.abares"
 author: "Adam H. Sparks"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -14,33 +14,11 @@ vignette: >
   %\VignetteDepends{data.table}
 ---
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "vigfig-"
-)
-
-create_dt <- function(x) {
-  DT::datatable(x,
-    extensions = "Buttons",
-    options = list(
-      dom = "Blfrtip",
-      buttons = c("copy", "csv", "excel", "pdf", "print"),
-      lengthMenu = list(
-        c(10, 25, 50, -1),
-        c(10, 25, 50, "All")
-      )
-    )
-  ) # from https://martinctc.github.io/blog/vignette-downloadable-tables-in-rmarkdown-with-the-dt-package/
-}
-```
-
-This vignette demonstrates some of the functionality of {read.abares}.
+This vignette demonstrates some of the functionality of {read.abares} and how to work with some of the spatial and tabular data available through {read.abares}.
 Please note that not all functions are demonstrated here, please refer to the [documentation reference](https://adamhsparks.github.io/read.abares/reference/) for a full list of functionality.
 The worked examples here show some of the more advanced features that {read.abares} offers beyond just fetching and importing data, _e.g._, the Australian Gridded Farm Data, which can be downloaded, cached and then imported using one of four types of object or the soil thickness data, which includes rich metadata.
 
-First we need to load the library.
+First we need to load the {read.abares} library.
 
 ```{r load_read.abares}
 library(read.abares)
@@ -50,7 +28,7 @@ library(read.abares)
 
 ### Obtaining the AAGIS Regions Spatial Data
 
-You can download files and pipe directly into the class object that you desire for the ABARES Agriculture and Grazing Industries Survey data.
+Now you can download files and pipe directly into the class object that you desire for the ABARES Agriculture and Grazing Industries Survey data.
 
 ```{r aagis-regions}
 aagis_regions <- read_aagis_regions(cache = TRUE)
