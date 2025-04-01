@@ -77,7 +77,7 @@ Sparks</h4>
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html" class="external-link">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span></span>
 <span>  collapse <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  comment <span class="op">=</span> <span class="st">"#&gt;"</span>,</span>
-<span>  fig.path <span class="op">=</span> <span class="st">"vigfig-"</span></span>
+<span>  dev <span class="op">=</span> <span class="st">"png"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>This vignette demonstrates some of the functionality of {read.abares}
 and how to work with some of the spatial and tabular data available
@@ -93,15 +93,7 @@ using one of four types of object or the soil thickness data, which
 includes rich metadata.</p>
 <p>First we need to load the {read.abares} library.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'read.abares'</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:graphics':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     plot</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     plot</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="working-with-aagis-regions-spatial-data">Working with AAGIS Regions Spatial Data<a class="anchor" aria-label="anchor" href="#working-with-aagis-regions-spatial-data"></a>
 </h2>
@@ -118,7 +110,7 @@ tabular data from the estimates, <em>e.g.</em>,
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">aagis_regions</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
-<img src="vigfig-aagis-regions-1.png" alt="plot of chunk aagis-regions"><div class="figcaption">plot of chunk aagis-regions</div>
+<img src="aagis-regions-1.png" alt="plot of chunk aagis-regions"><div class="figcaption">plot of chunk aagis-regions</div>
 </div>
 </div>
 <div class="section level3">
@@ -147,14 +139,6 @@ datasets together to visualise the data. To join the data, we will use
 the <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join()</a></code> function from the {dplyr} package.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     filter, lag</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
 <span></span>
 <span><span class="va">aagis_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">aagis_regions</span>, <span class="va">aagis_region_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(ABARES_region)`</span></span></code></pre></div>
@@ -175,7 +159,7 @@ Australia.</p>
 <span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">Year</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
-<img src="vigfig-aagis-regions-plot-1.png" alt="plot of chunk aagis-regions-plot"><div class="figcaption">plot of chunk aagis-regions-plot</div>
+<img src="aagis-regions-plot-1.png" alt="plot of chunk aagis-regions-plot"><div class="figcaption">plot of chunk aagis-regions-plot</div>
 </div>
 </div>
 </div>
@@ -293,7 +277,7 @@ list of {tidync} objects.</p>
 <span><span class="co">#&gt; # A tibble: 1 × 2</span></span>
 <span><span class="co">#&gt;   access              source                                                    </span></span>
 <span><span class="co">#&gt;   &lt;dttm&gt;              &lt;chr&gt;                                                     </span></span>
-<span><span class="co">#&gt; 1 2025-04-01 14:25:26 /Users/283204f/Library/Caches/org.R-project.R/R/read.abar…</span></span>
+<span><span class="co">#&gt; 1 2025-04-01 14:55:04 /Users/283204f/Library/Caches/org.R-project.R/R/read.abar…</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $axis</span></span>
 <span><span class="co">#&gt; # A tibble: 84 × 3</span></span>
