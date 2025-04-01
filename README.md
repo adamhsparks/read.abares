@@ -20,7 +20,7 @@ An R package for automated downloading and ingestion of data from the Australian
 ## About ABARES
 
 ABARES is the research arm of the Australian federal Government Department of Agriculture, Fisheries and Forestry (DAFF).
-ABARES' main role is "to provide "professionally independent data, research, analysis and advice that informs public and private decisions affecting Australian agriculture, fisheries and forestry"^[https://www.agriculture.gov.au/abares/about].
+ABARES' main role is "to provide "professionally independent data, research, analysis and advice that informs public and private decisions affecting Australian agriculture, fisheries and forestry"[^https://www.agriculture.gov.au/abares/about].
 
 The data provided by ABARES is extensive and varied, and includes data on agricultural production, trade, and forecasts, as well as spatial data on farm locations and top-soil thickness.
 ABARES data are not available from other sources but are mostly available under Creative Commons Licences for reuse.
