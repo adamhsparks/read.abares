@@ -14,8 +14,8 @@ locally. If \code{FALSE}, this function uses \code{tempdir()} and the files are 
 upon closing of the active \R session.}
 }
 \value{
-An \code{\link[fs:path]{fs::path()}} of the resulting Esri Grid file and text file of
-metadata.
+An \code{\link[fs:path]{fs::path()}} of the resulting data and text file of metadata,
+with metadata and data files being created in the user's cache if requested.
 }
 \description{
 Downloads Topsoil thickness data if not already found locally

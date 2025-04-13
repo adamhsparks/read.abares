@@ -14,19 +14,23 @@ get_topsoil_thickness(cache = TRUE)
 using \code{tools::R_user_dir()} to identify the proper directory for storing
 user data in a cache for this package. Defaults to \code{TRUE}, caching the files
 locally. If \code{FALSE}, this function uses \code{tempdir()} and the files are deleted
-upon closing of the active \R session.
-
-A custom \code{print()} method is provided that will print the metadata associated
-with these data. Examples are provided for interacting with the metadata
-directly.}
+upon closing of the active \R session.}
 }
 \value{
 A \code{read.abares.topsoil.thickness} object, which is a named \code{list()}
-with the \code{\link[fs:path_file]{fs::path_file()}} of the resulting Esri Grid file and text file of
-metadata.
+with the \code{\link[fs:path_file]{fs::path_file()}} of the data file and text file of metadata.
 }
 \description{
 Get topsoil thickness for 'Australian Areas of Intensive Agriculture of Layer 1' for local use
+}
+\details{
+The topsoil thickness data will be saved as a GeoTIFF file in the user's
+cache if \code{cache = TRUE}.
+}
+\note{
+A custom \code{print()} method is provided that will print the metadata associated
+with these data. Examples are provided for interacting with the metadata
+directly.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

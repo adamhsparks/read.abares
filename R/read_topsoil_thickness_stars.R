@@ -24,5 +24,5 @@
 
 read_topsoil_thickness_stars <- function(files) {
   .check_class(x = files, class = "read.abares.topsoil.thickness.files")
-  stars::read_stars(files$grid)
+  stars::read_stars(files$GTiff)
 }

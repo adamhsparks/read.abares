@@ -25,7 +25,5 @@
 
 read_topsoil_thickness_terra <- function(files) {
   .check_class(x = files, class = "read.abares.topsoil.thickness.files")
-  x <- terra::rast(files$grid)
-  # as per Lauren O'Brien's excellent suggestion to deal with an unwiedly legend
-  return(terra::init(x, x[]))
+  return(terra::rast(files$GTiff))
 }

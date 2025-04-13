@@ -56,7 +56,7 @@ test_that("read_topsoil_thickness_stars returns a stars object", {
   x <- get_topsoil_thickness(cache = TRUE) |>
     read_topsoil_thickness_stars()
   expect_s3_class(x, "stars")
-  expect_named(x, "thpk_1")
+  expect_named(x, "thpk_1.tif")
 })
 
 # test reading with terra ----

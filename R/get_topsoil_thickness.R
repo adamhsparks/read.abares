@@ -6,9 +6,16 @@
 #' locally. If `FALSE`, this function uses `tempdir()` and the files are deleted
 #' upon closing of the active \R session.
 #'
+#' @details
+#' The topsoil thickness data will be saved as a GeoTIFF file in the user's
+#'  cache if `cache = TRUE`.
+#'
+#' @note
 #' A custom `print()` method is provided that will print the metadata associated
 #'  with these data. Examples are provided for interacting with the metadata
 #'  directly.
+#'
+#'
 #'
 #' @examplesIf interactive()
 #' x <- get_topsoil_thickness()
@@ -24,8 +31,7 @@
 #' pander(y)
 #'
 #' @returns A `read.abares.topsoil.thickness` object, which is a named `list()`
-#'  with the [fs::path_file()] of the resulting Esri Grid file and text file of
-#'  metadata.
+#'  with the [fs::path_file()] of the data file and text file of metadata.
 #'
 #' @references <https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6>
 #' @source <https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip>
@@ -50,18 +56,17 @@ get_topsoil_thickness <- function(cache = TRUE) {
 #' @param dir File where files have been stored.
 #'
 #' @returns A `read.abares.soil.thickness` object, which is a named `list` with
-#' the [fs::path_file] of the resulting Esri Grid file and text file of
-#' metadata.
+#' the [fs::path_file] of the resulting GTiff file and text file of metadata.
 #' @dev
 
-.create_topsoil_thickness_list <- function(topsoil_dir) {
+.create_topsoil_thickness_list <- function(topsoil_thickness_cache) {
   metadata <- readtext::readtext(fs::path(
-    topsoil_dir,
+    topsoil_thickness_cache,
     "ANZCW1202000149.txt"
   ))
   topsoil_thickness <- list(
     "metadata" = metadata$text,
-    "grid" = fs::path(topsoil_dir, "thpk_1")
+    "GTiff" = fs::path(topsoil_thickness_cache, "thpk_1.tif")
   )
   class(topsoil_thickness) <- union(
     "read.abares.topsoil.thickness.files",
@@ -77,14 +82,14 @@ get_topsoil_thickness <- function(cache = TRUE) {
 #' locally. If `FALSE`, this function uses `tempdir()` and the files are deleted
 #' upon closing of the active \R session.
 #'
-#' @returns An [fs::path()] of the resulting Esri Grid file and text file of
-#'  metadata.
+#' @returns An [fs::path()] of the resulting data and text file of metadata,
+#'  with metadata and data files being created in the user's cache if requested.
 #'
 #' @dev
 
 .download_topsoil_thickness <- function(cache) {
   download_file <- fs::path(tempdir(), "topsoil_thick.zip")
-  tempdir_topsoil_dir <- fs::path(tempdir(), "topsoil_thickness_dir")
+  tempdir_topsoil_dir <- fs::path(tempdir(), "staiar9cl__05911a01eg_geo___/")
   cache_topsoil_dir <- fs::path(.find_user_cache(), "topsoil_thickness_dir")
 
   # only download if the files aren't already local
@@ -98,21 +103,28 @@ get_topsoil_thickness <- function(cache = TRUE) {
       tempdir(),
       utils::unzip(download_file, exdir = tempdir())
     )
-    fs::file_move(
-      fs::path(tempdir(), "staiar9cl__05911a01eg_geo___/"),
-      tempdir_topsoil_dir
-    )
     fs::file_delete(download_file)
   }
 
   # now move the files to the cache if caching is requested
   if (cache) {
-    if (!fs::dir_exists(.find_user_cache())) {
-      fs::dir_create(.find_user_cache(), recurse = TRUE)
+    if (!fs::dir_exists(cache_topsoil_dir)) {
+      fs::dir_create(cache_topsoil_dir, recurse = TRUE)
     }
-    fs::file_move(
-      tempdir_topsoil_dir,
-      cache_topsoil_dir
+    x <- terra::rast(fs::path(tempdir_topsoil_dir, "thpk_1"))
+    x <- terra::init(x, x[]) # remove RAT legend
+
+    terra::writeRaster(
+      x,
+      filename = fs::path(cache_topsoil_dir, "thpk_1.tif"),
+      overwrite = TRUE
+    )
+    fs::file_copy(
+      path = fs::path(
+        tempdir_topsoil_dir,
+        "ANZCW1202000149.txt"
+      ),
+      new_path = fs::path(cache_topsoil_dir)
     )
   }
 

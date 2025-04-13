@@ -4,15 +4,14 @@
 \alias{.create_topsoil_thickness_list}
 \title{Create a object of read.abares.topsoil.thickness.files}
 \usage{
-.create_topsoil_thickness_list(topsoil_dir)
+.create_topsoil_thickness_list(topsoil_thickness_cache)
 }
 \arguments{
 \item{dir}{File where files have been stored.}
 }
 \value{
 A \code{read.abares.soil.thickness} object, which is a named \code{list} with
-the \link[fs:path_file]{fs::path_file} of the resulting Esri Grid file and text file of
-metadata.
+the \link[fs:path_file]{fs::path_file} of the resulting GTiff file and text file of metadata.
 }
 \description{
 Create a object of read.abares.topsoil.thickness.files
