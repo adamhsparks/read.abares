@@ -282,7 +282,7 @@ list of {tidync} objects.</p>
 <span><span class="co">#&gt; # A tibble: 1 × 2</span></span>
 <span><span class="co">#&gt;   access              source                                                                                                                   </span></span>
 <span><span class="co">#&gt;   &lt;dttm&gt;              &lt;chr&gt;                                                                                                                    </span></span>
-<span><span class="co">#&gt; 1 2025-04-13 21:05:12 /Users/adamsparks/Library/Caches/org.R-project.R/R/read.abares/historical_climate_prices_fixed/f2022.c1991.p2022.t2022.nc</span></span>
+<span><span class="co">#&gt; 1 2025-04-13 21:23:07 /Users/adamsparks/Library/Caches/org.R-project.R/R/read.abares/historical_climate_prices_fixed/f2022.c1991.p2022.t2022.nc</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $axis</span></span>
 <span><span class="co">#&gt; # A tibble: 84 × 3</span></span>
@@ -398,14 +398,18 @@ object.</p>
 <span><span class="co">#&gt; y    1 3401 -9.995 -0.01 WGS 84 FALSE [y]</span></span>
 <span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_topsoil_thickness.html">get_topsoil_thickness</a></span><span class="op">(</span>cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/read_topsoil_thickness_terra.html">read_topsoil_thickness_terra</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in if (!grepl(pattern = .find_user_cache(), files)) {: the condition has length &gt; 1</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/read_topsoil_thickness_terra.html">read_topsoil_thickness_terra</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>For your convenience, {read.abares} re-exports <a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">terra::plot()</a>,
 so you can just use <code><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot()</a></code> with the {terra} objects in
 {read.abares}.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'plot': object 'x' not found</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="plot-topsoil-depth-1.png" alt="Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)"><p class="caption">
+Soil Thickness for Australian areas of intensive agriculture of Layer 1
+(A Horizon - top-soil) (derived from soil mapping)
+</p>
+</div>
 <div class="section level3">
 <h3 id="soil-thickness-metadata">Soil Thickness Metadata<a class="anchor" aria-label="anchor" href="#soil-thickness-metadata"></a>
 </h3>
