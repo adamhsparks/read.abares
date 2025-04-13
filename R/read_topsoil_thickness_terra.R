@@ -25,5 +25,10 @@
 
 read_topsoil_thickness_terra <- function(files) {
   .check_class(x = files, class = "read.abares.topsoil.thickness.files")
+  # if we're reading from tempdir() we need to remove the RAT that is removed
+  # by default when caching the GTiff
+  if (!grepl(pattern = .find_user_cache(), files)) {
+    files$GTiff <- terra::init(files$GTiff, files$Gtiff[]) # remove RAT legend
+  }
   return(terra::rast(files$GTiff))
 }
