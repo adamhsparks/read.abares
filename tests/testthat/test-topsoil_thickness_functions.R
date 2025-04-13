@@ -42,10 +42,6 @@ test_that("get_topsoil_thickness does cache", {
     .find_user_cache(),
     "topsoil_thickness_dir"
   )))
-  expect_true(fs::dir_exists(fs::path(
-    .find_user_cache(),
-    "topsoil_thickness_dir"
-  )))
 })
 
 # test reading with stars ----
