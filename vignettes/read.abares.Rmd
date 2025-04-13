@@ -211,7 +211,7 @@ head(tdnc[[1]])
 #> # A tibble: 1 × 2
 #>   access              source                                                                                                                   
 #>   <dttm>              <chr>                                                                                                                    
-#> 1 2025-04-13 21:05:12 /Users/adamsparks/Library/Caches/org.R-project.R/R/read.abares/historical_climate_prices_fixed/f2022.c1991.p2022.t2022.nc
+#> 1 2025-04-13 21:23:07 /Users/adamsparks/Library/Caches/org.R-project.R/R/read.abares/historical_climate_prices_fixed/f2022.c1991.p2022.t2022.nc
 #> 
 #> $axis
 #> # A tibble: 84 × 3
@@ -331,7 +331,6 @@ get_topsoil_thickness(cache = TRUE) |>
 
 x <- get_topsoil_thickness(cache = TRUE) |>
   read_topsoil_thickness_terra()
-#> Error in if (!grepl(pattern = .find_user_cache(), files)) {: the condition has length > 1
 ```
 
 For your convenience, {read.abares} re-exports [terra::plot()](https://rspatial.github.io/terra/reference/plot.html), so you can just use `plot()` with the {terra} objects in {read.abares}.
@@ -339,8 +338,12 @@ For your convenience, {read.abares} re-exports [terra::plot()](https://rspatial.
 
 ``` r
 plot(x)
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'plot': object 'x' not found
 ```
+
+<div class="figure" style="text-align: center">
+<img src="plot-topsoil-depth-1.png" alt="Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)"  />
+<p class="caption">Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)</p>
+</div>
 
 ### Soil Thickness Metadata
 
