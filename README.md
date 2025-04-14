@@ -1,7 +1,3 @@
----
-output: github_document
----
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
@@ -109,6 +105,14 @@ Citing {read.abares}: When citing the use of this package, please use,
 
 ``` r
 library("read.abares")
+#> 
+#> Attaching package: 'read.abares'
+#> The following object is masked from 'package:graphics':
+#> 
+#>     plot
+#> The following object is masked from 'package:base':
+#> 
+#>     plot
 citation("read.abares")
 #> To cite package 'read.abares' in publications use:
 #> 
@@ -138,4 +142,4 @@ If you wish to work with development of {read.abares} please be aware that it wi
 
 Please note that the {read.abares} project is released with a [Contributor Code of Conduct](https://adamhsparks.github.io/read.abares/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
 
-  [^1] <https://www.agriculture.gov.au/abares/about>
+:[^1]: <https://www.agriculture.gov.au/abares/about>
