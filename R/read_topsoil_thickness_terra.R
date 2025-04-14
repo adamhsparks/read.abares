@@ -28,10 +28,13 @@ read_topsoil_thickness_terra <- function(files) {
   # if we're reading from tempdir() we need to remove the RAT that is removed
   # by default when caching the GTiff
   if (!grepl(pattern = .find_user_cache(), files$GTiff)) {
-    files$GTiff <- terra::init(
-      as.character(files$GTiff),
-      as.character(files$Gtiff[])
-    ) # remove RAT legend
+    t <- terra::rast(
+      files$GTiff
+    )
+    return(terra::init(
+      t,
+      t[]
+    ))
   }
-  return(terra::rast(as.character(files$GTiff)))
+  return(terra::rast(files$GTiff))
 }
