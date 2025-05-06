@@ -45,16 +45,42 @@ Data serviced include:
   - the trade region data.
 
 
-## Get Started
-
-### Installation
+## Quick Start
 
 {read.abares} is not available through CRAN (yet).
-But you can install it like so:
+The preferred method is to use [{remotes}](https://remotes.r-lib.org) like so.
+Note that for Linux users, you will need to install system libraries to support geospatial packages in R, _e.g._, {sf} and {terra} as well as some packages for downloading data via [curl](https://curl.se/download.html), please see [Note for Linux Installers](#Note-for-Linux-Installers).
 
 ```r
-# install.packages("pak")
-pak::pak("adamhsparks/read.abares")
+if (!require("remotes")) {
+  install.packages("remotes")
+}
+
+remotes::install_github("adamhsparks/read.abares",
+  dependencies = TRUE,
+  build_vignettes = TRUE
+)
+```
+
+Or, if you prefer using {pak}, it does have some advantages.
+If you are using Linux and will need to install system libraries to support geospatial packages in R, _e.g._, {sf} and {terra}, you can install {fifo} like so using [{pak}](https://pak.r-lib.org/index.html), this method try to handle system dependencies for you.
+It may also be a faster installation method as well for any operating system, but is sometimes not as robust and misses installing some dependencies and fails to install {read.abares} as a result, so try it if you like.
+
+```r
+o <- options() # save default options
+options(pkg.build_vignettes = TRUE)
+
+if (!require("pak")) {
+  install.packages("pak",
+    repos = sprintf(
+      "https://r-lib.github.io/p/pak/stable/%s/%s/%s",
+      .Platform$pkgType, R.Version()$os, R.Version()$arch
+    )
+  )
+}
+
+pak::pak("adamhsparks/read.abares", dependencies = TRUE)
+options(o) # restore default options
 ```
 
 ## Features
