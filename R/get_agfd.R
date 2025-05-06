@@ -240,7 +240,7 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE, yr = NULL) {
 
   agfd_nc <- fs::dir_ls(agfd_nc_dir, full.names = TRUE)
 
-  if (!is.null(y)) {
+  if (!is.null(yr)) {
     yr <- sprintf("c%d", yr)
     agfd_nc <- agfd_nc[grepl(paste(yr, collapse = "|"), names(agfd_nc))]
   }

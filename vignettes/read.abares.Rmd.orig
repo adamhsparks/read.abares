@@ -126,11 +126,9 @@ print_agfd_nc_file_format()
 Download or load from the local cache and read the AGFD files as a list of {stars} objects.
 
 ```{r agfd-stars}
-library(tidyverse)
-
-## A list of {stars} objects for the climate in year 2000
+# A list of {stars} objects for the climate in year 2000
 star <- get_agfd(cache = TRUE, yr = 2000) |>
-  read_agfd_stars(files[[1]])
+  read_agfd_stars()
 
 head(star[[1]])
 ```
@@ -138,7 +136,7 @@ head(star[[1]])
 Download or load from the local cache and read the AGFD files as a [terra::rast](https://rspatial.github.io/terra/reference/rast.html) object.
 
 ```{r agfd-terra}
-## A {terra} `rast` object
+# A {terra} `rast` object
 terr <- get_agfd(cache = TRUE) |>
   read_agfd_terra()
 

@@ -73,26 +73,30 @@ read_agfd_stars <- function(files) {
     "FBP_pfe_hat_ha",
     "farmland_per_cell"
   )
-
+  s2 <- NULL
   # read one file for the message
-  s1 <- list(stars::read_ncdf(
+  out <- list(stars::read_ncdf(
     files[1],
     var = var
   ))
 
-  # then suppress the rest of the messages
-  q_read_ncdf <- purrr::quietly(stars::read_ncdf)
-  s2 <- purrr::modify_depth(
-    purrr::map(files[2:length(files)], q_read_ncdf, var = var),
-    1,
-    "result"
-  )
+  if (length(files) > 1) {
+    # then suppress the rest of the messages
+    q_read_ncdf <- purrr::quietly(stars::read_ncdf)
+    s2 <- purrr::modify_depth(
+      purrr::map(files[2:length(files)], q_read_ncdf, var = var),
+      1,
+      "result"
+    )
 
-  out <- append(s1, s2)
+    out <- append(out, s2)
+  }
 
   names(out) <- fs::path_file(files)
 
-  rm(s1, s2)
+  if (!is.null(s2)) {
+    rm(out, s2)
+  }
   gc()
   return(out)
 }
