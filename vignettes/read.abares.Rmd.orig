@@ -85,7 +85,7 @@ ggplot(total_area) +
   geom_sf(aes(fill = Value), colour = NA) +
   scale_fill_viridis_c() +
   labs(
-    fill = "Total Area Cropped (ha)",
+    fill = "Total Area Cropped (ha)"
   ) +
   facet_wrap(~Year) +
   theme_minimal()
