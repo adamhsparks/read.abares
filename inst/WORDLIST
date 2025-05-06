@@ -2,7 +2,6 @@ AADI
 AAGI
 AAGIS
 ABARES
-ABARES’
 ACLEP
 AGFD
 ANZCW
@@ -16,11 +15,12 @@ Carlile
 Curtin
 DAFF
 DLWC
-Esri
 FBP
 FYs
 GRDC
+GTiff
 GeoPackage
+GeoTIFF
 Geopackages
 Geospatial
 Gridded
@@ -50,7 +50,6 @@ Rds
 Soh
 Standardised
 Topsoils
-WGS
 YYYXXX
 abares
 al
@@ -70,7 +69,6 @@ fbp
 fci
 fert
 fertiliser
-filepath
 footslopes
 funder
 geopackage
@@ -88,6 +86,7 @@ modelled
 modelling
 multilayer
 oilseeds
+pak
 pfe
 quadrat
 rOpenSci
