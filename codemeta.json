@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.3 (2025-02-28)",
+  "runtimePlatform": "R version 4.5.0 (2025-04-11)",
   "author": [
     {
       "@type": "Person",
@@ -58,6 +58,18 @@
     }
   ],
   "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "bit64",
+      "name": "bit64",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=bit64"
+    },
     {
       "@type": "SoftwareApplication",
       "identifier": "httptest2",
@@ -345,7 +357,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "609.157KB",
+  "fileSize": "610.394KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

@@ -41,6 +41,7 @@ Imports:
     tidync,
     withr
 Suggests: 
+    bit64,
     httptest2,
     knitr,
     pander,
