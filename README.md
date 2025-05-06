@@ -55,7 +55,7 @@ remotes::install_github("adamhsparks/read.abares",
 )
 ```
 
-Or, if you prefer using {pak}, it does have some advantages.
+Or, if you prefer using [{pak}](https://pak.r-lib.org/index.html), it does have some advantages.
 If you are using Linux and will need to install system libraries to support geospatial packages in R, _e.g._, {sf} and {terra}, you can install {fifo} like so using [{pak}](https://pak.r-lib.org/index.html), this method try to handle system dependencies for you.
 It may also be a faster installation method as well for any operating system, but is sometimes not as robust and misses installing some dependencies and fails to install {read.abares} as a result, so try it if you like.
 
@@ -131,14 +131,6 @@ Citing {read.abares}: When citing the use of this package, please use,
 
 ``` r
 library("read.abares")
-#> 
-#> Attaching package: 'read.abares'
-#> The following object is masked from 'package:graphics':
-#> 
-#>     plot
-#> The following object is masked from 'package:base':
-#> 
-#>     plot
 citation("read.abares")
 #> To cite package 'read.abares' in publications use:
 #> 
