@@ -85,6 +85,7 @@ ggplot(total_area) +
   geom_sf(aes(fill = Value), colour = NA) +
   scale_fill_viridis_c() +
   labs(
+
     fill = "Total Area Cropped (ha)"
   ) +
   facet_wrap(~Year) +
@@ -125,9 +126,11 @@ print_agfd_nc_file_format()
 Download or load from the local cache and read the AGFD files as a list of {stars} objects.
 
 ```{r agfd-stars}
-## A list of {stars} objects
-star <- get_agfd(cache = TRUE) |>
-  read_agfd_stars()
+library(tidyverse)
+
+## A list of {stars} objects for the climate in year 2000
+star <- get_agfd(cache = TRUE, yr = 2000) |>
+  read_agfd_stars(files[[1]])
 
 head(star[[1]])
 ```

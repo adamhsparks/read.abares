@@ -43,10 +43,16 @@
 #'  simulations where global output and input price indexes are fixed at values
 #'  from the most recently completed financial year.
 #' @param cache Cache the Australian Gridded Farm Data files after download
-#' using [tools::R_user_dir] to identify the proper directory for storing user
-#' data in a cache for this package. Defaults to `TRUE`, caching the files
-#' locally. If `FALSE`, this function uses `tempdir()` and the files are deleted
-#' upon closing of the active \R session.
+#'  using [tools::R_user_dir] to identify the proper directory for storing user
+#'  data in a cache for this package. Defaults to `TRUE`, caching the files
+#'  locally. If `FALSE`, this function uses `tempdir()` and the files are
+#'  deleted upon closing of the active \R session.
+#' @param yr Returns only data for the specified year or years for climate data
+#'  (fixed prices) or the years for historical climate and prices depending on
+#'  the setting of `fixed_prices`.  Note that this will still download the
+#'  entire data set, that cannot be avoided, but will only return the
+#'  requested year(s) in your \R session.
+#'
 #'
 #' @section Model scenarios:
 #'
@@ -179,7 +185,7 @@
 #' @autoglobal
 #' @export
 
-get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
+get_agfd <- function(fixed_prices = TRUE, cache = TRUE, yr = NULL) {
   download_file <- data.table::fifelse(
     cache,
     fs::path(.find_user_cache(), "agfd.zip"),
@@ -233,6 +239,11 @@ get_agfd <- function(fixed_prices = TRUE, cache = TRUE) {
   }
 
   agfd_nc <- fs::dir_ls(agfd_nc_dir, full.names = TRUE)
+
+  if (!is.null(y)) {
+    yr <- sprintf("c%d", yr)
+    agfd_nc <- agfd_nc[grepl(paste(yr, collapse = "|"), names(agfd_nc))]
+  }
   class(agfd_nc) <- union("read.abares.agfd.nc.files", class(agfd_nc))
   return(agfd_nc)
 }
