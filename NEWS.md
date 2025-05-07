@@ -14,7 +14,7 @@
 
 - Files are more reliably downloaded rather than timing out for some users, thanks @obrsoil for the help troubleshooting this issue, painful as it was
 
-- `skimr::skim()` is used in the vignette to display the AGDF {data.table} formatted data rather than just using `head()`
+- `skimr::skim()` is used in the vignette to display the AGFD {data.table} formatted data rather than just using `head()`
 
 - {64bit} has been added to the Suggested packages to help users avoid warning messages when working with data in the console via {data.table}, thanks, @potterzot
 
