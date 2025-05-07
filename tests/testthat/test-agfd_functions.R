@@ -4,7 +4,6 @@ test_that("get_agfd, fixed = TRUE, cache = TRUE, works", {
   skip_if_offline()
   skip_on_ci()
   x <- get_agfd()
-
   agfd_nc_dir <- fs::path(
     .find_user_cache(),
     "historical_climate_prices_fixed"
