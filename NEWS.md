@@ -20,6 +20,8 @@
 
 - Alternative installation instructions using {remotes} are provided in the README for users that may prefer or may not use {pak}, thanks, @potterzot
 
+- The topsoil thickness map now displays proper continuous values rather than classes, thanks, @obrsoil
+
 # read.abares 1.0.0
 
 ## Breaking changes
