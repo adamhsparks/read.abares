@@ -47,6 +47,7 @@ Suggests:
     pander,
     rmarkdown,
     roxyglobals,
+    skimr,
     spelling,
     testthat (>= 3.0.0)
 VignetteBuilder: 

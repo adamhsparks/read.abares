@@ -10,6 +10,7 @@ vignette: >
   %\VignetteDepends{pander}
   %\VignetteDepends{dplyr}
   %\VignetteDepends{sf}
+  %\VignetteDepends{skimr}
   %\VignetteDepends{data.table}
 ---
 
@@ -137,7 +138,7 @@ Download or load from the local cache and read the AGFD files as a [terra::rast]
 
 ```{r agfd-terra}
 # A {terra} `rast` object
-terr <- get_agfd(cache = TRUE) |>
+terr <- get_agfd(cache = TRUE, yr = 2000) |>
   read_agfd_terra()
 
 head(terr[[1]])
@@ -146,8 +147,8 @@ head(terr[[1]])
 Download or load from the local cache and read the AGFD files as a list of {tidync} objects.
 
 ```{r agfd-tidync}
-## A list of {tidync} objects
-tdnc <- get_agfd(cache = TRUE) |>
+# A list of {tidync} objects
+tdnc <- get_agfd(cache = TRUE, yr = 2000) |>
   read_agfd_tidync()
 
 head(tdnc[[1]])
@@ -156,10 +157,14 @@ head(tdnc[[1]])
 Download or load from the local cache and read the AGFD files as a {data.table} object.
 
 ```{r agfd-dt}
-## A {data.table} object
-get_agfd(cache = TRUE) |>
-  read_agfd_dt() |>
-  head()
+
+# A {data.table} object
+dtbl <- get_agfd(cache = TRUE, yr = 2000) |>
+  read_agfd_dt()
+
+#Check the completeness and other metadata about the data 
+library(skimr)
+skim(dtbl)
 ```
 
 ## Working With the Soil Thickness Map

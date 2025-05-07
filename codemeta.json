@@ -132,6 +132,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "skimr",
+      "name": "skimr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=skimr"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "spelling",
       "name": "spelling",
       "provider": {
@@ -357,7 +369,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "610.394KB",
+  "fileSize": "612.581KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
