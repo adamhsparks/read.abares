@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/adamhsparks/read.abares",
   "issueTracker": "https://github.com/adamhsparks/read.abares/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -369,7 +369,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "612.581KB",
+  "fileSize": "613.874KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -382,7 +382,7 @@
       ],
       "name": "{read.abares}: Simple downloading and importing of ABARES Data",
       "url": "https://adamhsparks.github.io/read.abares/",
-      "description": "R package version 1.0.1"
+      "description": "R package version 2.0.0"
     }
   ],
   "releaseNotes": "https://github.com/adamhsparks/read.abares/blob/master/NEWS.md",
