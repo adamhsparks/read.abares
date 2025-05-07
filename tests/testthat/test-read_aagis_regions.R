@@ -5,6 +5,7 @@ withr::local_envvar(R_USER_CACHE_DIR = tempdir())
 test_that("read_aagis_regions does cache", {
   skip_if_offline()
   skip_on_ci()
+
   read_aagis_regions(cache = TRUE) # create the cache
   expect_true(fs::file_exists(
     fs::path(.find_user_cache(), "aagis_regions_dir/aagis.gpkg")
