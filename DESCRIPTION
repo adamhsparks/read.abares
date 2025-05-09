@@ -10,8 +10,8 @@ Authors@R: c(
     person("Jacob", , , "jacob@wujciak.de", role = "ctb",
            comment = c("Assisted with troubleshooting formatting in documentation to display '<' and '>' properly", ORCID = "0000-0002-7281-3989")),
     person("Curtin University of Technology", role = "cph",
-           comment = "Provided support through Adam Sparks's time."),
-    person("Grains Research and Development Corporation", role = c("fnd", "cph"),
+           comment = c("https://www.curtin.edu.au/", ROR = "02n415q13")),
+    person("Grains Research afd Development Corporation", role = c("fnd", "cph"),
            comment = "GRDC Project CUR2210-005OPX (AAGI-CU)")
   )
 Description: Download and import data from the Australian Bureau of
