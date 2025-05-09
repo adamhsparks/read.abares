@@ -25,7 +25,7 @@ package, we refer to it as "Topsoil Thickness" to be consistent with the
 actual values in the data.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 get_topsoil_thickness(cache = TRUE) |>
   print_topsoil_thickness_metadata()
 \dontshow{\}) # examplesIf}

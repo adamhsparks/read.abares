@@ -33,7 +33,7 @@ with these data. Examples are provided for interacting with the metadata
 directly.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 x <- get_topsoil_thickness()
 
 # View the metadata with pretty printing

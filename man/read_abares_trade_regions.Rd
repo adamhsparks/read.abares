@@ -21,7 +21,7 @@ Columns are renamed for consistency with other \acronym{ABARES} products
 serviced in this package using a snake_case format and ordered consistently.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 trade_regions <- read_abares_trade_regions()
 
 trade_regions

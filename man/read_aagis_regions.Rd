@@ -41,7 +41,7 @@ data for mapping state historical estimate values found in the
 }
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 aagis <- read_aagis_regions()
 
 plot(aagis)

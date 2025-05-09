@@ -43,7 +43,7 @@ The resulting object will contain the following fields.\tabular{ll}{
 }
 
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 
 read_historical_forecast_database()
 

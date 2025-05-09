@@ -22,7 +22,7 @@ Read Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1
 data as a \link[terra:rast]{terra::rast} object.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 st_terra <- get_topsoil_thickness(cache = TRUE) |>
   read_topsoil_thickness_terra()
 

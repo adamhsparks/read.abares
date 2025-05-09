@@ -35,7 +35,7 @@ download. It will follow the renaming scheme and filling values that this
 function will perform on the raw data.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 trade <- read_abares_trade()
 
 trade
