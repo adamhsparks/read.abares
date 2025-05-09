@@ -25,8 +25,8 @@ Useful links:
 Other contributors:
 \itemize{
   \item Jacob \email{jacob@wujciak.de} (\href{https://orcid.org/0000-0002-7281-3989}{ORCID}) (Assisted with troubleshooting formatting in documentation to display '<' and '>' properly) [contributor]
-  \item Curtin University of Technology (Provided support through Adam Sparks's time.) [copyright holder]
-  \item Grains Research and Development Corporation (GRDC Project CUR2210-005OPX (AAGI-CU)) [funder, copyright holder]
+  \item Curtin University of Technology (02n415q13) [copyright holder]
+  \item Grains Research and Development Corporation (02xwr1996) [funder, copyright holder]
 }
 
 }
