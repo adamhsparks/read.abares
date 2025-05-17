@@ -1,4 +1,4 @@
-#' Get national scale land use data for local use
+#' Get national scale Land Use of Australia data for local use
 #'
 #' Downloads national level land use data GeoTIFF file, unzips the download file
 #'  and deletes unnecessary files that are included in the download.  Data are
