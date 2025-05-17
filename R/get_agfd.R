@@ -1,6 +1,6 @@
 #' Get 'Australian Gridded Farm Data' (AGFD) for local use
 #'
-#' Downloads The Australian Gridded Farm Data (\acronym{AGFD}) data and unzips
+#' Downloads the Australian Gridded Farm Data (\acronym{AGFD}) data and unzips
 #'  the compressed files to NetCDF for importing.
 #'
 #' @details

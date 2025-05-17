@@ -38,7 +38,7 @@ A \code{read.abares.agfd.nc.files} object, a list of NetCDF files
 containing the Australian Gridded Farm Data.
 }
 \description{
-Downloads The Australian Gridded Farm Data (\acronym{AGFD}) data and unzips
+Downloads the Australian Gridded Farm Data (\acronym{AGFD}) data and unzips
 the compressed files to NetCDF for importing.
 }
 \details{
