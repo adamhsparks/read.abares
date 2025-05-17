@@ -4,21 +4,6 @@
 #'  and deletes unnecessary files that are included in the download.  Data are
 #'  cached on request.
 #'
-#' @param data_set A string value indicating the GeoTIFF desired for download.
-#' One of:
-#' \describe{
-#'  \item{Y201011}{Land use of Australia 2010–11}
-#'  \item{Y201516}{Land use of Australia 2015–16}
-#'  \item{Y202021}{Land use of Australia 2020–21}
-#'  \item{C201021}{Land use of Australia change}
-#'  \item{T201011}{Land use of Australia 2010–11 thematic layers}
-#'  \item{T201516}{Land use of Australia 2015–16 thematic layers}
-#'  \item{T202021}{Land use of Australia 2020–21 thematic layers}
-#'  \item{P201011}{Land use of Australia 2010–11 agricultural commodities probability grids}
-#'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
-#'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
-#' }
-#'
 #' @details
 #'
 #' From the [ABARES website](https://www.agriculture.gov.au/abares/aclump/land-use/land-use-of-australia-2010-11-to-2020-21):
@@ -49,6 +34,27 @@
 #' with updates to these time periods.}
 #'  -- \acronym{ABARES}, 2024-11-28
 #'
+#' @param data_set A string value indicating the GeoTIFF desired for download.
+#' One of:
+#' \describe{
+#'  \item{Y201011}{Land use of Australia 2010–11}
+#'  \item{Y201516}{Land use of Australia 2015–16}
+#'  \item{Y202021}{Land use of Australia 2020–21}
+#'  \item{C201021}{Land use of Australia change}
+#'  \item{T201011}{Land use of Australia 2010–11 thematic layers}
+#'  \item{T201516}{Land use of Australia 2015–16 thematic layers}
+#'  \item{T202021}{Land use of Australia 2020–21 thematic layers}
+#'  \item{P201011}{Land use of Australia 2010–11 agricultural commodities probability grids}
+#'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
+#'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
+#' }
+#' @param cache Cache the Australian Gridded Farm Data files after download
+#'  using [tools::R_user_dir] to identify the proper directory for storing user
+#'  data in a cache for this package. Defaults to `TRUE`, caching the files
+#'  locally. If `FALSE`, this function uses `tempdir()` and the files are
+#'  deleted upon closing of the active \R session.
+#' @details
+#'
 #' @references
 #' ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
 #' Agricultural and Resource Economics and Sciences, Canberra, November, CC BY
@@ -69,7 +75,7 @@
 #' @autoglobal
 #' @export
 
-get_nlum <- function(data_set, cache) {
+get_nlum <- function(data_set, cache = TRUE) {
   valid_sets <- c(
     "Y202021",
     "Y201516",
