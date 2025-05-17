@@ -89,31 +89,19 @@ get_nlum <- function(data_set, cache = TRUE) {
     "P201011"
   )
 
-  rlang::arg_match(data_set, valid_sets)
+  data_set <- rlang::arg_match(data_set, valid_sets)
 
   download_file <- data.table::fifelse(
     cache,
-    fs::path(.find_user_cache(), "nlum"),
-    fs::path(tempdir(), "nlum")
+    fs::path(.find_user_cache(), "nlum", sprintf("%s.zip", data_set)),
+    fs::path(tempdir(), "nlum", sprintf("%s.zip", data_set))
   )
 
   # this is where the zip file is downloaded
   download_dir <- fs::path_dir(download_file)
 
   # this is where the zip files are unzipped and read from
-  nlum_dir <- switch(
-    data_set,
-    "Y202021" = fs::path(download_dir, "Y202021"),
-    "Y201516" = fs::path(download_dir, "Y202516"),
-    "Y201011" = fs::path(download_dir, "Y202516"),
-    "C201021" = fs::path(download_dir, "C201021"),
-    "T202021" = fs::path(download_dir, "T202021"),
-    "T201516" = fs::path(download_dir, "T201516"),
-    "T201011" = fs::path(download_dir, "T201011"),
-    "P202021" = fs::path(download_dir, "P202021"),
-    "P201516" = fs::path(download_dir, "P201516"),
-    "P201011" = fs::path(download_dir, "P201011")
-  )
+  nlum_dir <- fs::path(download_dir, data_set)
 
   # only download if the files aren't already local
   if (!fs::dir_exists(nlum_dir)) {
@@ -122,49 +110,50 @@ get_nlum <- function(data_set, cache = TRUE) {
       fs::dir_create(nlum_dir, recurse = TRUE)
     }
 
-    nlum_base_url <- "https://www.agriculture.gov.au/sites/default/files/documents/"
+    url <-
+      "https://www.agriculture.gov.au/sites/default/files/documents/"
 
-    download_file <- switch(
+    url <- switch(
       data_set,
       "Y202021" = sprintf(
         "%sNLUM_v7_250_ALUMV8_2020_21_alb_package_20241128.zip",
-        nlum_base_url
+        url
       ),
       "Y201516" = sprintf(
         "%sNLUM_v7_250_ALUMV8_2015_16_alb_package_20241128.zip",
-        nlum_base_url
+        url
       ),
       "Y201011" = sprintf(
         "%sNLUM_v7_250_ALUMV8_2010_11_alb_package_20241128.zip",
-        nlum_base_url
+        url
       ),
       "C201021" = sprintf(
         "%sNLUM_v7_250_CHANGE_SIMP_2011_to_2021_alb_package_20241128.zip",
-        nlum_base_url
+        url
       ),
       "T202021" = sprintf(
         "%sNLUM_v7_250_INPUTS_2020_21_geo_package_20241128.zip",
-        nlum_base_url
+        url
       ),
       "T201516" = sprintf(
         "%sNLUM_v7_250_INPUTS_2015_16_geo_package_20241128.zip",
-        nlum_base_url
+        url
       ),
       "T201011" = sprintf(
         "%sNLUM_v7_250_INPUTS_2010_11_geo_package_20241128.zip",
-        nlum_base_url
+        url
       ),
       "P202021" = sprintf(
         "%sNLUM_v7_250_AgProbabilitySurfaces_2020_21_geo_package_20241128.zip",
-        nlum_base_url
+        url
       ),
       "P201516" = sprintf(
         "%sNLUM_v7_250_AgProbabilitySurfaces_2015_16_geo_package_20241128.zip",
-        nlum_base_url
+        url
       ),
       "P201011" = sprintf(
         "%sNLUM_v7_250_AgProbabilitySurfaces_2010_11_geo_package_20241128.zip",
-        nlum_base_url
+        url
       )
     )
 
@@ -174,8 +163,29 @@ get_nlum <- function(data_set, cache = TRUE) {
       {
         withr::with_dir(
           download_dir,
-          utils::unzip(zipfile = download_file, exdir = download_dir)
+          utils::unzip(zipfile = download_file, exdir = nlum_dir)
         )
+        fs::dir_delete(
+          c(fs::path(nlum_dir, "Maps"), fs::path(nlum_dir, "Symbology"))
+        )
+        fs::file_delete(
+          c(
+            fs::path(nlum_dir, "Thumbs.db"),
+            fs::path(nlum_dir, "NLUM_v7_250_ALUMV8_2010_11_alb.tif.aux.xml")
+          )
+        )
+
+        if (
+          !fs::file_exists(fs::path(
+            download_dir,
+            "NLUM_v7_DescriptiveMetadata_20241128_0.pdf"
+          ))
+        ) {
+          fs::file_move(fs::path(
+            nlum_dir,
+            "NLUM_v7_DescriptiveMetadata_20241128_0.pdf"
+          ))
+        }
       },
       error = function(e) {
         cli::cli_abort(
@@ -206,9 +216,11 @@ get_nlum <- function(data_set, cache = TRUE) {
 #' @export
 #' @autoglobal
 #' @noRd
-print.read.abares.agfd.nc.files <- function(x, ...) {
+print.read.abares.nlum.files <- function(x, ...) {
   cli::cli_h1("Locally Available ABARES National Land Use Files")
-  cli::cli_ul(basename(x))
+  nlum_files <- basename(x)
+  nlum_files <- nlum_files[!grepl("csv|pdf", nlum)]
+  cli::cli_ul(tools::file_path_sans_ext(basename(nlum_files)))
   cli::cat_line()
   invisible(x)
 }
