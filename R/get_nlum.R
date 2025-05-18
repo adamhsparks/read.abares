@@ -232,10 +232,10 @@ print.read.abares.nlum.files <- function(x, ...) {
 
 #' Displays the PDF metadata for the National Land Use raster files in a native viewer
 #'
-#' Each National Land Use raster file comes with a PDF of the metadata. This
+#' Each National Land Use raster file comes with a PDF of metadata. This
 #'  function will open and display that file using the native PDF viewer for any
 #'  system.
-#' @examples
+#' @examplesIf interactive()
 #' view_nlum_metadata_pdf()
 #' @returns Called for its side-effects, opens the system's native PDF viewer to
 #'  display the requested metadata file.
