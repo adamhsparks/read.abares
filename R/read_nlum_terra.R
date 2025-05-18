@@ -1,17 +1,37 @@
 #' Read national scale Land Use of Australia GeoTIFFs using terra
 #'
-#' Read national scale Land Use of Australia GeoTIFFs using terra as a
-#'  categorical [terra::rast] object.
+#' Download and import national scale Land Use of Australia GeoTIFFs using
+#'  \CRNApkg{terra} as a categorical [terra::rast] object.  Data are cached on
+#'  request.
 #'
-#' # Note on cached files
-#' If the data are cached you can pass only the `data_set` along with no need to
-#'  use [get_nlum()].
+#' @details From the
+#' [ABARES website](https://www.agriculture.gov.au/abares/aclump/land-use/land-use-of-australia-2010-11-to-2020-21):
+#' \dQuote{The _Land use of Australia 2010–11 to 2020–21_ data package consists
+#' of seamless continental rasters that present land use at national scale for
+#' 2010–11, 2015–16 and 2020–21 and the associated change between each target
+#' period.  Non-agricultural land uses are mapped using 7 thematic layers,
+#' derived from existing datasets provided by state and territory jurisdictions
+#' and external agencies. These 7 layers are: protected areas, topographic
+#' features, land tenure, forest type, catchment scale land use, urban
+#' boundaries, and stock routes. The agricultural land uses are based on the
+#' Australian Bureau of Statistics’ 2010–11, 2015–16 and 2020–21 agricultural
+#' census data; with spatial distributions modelled using Terra Moderate
+#' Resolution Imaging Spectroradiometer (\acronym{MODIS}) satellite imagery and
+#' training data, assisted by spatial constraint layers for cultivation,
+#' horticulture, and irrigation.
+#'    Land use is specified according to the Australian Land Use and Management
+#' (\acronym{ALUM}) Classification version 8. The same method is applied to all
+#' target periods using representative national datasets for each period, where
+#' available. All rasters are in GeoTIFF format with geographic coordinates in
+#' Geocentric Datum of Australian 1994 (GDA94) and a 0.002197 degree
+#' (~250&nbsp;metre) cell size.
+#'    The _Land use of Australia 2010–11 to 2020–21_ data package is a product of
+#' the Australian Collaborative Land Use and Management Program. This data
+#' package replaces the Land use of Australia 2010–11 to 2015–16 data package,
+#' with updates to these time periods.}
+#'  -- \acronym{ABARES}, 2024-11-28
 #'
-#' @inherit get_nlum details
-#' @inherit get_nlum references
-#'
-#' @param data_set A string value indicating the GeoTIFF desired for loading
-#'  into the active \R session.
+#' @param data_set A string value indicating the GeoTIFF desired for download.
 #' One of:
 #' \describe{
 #'  \item{Y201011}{Land use of Australia 2010–11}
@@ -25,9 +45,24 @@
 #'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 #'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 #' }
+#' @param active_cat A string value indicating the active category to be used
+#'  for the raster. One of:
+#'  \describe{
+#'   \item{}{}
+#'  }
+#' @param cache Cache the Australian Gridded Farm Data files after download
+#'  using [tools::R_user_dir] to identify the proper directory for storing user
+#'  data in a cache for this package. Defaults to `TRUE`, caching the files
+#'  locally. If `FALSE`, this function uses `tempdir()` and the files are
+#'  deleted upon closing of the active \R session.
 #'
-#' @returns A [terra::rast] object of the requested national scale Land Use of
-#'  Australia GeoTIFF.
+#' @references
+#' ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
+#' Agricultural and Resource Economics and Sciences, Canberra, November, CC BY
+#' 4.0. \doi{10.25814/w175-xh85}
+#'
+#' @source
+#' \url{https://doi.org/10.25814/w175-xh85}
 #'
 #' @examplesIf interactive()
 #'
@@ -43,13 +78,10 @@
 #' @family nlum
 #' @autoglobal
 #' @export
-
-# TODO: consider checking if the data are available, if not, ask user if they
-#  would like to download it using `get_nlum()` and cache or not.
-
-read_nlum_terra <- function(data_set) {
-  .check_class(x = files, class = "read.abares.nlum.files")
-  r <- purrr::map(.x = files, .f = terra::rast)
-  names(r) <- fs::path_file(files)
+read_nlum_terra <- function(data_set, active_cat, cache) {
+  gtiff <- .get_nlum(.data_set = data_set, .cache = cache)
+  r <- terra::rast(gtiff)
+  levels(r) <- readr::read_csv(gtiff...)
+  activeCat(r) <- active_cat
   return(r)
 }

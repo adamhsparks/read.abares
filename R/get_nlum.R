@@ -1,38 +1,8 @@
 #' Get national scale Land Use of Australia data for local use
 #'
-#' Downloads national level land use data GeoTIFF file, unzips the download file
-#'  and deletes unnecessary files that are included in the download.  Data are
-#'  cached on request.
-#'
-#' @details
-#'
-#' From the [ABARES website](https://www.agriculture.gov.au/abares/aclump/land-use/land-use-of-australia-2010-11-to-2020-21):
-#' \dQuote{The _Land use of Australia 2010–11 to 2020–21_ data package consists
-#' of seamless continental rasters that present land use at national scale for
-#' 2010–11, 2015–16 and 2020–21 and the associated change between each target
-#' period.  Non-agricultural land uses are mapped using 7 thematic layers,
-#' derived from existing datasets provided by state and territory jurisdictions
-#' and external agencies. These 7 layers are: protected areas, topographic
-#' features, land tenure, forest type, catchment scale land use, urban
-#' boundaries, and stock routes. The agricultural land uses are based on the
-#' Australian Bureau of Statistics’ 2010–11, 2015–16 and 2020–21 agricultural
-#' census data; with spatial distributions modelled using Terra Moderate
-#' Resolution Imaging Spectroradiometer (\acronym{MODIS}) satellite imagery and
-#' training data, assisted by spatial constraint layers for cultivation,
-#' horticulture, and irrigation.
-#'
-#' Land use is specified according to the Australian Land Use and Management
-#' (\acronym{ALUM}) Classification version 8. The same method is applied to all
-#' target periods using representative national datasets for each period, where
-#' available. All rasters are in GeoTIFF format with geographic coordinates in
-#' Geocentric Datum of Australian 1994 (GDA94) and a 0.002197 degree
-#' (~250&nbsp;metre) cell size.
-#'
-#' The _Land use of Australia 2010–11 to 2020–21_ data package is a product of
-#' the Australian Collaborative Land Use and Management Program. This data
-#' package replaces the Land use of Australia 2010–11 to 2015–16 data package,
-#' with updates to these time periods.}
-#'  -- \acronym{ABARES}, 2024-11-28
+#' An internal file that downloads national level land use data GeoTIFF file,
+#'  unzips the download file and deletes unnecessary files that are included in
+#'  the download.  Data are cached on request.
 #'
 #' @param data_set A string value indicating the GeoTIFF desired for download.
 #' One of:
@@ -53,7 +23,6 @@
 #'  data in a cache for this package. Defaults to `TRUE`, caching the files
 #'  locally. If `FALSE`, this function uses `tempdir()` and the files are
 #'  deleted upon closing of the active \R session.
-#' @details
 #'
 #' @references
 #' ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
@@ -73,9 +42,9 @@
 #'
 #' @family Land Use
 #' @autoglobal
-#' @export
+#' @dev
 
-get_nlum <- function(data_set, cache = TRUE) {
+.get_nlum <- function(.data_set, .cache) {
   valid_sets <- c(
     "Y202021",
     "Y201516",
