@@ -212,7 +212,7 @@ get_nlum <- function(data_set, cache = TRUE) {
   return(nlum)
 }
 
-#' Prints read.abares.nlum objects
+#' Prints read.abares.nlum.files objects
 #'
 #' Custom [base::print()] method for `read.abares.nlum.files` objects.
 #'
@@ -224,7 +224,7 @@ get_nlum <- function(data_set, cache = TRUE) {
 print.read.abares.nlum.files <- function(x, ...) {
   cli::cli_h1("Locally Available ABARES National Land Use Files")
   nlum_files <- basename(x)
-  nlum_files <- nlum_files[!grepl("csv|pdf", nlum)]
+  nlum_files <- nlum_files[!grepl("csv", nlum)]
   cli::cli_ul(tools::file_path_sans_ext(basename(nlum_files)))
   cli::cat_line()
   invisible(x)
