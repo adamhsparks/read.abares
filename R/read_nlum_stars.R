@@ -1,8 +1,7 @@
-#' Read national scale Land Use of Australia GeoTIFFs using terra
+#' Read national scale Land Use of Australia GeoTIFFs using stars
 #'
 #' Download and import national scale Land Use of Australia GeoTIFFs using
-#'  \CRNApkg{terra} as a categorical [terra::rast] object.  Data are cached on
-#'  request.
+#'  \CRNApkg{stars} object.  Data are cached on request.
 #'
 #' @details From the
 #' [ABARES website](https://www.agriculture.gov.au/abares/aclump/land-use/land-use-of-australia-2010-11-to-2020-21):
@@ -45,11 +44,6 @@
 #'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 #'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 #' }
-#' @param active_cat A string value indicating the active category to be used
-#'  for the raster. One of:
-#'  \describe{
-#'   \item{}{}
-#'  }
 #' @param cache Cache the Australian Gridded Farm Data files after download
 #'  using [tools::R_user_dir] to identify the proper directory for storing user
 #'  data in a cache for this package. Defaults to `TRUE`, caching the files
@@ -66,19 +60,17 @@
 #'
 #' @examplesIf interactive()
 #'
-#' read_nlum_terra()
+#' read_nlum_stars()
 #'
-#' nlum_terra
+#' nlum_stars
 #'
-#' plot(nlum_terra)
+#' plot(nlum_stars)
 #'
 #' @family nlum
 #' @autoglobal
 #' @export
-read_nlum_terra <- function(data_set, active_cat, cache) {
+read_nlum_stars <- function(data_set, cache) {
   gtiff <- .get_nlum(.data_set = data_set, .cache = cache)
-  r <- terra::rast(gtiff)
-  levels(r) <- readr::read_csv(gtiff...)
-  activeCat(r) <- active_cat
-  return(r)
+  s <- stars::read_stars(gtiff)
+  return(s)
 }
