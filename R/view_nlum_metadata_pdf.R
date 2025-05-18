@@ -4,10 +4,14 @@
 #'  function will open and display that file using the native PDF viewer for any
 #'  system with a graphical user interface and PDF viewer configured.  If the
 #'  file does not exist locally, it will be fetched and displayed.
+#'
 #' @examplesIf interactive()
 #' view_nlum_metadata_pdf()
+#'
 #' @returns Called for its side-effects, opens the system's native PDF viewer to
-#'  display the requested metadata file.
+#'  display the requested metadata PDF document.
+#'
+#' @family nlum
 #' @export
 #' @autoglobal
 
