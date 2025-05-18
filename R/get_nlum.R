@@ -165,15 +165,6 @@ get_nlum <- function(data_set, cache = TRUE) {
           download_dir,
           utils::unzip(zipfile = download_file, exdir = nlum_dir)
         )
-        fs::dir_delete(
-          c(fs::path(nlum_dir, "Maps"), fs::path(nlum_dir, "Symbology"))
-        )
-        fs::file_delete(
-          c(
-            fs::path(nlum_dir, "Thumbs.db"),
-            fs::path(nlum_dir, "NLUM_v7_250_ALUMV8_2010_11_alb.tif.aux.xml")
-          )
-        )
 
         if (
           !fs::file_exists(fs::path(
@@ -186,6 +177,17 @@ get_nlum <- function(data_set, cache = TRUE) {
             "NLUM_v7_DescriptiveMetadata_20241128_0.pdf"
           ))
         }
+
+        fs::dir_delete(
+          c(fs::path(nlum_dir, "Maps"), fs::path(nlum_dir, "Symbology"))
+        )
+        fs::file_delete(
+          c(
+            fs::path(nlum_dir, "NLUM_v7_DescriptiveMetadata_20241128_0.pdf"),
+            fs::path(nlum_dir, "Thumbs.db"),
+            fs::path(nlum_dir, "*.tif.aux.xml")
+          )
+        )
       },
       error = function(e) {
         cli::cli_abort(
