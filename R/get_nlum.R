@@ -236,14 +236,13 @@ print.read.abares.nlum.files <- function(x, ...) {
 #'  function will open and display that file using the native PDF viewer for any
 #'  system.
 #' @examples
-#' view_nlum_pdf()
+#' view_nlum_metadata_pdf()
 #' @returns Called for its side-effects, opens the system's native PDF viewer to
 #'  display the requested metadata file.
-#' @source \url{https://stackoverflow.com/a/65738472}
 #' @export
 #' @autoglobal
 
-view_nlum_pdf <- function() {
+view_nlum_metadata_pdf <- function() {
   "%,%" <- paste0
   n <- grep("pdf", names(options()))
   nlum_metadata_pdf_path <- fs::path(
@@ -251,5 +250,5 @@ view_nlum_pdf <- function() {
     "nlum",
     "NLUM_v7_DescriptiveMetadata_20241128_0.pdf"
   )
-  system(options()[[n]] %,% " nlum_metadata_pdf_path 2> /dev/null &")
+  system(paste0('open "', nlum_metadata_pdf_path, '"'))
 }
