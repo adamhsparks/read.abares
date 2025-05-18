@@ -172,10 +172,13 @@ get_nlum <- function(data_set, cache = TRUE) {
             "NLUM_v7_DescriptiveMetadata_20241128_0.pdf"
           ))
         ) {
-          fs::file_move(fs::path(
-            nlum_dir,
-            "NLUM_v7_DescriptiveMetadata_20241128_0.pdf"
-          ))
+          fs::file_move(
+            fs::path(
+              nlum_dir,
+              "NLUM_v7_DescriptiveMetadata_20241128_0.pdf"
+            ),
+            fs::path(download_dir, "NLUM_v7_DescriptiveMetadata_20241128_0.pdf")
+          )
         }
 
         fs::dir_delete(
