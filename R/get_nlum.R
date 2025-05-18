@@ -246,5 +246,10 @@ print.read.abares.nlum.files <- function(x, ...) {
 view_nlum_pdf <- function() {
   "%,%" <- paste0
   n <- grep("pdf", names(options()))
-  system(options()[[n]] %,% " <path to file>  2> /dev/null &")
+  nlum_metadata_pdf_path <- fs::path(
+    .find_user_cache(),
+    "nlum",
+    "NLUM_v7_DescriptiveMetadata_20241128_0.pdf"
+  )
+  system(options()[[n]] %,% " nlum_metadata_pdf_path 2> /dev/null &")
 }
