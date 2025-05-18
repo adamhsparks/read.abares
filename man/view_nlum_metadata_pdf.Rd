@@ -2,16 +2,16 @@
 % Please edit documentation in R/view_nlum_metadata_pdf.R
 \name{view_nlum_metadata_pdf}
 \alias{view_nlum_metadata_pdf}
-\title{Displays the PDF metadata for the National Land Use raster files in a native viewer}
+\title{Displays the PDF metadata for the National Land Use (NLUM) raster files in a native viewer}
 \usage{
 view_nlum_metadata_pdf()
 }
 \value{
 Called for its side-effects, opens the system's native PDF viewer to
-display the requested metadata file.
+display the requested metadata PDF document.
 }
 \description{
-Each National Land Use raster file comes with a PDF of metadata. This
+Each National Land Use (NLUM) raster file comes with a PDF of metadata. This
 function will open and display that file using the native PDF viewer for any
 system with a graphical user interface and PDF viewer configured.  If the
 file does not exist locally, it will be fetched and displayed.
@@ -21,3 +21,8 @@ file does not exist locally, it will be fetched and displayed.
 view_nlum_metadata_pdf()
 \dontshow{\}) # examplesIf}
 }
+\seealso{
+Other nlum: 
+\code{\link{read_nlum_terra}()}
+}
+\concept{nlum}
