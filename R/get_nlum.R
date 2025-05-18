@@ -206,7 +206,7 @@ get_nlum <- function(data_set, cache = TRUE) {
     fs::file_delete(download_file)
   }
 
-  nlum <- fs::dir_ls(nlum_dir, full.names = TRUE)
+  nlum <- fs::dir_ls(download_dir, full.names = TRUE)
 
   class(nlum) <- union("read.abares.nlum.files", class(nlum))
   return(nlum)
@@ -223,9 +223,7 @@ get_nlum <- function(data_set, cache = TRUE) {
 #' @noRd
 print.read.abares.nlum.files <- function(x, ...) {
   cli::cli_h1("Locally Available ABARES National Land Use Files")
-  nlum_files <- basename(x)
-  nlum_files <- nlum_files[!grepl("csv", nlum)]
-  cli::cli_ul(tools::file_path_sans_ext(basename(nlum_files)))
+  cli::cli_ul(x)
   cli::cat_line()
   invisible(x)
 }
