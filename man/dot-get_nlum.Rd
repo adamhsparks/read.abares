@@ -10,7 +10,7 @@
 .get_nlum(.data_set, .cache)
 }
 \arguments{
-\item{data_set}{A string value indicating the GeoTIFF desired for download.
+\item{.data_set}{A string value indicating the GeoTIFF desired for download.
 One of:
 \describe{
 \item{Y201011}{Land use of Australia 2010–11}
@@ -25,7 +25,7 @@ One of:
 \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 }}
 
-\item{cache}{Cache the Australian Gridded Farm Data files after download
+\item{.cache}{Cache the Australian Gridded Farm Data files after download
 using \link[tools:userdir]{tools::R_user_dir} to identify the proper directory for storing user
 data in a cache for this package. Defaults to \code{TRUE}, caching the files
 locally. If \code{FALSE}, this function uses \code{tempdir()} and the files are
@@ -36,9 +36,10 @@ A \code{read.abares.nlum} object, a list of files containing a GeoTIFF of
 national scale land use data and a PDF file of metadata.
 }
 \description{
-An internal file that downloads national level land use data GeoTIFF file,
-unzips the download file and deletes unnecessary files that are included in
-the download.  Data are cached on request.
+An internal function used by \link{read_nlum_terra} and \link{read_nlum_stars} that
+downloads national level land use data GeoTIFF file, unzips the download
+file and deletes unnecessary files that are included in the download.  Data
+are cached on request.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}

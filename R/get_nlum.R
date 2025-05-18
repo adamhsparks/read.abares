@@ -1,10 +1,11 @@
 #' Get national scale Land Use of Australia data for local use
 #'
-#' An internal file that downloads national level land use data GeoTIFF file,
-#'  unzips the download file and deletes unnecessary files that are included in
-#'  the download.  Data are cached on request.
+#' An internal function used by [read_nlum_terra] and [read_nlum_stars] that
+#'  downloads national level land use data GeoTIFF file, unzips the download
+#'  file and deletes unnecessary files that are included in the download.  Data
+#'  are cached on request.
 #'
-#' @param data_set A string value indicating the GeoTIFF desired for download.
+#' @param .data_set A string value indicating the GeoTIFF desired for download.
 #' One of:
 #' \describe{
 #'  \item{Y201011}{Land use of Australia 2010–11}
@@ -18,7 +19,7 @@
 #'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 #'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 #' }
-#' @param cache Cache the Australian Gridded Farm Data files after download
+#' @param .cache Cache the Australian Gridded Farm Data files after download
 #'  using [tools::R_user_dir] to identify the proper directory for storing user
 #'  data in a cache for this package. Defaults to `TRUE`, caching the files
 #'  locally. If `FALSE`, this function uses `tempdir()` and the files are
@@ -58,24 +59,24 @@
     "P201011"
   )
 
-  data_set <- rlang::arg_match(data_set, valid_sets)
+  data_set <- rlang::arg_match(.data_set, valid_sets)
 
   download_file <- data.table::fifelse(
     cache,
-    fs::path(.find_user_cache(), "nlum", sprintf("%s.zip", data_set)),
-    fs::path(tempdir(), "nlum", sprintf("%s.zip", data_set))
+    fs::path(.find_user_cache(), "nlum", sprintf("%s.zip", .data_set)),
+    fs::path(tempdir(), "nlum", sprintf("%s.zip", .data_set))
   )
 
   # this is where the zip file is downloaded
   download_dir <- fs::path_dir(download_file)
 
   # this is where the zip files are unzipped and read from
-  nlum_dir <- fs::path(download_dir, data_set)
+  nlum_dir <- fs::path(download_dir, .data_set)
 
   # only download if the files aren't already local
   if (!fs::dir_exists(nlum_dir)) {
     # if caching is enabled but {read.abares} cache doesn't exist, create it
-    if (cache) {
+    if (.cache) {
       fs::dir_create(nlum_dir, recurse = TRUE)
     }
 
@@ -175,7 +176,7 @@
     fs::file_delete(download_file)
   }
 
-  nlum <- fs::dir_ls(download_dir, full.names = TRUE)
+  nlum <- fs::dir_ls(nlum_dir, full.names = TRUE)
 
   class(nlum) <- union("read.abares.nlum.files", class(nlum))
   return(nlum)
