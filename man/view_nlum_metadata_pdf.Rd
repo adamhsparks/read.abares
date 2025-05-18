@@ -13,7 +13,8 @@ display the requested metadata file.
 \description{
 Each National Land Use raster file comes with a PDF of metadata. This
 function will open and display that file using the native PDF viewer for any
-system.
+system with a graphical user interface and PDF viewer configured.  If the
+file does not exist locally, it will be fetched and displayed.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
