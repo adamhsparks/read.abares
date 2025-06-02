@@ -50,6 +50,13 @@
 #'  locally. If `FALSE`, this function uses `tempdir()` and the files are
 #'  deleted upon closing of the active \R session.
 #'
+#' @details
+#' The raster will load with the default category for each data set, but you can
+#'  specify a different category to use when reading the file in with the
+#'  `active_cat` argument. To see which categories are available, please refer
+#'  to the metadata for these data.  The PDF can be accessed in your default web
+#'  browser by using [view_nlum_metadata_pdf()].
+#'
 #' @references
 #' ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
 #' Agricultural and Resource Economics and Sciences, Canberra, November, CC BY
@@ -69,8 +76,8 @@
 #' @family nlum
 #' @autoglobal
 #' @export
-read_nlum_stars <- function(data_set, cache) {
+read_nlum_stars <- function(data_set, active_cat, cache = TRUE) {
   gtiff <- .get_nlum(.data_set = data_set, .cache = cache)
-  s <- stars::read_stars(gtiff)
+  s <- stars::read_stars(gtiff, RAT = )
   return(s)
 }

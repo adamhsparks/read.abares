@@ -7,7 +7,7 @@
 \url{https://doi.org/10.25814/w175-xh85}
 }
 \usage{
-read_nlum_stars(data_set, cache)
+read_nlum_stars(data_set, active_cat, cache = TRUE)
 }
 \arguments{
 \item{data_set}{A string value indicating the GeoTIFF desired for download.
@@ -62,6 +62,12 @@ the Australian Collaborative Land Use and Management Program. This data
 package replaces the Land use of Australia 2010–11 to 2015–16 data package,
 with updates to these time periods.}
 -- \acronym{ABARES}, 2024-11-28
+
+The raster will load with the default category for each data set, but you can
+specify a different category to use when reading the file in with the
+\code{active_cat} argument. To see which categories are available, please refer
+to the metadata for these data.  The PDF can be accessed in your default web
+browser by using \code{\link[=view_nlum_metadata_pdf]{view_nlum_metadata_pdf()}}.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}

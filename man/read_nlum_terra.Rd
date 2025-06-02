@@ -7,7 +7,7 @@
 \url{https://doi.org/10.25814/w175-xh85}
 }
 \usage{
-read_nlum_terra(data_set, active_cat, cache)
+read_nlum_terra(data_set, active_cat, cache = TRUE)
 }
 \arguments{
 \item{data_set}{A string value indicating the GeoTIFF desired for download.
@@ -33,7 +33,7 @@ for the raster. One of:
 
 \item{cache}{Cache the Australian Gridded Farm Data files after download
 using \link[tools:userdir]{tools::R_user_dir} to identify the proper directory for storing user
-data in a cache for this package. Defaults to \code{TRUE}, caching the files
+data in a cache for this package.  Defaults to \code{TRUE}, caching the files
 locally. If \code{FALSE}, this function uses \code{tempdir()} and the files are
 deleted upon closing of the active \R session.}
 }
@@ -69,11 +69,17 @@ the Australian Collaborative Land Use and Management Program. This data
 package replaces the Land use of Australia 2010–11 to 2015–16 data package,
 with updates to these time periods.}
 -- \acronym{ABARES}, 2024-11-28
+
+The raster will load with the default category for each data set, but you can
+specify a different category to use through \code{\link[terra:activeCat]{terra::activeCat()}}.  To see
+which categories are available, please refer to the metadata for these data.
+The PDF can be accessed in your default web browser by using
+\code{\link[=view_nlum_metadata_pdf]{view_nlum_metadata_pdf()}}.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 
-read_nlum_terra()
+read_nlum_terra(data_set = "Y202021", active_cat = "", cache = TRUE)
 
 nlum_terra
 
