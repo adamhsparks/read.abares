@@ -13,17 +13,17 @@
 #' @examples
 #' # not run because cached files shouldn't exist on CRAN or testing envs
 #' \dontrun{
+#' library(fs)
 #' # list directories in cache only
 #' inspect_cache()
-#'
-#' # list directory names, stripping the fs::path_file
-#' basename(inspect_cache)
 #'
 #' # list all files in subdirectories of the cache
 #' inspect_cache(recurse = TRUE)
 #'
-#' # list all files in subdirectories, stripping the [fs::path_file]
-#' library(fs)
+#' # list directory names, stripping the fs::path_file
+#' path_file(inspect_cache)
+#'
+#' # list all files in subdirectories, stripping the fs::path_file
 #' path_file(inspect_cache(recurse = TRUE))
 #' }
 #' @family cache
@@ -38,7 +38,7 @@ inspect_cache <- function(recurse = FALSE) {
     f <- fs::dir_ls(fs::path_abs(f))
   }
 
-  if (length(f) < 1) {
+  if (length(f) < 1L) {
     return(cli::cli_inform(
       c(
         "There do not appear to be any files cached for {.pkg {{read.abares}}}."

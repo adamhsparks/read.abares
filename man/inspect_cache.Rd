@@ -24,17 +24,17 @@ file names, see \link[fs:path_file]{fs::path_file} or \link[fs:path_file]{fs::pa
 \examples{
 # not run because cached files shouldn't exist on CRAN or testing envs
 \dontrun{
+library(fs)
 # list directories in cache only
 inspect_cache()
-
-# list directory names, stripping the fs::path_file
-basename(inspect_cache)
 
 # list all files in subdirectories of the cache
 inspect_cache(recurse = TRUE)
 
-# list all files in subdirectories, stripping the [fs::path_file]
-library(fs)
+# list directory names, stripping the fs::path_file
+path_file(inspect_cache)
+
+# list all files in subdirectories, stripping the fs::path_file
 path_file(inspect_cache(recurse = TRUE))
 }
 }
