@@ -7,7 +7,7 @@
 \url{https://doi.org/10.25814/w175-xh85}
 }
 \usage{
-read_nlum_terra(data_set, active_cat, cache = TRUE)
+read_nlum_terra(data_set, active_cat, cache = FALSE)
 }
 \arguments{
 \item{data_set}{A string value indicating the GeoTIFF desired for download.
@@ -33,7 +33,7 @@ for the raster. One of:
 
 \item{cache}{Cache the Australian Gridded Farm Data files after download
 using \link[tools:userdir]{tools::R_user_dir} to identify the proper directory for storing user
-data in a cache for this package.  Defaults to \code{TRUE}, caching the files
+data in a cache for this package.  Defaults to \code{FALSE}.
 locally. If \code{FALSE}, this function uses \code{tempdir()} and the files are
 deleted upon closing of the active \R session.}
 }
@@ -79,7 +79,7 @@ The PDF can be accessed in your default web browser by using
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 
-read_nlum_terra(data_set = "Y202021", active_cat = "", cache = TRUE)
+read_nlum_terra(data_set = "Y202021", active_cat = "", cache = FALSE)
 
 nlum_terra
 

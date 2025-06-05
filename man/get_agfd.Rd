@@ -10,7 +10,7 @@
 }
 }
 \usage{
-get_agfd(fixed_prices = TRUE, cache = TRUE, yr = NULL)
+get_agfd(fixed_prices = TRUE, cache = FALSE, yr = NULL)
 }
 \arguments{
 \item{fixed_prices}{Download historical climate and prices or historical
@@ -23,7 +23,7 @@ from the most recently completed financial year.}
 
 \item{cache}{Cache the Australian Gridded Farm Data files after download
 using \link[tools:userdir]{tools::R_user_dir} to identify the proper directory for storing user
-data in a cache for this package. Defaults to \code{TRUE}, caching the files
+data in a cache for this package. Defaults to \code{FALSE}.
 locally. If \code{FALSE}, this function uses \code{tempdir()} and the files are
 deleted upon closing of the active \R session.}
 

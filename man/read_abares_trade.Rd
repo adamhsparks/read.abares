@@ -7,15 +7,15 @@
 \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0}
 }
 \usage{
-read_abares_trade(cache = TRUE)
+read_abares_trade(cache = FALSE)
 }
 \arguments{
 \item{cache}{\code{Boolean} Cache the \acronym{ABARES} trade data locally after
 download to save download time in the future. Uses \link[tools:userdir]{tools::R_user_dir} to
 identify the proper directory for storing user data in a cache for this
-package. Defaults to \code{TRUE}, caching the file as a gzipped CSV file. If
-\code{FALSE}, this function uses \code{tempdir()} and the files are deleted upon
-closing of the active \R session.}
+package. Defaults to \code{FALSE}. If \code{FALSE}, this function uses \code{tempdir()}
+and the files are deleted upon closing of the active \R session. If set to
+\code{TRUE}, the file is cached as a gzipped CSV file.}
 }
 \value{
 A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.

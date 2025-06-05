@@ -44,7 +44,7 @@
 #'  from the most recently completed financial year.
 #' @param cache Cache the Australian Gridded Farm Data files after download
 #'  using [tools::R_user_dir] to identify the proper directory for storing user
-#'  data in a cache for this package. Defaults to `TRUE`, caching the files
+#'  data in a cache for this package. Defaults to `FALSE`.
 #'  locally. If `FALSE`, this function uses `tempdir()` and the files are
 #'  deleted upon closing of the active \R session.
 #' @param yr Returns only data for the specified year or years for climate data
@@ -185,7 +185,7 @@
 #' @autoglobal
 #' @export
 
-get_agfd <- function(fixed_prices = TRUE, cache = TRUE, yr = NULL) {
+get_agfd <- function(fixed_prices = TRUE, cache = FALSE, yr = NULL) {
   download_file <- data.table::fifelse(
     cache,
     fs::path(.find_user_cache(), "agfd.zip"),

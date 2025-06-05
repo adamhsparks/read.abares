@@ -7,7 +7,7 @@
 \url{https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip}
 }
 \usage{
-read_aagis_regions(cache = TRUE)
+read_aagis_regions(cache = FALSE)
 }
 \arguments{
 \item{cache}{Cache the \acronym{AAGIS} regions' geospatial file after

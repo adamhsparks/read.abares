@@ -7,12 +7,12 @@
 \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
 }
 \usage{
-get_topsoil_thickness(cache = TRUE)
+get_topsoil_thickness(cache = FALSE)
 }
 \arguments{
 \item{cache}{Caches the topsoil thickness data files after download
 using \code{tools::R_user_dir()} to identify the proper directory for storing
-user data in a cache for this package. Defaults to \code{TRUE}, caching the files
+user data in a cache for this package. Defaults to \code{FALSE}.
 locally. If \code{FALSE}, this function uses \code{tempdir()} and the files are deleted
 upon closing of the active \R session.}
 }
@@ -25,7 +25,7 @@ Get topsoil thickness for 'Australian Areas of Intensive Agriculture of Layer 1'
 }
 \details{
 The topsoil thickness data will be saved as a GeoTIFF file in the user's
-cache if \code{cache = TRUE}.
+cache if \code{cache = FALSE}.
 }
 \note{
 A custom \code{print()} method is provided that will print the metadata associated

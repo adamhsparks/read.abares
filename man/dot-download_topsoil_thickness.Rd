@@ -9,7 +9,7 @@
 \arguments{
 \item{cache}{\code{Boolean} Cache the soil thickness data files after download
 using \code{tools::R_user_dir()} to identify the proper directory for storing
-user data in a cache for this package. Defaults to \code{TRUE}, caching the files
+user data in a cache for this package. Defaults to \code{FALSE}.
 locally. If \code{FALSE}, this function uses \code{tempdir()} and the files are deleted
 upon closing of the active \R session.}
 }

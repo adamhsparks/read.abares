@@ -7,7 +7,7 @@
 \url{https://doi.org/10.25814/w175-xh85}
 }
 \usage{
-read_nlum_stars(data_set, active_cat, cache = TRUE)
+read_nlum_stars(data_set, active_cat, cache = FALSE)
 }
 \arguments{
 \item{data_set}{A string value indicating the GeoTIFF desired for download.
@@ -27,7 +27,7 @@ One of:
 
 \item{cache}{Cache the Australian Gridded Farm Data files after download
 using \link[tools:userdir]{tools::R_user_dir} to identify the proper directory for storing user
-data in a cache for this package. Defaults to \code{TRUE}, caching the files
+data in a cache for this package. Defaults to \code{FALSE}.
 locally. If \code{FALSE}, this function uses \code{tempdir()} and the files are
 deleted upon closing of the active \R session.}
 }

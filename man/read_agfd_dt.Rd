@@ -167,7 +167,7 @@ farmland_per_cell     \tab ha        \tab Indicative area of farmland in the gri
 
 # using piping, which can use the {read.abares} cache after the first DL
 
-agfd_dt <- get_agfd(cache = TRUE) |>
+agfd_dt <- get_agfd(cache = FALSE) |>
   read_agfd_dt()
 
 agfd_dt

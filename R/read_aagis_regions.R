@@ -38,7 +38,7 @@
 #' @autoglobal
 #' @export
 
-read_aagis_regions <- function(cache = TRUE) {
+read_aagis_regions <- function(cache = FALSE) {
   aagis_regions_cache <- fs::path(.find_user_cache(), "aagis_regions_dir")
   if (fs::dir_exists(aagis_regions_cache)) {
     return(sf::st_read(

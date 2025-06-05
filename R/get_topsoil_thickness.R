@@ -2,13 +2,13 @@
 #'
 #' @param cache Caches the topsoil thickness data files after download
 #' using `tools::R_user_dir()` to identify the proper directory for storing
-#' user data in a cache for this package. Defaults to `TRUE`, caching the files
+#' user data in a cache for this package. Defaults to `FALSE`.
 #' locally. If `FALSE`, this function uses `tempdir()` and the files are deleted
 #' upon closing of the active \R session.
 #'
 #' @details
 #' The topsoil thickness data will be saved as a GeoTIFF file in the user's
-#'  cache if `cache = TRUE`.
+#'  cache if `cache = FALSE`.
 #'
 #' @note
 #' A custom `print()` method is provided that will print the metadata associated
@@ -39,7 +39,7 @@
 #' @family topsoil_thickness
 #' @export
 
-get_topsoil_thickness <- function(cache = TRUE) {
+get_topsoil_thickness <- function(cache = FALSE) {
   topsoil_thickness_cache <- fs::path(
     .find_user_cache(),
     "topsoil_thickness_dir"
@@ -78,7 +78,7 @@ get_topsoil_thickness <- function(cache = TRUE) {
 #' Downloads Topsoil thickness data if not already found locally
 #' @param cache `Boolean` Cache the soil thickness data files after download
 #' using `tools::R_user_dir()` to identify the proper directory for storing
-#' user data in a cache for this package. Defaults to `TRUE`, caching the files
+#' user data in a cache for this package. Defaults to `FALSE`.
 #' locally. If `FALSE`, this function uses `tempdir()` and the files are deleted
 #' upon closing of the active \R session.
 #'
@@ -201,7 +201,7 @@ print.read.abares.topsoil.thickness.files <- function(x, ...) {
 #' @returns Nothing, called for its side effects, it prints the complete
 #'   metadata file to the \R console.
 #' @examplesIf interactive()
-#' get_topsoil_thickness(cache = TRUE) |>
+#' get_topsoil_thickness(cache = FALSE) |>
 #'   print_topsoil_thickness_metadata()
 #'
 #' @family topsoil_thickness

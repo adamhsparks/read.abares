@@ -46,7 +46,7 @@
 #' }
 #' @param cache Cache the Australian Gridded Farm Data files after download
 #'  using [tools::R_user_dir] to identify the proper directory for storing user
-#'  data in a cache for this package. Defaults to `TRUE`, caching the files
+#'  data in a cache for this package. Defaults to `FALSE`.
 #'  locally. If `FALSE`, this function uses `tempdir()` and the files are
 #'  deleted upon closing of the active \R session.
 #'
@@ -76,7 +76,7 @@
 #' @family nlum
 #' @autoglobal
 #' @export
-read_nlum_stars <- function(data_set, active_cat, cache = TRUE) {
+read_nlum_stars <- function(data_set, active_cat, cache = FALSE) {
   gtiff <- .get_nlum(.data_set = data_set, .cache = cache)
   s <- stars::read_stars(gtiff, RAT = )
   return(s)

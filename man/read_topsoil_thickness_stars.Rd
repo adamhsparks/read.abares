@@ -23,7 +23,7 @@ data as a \CRANpkg{stars} object.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
-st_stars <- get_topsoil_thickness(cache = TRUE) |>
+st_stars <- get_topsoil_thickness(cache = FALSE) |>
   read_topsoil_thickness_stars()
 
 plot(st_stars)

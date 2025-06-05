@@ -12,9 +12,9 @@
 #' @param cache `Boolean` Cache the \acronym{ABARES} trade data locally after
 #'  download to save download time in the future. Uses [tools::R_user_dir] to
 #'  identify the proper directory for storing user data in a cache for this
-#'  package. Defaults to `TRUE`, caching the file as a gzipped CSV file. If
-#'  `FALSE`, this function uses `tempdir()` and the files are deleted upon
-#'  closing of the active \R session.
+#'  package. Defaults to `FALSE`. If `FALSE`, this function uses `tempdir()`
+#'  and the files are deleted upon closing of the active \R session. If set to
+#'  `TRUE`, the file is cached as a gzipped CSV file.
 #'
 #' @note The cached file is not the same as the raw file that is available for
 #'  download. It will follow the renaming scheme and filling values that this
@@ -32,7 +32,7 @@
 #' @autoglobal
 #' @export
 
-read_abares_trade <- function(cache = TRUE) {
+read_abares_trade <- function(cache = FALSE) {
   abares_trade_gz <- fs::path(
     .find_user_cache(),
     "abares_trade_dir/abares_trade.gz"
@@ -51,9 +51,9 @@ read_abares_trade <- function(cache = TRUE) {
 #'
 #' @param cache `Boolean` Cache the \acronym{ABARES} trade CSV file after
 #'  download using `tools::R_user_dir()` to identify the proper directory for
-#'  storing user data in a cache for this package. Defaults to `TRUE`, caching
-#'  the files locally as a gzip file. If `FALSE`, this function uses
-#'  `tempdir()` and the files are deleted upon closing of the active \R session.
+#'  storing user data in a cache for this package. Defaults to `FALSE`, using
+#'  `tempdir()`, deleting files upon closing the active \R session. If set to
+#'  `TRUE`, the files are cached locally as a gzip file.
 #'
 #' @returns A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
 #' @noRd
@@ -109,8 +109,7 @@ read_abares_trade <- function(cache = TRUE) {
     )
   )
 
-  abares_trade[
-    ,
+  abares_trade[,
     Year_month := lubridate::ym(
       gsub(".", "-", Year_month, fixed = TRUE)
     )
