@@ -40,12 +40,11 @@ inspect_cache <- function(recurse = FALSE) {
 
   if (length(f) < 1L) {
     return(cli::cli_inform(
-      c(
-        "There do not appear to be any files cached for {.pkg {{read.abares}}}."
-      )
+      "There do not appear to be any files cached for {.pkg {{read.abares}}}."
     ))
   } else {
     cli::cli_h1("Locally Available {{read.abares}} Cached Files")
     cli::cli_ul(basename(f))
+    return(invisible(f))
   }
 }
