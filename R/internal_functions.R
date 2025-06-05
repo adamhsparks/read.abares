@@ -51,14 +51,33 @@
 
 .retry_download <- function(url, .f, .max_tries = 3L) {
   httr2::request(base_url = url) |>
-    httr2::req_user_agent("read.abares") |>
+    httr2::req_user_agent(.set_ua()) |>
     httr2::req_headers("Accept-Encoding" = "identity") |>
     httr2::req_headers("Connection" = "Keep-Alive") |>
-    httr2::req_options(http_version = 2, timeout = 2000L) |>
+    httr2::req_options(http_version = 2L, timeout = 2000L) |>
     httr2::req_retry(max_tries = .max_tries) |>
     httr2::req_cache(path = tempdir()) |>
     httr2::req_progress() |>
     httr2::req_perform() |>
     httr2::resp_body_raw() |>
     brio::write_file_raw(path = .f)
+}
+
+
+#' Set the UserAgent String
+#'
+#' Allows users to specify a user-agent string in their .Renviron that overrides
+#' the default string.
+#'
+#' @returns A `string` value to be used as the user-agent in the HTTP request.
+#' @dev
+#'
+.set_ua <- function() {
+  ua <- Sys.getenv("READ_ABARES_UA")
+  if (nzchar(ua)) {
+    return(ua)
+  }
+  # set default string if no entry in .Renviron
+  ua <- "read.abares"
+  return(ua)
 }
