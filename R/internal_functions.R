@@ -66,14 +66,18 @@
 
 #' Set the UserAgent String
 #'
-#' Allows users to specify a user-agent string in their .Renviron that overrides
+#' Allows users to specify a user-agent string via `options()` that overrides
 #' the default string.
+#'
+#' @examples
+#' options(read.abares_ua = "read.abares testing v0.0.0.9000")
+#' .set_ua()
 #'
 #' @returns A `string` value to be used as the user-agent in the HTTP request.
 #' @dev
 #'
 .set_ua <- function() {
-  ua <- Sys.getenv("READ_ABARES_UA")
+  ua <- getOption("read.abares_ua")
   if (nzchar(ua)) {
     return(ua)
   }
