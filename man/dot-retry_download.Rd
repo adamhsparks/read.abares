@@ -4,15 +4,12 @@
 \alias{.retry_download}
 \title{Use httr2 to fetch a file with retries}
 \usage{
-.retry_download(url, .f, .max_tries = 3L)
+.retry_download(url, .f)
 }
 \arguments{
 \item{url}{\code{Character} The URL being requested.}
 
 \item{.f}{\code{Character} A filepath to be written to local storage.}
-
-\item{.max_tries}{\code{Integer} The number of times to retry a failed download
-before emitting an error message.}
 
 \item{.initial_delay}{\code{Integer} The number of seconds to delay before
 retrying the download.  This increases as the tries increment.}
