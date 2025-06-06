@@ -17,4 +17,5 @@
 ^man/dot-find_user_cache\.Rd$
 ^man/dot-check_class\.Rd$
 ^man/dot-retry_download\.Rd$
+^man/dot-set_ua\.Rd$
 ^man/dot-download_aagis_shp\.Rd$

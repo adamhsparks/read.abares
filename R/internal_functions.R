@@ -64,7 +64,7 @@
 }
 
 
-#' Set the UserAgent String
+#' Set the User Agent String
 #'
 #' Allows users to specify a user-agent string via `options()` that overrides
 #' the default string.
