@@ -14,7 +14,7 @@
 #'
 #' These options can be set globally using:
 #' ```r
-#' options(myPackage.user_agent = "myCustomUserAgent")
+#' options(read.abares.user_agent = "myCustomUserAgent")
 #' ```
 #'
 #' @seealso [options()], [getOption()]

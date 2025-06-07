@@ -19,7 +19,7 @@ The following options can be set via \code{\link[=options]{options()}} to contro
 
 These options can be set globally using:
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{options(myPackage.user_agent = "myCustomUserAgent")
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{options(read.abares.user_agent = "myCustomUserAgent")
 }\if{html}{\out{</div>}}
 }
 \seealso{
