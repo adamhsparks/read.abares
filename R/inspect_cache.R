@@ -32,13 +32,13 @@
 
 inspect_cache <- function(recurse = FALSE) {
   f <- .find_user_cache()
-  if (recurse) {
-    f <- fs::dir_ls(fs::path_abs(f), recurse = TRUE)
-  } else {
-    f <- fs::dir_ls(fs::path_abs(f))
-  }
-
-  if (length(f) < 1L) {
+  if (isTRUE(fs::dir_exists)) {
+    if (recurse) {
+      f <- fs::dir_ls(fs::path_abs(f), recurse = TRUE)
+    } else {
+      f <- fs::dir_ls(fs::path_abs(f))
+    }
+  } else if (isFALSE(fs::dir_exists(f)) || length(f) < 1L) {
     return(cli::cli_inform(
       "There do not appear to be any files cached for {.pkg {{read.abares}}}."
     ))
