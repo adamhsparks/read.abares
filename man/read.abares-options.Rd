@@ -11,7 +11,7 @@ The following options can be set via \code{\link[=options]{options()}} to contro
 
 \describe{
    \item{\code{read.abares.ua}}{String. Set a custom useragent for web requests. Default is \code{"read.abares"}.}
-   \item{\code{myPackage.timeout}}{Numeric. Timeout in seconds for operations. Default is \code{30}.}
+   \item{\code{myPackage.timeout}}{Numeric. Timeout in seconds for operations. Default is \code{2000}.}
 }
 
 These options can be set globally using:
@@ -21,5 +21,9 @@ These options can be set globally using:
 }
 \seealso{
 \code{\link[=options]{options()}}, \code{\link[=getOption]{getOption()}}
+
+Other read.abares-options: 
+\code{\link{read.abares_options}()}
 }
+\concept{read.abares-options}
 \keyword{internal}

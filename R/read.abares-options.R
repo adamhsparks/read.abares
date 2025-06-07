@@ -6,7 +6,7 @@
 #'
 #' \describe{
 #'   \item{`read.abares.ua`}{String. Set a custom useragent for web requests. Default is `"read.abares"`.}
-#'   \item{`myPackage.timeout`}{Numeric. Timeout in seconds for operations. Default is `30`.}
+#'   \item{`myPackage.timeout`}{Numeric. Timeout in seconds for operations. Default is `2000`.}
 #' }
 #'
 #' These options can be set globally using:
@@ -16,5 +16,6 @@
 #'
 #' @seealso [options()], [getOption()]
 #' @name read.abares-options
+#' @family read.abares-options
 #' @keywords internal
 NULL
