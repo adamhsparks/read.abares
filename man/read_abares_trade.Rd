@@ -7,15 +7,7 @@
 \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0}
 }
 \usage{
-read_abares_trade(cache = FALSE)
-}
-\arguments{
-\item{cache}{\code{Boolean} Cache the \acronym{ABARES} trade data locally after
-download to save download time in the future. Uses \link[tools:userdir]{tools::R_user_dir} to
-identify the proper directory for storing user data in a cache for this
-package. Defaults to \code{FALSE}. If \code{FALSE}, this function uses \code{tempdir()}
-and the files are deleted upon closing of the active \R session. If set to
-\code{TRUE}, the file is cached as a gzipped CSV file.}
+read_abares_trade()
 }
 \value{
 A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
@@ -34,6 +26,16 @@ The cached file is not the same as the raw file that is available for
 download. It will follow the renaming scheme and filling values that this
 function will perform on the raw data.
 }
+\section{Caching}{
+
+
+If caching is enabled via \code{read.abares.user_agent} via \code{options()}, the
+files will be cached locally as a GeoTIFF file after download using
+\link[tools:userdir]{tools::R_user_dir} to identify the proper directory for storing user data
+in a cache for this package unless \code{read.abares.cache_location} is
+otherwise specified via \code{options()}.  See \link{read.abares-options} for more.
+}
+
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 trade <- read_abares_trade()

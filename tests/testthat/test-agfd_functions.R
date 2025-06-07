@@ -1,6 +1,6 @@
 withr::local_envvar(R_USER_CACHE_DIR = tempdir())
 
-test_that("get_agfd, fixed = TRUE, cache = TRUE, works", {
+test_that("get_agfd, fixed = TRUE, , works", {
   skip_if_offline()
   skip_on_ci()
   x <- get_agfd()
@@ -26,7 +26,7 @@ test_that("get_agfd, fixed = TRUE, cache = TRUE, works", {
   expect_true(fs::dir_exists(agfd_nc_dir))
 })
 
-test_that("get_agfd, fixed = FALSE, cache = TRUE, works", {
+test_that("get_agfd, fixed = FALSE, , works", {
   skip_if_offline()
   skip_on_ci()
   x <- get_agfd(fixed_prices = FALSE)
@@ -64,7 +64,7 @@ test_that("print.read.abares.agfd.nc.files returns a properly formatted list", {
     cli::cat_line()
   }
 
-  x <- get_agfd(cache = TRUE)
+  x <- get_agfd()
 
   expect_identical(
     x |>

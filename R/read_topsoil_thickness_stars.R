@@ -13,7 +13,7 @@
 #'  Intensive Agriculture of Layer 1'.
 #'
 #' @examplesIf interactive()
-#' st_stars <- get_topsoil_thickness(cache = FALSE) |>
+#' st_stars <- get_topsoil_thickness() |>
 #'   read_topsoil_thickness_stars()
 #'
 #' plot(st_stars)

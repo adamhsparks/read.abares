@@ -7,7 +7,7 @@
 \url{https://doi.org/10.25814/w175-xh85}
 }
 \usage{
-read_nlum_terra(data_set, active_cat, cache = FALSE)
+read_nlum_terra(data_set, active_cat)
 }
 \arguments{
 \item{data_set}{A string value indicating the GeoTIFF desired for download.
@@ -30,12 +30,6 @@ for the raster. One of:
 \describe{
 \item{}{}
 }}
-
-\item{cache}{Cache the Australian Gridded Farm Data files after download
-using \link[tools:userdir]{tools::R_user_dir} to identify the proper directory for storing user
-data in a cache for this package.  Defaults to \code{FALSE}.
-locally. If \code{FALSE}, this function uses \code{tempdir()} and the files are
-deleted upon closing of the active \R session.}
 }
 \description{
 Download and import national scale Land Use of Australia GeoTIFFs using
@@ -76,10 +70,20 @@ which categories are available, please refer to the metadata for these data.
 The PDF can be accessed in your default web browser by using
 \code{\link[=view_nlum_metadata_pdf]{view_nlum_metadata_pdf()}}.
 }
+\section{Caching}{
+
+
+If caching is enabled via \code{read.abares.user_agent} via \code{options()}, the
+files will be cached locally as a GeoTIFF file after download using
+\link[tools:userdir]{tools::R_user_dir} to identify the proper directory for storing user data
+in a cache for this package unless \code{read.abares.cache_location} is
+otherwise specified via \code{options()}.  See \link{read.abares-options} for more.
+}
+
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 
-read_nlum_terra(data_set = "Y202021", active_cat = "", cache = FALSE)
+read_nlum_terra(data_set = "Y202021", active_cat = "")
 
 nlum_terra
 

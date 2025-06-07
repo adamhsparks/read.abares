@@ -7,15 +7,7 @@
 \url{https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip}
 }
 \usage{
-read_aagis_regions(cache = FALSE)
-}
-\arguments{
-\item{cache}{Cache the \acronym{AAGIS} regions' geospatial file after
-downloading using \code{tools::R_user_dir("read.abares", "cache")} to identify the
-proper directory for storing user data in a cache for this package. Defaults
-to \code{TRUE}, caching the files locally as a GeoPackage. If \code{FALSE}, this
-function uses \code{tempdir()} and the files are deleted upon closing of the
-active \R session.}
+read_aagis_regions()
 }
 \value{
 An \CRANpkg{sf} object of the \acronym{AAGIS} regions and a
@@ -40,6 +32,16 @@ data for mapping state historical estimate values found in the
 \code{\link[data.table:data.table]{data.table::data.table()}} from \code{\link[=read_historical_state_estimates]{read_historical_state_estimates()}}.
 }
 }
+\section{Caching}{
+
+
+If caching is enabled via \code{read.abares.user_agent} via \code{options()}, the
+files will be cached locally as a GeoTIFF file after download using
+\link[tools:userdir]{tools::R_user_dir} to identify the proper directory for storing user data
+in a cache for this package unless \code{read.abares.cache_location} is
+otherwise specified via \code{options()}.  See \link{read.abares-options} for more.
+}
+
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 aagis <- read_aagis_regions()

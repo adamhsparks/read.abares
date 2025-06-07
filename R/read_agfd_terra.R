@@ -17,7 +17,7 @@
 #'
 #' # using piping, which can use the {read.abares} cache after the first DL
 #'
-#' agfd_terra <- get_agfd(cache = FALSE) |>
+#' agfd_terra <- get_agfd() |>
 #'   read_agfd_terra()
 #'
 #' head(agfd_terra)

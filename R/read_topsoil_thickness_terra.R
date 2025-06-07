@@ -13,7 +13,7 @@
 #'  of Intensive Agriculture of Layer 1'.
 #'
 #' @examplesIf interactive()
-#' st_terra <- get_topsoil_thickness(cache = FALSE) |>
+#' st_terra <- get_topsoil_thickness() |>
 #'   read_topsoil_thickness_terra()
 #'
 #' # terra::plot() is reexported for convenience

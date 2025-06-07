@@ -1,21 +1,19 @@
 #' Get topsoil thickness for 'Australian Areas of Intensive Agriculture of Layer 1' for local use
 #'
-#' @param cache Caches the topsoil thickness data files after download
-#' using `tools::R_user_dir()` to identify the proper directory for storing
-#' user data in a cache for this package. Defaults to `FALSE`.
-#' locally. If `FALSE`, this function uses `tempdir()` and the files are deleted
-#' upon closing of the active \R session.
+#' Fetches topsoil thickness data and associated metadata from \acronym{ABARES}.
 #'
-#' @details
-#' The topsoil thickness data will be saved as a GeoTIFF file in the user's
-#'  cache if `cache = FALSE`.
+#' @section Caching:
+#'
+#'  If caching is enabled via `read.abares.user_agent` via `options()`, the
+#'   topsoil files will be cached locally as a GeoTIFF file after download using
+#'   [tools::R_user_dir] to identify the proper directory for storing user data
+#'   in a cache for this package unless `read.abares.cache_location` is
+#'   otherwise specified via `options()`.  See [read.abares-options] for more.
 #'
 #' @note
 #' A custom `print()` method is provided that will print the metadata associated
 #'  with these data. Examples are provided for interacting with the metadata
 #'  directly.
-#'
-#'
 #'
 #' @examplesIf interactive()
 #' x <- get_topsoil_thickness()
@@ -39,7 +37,8 @@
 #' @family topsoil_thickness
 #' @export
 
-get_topsoil_thickness <- function(cache = FALSE) {
+get_topsoil_thickness <- function() {
+  cache <- getOption("read.abares.cache", default = FALSE)
   topsoil_thickness_cache <- fs::path(
     .find_user_cache(),
     "topsoil_thickness_dir"
@@ -201,7 +200,7 @@ print.read.abares.topsoil.thickness.files <- function(x, ...) {
 #' @returns Nothing, called for its side effects, it prints the complete
 #'   metadata file to the \R console.
 #' @examplesIf interactive()
-#' get_topsoil_thickness(cache = FALSE) |>
+#' get_topsoil_thickness() |>
 #'   print_topsoil_thickness_metadata()
 #'
 #' @family topsoil_thickness

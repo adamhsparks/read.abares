@@ -23,7 +23,7 @@ data as a \link[terra:rast]{terra::rast} object.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
-st_terra <- get_topsoil_thickness(cache = FALSE) |>
+st_terra <- get_topsoil_thickness() |>
   read_topsoil_thickness_terra()
 
 # terra::plot() is reexported for convenience

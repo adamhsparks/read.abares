@@ -19,11 +19,6 @@
 #'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 #'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 #' }
-#' @param .cache Cache the Australian Gridded Farm Data files after download
-#'  using [tools::R_user_dir] to identify the proper directory for storing user
-#'  data in a cache for this package. Defaults to `FALSE`.
-#'  locally. If `FALSE`, this function uses `tempdir()` and the files are
-#'  deleted upon closing of the active \R session.
 #'
 #' @references
 #' ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
@@ -45,7 +40,7 @@
 #' @autoglobal
 #' @dev
 
-.get_nlum <- function(.data_set, .cache) {
+.get_nlum <- function(.data_set) {
   valid_sets <- c(
     "Y202021",
     "Y201516",
@@ -58,7 +53,7 @@
     "P201516",
     "P201011"
   )
-
+  cache <- getOption("read.abares.cache", default = FALSE)
   data_set <- rlang::arg_match(.data_set, valid_sets)
 
   download_file <- data.table::fifelse(

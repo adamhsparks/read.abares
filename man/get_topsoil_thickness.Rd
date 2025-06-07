@@ -7,31 +7,30 @@
 \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
 }
 \usage{
-get_topsoil_thickness(cache = FALSE)
-}
-\arguments{
-\item{cache}{Caches the topsoil thickness data files after download
-using \code{tools::R_user_dir()} to identify the proper directory for storing
-user data in a cache for this package. Defaults to \code{FALSE}.
-locally. If \code{FALSE}, this function uses \code{tempdir()} and the files are deleted
-upon closing of the active \R session.}
+get_topsoil_thickness()
 }
 \value{
 A \code{read.abares.topsoil.thickness} object, which is a named \code{list()}
 with the \code{\link[fs:path_file]{fs::path_file()}} of the data file and text file of metadata.
 }
 \description{
-Get topsoil thickness for 'Australian Areas of Intensive Agriculture of Layer 1' for local use
-}
-\details{
-The topsoil thickness data will be saved as a GeoTIFF file in the user's
-cache if \code{cache = FALSE}.
+Fetches topsoil thickness data and associated metadata from \acronym{ABARES}.
 }
 \note{
 A custom \code{print()} method is provided that will print the metadata associated
 with these data. Examples are provided for interacting with the metadata
 directly.
 }
+\section{Caching}{
+
+
+If caching is enabled via \code{read.abares.user_agent} via \code{options()}, the
+topsoil files will be cached locally as a GeoTIFF file after download using
+\link[tools:userdir]{tools::R_user_dir} to identify the proper directory for storing user data
+in a cache for this package unless \code{read.abares.cache_location} is
+otherwise specified via \code{options()}.  See \link{read.abares-options} for more.
+}
+
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 x <- get_topsoil_thickness()

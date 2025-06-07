@@ -24,7 +24,7 @@ test_that("get_topsoil_thickness doesn't cache", {
 test_that("get_topsoil_thickness caches", {
   skip_if_offline()
   skip_on_ci()
-  x <- get_topsoil_thickness(cache = TRUE)
+  x <- get_topsoil_thickness()
   expect_s3_class(x, c("read.abares.topsoil.thickness", "list"))
   expect_true(fs::file_exists(fs::path(
     .find_user_cache(),
@@ -36,7 +36,7 @@ test_that("get_topsoil_thickness caches", {
 test_that("get_topsoil_thickness does cache", {
   skip_if_offline()
   skip_on_ci()
-  x <- get_topsoil_thickness(cache = TRUE)
+  x <- get_topsoil_thickness()
   expect_s3_class(x, c("read.abares.topsoil.thickness", "list"))
   expect_true(fs::file_exists(fs::path(
     .find_user_cache(),
@@ -49,7 +49,7 @@ test_that("get_topsoil_thickness does cache", {
 test_that("read_topsoil_thickness_stars returns a stars object", {
   skip_if_offline()
   skip_on_ci()
-  x <- get_topsoil_thickness(cache = TRUE) |>
+  x <- get_topsoil_thickness() |>
     read_topsoil_thickness_stars()
   expect_s3_class(x, "stars")
   expect_named(x, "thpk_1.tif")
@@ -60,7 +60,7 @@ test_that("read_topsoil_thickness_stars returns a stars object", {
 test_that("read_topsoil_thickness_stars returns a terra object", {
   skip_if_offline()
   skip_on_ci()
-  x <- get_topsoil_thickness(cache = TRUE) |>
+  x <- get_topsoil_thickness() |>
     read_topsoil_thickness_terra()
   expect_s4_class(x, "SpatRaster")
   expect_named(x, "thpk_1")
@@ -109,7 +109,7 @@ test_that("print.read.abares.thickness.files prints metadata", {
   }
   print_out <- capture.output(out_text())
 
-  x <- get_topsoil_thickness(cache = TRUE)
+  x <- get_topsoil_thickness()
   expect_identical(x |> capture.output(), print_out)
 })
 
@@ -131,7 +131,7 @@ test_that("print_topsoil_thickness_metadata prints full metadata", {
     cli::cat_line()
   }
 
-  x <- get_topsoil_thickness(cache = TRUE)
+  x <- get_topsoil_thickness()
   print_out <- capture.output(out_text(x))
 
   expect_identical(

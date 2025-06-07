@@ -54,7 +54,7 @@
 #'   Australian Gridded Farm Data files will be cached locally after download
 #'   using [tools::R_user_dir] to identify the proper directory for storing user
 #'   data in a cache for this package unless `read.abares.cache_location` is
-#'   otherwise specified via `options()`.  See [read.abares-options()] for more.
+#'   otherwise specified via `options()`.  See [read.abares-options] for more.
 #'
 #' @section Model scenarios:
 #'
@@ -187,7 +187,8 @@
 #' @autoglobal
 #' @export
 
-get_agfd <- function(fixed_prices = TRUE, cache = FALSE, yr = NULL) {
+get_agfd <- function(fixed_prices = TRUE, yr = NULL) {
+  cache <- getOption("read.abares.cache", default = FALSE)
   download_file <- data.table::fifelse(
     cache,
     fs::path(.find_user_cache(), "agfd.zip"),

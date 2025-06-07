@@ -17,7 +17,7 @@
 #'
 #' # using piping, which can use the {read.abares} cache after the first DL
 #'
-#' agfd_tnc <- get_agfd(cache = FALSE) |>
+#' agfd_tnc <- get_agfd() |>
 #'   read_agfd_tidync()
 #'
 #' head(agfd_tnc)

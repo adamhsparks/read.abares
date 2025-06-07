@@ -54,7 +54,7 @@ test_that("read_abares_trade doesn't cache", {
 test_that("read_abares_trade caches", {
   skip_if_offline()
   skip_on_ci()
-  read_abares_trade(cache = TRUE)
+  read_abares_trade()
   expect_true(fs::file_exists(
     fs::path(.find_user_cache(), "abares_trade_dir/abares_trade.gz")
   ))

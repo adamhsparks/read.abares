@@ -10,7 +10,7 @@
 }
 }
 \usage{
-get_agfd(fixed_prices = TRUE, cache = FALSE, yr = NULL)
+get_agfd(fixed_prices = TRUE, yr = NULL)
 }
 \arguments{
 \item{fixed_prices}{Download historical climate and prices or historical
@@ -72,7 +72,7 @@ If caching is enabled via \code{read.abares.user_agent} via \code{options()}, th
 Australian Gridded Farm Data files will be cached locally after download
 using \link[tools:userdir]{tools::R_user_dir} to identify the proper directory for storing user
 data in a cache for this package unless \code{read.abares.cache_location} is
-otherwise specified via \code{options()}.  See \code{\link[=read.abares-options]{read.abares-options()}} for more.
+otherwise specified via \code{options()}.  See \link{read.abares-options} for more.
 }
 
 \section{Model scenarios}{

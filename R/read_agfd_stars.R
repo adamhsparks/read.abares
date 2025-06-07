@@ -17,7 +17,7 @@
 #'
 #' # using piping, which can use the {read.abares} cache after the first DL
 #'
-#' agfd_stars <- get_agfd(cache = FALSE) |>
+#' agfd_stars <- get_agfd() |>
 #'   read_agfd_stars()
 #'
 #' head(agfd_stars)

@@ -50,11 +50,14 @@
 #'  \describe{
 #'   \item{}{}
 #'  }
-#' @param cache Cache the Australian Gridded Farm Data files after download
-#'  using [tools::R_user_dir] to identify the proper directory for storing user
-#'  data in a cache for this package.  Defaults to `FALSE`.
-#'  locally. If `FALSE`, this function uses `tempdir()` and the files are
-#'  deleted upon closing of the active \R session.
+#'
+#' @section Caching:
+#'
+#'  If caching is enabled via `read.abares.user_agent` via `options()`, the
+#'   files will be cached locally as a GeoTIFF file after download using
+#'   [tools::R_user_dir] to identify the proper directory for storing user data
+#'   in a cache for this package unless `read.abares.cache_location` is
+#'   otherwise specified via `options()`.  See [read.abares-options] for more.
 #'
 #' @details
 #' The raster will load with the default category for each data set, but you can
@@ -73,7 +76,7 @@
 #'
 #' @examplesIf interactive()
 #'
-#' read_nlum_terra(data_set = "Y202021", active_cat = "", cache = FALSE)
+#' read_nlum_terra(data_set = "Y202021", active_cat = "")
 #'
 #' nlum_terra
 #'
@@ -82,8 +85,8 @@
 #' @family nlum
 #' @autoglobal
 #' @export
-read_nlum_terra <- function(data_set, active_cat, cache = FALSE) {
-  gtiff <- .get_nlum(.data_set = data_set, .cache = cache)
+read_nlum_terra <- function(data_set, active_cat) {
+  gtiff <- .get_nlum(.data_set = data_set)
   r <- terra::rast(gtiff)
   levels(r) <- readr::read_csv(gtiff...)
   activeCat(r) <- active_cat
