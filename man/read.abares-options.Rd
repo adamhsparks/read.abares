@@ -10,6 +10,8 @@ This page documents the global options used by the \pkg{read.abares} package.
 The following options can be set via \code{\link[=options]{options()}} to control package behavior:
 
 \describe{
+\item{\code{read.abares.cache}}{Boolean. Globally enable or disable caching for select data sets serviced by \pkg{read.abares}. Defaults to \code{FALSE} not caching data locally between \R sessions.}
+\item{\code{read.abares.cache_location}}{String. Set a custom location for caching data sets serviced by \pkg{read.abares}. Defaults to \code{tools::R_user_dir(package = "read.abares", which = "cache")}.}
    \item{\code{read.abares.user_agent}}{String. Set a custom user agent for web requests. Default is \code{"read.abares"}.}
    \item{\code{read.abares.timeout}}{Numeric. Timeout in seconds for operations. Default is \code{2000}.}
 \item{\code{read.abares.max_tries}}{Numeric. Number of time to retry download before giving up. Default is \code{3}.}
