@@ -1,0 +1,26 @@
+---
+title: "Setting Global Options for read.abares"
+author: "Adam H. Sparks"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Setting Global Options for read.abares}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteDepends{data.table}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 7,
+  fig.height = 7,
+  fig.align = "center",
+  fig.path = "vignettes/"
+)
+```
+
+{read.abares} provides a number of global options that can be set to control the behavior of the package.
+These options can be set using the `options()` function in R, but a helper function, `read.abares_options()` is provided for more direct access and convenience.
+

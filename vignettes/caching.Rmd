@@ -1,0 +1,65 @@
+---
+title: "Caching in read.abares"
+author: "Adam H. Sparks"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Caching in read.abares}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 7,
+  fig.height = 7,
+  fig.align = "center",
+  fig.path = "vignettes/"
+)
+```
+
+By default data downloads are cached in R's `tempdir()` and cleaned up upon exiting the active session.
+You may enable caching for some of the larger data files to save time in the future by not downloading the files again.
+This obviously is a personal decision, many R users would look to {[targets](https://books.ropensci.org/targets/)} to manage their workflow, or you may simply prefer to fetch the data and write it to disk yoursel to manage their workflow, or you may simply prefer to fetch the data and write it to disk yourself.
+
+## Enabling Caching and Setting the Location
+
+You can enable caching for {read.abares} like so:
+
+```r
+# enable caching
+read.abares_options(caching = TRUE)
+```
+
+
+By default if you enable caching via `read.abares_options()`, {read.abares} will use the location as prescribed by `tools::R_user_dir(package = "read.abares", which = "cache")`.
+However, this can also be overridden via `read.abares_options()` as well like this:
+
+```r
+read.abares_options(cache_location = "your_desired_file_path")
+```
+
+## Managing the Cache 
+
+Once the cache is enabled, files will be saved between R sessions and when you request these files, they will be read from your local disk rather than downloaded again.
+
+To see what files are cached you can use `inspect_cache()` to be presented with a list of the files that are cached locally.
+An example is presented here showing what you might expect to see where the AAGIS Regions Data (aagis_regions_dir), National Land Use Change, (nlum) and Topsoil Thickness (topsoil_thickness_dir) data are all cached and locally available. 
+
+```r
+> inspect_cache()
+
+── Locally Available {read.abares} Cached Files ────────────────────────────────
+• aagis_regions_dir
+• nlum
+• topsoil_thickness_dir
+```
+
+To clear the cache and remove all files, freeing disk space, you can use `clear_cache()`.
+
+```r
+> clear_cache()
+> inspect_cach()
+There do not appear to be any files cached for {read.abares}.
