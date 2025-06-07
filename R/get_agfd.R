@@ -42,17 +42,19 @@
 #'  for broadacre farm businesses} (ABARES 2024). Using `TRUE` will download
 #'  simulations where global output and input price indexes are fixed at values
 #'  from the most recently completed financial year.
-#' @param cache Cache the Australian Gridded Farm Data files after download
-#'  using [tools::R_user_dir] to identify the proper directory for storing user
-#'  data in a cache for this package. Defaults to `FALSE`.
-#'  locally. If `FALSE`, this function uses `tempdir()` and the files are
-#'  deleted upon closing of the active \R session.
 #' @param yr Returns only data for the specified year or years for climate data
 #'  (fixed prices) or the years for historical climate and prices depending on
 #'  the setting of `fixed_prices`.  Note that this will still download the
 #'  entire data set, that cannot be avoided, but will only return the
 #'  requested year(s) in your \R session.
 #'
+#' @section Caching:
+#'
+#'  If caching is enabled via `read.abares.user_agent` via `options()`, the
+#'   Australian Gridded Farm Data files will be cached locally after download
+#'   using [tools::R_user_dir] to identify the proper directory for storing user
+#'   data in a cache for this package unless `read.abares.cache_location` is
+#'   otherwise specified via `options()`.  See [read.abares-options()] for more.
 #'
 #' @section Model scenarios:
 #'
