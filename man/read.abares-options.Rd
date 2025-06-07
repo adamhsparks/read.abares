@@ -10,13 +10,14 @@ This page documents the global options used by the \pkg{read.abares} package.
 The following options can be set via \code{\link[=options]{options()}} to control package behavior:
 
 \describe{
-   \item{\code{read.abares.ua}}{String. Set a custom useragent for web requests. Default is \code{"read.abares"}.}
-   \item{\code{myPackage.timeout}}{Numeric. Timeout in seconds for operations. Default is \code{2000}.}
+   \item{\code{read.abares.user_agent}}{String. Set a custom user agent for web requests. Default is \code{"read.abares"}.}
+   \item{\code{read.abares.timeout}}{Numeric. Timeout in seconds for operations. Default is \code{2000}.}
+\item{\code{read.abares.max_tries}}{Numeric. Number of time to retry download before giving up. Default is \code{3}.}
 }
 
 These options can be set globally using:
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{options(myPackage.ua = "myCustomUserAgent")
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{options(myPackage.user_agent = "myCustomUserAgent")
 }\if{html}{\out{</div>}}
 }
 \seealso{

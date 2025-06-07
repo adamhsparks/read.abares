@@ -49,84 +49,17 @@
 
 .retry_download <- function(url, .f) {
   httr2::request(base_url = url) |>
-    httr2::req_user_agent(.set_ua()) |>
+    httr2::req_user_agent(getOption("read.abares.user_agent")) |>
     httr2::req_headers("Accept-Encoding" = "identity") |>
     httr2::req_headers("Connection" = "Keep-Alive") |>
-    httr2::req_options(http_version = 2L, timeout = .set_timeout()) |>
-    httr2::req_retry(max_tries = .set_max_tries()) |>
+    httr2::req_options(
+      http_version = 2L,
+      timeout = getOption("read.abares.timeout")
+    ) |>
+    httr2::req_retry(max_tries = getOption("read.abares.max_tries")) |>
     httr2::req_cache(path = tempdir()) |>
     httr2::req_progress() |>
     httr2::req_perform() |>
     httr2::resp_body_raw() |>
     brio::write_file_raw(path = .f)
-}
-
-
-#' Set the User Agent String
-#'
-#' Allows users to specify a user-agent string via `options()` that overrides
-#' the default string.
-#'
-#' @examples
-#' options(read.abares_ua = "read.abares testing v0.0.0.9000")
-#' .set_ua()
-#'
-#' @returns A `string` value to be used as the user-agent in the HTTP request.
-#' @dev
-#'
-.set_ua <- function() {
-  ua <- getOption("read.abares_ua")
-  if (nzchar(ua)) {
-    return(ua)
-  }
-  # set default string if no entry in .Renviron
-  ua <- "read.abares"
-  return(ua)
-}
-
-
-#' Set the Max Tries for Download Attempts
-#'
-#' Allows users to specify a value via `options()` that overrides the default
-#'  value of `3L`.
-#'
-#' @examples
-#' options(read.abares_max_tries = 4L)
-#' .set_max_tries()
-#'
-#' @returns An `integer` value to be used as the maximum number of tries to
-#'  retry when a download fails.
-#' @dev
-#'
-.set_max_tries <- function() {
-  mt <- getOption("read.abares_max_tries")
-  if (nzchar(mt)) {
-    return(mt)
-  }
-  # set tries if no entry in `options()`
-  mt <- 3L
-  return(mt)
-}
-
-
-#' Set the Timeout for Download Connections
-#'
-#' Allows users to specify a value via `options()` that overrides the default
-#'  value of `2000L`.
-#'
-#' @examples
-#' options(read.abares_timeout = 4000L)
-#' .set_timeout()
-#'
-#' @returns An `integer` value to be used as the connection timeout value.
-#' @dev
-#'
-.set_timeout <- function() {
-  to <- getOption("read.abares_timeout")
-  if (nzchar(to)) {
-    return(to)
-  }
-  # set tries if no entry in `options()`
-  to <- 2000L
-  return(to)
 }
