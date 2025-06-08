@@ -5,7 +5,10 @@
 #' @dev
 #' @autoglobal
 .find_user_cache <- function() {
-  tools::R_user_dir(package = "read.abares", which = "cache")
+  getOption(
+    "read.abares.cache_location",
+    default = tools::R_user_dir(package = "read.abares", which = "cache")
+  )
 }
 
 #' Check for read.abares.something S3 class
