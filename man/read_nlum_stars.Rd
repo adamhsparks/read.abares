@@ -51,8 +51,8 @@ target periods using representative national datasets for each period, where
 available. All rasters are in GeoTIFF format with geographic coordinates in
 Geocentric Datum of Australian 1994 (GDA94) and a 0.002197 degree
 (~250 metre) cell size.
-The \emph{Land use of Australia 2010–11 to 2020–21} data package is a product of
-the Australian Collaborative Land Use and Management Program. This data
+The \emph{Land use of Australia 2010–11 to 2020–21} data package is a product
+of the Australian Collaborative Land Use and Management Program. This data
 package replaces the Land use of Australia 2010–11 to 2015–16 data package,
 with updates to these time periods.}
 -- \acronym{ABARES}, 2024-11-28
