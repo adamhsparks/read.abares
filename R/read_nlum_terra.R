@@ -1,7 +1,7 @@
 #' Read national scale Land Use of Australia GeoTIFFs using terra
 #'
 #' Download and import national scale Land Use of Australia GeoTIFFs using
-#'  \CRNApkg{terra} as a categorical [terra::rast] object.  Data can be cached
+#'  \CRANpkg{terra} as a categorical [terra::rast] object.  Data can be cached
 #'  on request.
 #'
 #' @details From the
