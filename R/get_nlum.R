@@ -69,103 +69,99 @@
   nlum_dir <- fs::path(download_dir, .data_set)
 
   # only download if the files aren't already local
-  if (!fs::dir_exists(nlum_dir)) {
-    # if caching is enabled but {read.abares} cache doesn't exist, create it
-    if (.cache) {
-      fs::dir_create(nlum_dir, recurse = TRUE)
-    }
+  if (isFALSE(fs::dir_exists(nlum_dir))) {
+    fs::dir_create(nlum_dir, recurse = TRUE)
+  }
 
-    url <-
-      "https://www.agriculture.gov.au/sites/default/files/documents/"
+  url <-
+    "https://www.agriculture.gov.au/sites/default/files/documents/"
 
-    url <- switch(
-      data_set,
-      "Y202021" = sprintf(
-        "%sNLUM_v7_250_ALUMV8_2020_21_alb_package_20241128.zip",
-        url
-      ),
-      "Y201516" = sprintf(
-        "%sNLUM_v7_250_ALUMV8_2015_16_alb_package_20241128.zip",
-        url
-      ),
-      "Y201011" = sprintf(
-        "%sNLUM_v7_250_ALUMV8_2010_11_alb_package_20241128.zip",
-        url
-      ),
-      "C201021" = sprintf(
-        "%sNLUM_v7_250_CHANGE_SIMP_2011_to_2021_alb_package_20241128.zip",
-        url
-      ),
-      "T202021" = sprintf(
-        "%sNLUM_v7_250_INPUTS_2020_21_geo_package_20241128.zip",
-        url
-      ),
-      "T201516" = sprintf(
-        "%sNLUM_v7_250_INPUTS_2015_16_geo_package_20241128.zip",
-        url
-      ),
-      "T201011" = sprintf(
-        "%sNLUM_v7_250_INPUTS_2010_11_geo_package_20241128.zip",
-        url
-      ),
-      "P202021" = sprintf(
-        "%sNLUM_v7_250_AgProbabilitySurfaces_2020_21_geo_package_20241128.zip",
-        url
-      ),
-      "P201516" = sprintf(
-        "%sNLUM_v7_250_AgProbabilitySurfaces_2015_16_geo_package_20241128.zip",
-        url
-      ),
-      "P201011" = sprintf(
-        "%sNLUM_v7_250_AgProbabilitySurfaces_2010_11_geo_package_20241128.zip",
-        url
-      )
+  url <- switch(
+    data_set,
+    "Y202021" = sprintf(
+      "%sNLUM_v7_250_ALUMV8_2020_21_alb_package_20241128.zip",
+      url
+    ),
+    "Y201516" = sprintf(
+      "%sNLUM_v7_250_ALUMV8_2015_16_alb_package_20241128.zip",
+      url
+    ),
+    "Y201011" = sprintf(
+      "%sNLUM_v7_250_ALUMV8_2010_11_alb_package_20241128.zip",
+      url
+    ),
+    "C201021" = sprintf(
+      "%sNLUM_v7_250_CHANGE_SIMP_2011_to_2021_alb_package_20241128.zip",
+      url
+    ),
+    "T202021" = sprintf(
+      "%sNLUM_v7_250_INPUTS_2020_21_geo_package_20241128.zip",
+      url
+    ),
+    "T201516" = sprintf(
+      "%sNLUM_v7_250_INPUTS_2015_16_geo_package_20241128.zip",
+      url
+    ),
+    "T201011" = sprintf(
+      "%sNLUM_v7_250_INPUTS_2010_11_geo_package_20241128.zip",
+      url
+    ),
+    "P202021" = sprintf(
+      "%sNLUM_v7_250_AgProbabilitySurfaces_2020_21_geo_package_20241128.zip",
+      url
+    ),
+    "P201516" = sprintf(
+      "%sNLUM_v7_250_AgProbabilitySurfaces_2015_16_geo_package_20241128.zip",
+      url
+    ),
+    "P201011" = sprintf(
+      "%sNLUM_v7_250_AgProbabilitySurfaces_2010_11_geo_package_20241128.zip",
+      url
     )
+  )
 
-    .retry_download(url = url, .f = download_file)
+  .retry_download(url = url, .f = download_file)
 
-    tryCatch(
-      {
-        withr::with_dir(
+  tryCatch(
+    {
+      withr::with_dir(
+        download_dir,
+        utils::unzip(zipfile = download_file, exdir = nlum_dir)
+      )
+
+      if (
+        isFALSE(fs::file_exists(fs::path(
           download_dir,
-          utils::unzip(zipfile = download_file, exdir = nlum_dir)
-        )
-
-        if (
-          !fs::file_exists(fs::path(
-            download_dir,
+          "NLUM_v7_DescriptiveMetadata_20241128_0.pdf"
+        )))
+      ) {
+        fs::file_move(
+          fs::path(
+            nlum_dir,
             "NLUM_v7_DescriptiveMetadata_20241128_0.pdf"
-          ))
-        ) {
-          fs::file_move(
-            fs::path(
-              nlum_dir,
-              "NLUM_v7_DescriptiveMetadata_20241128_0.pdf"
-            ),
-            fs::path(download_dir, "NLUM_v7_DescriptiveMetadata_20241128_0.pdf")
-          )
-        }
-
-        fs::dir_delete(
-          c(fs::path(nlum_dir, "Maps"), fs::path(nlum_dir, "Symbology"))
-        )
-        fs::file_delete(
-          c(
-            fs::path(nlum_dir, "NLUM_v7_DescriptiveMetadata_20241128_0.pdf"),
-            fs::path(nlum_dir, "Thumbs.db"),
-            fs::path(nlum_dir, "*.tif.aux.xml")
-          )
-        )
-      },
-      error = function(e) {
-        cli::cli_abort(
-          "There was an issue with the downloaded file. I've deleted
-           this bad version of the downloaded file, please retry.",
-          call = rlang::caller_env()
+          ),
+          fs::path(download_dir, "NLUM_v7_DescriptiveMetadata_20241128_0.pdf")
         )
       }
-    )
-  }
+
+      fs::dir_delete(
+        c(fs::path(nlum_dir, "Maps"), fs::path(nlum_dir, "Symbology"))
+      )
+      fs::file_delete(
+        setdiff(
+          fs::dir_ls(nlum_dir),
+          fs::dir_ls(nlum_dir, regexp = "[.]csv$|[.]tif$")
+        )
+      )
+    },
+    error = function(e) {
+      cli::cli_abort(
+        "There was an issue with the downloaded file. I've deleted
+           this bad version of the downloaded file, please retry.",
+        call = rlang::caller_env()
+      )
+    }
+  )
 
   if (fs::file_exists(download_file)) {
     fs::file_delete(download_file)
