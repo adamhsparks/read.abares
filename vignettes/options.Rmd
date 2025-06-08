@@ -25,15 +25,60 @@ These options can be set using the `options()` function in R, but a helper funct
 
 ## Caching
 
-By default data downloads are cached in R's `tempdir()` and cleaned up upon exiting the active session.
-You may enable caching for some of the larger data files to save time in the future by not downloading the files again.
-This obviously is a personal decision, many R users would look to {[targets](https://books.ropensci.org/targets/)} to manage their workflow, or you may simply prefer to fetch the data and write it to disk yoursel to manage their workflow, or you may simply prefer to fetch the data and write it to disk yourselff
+### Enable Caching
+
+By default {read.abares does not cache data downloads between R sessions.
+To enable caching data downloads between R sessions, you can use the `read.abares_options()` function with the `caching` argument set to `TRUE`:
+
+```r
+read.abares_options(caching = TRUE)
+```
+
+### Change the Default Cache Location
+
+{read.abares} uses R's default cache directory, which is typically set to `tools::R_user_dir(package = "read.abares", which = "cache")`.
+To change the default cache location, you can specify the `cache_location` argument in the `read.abares_options()` function:
+
+```r 
+read.abares_options(cache_location = "your_desired_file_path")
+```
+
+For example, to save the cache in your `Downloads` folder, you might use:
+
+```r 
+read.abares_options(cache_location = "~/Downloads")
+```
+
+For more information on caching, see the vignette on [Caching in read.abares](caching.html).
 
 ## Download Options
 
-### User Agent String 
+### User Agent String
+
+{read.abares} provides a default user agent string of `read.abares` but you can change it for your own use, _e.g._, "the user agent should be different on continuous integration services, and in development (based on, for instance, the GitHub usernames of the developers)."^[1]
+You can change the user agent string using the `user_agent` argument in the `read.abares_options()` function:
+
+```r
+read.abares_options(user_agent = "your_custom_user_agent")
+```
 
 ### Timeout 
 
+By default {read.abares} provides a very generous timeout value to keep the connection alive when downloading the large files, `2000`.
+However, this can be overridden using the `timeout` argument in the `read.abares_options()` function:
+
+```r
+read.abares_options(timeout = 1000) # set timeout to 1000 seconds
+```
+
 ### Retries
 
+{read.abares} will retry a download if it fails, up to a maximum number of retries.
+By default, this is set to `3`.
+You may override this using the `retries` argument in the `read.abares_options()` function:
+
+```r
+read.abares_options(retries = 5) # set retries to 5
+```
+
+[^1]: rOpenSci Developers' Guide: <https://devguide.ropensci.org/pkg_building.html#packages-wrapping-web-resources-api-clients>
