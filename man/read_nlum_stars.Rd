@@ -27,7 +27,7 @@ One of:
 }
 \description{
 Download and import national scale Land Use of Australia GeoTIFFs using
-\CRNApkg{stars} object.  Data are cached on request.
+\CRNApkg{stars} object.  Data can be cached on request.
 }
 \details{
 From the

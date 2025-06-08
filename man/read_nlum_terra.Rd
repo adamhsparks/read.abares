@@ -33,8 +33,8 @@ for the raster. One of:
 }
 \description{
 Download and import national scale Land Use of Australia GeoTIFFs using
-\CRNApkg{terra} as a categorical \link[terra:rast]{terra::rast} object.  Data are cached on
-request.
+\CRNApkg{terra} as a categorical \link[terra:rast]{terra::rast} object.  Data can be cached
+on request.
 }
 \details{
 From the
