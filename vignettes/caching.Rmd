@@ -20,25 +20,35 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Introduction to Caching and Saving Data with {read.abares}
+
+{read.abares} offers data caching in two tiers.
 By default data downloads are cached in R's `tempdir()` and cleaned up upon exiting the active session.
-You may enable caching for some of the larger data files to save time in the future by not downloading the files again.
+However, you may enable caching for some of the larger data files to save time in the future by not downloading the files again when you start a new session.
 This obviously is a personal decision, many R users would look to {[targets](https://books.ropensci.org/targets/)} to manage their workflow, or you may simply prefer to fetch the data and write it to disk yoursel to manage their workflow, or you may simply prefer to fetch the data and write it to disk yourself.
+If you plan to save the data and work with it in {read.abares}, you will need to use R's `save()` or `saveRDS()` to save the data sets as {read.abares} uses S3 classes when reading the data to ensure consistency.
+You can, of course, save the data as a GeoTIFF, NetCDF, GeoPackage or ShapeFile if you wish, but you will lose the ability to use any of the `read` functions from {read.abares} to work with the saved data if you do this. 
 
 ## Enabling Caching and Setting the Location
 
-You can enable caching for {read.abares} like so:
+If you wish to cache data between R sessions, you can enable caching for {read.abares} like so:
 
 ```r
 # enable caching
 read.abares_options(caching = TRUE)
 ```
 
-
 By default if you enable caching via `read.abares_options()`, {read.abares} will use the location as prescribed by `tools::R_user_dir(package = "read.abares", which = "cache")`.
 However, this can also be overridden via `read.abares_options()` as well like this:
 
 ```r
 read.abares_options(cache_location = "your_desired_file_path")
+```
+
+For example, if you wanted to save the data in your `Downloads` folder you might use:
+
+```r
+read.abares_options(cache_location = "~/Downloads")
 ```
 
 ## Managing the Cache 
