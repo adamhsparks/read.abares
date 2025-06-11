@@ -32,11 +32,13 @@ Data serviced include:
 - the [Australian Gridded Farm Data (AGFD) set](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data);
 - the [Australian Agricultural and Grazing Industries Survey (AAGIS)](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data) region mapping files;
 - the [Historical Agricultural Forecast Database](https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/historical-forecasts#:~:text=About%20the%20historical%20agricultural%20forecast,relevant%20to%20Australian%20agricultural%20markets);
-- the [Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)](https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6) map and;
-- the [ABARES Trade Data](https://www.agriculture.gov.au/abares/research-topics/trade/dashboard) including;
-  - the trade data and;
-  - the trade region data.
-
+- the [Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)](https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6) map;
+- the [ABARES Trade Data](https://www.agriculture.gov.au/abares/research-topics/trade/dashboard) including:
+  - the trade data;
+  - the trade region data; and
+- the [Land Use Data](https://www.agriculture.gov.au/abares/aclump/land-use/data-download) including:
+  - National scale land use data;
+  - Catchment scale land use data.
 
 ## Quick Start
 
@@ -131,14 +133,6 @@ Citing {read.abares}: When citing the use of this package, please use,
 
 ``` r
 library("read.abares")
-#> 
-#> Attaching package: 'read.abares'
-#> The following object is masked from 'package:graphics':
-#> 
-#>     plot
-#> The following object is masked from 'package:base':
-#> 
-#>     plot
 citation("read.abares")
 #> To cite package 'read.abares' in publications use:
 #> 
