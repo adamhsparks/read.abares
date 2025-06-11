@@ -52,6 +52,10 @@
 #'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 #' }
 #' @inheritParams get_agfd
+#' @param active_cat A string value or integer indicating the active category to
+#'  be used for the raster. Note that this value is dependent upon the
+#'  `data_set` chosen and will always default to the first column of the
+#'  attribute table for the requested data.
 #' @inheritSection get_agfd Caching
 #'
 #' @references
@@ -74,15 +78,31 @@
 #' @autoglobal
 #' @export
 read_nlum_stars <- function(
-  data_set,
-  active_cat,
-  cache = FALSE
+  data_set = c(
+    "Y201011",
+    "Y201516",
+    "C201021",
+    "T201011",
+    "T201516",
+    "T202021",
+    "P201011",
+    "P201516",
+    "P202021"
+  ),
+  cache = FALSE,
+  active_cat = NULL
 ) {
   if (missing(cache)) {
     cache <- getOption("read.abares.cache", default = FALSE)
   }
 
-  gtiff <- .get_nlum(.data_set = data_set, .cache = cache)
-  s <- stars::read_stars(gtiff, RAT = )
-  return(s)
+  nlum <- .get_nlum(.data_set = data_set, .cache = cache)
+  if (is.null(active_cat)) {
+    return(stars::read_stars(nlum[grep("tif$", nlum)]))
+  } else {
+    return(stars::read_stars(
+      nlum[grep("tif$", nlum)],
+      RAT = nlum[grep("csv$", nlum)]
+    ))
+  }
 }
