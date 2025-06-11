@@ -135,7 +135,7 @@
       fs::file_delete(
         setdiff(
           fs::dir_ls(nlum_dir),
-          fs::dir_ls(nlum_dir, regexp = "[.]csv$|[.]tif$|[.]tif[.]aux[.]xml$")
+          fs::dir_ls(nlum_dir, regexp = "[.]tif$|[.]tif[.]aux[.]xml$")
         )
       )
     },
