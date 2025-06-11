@@ -29,7 +29,22 @@ This obviously is a personal decision, many R users would look to {[targets](htt
 If you plan to save the data and work with it in {read.abares}, you will need to use R's `save()` or `saveRDS()` to save the data sets as {read.abares} uses S3 classes when reading the data to ensure consistency.
 You can, of course, save the data as a GeoTIFF, NetCDF, GeoPackage or ShapeFile if you wish, but you will lose the ability to use any of the `read` functions from {read.abares} to work with the saved data if you do this. 
 
-## Enabling Caching and Setting the Location
+## Enabling Caching 
+
+### Caching on a Function by Function Basis
+
+Caching can be enabled two ways.
+The most simple and direct is to set `cache = TRUE` in the function arguments that support caching.
+This will override any global settings for that function only.
+For example, you might wish to only cache the national land use data, but not the AAGIS Regions data.
+
+```r 
+nlum <- read_nlum_stars(data_set = "Y202021", cache = TRUE)
+aagis_regions <- read_aagis_regions(cache = FALSE)
+```
+
+
+### Enabling Caching and Setting the Location Globally
 
 If you wish to cache data between R sessions, you can enable caching for {read.abares} like so:
 
