@@ -29,7 +29,7 @@ This obviously is a personal decision, many R users would look to {[targets](htt
 If you plan to save the data and work with it in {read.abares}, you will need to use R's `save()` or `saveRDS()` to save the data sets as {read.abares} uses S3 classes when reading the data to ensure consistency.
 You can, of course, save the data as a GeoTIFF, NetCDF, GeoPackage or ShapeFile if you wish, but you will lose the ability to use any of the `read` functions from {read.abares} to work with the saved data if you do this. 
 
-## Enabling Caching 
+## Enabling Caching
 
 ### Caching on a Function by Function Basis
 
