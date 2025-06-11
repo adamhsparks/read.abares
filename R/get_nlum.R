@@ -26,7 +26,7 @@
 #' 4.0. \doi{10.25814/w175-xh85}
 #'
 #' @source
-#' \url{https://doi.org/10.25814/w175-xh85}
+#' \file_url{https://doi.org/10.25814/w175-xh85}
 #'
 #' @examplesIf interactive()
 #' Y202021 <- get_nlum(data_set = "Y202021")
@@ -72,54 +72,54 @@
     fs::dir_create(nlum_dir, recurse = TRUE)
   }
 
-  url <-
+  file_url <-
     "https://www.agriculture.gov.au/sites/default/files/documents/"
 
-  url <- switch(
+  file_url <- switch(
     data_set,
     "Y202021" = sprintf(
       "%sNLUM_v7_250_ALUMV8_2020_21_alb_package_20241128.zip",
-      url
+      file_url
     ),
     "Y201516" = sprintf(
       "%sNLUM_v7_250_ALUMV8_2015_16_alb_package_20241128.zip",
-      url
+      file_url
     ),
     "Y201011" = sprintf(
       "%sNLUM_v7_250_ALUMV8_2010_11_alb_package_20241128.zip",
-      url
+      file_url
     ),
     "C201021" = sprintf(
       "%sNLUM_v7_250_CHANGE_SIMP_2011_to_2021_alb_package_20241128.zip",
-      url
+      file_url
     ),
     "T202021" = sprintf(
       "%sNLUM_v7_250_INPUTS_2020_21_geo_package_20241128.zip",
-      url
+      file_url
     ),
     "T201516" = sprintf(
       "%sNLUM_v7_250_INPUTS_2015_16_geo_package_20241128.zip",
-      url
+      file_url
     ),
     "T201011" = sprintf(
       "%sNLUM_v7_250_INPUTS_2010_11_geo_package_20241128.zip",
-      url
+      file_url
     ),
     "P202021" = sprintf(
       "%sNLUM_v7_250_AgProbabilitySurfaces_2020_21_geo_package_20241128.zip",
-      url
+      file_url
     ),
     "P201516" = sprintf(
       "%sNLUM_v7_250_AgProbabilitySurfaces_2015_16_geo_package_20241128.zip",
-      url
+      file_url
     ),
     "P201011" = sprintf(
       "%sNLUM_v7_250_AgProbabilitySurfaces_2010_11_geo_package_20241128.zip",
-      url
+      file_url
     )
   )
 
-  .retry_download(url = url, .f = download_file)
+  .retry_download(file_url = file_url, .f = download_file)
 
   tryCatch(
     {

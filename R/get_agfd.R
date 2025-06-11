@@ -230,13 +230,13 @@ get_agfd <- function(
       fs::dir_create(agfd_nc_dir, recurse = TRUE)
     }
 
-    url <- data.table::fifelse(
+    file_url <- data.table::fifelse(
       fixed_prices,
       "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/3",
       "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/2"
     )
 
-    .retry_download(url = url, .f = download_file)
+    .retry_download(url = file_url, .f = download_file)
 
     tryCatch(
       {
