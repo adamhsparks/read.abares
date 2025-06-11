@@ -41,20 +41,6 @@
 #' @dev
 
 .get_nlum <- function(.data_set, .cache) {
-  valid_sets <- c(
-    "Y202021",
-    "Y201516",
-    "Y201011",
-    "C201021",
-    "T202021",
-    "T201516",
-    "T201011",
-    "P202021",
-    "P201516",
-    "P201011"
-  )
-  data_set <- rlang::arg_match(.data_set, valid_sets)
-
   download_file <- data.table::fifelse(
     .cache,
     fs::path(.find_user_cache(), "nlum", sprintf("%s.zip", .data_set)),
@@ -119,7 +105,7 @@
     )
   )
 
-  .retry_download(file_url = file_url, .f = download_file)
+  .retry_download(url = file_url, .f = download_file)
 
   tryCatch(
     {
@@ -149,7 +135,7 @@
       fs::file_delete(
         setdiff(
           fs::dir_ls(nlum_dir),
-          fs::dir_ls(nlum_dir, regexp = "[.]csv$|[.]tif$")
+          fs::dir_ls(nlum_dir, regexp = "[.]csv$|[.]tif$|[.]tif[.]aux[.]xml$")
         )
       )
     },
@@ -170,4 +156,21 @@
 
   class(nlum) <- union("read.abares.nlum.files", class(nlum))
   return(nlum)
+}
+
+
+#' Prints read.abares.nlum.files objects
+#'
+#' Custom [base::print()] method for `read.abares.nlum.files` objects.
+#'
+#' @param x a `read.abares.agfd.nlum.files` object.
+#' @param ... ignored.
+#' @export
+#' @autoglobal
+#' @noRd
+print.read.abares.agfd.nlum.files <- function(x, ...) {
+  cli::cli_h1("Locally Available ABARES Land Use Files")
+  cli::cli_ul(basename(x))
+  cli::cat_line()
+  invisible(x)
 }
