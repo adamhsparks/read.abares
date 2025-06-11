@@ -152,7 +152,7 @@
     fs::file_delete(download_file)
   }
 
-  nlum <- fs::dir_ls(nlum_dir, full.names = TRUE)
+  nlum <- fs::dir_ls(fs::path_abs(nlum_dir), glob = "*.tif")
 
   class(nlum) <- union("read.abares.nlum.files", class(nlum))
   return(nlum)
