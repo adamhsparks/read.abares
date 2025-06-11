@@ -3,7 +3,16 @@
 #' A convenience function to get or set options used by \pkg{read.abares}.
 #'
 #' @param ... Named options to set, or no arguments to retrieve current values.
-#' @return A list of current option values.
+#' @returns A list of current option values.
+#'
+#' @examples
+#' # See currently set options for {read.abares}
+#' read.abares_options()
+#'
+#' # Set caching to `TRUE`
+#' read.abares_options(read.abares.cache = TRUE)
+#' read.abares_options()
+#'
 #' @export
 #' @family read.abares-options
 #'
