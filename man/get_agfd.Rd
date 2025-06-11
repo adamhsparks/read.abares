@@ -10,7 +10,7 @@
 }
 }
 \usage{
-get_agfd(fixed_prices = TRUE, yr = NULL)
+get_agfd(fixed_prices = TRUE, yr = 1991:2023, cache = FALSE)
 }
 \arguments{
 \item{fixed_prices}{Download historical climate and prices or historical
@@ -25,7 +25,13 @@ from the most recently completed financial year.}
 (fixed prices) or the years for historical climate and prices depending on
 the setting of \code{fixed_prices}.  Note that this will still download the
 entire data set, that cannot be avoided, but will only return the
-requested year(s) in your \R session.}
+requested year(s) in your \R session. Valid years are from 1991 to 2023
+inclusive.}
+
+\item{cache}{Cache the files after download? Defaults to \code{FALSE} with files
+being downloaded to \code{tempdir()} being available throughout the active \R
+session and cleaned up on exit. If set to \code{TRUE}, files will be cached
+locally for use between sessions. See \dQuote{Caching} section for more.}
 }
 \value{
 A \code{read.abares.agfd.nc.files} object, a list of NetCDF files
@@ -68,11 +74,14 @@ to download.
 \section{Caching}{
 
 
-If caching is enabled via \code{read.abares.user_agent} via \code{options()}, the
-Australian Gridded Farm Data files will be cached locally after download
-using \link[tools:userdir]{tools::R_user_dir} to identify the proper directory for storing user
-data in a cache for this package unless \code{read.abares.cache_location} is
-otherwise specified via \code{options()}.  See \link{read.abares-options} for more.
+When caching is enabled, the directory defined by \link[tools:userdir]{tools::R_user_dir} will
+be used by default unless overidden using
+\code{read.abares_options(cache_location = "your_desired_file_path")} to change
+the file path used for caching. You may also set this globally to \code{TRUE} or
+\code{FALSE} by using \code{read.abares_options(read.abares.cache = TRUE)} or
+\code{read.abares_options(read.abares.cache = FALSE)}, respectively. Using the
+argument in this function will override any options that are set globally.
+See \link{read.abares-options} for more.
 }
 
 \section{Model scenarios}{

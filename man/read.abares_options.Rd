@@ -15,6 +15,15 @@ A list of current option values.
 \description{
 A convenience function to get or set options used by \pkg{read.abares}.
 }
+\examples{
+# See currently set options for {read.abares}
+read.abares_options()
+
+# Set caching to `TRUE`
+read.abares_options(read.abares.cache = TRUE)
+read.abares_options()
+
+}
 \seealso{
 Other read.abares-options: 
 \code{\link{read.abares-options}}

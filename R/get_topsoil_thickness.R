@@ -2,13 +2,8 @@
 #'
 #' Fetches topsoil thickness data and associated metadata from \acronym{ABARES}.
 #'
-#' @section Caching:
-#'
-#'  If caching is enabled via `read.abares.user_agent` via `options()`, the
-#'   topsoil files will be cached locally as a GeoTIFF file after download using
-#'   [tools::R_user_dir] to identify the proper directory for storing user data
-#'   in a cache for this package unless `read.abares.cache_location` is
-#'   otherwise specified via `options()`.  See [read.abares-options] for more.
+#' @inheritParams get_agfd
+#' @inheritSection get_agfd Caching
 #'
 #' @note
 #' A custom `print()` method is provided that will print the metadata associated
@@ -37,8 +32,11 @@
 #' @family topsoil_thickness
 #' @export
 
-get_topsoil_thickness <- function() {
-  cache <- getOption("read.abares.cache", default = FALSE)
+get_topsoil_thickness <- function(cache = FALSE) {
+  if (missing(cache)) {
+    cache <- getOption("read.abares.cache", default = FALSE)
+  }
+
   topsoil_thickness_cache <- fs::path(
     .find_user_cache(),
     "topsoil_thickness_dir"

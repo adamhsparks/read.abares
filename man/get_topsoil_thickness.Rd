@@ -7,7 +7,13 @@
 \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
 }
 \usage{
-get_topsoil_thickness()
+get_topsoil_thickness(cache = FALSE)
+}
+\arguments{
+\item{cache}{Cache the files after download? Defaults to \code{FALSE} with files
+being downloaded to \code{tempdir()} being available throughout the active \R
+session and cleaned up on exit. If set to \code{TRUE}, files will be cached
+locally for use between sessions. See \dQuote{Caching} section for more.}
 }
 \value{
 A \code{read.abares.topsoil.thickness} object, which is a named \code{list()}
@@ -24,11 +30,14 @@ directly.
 \section{Caching}{
 
 
-If caching is enabled via \code{read.abares.user_agent} via \code{options()}, the
-topsoil files will be cached locally as a GeoTIFF file after download using
-\link[tools:userdir]{tools::R_user_dir} to identify the proper directory for storing user data
-in a cache for this package unless \code{read.abares.cache_location} is
-otherwise specified via \code{options()}.  See \link{read.abares-options} for more.
+When caching is enabled, the directory defined by \link[tools:userdir]{tools::R_user_dir} will
+be used by default unless overidden using
+\code{read.abares_options(cache_location = "your_desired_file_path")} to change
+the file path used for caching. You may also set this globally to \code{TRUE} or
+\code{FALSE} by using \code{read.abares_options(read.abares.cache = TRUE)} or
+\code{read.abares_options(read.abares.cache = FALSE)}, respectively. Using the
+argument in this function will override any options that are set globally.
+See \link{read.abares-options} for more.
 }
 
 \examples{

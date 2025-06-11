@@ -9,13 +9,8 @@
 #'  serviced in this package using a snake_case format and ordered
 #'  consistently.
 #'
-#' @section Caching:
-#'
-#'  If caching is enabled via `read.abares.user_agent` via `options()`, the
-#'   files will be cached locally as a GeoTIFF file after download using
-#'   [tools::R_user_dir] to identify the proper directory for storing user data
-#'   in a cache for this package unless `read.abares.cache_location` is
-#'   otherwise specified via `options()`.  See [read.abares-options] for more.
+#' @inheritParams get_agfd
+#' @inheritSection get_agfd Caching
 #'
 #' @note The cached file is not the same as the raw file that is available for
 #'  download. It will follow the renaming scheme and filling values that this
@@ -33,8 +28,10 @@
 #' @autoglobal
 #' @export
 
-read_abares_trade <- function() {
-  cache <- getOption("read.abares.cache", default = FALSE)
+read_abares_trade <- function(cache = FALSE) {
+  if (missing(cache)) {
+    cache <- getOption("read.abares.cache", default = FALSE)
+  }
   abares_trade_gz <- fs::path(
     .find_user_cache(),
     "abares_trade_dir/abares_trade.gz"

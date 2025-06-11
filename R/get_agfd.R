@@ -46,15 +46,24 @@
 #'  (fixed prices) or the years for historical climate and prices depending on
 #'  the setting of `fixed_prices`.  Note that this will still download the
 #'  entire data set, that cannot be avoided, but will only return the
-#'  requested year(s) in your \R session.
+#'  requested year(s) in your \R session. Valid years are from 1991 to 2023
+#'  inclusive.
+#'
+#' @param cache Cache the files after download? Defaults to `FALSE` with files
+#'  being downloaded to `tempdir()` being available throughout the active \R
+#'  session and cleaned up on exit. If set to `TRUE`, files will be cached
+#'  locally for use between sessions. See \dQuote{Caching} section for more.
 #'
 #' @section Caching:
 #'
-#'  If caching is enabled via `read.abares.user_agent` via `options()`, the
-#'   Australian Gridded Farm Data files will be cached locally after download
-#'   using [tools::R_user_dir] to identify the proper directory for storing user
-#'   data in a cache for this package unless `read.abares.cache_location` is
-#'   otherwise specified via `options()`.  See [read.abares-options] for more.
+#' When caching is enabled, the directory defined by [tools::R_user_dir] will
+#'  be used by default unless overidden using
+#'  `read.abares_options(cache_location = "your_desired_file_path")` to change
+#'  the file path used for caching. You may also set this globally to `TRUE` or
+#'  `FALSE` by using `read.abares_options(read.abares.cache = TRUE)` or
+#'  `read.abares_options(read.abares.cache = FALSE)`, respectively. Using the
+#'  argument in this function will override any options that are set globally.
+#'  See [read.abares-options] for more.
 #'
 #' @section Model scenarios:
 #'
@@ -187,8 +196,17 @@
 #' @autoglobal
 #' @export
 
-get_agfd <- function(fixed_prices = TRUE, yr = NULL) {
-  cache <- getOption("read.abares.cache", default = FALSE)
+get_agfd <- function(
+  fixed_prices = TRUE,
+  yr = 1991:2023,
+  cache = FALSE
+) {
+  if (missing(cache)) {
+    cache <- getOption("read.abares.cache", default = FALSE)
+  }
+
+  rlang::arg_match(yr, values = 1991:2023, multiple = TRUE)
+
   download_file <- data.table::fifelse(
     cache,
     fs::path(.find_user_cache(), "agfd.zip"),
@@ -243,7 +261,7 @@ get_agfd <- function(fixed_prices = TRUE, yr = NULL) {
 
   agfd_nc <- fs::dir_ls(agfd_nc_dir, full.names = TRUE)
 
-  if (!is.null(yr)) {
+  if (isFALSE(missing(yr))) {
     yr <- sprintf("c%d", yr)
     agfd_nc <- agfd_nc[grepl(paste(yr, collapse = "|"), names(agfd_nc))]
   }

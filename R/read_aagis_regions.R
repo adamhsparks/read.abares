@@ -15,13 +15,8 @@
 #'  data for mapping state historical estimate values found in the
 #'  [data.table::data.table()] from [read_historical_state_estimates()].
 #'
-#' @section Caching:
-#'
-#'  If caching is enabled via `read.abares.user_agent` via `options()`, the
-#'   files will be cached locally as a GeoTIFF file after download using
-#'   [tools::R_user_dir] to identify the proper directory for storing user data
-#'   in a cache for this package unless `read.abares.cache_location` is
-#'   otherwise specified via `options()`.  See [read.abares-options] for more.
+#' @inheritParams get_agfd
+#' @inheritSection get_agfd Caching
 #'
 #' @examplesIf interactive()
 #' aagis <- read_aagis_regions()
@@ -38,8 +33,10 @@
 #' @autoglobal
 #' @export
 
-read_aagis_regions <- function() {
-  cache <- getOption("read.abares.cache", default = FALSE)
+read_aagis_regions <- function(cache = FALSE) {
+  if (missing(cache)) {
+    cache <- getOption("read.abares.cache", default = FALSE)
+  }
   aagis_regions_cache <- fs::path(.find_user_cache(), "aagis_regions_dir")
   if (fs::dir_exists(aagis_regions_cache)) {
     return(sf::st_read(

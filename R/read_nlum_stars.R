@@ -30,6 +30,13 @@
 #' with updates to these time periods.}
 #'  -- \acronym{ABARES}, 2024-11-28
 #'
+#' @details
+#' The raster will load with the default category for each data set, but you can
+#'  specify a different category to use when reading the file in with the
+#'  `active_cat` argument. To see which categories are available, please refer
+#'  to the metadata for these data.  The PDF can be accessed in your default web
+#'  browser by using [view_nlum_metadata_pdf()].
+#'
 #' @param data_set A string value indicating the GeoTIFF desired for download.
 #' One of:
 #' \describe{
@@ -44,21 +51,8 @@
 #'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 #'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 #' }
-#'
-#' @details
-#' The raster will load with the default category for each data set, but you can
-#'  specify a different category to use when reading the file in with the
-#'  `active_cat` argument. To see which categories are available, please refer
-#'  to the metadata for these data.  The PDF can be accessed in your default web
-#'  browser by using [view_nlum_metadata_pdf()].
-#'
-#' @section Caching:
-#'
-#'  If caching is enabled via `read.abares.user_agent` via `options()`, the
-#'   files will be cached locally as a GeoTIFF file after download using
-#'   [tools::R_user_dir] to identify the proper directory for storing user data
-#'   in a cache for this package unless `read.abares.cache_location` is
-#'   otherwise specified via `options()`.  See [read.abares-options] for more.
+#' @inheritParams get_agfd
+#' @inheritSection get_agfd Caching
 #'
 #' @references
 #' ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
@@ -79,8 +73,16 @@
 #' @family nlum
 #' @autoglobal
 #' @export
-read_nlum_stars <- function(data_set, active_cat) {
-  gtiff <- .get_nlum(.data_set = data_set)
+read_nlum_stars <- function(
+  data_set,
+  active_cat,
+  cache = FALSE
+) {
+  if (missing(cache)) {
+    cache <- getOption("read.abares.cache", default = FALSE)
+  }
+
+  gtiff <- .get_nlum(.data_set = data_set, .cache = cache)
   s <- stars::read_stars(gtiff, RAT = )
   return(s)
 }
