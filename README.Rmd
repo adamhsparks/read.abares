@@ -30,7 +30,7 @@ ABARES data are not available from other sources but are mostly available under 
 
 ## About {read.abares}: why this package?
 
-ABARES makes several data sets freely available as spreadsheets in Microsoft Excel or CSV file formats and zip archives of geospatial data as NetCDF or shape files.
+ABARES makes several data sets freely available as spreadsheets in Microsoft Excel or CSV file formats and zip archives of geospatial data as NetCDF, GeoTIFF or shape files.
 {read.abares} facilitates downloading, caching and importing these files in your R session.
 
 Data serviced include:
