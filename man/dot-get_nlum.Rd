@@ -7,7 +7,7 @@
 \url{https://doi.org/10.25814/w175-xh85}
 }
 \usage{
-.get_nlum(.data_set)
+.get_nlum(.data_set, .cache)
 }
 \arguments{
 \item{.data_set}{A string value indicating the GeoTIFF desired for download.

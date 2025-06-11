@@ -40,7 +40,7 @@
 #' @autoglobal
 #' @dev
 
-.get_nlum <- function(.data_set) {
+.get_nlum <- function(.data_set, .cache) {
   valid_sets <- c(
     "Y202021",
     "Y201516",
@@ -53,11 +53,10 @@
     "P201516",
     "P201011"
   )
-  cache <- getOption("read.abares.cache", default = FALSE)
   data_set <- rlang::arg_match(.data_set, valid_sets)
 
   download_file <- data.table::fifelse(
-    cache,
+    .cache,
     fs::path(.find_user_cache(), "nlum", sprintf("%s.zip", .data_set)),
     fs::path(tempdir(), "nlum", sprintf("%s.zip", .data_set))
   )
