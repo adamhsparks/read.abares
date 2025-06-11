@@ -17,7 +17,7 @@ locally for use between sessions. See \dQuote{Caching} section for more.}
 }
 \value{
 An \CRANpkg{sf} object of the \acronym{AAGIS} regions and a
-cached geopackage file if requested.
+cached GeoPackage file if requested.
 }
 \description{
 Download, cache and import the Australian Agricultural and Grazing

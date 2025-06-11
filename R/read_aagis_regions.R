@@ -24,7 +24,7 @@
 #' plot(aagis)
 #'
 #' @returns An \CRANpkg{sf} object of the \acronym{AAGIS} regions and a
-#' cached geopackage file if requested.
+#' cached GeoPackage file if requested.
 #'
 #' @family AAGIS
 #'
