@@ -7,7 +7,12 @@
 \url{https://doi.org/10.25814/w175-xh85}
 }
 \usage{
-read_nlum_terra(data_set, active_cat, cache = FALSE)
+read_nlum_terra(
+  data_set = c("Y201011", "Y201516", "C201021", "T201011", "T201516", "T202021",
+    "P201011", "P201516", "P202021"),
+  cache = FALSE,
+  active_cat = NULL
+)
 }
 \arguments{
 \item{data_set}{A string value indicating the GeoTIFF desired for download.
@@ -25,16 +30,15 @@ One of:
 \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 }}
 
-\item{active_cat}{A string value indicating the active category to be used
-for the raster. One of:
-\describe{
-\item{}{}
-}}
-
 \item{cache}{Cache the files after download? Defaults to \code{FALSE} with files
 being downloaded to \code{tempdir()} being available throughout the active \R
 session and cleaned up on exit. If set to \code{TRUE}, files will be cached
 locally for use between sessions. See \dQuote{Caching} section for more.}
+
+\item{active_cat}{A string value or integer indicating the active category to
+be used for the raster. Note that this value is dependent upon the
+\code{data_set} chosen and will always default to the first column of the
+attribute table for the requested data.}
 }
 \description{
 Download and import national scale Land Use of Australia GeoTIFFs using

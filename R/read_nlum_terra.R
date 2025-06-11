@@ -38,25 +38,7 @@
 #'  The PDF can be accessed in your default web browser by using
 #'  [view_nlum_metadata_pdf()].
 #'
-#' @param data_set A string value indicating the GeoTIFF desired for download.
-#' One of:
-#' \describe{
-#'  \item{Y201011}{Land use of Australia 2010–11}
-#'  \item{Y201516}{Land use of Australia 2015–16}
-#'  \item{Y202021}{Land use of Australia 2020–21}
-#'  \item{C201021}{Land use of Australia change}
-#'  \item{T201011}{Land use of Australia 2010–11 thematic layers}
-#'  \item{T201516}{Land use of Australia 2015–16 thematic layers}
-#'  \item{T202021}{Land use of Australia 2020–21 thematic layers}
-#'  \item{P201011}{Land use of Australia 2010–11 agricultural commodities probability grids}
-#'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
-#'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
-#' }
-#' @param active_cat A string value indicating the active category to be used
-#'  for the raster. One of:
-#'  \describe{
-#'   \item{}{}
-#'  }
+#' @inheritParams read_nlum_stars
 #' @inheritParams get_agfd
 #' @inheritSection get_agfd Caching
 #'
@@ -79,13 +61,45 @@
 #' @family nlum
 #' @autoglobal
 #' @export
-read_nlum_terra <- function(data_set, active_cat, cache = FALSE) {
+read_nlum_terra <- function(
+  data_set = c(
+    "Y201011",
+    "Y201516",
+    "C201021",
+    "T201011",
+    "T201516",
+    "T202021",
+    "P201011",
+    "P201516",
+    "P202021"
+  ),
+  cache = FALSE,
+  active_cat = NULL
+) {
   if (missing(cache)) {
     cache <- getOption("read.abares.cache", default = FALSE)
   }
-  gtiff <- .get_nlum(.data_set = data_set)
-  r <- terra::rast(gtiff)
-  levels(r) <- readr::read_csv(gtiff...)
-  activeCat(r) <- active_cat
+
+  rlang::arg_match(
+    data_set,
+    c(
+      "Y201011",
+      "Y201516",
+      "C201021",
+      "T201011",
+      "T201516",
+      "T202021",
+      "P201011",
+      "P201516",
+      "P202021"
+    )
+  )
+
+  nlum <- .get_nlum(.data_set = data_set, .cache = cache)
+  r <- terra::rast(nlum[grep("tif$", nlum)])
+  levels(r) <- readr::read_csv(nlum[grep("csv$", nlum)], show_col_types = FALSE)
+  if (!is.null(active_cat)) {
+    activeCat(r) <- active_cat
+  }
   return(r)
 }
