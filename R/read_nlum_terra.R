@@ -97,7 +97,6 @@ read_nlum_terra <- function(
 
   nlum <- .get_nlum(.data_set = data_set, .cache = cache)
   r <- terra::rast(nlum[grep("tif$", nlum)])
-  levels(r) <- readr::read_csv(nlum[grep("csv$", nlum)], show_col_types = FALSE)
   if (!is.null(active_cat)) {
     activeCat(r) <- active_cat
   }
