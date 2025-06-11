@@ -10,8 +10,7 @@
 read_nlum_terra(
   data_set = c("Y201011", "Y201516", "C201021", "T201011", "T201516", "T202021",
     "P201011", "P201516", "P202021"),
-  cache = FALSE,
-  active_cat = NULL
+  cache = FALSE
 )
 }
 \arguments{
@@ -35,10 +34,13 @@ being downloaded to \code{tempdir()} being available throughout the active \R
 session and cleaned up on exit. If set to \code{TRUE}, files will be cached
 locally for use between sessions. See \dQuote{Caching} section for more.}
 
-\item{active_cat}{A string value or integer indicating the active category to
-be used for the raster. Note that this value is dependent upon the
-\code{data_set} chosen and will always default to the first column of the
-attribute table for the requested data.}
+\item{...}{Additional arguments passed to \link[terra:rast]{terra::rast}, for \emph{e.g.},
+\code{activeCat} if you wished to set the active category when loading any of the
+available GeoTIFF files that are encoded with a raster attribute table.}
+}
+\value{
+A \link[terra:rast]{terra::rast} object that may be one or many layers depending upon
+the requested data set.
 }
 \description{
 Download and import national scale Land Use of Australia GeoTIFFs using

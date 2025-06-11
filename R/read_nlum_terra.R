@@ -40,6 +40,10 @@
 #'
 #' @inheritParams read_nlum_stars
 #' @inheritParams get_agfd
+#' @param ... Additional arguments passed to [terra::rast], for *e.g.*,
+#'  `activeCat` if you wished to set the active category when loading any of the
+#'  available GeoTIFF files that are encoded with a raster attribute table.
+#'
 #' @inheritSection get_agfd Caching
 #'
 #' @references
@@ -58,6 +62,8 @@
 #'
 #' plot(nlum_terra)
 #'
+#' @returns A [terra::rast] object that may be one or many layers depending upon
+#'  the requested data set.
 #' @family nlum
 #' @autoglobal
 #' @export
@@ -73,8 +79,7 @@ read_nlum_terra <- function(
     "P201516",
     "P202021"
   ),
-  cache = FALSE,
-  active_cat = NULL
+  cache = FALSE
 ) {
   if (missing(cache)) {
     cache <- getOption("read.abares.cache", default = FALSE)
@@ -96,9 +101,5 @@ read_nlum_terra <- function(
   )
 
   nlum <- .get_nlum(.data_set = data_set, .cache = cache)
-  r <- terra::rast(nlum[grep("tif$", nlum)])
-  if (!is.null(active_cat)) {
-    activeCat(r) <- active_cat
-  }
-  return(r)
+  return(terra::rast(nlum[grep("tif$", nlum)]))
 }

@@ -11,7 +11,7 @@ read_nlum_stars(
   data_set = c("Y201011", "Y201516", "C201021", "T201011", "T201516", "T202021",
     "P201011", "P201516", "P202021"),
   cache = FALSE,
-  active_cat = NULL
+  ...
 )
 }
 \arguments{
@@ -35,10 +35,18 @@ being downloaded to \code{tempdir()} being available throughout the active \R
 session and cleaned up on exit. If set to \code{TRUE}, files will be cached
 locally for use between sessions. See \dQuote{Caching} section for more.}
 
+\item{...}{Additional arguments passed to \link[stars:read_stars]{stars::read_stars}, for \emph{e.g.},
+\code{RAT} if you wished to set the active category when loading any of the
+available GeoTIFF files that are encoded with a raster attribute table.}
+
 \item{active_cat}{A string value or integer indicating the active category to
 be used for the raster. Note that this value is dependent upon the
 \code{data_set} chosen and will always default to the first column of the
 attribute table for the requested data.}
+}
+\value{
+a \CRANpkg{stars} object that may be one or many layers depending
+upon the requested data set.
 }
 \description{
 Download and import national scale Land Use of Australia GeoTIFFs using
@@ -73,7 +81,7 @@ with updates to these time periods.}
 -- \acronym{ABARES}, 2024-11-28
 
 The raster will load with the default category for each data set, but you can
-specify a different category to use when reading the file in with the
+specify a different category to use after loading.
 \code{active_cat} argument. To see which categories are available, please refer
 to the metadata for these data.  The PDF can be accessed in your default web
 browser by using \code{\link[=view_nlum_metadata_pdf]{view_nlum_metadata_pdf()}}.

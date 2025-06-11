@@ -32,7 +32,7 @@
 #'
 #' @details
 #' The raster will load with the default category for each data set, but you can
-#'  specify a different category to use when reading the file in with the
+#'  specify a different category to use after loading.
 #'  `active_cat` argument. To see which categories are available, please refer
 #'  to the metadata for these data.  The PDF can be accessed in your default web
 #'  browser by using [view_nlum_metadata_pdf()].
@@ -56,6 +56,9 @@
 #'  be used for the raster. Note that this value is dependent upon the
 #'  `data_set` chosen and will always default to the first column of the
 #'  attribute table for the requested data.
+#' @param ... Additional arguments passed to [stars::read_stars], for *e.g.*,
+#'  `RAT` if you wished to set the active category when loading any of the
+#'  available GeoTIFF files that are encoded with a raster attribute table.
 #' @inheritSection get_agfd Caching
 #'
 #' @references
@@ -74,6 +77,8 @@
 #'
 #' plot(nlum_stars)
 #'
+#' @returns a \CRANpkg{stars} object that may be one or many layers depending
+#'  upon the requested data set.
 #' @family nlum
 #' @autoglobal
 #' @export
@@ -90,19 +95,12 @@ read_nlum_stars <- function(
     "P202021"
   ),
   cache = FALSE,
-  active_cat = NULL
+  ...
 ) {
   if (missing(cache)) {
     cache <- getOption("read.abares.cache", default = FALSE)
   }
 
   nlum <- .get_nlum(.data_set = data_set, .cache = cache)
-  if (is.null(active_cat)) {
-    return(stars::read_stars(nlum[grep("tif$", nlum)]))
-  } else {
-    return(stars::read_stars(
-      nlum[grep("tif$", nlum)],
-      RAT = nlum[grep("csv$", nlum)]
-    ))
-  }
+  return(stars::read_stars(nlum[grep("tif$", nlum)]))
 }
