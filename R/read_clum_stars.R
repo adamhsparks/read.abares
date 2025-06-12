@@ -1,0 +1,106 @@
+#' Read catchment scale Land Use of Australia GeoTIFFs using stars
+#'
+#' Download and import catchment scale Land Use of Australia GeoTIFFs using
+#'  \CRANpkg{stars} object.  Data can be cached on request.
+#'
+#' @details From the
+#' [ABARES website](https://www.agriculture.gov.au/abares/aclump/land-use/land-use-of-australia-2010-11-to-2020-21):
+#' \dQuote{The _Land use of Australia 2010–11 to 2020–21_ data package consists
+#' of seamless continental rasters that present land use at national scale for
+#' 2010–11, 2015–16 and 2020–21 and the associated change between each target
+#' period.  Non-agricultural land uses are mapped using 7 thematic layers,
+#' derived from existing datasets provided by state and territory jurisdictions
+#' and external agencies. These 7 layers are: protected areas, topographic
+#' features, land tenure, forest type, catchment scale land use, urban
+#' boundaries, and stock routes. The agricultural land uses are based on the
+#' Australian Bureau of Statistics’ 2010–11, 2015–16 and 2020–21 agricultural
+#' census data; with spatial distributions modelled using Terra Moderate
+#' Resolution Imaging Spectroradiometer (\acronym{MODIS}) satellite imagery and
+#' training data, assisted by spatial constraint layers for cultivation,
+#' horticulture, and irrigation.
+#'    Land use is specified according to the Australian Land Use and Management
+#' (\acronym{ALUM}) Classification version 8. The same method is applied to all
+#' target periods using representative national datasets for each period, where
+#' available. All rasters are in GeoTIFF format with geographic coordinates in
+#' Geocentric Datum of Australian 1994 (GDA94) and a 0.002197 degree
+#' (~250&nbsp;metre) cell size.
+#'    The _Land use of Australia 2010–11 to 2020–21_ data package is a product
+#' of the Australian Collaborative Land Use and Management Program. This data
+#' package replaces the Land use of Australia 2010–11 to 2015–16 data package,
+#' with updates to these time periods.}
+#'  -- \acronym{ABARES}, 2024-11-28
+#'
+#' @details
+#' The raster will load with the default category for each data set, but you can
+#'  specify a different category to use after loading.
+#'  `active_cat` argument. To see which categories are available, please refer
+#'  to the metadata for these data.  The PDF can be accessed in your default web
+#'  browser by using [view_clum_metadata_pdf()].
+#'
+#' @param data_set A string value indicating the GeoTIFF desired for download.
+#' One of:
+#' \describe{
+#'  \item{Y201011}{Land use of Australia 2010–11}
+#'  \item{Y201516}{Land use of Australia 2015–16}
+#'  \item{Y202021}{Land use of Australia 2020–21}
+#'  \item{C201021}{Land use of Australia change}
+#'  \item{T201011}{Land use of Australia 2010–11 thematic layers}
+#'  \item{T201516}{Land use of Australia 2015–16 thematic layers}
+#'  \item{T202021}{Land use of Australia 2020–21 thematic layers}
+#'  \item{P201011}{Land use of Australia 2010–11 agricultural commodities probability grids}
+#'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
+#'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
+#' }
+#' @inheritParams get_agfd
+#' @param active_cat A string value or integer indicating the active category to
+#'  be used for the raster. Note that this value is dependent upon the
+#'  `data_set` chosen and will always default to the first column of the
+#'  attribute table for the requested data.
+#' @param ... Additional arguments passed to [stars::read_stars], for *e.g.*,
+#'  `RAT` if you wished to set the active category when loading any of the
+#'  available GeoTIFF files that are encoded with a raster attribute table.
+#' @inheritSection get_agfd Caching
+#'
+#' @references
+#' ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
+#' Agricultural and Resource Economics and Sciences, Canberra, November, CC BY
+#' 4.0. \doi{10.25814/w175-xh85}
+#'
+#' @source
+#' \url{https://doi.org/10.25814/w175-xh85}
+#'
+#' @examplesIf interactive()
+#'
+#' read_clum_stars()
+#'
+#' clum_stars
+#'
+#' plot(clum_stars)
+#'
+#' @returns a \CRANpkg{stars} object that may be one or many layers depending
+#'  upon the requested data set.
+#' @family clum
+#' @autoglobal
+#' @export
+read_clum_stars <- function(
+  data_set = c(
+    "Y201011",
+    "Y201516",
+    "C201021",
+    "T201011",
+    "T201516",
+    "T202021",
+    "P201011",
+    "P201516",
+    "P202021"
+  ),
+  cache = FALSE,
+  ...
+) {
+  if (missing(cache)) {
+    cache <- getOption("read.abares.cache", default = FALSE)
+  }
+
+  clum <- .get_clum(.data_set = data_set, .cache = cache)
+  return(stars::read_stars(clum[grep("tif$", clum)]))
+}
