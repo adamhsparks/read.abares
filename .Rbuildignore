@@ -11,6 +11,7 @@
 ^flint$
 ^\.github$
 ^air\.toml$
+^man/dot-get_clum\.Rd$
 ^man/dot-get_nlum\.Rd$
 ^man/dot-create_topsoil_thickness_list\.Rd$
 ^man/dot-download_topsoil_thickness\.Rd$
