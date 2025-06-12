@@ -48,7 +48,6 @@
 #'  entire data set, that cannot be avoided, but will only return the
 #'  requested year(s) in your \R session. Valid years are from 1991 to 2023
 #'  inclusive.
-#'
 #' @param cache Cache the files after download? Defaults to `FALSE` with files
 #'  being downloaded to `tempdir()` being available throughout the active \R
 #'  session and cleaned up on exit. If set to `TRUE`, files will be cached
