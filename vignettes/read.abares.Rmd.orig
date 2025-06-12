@@ -111,13 +111,6 @@ Directly from the DAFF website:
 
 -- Australian Department of Agriculture, Fisheries and Forestry.
 
-
-Load the {read.abares} library.
-
-```{r agfd}
-library(read.abares)
-```
-
 Check the file format information for the NetCDF files.
 
 ```{r agfd-file-format}
@@ -128,7 +121,7 @@ Download or load from the local cache and read the AGFD files as a list of {star
 
 ```{r agfd-stars}
 # A list of {stars} objects for the climate in year 2000
-star <- get_agfd(, yr = 2000) |>
+star <- get_agfd(yr = 2000) |>
   read_agfd_stars()
 
 head(star[[1]])
@@ -138,7 +131,7 @@ Download or load from the local cache and read the AGFD files as a [terra::rast]
 
 ```{r agfd-terra}
 # A {terra} `rast` object
-terr <- get_agfd(, yr = 2000) |>
+terr <- get_agfd(yr = 2000) |>
   read_agfd_terra()
 
 head(terr[[1]])
@@ -148,7 +141,7 @@ Download or load from the local cache and read the AGFD files as a list of {tidy
 
 ```{r agfd-tidync}
 # A list of {tidync} objects
-tdnc <- get_agfd(, yr = 2000) |>
+tdnc <- get_agfd(yr = 2000) |>
   read_agfd_tidync()
 
 head(tdnc[[1]])
@@ -159,7 +152,7 @@ Download or load from the local cache and read the AGFD files as a {data.table} 
 ```{r agfd-dt}
 
 # A {data.table} object
-dtbl <- get_agfd(, yr = 2000) |>
+dtbl <- get_agfd(yr = 2000) |>
   read_agfd_dt()
 
 #Check the completeness and other metadata about the data 
@@ -172,7 +165,6 @@ skim(dtbl)
 You can download the soil depth map and import it as a {stars} or [terra::rast()](https://rspatial.github.io/terra/reference/rast.html) object.
 
 ```{r soil-thickness}
-library(read.abares)
 get_topsoil_thickness() |>
   read_topsoil_thickness_stars()
 
@@ -191,14 +183,12 @@ plot(x)
 By default, a brief bit of metadata is printed to the console when you call the topsoil thickness object in your R session.
 
 ```{r brief-metadata}
-library(read.abares)
 get_topsoil_thickness()
 ```
 
 But, {read.abares} provides a function for you to browse the topsoil thickness metadata in your console.
 
 ```{r soil-thickness-metadata}
-library(read.abares)
 get_topsoil_thickness() |>
   print_topsoil_thickness_metadata()
 ```
@@ -207,7 +197,6 @@ But you can also access it directly and use [pander::pander()] to include it in 
 
 <blockquote>
 ```{r soil-thickness-metadata-pander}
-library(read.abares)
 library(pander)
 x <- get_topsoil_thickness()
 y <- x$metadata
