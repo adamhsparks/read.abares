@@ -8,9 +8,9 @@
 #' @param .data_set A string value indicating the data desired for download.
 #' One of:
 #' \describe{
-#'  \item{CLUM_50m}{Catchment Scale Land Use of Australia – Update December 2023 version 2}
-#'  \item{CLUM_date_scale}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
-#'  \item{CLUM_commodities}{Catchment Scale Land Use of Australia – Commodities – Update December 2023}
+#'  \item{clum_50m_2023_v2}{Catchment Scale Land Use of Australia – Update December 2023 version 2}
+#'  \item{scale_date_update}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
+#'  \item{CLUM_commodities_2023}{Catchment Scale Land Use of Australia – Commodities – Update December 2023}
 #' }
 #'
 #' @details
@@ -62,15 +62,15 @@
 
   file_url <- switch(
     .data_set,
-    "CLUM_50m" = sprintf(
+    "clum_50m_2023_v2" = sprintf(
       "%s6deab695-3661-4135-abf7-19f25806cfd7/download/clum_50m_2023_v2.zip",
       file_url
     ),
-    "CLUM_date_scale" = sprintf(
+    "scale_date_update" = sprintf(
       "%s98b1b93f-e5e1-4cc9-90bf-29641cfc4f11/download/scale_date_update.zip",
       file_url
     ),
-    "CLUM_commodities" = sprintf(
+    "CLUM_commodities_2023" = sprintf(
       "%sb216cf90-f4f0-4d88-980f-af7d1ad746cb/download/clum_commodities_2023.zip",
       file_url
     )
@@ -82,9 +82,9 @@
     {
       withr::with_dir(
         download_dir,
-        utils::unzip(zipfile = download_file)
+        utils::unzip(zipfile = download_file, exdir = download_dir)
       )
-      if (data_set != "CLUM_commodities") {
+      if (.data_set != "CLUM_commodities_2023") {
         if (
           isFALSE(fs::file_exists(fs::path(
             download_dir,
@@ -107,7 +107,6 @@
           )
         )
       } else {
-        clum_dir <- fs::path(download_dir, "CLUM_Commodities_2023")
         x <- sf::st_read(
           fs::path(clum_dir, "CLUM_Commodities_2023.shp"),
           quiet = TRUE
@@ -155,7 +154,7 @@
     fs::file_delete(download_file)
   }
 
-  clum <- fs::dir_ls(fs::path_abs(clum_dir), glob = "*.tif")
+  clum <- fs::dir_ls(fs::path_abs(clum_dir), regexp = "[.]tif$|[.]gpkg$")
 
   class(clum) <- union("read.abares.clum.files", class(clum))
   return(clum)

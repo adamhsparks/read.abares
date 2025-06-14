@@ -7,15 +7,15 @@
 \url{https://10.25814/2w2p-ph98}.
 }
 \usage{
-.get_clum(.cache)
+.get_clum(.data_set, .cache)
 }
 \arguments{
 \item{.data_set}{A string value indicating the data desired for download.
 One of:
 \describe{
-\item{CLUM_50m_2023v2}{Catchment Scale Land Use of Australia – Update December 2023 version 2}
-\item{date_CLUM2023}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
-\item{CLUM_Commodities_2023}{Catchment Scale Land Use of Australia – Commodities – Update December 2023}
+\item{clum_50m_2023_v2}{Catchment Scale Land Use of Australia – Update December 2023 version 2}
+\item{scale_date_update}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
+\item{CLUM_commodities_2023}{Catchment Scale Land Use of Australia – Commodities – Update December 2023}
 }}
 }
 \value{
@@ -37,7 +37,7 @@ invalid geometries.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
-CLUM50m <- get_clum(data_set = "CLUM_50m_2023v2")
+CLUM50m <- get_clum(data_set = "CLUM_50m")
 
 CLUM50m
 \dontshow{\}) # examplesIf}
