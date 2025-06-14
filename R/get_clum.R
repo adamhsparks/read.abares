@@ -8,9 +8,9 @@
 #' @param .data_set A string value indicating the data desired for download.
 #' One of:
 #' \describe{
-#'  \item{CLUM_50m_2023v2}{Catchment Scale Land Use of Australia – Update December 2023 version 2}
-#'  \item{date_CLUM2023}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
-#'  \item{CLUM_Commodities_2023}{Catchment Scale Land Use of Australia – Commodities – Update December 2023}
+#'  \item{CLUM_50m}{Catchment Scale Land Use of Australia – Update December 2023 version 2}
+#'  \item{CLUM_date_scale}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
+#'  \item{CLUM_commodities}{Catchment Scale Land Use of Australia – Commodities – Update December 2023}
 #' }
 #'
 #' @details
@@ -29,7 +29,7 @@
 #' \url{https://10.25814/2w2p-ph98}.
 #'
 #' @examplesIf interactive()
-#' CLUM50m <- get_clum(data_set = "CLUM_50m_2023v2")
+#' CLUM50m <- get_clum(data_set = "CLUM_50m")
 #'
 #' CLUM50m
 #'
@@ -62,15 +62,15 @@
 
   file_url <- switch(
     .data_set,
-    "CLUM_50m_2023v2" = sprintf(
+    "CLUM_50m" = sprintf(
       "%s6deab695-3661-4135-abf7-19f25806cfd7/download/clum_50m_2023_v2.zip",
       file_url
     ),
-    "date_CLUM2023" = sprintf(
+    "CLUM_date_scale" = sprintf(
       "%s98b1b93f-e5e1-4cc9-90bf-29641cfc4f11/download/scale_date_update.zip",
       file_url
     ),
-    "CLUM_Commodities_2023" = sprintf(
+    "CLUM_commodities" = sprintf(
       "%sb216cf90-f4f0-4d88-980f-af7d1ad746cb/download/clum_commodities_2023.zip",
       file_url
     )
@@ -84,7 +84,7 @@
         download_dir,
         utils::unzip(zipfile = download_file)
       )
-      if (data_set != "CLUM_Commodities_2023") {
+      if (data_set != "CLUM_commodities") {
         if (
           isFALSE(fs::file_exists(fs::path(
             download_dir,
