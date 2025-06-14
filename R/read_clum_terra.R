@@ -1,37 +1,32 @@
-#' Read cactchment scale Land Use of Australia GeoTIFFs using terra
+#' Read catchment scale Land Use of Australia GeoTIFFs using terra
 #'
 #' Download and import national scale Land Use of Australia GeoTIFFs using
 #'  \CRANpkg{terra} as a categorical [terra::rast] object.  Data can be cached
 #'  on request.
 #'
 #' @details From the
-#' [ABARES website](https://www.agriculture.gov.au/abares/aclump/land-use/land-use-of-australia-2010-11-to-2020-21):
-#' \dQuote{The _Land use of Australia 2010–11 to 2020–21_ data package consists
-#' of seamless continental rasters that present land use at national scale for
-#' 2010–11, 2015–16 and 2020–21 and the associated change between each target
-#' period.  Non-agricultural land uses are mapped using 7 thematic layers,
-#' derived from existing datasets provided by state and territory jurisdictions
-#' and external agencies. These 7 layers are: protected areas, topographic
-#' features, land tenure, forest type, catchment scale land use, urban
-#' boundaries, and stock routes. The agricultural land uses are based on the
-#' Australian Bureau of Statistics’ 2010–11, 2015–16 and 2020–21 agricultural
-#' census data; with spatial distributions modelled using Terra Moderate
-#' Resolution Imaging Spectroradiometer (\acronym{MODIS}) satellite imagery and
-#' training data, assisted by spatial constraint layers for cultivation,
-#' horticulture, and irrigation.
-#'    Land use is specified according to the Australian Land Use and Management
-#' (\acronym{ALUM}) Classification version 8. The same method is applied to all
-#' target periods using representative national datasets for each period, where
-#' available. All rasters are in GeoTIFF format with geographic coordinates in
-#' Geocentric Datum of Australian 1994 (GDA94) and a 0.002197 degree
-#' (~250&nbsp;metre) cell size.
-#'    The _Land use of Australia 2010–11 to 2020–21_ data package is a product
-#' of the Australian Collaborative Land Use and Management Program. This data
-#' package replaces the Land use of Australia 2010–11 to 2015–16 data package,
-#' with updates to these time periods.}
-#'  -- \acronym{ABARES}, 2024-11-28
+#' [ABARES documentation](https://www.agriculture.gov.au/sites/default/files/documents/CLUM_DescriptiveMetadata_December2023_v2.pdf)
+#' \dQuote{The Catchment Scale Land Use of Australia – Update December 2023
+#' version 2 dataset is the national compilation of catchment scale land use
+#' data available for Australia (CLUM), as at December 2023. It replaces the
+#' Catchment Scale Land Use of Australia – Update December 2020. It is a
+#' seamless raster dataset that combines land use data for all state and
+#' territory jurisdictions, compiled at a resolution of 50 metres by 50 metres.
+#' The CLUM data shows a single dominant land use for a given area, based on the
+#' primary management objective of the land manager (as identified by state and
+#' territory agencies). Land use is classified according to the Australian Land
+#' Use and Management Classification version 8. It has been compiled from vector
+#' land use datasets collected as part of state and territory mapping programs
+#' and other authoritative sources, through the Australian Collaborative Land
+#' Use and Management Program. Catchment scale land use data was produced by
+#' combining land tenure and other types of land use information including,
+#' fine-scale satellite data, ancillary datasets, and information collected in
+#' the field. The date of mapping (2008 to 2023) and scale of mapping (1:5,000
+#' to 1:250,000) vary, reflecting the source data, capture date and scale.
+#' Date and scale of mapping are provided in supporting datasets.}
+#'  -- \acronym{ABARES}, 2024-06-27
 #'
-#' @details
+#' @note
 #' The raster will load with the default category for each data set, but you can
 #'  specify a different category to use through [terra::activeCat()].  To see
 #'  which categories are available, please refer to the metadata for these data.
@@ -56,7 +51,7 @@
 #'
 #' @examplesIf interactive()
 #'
-#' read_clum_terra(data_set = "Y202021", active_cat = "")
+#' read_clum_terra(data_set = "clum_50m_2023_v2")
 #'
 #' clum_terra
 #'
@@ -69,15 +64,8 @@
 #' @export
 read_clum_terra <- function(
   data_set = c(
-    "Y201011",
-    "Y201516",
-    "C201021",
-    "T201011",
-    "T201516",
-    "T202021",
-    "P201011",
-    "P201516",
-    "P202021"
+    "clum_50m_2023_v2",
+    "scale_date_update"
   ),
   cache = FALSE
 ) {
@@ -87,19 +75,10 @@ read_clum_terra <- function(
 
   rlang::arg_match(
     data_set,
-    c(
-      "Y201011",
-      "Y201516",
-      "C201021",
-      "T201011",
-      "T201516",
-      "T202021",
-      "P201011",
-      "P201516",
-      "P202021"
-    )
+    "clum_50m_2023_v2",
+    "scale_date_update"
   )
 
   clum <- .get_clum(.data_set = data_set, .cache = cache)
-  return(terra::rast(clum[grep("tif$", clum)]))
+  return(terra::rast(clum[grep("[.]tif$", clum)]))
 }
