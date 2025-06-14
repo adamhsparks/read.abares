@@ -31,7 +31,7 @@
 #' with updates to these time periods.}
 #'  -- \acronym{ABARES}, 2024-11-28
 #'
-#' @details
+#' @note
 #' The raster will load with the default category for each data set, but you can
 #'  specify a different category to use through [terra::activeCat()].  To see
 #'  which categories are available, please refer to the metadata for these data.
