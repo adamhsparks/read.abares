@@ -79,7 +79,8 @@ of the Australian Collaborative Land Use and Management Program. This data
 package replaces the Land use of Australia 2010–11 to 2015–16 data package,
 with updates to these time periods.}
 -- \acronym{ABARES}, 2024-11-28
-
+}
+\note{
 The raster will load with the default category for each data set, but you can
 specify a different category to use after loading.
 \code{active_cat} argument. To see which categories are available, please refer
