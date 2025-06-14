@@ -26,7 +26,7 @@ One of:
 }}
 }
 \value{
-A \code{read.abares.nlum} object, a list of files containing a GeoTIFF of
+A \code{read.abares.nlum} object, a list of GeoTIFF files containing
 national scale land use data and a PDF file of metadata.
 }
 \description{

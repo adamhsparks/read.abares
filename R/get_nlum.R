@@ -33,7 +33,7 @@
 #'
 #' Y202021
 #'
-#' @returns A `read.abares.nlum` object, a list of files containing a GeoTIFF of
+#' @returns A `read.abares.nlum` object, a list of GeoTIFF files containing
 #'  national scale land use data and a PDF file of metadata.
 #'
 #' @autoglobal
