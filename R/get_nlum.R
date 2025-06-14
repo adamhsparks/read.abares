@@ -169,7 +169,7 @@
 #' @autoglobal
 #' @noRd
 print.read.abares.agfd.nlum.files <- function(x, ...) {
-  cli::cli_h1("Locally Available ABARES Land Use Files")
+  cli::cli_h1("Locally Available ABARES National Scale Land Use Files")
   cli::cli_ul(basename(x))
   cli::cat_line()
   invisible(x)

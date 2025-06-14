@@ -5,42 +5,42 @@
 #'  file and deletes unnecessary files that are included in the download.  Data
 #'  are cached on request.
 #'
-#' @param .data_set A string value indicating the GeoTIFF desired for download.
+#' @param .data_set A string value indicating the data desired for download.
 #' One of:
 #' \describe{
-#'  \item{Y201011}{Land use of Australia 2010–11}
-#'  \item{Y201516}{Land use of Australia 2015–16}
-#'  \item{Y202021}{Land use of Australia 2020–21}
-#'  \item{C201021}{Land use of Australia change}
-#'  \item{T201011}{Land use of Australia 2010–11 thematic layers}
-#'  \item{T201516}{Land use of Australia 2015–16 thematic layers}
-#'  \item{T202021}{Land use of Australia 2020–21 thematic layers}
-#'  \item{P201011}{Land use of Australia 2010–11 agricultural commodities probability grids}
-#'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
-#'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
+#'  \item{CLUM_50m_2023v2}{Catchment Scale Land Use of Australia – Update December 2023 version 2}
+#'  \item{date_CLUM2023}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
+#'  \item{CLUM_Commodities_2023}{Catchment Scale Land Use of Australia – Commodities – Update December 2023}
 #' }
 #'
+#' @details
+#' The `CLUM_50m_2023v2` and `date_CLUM2023` datasets are available as GeoTIFF
+#'  files. The `CLUM_Commodities_2023` dataset is available as a shapefile.
+#'  The GeoTIFF files are both saved in the same format. The
+#'  `CLUM_Commodities_2023` file is saved as a GeoPackage after correcting
+#'  invalid geometries.
+#'
 #' @references
-#' ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
-#' Agricultural and Resource Economics and Sciences, Canberra, November, CC BY
-#' 4.0. \doi{10.25814/w175-xh85}
+#' ABARES 2024, Catchment Scale Land Use of Australia – Update December 2023
+#' version 2, Australian Bureau of Agricultural and Resource Economics and
+#' Sciences, Canberra, June, CC BY 4.0, DOI: \doi{10.25814/2w2p-ph98}.
 #'
 #' @source
-#' \url{https://doi.org/10.25814/w175-xh85}
+#' \url{https://10.25814/2w2p-ph98}.
 #'
 #' @examplesIf interactive()
-#' Y202021 <- get_clum(data_set = "Y202021")
+#' CLUM50m <- get_clum(data_set = "CLUM_50m_2023v2")
 #'
-#' Y202021
+#' CLUM50m
 #'
-#' @returns A `read.abares.clum` object, a list of files containing a GeoTIFF of
-#'  national scale land use data and a PDF file of metadata.
+#' @returns A `read.abares.clum` object, a list of files containing a spatial
+#'  data file of or related to Australian catchment scale land use data.
 #'
 #' @family Land Use
 #' @autoglobal
 #' @dev
 
-.get_clum <- function(.data_set, .cache) {
+.get_clum <- function(.cache) {
   download_file <- data.table::fifelse(
     .cache,
     fs::path(.find_user_cache(), "clum", sprintf("%s.zip", .data_set)),
@@ -59,48 +59,20 @@
   }
 
   file_url <-
-    "https://www.agriculture.gov.au/sites/default/files/documents/"
+    "https://data.gov.au/data/dataset/8af26be3-da5d-4255-b554-f615e950e46d/resource/"
 
   file_url <- switch(
     data_set,
-    "Y202021" = sprintf(
-      "%sNLUM_v7_250_ALUMV8_2020_21_alb_package_20241128.zip",
+    "CLUM_50m_2023v2" = sprintf(
+      "%s6deab695-3661-4135-abf7-19f25806cfd7/download/clum_50m_2023_v2.zip",
       file_url
     ),
-    "Y201516" = sprintf(
-      "%sNLUM_v7_250_ALUMV8_2015_16_alb_package_20241128.zip",
+    "date_CLUM2023" = sprintf(
+      "%s98b1b93f-e5e1-4cc9-90bf-29641cfc4f11/download/scale_date_update.zip",
       file_url
     ),
-    "Y201011" = sprintf(
-      "%sNLUM_v7_250_ALUMV8_2010_11_alb_package_20241128.zip",
-      file_url
-    ),
-    "C201021" = sprintf(
-      "%sNLUM_v7_250_CHANGE_SIMP_2011_to_2021_alb_package_20241128.zip",
-      file_url
-    ),
-    "T202021" = sprintf(
-      "%sNLUM_v7_250_INPUTS_2020_21_geo_package_20241128.zip",
-      file_url
-    ),
-    "T201516" = sprintf(
-      "%sNLUM_v7_250_INPUTS_2015_16_geo_package_20241128.zip",
-      file_url
-    ),
-    "T201011" = sprintf(
-      "%sNLUM_v7_250_INPUTS_2010_11_geo_package_20241128.zip",
-      file_url
-    ),
-    "P202021" = sprintf(
-      "%sNLUM_v7_250_AgProbabilitySurfaces_2020_21_geo_package_20241128.zip",
-      file_url
-    ),
-    "P201516" = sprintf(
-      "%sNLUM_v7_250_AgProbabilitySurfaces_2015_16_geo_package_20241128.zip",
-      file_url
-    ),
-    "P201011" = sprintf(
-      "%sNLUM_v7_250_AgProbabilitySurfaces_2010_11_geo_package_20241128.zip",
+    "CLUM_Commodities_2023" = sprintf(
+      "%sb216cf90-f4f0-4d88-980f-af7d1ad746cb/download/clum_commodities_2023.zip",
       file_url
     )
   )
@@ -117,13 +89,13 @@
       if (
         isFALSE(fs::file_exists(fs::path(
           download_dir,
-          "NLUM_v7_DescriptiveMetadata_20241128_0.pdf"
+          "CLUM_DescriptiveMetadata_December2023.pdf"
         )))
       ) {
         fs::file_move(
           fs::path(
             clum_dir,
-            "NLUM_v7_DescriptiveMetadata_20241128_0.pdf"
+            "CLUM_DescriptiveMetadata_December2023.pdf"
           ),
           fs::path(download_dir, "NLUM_v7_DescriptiveMetadata_20241128_0.pdf")
         )
@@ -138,6 +110,19 @@
           fs::dir_ls(clum_dir, regexp = "[.]tif$|[.]tif[.]aux[.]xml$")
         )
       )
+
+      if (data_set == "CLUM_Commodities_2023") {
+        x <- sf::st_read(fs::path(clum_dir, "CLUM_Commodities_2023.shp"))
+        x <- sf::st_make_valid(x)
+        sf::st_write(
+          x,
+          dns = clum_dir,
+          layer = "CLUM_Commodities_2023",
+          delete_dsn = TRUE,
+          quiet = TRUE,
+          driver = "GPKG"
+        )
+      }
     },
     error = function(e) {
       cli::cli_abort(
@@ -169,7 +154,7 @@
 #' @autoglobal
 #' @noRd
 print.read.abares.agfd.clum.files <- function(x, ...) {
-  cli::cli_h1("Locally Available ABARES Land Use Files")
+  cli::cli_h1("Locally Available ABARES Catchment Scale Land Use Files")
   cli::cli_ul(basename(x))
   cli::cat_line()
   invisible(x)

@@ -24,6 +24,7 @@ view_nlum_metadata_pdf()
 \seealso{
 Other nlum: 
 \code{\link{read_nlum_stars}()},
-\code{\link{read_nlum_terra}()}
+\code{\link{read_nlum_terra}()},
+\code{\link{view_clum_metadata_pdf}()}
 }
 \concept{nlum}
