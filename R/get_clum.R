@@ -1,9 +1,9 @@
 #' Get catchment scale Land Use of Australia data for local use
 #'
-#' An internal function used by [read_clum_terra] and [read_clum_stars] that
-#'  downloads national level land use data GeoTIFF file, unzips the download
-#'  file and deletes unnecessary files that are included in the download.  Data
-#'  are cached on request.
+#' An internal function used by [read_clum_terra] and [read_clum_stars] or
+#'  [read_clum_commodities] that downloads catchment level land use data files,
+#'  unzips the download file and deletes unnecessary files that are included in
+#'  the download.  Data are cached on request.
 #'
 #' @param .data_set A string value indicating the data desired for download.
 #' One of:
@@ -36,7 +36,6 @@
 #' @returns A `read.abares.clum` object, a list of files containing a spatial
 #'  data file of or related to Australian catchment scale land use data.
 #'
-#' @family Land Use
 #' @autoglobal
 #' @dev
 

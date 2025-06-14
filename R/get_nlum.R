@@ -36,7 +36,6 @@
 #' @returns A `read.abares.nlum` object, a list of files containing a GeoTIFF of
 #'  national scale land use data and a PDF file of metadata.
 #'
-#' @family Land Use
 #' @autoglobal
 #' @dev
 

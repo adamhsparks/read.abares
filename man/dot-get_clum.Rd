@@ -23,10 +23,10 @@ A \code{read.abares.clum} object, a list of files containing a spatial
 data file of or related to Australian catchment scale land use data.
 }
 \description{
-An internal function used by \link{read_clum_terra} and \link{read_clum_stars} that
-downloads national level land use data GeoTIFF file, unzips the download
-file and deletes unnecessary files that are included in the download.  Data
-are cached on request.
+An internal function used by \link{read_clum_terra} and \link{read_clum_stars} or
+\link{read_clum_commodities} that downloads catchment level land use data files,
+unzips the download file and deletes unnecessary files that are included in
+the download.  Data are cached on request.
 }
 \details{
 The \code{CLUM_50m_2023v2} and \code{date_CLUM2023} datasets are available as GeoTIFF
@@ -47,9 +47,4 @@ ABARES 2024, Catchment Scale Land Use of Australia – Update December 2023
 version 2, Australian Bureau of Agricultural and Resource Economics and
 Sciences, Canberra, June, CC BY 4.0, DOI: \doi{10.25814/2w2p-ph98}.
 }
-\seealso{
-Other Land Use: 
-\code{\link{.get_nlum}()}
-}
-\concept{Land Use}
 \keyword{internal}

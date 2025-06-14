@@ -47,9 +47,4 @@ ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
 Agricultural and Resource Economics and Sciences, Canberra, November, CC BY
 4.0. \doi{10.25814/w175-xh85}.
 }
-\seealso{
-Other Land Use: 
-\code{\link{.get_clum}()}
-}
-\concept{Land Use}
 \keyword{internal}
