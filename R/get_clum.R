@@ -39,7 +39,7 @@
 #' @autoglobal
 #' @dev
 
-.get_clum <- function(.cache) {
+.get_clum <- function(.data_set, .cache) {
   download_file <- data.table::fifelse(
     .cache,
     fs::path(.find_user_cache(), "clum", sprintf("%s.zip", .data_set)),
@@ -61,7 +61,7 @@
     "https://data.gov.au/data/dataset/8af26be3-da5d-4255-b554-f615e950e46d/resource/"
 
   file_url <- switch(
-    data_set,
+    .data_set,
     "CLUM_50m_2023v2" = sprintf(
       "%s6deab695-3661-4135-abf7-19f25806cfd7/download/clum_50m_2023_v2.zip",
       file_url
@@ -82,44 +82,63 @@
     {
       withr::with_dir(
         download_dir,
-        utils::unzip(zipfile = download_file, exdir = clum_dir)
+        utils::unzip(zipfile = download_file)
       )
-
-      if (
-        isFALSE(fs::file_exists(fs::path(
-          download_dir,
-          "CLUM_DescriptiveMetadata_December2023.pdf"
-        )))
-      ) {
-        fs::file_move(
-          fs::path(
-            clum_dir,
+      if (data_set != "CLUM_Commodities_2023") {
+        if (
+          isFALSE(fs::file_exists(fs::path(
+            download_dir,
             "CLUM_DescriptiveMetadata_December2023.pdf"
-          ),
-          fs::path(download_dir, "NLUM_v7_DescriptiveMetadata_20241128_0.pdf")
-        )
-      }
+          )))
+        ) {
+          fs::file_move(
+            fs::path(
+              clum_dir,
+              "CLUM_DescriptiveMetadata_December2023.pdf"
+            ),
+            fs::path(download_dir, "CLUM_DescriptiveMetadata_December2023.pdf")
+          )
+        }
 
-      fs::dir_delete(
-        c(fs::path(clum_dir, "Maps"), fs::path(clum_dir, "Symbology"))
-      )
-      fs::file_delete(
-        setdiff(
-          fs::dir_ls(clum_dir),
-          fs::dir_ls(clum_dir, regexp = "[.]tif$|[.]tif[.]aux[.]xml$")
+        fs::file_delete(
+          setdiff(
+            fs::dir_ls(clum_dir),
+            fs::dir_ls(clum_dir, regexp = "[.]tif$|[.]tif[.]aux[.]xml$")
+          )
         )
-      )
-
-      if (data_set == "CLUM_Commodities_2023") {
-        x <- sf::st_read(fs::path(clum_dir, "CLUM_Commodities_2023.shp"))
+      } else {
+        clum_dir <- fs::path(download_dir, "CLUM_Commodities_2023")
+        x <- sf::st_read(
+          fs::path(clum_dir, "CLUM_Commodities_2023.shp"),
+          quiet = TRUE
+        )
         x <- sf::st_make_valid(x)
         sf::st_write(
           x,
-          dns = clum_dir,
-          layer = "CLUM_Commodities_2023",
-          delete_dsn = TRUE,
-          quiet = TRUE,
-          driver = "GPKG"
+          fs::path(clum_dir, "CLUM_Commodities_2023.gpkg"),
+          quiet = TRUE
+        )
+
+        if (
+          isFALSE(fs::file_exists(fs::path(
+            download_dir,
+            "CLUMC_DescriptiveMetadata_December2023.pdf"
+          )))
+        ) {
+          fs::file_move(
+            fs::path(
+              clum_dir,
+              "CLUMC_DescriptiveMetadata_December2023.pdf"
+            ),
+            fs::path(download_dir, "CLUMC_DescriptiveMetadata_December2023.pdf")
+          )
+        }
+
+        fs::file_delete(
+          setdiff(
+            fs::dir_ls(clum_dir),
+            fs::dir_ls(clum_dir, regexp = "[.]gpkg$")
+          )
         )
       }
     },
