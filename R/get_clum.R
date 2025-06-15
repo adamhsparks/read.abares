@@ -112,11 +112,14 @@
           quiet = TRUE
         )
         x <- sf::st_make_valid(x)
-        sf::st_write(
-          x,
-          fs::path(clum_dir, "CLUM_Commodities_2023.gpkg"),
-          quiet = TRUE
-        )
+
+        if (cache) {
+          sf::st_write(
+            x,
+            fs::path(clum_dir, "CLUM_Commodities_2023.gpkg"),
+            quiet = TRUE
+          )
+        }
 
         if (
           isFALSE(fs::file_exists(fs::path(
