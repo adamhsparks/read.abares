@@ -50,16 +50,21 @@
 #'   reading into the active \R session later.
 #' @dev
 
-.retry_download <- function(url, .f) {
+.retry_download <- function(
+  url,
+  .f,
+  max_tries = getOption("read.abares.max_tries"),
+  user_agent = getOption("read.abares.user_agent")
+) {
   httr2::request(base_url = url) |>
-    httr2::req_user_agent(getOption("read.abares.user_agent")) |>
+    httr2::req_user_agent(user_agent) |>
     httr2::req_headers("Accept-Encoding" = "identity") |>
     httr2::req_headers("Connection" = "Keep-Alive") |>
     httr2::req_options(
       http_version = 2L,
       timeout = getOption("read.abares.timeout")
     ) |>
-    httr2::req_retry(max_tries = getOption("read.abares.max_tries")) |>
+    httr2::req_retry(max_tries = max_tries) |>
     httr2::req_cache(path = tempdir()) |>
     httr2::req_progress() |>
     httr2::req_perform() |>
