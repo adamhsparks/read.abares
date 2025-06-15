@@ -76,15 +76,15 @@ read_clum_stars <- function(
   ),
   cache = FALSE
 ) {
-  if (missing(cache)) {
-    cache <- getOption("read.abares.cache", default = FALSE)
-  }
-
   rlang::arg_match(
     data_set,
     "clum_50m_2023_v2",
     "scale_date_update"
   )
+
+  if (missing(cache)) {
+    cache <- getOption("read.abares.cache", default = FALSE)
+  }
 
   clum <- .get_clum(.data_set = data_set, .cache = cache)
   return(stars::read_stars(clum[grep("[.]tif$", clum)]))
