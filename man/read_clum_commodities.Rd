@@ -4,7 +4,7 @@
 \alias{read_clum_commodities}
 \title{Read catchment scale Land Use of Australia commodities shape file}
 \source{
-\url{https://10.25814/zfjz-jt75}
+\url{https://10.25814/w175-xh85}
 }
 \usage{
 read_clum_commodities(cache = FALSE)
@@ -57,9 +57,9 @@ cc
 \dontshow{\}) # examplesIf}
 }
 \references{
-ABARES 2024, \href{https://doi.org/10.25814/jhjb-c072}{Catchment Scale Land Use of Australia – Commodities – Update December 2023}, Australian Bureau of
-Agricultural and Resource Economics and Sciences, Canberra, February CC BY
-4.0. DOI: \doi{10.25814/zfjz-jt75}
+ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
+Agricultural and Resource Economics and Sciences, Canberra, October,
+CC BY 4.0. DOI: \doi{10.25814/w175-xh85}
 }
 \seealso{
 Other clum: 

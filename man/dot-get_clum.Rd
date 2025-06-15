@@ -15,7 +15,7 @@ One of:
 \describe{
 \item{clum_50m_2023_v2}{Catchment Scale Land Use of Australia – Update December 2023 version 2}
 \item{scale_date_update}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
-\item{CLUM_commodities_2023}{Catchment Scale Land Use of Australia – Commodities – Update December 2023}
+\item{CLUM_Commodities_2023}{Catchment Scale Land Use of Australia – Commodities – Update December 2023}
 }}
 }
 \value{
