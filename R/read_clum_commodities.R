@@ -24,13 +24,12 @@
 #' @inheritSection get_agfd Caching
 #'
 #' @references
-#' ABARES 2024, [Catchment Scale Land Use of Australia – Commodities – Update
-#' December 2023](https://doi.org/10.25814/jhjb-c072), Australian Bureau of
-#' Agricultural and Resource Economics and Sciences, Canberra, February CC BY
-#' 4.0. DOI: \doi{10.25814/zfjz-jt75}
+#' ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
+#' Agricultural and Resource Economics and Sciences, Canberra, October,
+#' CC BY 4.0. DOI: \doi{10.25814/w175-xh85}
 #'
 #' @source
-#' \url{https://10.25814/zfjz-jt75}
+#' \url{https://10.25814/w175-xh85}
 #'
 #' @examplesIf interactive()
 #'
@@ -48,5 +47,5 @@ read_clum_commodities <- function(cache = FALSE) {
   }
 
   clum <- .get_clum(.data_set = "CLUM_Commodities_2023", .cache = cache)
-  return(sf::st_read(clum, silent = TRUE))
+  return(sf::st_read(clum, quiet = TRUE))
 }
