@@ -4,13 +4,13 @@
 \alias{read_clum_terra}
 \title{Read catchment scale Land Use of Australia GeoTIFFs using terra}
 \source{
-\url{https://doi.org/10.25814/w175-xh85}
+\describe
+\item{Catchment Scale Land Use of Australia v2 GeoTiff}{\url{https://www.agriculture.gov.au/sites/default/files/documents/clum_50m_2023_v2.zip}}
+\item{Date and Scale of Mapping Shapefile GeoTIFF}{\url{https://data.gov.au/data/dataset/catchment-scale-land-use-of-australia-and-commodities-update-december-2023/resource/98b1b93f-e5e1-4cc9-90bf-29641cfc4f11}}
+}
 }
 \usage{
-read_clum_terra(
-  data_set = c("clum_50m_2023_v2", "scale_date_update"),
-  cache = FALSE
-)
+read_clum_terra(data_set = "clum_50m_2023_v2", cache = FALSE)
 }
 \arguments{
 \item{data_set}{A string value indicating the data desired for download.
@@ -92,9 +92,9 @@ plot(clum_terra)
 \dontshow{\}) # examplesIf}
 }
 \references{
-ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
-Agricultural and Resource Economics and Sciences, Canberra, November, CC BY
-4.0. \doi{10.25814/w175-xh85}
+ABARES 2024, Catchment Scale Land Use of Australia – Update December 2023
+version 2, Australian Bureau of Agricultural and Resource Economics and
+Sciences, Canberra, June, CC BY 4.0, DOI: \doi{10.25814/2w2p-ph98}
 }
 \seealso{
 Other clum: 

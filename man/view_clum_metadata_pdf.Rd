@@ -3,6 +3,12 @@
 \name{view_clum_metadata_pdf}
 \alias{view_clum_metadata_pdf}
 \title{Displays the PDF metadata for the Catchment Land Use (CLUM) raster files in a native viewer}
+\source{
+\describe{
+\item{CLUM Metadata}{https://www.agriculture.gov.au/sites/default/files/documents/CLUM_DescriptiveMetadata_December2023_v2.pdf}
+\item{CLUM Commodities Metadata}{https://www.agriculture.gov.au/sites/default/files/documents/CLUMC_DescriptiveMetadata_December2023.pdf}
+}
+}
 \usage{
 view_clum_metadata_pdf(commodities = FALSE)
 }
