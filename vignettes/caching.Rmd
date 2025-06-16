@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 {read.abares} offers data caching in two tiers.
 By default data downloads are cached in R's `tempdir()` and cleaned up upon exiting the active session.
 However, you may enable caching for some of the larger data files to save time in the future by not downloading the files again when you start a new session.
-This obviously is a personal decision, many R users would look to {[targets](https://books.ropensci.org/targets/)} to manage their workflow, or you may simply prefer to fetch the data and write it to disk yoursel to manage their workflow, or you may simply prefer to fetch the data and write it to disk yourself.
+This obviously is a personal decision, many R users would look to {[targets](https://books.ropensci.org/targets/)} to manage their workflow, or you may simply prefer to fetch the data and write it to disk yourself to manage their workflow, or you may simply prefer to fetch the data and write it to disk yourself.
 If you plan to save the data and work with it in {read.abares}, you will need to use R's `save()` or `saveRDS()` to save the data sets as {read.abares} uses S3 classes when reading the data to ensure consistency.
 You can, of course, save the data as a GeoTIFF, NetCDF, GeoPackage or ShapeFile if you wish, but you will lose the ability to use any of the `read` functions from {read.abares} to work with the saved data if you do this. 
 
