@@ -16,8 +16,11 @@
 
 \item{.f}{\code{Character} A filepath to be written to local storage.}
 
-\item{.initial_delay}{\code{Integer} The number of seconds to delay before
-retrying the download.  This increases as the tries increment.}
+\item{max_tries}{\code{Integer} The number of times to retry downloading the file
+before failing. Defaults to 3. Can be set globally via \code{options()}.}
+
+\item{user_agent}{\code{Character} A string value with a custom user-defined user-
+agent. Defaults to "read.abares". Can be set globally via \code{options()}.}
 }
 \value{
 Called for its side-effects, writes an object to the \code{tempdir()} for

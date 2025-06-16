@@ -35,8 +35,10 @@
 #'
 #' @param url `Character` The URL being requested.
 #' @param .f `Character` A filepath to be written to local storage.
-#' @param .initial_delay `Integer` The number of seconds to delay before
-#'   retrying the download.  This increases as the tries increment.
+#' @param max_tries `Integer` The number of times to retry downloading the file
+#'  before failing. Defaults to 3. Can be set globally via `options()`.
+#' @param user_agent `Character` A string value with a custom user-defined user-
+#'  agent. Defaults to "read.abares". Can be set globally via `options()`.
 #'
 #' @examples
 #'
