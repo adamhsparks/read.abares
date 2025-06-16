@@ -82,24 +82,10 @@ read_nlum_terra <- function(
   cache = FALSE,
   ...
 ) {
+  rlang::arg_match(data_set)
   if (missing(cache)) {
     cache <- getOption("read.abares.cache", default = FALSE)
   }
-
-  rlang::arg_match(
-    data_set,
-    c(
-      "Y201011",
-      "Y201516",
-      "C201021",
-      "T201011",
-      "T201516",
-      "T202021",
-      "P201011",
-      "P201516",
-      "P202021"
-    )
-  )
 
   nlum <- .get_nlum(.data_set = data_set, .cache = cache)
   return(terra::rast(nlum[grep("tif$", nlum, ...)]))

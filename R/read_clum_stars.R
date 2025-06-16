@@ -49,12 +49,12 @@
 #' @inheritSection get_agfd Caching
 #'
 #' @references
-#' ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
-#' Agricultural and Resource Economics and Sciences, Canberra, November, CC BY
-#' 4.0. \doi{10.25814/w175-xh85}
+#' ABARES 2024, Catchment Scale Land Use of Australia – Update December 2023
+#'  version 2, Australian Bureau of Agricultural and Resource Economics and
+#'  Sciences, Canberra, June, CC BY 4.0, DOI: \doi{10.25814/2w2p-ph98}
 #'
 #' @source
-#' \url{https://doi.org/10.25814/w175-xh85}
+#' \url{https://doi.org/10.25814/2w2p-ph98}
 #'
 #' @examplesIf interactive()
 #'
@@ -70,16 +70,12 @@
 #' @autoglobal
 #' @export
 read_clum_stars <- function(
-  data_set = c(
-    "clum_50m_2023_v2",
-    "scale_date_update"
-  ),
+  data_set = "clum_50m_2023_v2",
   cache = FALSE
 ) {
   rlang::arg_match(
     data_set,
-    "clum_50m_2023_v2",
-    "scale_date_update"
+    c("clum_50m_2023_v2", "scale_date_update")
   )
 
   if (missing(cache)) {

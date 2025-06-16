@@ -24,12 +24,12 @@
 #' @inheritSection get_agfd Caching
 #'
 #' @references
-#' ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
-#' Agricultural and Resource Economics and Sciences, Canberra, October,
-#' CC BY 4.0. DOI: \doi{10.25814/w175-xh85}
+#' ABARES 2024, Catchment Scale Land Use of Australia – Commodities – Update
+#'  December 2023, Australian Bureau of Agricultural and Resource Economics and
+#' Sciences, Canberra, February CC BY 4.0. DOI: \doi{10.25814/zfjz-jt75}
 #'
 #' @source
-#' \url{https://10.25814/w175-xh85}
+#' \url{https://data.gov.au/data/dataset/catchment-scale-land-use-of-australia-and-commodities-update-december-2023/resource/b216cf90-f4f0-4d88-980f-af7d1ad746cb}
 #'
 #' @examplesIf interactive()
 #'
