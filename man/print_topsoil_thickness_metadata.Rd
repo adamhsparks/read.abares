@@ -26,7 +26,7 @@ actual values in the data.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
-get_topsoil thickness() |>
+get_topsoil_thickness() |>
   print_topsoil thickness_metadata()
 \dontshow{\}) # examplesIf}
 }

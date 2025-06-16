@@ -24,10 +24,6 @@ One of:
 being downloaded to \code{tempdir()} being available throughout the active \R
 session and cleaned up on exit. If set to \code{TRUE}, files will be cached
 locally for use between sessions. See \dQuote{Caching} section for more.}
-
-\item{...}{Additional arguments passed to \code{\link[terra:rast]{terra::rast()}}, for \emph{e.g.},
-\code{activeCat} if you wished to set the active category when loading any of the
-available GeoTIFF files that are encoded with a raster attribute table.}
 }
 \value{
 A \code{\link[terra:rast]{terra::rast()}} object that may be one or many layers depending upon
