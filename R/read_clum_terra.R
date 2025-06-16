@@ -35,9 +35,6 @@
 #'
 #' @inheritParams read_clum_stars
 #' @inheritParams get_agfd
-#' @param ... Additional arguments passed to [terra::rast()], for *e.g.*,
-#'  `activeCat` if you wished to set the active category when loading any of the
-#'  available GeoTIFF files that are encoded with a raster attribute table.
 #'
 #' @inheritSection get_agfd Caching
 #'
