@@ -56,7 +56,7 @@
 #'
 #' @examplesIf interactive()
 #'
-#' read_nlum_terra(data_set = "Y202021", active_cat = "")
+#' read_nlum_terra(data_set = "Y202021)
 #'
 #' nlum_terra
 #'

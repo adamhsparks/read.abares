@@ -96,16 +96,6 @@ argument in this function will override any options that are set globally.
 See \link{read.abares-options} for more.
 }
 
-\examples{
-\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
-
-read_nlum_terra(data_set = "Y202021", active_cat = "")
-
-nlum_terra
-
-plot(nlum_terra)
-\dontshow{\}) # examplesIf}
-}
 \references{
 ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
 Agricultural and Resource Economics and Sciences, Canberra, November, CC BY
