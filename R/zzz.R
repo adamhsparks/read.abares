@@ -8,9 +8,12 @@
     ),
     read.abares.user_agent = "read.abares",
     read.abares.timeout = 2000L,
-    read.abares.max_tries = 3L
+    read.abares.max_tries = 3L,
+    read.abares.quiet = TRUE
   )
   toset <- !(names(op.read.abares) %in% names(op))
-  if (any(toset)) options(op.read.abares[toset])
+  if (any(toset)) {
+    options(op.read.abares[toset])
+  }
   invisible()
 }
