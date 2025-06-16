@@ -13,16 +13,15 @@
 #'  Intensive Agriculture of Layer 1'.
 #'
 #' @examplesIf interactive()
-#' st_stars <- get_topsoil_thickness() |>
-#'   read_topsoil_thickness_stars()
+#' st_stars <- read_topsoil_thickness_stars()
 #'
 #' plot(st_stars)
 #'
-#' @family topsoil_thickness
+#' @family topsoil thickness
 #' @autoglobal
 #' @export
 
-read_topsoil_thickness_stars <- function(files) {
-  .check_class(x = files, class = "read.abares.topsoil.thickness.files")
+read_topsoil_thickness_stars <- function(cache = FALSE) {
+  files <- get_topsoil_thickness(cache = cache)
   stars::read_stars(as.character(files$GTiff))
 }

@@ -13,18 +13,18 @@
 #'  of Intensive Agriculture of Layer 1'.
 #'
 #' @examplesIf interactive()
-#' st_terra <- get_topsoil_thickness() |>
-#'   read_topsoil_thickness_terra()
+#' st_terra <- read_topsoil_thickness_terra()
 #'
 #' # terra::plot() is reexported for convenience
 #' plot(st_terra)
 #'
-#' @family topsoil_thickness
+#' @family topsoil thickness
 #' @autoglobal
 #' @export
 
-read_topsoil_thickness_terra <- function(files) {
-  .check_class(x = files, class = "read.abares.topsoil.thickness.files")
+read_topsoil_thickness_terra <- function(cache = FALSE) {
+  files <- get_topsoil_thickness(cache = cache)
+
   # if we're reading from tempdir() we need to remove the RAT that is removed
   # by default when caching the GTiff
   if (!grepl(pattern = .find_user_cache(), files$GTiff)) {
