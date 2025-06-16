@@ -1,15 +1,17 @@
 #' Read a Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1 file with terra
 #'
 #' Read Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1
-#'  data as a [terra::rast] object.
+#'  data as a [terra::rast()] object.
 #'
 #' @inheritParams read_topsoil_thickness_stars
 #'
-#' @references <https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6>
-#' @source <https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip>
+#' @references
+#' \url{https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6}
+#' @source
+#' \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
 
 #'
-#' @returns A [terra::rast] object of the 'Soil Thickness for Australian Areas
+#' @returns A [terra::rast()] object of the 'Soil Thickness for Australian Areas
 #'  of Intensive Agriculture of Layer 1'.
 #'
 #' @examplesIf interactive()

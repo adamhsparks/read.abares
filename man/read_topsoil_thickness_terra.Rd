@@ -10,12 +10,12 @@
 read_topsoil_thickness_terra(cache = FALSE)
 }
 \value{
-A \link[terra:rast]{terra::rast} object of the 'Soil Thickness for Australian Areas
+A \code{\link[terra:rast]{terra::rast()}} object of the 'Soil Thickness for Australian Areas
 of Intensive Agriculture of Layer 1'.
 }
 \description{
 Read Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1
-data as a \link[terra:rast]{terra::rast} object.
+data as a \code{\link[terra:rast]{terra::rast()}} object.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
