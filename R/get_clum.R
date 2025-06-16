@@ -89,21 +89,6 @@
         utils::unzip(zipfile = download_file, exdir = download_dir)
       )
       if (.data_set != "CLUM_Commodities_2023") {
-        if (
-          isFALSE(fs::file_exists(fs::path(
-            download_dir,
-            "CLUM_DescriptiveMetadata_December2023.pdf"
-          )))
-        ) {
-          fs::file_move(
-            fs::path(
-              clum_dir,
-              "CLUM_DescriptiveMetadata_December2023.pdf"
-            ),
-            fs::path(download_dir, "CLUM_DescriptiveMetadata_December2023.pdf")
-          )
-        }
-
         fs::file_delete(
           setdiff(
             fs::dir_ls(clum_dir),
