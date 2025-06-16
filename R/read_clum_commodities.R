@@ -1,7 +1,7 @@
 #' Read catchment scale Land Use of Australia commodities shape file
 #'
-#' Download and import national scale Land Use of Australia shapefile of
-#'  commodities data, data are cached on request.
+#' Download and import catchment scale \dQuote{Land Use of Australia} shapefile
+#'  of commodities data. Data are cached on request.
 #'
 #' @details From the
 #' [ABARES website](https://www.agriculture.gov.au/abares/aclump/land-use/land-use-of-australia-2010-11-to-2020-21):
@@ -38,7 +38,7 @@
 #'
 #' cc
 #'
-#' @returns A [sf::sf] object of the requested data set.
+#' @returns An [sf::sf()] object of the requested data set.
 #' @family clum
 #' @autoglobal
 #' @export

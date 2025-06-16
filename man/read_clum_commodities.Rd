@@ -16,11 +16,11 @@ session and cleaned up on exit. If set to \code{TRUE}, files will be cached
 locally for use between sessions. See \dQuote{Caching} section for more.}
 }
 \value{
-A \link[sf:sf]{sf::sf} object of the requested data set.
+An \code{\link[sf:sf]{sf::sf()}} object of the requested data set.
 }
 \description{
-Download and import national scale Land Use of Australia shapefile of
-commodities data, data are cached on request.
+Download and import catchment scale \dQuote{Land Use of Australia} shapefile
+of commodities data. Data are cached on request.
 }
 \details{
 From the
