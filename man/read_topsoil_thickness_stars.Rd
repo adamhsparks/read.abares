@@ -7,7 +7,7 @@
 \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
 }
 \usage{
-read_topsoil_thickness_stars(files)
+read_topsoil_thickness_stars(cache = FALSE)
 }
 \arguments{
 \item{files}{An \pkg{read.abares} \code{read.abares.topsoil.thickness} object, a
@@ -23,8 +23,7 @@ data as a \CRANpkg{stars} object.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
-st_stars <- get_topsoil_thickness() |>
-  read_topsoil_thickness_stars()
+st_stars <- read_topsoil_thickness_stars()
 
 plot(st_stars)
 \dontshow{\}) # examplesIf}
@@ -33,9 +32,9 @@ plot(st_stars)
 \url{https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6}
 }
 \seealso{
-Other topsoil_thickness: 
+Other topsoil thickness: 
 \code{\link{get_topsoil_thickness}()},
 \code{\link{print_topsoil_thickness_metadata}()},
 \code{\link{read_topsoil_thickness_terra}()}
 }
-\concept{topsoil_thickness}
+\concept{topsoil thickness}

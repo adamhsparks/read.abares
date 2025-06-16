@@ -28,7 +28,7 @@ One of:
 \item{P201011}{Land use of Australia 2010–11 agricultural commodities probability grids}
 \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
-}}
+}.}
 
 \item{cache}{Cache the files after download? Defaults to \code{FALSE} with files
 being downloaded to \code{tempdir()} being available throughout the active \R
@@ -36,7 +36,7 @@ session and cleaned up on exit. If set to \code{TRUE}, files will be cached
 locally for use between sessions. See \dQuote{Caching} section for more.}
 
 \item{...}{Additional arguments passed to \link[stars:read_stars]{stars::read_stars}, for \emph{e.g.},
-\code{RAT} if you wished to set the active category when loading any of the
+\code{RAT} if you wish to set the active category when loading any of the
 available GeoTIFF files that are encoded with a raster attribute table.}
 
 \item{active_cat}{A string value or integer indicating the active category to
@@ -82,15 +82,15 @@ with updates to these time periods.}
 }
 \note{
 The raster will load with the default category for each data set, but you can
-specify a different category to use after loading.
-\code{active_cat} argument. To see which categories are available, please refer
-to the metadata for these data.  The PDF can be accessed in your default web
-browser by using \code{\link[=view_nlum_metadata_pdf]{view_nlum_metadata_pdf()}}.
+specify a different category to use by passing the \code{RAT} argument through
+the \code{...}.  To see which categories are available, please refer
+to the metadata for these data.  The \acronym{PDF} can be accessed in your
+default \acronym{PDF} viewer by using \code{\link[=view_nlum_metadata_pdf]{view_nlum_metadata_pdf()}}.
 }
 \section{Caching}{
 
 
-When caching is enabled, the directory defined by \link[tools:userdir]{tools::R_user_dir} will
+When caching is enabled, the directory defined by \code{\link[tools:userdir]{tools::R_user_dir()}} will
 be used by default unless overidden using
 \code{read.abares_options(cache_location = "your_desired_file_path")} to change
 the file path used for caching. You may also set this globally to \code{TRUE} or

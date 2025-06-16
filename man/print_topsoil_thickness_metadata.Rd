@@ -26,14 +26,14 @@ actual values in the data.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
-get_topsoil_thickness() |>
-  print_topsoil_thickness_metadata()
+get_topsoil thickness() |>
+  print_topsoil thickness_metadata()
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other topsoil_thickness: 
+Other topsoil thickness: 
 \code{\link{get_topsoil_thickness}()},
 \code{\link{read_topsoil_thickness_stars}()},
 \code{\link{read_topsoil_thickness_terra}()}
 }
-\concept{topsoil_thickness}
+\concept{topsoil thickness}

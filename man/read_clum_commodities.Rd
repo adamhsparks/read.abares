@@ -38,7 +38,7 @@ predominantly agricultural, commodities over 63 million hectares.}
 \section{Caching}{
 
 
-When caching is enabled, the directory defined by \link[tools:userdir]{tools::R_user_dir} will
+When caching is enabled, the directory defined by \code{\link[tools:userdir]{tools::R_user_dir()}} will
 be used by default unless overidden using
 \code{read.abares_options(cache_location = "your_desired_file_path")} to change
 the file path used for caching. You may also set this globally to \code{TRUE} or

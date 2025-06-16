@@ -18,7 +18,7 @@ One of:
 \describe{
 \item{clum_50m_2023_v2}{ (default)},
 \item{scale_date_update}{}
-}}
+}.}
 
 \item{cache}{Cache the files after download? Defaults to \code{FALSE} with files
 being downloaded to \code{tempdir()} being available throughout the active \R
@@ -71,7 +71,7 @@ The PDF can be accessed in your default web browser by using
 \section{Caching}{
 
 
-When caching is enabled, the directory defined by \link[tools:userdir]{tools::R_user_dir} will
+When caching is enabled, the directory defined by \code{\link[tools:userdir]{tools::R_user_dir()}} will
 be used by default unless overidden using
 \code{read.abares_options(cache_location = "your_desired_file_path")} to change
 the file path used for caching. You may also set this globally to \code{TRUE} or

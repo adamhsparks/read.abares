@@ -23,7 +23,7 @@ These options can be set globally using:
 }\if{html}{\out{</div>}}
 }
 \seealso{
-\code{\link[=options]{options()}}, \code{\link[=getOption]{getOption()}}
+\code{\link[=options]{options()}}, \code{\link[=getOption]{getOption()}}.
 
 Other read.abares-options: 
 \code{\link{read.abares_options}()}

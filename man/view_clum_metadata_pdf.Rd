@@ -9,17 +9,18 @@ view_clum_metadata_pdf(commodities = FALSE)
 \arguments{
 \item{Commodities}{A \code{Boolean} value that indicates whether to download the
 catchment land scale use metadata for commodities. Defaults to \code{FALSE},
-downloading the Catchment Land Scale Use Metadata.}
+downloading the \dQuote{Catchment Land Scale Use Metadata}.}
 }
 \value{
-Called for its side-effects, opens the system's native PDF viewer to
-display the requested metadata PDF document.
+Called for its side-effects, opens the system's native \acronym{PDF}
+viewer to display the requested metadata \acronym{PDF} document.
 }
 \description{
-Each Catchment Land Use (CLUM) raster file comes with a PDF of metadata. This
-function will open and display that file using the native PDF viewer for any
-system with a graphical user interface and PDF viewer configured.  If the
-file does not exist locally, it will be fetched and displayed.
+Each Catchment Land Use (\acronym{CLUM}) raster file comes with a
+\acronym{PDF} of metadata. This function will open and display that file
+using the native \acronym{PDF} viewer for any system with a graphical user
+interface and \acronym{PDF} viewer configured.  If the file does not exist
+locally, it will be fetched and displayed.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}

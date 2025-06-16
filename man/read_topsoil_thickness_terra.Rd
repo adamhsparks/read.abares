@@ -7,11 +7,7 @@
 \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
 }
 \usage{
-read_topsoil_thickness_terra(files)
-}
-\arguments{
-\item{files}{An \pkg{read.abares} \code{read.abares.topsoil.thickness} object, a
-\code{list} that contains the \acronym{ESRI} grid file to import.}
+read_topsoil_thickness_terra(cache = FALSE)
 }
 \value{
 A \link[terra:rast]{terra::rast} object of the 'Soil Thickness for Australian Areas
@@ -23,8 +19,7 @@ data as a \link[terra:rast]{terra::rast} object.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
-st_terra <- get_topsoil_thickness() |>
-  read_topsoil_thickness_terra()
+st_terra <- read_topsoil_thickness_terra()
 
 # terra::plot() is reexported for convenience
 plot(st_terra)
@@ -34,9 +29,9 @@ plot(st_terra)
 \url{https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6}
 }
 \seealso{
-Other topsoil_thickness: 
+Other topsoil thickness: 
 \code{\link{get_topsoil_thickness}()},
 \code{\link{print_topsoil_thickness_metadata}()},
 \code{\link{read_topsoil_thickness_stars}()}
 }
-\concept{topsoil_thickness}
+\concept{topsoil thickness}

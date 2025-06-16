@@ -23,7 +23,7 @@ One of:
 \item{P201011}{Land use of Australia 2010–11 agricultural commodities probability grids}
 \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
-}}
+}.}
 }
 \value{
 A \code{read.abares.nlum} object, a list of GeoTIFF files containing

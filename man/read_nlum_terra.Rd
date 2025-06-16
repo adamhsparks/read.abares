@@ -10,7 +10,8 @@
 read_nlum_terra(
   data_set = c("Y201011", "Y201516", "C201021", "T201011", "T201516", "T202021",
     "P201011", "P201516", "P202021"),
-  cache = FALSE
+  cache = FALSE,
+  ...
 )
 }
 \arguments{
@@ -27,7 +28,7 @@ One of:
 \item{P201011}{Land use of Australia 2010–11 agricultural commodities probability grids}
 \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
-}}
+}.}
 
 \item{cache}{Cache the files after download? Defaults to \code{FALSE} with files
 being downloaded to \code{tempdir()} being available throughout the active \R
@@ -85,7 +86,7 @@ The PDF can be accessed in your default web browser by using
 \section{Caching}{
 
 
-When caching is enabled, the directory defined by \link[tools:userdir]{tools::R_user_dir} will
+When caching is enabled, the directory defined by \code{\link[tools:userdir]{tools::R_user_dir()}} will
 be used by default unless overidden using
 \code{read.abares_options(cache_location = "your_desired_file_path")} to change
 the file path used for caching. You may also set this globally to \code{TRUE} or

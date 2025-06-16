@@ -30,7 +30,7 @@ directly.
 \section{Caching}{
 
 
-When caching is enabled, the directory defined by \link[tools:userdir]{tools::R_user_dir} will
+When caching is enabled, the directory defined by \code{\link[tools:userdir]{tools::R_user_dir()}} will
 be used by default unless overidden using
 \code{read.abares_options(cache_location = "your_desired_file_path")} to change
 the file path used for caching. You may also set this globally to \code{TRUE} or
@@ -59,9 +59,9 @@ pander(y)
 \url{https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6}
 }
 \seealso{
-Other topsoil_thickness: 
+Other topsoil thickness: 
 \code{\link{print_topsoil_thickness_metadata}()},
 \code{\link{read_topsoil_thickness_stars}()},
 \code{\link{read_topsoil_thickness_terra}()}
 }
-\concept{topsoil_thickness}
+\concept{topsoil thickness}
