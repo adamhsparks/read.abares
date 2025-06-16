@@ -37,7 +37,7 @@
 #' \describe{
 #'   \item{clum_50m_2023_v2}{ (default)},
 #'   \item{scale_date_update}{}
-#' }
+#' }.
 #' @inheritParams get_agfd
 #' @param active_cat A string value or integer indicating the active category to
 #'  be used for the raster. Note that this value is dependent upon the

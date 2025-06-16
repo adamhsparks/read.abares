@@ -17,7 +17,7 @@
 #' options(read.abares.user_agent = "myCustomUserAgent")
 #' ```
 #'
-#' @seealso [options()], [getOption()]
+#' @seealso [options()], [getOption()].
 #' @name read.abares-options
 #' @family read.abares-options
 #' @keywords internal
