@@ -21,6 +21,7 @@
 #' predominantly agricultural, commodities over 63 million hectares.}
 #'  -- \acronym{ABARES}, 2024-11-28
 #'
+#' @inheritParams get_agfd
 #' @inheritSection get_agfd Caching
 #'
 #' @references

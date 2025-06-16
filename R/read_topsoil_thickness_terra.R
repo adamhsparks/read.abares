@@ -3,7 +3,13 @@
 #' Read Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1
 #'  data as a [terra::rast()] object.
 #'
-#' @inheritParams read_topsoil_thickness_stars
+#'
+#' @inheritParams get_agfd
+#' @param ... Additional arguments passed to [terra::rast()], for *e.g.*,
+#'  `activeCat` if you wished to set the active category when loading any of the
+#'  available GeoTIFF files that are encoded with a raster attribute table.
+#'
+#' @inheritSection get_agfd Caching
 #'
 #' @references
 #' \url{https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6}

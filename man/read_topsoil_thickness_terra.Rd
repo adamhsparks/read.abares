@@ -9,6 +9,16 @@
 \usage{
 read_topsoil_thickness_terra(cache = FALSE)
 }
+\arguments{
+\item{cache}{Cache the files after download? Defaults to \code{FALSE} with files
+being downloaded to \code{tempdir()} being available throughout the active \R
+session and cleaned up on exit. If set to \code{TRUE}, files will be cached
+locally for use between sessions. See \dQuote{Caching} section for more.}
+
+\item{...}{Additional arguments passed to \code{\link[terra:rast]{terra::rast()}}, for \emph{e.g.},
+\code{activeCat} if you wished to set the active category when loading any of the
+available GeoTIFF files that are encoded with a raster attribute table.}
+}
 \value{
 A \code{\link[terra:rast]{terra::rast()}} object of the 'Soil Thickness for Australian Areas
 of Intensive Agriculture of Layer 1'.
@@ -17,6 +27,19 @@ of Intensive Agriculture of Layer 1'.
 Read Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1
 data as a \code{\link[terra:rast]{terra::rast()}} object.
 }
+\section{Caching}{
+
+
+When caching is enabled, the directory defined by \code{\link[tools:userdir]{tools::R_user_dir()}} will
+be used by default unless overidden using
+\code{read.abares_options(cache_location = "your_desired_file_path")} to change
+the file path used for caching. You may also set this globally to \code{TRUE} or
+\code{FALSE} by using \code{read.abares_options(read.abares.cache = TRUE)} or
+\code{read.abares_options(read.abares.cache = FALSE)}, respectively. Using the
+argument in this function will override any options that are set globally.
+See \link{read.abares-options} for more.
+}
+
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 st_terra <- read_topsoil_thickness_terra()

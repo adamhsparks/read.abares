@@ -60,7 +60,7 @@
 #'  \item{C201021}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_CHANGE_SIMP_2011_to_2021_alb_package_20241128.zip}}
 #'  \item{T201011}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_INPUTS_2010_11_geo_package_20241128.zip}}
 #'  \item{T201516}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_INPUTS_2015_16_geo_package_20241128.zip}}
-#'  \item{T202021}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_INPUTS_2020_21_geo_package_20241128.zip}
+#'  \item{T202021}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_INPUTS_2020_21_geo_package_20241128.zip}}
 #'  \item{P201011}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_AgProbabilitySurfaces_2010_11_geo_package_20241128.zip}}
 #'  \item{P201516}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_AgProbabilitySurfaces_2015_16_geo_package_20241128.zip}}
 #'  \item{P202021}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_AgProbabilitySurfaces_2020_21_geo_package_20241128.zip}}
@@ -68,13 +68,13 @@
 #'
 #' @examplesIf interactive()
 #'
-#' read_nlum_terra(data_set = "Y202021)
+#' read_nlum_terra(data_set = "Y202021")
 #'
 #' nlum_terra
 #'
 #' plot(nlum_terra)
 #'
-#' @returns A [terra::rast] object that may be one or many layers depending upon
+#' @returns A [terra::rast()] object that may be one or many layers depending upon
 #'  the requested data set.
 #' @family nlum
 #' @autoglobal

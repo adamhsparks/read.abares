@@ -11,7 +11,7 @@
 \item{C201021}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_CHANGE_SIMP_2011_to_2021_alb_package_20241128.zip}}
 \item{T201011}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_INPUTS_2010_11_geo_package_20241128.zip}}
 \item{T201516}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_INPUTS_2015_16_geo_package_20241128.zip}}
-\item{T202021}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_INPUTS_2020_21_geo_package_20241128.zip}
+\item{T202021}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_INPUTS_2020_21_geo_package_20241128.zip}}
 \item{P201011}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_AgProbabilitySurfaces_2010_11_geo_package_20241128.zip}}
 \item{P201516}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_AgProbabilitySurfaces_2015_16_geo_package_20241128.zip}}
 \item{P202021}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_AgProbabilitySurfaces_2020_21_geo_package_20241128.zip}}
@@ -51,7 +51,7 @@ locally for use between sessions. See \dQuote{Caching} section for more.}
 available GeoTIFF files that are encoded with a raster attribute table.}
 }
 \value{
-A \link[terra:rast]{terra::rast} object that may be one or many layers depending upon
+A \code{\link[terra:rast]{terra::rast()}} object that may be one or many layers depending upon
 the requested data set.
 }
 \description{
@@ -107,6 +107,16 @@ argument in this function will override any options that are set globally.
 See \link{read.abares-options} for more.
 }
 
+\examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+
+read_nlum_terra(data_set = "Y202021")
+
+nlum_terra
+
+plot(nlum_terra)
+\dontshow{\}) # examplesIf}
+}
 \references{
 ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
 Agricultural and Resource Economics and Sciences, Canberra, November, CC BY

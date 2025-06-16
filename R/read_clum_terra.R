@@ -1,7 +1,7 @@
 #' Read catchment scale Land Use of Australia GeoTIFFs using terra
 #'
 #' Download and import national scale Land Use of Australia GeoTIFFs using
-#'  \CRANpkg{terra} as a categorical [terra::rast] object.  Data can be cached
+#'  \CRANpkg{terra} as a categorical [terra::rast()] object.  Data can be cached
 #'  on request.
 #'
 #' @details From the
@@ -35,7 +35,7 @@
 #'
 #' @inheritParams read_clum_stars
 #' @inheritParams get_agfd
-#' @param ... Additional arguments passed to [terra::rast], for *e.g.*,
+#' @param ... Additional arguments passed to [terra::rast()], for *e.g.*,
 #'  `activeCat` if you wished to set the active category when loading any of the
 #'  available GeoTIFF files that are encoded with a raster attribute table.
 #'
@@ -47,7 +47,7 @@
 #'  Sciences, Canberra, June, CC BY 4.0, DOI: \doi{10.25814/2w2p-ph98}
 #'
 #' @source
-#' \describe
+#' \describe{
 #'  \item{Catchment Scale Land Use of Australia v2 GeoTiff}{\url{https://www.agriculture.gov.au/sites/default/files/documents/clum_50m_2023_v2.zip}}
 #'  \item{Date and Scale of Mapping Shapefile GeoTIFF}{\url{https://data.gov.au/data/dataset/catchment-scale-land-use-of-australia-and-commodities-update-december-2023/resource/98b1b93f-e5e1-4cc9-90bf-29641cfc4f11}}
 #' }
@@ -60,7 +60,7 @@
 #'
 #' plot(clum_terra)
 #'
-#' @returns A [terra::rast] object that may be one or many layers depending upon
+#' @returns A [terra::rast()] object that may be one or many layers depending upon
 #'  the requested data set.
 #' @family clum
 #' @autoglobal

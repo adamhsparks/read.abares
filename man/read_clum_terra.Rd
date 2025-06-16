@@ -4,7 +4,7 @@
 \alias{read_clum_terra}
 \title{Read catchment scale Land Use of Australia GeoTIFFs using terra}
 \source{
-\describe
+\describe{
 \item{Catchment Scale Land Use of Australia v2 GeoTiff}{\url{https://www.agriculture.gov.au/sites/default/files/documents/clum_50m_2023_v2.zip}}
 \item{Date and Scale of Mapping Shapefile GeoTIFF}{\url{https://data.gov.au/data/dataset/catchment-scale-land-use-of-australia-and-commodities-update-december-2023/resource/98b1b93f-e5e1-4cc9-90bf-29641cfc4f11}}
 }
@@ -25,17 +25,17 @@ being downloaded to \code{tempdir()} being available throughout the active \R
 session and cleaned up on exit. If set to \code{TRUE}, files will be cached
 locally for use between sessions. See \dQuote{Caching} section for more.}
 
-\item{...}{Additional arguments passed to \link[terra:rast]{terra::rast}, for \emph{e.g.},
+\item{...}{Additional arguments passed to \code{\link[terra:rast]{terra::rast()}}, for \emph{e.g.},
 \code{activeCat} if you wished to set the active category when loading any of the
 available GeoTIFF files that are encoded with a raster attribute table.}
 }
 \value{
-A \link[terra:rast]{terra::rast} object that may be one or many layers depending upon
+A \code{\link[terra:rast]{terra::rast()}} object that may be one or many layers depending upon
 the requested data set.
 }
 \description{
 Download and import national scale Land Use of Australia GeoTIFFs using
-\CRANpkg{terra} as a categorical \link[terra:rast]{terra::rast} object.  Data can be cached
+\CRANpkg{terra} as a categorical \code{\link[terra:rast]{terra::rast()}} object.  Data can be cached
 on request.
 }
 \details{
