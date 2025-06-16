@@ -79,7 +79,8 @@ read_nlum_terra <- function(
     "P201516",
     "P202021"
   ),
-  cache = FALSE
+  cache = FALSE,
+  ...
 ) {
   if (missing(cache)) {
     cache <- getOption("read.abares.cache", default = FALSE)
@@ -101,5 +102,5 @@ read_nlum_terra <- function(
   )
 
   nlum <- .get_nlum(.data_set = data_set, .cache = cache)
-  return(terra::rast(nlum[grep("tif$", nlum)]))
+  return(terra::rast(nlum[grep("tif$", nlum, ...)]))
 }
