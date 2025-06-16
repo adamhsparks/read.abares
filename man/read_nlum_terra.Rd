@@ -55,9 +55,8 @@ A \code{\link[terra:rast]{terra::rast()}} object that may be one or many layers 
 the requested data set.
 }
 \description{
-Download and import national scale Land Use of Australia GeoTIFFs using
-\CRANpkg{terra} as a categorical \link[terra:rast]{terra::rast} object.  Data can be cached
-on request.
+Download and import national scale \dQuote{Land Use of Australia v7} GeoTIFFs
+as categorical \code{\link[terra:rast]{terra::rast()}} objects.  Data can be cached on request.
 }
 \details{
 From the

@@ -60,8 +60,8 @@ a \CRANpkg{stars} object that may be one or many layers depending
 upon the requested data set.
 }
 \description{
-Download and import national scale Land Use of Australia GeoTIFFs using
-\CRANpkg{stars} object.  Data can be cached on request.
+Download and import national scale \dQuote{Land Use of Australia v7} GeoTIFFs
+as a \CRANpkg{stars} object.  Data can be cached on request.
 }
 \details{
 From the
