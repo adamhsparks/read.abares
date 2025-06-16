@@ -10,6 +10,12 @@
 #'  catchment land scale use metadata for commodities. Defaults to `FALSE`,
 #'  downloading the \dQuote{Catchment Land Scale Use Metadata}.
 #'
+#' @source
+#' \describe{
+#'  \item{CLUM Metadata}{https://www.agriculture.gov.au/sites/default/files/documents/CLUM_DescriptiveMetadata_December2023_v2.pdf}
+#'  \item{CLUM Commodities Metadata}{https://www.agriculture.gov.au/sites/default/files/documents/CLUMC_DescriptiveMetadata_December2023.pdf}
+#' }
+#'
 #' @examplesIf interactive()
 #' view_clum_metadata_pdf()
 #'
@@ -31,27 +37,31 @@ view_clum_metadata_pdf <- function(commodities = FALSE) {
     if (fs::file_exists(clum_metadata_pdf)) {
       system(paste0('open "', clum_metadata_pdf, '"'))
     } else {
+      clum_metadata_pdf <- fs::path(tempdir(), "clum_metadata.pdf")
       cli::cli_inform("Downloading CLUM metadata PDF...")
       .retry_download(
         url = "https://www.agriculture.gov.au/sites/default/files/documents/CLUM_DescriptiveMetadata_December2023_v2.pdf",
-        .f = tempfile()
+        .f = clum_metadata_pdf
       )
     }
+    system(paste0('open "', clum_metadata_pdf, '"'))
   } else {
     clumc_metadata_pdf <- fs::path(
       .find_user_cache(),
       "clumc",
       "CLUMC_DescriptiveMetadata_December2023.pdf"
     )
-  }
 
-  if (fs::file_exists(clumc_metadata_pdf)) {
-    system(paste0('open "', clumc_metadata_pdf, '"'))
-  } else {
-    cli::cli_inform("Downloading CLUM Commodities metadata PDF...")
-    .retry_download(
-      url = "https://www.agriculture.gov.au/sites/default/files/documents/CLUMC_DescriptiveMetadata_December2023.pdf",
-      .f = tempfile()
-    )
+    if (fs::file_exists(clumc_metadata_pdf)) {
+      system(paste0('open "', clumc_metadata_pdf, '"'))
+    } else {
+      clumc_metadata_pdf <- fs::path(tempdir(), "clumc_metadata.pdf")
+      cli::cli_inform("Downloading CLUM Commodities metadata PDF...")
+      .retry_download(
+        url = "https://www.agriculture.gov.au/sites/default/files/documents/CLUMC_DescriptiveMetadata_December2023.pdf",
+        .f = clumc_metadata_pdf
+      )
+      system(paste0('open "', clumc_metadata_pdf, '"'))
+    }
   }
 }
