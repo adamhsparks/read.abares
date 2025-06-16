@@ -10,12 +10,13 @@ read_agfd_tidync(files)
 \item{files}{A list of \acronym{AGFD} NetCDF files to import.}
 }
 \value{
-A \code{list} object of \CRANpkg{tidync} objects of the Australian
-Gridded Farm Data with the file names as the  list's objects' names.
+A \code{list} object of \CRANpkg{tidync} objects of the
+\dQuote{Australian Gridded Farm Data} with the file names as the  list's
+objects' names.
 }
 \description{
 Read Australian Gridded Farm Data, (\acronym{AGFD}) as a list of
-\link[tidync:tidync]{tidync::tidync} objects.
+\code{\link[tidync:tidync]{tidync::tidync()}} objects.
 }
 \details{
 From the \href{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}{ABARES website}:

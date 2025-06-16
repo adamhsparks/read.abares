@@ -10,12 +10,12 @@ read_agfd_dt(files)
 \item{files}{A list of \acronym{AGFD} NetCDF files to import.}
 }
 \value{
-A \link[data.table:data.table]{data.table::data.table} object of the 'Australian Gridded Farm
-Data'.
+A \link[data.table:data.table]{data.table::data.table} object of the \dQuote{Australian Gridded
+Farm Data}.
 }
 \description{
 Read Australian Gridded Farm Data, (\acronym{AGFD}) as a
-\link[data.table:data.table]{data.table::data.table} object from a local file either in the user cache
+\code{\link[data.table:data.table]{data.table::data.table()}} object from a local file either in the user cache
 or \R's \code{tempdir()} if caching is not enabled.
 }
 \details{

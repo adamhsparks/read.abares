@@ -10,12 +10,13 @@ read_agfd_terra(files)
 \item{files}{A list of \acronym{AGFD} NetCDF files to import.}
 }
 \value{
-A \code{list()} object of \link[terra:rast]{terra::rast} objects of the Australian Gridded
-Farm Data with the file names as the list's objects' names.
+A \code{list()} object of \code{\link[terra:rast]{terra::rast()}} objects of the
+\dQuote{Australian Gridded Farm Data} with the file names as the list's
+objects' names.
 }
 \description{
 Read Australian Gridded Farm Data, (\acronym{AGFD}) as a \code{list()} of
-\link[terra:rast]{terra::rast} objects.
+\code{\link[terra:rast]{terra::rast()}} objects.
 }
 \details{
 From the \href{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}{ABARES website}:
