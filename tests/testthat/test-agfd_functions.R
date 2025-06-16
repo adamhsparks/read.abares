@@ -472,10 +472,10 @@ test_that("read_agfd_tidync() fails if the input is not a proper object", {
 
 clear_cache()
 
-test_that("get_agfd, fixed = TRUE, cache = FALSE, works", {
+test_that("get_agfd, fixed = TRUE, cache = getOption("read.abares.cache"), works", {
   skip_on_ci()
   skip_if_offline()
-  x <- get_agfd(cache = FALSE)
+  x <- get_agfd(cache = getOption("read.abares.cache"))
 
   agfd_nc_dir <- fs::path(
     tempdir(),

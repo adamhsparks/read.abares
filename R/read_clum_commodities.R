@@ -42,7 +42,7 @@
 #' @family clum
 #' @autoglobal
 #' @export
-read_clum_commodities <- function(cache = FALSE) {
+read_clum_commodities <- function(cache = getOption("read.abares.cache")) {
   if (missing(cache)) {
     cache <- getOption("read.abares.cache", default = FALSE)
   }

@@ -33,7 +33,7 @@
 #' @autoglobal
 #' @export
 
-read_aagis_regions <- function(cache = FALSE) {
+read_aagis_regions <- function(cache = getOption("read.abares.cache")) {
   if (missing(cache)) {
     cache <- getOption("read.abares.cache", default = FALSE)
   }

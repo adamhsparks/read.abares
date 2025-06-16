@@ -28,7 +28,7 @@
 #' @autoglobal
 #' @export
 
-read_abares_trade <- function(cache = FALSE) {
+read_abares_trade <- function(cache = getOption("read.abares.cache")) {
   if (missing(cache)) {
     cache <- getOption("read.abares.cache", default = FALSE)
   }

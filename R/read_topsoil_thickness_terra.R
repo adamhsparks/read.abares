@@ -30,7 +30,7 @@
 #' @autoglobal
 #' @export
 
-read_topsoil_thickness_terra <- function(cache = FALSE) {
+read_topsoil_thickness_terra <- function(cache = getOption("read.abares.cache")) {
   files <- get_topsoil_thickness(cache = cache)
 
   # if we're reading from tempdir() we need to remove the RAT that is removed

@@ -60,7 +60,7 @@
 #'  `read.abares_options(cache_location = "your_desired_file_path")` to change
 #'  the file path used for caching. You may also set this globally to `TRUE` or
 #'  `FALSE` by using `read.abares_options(read.abares.cache = TRUE)` or
-#'  `read.abares_options(read.abares.cache = FALSE)`, respectively. Using the
+#'  `read.abares_options("read.abares.cache" = TRUE)`, respectively. Using the
 #'  argument in this function will override any options that are set globally.
 #'  See [read.abares-options] for more.
 #'
@@ -198,7 +198,7 @@
 get_agfd <- function(
   fixed_prices = TRUE,
   yr = 1991:2023,
-  cache = FALSE
+  cache = getOption("read.abares.cache")
 ) {
   if (missing(cache)) {
     cache <- getOption("read.abares.cache", default = FALSE)

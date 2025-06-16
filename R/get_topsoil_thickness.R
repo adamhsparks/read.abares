@@ -32,7 +32,9 @@
 #' @family topsoil thickness
 #' @export
 
-get_topsoil_thickness <- function(cache = FALSE) {
+get_topsoil_thickness <- function(
+  cache = getOption("read.abares.cache")
+) {
   if (missing(cache)) {
     cache <- getOption("read.abares.cache", default = FALSE)
   }

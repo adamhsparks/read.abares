@@ -10,7 +10,10 @@
 }
 }
 \usage{
-read_clum_terra(data_set = "clum_50m_2023_v2", cache = FALSE)
+read_clum_terra(
+  data_set = "clum_50m_2023_v2",
+  cache = getOption("read.abares.cache")
+)
 }
 \arguments{
 \item{data_set}{A string value indicating the data desired for download.
@@ -72,7 +75,7 @@ be used by default unless overidden using
 \code{read.abares_options(cache_location = "your_desired_file_path")} to change
 the file path used for caching. You may also set this globally to \code{TRUE} or
 \code{FALSE} by using \code{read.abares_options(read.abares.cache = TRUE)} or
-\code{read.abares_options(read.abares.cache = FALSE)}, respectively. Using the
+\code{read.abares_options("read.abares.cache" = TRUE)}, respectively. Using the
 argument in this function will override any options that are set globally.
 See \link{read.abares-options} for more.
 }

@@ -10,7 +10,11 @@
 }
 }
 \usage{
-get_agfd(fixed_prices = TRUE, yr = 1991:2023, cache = FALSE)
+get_agfd(
+  fixed_prices = TRUE,
+  yr = 1991:2023,
+  cache = getOption("read.abares.cache")
+)
 }
 \arguments{
 \item{fixed_prices}{Download historical climate and prices or historical
@@ -79,7 +83,7 @@ be used by default unless overidden using
 \code{read.abares_options(cache_location = "your_desired_file_path")} to change
 the file path used for caching. You may also set this globally to \code{TRUE} or
 \code{FALSE} by using \code{read.abares_options(read.abares.cache = TRUE)} or
-\code{read.abares_options(read.abares.cache = FALSE)}, respectively. Using the
+\code{read.abares_options("read.abares.cache" = TRUE)}, respectively. Using the
 argument in this function will override any options that are set globally.
 See \link{read.abares-options} for more.
 }

@@ -105,7 +105,7 @@ read_nlum_stars <- function(
     "P201516",
     "P202021"
   ),
-  cache = FALSE,
+  cache = getOption("read.abares.cache"),
   ...
 ) {
   rlang::arg_match(data_set)

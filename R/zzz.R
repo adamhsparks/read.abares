@@ -1,7 +1,7 @@
 .onLoad <- function(libname, pkgname) {
   op <- options()
   op.read.abares <- list(
-    read.abares.cache = FALSE,
+    read.abares.cache = getOption("read.abares.cache"),
     read.abares.cache_location = tools::R_user_dir(
       package = "read.abares",
       which = "cache"

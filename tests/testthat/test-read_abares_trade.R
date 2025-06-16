@@ -5,7 +5,7 @@ withr::local_envvar(R_USER_CACHE_DIR = tempdir())
 test_that("read_abares_trade doesn't cache", {
   skip_if_offline()
   skip_on_ci()
-  x <- read_abares_trade(cache = FALSE)
+  x <- read_abares_trade(cache = getOption("read.abares.cache"))
   expect_s3_class(x, c("data.table", "data.frame"))
   expect_named(
     x,

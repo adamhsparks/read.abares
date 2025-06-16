@@ -27,7 +27,7 @@ test_that("read_aagis_regions does cache", {
 test_that("read_aagis_regions doesn't cache", {
   skip_if_offline()
   skip_on_ci()
-  x <- read_aagis_regions(cache = FALSE)
+  x <- read_aagis_regions(cache = getOption("read.abares.cache"))
   expect_s3_class(x, "sf")
   expect_false(fs::file_exists(
     fs::path(.find_user_cache(), "aagis_regions_dir/aagis.gpkg")

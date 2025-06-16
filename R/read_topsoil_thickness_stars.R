@@ -28,7 +28,7 @@
 #' @autoglobal
 #' @export
 
-read_topsoil_thickness_stars <- function(cache = FALSE) {
+read_topsoil_thickness_stars <- function(cache = getOption("read.abares.cache")) {
   files <- get_topsoil_thickness(cache = cache)
   stars::read_stars(as.character(files$GTiff))
 }

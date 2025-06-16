@@ -64,7 +64,7 @@
 #' @export
 read_clum_terra <- function(
   data_set = "clum_50m_2023_v2",
-  cache = FALSE
+  cache = getOption("read.abares.cache")
 ) {
   rlang::arg_match(
     data_set,
