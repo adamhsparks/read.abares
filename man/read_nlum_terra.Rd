@@ -4,7 +4,18 @@
 \alias{read_nlum_terra}
 \title{Read national scale Land Use of Australia GeoTIFFs using terra}
 \source{
-\url{https://doi.org/10.25814/w175-xh85}
+\describe{
+\item{Y201011}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_ALUMV8_2010_11_alb_package_20241128.zip}}
+\item{Y201516}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_ALUMV8_2015_16_alb_package_20241128.zip}}
+\item{Y202021}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_ALUMV8_2020_21_alb_package_20241128.zip}}
+\item{C201021}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_CHANGE_SIMP_2011_to_2021_alb_package_20241128.zip}}
+\item{T201011}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_INPUTS_2010_11_geo_package_20241128.zip}}
+\item{T201516}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_INPUTS_2015_16_geo_package_20241128.zip}}
+\item{T202021}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_INPUTS_2020_21_geo_package_20241128.zip}
+\item{P201011}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_AgProbabilitySurfaces_2010_11_geo_package_20241128.zip}}
+\item{P201516}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_AgProbabilitySurfaces_2015_16_geo_package_20241128.zip}}
+\item{P202021}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_AgProbabilitySurfaces_2020_21_geo_package_20241128.zip}}
+}.
 }
 \usage{
 read_nlum_terra(
