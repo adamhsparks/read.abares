@@ -32,10 +32,10 @@
 #'
 #' @note
 #' The raster will load with the default category for each data set, but you can
-#'  specify a different category to use after loading.
-#'  `active_cat` argument. To see which categories are available, please refer
-#'  to the metadata for these data.  The PDF can be accessed in your default web
-#'  browser by using [view_nlum_metadata_pdf()].
+#'  specify a different category to use by passing the `RAT` argument through
+#'  the `...`.  To see which categories are available, please refer
+#'  to the metadata for these data.  The \acronym{PDF} can be accessed in your
+#'  default \acronym{PDF} viewer by using [view_nlum_metadata_pdf()].
 #'
 #' @param data_set A string value indicating the GeoTIFF desired for download.
 #' One of:
@@ -50,14 +50,14 @@
 #'  \item{P201011}{Land use of Australia 2010–11 agricultural commodities probability grids}
 #'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 #'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
-#' }
+#' }.
 #' @inheritParams get_agfd
 #' @param active_cat A string value or integer indicating the active category to
 #'  be used for the raster. Note that this value is dependent upon the
 #'  `data_set` chosen and will always default to the first column of the
 #'  attribute table for the requested data.
 #' @param ... Additional arguments passed to [stars::read_stars], for *e.g.*,
-#'  `RAT` if you wished to set the active category when loading any of the
+#'  `RAT` if you wish to set the active category when loading any of the
 #'  available GeoTIFF files that are encoded with a raster attribute table.
 #' @inheritSection get_agfd Caching
 #'
@@ -102,5 +102,5 @@ read_nlum_stars <- function(
   }
 
   nlum <- .get_nlum(.data_set = data_set, .cache = cache)
-  return(stars::read_stars(nlum[grep("tif$", nlum)]))
+  return(stars::read_stars(nlum[grep("tif$", nlum, ...)]))
 }
