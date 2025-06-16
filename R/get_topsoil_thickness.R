@@ -198,7 +198,7 @@ print.read.abares.topsoil.thickness.files <- function(x, ...) {
 #' @returns Nothing, called for its side effects, it prints the complete
 #'   metadata file to the \R console.
 #' @examplesIf interactive()
-#' get_topsoil thickness() |>
+#' get_topsoil_thickness() |>
 #'   print_topsoil thickness_metadata()
 #'
 #' @family topsoil thickness
