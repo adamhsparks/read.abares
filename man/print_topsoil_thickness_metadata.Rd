@@ -16,7 +16,7 @@ metadata file to the \R console.
 \description{
 Displays the complete set of metadata associated with the soil thickness
 data in your \R console. For including the metadata in documents or other
-methods outside of \R, see \code{\link[=get_topsoil_thickness]{get_topsoil_thickness()}} for an example using
+methods outside of \R, see \code{get_topsoil_thickness()} for an example using
 \code{\link[pander:pander]{pander::pander()}} to print the metadata.
 }
 \note{
@@ -32,7 +32,7 @@ get_topsoil_thickness() |>
 }
 \seealso{
 Other topsoil thickness: 
-\code{\link{get_topsoil_thickness}()},
+\code{\link{.get_topsoil_thickness}()},
 \code{\link{read_topsoil_thickness_stars}()},
 \code{\link{read_topsoil_thickness_terra}()}
 }

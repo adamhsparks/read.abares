@@ -4,7 +4,7 @@
 \alias{.get_agfd}
 \title{Get Australian Gridded Farm Data (AGFD) for local use}
 \usage{
-.get_agfd(fixed_prices, yyyy, cache)
+.get_agfd(.fixed_prices, .yyyy)
 }
 \arguments{
 \item{fixed_prices}{Download historical climate and prices or historical

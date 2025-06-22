@@ -16,7 +16,6 @@
 #'  [data.table::data.table()] from [read_historical_state_estimates()].
 #'
 #' @inheritParams read_agfd_dt
-#' @inheritSection read_agfd_dt Caching
 #'
 #' @examplesIf interactive()
 #' aagis <- read_aagis_regions()
@@ -33,13 +32,8 @@
 #' @autoglobal
 #' @export
 
-read_aagis_regions <- function(
-  cache = getOption("read.abares.cache"),
-  files = NULL
-) {
-  if (missing(cache)) {
-    cache <- getOption("read.abares.cache", default = FALSE)
-  }
+read_aagis_regions <- function(files = NULL) {
+  .cache <- getOption("read.abares.cache", default = FALSE)
   aagis_regions_cache <- fs::path(.find_user_cache(), "aagis_regions_dir")
   if (fs::dir_exists(aagis_regions_cache)) {
     return(sf::st_read(
@@ -51,7 +45,7 @@ read_aagis_regions <- function(
       quiet = TRUE
     ))
   } else {
-    return(.download_aagis_shp(cache))
+    return(.download_aagis_shp(.cache))
   }
 }
 
@@ -61,18 +55,13 @@ read_aagis_regions <- function(
 #'  geospatial data.  The geometries are corrected for validity before returning
 #'  to the user.
 #'
-#' @param cache `Boolean` Cache the \acronym{AAGIS} regions shape files after
-#'  download using `tools::R_user_dir("read.abares")` to identify the proper
-#'  directory for storing user data in a cache for this package. Defaults to
-#'  `TRUE`, caching the files locally as a native \R object. If `FALSE`, this
-#'  function uses `tempdir()` and the files are deleted upon closing of the \R
-#'  session.
+#' @param .cache Boolean, enable caching?
 #'
 #' @returns An \CRANpkg{sf} object of AAGIS regions.
 #' @dev
 #' @autoglobal
 
-.download_aagis_shp <- function(cache) {
+.download_aagis_shp <- function(.cache) {
   download_file <- fs::path(tempdir(), "aagis.zip")
   tempdir_aagis_dir <- fs::path(tempdir(), "aagis_regions_dir")
   cache_aagis_dir <- fs::path(.find_user_cache(), "aagis_regions_dir")
@@ -92,6 +81,7 @@ read_aagis_regions <- function(
       tempdir_aagis_dir,
       "aagis_asgs16v1_g5a.shp"
     ),
+    # TODO: align this with verbosity option
     quiet = TRUE
   )
 
@@ -111,6 +101,7 @@ read_aagis_regions <- function(
     sf::st_write(
       obj = aagis_sf,
       dsn = fs::path(cache_aagis_dir, "aagis.gpkg"),
+      # TODO: align this with verbosity option
       quiet = TRUE
     )
   }

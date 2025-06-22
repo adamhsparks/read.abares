@@ -21,9 +21,6 @@
 #' predominantly agricultural, commodities over 63 million hectares.}
 #'  -- \acronym{ABARES}, 2024-11-28
 #'
-#' @inheritParams read_agfd_dt
-#' @inheritSection read_agfd_dt Caching
-#'
 #' @references
 #' ABARES 2024, Catchment Scale Land Use of Australia – Commodities – Update
 #'  December 2023, Australian Bureau of Agricultural and Resource Economics and
@@ -42,13 +39,7 @@
 #' @family clum
 #' @autoglobal
 #' @export
-read_clum_commodities <- function(
-  cache = getOption("read.abares.cache")
-) {
-  if (missing(cache)) {
-    cache <- getOption("read.abares.cache", default = FALSE)
-  }
-
-  clum <- .get_clum(.data_set = "CLUM_Commodities_2023", .cache = cache)
+read_clum_commodities <- function() {
+  clum <- .get_clum(.data_set = "CLUM_Commodities_2023")
   return(sf::st_read(clum, quiet = TRUE))
 }

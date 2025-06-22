@@ -7,14 +7,7 @@
 \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0}
 }
 \usage{
-read_abares_trade(cache = getOption("read.abares.cache"))
-}
-\arguments{
-\item{cache}{Boolean cache the files after download? Defaults to \code{FALSE}
-with files being downloaded to \code{tempdir()} being available throughout the
-active \R session and cleaned up on exit.  If set to \code{TRUE}, files will be
-cached locally for use between sessions.  See \dQuote{Caching} section for
-more.}
+read_abares_trade()
 }
 \value{
 A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
@@ -33,19 +26,6 @@ The cached file is not the same as the raw file that is available for
 download. It will follow the renaming scheme and filling values that this
 function will perform on the raw data.
 }
-\section{Caching}{
-
-
-When caching is enabled, the directory defined by \code{\link[tools:userdir]{tools::R_user_dir()}} will
-be used by default unless overidden using
-\code{read.abares_options(cache_location = "your_desired_file_path")} to change
-the file path used for caching. You may also set this globally to \code{TRUE} or
-\code{FALSE} by using \code{read.abares_options(read.abares.cache = TRUE)} or
-\code{read.abares_options("read.abares.cache" = TRUE)}, respectively. Using the
-argument in this function will override any options that are set globally.
-See \code{\link[=read.abares-options]{read.abares-options()}} for more.
-}
-
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 trade <- read_abares_trade()

@@ -9,9 +9,6 @@
 #'  serviced in this package using a snake_case format and ordered
 #'  consistently.
 #'
-#' @inheritParams read_agfd_dt
-#' @inheritSection read_agfd_dt Caching
-#'
 #' @note The cached file is not the same as the raw file that is available for
 #'  download. It will follow the renaming scheme and filling values that this
 #'  function will perform on the raw data.
@@ -28,12 +25,8 @@
 #' @autoglobal
 #' @export
 
-read_abares_trade <- function(
-  cache = getOption("read.abares.cache")
-) {
-  if (missing(cache)) {
-    cache <- getOption("read.abares.cache", default = FALSE)
-  }
+read_abares_trade <- function() {
+  .cache <- getOption("read.abares.cache")
   abares_trade_gz <- fs::path(
     .find_user_cache(),
     "abares_trade_dir/abares_trade.gz"
@@ -42,7 +35,7 @@ read_abares_trade <- function(
   if (fs::file_exists(abares_trade_gz)) {
     return(data.table::fread(abares_trade_gz))
   } else {
-    return(.download_abares_trade(cache))
+    return(.download_abares_trade(.cache))
   }
 }
 
@@ -50,19 +43,14 @@ read_abares_trade <- function(
 #'
 #' Handles downloading and caching (if requested) of ABARES Trade data files.
 #'
-#' @param cache `Boolean` Cache the \acronym{ABARES} trade CSV file after
-#'  download using `tools::R_user_dir()` to identify the proper directory for
-#'  storing user data in a cache for this package. Defaults to `FALSE`, using
-#'  `tempdir()`, deleting files upon closing the active \R session. If set to
-#'  `TRUE`, the files are cached locally as a gzip file.
+#' @param .cache `Boolean` enable caching?
 #'
 #' @returns A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
-#' @noRd
 #' @autoglobal
-#' @keywords Internal
-.download_abares_trade <- function(cache, user_agent, max_tries, timeout) {
+#' @dev
+.download_abares_trade <- function(.cache) {
   abares_trade_dir <- fs::path(.find_user_cache(), "abares_trade_dir/")
-  if (cache && !fs::dir_exists(abares_trade_dir)) {
+  if (.cache && !fs::dir_exists(abares_trade_dir)) {
     fs::dir_create(abares_trade_dir, recurse = TRUE)
   }
 
@@ -70,10 +58,7 @@ read_abares_trade <- function(
 
   .retry_download(
     url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/1",
-    .f = trade_zip,
-    .user_agent = user_agent,
-    .max_tries = max_tries,
-    .timeout = timeout
+    .f = trade_zip
   )
 
   abares_trade <- data.table::fread(trade_zip)
@@ -119,7 +104,7 @@ read_abares_trade <- function(
     )
   ]
 
-  if (cache) {
+  if (.cache) {
     data.table::fwrite(
       abares_trade,
       file = fs::path(abares_trade_dir, "abares_trade.gz")

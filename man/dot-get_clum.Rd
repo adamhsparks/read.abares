@@ -7,7 +7,7 @@
 \url{https://10.25814/2w2p-ph98}.
 }
 \usage{
-.get_clum(.data_set, .cache)
+.get_clum(.data_set)
 }
 \arguments{
 \item{.data_set}{A string value indicating the data desired for download.
@@ -17,12 +17,6 @@ One of:
 \item{scale_date_update}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
 \item{CLUM_Commodities_2023}{Catchment Scale Land Use of Australia – Commodities – Update December 2023}
 }.}
-
-\item{.cache}{Boolean cache the files after download? Defaults to \code{FALSE}
-with files being downloaded to \code{tempdir()} being available throughout the
-active \R session and cleaned up on exit.  If set to \code{TRUE}, files will be
-cached locally for use between sessions.  See \dQuote{Caching} section for
-more.}
 }
 \value{
 A \code{read.abares.clum} object, a list of files containing a spatial

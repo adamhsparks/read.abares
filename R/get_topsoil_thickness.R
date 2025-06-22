@@ -2,9 +2,6 @@
 #'
 #' Fetches topsoil thickness data and associated metadata from \acronym{ABARES}.
 #'
-#' @inheritParams read_agfd_dt
-#' @inheritSection read_agfd_dt Caching
-#'
 #' @note
 #' A custom `print()` method is provided that will print the metadata associated
 #'  with these data. Examples are provided for interacting with the metadata
@@ -28,17 +25,12 @@
 #'
 #' @references <https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6>
 #' @source <https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip>
-#' @autoglobal
+#'
 #' @family topsoil thickness
-#' @export
+#' @autoglobal
+#' @dev
 
-get_topsoil_thickness <- function(
-  cache = getOption("read.abares.cache")
-) {
-  if (missing(cache)) {
-    cache <- getOption("read.abares.cache", default = FALSE)
-  }
-
+.get_topsoil_thickness <- function() {
   topsoil_thickness_cache <- fs::path(
     .find_user_cache(),
     "topsoil_thickness_dir"
@@ -46,7 +38,9 @@ get_topsoil_thickness <- function(
   if (fs::dir_exists(topsoil_thickness_cache)) {
     return(.create_topsoil_thickness_list(topsoil_thickness_cache))
   } else {
-    return(.create_topsoil_thickness_list(.download_topsoil_thickness(cache)))
+    return(.create_topsoil_thickness_list(.download_topsoil_thickness(
+      getOptions(read.abares.cache, FALSE),
+    )))
   }
 }
 
@@ -55,7 +49,7 @@ get_topsoil_thickness <- function(
 #' @param dir File where files have been stored.
 #'
 #' @returns A `read.abares.soil.thickness` object, which is a named `list` with
-#' the [fs::path_file] of the resulting GTiff file and text file of metadata.
+#' the [fs::path_file()] of the resulting GTiff file and text file of metadata.
 #' @dev
 
 .create_topsoil_thickness_list <- function(topsoil_thickness_cache) {
@@ -86,7 +80,7 @@ get_topsoil_thickness <- function(
 #'
 #' @dev
 
-.download_topsoil_thickness <- function(.cache) {
+.download_topsoil_thickness <- function() {
   download_file <- fs::path(tempdir(), "topsoil_thick.zip")
   tempdir_topsoil_dir <- fs::path(tempdir(), "staiar9cl__05911a01eg_geo___/")
   cache_topsoil_dir <- fs::path(.find_user_cache(), "topsoil_thickness_dir")
@@ -95,8 +89,7 @@ get_topsoil_thickness <- function(
   if (!fs::dir_exists(tempdir_topsoil_dir)) {
     .retry_download(
       "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
-      .f = download_file,
-      cache = .cache
+      .f = download_file
     )
 
     withr::with_dir(
@@ -188,7 +181,7 @@ print.read.abares.topsoil.thickness.files <- function(x, ...) {
 #'
 #' Displays the complete set of metadata associated with the soil thickness
 #'  data in your \R console. For including the metadata in documents or other
-#'  methods outside of \R, see [get_topsoil_thickness()] for an example using
+#'  methods outside of \R, see `get_topsoil_thickness()` for an example using
 #'  [pander::pander()] to print the metadata.
 #'
 #' @param x A `read.abares.topsoil.thickness.files` object.

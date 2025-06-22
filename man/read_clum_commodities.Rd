@@ -7,14 +7,7 @@
 \url{https://data.gov.au/data/dataset/catchment-scale-land-use-of-australia-and-commodities-update-december-2023/resource/b216cf90-f4f0-4d88-980f-af7d1ad746cb}
 }
 \usage{
-read_clum_commodities(cache = getOption("read.abares.cache"))
-}
-\arguments{
-\item{cache}{Boolean cache the files after download? Defaults to \code{FALSE}
-with files being downloaded to \code{tempdir()} being available throughout the
-active \R session and cleaned up on exit.  If set to \code{TRUE}, files will be
-cached locally for use between sessions.  See \dQuote{Caching} section for
-more.}
+read_clum_commodities()
 }
 \value{
 An \code{\link[sf:sf]{sf::sf()}} object of the requested data set.
@@ -42,19 +35,6 @@ This dataset comprises more than 176 thousand features representing 185,
 predominantly agricultural, commodities over 63 million hectares.}
 -- \acronym{ABARES}, 2024-11-28
 }
-\section{Caching}{
-
-
-When caching is enabled, the directory defined by \code{\link[tools:userdir]{tools::R_user_dir()}} will
-be used by default unless overidden using
-\code{read.abares_options(cache_location = "your_desired_file_path")} to change
-the file path used for caching. You may also set this globally to \code{TRUE} or
-\code{FALSE} by using \code{read.abares_options(read.abares.cache = TRUE)} or
-\code{read.abares_options("read.abares.cache" = TRUE)}, respectively. Using the
-argument in this function will override any options that are set globally.
-See \code{\link[=read.abares-options]{read.abares-options()}} for more.
-}
-
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 

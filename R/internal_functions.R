@@ -59,22 +59,21 @@
 
 .retry_download <- function(
   url,
-  .f,
-  .max_tries,
-  .user_agent,
-  .timout
+  .f
 ) {
   base_req <- httr2::request(base_url = url) |>
-    httr2::req_user_agent(.user_agent) |>
+    httr2::req_user_agent(getOption("read.abares.user_agent")) |>
     httr2::req_headers("Accept-Encoding" = "identity") |>
     httr2::req_headers("Connection" = "Keep-Alive") |>
     httr2::req_options(
       http_version = 2L,
-      timeout = .timeout
+      timeout = getOption("read.abares.timeout")
     ) |>
-    httr2::req_retry(max_tries = .max_tries) |>
+    httr2::req_retry(
+      max_tries = getOption("read.abares.max_tries")
+    ) |>
     httr2::req_cache(path = tempdir())
-  if (isFALSE(getOption("read.abares.quiet", default = FALSE))) {
+  if (getOption("read.abares.verbosity") == 3) {
     base_req |>
       httr2::req_perform() |>
       httr2::resp_body_raw() |>

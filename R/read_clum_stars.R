@@ -39,7 +39,6 @@
 #'   \item{scale_date_update}{}
 #' }.
 #' @inheritParams read_agfd_dt
-#' @inheritSection read_agfd_dt Caching
 #'
 #' @references
 #' ABARES 2024, Catchment Scale Land Use of Australia – Update December 2023
@@ -64,7 +63,6 @@
 #' @export
 read_clum_stars <- function(
   data_set = "clum_50m_2023_v2",
-  cache = getOption("read.abares.cache"),
   files = NULL
 ) {
   rlang::arg_match(
@@ -72,14 +70,9 @@ read_clum_stars <- function(
     c("clum_50m_2023_v2", "scale_date_update")
   )
 
-  if (missing(cache)) {
-    cache <- getOption("read.abares.cache", default = FALSE)
-  }
-
   if (is.null(files)) {
     files <- .get_clum(
-      .data_set = data_set,
-      .cache = cache
+      .data_set = data_set
     )
   }
   return(stars::read_stars(clum[grep("[.]tif$", files)]))

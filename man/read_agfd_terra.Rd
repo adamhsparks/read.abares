@@ -4,12 +4,7 @@
 \alias{read_agfd_terra}
 \title{Read Australian Gridded Farm Data (AGFD) NCDF files with terra}
 \usage{
-read_agfd_terra(
-  fixed_prices = TRUE,
-  yyyy = 1991:2003,
-  cache = getOption("read.abares.cache"),
-  files = NULL
-)
+read_agfd_terra(fixed_prices = TRUE, yyyy = 1991:2003, files = NULL)
 }
 \arguments{
 \item{fixed_prices}{Download historical climate and prices or historical
@@ -26,12 +21,6 @@ upon the setting of \code{fixed_prices}.  Note that this will still download the
 entire data set, that cannot be avoided, but will only return the
 requested year(s) in your \R session.  Valid years are from 1991 to 2023
 inclusive.}
-
-\item{cache}{Boolean cache the files after download? Defaults to \code{FALSE}
-with files being downloaded to \code{tempdir()} being available throughout the
-active \R session and cleaned up on exit.  If set to \code{TRUE}, files will be
-cached locally for use between sessions.  See \dQuote{Caching} section for
-more.}
 }
 \value{
 A \code{list()} object of \code{\link[terra:rast]{terra::rast()}} objects of the
@@ -74,9 +63,9 @@ file size, \emph{i.e.}, >1GB, and will require time to download.
 }
 \section{Model scenarios}{
 
-\subsection{Historical climate (fixed prices)}{
+\subsection{Historical Climate (fixed prices)}{
 
-The Historical climate (fixed prices) scenario is similar to that described
+The Historical Climate (fixed prices) scenario is similar to that described
 in Hughes \emph{et al.} (2022) and is intended to isolate the effects of climate
 variability on financial incomes for broadacre farm businesses. In these
 simulations, global output and input price indexes are fixed at values from
@@ -90,18 +79,18 @@ sequence (including historical simulated crop and pasture data from the
 2022-23).
 }
 
-\subsection{Historical climate and prices}{
+\subsection{Historical Climate and Prices}{
 
-As part of the AADI project an additional scenario was developed accounting
-for changes in both climate conditions and output and input prices (\emph{i.e.},
-global commodity market variability). In this historical climate and prices
-scenario the 33-year reference period allows for variation in both\
-historical climate conditions and historical prices. For this scenario,
-historical price indexes were de-trended, to account for consistent long-
-term trends in some real commodity prices (particularly sheep and lamb). The
-resulting simulation results and percentile indicators are intended to
-reflect the combined impacts of annual climate and commodity price
-variability."
+As part of the \acronym{AADI} project an additional scenario was developed
+accounting for changes in both climate conditions and output and input
+prices (\emph{i.e.}, global commodity market variability). In this historical
+climate and prices scenario the 33-year reference period allows for
+variation in both historical climate conditions and historical prices. For
+this scenario, historical price indexes were de-trended, to account for
+consistent long-term trends in some real commodity prices (particularly
+sheep and lamb). The resulting simulation results and percentile indicators
+are intended to reflect the combined impacts of annual climate and commodity
+price variability."
 
 -- Taken from  \cite{Australian Bureau of Agricultural and Resource
 Economics and Sciences (2024)}

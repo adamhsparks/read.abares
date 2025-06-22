@@ -8,9 +8,6 @@
 #'  `activeCat` if you wished to set the active category when loading any of the
 #'  available GeoTIFF files that are encoded with a raster attribute table.
 #'
-#' @inheritSection read_agfd_dt Caching
-#'
-#'
 #' @references
 #' \url{https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6}
 #' @source
@@ -29,13 +26,10 @@
 #' @export
 
 read_topsoil_thickness_stars <- function(
-  cache = getOption("read.abares.cache"),
   files = NULL
 ) {
   if (is.null(files)) {
-    files <- get_topsoil_thickness(
-      cache = cache
-    )
+    files <- get_topsoil_thickness()
   }
   stars::read_stars(as.character(files$GTiff))
 }

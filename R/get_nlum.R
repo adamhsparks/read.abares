@@ -19,7 +19,6 @@
 #'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 #'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 #' }.
-#' @inheritParams read_agfd_dt
 #'
 #' @references
 #' ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
@@ -40,9 +39,9 @@
 #' @autoglobal
 #' @dev
 
-.get_nlum <- function(.data_set, .cache) {
+.get_nlum <- function(.data_set) {
   download_file <- data.table::fifelse(
-    .cache,
+    getOptions(read.abares.cache, FALSE),
     fs::path(.find_user_cache(), "nlum", sprintf("%s.zip", .data_set)),
     fs::path(tempdir(), "nlum", sprintf("%s.zip", .data_set))
   )
@@ -107,8 +106,7 @@
 
   .retry_download(
     url = file_url,
-    .f = download_file,
-    .cache = .cache
+    .f = download_file
   )
 
   tryCatch(

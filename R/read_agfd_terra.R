@@ -29,18 +29,13 @@
 read_agfd_terra <- function(
   fixed_prices = TRUE,
   yyyy = 1991:2003,
-  cache = getOption("read.abares.cache"),
   files = NULL
 ) {
-  if (missing(cache)) {
-    cache <- getOption("read.abares.cache", default = FALSE)
-  }
   rlang::arg_match(yyyy, values = 1991:2023, multiple = TRUE)
   if (is.null(files)) {
     files <- get_agfd(
       fixed_prices = fixed_prices,
       yyyy = yyyy,
-      cache = cache,
       files = files
     )
   }

@@ -11,7 +11,7 @@
 }
 \value{
 A \code{read.abares.soil.thickness} object, which is a named \code{list} with
-the \link[fs:path_file]{fs::path_file} of the resulting GTiff file and text file of metadata.
+the \code{\link[fs:path_file]{fs::path_file()}} of the resulting GTiff file and text file of metadata.
 }
 \description{
 Create a object of read.abares.topsoil.thickness.files

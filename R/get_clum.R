@@ -12,7 +12,6 @@
 #'  \item{scale_date_update}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
 #'  \item{CLUM_Commodities_2023}{Catchment Scale Land Use of Australia – Commodities – Update December 2023}
 #' }.
-#' @inheritParams read_agfd_dt
 #' @details
 #' The `CLUM_50m_2023v2` and `date_CLUM2023` datasets are available as GeoTIFF
 #'  files. The `CLUM_Commodities_2023` dataset is available as a shapefile.
@@ -39,12 +38,9 @@
 #' @autoglobal
 #' @dev
 
-.get_clum <- function(
-  .data_set,
-  .cache
-) {
+.get_clum <- function(.data_set) {
   download_file <- data.table::fifelse(
-    .cache,
+    getOptions(read.abares.cache, FALSE),
     fs::path(.find_user_cache(), "clum", sprintf("%s.zip", .data_set)),
     fs::path(tempdir(), "clum", sprintf("%s.zip", .data_set))
   )
@@ -85,8 +81,7 @@
 
   .retry_download(
     url = file_url,
-    .f = download_file,
-    .cache = .cache
+    .f = download_file
   )
 
   tryCatch(

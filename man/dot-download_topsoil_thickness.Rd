@@ -4,7 +4,7 @@
 \alias{.download_topsoil_thickness}
 \title{Downloads Topsoil thickness data if not already found locally}
 \usage{
-.download_topsoil_thickness(.cache)
+.download_topsoil_thickness()
 }
 \arguments{
 \item{cache}{\code{Boolean} Cache the soil thickness data files after download

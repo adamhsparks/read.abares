@@ -10,11 +10,7 @@
 }
 }
 \usage{
-read_clum_terra(
-  data_set = "clum_50m_2023_v2",
-  cache = getOption("read.abares.cache"),
-  files = NULL
-)
+read_clum_terra(data_set = "clum_50m_2023_v2", files = NULL)
 }
 \arguments{
 \item{data_set}{A string value indicating the data desired for download.
@@ -23,12 +19,6 @@ One of:
 \item{clum_50m_2023_v2}{ (default)},
 \item{scale_date_update}{}
 }.}
-
-\item{cache}{Boolean cache the files after download? Defaults to \code{FALSE}
-with files being downloaded to \code{tempdir()} being available throughout the
-active \R session and cleaned up on exit.  If set to \code{TRUE}, files will be
-cached locally for use between sessions.  See \dQuote{Caching} section for
-more.}
 }
 \value{
 A \code{\link[terra:rast]{terra::rast()}} object that may be one or many layers depending
@@ -69,19 +59,6 @@ loading.  To see which categories are available, please refer to the
 metadata for these data.  The PDF can be accessed in your default web
 browser by using \code{\link[=view_clum_metadata_pdf]{view_clum_metadata_pdf()}}.
 }
-\section{Caching}{
-
-
-When caching is enabled, the directory defined by \code{\link[tools:userdir]{tools::R_user_dir()}} will
-be used by default unless overidden using
-\code{read.abares_options(cache_location = "your_desired_file_path")} to change
-the file path used for caching. You may also set this globally to \code{TRUE} or
-\code{FALSE} by using \code{read.abares_options(read.abares.cache = TRUE)} or
-\code{read.abares_options("read.abares.cache" = TRUE)}, respectively. Using the
-argument in this function will override any options that are set globally.
-See \code{\link[=read.abares-options]{read.abares-options()}} for more.
-}
-
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 

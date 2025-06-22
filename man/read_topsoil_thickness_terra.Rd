@@ -7,18 +7,9 @@
 \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
 }
 \usage{
-read_topsoil_thickness_terra(
-  cache = getOption("read.abares.cache"),
-  files = NULL
-)
+read_topsoil_thickness_terra(files = NULL)
 }
 \arguments{
-\item{cache}{Boolean cache the files after download? Defaults to \code{FALSE}
-with files being downloaded to \code{tempdir()} being available throughout the
-active \R session and cleaned up on exit.  If set to \code{TRUE}, files will be
-cached locally for use between sessions.  See \dQuote{Caching} section for
-more.}
-
 \item{...}{Additional arguments passed to \code{\link[terra:rast]{terra::rast()}}, for \emph{e.g.},
 \code{\link[=activeCat]{activeCat()}} if you wished to set the active category when loading any of
 the available GeoTIFF files that are encoded with a raster attribute table.}
@@ -31,19 +22,6 @@ Australian Areas of Intensive Agriculture of Layer 1}.
 Read Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1
 data as a \code{\link[terra:rast]{terra::rast()}} object.
 }
-\section{Caching}{
-
-
-When caching is enabled, the directory defined by \code{\link[tools:userdir]{tools::R_user_dir()}} will
-be used by default unless overidden using
-\code{read.abares_options(cache_location = "your_desired_file_path")} to change
-the file path used for caching. You may also set this globally to \code{TRUE} or
-\code{FALSE} by using \code{read.abares_options(read.abares.cache = TRUE)} or
-\code{read.abares_options("read.abares.cache" = TRUE)}, respectively. Using the
-argument in this function will override any options that are set globally.
-See \code{\link[=read.abares-options]{read.abares-options()}} for more.
-}
-
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 st_terra <- read_topsoil_thickness_terra()
@@ -57,7 +35,7 @@ plot(st_terra)
 }
 \seealso{
 Other topsoil thickness: 
-\code{\link{get_topsoil_thickness}()},
+\code{\link{.get_topsoil_thickness}()},
 \code{\link{print_topsoil_thickness_metadata}()},
 \code{\link{read_topsoil_thickness_stars}()}
 }

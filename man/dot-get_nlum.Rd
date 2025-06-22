@@ -7,7 +7,7 @@
 \url{https://doi.org/10.25814/w175-xh85}
 }
 \usage{
-.get_nlum(.data_set, .cache)
+.get_nlum(.data_set)
 }
 \arguments{
 \item{.data_set}{A string value indicating the GeoTIFF desired for download.
@@ -24,12 +24,6 @@ One of:
 \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 }.}
-
-\item{.cache}{Boolean cache the files after download? Defaults to \code{FALSE}
-with files being downloaded to \code{tempdir()} being available throughout the
-active \R session and cleaned up on exit.  If set to \code{TRUE}, files will be
-cached locally for use between sessions.  See \dQuote{Caching} section for
-more.}
 }
 \value{
 A \code{read.abares.nlum} object, a list of GeoTIFF files containing

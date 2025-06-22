@@ -43,9 +43,6 @@
 #'  `activeCat` if you wished to set the active category when loading any of the
 #'  available GeoTIFF files that are encoded with a raster attribute table.
 #'
-#' @inheritSection read_agfd_dt Caching
-#'
-#'
 #' @references
 #' ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
 #' Agricultural and Resource Economics and Sciences, Canberra, November, CC BY
@@ -90,14 +87,10 @@ read_nlum_terra <- function(
     "P201516",
     "P202021"
   ),
-  cache = getOption("read.abares.cache"),
   ...
 ) {
   rlang::arg_match(data_set)
-  if (missing(cache)) {
-    cache <- getOption("read.abares.cache", default = FALSE)
-  }
 
-  nlum <- .get_nlum(.data_set = data_set, .cache = cache)
+  nlum <- .get_nlum(.data_set = data_set)
   return(terra::rast(nlum[grep("tif$", nlum, ...)]))
 }

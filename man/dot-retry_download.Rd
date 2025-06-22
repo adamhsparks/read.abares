@@ -4,7 +4,7 @@
 \alias{.retry_download}
 \title{Use httr2 to fetch a file with retries}
 \usage{
-.retry_download(url, .f, .max_tries, .user_agent, .timout)
+.retry_download(url, .f)
 }
 \arguments{
 \item{url}{Character the URL being requested.}

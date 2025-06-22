@@ -14,6 +14,7 @@
 ^man/dot-get_agfd\.Rd$
 ^man/dot-get_clum\.Rd$
 ^man/dot-get_nlum\.Rd$
+^man/dot-get_topsoil_thickness\.Rd$
 ^man/dot-create_topsoil_thickness_list\.Rd$
 ^man/dot-download_topsoil_thickness\.Rd$
 ^man/dot-find_user_cache\.Rd$
@@ -22,3 +23,4 @@
 ^man/dot-readabares_collaborators\.Rd$
 ^man/readabares_user_agent\.Rd$
 ^man/dot-download_aagis_shp\.Rd$
+^man/dot-download_abares_trade\.Rd$

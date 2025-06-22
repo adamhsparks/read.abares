@@ -21,7 +21,6 @@
 read_nlum_stars(
   data_set = c("Y201011", "Y201516", "C201021", "T201011", "T201516", "T202021",
     "P201011", "P201516", "P202021"),
-  cache = getOption("read.abares.cache"),
   ...
 )
 }
@@ -40,12 +39,6 @@ One of:
 \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 }.}
-
-\item{cache}{Boolean cache the files after download? Defaults to \code{FALSE}
-with files being downloaded to \code{tempdir()} being available throughout the
-active \R session and cleaned up on exit.  If set to \code{TRUE}, files will be
-cached locally for use between sessions.  See \dQuote{Caching} section for
-more.}
 
 \item{...}{Additional arguments passed to \link[stars:read_stars]{stars::read_stars}, for \emph{e.g.},
 \code{RAT} if you wish to set the active category when loading any of the
@@ -99,19 +92,6 @@ the \code{...}.  To see which categories are available, please refer
 to the metadata for these data.  The \acronym{PDF} can be accessed in your
 default \acronym{PDF} viewer by using \code{\link[=view_nlum_metadata_pdf]{view_nlum_metadata_pdf()}}.
 }
-\section{Caching}{
-
-
-When caching is enabled, the directory defined by \code{\link[tools:userdir]{tools::R_user_dir()}} will
-be used by default unless overidden using
-\code{read.abares_options(cache_location = "your_desired_file_path")} to change
-the file path used for caching. You may also set this globally to \code{TRUE} or
-\code{FALSE} by using \code{read.abares_options(read.abares.cache = TRUE)} or
-\code{read.abares_options("read.abares.cache" = TRUE)}, respectively. Using the
-argument in this function will override any options that are set globally.
-See \code{\link[=read.abares-options]{read.abares-options()}} for more.
-}
-
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 

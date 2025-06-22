@@ -30,12 +30,11 @@
 #' @dev
 
 .get_agfd <- function(
-  fixed_prices,
-  yyyy,
-  cache
+  .fixed_prices,
+  .yyyy
 ) {
   download_file <- data.table::fifelse(
-    cache,
+    getOptions(read.abares.cache, FALSE),
     fs::path(.find_user_cache(), "agfd.zip"),
     fs::path(tempdir(), "agfd.zip")
   )
@@ -65,10 +64,7 @@
 
     .retry_download(
       url = file_url,
-      .f = download_file,
-      .max_tries = max_tries,
-      .user_agent = user_agent,
-      .timeout = timeout
+      .f = download_file
     )
 
     tryCatch(
