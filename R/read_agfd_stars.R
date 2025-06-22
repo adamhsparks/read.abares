@@ -1,14 +1,14 @@
-#' Read 'Australian Gridded Farm Data' (AGFD) NCDF files with stars
+#' Read Australian Gridded Farm Data (AGFD) NCDF files with stars
 #'
 #' Read 'Australian Gridded Farm Data' (\acronym{AGFD}) as a list of
 #'  \CRANpkg{stars} objects.
 #'
 #' @inherit get_agfd details
 #' @inheritParams read_agfd_dt
-#' @inheritSection get_agfd Model scenarios
-#' @inheritSection get_agfd Data files
-#' @inheritSection get_agfd Data layers
-#' @inherit get_agfd references
+#' @inheritSection read_agfd_dt Model scenarios
+#' @inheritSection read_agfd_dt Data files
+#' @inheritSection read_agfd_dt Data layers
+#' @inherit read_agfd_dt references
 #'
 #' @returns A `list` object of \CRANpkg{stars} objects of the
 #'  \dQuote{Australian Gridded Farm Data} with the file names as the list's
@@ -16,10 +16,7 @@
 #'
 #' @examplesIf interactive()
 #'
-#' # using piping, which can use the {read.abares} cache after the first DL
-#'
-#' agfd_stars <- get_agfd() |>
-#'   read_agfd_stars()
+#' agfd_stars <- read_agfd_stars()
 #'
 #' head(agfd_stars)
 #'
@@ -29,8 +26,32 @@
 #' @autoglobal
 #' @export
 
-read_agfd_stars <- function(files) {
-  .check_class(x = files, class = "read.abares.agfd.nc.files")
+read_agfd_stars <- function(
+  fixed_prices = TRUE,
+  yyyy = 1991:2003,
+  cache = getOption("read.abares.cache"),
+  cache_location = getOption("read.abares.cache_location"),
+  user_agent = getOption("read.abares.user_agent"),
+  max_tries = getOption("read.abares.max_tries"),
+  timout = getOption("read.abares.max_tries"),
+  files = NULL
+) {
+  if (missing(cache)) {
+    cache <- getOption("read.abares.cache", default = FALSE)
+  }
+  rlang::arg_match(yyyy, values = 1991:2023, multiple = TRUE)
+  if (is.null(files)) {
+    files <- get_agfd(
+      fixed_prices = fixed_prices,
+      yyyy = yyyy,
+      cache = cache,
+      cache_location = cache_location,
+      user_agent = user_agent,
+      max_tries = max_tries,
+      timeout = timeout,
+      files = files
+    )
+  }
   var <- c(
     "farmno",
     "R_total_hat_ha",
@@ -76,28 +97,28 @@ read_agfd_stars <- function(files) {
   )
   s2 <- NULL
   # read one file for the message
-  out <- list(stars::read_ncdf(
-    files[1],
+  s1 <- list(stars::read_ncdf(
+    files[1L],
     var = var
   ))
 
-  if (length(files) > 1) {
+  if (length(files) > 1L) {
     # then suppress the rest of the messages
     q_read_ncdf <- purrr::quietly(stars::read_ncdf)
     s2 <- purrr::modify_depth(
-      purrr::map(files[2:length(files)], q_read_ncdf, var = var),
-      1,
+      purrr::map(files[2L:length(files)], q_read_ncdf, var = var),
+      1L,
       "result"
     )
 
-    out <- append(out, s2)
+    s1 <- append(s1, s2)
   }
 
-  names(out) <- fs::path_file(files)
+  names(s1) <- fs::path_file(files)
 
   if (!is.null(s2)) {
-    rm(out, s2)
+    rm(s1, s2)
   }
   gc()
-  return(out)
+  return(s1)
 }
