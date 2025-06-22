@@ -12,7 +12,7 @@ The following options can be set via \code{\link[=options]{options()}} to contro
 \describe{
 \item{\code{read.abares.cache}}{Boolean globally enable or disable caching for select data sets serviced by \pkg{read.abares}. Defaults to \code{FALSE} not caching data locally between \R sessions.}
 \item{\code{read.abares.cache_location}}{Character string to set a custom location for caching data sets serviced by \pkg{read.abares}. Defaults to \code{tools::R_user_dir(package = "read.abares", which = "cache")}.}
-   \item{\code{read.abares.user_agent}}{Character string to set a custom user agent for web requests. Default is \code{"read.abares"}.}
+   \item{\code{read.abares.user_agent}}{Character string to set a custom user agent for web requests. Default is \verb{read.abares R package \{version no.\} https://github.com/adamhsparks/read.abares}.}
    \item{\code{read.abares.timeout}}{Integer providing the timeout in seconds for download operations. Default is \code{2000}.}
 \item{\code{read.abares.max_tries}}{Integer providing the number of times to retry download before giving up. Default is \code{3}.}
 \item{\code{read.abares.quiet}}{Boolean globally enable or disable download status bars and other messages, but not errors. Defaults to \code{FALSE} providing user-feedback.}
