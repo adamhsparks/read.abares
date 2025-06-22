@@ -121,7 +121,7 @@ However, if there is a data set that you feel would be useful to be serviced by 
 ## Note for Linux Installers
 
 If you are using Linux, you will likely need to install several system-level libraries, {pak} will do it's best to install most of them but some may not be installable this way.
-For [Nectar](https://ardc.edu.au/services/ardc-nectar-research-cloud/k with a fresh Ubuntu image, you can use the following command to install system libraries to install {pak} and then {read.abares}.
+For [Nectar](https://ardc.edu.au/services/ardc-nectar-research-cloud/) with a fresh Ubuntu image, you can use the following command to install system libraries to install {pak} and then {read.abares}.
 In your Linux terminal (not your R console, the "terminal" tab in RStudio should do here in most cases) type:
 
 ```bash
