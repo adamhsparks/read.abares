@@ -10,9 +10,6 @@
 read_clum_stars(
   data_set = "clum_50m_2023_v2",
   cache = getOption("read.abares.cache"),
-  user_agent = getOption("read.abares.user_agent"),
-  max_tries = getOption("read.abares.max_tries"),
-  timout = getOption("read.abares.max_tries"),
   files = NULL
 )
 }
@@ -29,16 +26,6 @@ with files being downloaded to \code{tempdir()} being available throughout the
 active \R session and cleaned up on exit.  If set to \code{TRUE}, files will be
 cached locally for use between sessions.  See \dQuote{Caching} section for
 more.}
-
-\item{user_agent}{Character string providing a custom user agent to pass
-along with the download request for the server logs.}
-
-\item{max_tries}{Integer providing the number of times that a file download
-should be retried upon failure.  Defaults to 3.}
-
-\item{files}{An optional \code{\link[=list]{list()}} object of file paths that provide the
-location of local files to import.  If not provided, defaults to downloading
-the data from \acronym{ABARES}.}
 }
 \value{
 a \CRANpkg{stars} object that may be one or many layers depending
@@ -88,7 +75,7 @@ the file path used for caching. You may also set this globally to \code{TRUE} or
 \code{FALSE} by using \code{read.abares_options(read.abares.cache = TRUE)} or
 \code{read.abares_options("read.abares.cache" = TRUE)}, respectively. Using the
 argument in this function will override any options that are set globally.
-See \link{read.abares-options} for more.
+See \code{\link[=read.abares-options]{read.abares-options()}} for more.
 }
 
 \examples{

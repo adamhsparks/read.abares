@@ -8,17 +8,9 @@
 \url{https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv}
 }
 \usage{
-read_historical_national_estimates(
-  user_agent = getOption("read.abares.user_agent"),
-  max_tries = getOption("read.abares.max_tries"),
-  timout = getOption("read.abares.max_tries")
-)
+read_historical_national_estimates()
 
-read_hist_nat_est(
-  user_agent = getOption("read.abares.user_agent"),
-  max_tries = getOption("read.abares.max_tries"),
-  timout = getOption("read.abares.max_tries")
-)
+read_hist_nat_est()
 }
 \value{
 A \code{\link[data.table:data.table]{data.table::data.table()}} object with the \code{Variable} field as the

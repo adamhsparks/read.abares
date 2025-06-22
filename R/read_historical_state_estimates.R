@@ -19,11 +19,7 @@
 #' # or shorter
 #' read_hist_sta_est()
 #'
-read_historical_state_estimates <- read_hist_sta_est <- function(
-  user_agent = getOption("read.abares.user_agent"),
-  max_tries = getOption("read.abares.max_tries"),
-  timout = getOption("read.abares.max_tries")
-) {
+read_historical_state_estimates <- read_hist_sta_est <- function() {
   f <- fs::path(tempdir(), "fdp-beta-state-historical.csv")
 
   .retry_download(

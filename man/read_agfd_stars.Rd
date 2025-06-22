@@ -8,10 +8,6 @@ read_agfd_stars(
   fixed_prices = TRUE,
   yyyy = 1991:2003,
   cache = getOption("read.abares.cache"),
-  cache_location = getOption("read.abares.cache_location"),
-  user_agent = getOption("read.abares.user_agent"),
-  max_tries = getOption("read.abares.max_tries"),
-  timout = getOption("read.abares.max_tries"),
   files = NULL
 )
 }
@@ -36,19 +32,6 @@ with files being downloaded to \code{tempdir()} being available throughout the
 active \R session and cleaned up on exit.  If set to \code{TRUE}, files will be
 cached locally for use between sessions.  See \dQuote{Caching} section for
 more.}
-
-\item{cache_location}{Character string providing the file path to use for
-cached files.  See \dQuote{Caching} section for for more.}
-
-\item{user_agent}{Character string providing a custom user agent to pass
-along with the download request for the server logs.}
-
-\item{max_tries}{Integer providing the number of times that a file download
-should be retried upon failure.  Defaults to 3.}
-
-\item{files}{An optional \code{\link[=list]{list()}} object of file paths that provide the
-location of local files to import.  If not provided, defaults to downloading
-the data from \acronym{ABARES}.}
 }
 \value{
 A \code{list} object of \CRANpkg{stars} objects of the

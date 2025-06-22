@@ -29,10 +29,7 @@
 #' @export
 
 read_abares_trade <- function(
-  cache = getOption("read.abares.cache"),
-  user_agent = getOption("read.abares.user_agent"),
-  max_tries = getOption("read.abares.max_tries"),
-  timout = getOption("read.abares.max_tries")
+  cache = getOption("read.abares.cache")
 ) {
   if (missing(cache)) {
     cache <- getOption("read.abares.cache", default = FALSE)
@@ -45,7 +42,7 @@ read_abares_trade <- function(
   if (fs::file_exists(abares_trade_gz)) {
     return(data.table::fread(abares_trade_gz))
   } else {
-    return(.download_abares_trade(cache, user_agent, max_tries, timout))
+    return(.download_abares_trade(cache))
   }
 }
 

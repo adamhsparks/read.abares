@@ -20,11 +20,7 @@
 #' # or shorter
 #' read_hist_nat_est()
 #'
-read_historical_national_estimates <- function(
-  user_agent = getOption("read.abares.user_agent"),
-  max_tries = getOption("read.abares.max_tries"),
-  timout = getOption("read.abares.max_tries")
-) {
+read_historical_national_estimates <- function() {
   f <- fs::path(tempdir(), "fdp-beta-national-historical.csv")
 
   .retry_download(

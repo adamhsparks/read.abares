@@ -106,9 +106,6 @@ read_nlum_stars <- function(
     "P202021"
   ),
   cache = getOption("read.abares.cache"),
-  user_agent = getOption("read.abares.user_agent"),
-  max_tries = getOption("read.abares.max_tries"),
-  timout = getOption("read.abares.max_tries"),
   ...
 ) {
   rlang::arg_match(data_set)

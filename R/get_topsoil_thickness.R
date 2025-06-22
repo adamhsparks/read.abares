@@ -86,7 +86,7 @@ get_topsoil_thickness <- function(
 #'
 #' @dev
 
-.download_topsoil_thickness <- function(cache) {
+.download_topsoil_thickness <- function(.cache) {
   download_file <- fs::path(tempdir(), "topsoil_thick.zip")
   tempdir_topsoil_dir <- fs::path(tempdir(), "staiar9cl__05911a01eg_geo___/")
   cache_topsoil_dir <- fs::path(.find_user_cache(), "topsoil_thickness_dir")
@@ -95,7 +95,8 @@ get_topsoil_thickness <- function(
   if (!fs::dir_exists(tempdir_topsoil_dir)) {
     .retry_download(
       "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
-      .f = download_file
+      .f = download_file,
+      cache = .cache
     )
 
     withr::with_dir(

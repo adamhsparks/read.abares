@@ -40,7 +40,7 @@
 #' @autoglobal
 #' @dev
 
-.get_nlum <- function(.data_set, .cache, .user_agent, .max_tries, .timeout) {
+.get_nlum <- function(.data_set, .cache) {
   download_file <- data.table::fifelse(
     .cache,
     fs::path(.find_user_cache(), "nlum", sprintf("%s.zip", .data_set)),
@@ -108,9 +108,7 @@
   .retry_download(
     url = file_url,
     .f = download_file,
-    .user_agent = .user_agent,
-    .max_tries = .max_tries,
-    .timeout = .timeout
+    .cache = .cache
   )
 
   tryCatch(

@@ -74,12 +74,7 @@
     ) |>
     httr2::req_retry(max_tries = .max_tries) |>
     httr2::req_cache(path = tempdir())
-  if (isFALSE(getOption("read.abares.quiet", default = FALSE))) {
-    base_req |>
-      httr2::req_perform() |>
-      httr2::resp_body_raw() |>
-      brio::write_file_raw(path = .f)
-  } else {
+  if (getOption("read.abares.quiet", default = FALSE)) {
     base_req |>
       httr2::req_progress() |>
       httr2::req_perform() |>

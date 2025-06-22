@@ -64,9 +64,6 @@
 read_clum_terra <- function(
   data_set = "clum_50m_2023_v2",
   cache = getOption("read.abares.cache"),
-  user_agent = getOption("read.abares.user_agent"),
-  max_tries = getOption("read.abares.max_tries"),
-  timout = getOption("read.abares.max_tries"),
   files = NULL
 ) {
   rlang::arg_match(
@@ -81,10 +78,7 @@ read_clum_terra <- function(
   if (is.null(files)) {
     files <- .get_clum(
       .data_set = data_set,
-      .cache = cache,
-      .max_tries = max_tries,
-      .timeout = timout,
-      .user_agent = user_agent
+      .cache = cache
     )
   }
   return(terra::rast(clum[grep("[.]tif$", clum)]))

@@ -6,7 +6,7 @@
 #' Columns are renamed for consistency with other \acronym{ABARES} products
 #'  serviced in this package using a snake_case format and ordered consistently.
 #'
-#' @returns A [data.table::data.table] object.
+#' @returns A [data.table::data.table()] object.
 #' @export
 #' @references <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
 #' @source <https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv>
@@ -19,11 +19,7 @@
 #' # or shorter
 #' read_est_by_perf_cat()
 #'
-read_estimates_by_performance_category <- function(
-  user_agent = getOption("read.abares.user_agent"),
-  max_tries = getOption("read.abares.max_tries"),
-  timout = getOption("read.abares.max_tries")
-) {
+read_estimates_by_performance_category <- function() {
   f <- fs::path(tempdir(), "fdp-BySize-ByPerformance.csv")
 
   .retry_download(

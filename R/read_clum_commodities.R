@@ -43,10 +43,7 @@
 #' @autoglobal
 #' @export
 read_clum_commodities <- function(
-  cache = getOption("read.abares.cache"),
-  user_agent = getOption("read.abares.user_agent"),
-  max_tries = getOption("read.abares.max_tries"),
-  timout = getOption("read.abares.max_tries")
+  cache = getOption("read.abares.cache")
 ) {
   if (missing(cache)) {
     cache <- getOption("read.abares.cache", default = FALSE)

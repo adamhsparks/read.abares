@@ -20,11 +20,7 @@
 #' # or shorter
 #' read_est_by_size()
 #'
-read_estimates_by_size <- read_est_by_size <- function(
-  user_agent = getOption("read.abares.user_agent"),
-  max_tries = getOption("read.abares.max_tries"),
-  timout = getOption("read.abares.max_tries")
-) {
+read_estimates_by_size <- read_est_by_size <- function() {
   f <- fs::path(tempdir(), "fdp-beta-performance-by-size.csv")
 
   .retry_download(

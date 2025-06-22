@@ -19,18 +19,11 @@
 #' @autoglobal
 #' @export
 
-read_abares_trade_regions <- function(
-  user_agent = getOption("read.abares.user_agent"),
-  max_tries = getOption("read.abares.max_tries"),
-  timout = getOption("read.abares.max_tries")
-) {
+read_abares_trade_regions <- function() {
   trade_regions <- fs::path(tempdir(), "trade_regions")
   .retry_download(
     url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/2",
-    .f = trade_regions,
-    .max_tries = max_tries,
-    .timeout = timout,
-    .user_agent = user_agent
+    .f = trade_regions
   )
 
   abares_trade_regions <- data.table::fread(trade_regions, fill = TRUE)

@@ -22,17 +22,6 @@
 #'  active \R session and cleaned up on exit.  If set to `TRUE`, files will be
 #'  cached locally for use between sessions.  See \dQuote{Caching} section for
 #'  more.
-#' @param cache_location Character string providing the file path to use for
-#'  cached files.  See \dQuote{Caching} section for for more.
-#' @param max_tries Integer providing the number of times that a file download
-#'  should be retried upon failure.  Defaults to 3.
-#' @param timeout Integer value providing the number of seconds to wait before
-#'  timing out a download request.  Defaults to 2000.
-#' @param user_agent Character string providing a custom user agent to pass
-#'  along with the download request for the server logs.
-#' @param files An optional [list()] object of file paths that provide the
-#'  location of local files to import.  If not provided, defaults to downloading
-#'  the data from \acronym{ABARES}.
 #'
 #' @details
 #'
@@ -75,7 +64,7 @@
 #'  `FALSE` by using `read.abares_options(read.abares.cache = TRUE)` or
 #'  `read.abares_options("read.abares.cache" = TRUE)`, respectively. Using the
 #'  argument in this function will override any options that are set globally.
-#'  See [read.abares-options] for more.
+#'  See [read.abares-options()] for more.
 #'
 #' @section Model scenarios:
 #'
@@ -215,10 +204,6 @@ read_agfd_dt <- function(
   fixed_prices = TRUE,
   yyyy = 1991:2003,
   cache = getOption("read.abares.cache"),
-  cache_location = getOption("read.abares.cache_location"),
-  user_agent = getOption("read.abares.user_agent"),
-  max_tries = getOption("read.abares.max_tries"),
-  timout = getOption("read.abares.max_tries"),
   files = NULL
 ) {
   if (missing(cache)) {
@@ -231,10 +216,6 @@ read_agfd_dt <- function(
       fixed_prices = fixed_prices,
       yyyy = yyyy,
       cache = cache,
-      cache_location = cache_location,
-      user_agent = user_agent,
-      max_tries = max_tries,
-      timeout = timeout,
       files = files
     )
   }

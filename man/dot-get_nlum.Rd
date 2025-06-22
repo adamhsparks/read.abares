@@ -7,7 +7,7 @@
 \url{https://doi.org/10.25814/w175-xh85}
 }
 \usage{
-.get_nlum(.data_set, .cache, .user_agent, .max_tries, .timeout)
+.get_nlum(.data_set, .cache)
 }
 \arguments{
 \item{.data_set}{A string value indicating the GeoTIFF desired for download.
@@ -30,15 +30,6 @@ with files being downloaded to \code{tempdir()} being available throughout the
 active \R session and cleaned up on exit.  If set to \code{TRUE}, files will be
 cached locally for use between sessions.  See \dQuote{Caching} section for
 more.}
-
-\item{.user_agent}{Character string providing a custom user agent to pass
-along with the download request for the server logs.}
-
-\item{.max_tries}{Integer providing the number of times that a file download
-should be retried upon failure.  Defaults to 3.}
-
-\item{.timeout}{Integer value providing the number of seconds to wait before
-timing out a download request.  Defaults to 2000.}
 }
 \value{
 A \code{read.abares.nlum} object, a list of GeoTIFF files containing

@@ -8,17 +8,9 @@
 \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0}
 }
 \usage{
-read_historical_forecast_database(
-  user_agent = getOption("read.abares.user_agent"),
-  max_tries = getOption("read.abares.max_tries"),
-  timout = getOption("read.abares.max_tries")
-)
+read_historical_forecast_database()
 
-read_historical_forecast(
-  user_agent = getOption("read.abares.user_agent"),
-  max_tries = getOption("read.abares.max_tries"),
-  timout = getOption("read.abares.max_tries")
-)
+read_historical_forecast()
 }
 \value{
 A \code{\link[data.table:data.table]{data.table::data.table()}} object.

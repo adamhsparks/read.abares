@@ -30,10 +30,6 @@ read_agfd_stars <- function(
   fixed_prices = TRUE,
   yyyy = 1991:2003,
   cache = getOption("read.abares.cache"),
-  cache_location = getOption("read.abares.cache_location"),
-  user_agent = getOption("read.abares.user_agent"),
-  max_tries = getOption("read.abares.max_tries"),
-  timout = getOption("read.abares.max_tries"),
   files = NULL
 ) {
   if (missing(cache)) {
@@ -45,10 +41,6 @@ read_agfd_stars <- function(
       fixed_prices = fixed_prices,
       yyyy = yyyy,
       cache = cache,
-      cache_location = cache_location,
-      user_agent = user_agent,
-      max_tries = max_tries,
-      timeout = timeout,
       files = files
     )
   }

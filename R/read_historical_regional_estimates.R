@@ -19,11 +19,7 @@
 #' # or shorter
 #' read_hist_reg_est()
 #'
-read_historical_regional_estimates <- read_hist_reg_est <- function(
-  user_agent = getOption("read.abares.user_agent"),
-  max_tries = getOption("read.abares.max_tries"),
-  timout = getOption("read.abares.max_tries")
-) {
+read_historical_regional_estimates <- read_hist_reg_est <- function() {
   f <- fs::path(tempdir(), "fdp-beta-regional-historical.csv")
 
   .retry_download(

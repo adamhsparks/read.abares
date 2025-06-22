@@ -4,15 +4,7 @@
 \alias{.get_agfd}
 \title{Get Australian Gridded Farm Data (AGFD) for local use}
 \usage{
-.get_agfd(
-  fixed_prices,
-  yyyy,
-  cache,
-  cache_location,
-  max_tries,
-  timeout,
-  user_agent
-)
+.get_agfd(fixed_prices, yyyy, cache)
 }
 \arguments{
 \item{fixed_prices}{Download historical climate and prices or historical
@@ -32,15 +24,6 @@ cached locally for use between sessions.}
 
 \item{cache_location}{Character string providing the file path to use for
 cached files.}
-
-\item{max_tries}{Integer providing the number of times that a file download
-should be retried upon failure.}
-
-\item{timeout}{Integer value providing the number of seconds to wait before
-timing out a download request.}
-
-\item{user_agent}{Character string providing a custom user agent to pass
-along with the download request for the server logs.}
 }
 \value{
 A \code{list()} object, a list of NetCDF files containing the

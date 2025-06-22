@@ -41,11 +41,7 @@
 
 .get_clum <- function(
   .data_set,
-  .cache,
-  .cache_location,
-  .user_agent,
-  .max_tries,
-  .timeout
+  .cache
 ) {
   download_file <- data.table::fifelse(
     .cache,
@@ -90,9 +86,6 @@
   .retry_download(
     url = file_url,
     .f = download_file,
-    .max_tries = .max_tries,
-    .timeout = .timeout,
-    .user_agent = .user_agent,
     .cache = .cache
   )
 

@@ -22,9 +22,6 @@ read_nlum_terra(
   data_set = c("Y201011", "Y201516", "C201021", "T201011", "T201516", "T202021",
     "P201011", "P201516", "P202021"),
   cache = getOption("read.abares.cache"),
-  user_agent = getOption("read.abares.user_agent"),
-  max_tries = getOption("read.abares.max_tries"),
-  timout = getOption("read.abares.max_tries"),
   ...
 )
 }
@@ -49,12 +46,6 @@ with files being downloaded to \code{tempdir()} being available throughout the
 active \R session and cleaned up on exit.  If set to \code{TRUE}, files will be
 cached locally for use between sessions.  See \dQuote{Caching} section for
 more.}
-
-\item{user_agent}{Character string providing a custom user agent to pass
-along with the download request for the server logs.}
-
-\item{max_tries}{Integer providing the number of times that a file download
-should be retried upon failure.  Defaults to 3.}
 
 \item{...}{Additional arguments passed to \code{\link[terra:rast]{terra::rast()}}, for \emph{e.g.},
 \code{activeCat} if you wished to set the active category when loading any of the
@@ -113,7 +104,7 @@ the file path used for caching. You may also set this globally to \code{TRUE} or
 \code{FALSE} by using \code{read.abares_options(read.abares.cache = TRUE)} or
 \code{read.abares_options("read.abares.cache" = TRUE)}, respectively. Using the
 argument in this function will override any options that are set globally.
-See \link{read.abares-options} for more.
+See \code{\link[=read.abares-options]{read.abares-options()}} for more.
 }
 
 \examples{

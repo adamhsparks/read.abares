@@ -18,12 +18,6 @@
 #'  cached locally for use between sessions.
 #' @param cache_location Character string providing the file path to use for
 #'  cached files.
-#' @param max_tries Integer providing the number of times that a file download
-#'  should be retried upon failure.
-#' @param timeout Integer value providing the number of seconds to wait before
-#'  timing out a download request.
-#' @param user_agent Character string providing a custom user agent to pass
-#'  along with the download request for the server logs.
 #'
 #' @examples
 #' agfd <- get_agfd()
@@ -38,11 +32,7 @@
 .get_agfd <- function(
   fixed_prices,
   yyyy,
-  cache,
-  cache_location,
-  max_tries,
-  timeout,
-  user_agent
+  cache
 ) {
   download_file <- data.table::fifelse(
     cache,

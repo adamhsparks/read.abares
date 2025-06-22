@@ -35,9 +35,6 @@
 
 read_aagis_regions <- function(
   cache = getOption("read.abares.cache"),
-  user_agent = getOption("read.abares.user_agent"),
-  max_tries = getOption("read.abares.max_tries"),
-  timout = getOption("read.abares.max_tries"),
   files = NULL
 ) {
   if (missing(cache)) {
@@ -50,6 +47,7 @@ read_aagis_regions <- function(
         aagis_regions_cache,
         "aagis.gpkg"
       ),
+      #TODO: set up quiet to match global here
       quiet = TRUE
     ))
   } else {

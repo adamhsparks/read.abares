@@ -20,10 +20,8 @@ clear_cache <- function() {
     fs::dir_delete(.find_user_cache())
   } else {
     cli::cli_inform(
-      c(
-        "There do not appear to be any files cached for {.pkg {{read.abares}}}
+      "There do not appear to be any files cached for {.pkg {{read.abares}}}
         that need to be cleared at this time."
-      )
     )
   }
   return(invisible(NULL))

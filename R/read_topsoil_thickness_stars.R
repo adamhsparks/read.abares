@@ -30,17 +30,11 @@
 
 read_topsoil_thickness_stars <- function(
   cache = getOption("read.abares.cache"),
-  user_agent = getOption("read.abares.user_agent"),
-  max_tries = getOption("read.abares.max_tries"),
-  timout = getOption("read.abares.max_tries"),
   files = NULL
 ) {
   if (is.null(files)) {
     files <- get_topsoil_thickness(
-      cache = cache,
-      user_agent = user_agent,
-      max_tries = max_tries,
-      timout = timout
+      cache = cache
     )
   }
   stars::read_stars(as.character(files$GTiff))
