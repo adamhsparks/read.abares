@@ -118,6 +118,16 @@ You might note that not all ABARES data are serviced by this package.
 The list is hand-picked to be reasonably useful and maintainable, _i.e._, frequently updated values are not included in this, _e.g._, [Australian crop reports](https://daff.ent.sirsidynix.net.au/client/en_AU/ABARES/search/results?te=ASSET&st=PD#).
 However, if there is a data set that you feel would be useful to be serviced by {read.abares}, please feel free to [open an issue](https://github.com/adamhsparks/read.abares/issues/new) with details about the data set or better yet, open a pull request!
 
+## Note for Linux Installers
+
+If you are using Linux, you will likely need to install several system-level libraries, {pak} will do it's best to install most of them but some may not be installable this way.
+For NECTAR with a fresh Ubuntu image, you can use the following command to install system libraries to install {pak} and then {read.abares}.
+In your Linux terminal (not your R console, the "terminal" tab in RStudio should do here in most cases) type:
+
+```bash
+sudo apt update && sudo apt install libcurl4-openssl-dev libgdal-dev gdal-bin libgeos-dev libproj-dev libsqlite3-dev libudunits2-dev libxml2-dev
+```
+
 ## Metadata
 
 Please report any [issues or bugs](https://github.com/adamhsparks/read.abares/issues).
@@ -133,11 +143,19 @@ Citing {read.abares}: When citing the use of this package, please use,
 
 ``` r
 library("read.abares")
+#> 
+#> Attaching package: 'read.abares'
+#> The following object is masked from 'package:graphics':
+#> 
+#>     plot
+#> The following objects are masked from 'package:base':
+#> 
+#>     levels, plot
 citation("read.abares")
 #> To cite package 'read.abares' in publications use:
 #> 
 #>   Sparks A (????). _read.abares: Simple downloading and importing of
-#>   ABARES Data_. R package version 1.0.1,
+#>   ABARES Data_. R package version 2.0.0,
 #>   <https://adamhsparks.github.io/read.abares/>.
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -145,7 +163,7 @@ citation("read.abares")
 #>   @Manual{,
 #>     title = {{read.abares}: Simple downloading and importing of ABARES Data},
 #>     author = {Adam H. Sparks},
-#>     note = {R package version 1.0.1},
+#>     note = {R package version 2.0.0},
 #>     url = {https://adamhsparks.github.io/read.abares/},
 #>   }
 ```
