@@ -121,7 +121,7 @@ However, if there is a data set that you feel would be useful to be serviced by 
 ## Note for Linux Installers
 
 If you are using Linux, you will likely need to install several system-level libraries, {pak} will do it's best to install most of them but some may not be installable this way.
-For NECTAR with a fresh Ubuntu image, you can use the following command to install system libraries to install {pak} and then {read.abares}.
+For [Nectar](https://ardc.edu.au/services/ardc-nectar-research-cloud/k with a fresh Ubuntu image, you can use the following command to install system libraries to install {pak} and then {read.abares}.
 In your Linux terminal (not your R console, the "terminal" tab in RStudio should do here in most cases) type:
 
 ```bash
@@ -148,14 +148,14 @@ library("read.abares")
 #> The following object is masked from 'package:graphics':
 #> 
 #>     plot
-#> The following objects are masked from 'package:base':
+#> The following object is masked from 'package:base':
 #> 
-#>     levels, plot
+#>     plot
 citation("read.abares")
 #> To cite package 'read.abares' in publications use:
 #> 
 #>   Sparks A (????). _read.abares: Simple downloading and importing of
-#>   ABARES Data_. R package version 2.0.0,
+#>   ABARES Data_. R package version 1.0.1,
 #>   <https://adamhsparks.github.io/read.abares/>.
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -163,7 +163,7 @@ citation("read.abares")
 #>   @Manual{,
 #>     title = {{read.abares}: Simple downloading and importing of ABARES Data},
 #>     author = {Adam H. Sparks},
-#>     note = {R package version 2.0.0},
+#>     note = {R package version 1.0.1},
 #>     url = {https://adamhsparks.github.io/read.abares/},
 #>   }
 ```
