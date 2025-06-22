@@ -8,12 +8,20 @@
 \url{https://www.agriculture.gov.au/sites/default/files/documents/fdp-state-historical.csv}
 }
 \usage{
-read_historical_state_estimates()
+read_historical_state_estimates(
+  user_agent = getOption("read.abares.user_agent"),
+  max_tries = getOption("read.abares.max_tries"),
+  timout = getOption("read.abares.max_tries")
+)
 
-read_hist_sta_est()
+read_hist_sta_est(
+  user_agent = getOption("read.abares.user_agent"),
+  max_tries = getOption("read.abares.max_tries"),
+  timout = getOption("read.abares.max_tries")
+)
 }
 \value{
-A \link[data.table:data.table]{data.table::data.table} object with the \code{Variable} field as the
+A \code{\link[data.table:data.table]{data.table::data.table()}} object with the \code{Variable} field as the
 \code{key}.
 }
 \description{

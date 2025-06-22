@@ -12,7 +12,8 @@
 \item{class}{An S3 class to validate against.}
 }
 \value{
-Nothing, called for its side-effects of class validation.
+An invisible \code{NULL}, called for its side-effects of class
+validation.
 }
 \description{
 Check for read.abares.something S3 class

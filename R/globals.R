@@ -4,8 +4,13 @@ utils::globalVariables(c(
   "cache", # <.get_clum>
   "data_set", # <.get_nlum>
   "Year_month", # <.download_abares_trade>
+  "timeout", # <read_agfd_dt>
   "lat", # <read_agfd_dt>
   "lon", # <read_agfd_dt>
+  "timeout", # <read_agfd_stars>
+  "timeout", # <read_agfd_terra>
+  "clum", # <read_clum_stars>
+  "clum", # <read_clum_terra>
   "Month_issued", # <read_historical_forecast_database>
   NULL
 ))

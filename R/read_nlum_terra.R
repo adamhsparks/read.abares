@@ -38,12 +38,12 @@
 #'  [view_nlum_metadata_pdf()].
 #'
 #' @inheritParams read_nlum_stars
-#' @inheritParams get_agfd
+#' @inheritParams read_agfd_dt
 #' @param ... Additional arguments passed to [terra::rast()], for *e.g.*,
 #'  `activeCat` if you wished to set the active category when loading any of the
 #'  available GeoTIFF files that are encoded with a raster attribute table.
 #'
-#' @inheritSection get_agfd Caching
+#' @inheritSection read_agfd_dt Caching
 #'
 #'
 #' @references
@@ -91,6 +91,9 @@ read_nlum_terra <- function(
     "P202021"
   ),
   cache = getOption("read.abares.cache"),
+  user_agent = getOption("read.abares.user_agent"),
+  max_tries = getOption("read.abares.max_tries"),
+  timout = getOption("read.abares.max_tries"),
   ...
 ) {
   rlang::arg_match(data_set)

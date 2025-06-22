@@ -4,27 +4,25 @@
 \alias{.retry_download}
 \title{Use httr2 to fetch a file with retries}
 \usage{
-.retry_download(
-  url,
-  .f,
-  max_tries = getOption("read.abares.max_tries"),
-  user_agent = getOption("read.abares.user_agent")
-)
+.retry_download(url, .f, .max_tries, .user_agent, .timout)
 }
 \arguments{
-\item{url}{\code{Character} The URL being requested.}
+\item{url}{Character the URL being requested.}
 
-\item{.f}{\code{Character} A filepath to be written to local storage.}
+\item{.f}{Character` a filepath to be written to local storage.}
 
-\item{max_tries}{\code{Integer} The number of times to retry downloading the file
-before failing. Defaults to 3. Can be set globally via \code{options()}.}
+\item{.max_tries}{Integer the number of times to retry downloading the file
+before failing.}
 
-\item{user_agent}{\code{Character} A string value with a custom user-defined user-
-agent. Defaults to "read.abares". Can be set globally via \code{options()}.}
+\item{.user_agent}{Character a string value with a custom user-defined
+user-agent.}
+
+\item{.timout}{Integer maximum number of seconds to wait before timing out
+the request.}
 }
 \value{
-Called for its side-effects, writes an object to the \code{tempdir()} for
-reading into the active \R session later.
+An invisible \code{NULL}, called for its side-effects, writes an object
+to the \code{tempdir()} for reading into the active \R session later.
 }
 \description{
 Retries to download the requested resource before stopping. Uses

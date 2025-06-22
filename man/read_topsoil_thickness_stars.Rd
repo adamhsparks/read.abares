@@ -7,13 +7,30 @@
 \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
 }
 \usage{
-read_topsoil_thickness_stars(cache = getOption("read.abares.cache"))
+read_topsoil_thickness_stars(
+  cache = getOption("read.abares.cache"),
+  user_agent = getOption("read.abares.user_agent"),
+  max_tries = getOption("read.abares.max_tries"),
+  timout = getOption("read.abares.max_tries"),
+  files = NULL
+)
 }
 \arguments{
-\item{cache}{Cache the files after download? Defaults to \code{FALSE} with files
-being downloaded to \code{tempdir()} being available throughout the active \R
-session and cleaned up on exit. If set to \code{TRUE}, files will be cached
-locally for use between sessions. See \dQuote{Caching} section for more.}
+\item{cache}{Boolean cache the files after download? Defaults to \code{FALSE}
+with files being downloaded to \code{tempdir()} being available throughout the
+active \R session and cleaned up on exit.  If set to \code{TRUE}, files will be
+cached locally for use between sessions.  See \dQuote{Caching} section for
+more.}
+
+\item{user_agent}{Character string providing a custom user agent to pass
+along with the download request for the server logs.}
+
+\item{max_tries}{Integer providing the number of times that a file download
+should be retried upon failure.  Defaults to 3.}
+
+\item{files}{An optional \code{\link[=list]{list()}} object of file paths that provide the
+location of local files to import.  If not provided, defaults to downloading
+the data from \acronym{ABARES}.}
 
 \item{...}{Additional arguments passed to \code{\link[terra:rast]{terra::rast()}}, for \emph{e.g.},
 \code{activeCat} if you wished to set the active category when loading any of the

@@ -1,9 +1,9 @@
-#' Find the file path to your local \R cache directory
+#' Find the file path to your local R cache directory
 #'
-#' @returns A `character` string value of a file path indicating the proper
+#' @returns A character string value of a file path indicating the proper
 #'  directory to use for cached files.
-#' @dev
 #' @autoglobal
+#' @dev
 .find_user_cache <- function() {
   getOption(
     "read.abares.cache_location",
@@ -16,7 +16,8 @@
 #' @param x An object for validating.
 #' @param class An S3 class to validate against.
 #'
-#' @returns Nothing, called for its side-effects of class validation.
+#' @returns An invisible `NULL`, called for its side-effects of class
+#'  validation.
 #' @autoglobal
 #' @dev
 .check_class <- function(x, class) {
@@ -26,19 +27,23 @@
       call = rlang::caller_env()
     )
   }
+  return(invisible(NULL))
 }
+
 
 #' Use httr2 to fetch a file with retries
 #'
 #' Retries to download the requested resource before stopping. Uses
 #'  \CRANpkg{httr2} to cache in-session results in the `tempdir()`.
 #'
-#' @param url `Character` The URL being requested.
-#' @param .f `Character` A filepath to be written to local storage.
-#' @param max_tries `Integer` The number of times to retry downloading the file
-#'  before failing. Defaults to 3. Can be set globally via `options()`.
-#' @param user_agent `Character` A string value with a custom user-defined user-
-#'  agent. Defaults to "read.abares". Can be set globally via `options()`.
+#' @param url Character the URL being requested.
+#' @param .f Character` a filepath to be written to local storage.
+#' @param .max_tries Integer the number of times to retry downloading the file
+#'  before failing.
+#' @param .user_agent Character a string value with a custom user-defined
+#'  user-agent.
+#' @param .timout Integer maximum number of seconds to wait before timing out
+#'  the request.
 #'
 #' @examples
 #'
@@ -48,16 +53,16 @@
 #'   .f = f
 #' )
 #'
-#' @returns Called for its side-effects, writes an object to the `tempdir()` for
-#'   reading into the active \R session later.
+#' @returns An invisible `NULL`, called for its side-effects, writes an object
+#'  to the `tempdir()` for reading into the active \R session later.
 #' @dev
 
 .retry_download <- function(
   url,
   .f,
-  .max_tries = getOption("readabares.max_tries"),
-  .user_agent = getOption("readabares.user_agent"),
-  .timout = timeout
+  .max_tries,
+  .user_agent,
+  .timout
 ) {
   httr2::request(base_url = url) |>
     httr2::req_user_agent(.user_agent) |>
@@ -73,4 +78,5 @@
     httr2::req_perform() |>
     httr2::resp_body_raw() |>
     brio::write_file_raw(path = .f)
+  return(invisible(NULL))
 }

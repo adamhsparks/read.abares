@@ -8,9 +8,17 @@
 \url{https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv}
 }
 \usage{
-read_estimates_by_performance_category()
+read_estimates_by_performance_category(
+  user_agent = getOption("read.abares.user_agent"),
+  max_tries = getOption("read.abares.max_tries"),
+  timout = getOption("read.abares.max_tries")
+)
 
-read_est_by_perf_cat()
+read_est_by_perf_cat(
+  user_agent = getOption("read.abares.user_agent"),
+  max_tries = getOption("read.abares.max_tries"),
+  timout = getOption("read.abares.max_tries")
+)
 }
 \value{
 A \link[data.table:data.table]{data.table::data.table} object.

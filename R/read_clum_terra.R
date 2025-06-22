@@ -34,9 +34,9 @@
 #'  [view_clum_metadata_pdf()].
 #'
 #' @inheritParams read_clum_stars
-#' @inheritParams get_agfd
+#' @inheritParams read_agfd_dt
 #'
-#' @inheritSection get_agfd Caching
+#' @inheritSection read_agfd_dt Caching
 #'
 #' @references
 #' ABARES 2024, Catchment Scale Land Use of Australia – Update December 2023
@@ -57,14 +57,18 @@
 #'
 #' plot(clum_terra)
 #'
-#' @returns A [terra::rast()] object that may be one or many layers depending upon
-#'  the requested data set.
+#' @returns A [terra::rast()] object that may be one or many layers depending
+#'  upon the requested data set.
 #' @family clum
 #' @autoglobal
 #' @export
 read_clum_terra <- function(
   data_set = "clum_50m_2023_v2",
-  cache = getOption("read.abares.cache")
+  cache = getOption("read.abares.cache"),
+  user_agent = getOption("read.abares.user_agent"),
+  max_tries = getOption("read.abares.max_tries"),
+  timout = getOption("read.abares.max_tries"),
+  files = NULL
 ) {
   rlang::arg_match(
     data_set,
@@ -75,6 +79,14 @@ read_clum_terra <- function(
     cache <- getOption("read.abares.cache", default = FALSE)
   }
 
-  clum <- .get_clum(.data_set = data_set, .cache = cache)
+  if (is.null(files)) {
+    files <- .get_clum(
+      .data_set = data_set,
+      .cache = cache,
+      .max_tries = max_tries,
+      .timeout = timout,
+      .user_agent = user_agent
+    )
+  }
   return(terra::rast(clum[grep("[.]tif$", clum)]))
 }

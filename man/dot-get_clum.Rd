@@ -7,7 +7,14 @@
 \url{https://10.25814/2w2p-ph98}.
 }
 \usage{
-.get_clum(.data_set, .cache)
+.get_clum(
+  .data_set,
+  .cache,
+  .cache_location,
+  .user_agent,
+  .max_tries,
+  .timeout
+)
 }
 \arguments{
 \item{.data_set}{A string value indicating the data desired for download.
@@ -17,16 +24,34 @@ One of:
 \item{scale_date_update}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
 \item{CLUM_Commodities_2023}{Catchment Scale Land Use of Australia – Commodities – Update December 2023}
 }.}
+
+\item{.cache}{Boolean cache the files after download? Defaults to \code{FALSE}
+with files being downloaded to \code{tempdir()} being available throughout the
+active \R session and cleaned up on exit.  If set to \code{TRUE}, files will be
+cached locally for use between sessions.  See \dQuote{Caching} section for
+more.}
+
+\item{.cache_location}{Character string providing the file path to use for
+cached files.  See \dQuote{Caching} section for for more.}
+
+\item{.user_agent}{Character string providing a custom user agent to pass
+along with the download request for the server logs.}
+
+\item{.max_tries}{Integer providing the number of times that a file download
+should be retried upon failure.  Defaults to 3.}
+
+\item{.timeout}{Integer value providing the number of seconds to wait before
+timing out a download request.  Defaults to 2000.}
 }
 \value{
 A \code{read.abares.clum} object, a list of files containing a spatial
 data file of or related to Australian catchment scale land use data.
 }
 \description{
-An internal function used by \link{read_clum_terra} and \link{read_clum_stars} or
-\link{read_clum_commodities} that downloads catchment level land use data files,
-unzips the download file and deletes unnecessary files that are included in
-the download.  Data are cached on request.
+An internal function used by \code{\link[=read_clum_terra]{read_clum_terra()}} and \code{\link[=read_clum_stars]{read_clum_stars()}} or
+\code{\link[=read_clum_commodities]{read_clum_commodities()}} that downloads catchment level land use data
+files, unzips the download file and deletes unnecessary files that are
+included in the download.  Data are cached on request.
 }
 \details{
 The \code{CLUM_50m_2023v2} and \code{date_CLUM2023} datasets are available as GeoTIFF

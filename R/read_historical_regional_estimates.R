@@ -6,7 +6,7 @@
 #' Columns are renamed for consistency with other \acronym{ABARES} products
 #'  serviced in this package using a snake_case format and ordered consistently.
 #'
-#' @returns A [data.table::data.table] object with the `Variable` field as the
+#' @returns A [data.table::data.table()] object with the `Variable` field as the
 #'  `key`.
 #' @autoglobal
 #' @family Estimates
@@ -19,7 +19,11 @@
 #' # or shorter
 #' read_hist_reg_est()
 #'
-read_historical_regional_estimates <- read_hist_reg_est <- function() {
+read_historical_regional_estimates <- read_hist_reg_est <- function(
+  user_agent = getOption("read.abares.user_agent"),
+  max_tries = getOption("read.abares.max_tries"),
+  timout = getOption("read.abares.max_tries")
+) {
   f <- fs::path(tempdir(), "fdp-beta-regional-historical.csv")
 
   .retry_download(

@@ -7,7 +7,11 @@
 \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/2}
 }
 \usage{
-read_abares_trade_regions()
+read_abares_trade_regions(
+  user_agent = getOption("read.abares.user_agent"),
+  max_tries = getOption("read.abares.max_tries"),
+  timout = getOption("read.abares.max_tries")
+)
 }
 \value{
 A \CRANpkg{data.table} object of the \acronym{ABARES} trade data

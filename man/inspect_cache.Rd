@@ -7,19 +7,19 @@
 inspect_cache(recurse = FALSE)
 }
 \arguments{
-\item{recurse}{\code{Boolean} value indicating whether or not to \link[fs:dir_ls]{fs::dir_ls} in
+\item{recurse}{Boolean value indicating whether or not to \code{\link[fs:dir_ls]{fs::dir_ls()}} in
 subdirectories of the cache directory. Defaults to \code{FALSE} returning only
 the top-level directories and files contained in the cache directory.}
 }
 \value{
-An \link[fs:path]{fs::path} object containing directories or files in the cache.
+An \code{\link[fs:path]{fs::path()}} object containing directories or files in the cache.
 }
 \description{
 Check what files exist in your \pkg{read.abares} file cache.  This function
 will always return full file names, \emph{i.e.}, the directory path is prepended
 by default.  See the help file for \link[fs:dir_ls]{fs::dir_ls} for more on returning full
 paths.  If you wish to strip the full path and only return the directory or
-file names, see \link[fs:path_file]{fs::path_file} or \link[fs:path_file]{fs::path_dir}. See examples for more.
+file names, see \code{\link[fs:path_file]{fs::path_file()}} or \code{\link[fs:path_file]{fs::path_dir()}}.
 }
 \examples{
 # not run because cached files shouldn't exist on CRAN or testing envs

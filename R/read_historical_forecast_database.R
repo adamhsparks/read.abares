@@ -30,7 +30,7 @@
 #' @references <https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/historical-forecasts#:~:text=About%20the%20historical%20agricultural%20forecast,relevant%20to%20Australian%20agricultural%20markets>
 #' @source <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0>
 #'
-#' @returns A [data.table::data.table] object.
+#' @returns A [data.table::data.table()] object.
 #'
 #' @autoglobal
 #' @export
@@ -41,7 +41,11 @@
 #' # or shorter
 #' read_historical_forecast()
 #'
-read_historical_forecast_database <- function() {
+read_historical_forecast_database <- function(
+  user_agent = getOption("read.abares.user_agent"),
+  max_tries = getOption("read.abares.max_tries"),
+  timout = getOption("read.abares.max_tries")
+) {
   f <- fs::path(tempdir(), "historical_db.xlsx")
 
   .retry_download(
@@ -85,8 +89,7 @@ read_historical_forecast_database <- function() {
     )
   )
 
-  x[
-    ,
+  x[,
     Month_issued := data.table::fcase(
       Month_issued == "January",
       1L,

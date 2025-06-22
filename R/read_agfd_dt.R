@@ -8,31 +8,31 @@
 #'  climate and fixed prices as described in  (Hughes *et al.* 2022). Defaults
 #'  to `TRUE` and downloads the data with historical climate and fixed prices
 #'  \dQuote{to isolate the effects of climate variability on financial incomes
-#'  for broadacre farm businesses} (ABARES 2024). Using `TRUE` will download
+#'  for broadacre farm businesses} (ABARES 2024).  Using `TRUE` will download
 #'  simulations where global output and input price indexes are fixed at values
 #'  from the most recently completed financial year.
 #' @param yyyy Returns only data for the specified year or years for climate
 #'  data (fixed prices) or the years for historical climate and prices depending
 #'  upon the setting of `fixed_prices`.  Note that this will still download the
 #'  entire data set, that cannot be avoided, but will only return the
-#'  requested year(s) in your \R session. Valid years are from 1991 to 2023
+#'  requested year(s) in your \R session.  Valid years are from 1991 to 2023
 #'  inclusive.
 #' @param cache Boolean cache the files after download? Defaults to `FALSE`
 #'  with files being downloaded to `tempdir()` being available throughout the
-#'  active \R session and cleaned up on exit. If set to `TRUE`, files will be
-#'  cached locally for use between sessions. See \dQuote{Caching} section for
+#'  active \R session and cleaned up on exit.  If set to `TRUE`, files will be
+#'  cached locally for use between sessions.  See \dQuote{Caching} section for
 #'  more.
 #' @param cache_location Character string providing the file path to use for
 #'  cached files.  See \dQuote{Caching} section for for more.
 #' @param max_tries Integer providing the number of times that a file download
-#'  should be retried upon failure. Defaults to 3.
+#'  should be retried upon failure.  Defaults to 3.
 #' @param timeout Integer value providing the number of seconds to wait before
-#'  timing out a download request. Defaults to 2000.
+#'  timing out a download request.  Defaults to 2000.
 #' @param user_agent Character string providing a custom user agent to pass
 #'  along with the download request for the server logs.
 #' @param files An optional [list()] object of file paths that provide the
-#'  location of local \acronym{AGFD} NetCDF files to import.  If not provided,
-#'  defaults to downloading the data from \acronym{ABARES}.
+#'  location of local files to import.  If not provided, defaults to downloading
+#'  the data from \acronym{ABARES}.
 #'
 #' @details
 #'

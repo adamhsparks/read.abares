@@ -2,8 +2,8 @@
 #'
 #' Fetches topsoil thickness data and associated metadata from \acronym{ABARES}.
 #'
-#' @inheritParams get_agfd
-#' @inheritSection get_agfd Caching
+#' @inheritParams read_agfd_dt
+#' @inheritSection read_agfd_dt Caching
 #'
 #' @note
 #' A custom `print()` method is provided that will print the metadata associated

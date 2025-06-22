@@ -1,9 +1,9 @@
 #' Get catchment scale Land Use of Australia data for local use
 #'
-#' An internal function used by [read_clum_terra] and [read_clum_stars] or
-#'  [read_clum_commodities] that downloads catchment level land use data files,
-#'  unzips the download file and deletes unnecessary files that are included in
-#'  the download.  Data are cached on request.
+#' An internal function used by [read_clum_terra()] and [read_clum_stars()] or
+#'  [read_clum_commodities()] that downloads catchment level land use data
+#'  files, unzips the download file and deletes unnecessary files that are
+#'  included in the download.  Data are cached on request.
 #'
 #' @param .data_set A string value indicating the data desired for download.
 #' One of:
@@ -12,7 +12,7 @@
 #'  \item{scale_date_update}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
 #'  \item{CLUM_Commodities_2023}{Catchment Scale Land Use of Australia – Commodities – Update December 2023}
 #' }.
-#'
+#' @inheritParams read_agfd_dt
 #' @details
 #' The `CLUM_50m_2023v2` and `date_CLUM2023` datasets are available as GeoTIFF
 #'  files. The `CLUM_Commodities_2023` dataset is available as a shapefile.
@@ -39,7 +39,14 @@
 #' @autoglobal
 #' @dev
 
-.get_clum <- function(.data_set, .cache) {
+.get_clum <- function(
+  .data_set,
+  .cache,
+  .cache_location,
+  .user_agent,
+  .max_tries,
+  .timeout
+) {
   download_file <- data.table::fifelse(
     .cache,
     fs::path(.find_user_cache(), "clum", sprintf("%s.zip", .data_set)),
@@ -80,7 +87,14 @@
     )
   )
 
-  .retry_download(url = file_url, .f = download_file)
+  .retry_download(
+    url = file_url,
+    .f = download_file,
+    .max_tries = .max_tries,
+    .timeout = .timeout,
+    .user_agent = .user_agent,
+    .cache = .cache
+  )
 
   tryCatch(
     {

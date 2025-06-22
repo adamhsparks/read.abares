@@ -3,7 +3,7 @@
 #' Read 'Australian Gridded Farm Data' (\acronym{AGFD}) as a list of
 #'  \CRANpkg{stars} objects.
 #'
-#' @inherit get_agfd details
+#' @inherit read_agfd_dt details
 #' @inheritParams read_agfd_dt
 #' @inheritSection read_agfd_dt Model scenarios
 #' @inheritSection read_agfd_dt Data files

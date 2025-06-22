@@ -19,7 +19,11 @@
 #' # or shorter
 #' read_est_by_perf_cat()
 #'
-read_estimates_by_performance_category <- function() {
+read_estimates_by_performance_category <- function(
+  user_agent = getOption("read.abares.user_agent"),
+  max_tries = getOption("read.abares.max_tries"),
+  timout = getOption("read.abares.max_tries")
+) {
   f <- fs::path(tempdir(), "fdp-BySize-ByPerformance.csv")
 
   .retry_download(

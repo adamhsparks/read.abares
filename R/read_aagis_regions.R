@@ -15,8 +15,8 @@
 #'  data for mapping state historical estimate values found in the
 #'  [data.table::data.table()] from [read_historical_state_estimates()].
 #'
-#' @inheritParams get_agfd
-#' @inheritSection get_agfd Caching
+#' @inheritParams read_agfd_dt
+#' @inheritSection read_agfd_dt Caching
 #'
 #' @examplesIf interactive()
 #' aagis <- read_aagis_regions()
@@ -33,7 +33,13 @@
 #' @autoglobal
 #' @export
 
-read_aagis_regions <- function(cache = getOption("read.abares.cache")) {
+read_aagis_regions <- function(
+  cache = getOption("read.abares.cache"),
+  user_agent = getOption("read.abares.user_agent"),
+  max_tries = getOption("read.abares.max_tries"),
+  timout = getOption("read.abares.max_tries"),
+  files = NULL
+) {
   if (missing(cache)) {
     cache <- getOption("read.abares.cache", default = FALSE)
   }

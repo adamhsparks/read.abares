@@ -51,7 +51,7 @@
 #'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 #'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 #' }.
-#' @inheritParams get_agfd
+#' @inheritParams read_agfd_dt
 #' @param active_cat A string value or integer indicating the active category to
 #'  be used for the raster. Note that this value is dependent upon the
 #'  `data_set` chosen and will always default to the first column of the
@@ -59,7 +59,7 @@
 #' @param ... Additional arguments passed to [stars::read_stars], for *e.g.*,
 #'  `RAT` if you wish to set the active category when loading any of the
 #'  available GeoTIFF files that are encoded with a raster attribute table.
-#' @inheritSection get_agfd Caching
+#' @inheritSection read_agfd_dt Caching
 #'
 #' @references
 #' ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
@@ -106,6 +106,9 @@ read_nlum_stars <- function(
     "P202021"
   ),
   cache = getOption("read.abares.cache"),
+  user_agent = getOption("read.abares.user_agent"),
+  max_tries = getOption("read.abares.max_tries"),
+  timout = getOption("read.abares.max_tries"),
   ...
 ) {
   rlang::arg_match(data_set)

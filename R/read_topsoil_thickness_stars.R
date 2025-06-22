@@ -3,12 +3,12 @@
 #' Read Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1
 #'  data as a \CRANpkg{stars} object.
 #'
-#' @inheritParams get_agfd
+#' @inheritParams read_agfd_dt
 #' @param ... Additional arguments passed to [terra::rast()], for *e.g.*,
 #'  `activeCat` if you wished to set the active category when loading any of the
 #'  available GeoTIFF files that are encoded with a raster attribute table.
 #'
-#' @inheritSection get_agfd Caching
+#' @inheritSection read_agfd_dt Caching
 #'
 #'
 #' @references
@@ -28,7 +28,20 @@
 #' @autoglobal
 #' @export
 
-read_topsoil_thickness_stars <- function(cache = getOption("read.abares.cache")) {
-  files <- get_topsoil_thickness(cache = cache)
+read_topsoil_thickness_stars <- function(
+  cache = getOption("read.abares.cache"),
+  user_agent = getOption("read.abares.user_agent"),
+  max_tries = getOption("read.abares.max_tries"),
+  timout = getOption("read.abares.max_tries"),
+  files = NULL
+) {
+  if (is.null(files)) {
+    files <- get_topsoil_thickness(
+      cache = cache,
+      user_agent = user_agent,
+      max_tries = max_tries,
+      timout = timout
+    )
+  }
   stars::read_stars(as.character(files$GTiff))
 }

@@ -38,12 +38,12 @@
 #'   \item{clum_50m_2023_v2}{ (default)},
 #'   \item{scale_date_update}{}
 #' }.
-#' @inheritParams get_agfd
+#' @inheritParams read_agfd_dt
 #' @param active_cat A string value or integer indicating the active category to
 #'  be used for the raster. Note that this value is dependent upon the
 #'  `data_set` chosen and will always default to the first column of the
 #'  attribute table for the requested data.
-#' @inheritSection get_agfd Caching
+#' @inheritSection read_agfd_dt Caching
 #'
 #' @references
 #' ABARES 2024, Catchment Scale Land Use of Australia – Update December 2023
@@ -68,7 +68,11 @@
 #' @export
 read_clum_stars <- function(
   data_set = "clum_50m_2023_v2",
-  cache = getOption("read.abares.cache")
+  cache = getOption("read.abares.cache"),
+  user_agent = getOption("read.abares.user_agent"),
+  max_tries = getOption("read.abares.max_tries"),
+  timout = getOption("read.abares.max_tries"),
+  files = NULL
 ) {
   rlang::arg_match(
     data_set,
@@ -79,6 +83,14 @@ read_clum_stars <- function(
     cache <- getOption("read.abares.cache", default = FALSE)
   }
 
-  clum <- .get_clum(.data_set = data_set, .cache = cache)
-  return(stars::read_stars(clum[grep("[.]tif$", clum)]))
+  if (is.null(files)) {
+    files <- .get_clum(
+      .data_set = data_set,
+      .cache = cache,
+      .max_tries = max_tries,
+      .timeout = timout,
+      .user_agent = user_agent
+    )
+  }
+  return(stars::read_stars(clum[grep("[.]tif$", files)]))
 }

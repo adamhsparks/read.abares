@@ -6,7 +6,7 @@
 #' Columns are renamed for consistency with other \acronym{ABARES} products
 #'  serviced in this package using a snake_case format and ordered consistently.
 #'
-#' @returns A [data.table::data.table] object with the `Variable` field as the
+#' @returns A [data.table::data.table()] object with the `Variable` field as the
 #'  `key`.
 #' @references <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
 #' @source <https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv>
@@ -20,7 +20,11 @@
 #' # or shorter
 #' read_est_by_size()
 #'
-read_estimates_by_size <- read_est_by_size <- function() {
+read_estimates_by_size <- read_est_by_size <- function(
+  user_agent = getOption("read.abares.user_agent"),
+  max_tries = getOption("read.abares.max_tries"),
+  timout = getOption("read.abares.max_tries")
+) {
   f <- fs::path(tempdir(), "fdp-beta-performance-by-size.csv")
 
   .retry_download(

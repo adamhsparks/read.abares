@@ -9,8 +9,8 @@
 #'  serviced in this package using a snake_case format and ordered
 #'  consistently.
 #'
-#' @inheritParams get_agfd
-#' @inheritSection get_agfd Caching
+#' @inheritParams read_agfd_dt
+#' @inheritSection read_agfd_dt Caching
 #'
 #' @note The cached file is not the same as the raw file that is available for
 #'  download. It will follow the renaming scheme and filling values that this
@@ -28,7 +28,12 @@
 #' @autoglobal
 #' @export
 
-read_abares_trade <- function(cache = getOption("read.abares.cache")) {
+read_abares_trade <- function(
+  cache = getOption("read.abares.cache"),
+  user_agent = getOption("read.abares.user_agent"),
+  max_tries = getOption("read.abares.max_tries"),
+  timout = getOption("read.abares.max_tries")
+) {
   if (missing(cache)) {
     cache <- getOption("read.abares.cache", default = FALSE)
   }
@@ -40,7 +45,7 @@ read_abares_trade <- function(cache = getOption("read.abares.cache")) {
   if (fs::file_exists(abares_trade_gz)) {
     return(data.table::fread(abares_trade_gz))
   } else {
-    return(.download_abares_trade(cache))
+    return(.download_abares_trade(cache, user_agent, max_tries, timout))
   }
 }
 
@@ -58,7 +63,7 @@ read_abares_trade <- function(cache = getOption("read.abares.cache")) {
 #' @noRd
 #' @autoglobal
 #' @keywords Internal
-.download_abares_trade <- function(cache) {
+.download_abares_trade <- function(cache, user_agent, max_tries, timeout) {
   abares_trade_dir <- fs::path(.find_user_cache(), "abares_trade_dir/")
   if (cache && !fs::dir_exists(abares_trade_dir)) {
     fs::dir_create(abares_trade_dir, recurse = TRUE)
@@ -68,7 +73,10 @@ read_abares_trade <- function(cache = getOption("read.abares.cache")) {
 
   .retry_download(
     url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/1",
-    .f = trade_zip
+    .f = trade_zip,
+    .user_agent = user_agent,
+    .max_tries = max_tries,
+    .timeout = timeout
   )
 
   abares_trade <- data.table::fread(trade_zip)

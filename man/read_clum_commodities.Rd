@@ -7,13 +7,25 @@
 \url{https://data.gov.au/data/dataset/catchment-scale-land-use-of-australia-and-commodities-update-december-2023/resource/b216cf90-f4f0-4d88-980f-af7d1ad746cb}
 }
 \usage{
-read_clum_commodities(cache = getOption("read.abares.cache"))
+read_clum_commodities(
+  cache = getOption("read.abares.cache"),
+  user_agent = getOption("read.abares.user_agent"),
+  max_tries = getOption("read.abares.max_tries"),
+  timout = getOption("read.abares.max_tries")
+)
 }
 \arguments{
-\item{cache}{Cache the files after download? Defaults to \code{FALSE} with files
-being downloaded to \code{tempdir()} being available throughout the active \R
-session and cleaned up on exit. If set to \code{TRUE}, files will be cached
-locally for use between sessions. See \dQuote{Caching} section for more.}
+\item{cache}{Boolean cache the files after download? Defaults to \code{FALSE}
+with files being downloaded to \code{tempdir()} being available throughout the
+active \R session and cleaned up on exit.  If set to \code{TRUE}, files will be
+cached locally for use between sessions.  See \dQuote{Caching} section for
+more.}
+
+\item{user_agent}{Character string providing a custom user agent to pass
+along with the download request for the server logs.}
+
+\item{max_tries}{Integer providing the number of times that a file download
+should be retried upon failure.  Defaults to 3.}
 }
 \value{
 An \code{\link[sf:sf]{sf::sf()}} object of the requested data set.

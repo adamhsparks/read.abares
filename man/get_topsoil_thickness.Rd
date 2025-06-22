@@ -10,10 +10,11 @@
 get_topsoil_thickness(cache = getOption("read.abares.cache"))
 }
 \arguments{
-\item{cache}{Cache the files after download? Defaults to \code{FALSE} with files
-being downloaded to \code{tempdir()} being available throughout the active \R
-session and cleaned up on exit. If set to \code{TRUE}, files will be cached
-locally for use between sessions. See \dQuote{Caching} section for more.}
+\item{cache}{Boolean cache the files after download? Defaults to \code{FALSE}
+with files being downloaded to \code{tempdir()} being available throughout the
+active \R session and cleaned up on exit.  If set to \code{TRUE}, files will be
+cached locally for use between sessions.  See \dQuote{Caching} section for
+more.}
 }
 \value{
 A \code{read.abares.topsoil.thickness} object, which is a named \code{list()}
