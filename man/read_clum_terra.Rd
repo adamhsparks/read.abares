@@ -77,10 +77,10 @@ Date and scale of mapping are provided in supporting datasets.}
 }
 \note{
 The raster will load with the default category for each data set, but you can
-specify a different category to use through \code{\link[terra:activeCat]{terra::activeCat()}}.  To see
-which categories are available, please refer to the metadata for these data.
-The PDF can be accessed in your default web browser by using
-\code{\link[=view_clum_metadata_pdf]{view_clum_metadata_pdf()}}.
+specify a different category to use through \code{\link[terra:activeCat]{terra::activeCat()}} after
+loading.  To see which categories are available, please refer to the
+metadata for these data.  The PDF can be accessed in your default web
+browser by using \code{\link[=view_clum_metadata_pdf]{view_clum_metadata_pdf()}}.
 }
 \section{Caching}{
 
