@@ -39,11 +39,6 @@ should be retried upon failure.  Defaults to 3.}
 \item{files}{An optional \code{\link[=list]{list()}} object of file paths that provide the
 location of local files to import.  If not provided, defaults to downloading
 the data from \acronym{ABARES}.}
-
-\item{active_cat}{A string value or integer indicating the active category to
-be used for the raster. Note that this value is dependent upon the
-\code{data_set} chosen and will always default to the first column of the
-attribute table for the requested data.}
 }
 \value{
 a \CRANpkg{stars} object that may be one or many layers depending
