@@ -5,11 +5,12 @@
 #' The following options can be set via [options()] to control package behavior:
 #'
 #' \describe{
-#'   \item{`read.abares.cache`}{Boolean. Globally enable or disable caching for select data sets serviced by \pkg{read.abares}. Defaults to `FALSE` not caching data locally between \R sessions.}
-#'   \item{`read.abares.cache_location`}{String. Set a custom location for caching data sets serviced by \pkg{read.abares}. Defaults to `tools::R_user_dir(package = "read.abares", which = "cache")`.}
-#'   \item{`read.abares.user_agent`}{String. Set a custom user agent for web requests. Default is `"read.abares"`.}
-#'   \item{`read.abares.timeout`}{Numeric. Timeout in seconds for operations. Default is `2000`.}
-#'   \item{`read.abares.max_tries`}{Numeric. Number of time to retry download before giving up. Default is `3`.}
+#'   \item{`read.abares.cache`}{Boolean globally enable or disable caching for select data sets serviced by \pkg{read.abares}. Defaults to `FALSE` not caching data locally between \R sessions.}
+#'   \item{`read.abares.cache_location`}{Character string to set a custom location for caching data sets serviced by \pkg{read.abares}. Defaults to `tools::R_user_dir(package = "read.abares", which = "cache")`.}
+#'   \item{`read.abares.user_agent`}{Character string to set a custom user agent for web requests. Default is `"read.abares"`.}
+#'   \item{`read.abares.timeout`}{Integer providing the timeout in seconds for download operations. Default is `2000`.}
+#'   \item{`read.abares.max_tries`}{Integer providing the number of times to retry download before giving up. Default is `3`.}
+#'   \item{`read.abares.quiet`}{Boolean globally enable or disable download status bars and other messages, but not errors. Defaults to `FALSE` providing user-feedback.}
 #' }
 #'
 #' These options can be set globally using:
