@@ -39,10 +39,6 @@
 #'   \item{scale_date_update}{}
 #' }.
 #' @inheritParams read_agfd_dt
-#' @param active_cat A string value or integer indicating the active category to
-#'  be used for the raster. Note that this value is dependent upon the
-#'  `data_set` chosen and will always default to the first column of the
-#'  attribute table for the requested data.
 #' @inheritSection read_agfd_dt Caching
 #'
 #' @references

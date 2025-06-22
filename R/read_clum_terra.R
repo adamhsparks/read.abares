@@ -35,7 +35,6 @@
 #'
 #' @inheritParams read_clum_stars
 #' @inheritParams read_agfd_dt
-#'
 #' @inheritSection read_agfd_dt Caching
 #'
 #' @references
