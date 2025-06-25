@@ -1,8 +1,8 @@
-#' Read catchment scale Land Use of Australia GeoTIFFs using terra
+#' Read catchment scale "Land Use of Australia GeoTIFFs" using terra
 #'
-#' Download and import national scale Land Use of Australia GeoTIFFs using
-#'  \CRANpkg{terra} as a categorical [terra::rast()] object.  Data can be cached
-#'  on request.
+#' Download and import catchment scale \dQuote{Land Use of Australia} GeoTIFFs
+#'  using \CRANpkg{terra} as a categorical [terra::rast()] object.  Downloaded
+#'  data can be cached on request.
 #'
 #' @details From the
 #' [ABARES documentation](https://www.agriculture.gov.au/sites/default/files/documents/CLUM_DescriptiveMetadata_December2023_v2.pdf)

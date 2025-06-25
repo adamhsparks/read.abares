@@ -1,7 +1,7 @@
-#' Read catchment scale Land Use of Australia GeoTIFFs using stars
+#' Read catchment scale "Land Use of Australia" data using stars
 #'
-#' Download and import catchment scale Land Use of Australia GeoTIFFs using
-#'  \CRANpkg{stars} object.  Data can be cached on request.
+#' Download and import catchment scale \dQuote{Land Use of Australia} GeoTIFFs
+#'  as a \CRANpkg{stars} object.  Downloaded data can be cached on request.
 #'
 #' @details From the
 #' [ABARES documentation](https://www.agriculture.gov.au/sites/default/files/documents/CLUM_DescriptiveMetadata_December2023_v2.pdf)
@@ -50,11 +50,11 @@
 #'
 #' @examplesIf interactive()
 #'
-#' cs <- read_clum_stars(data_set = "clum_50m_2023_v2")
+#' clum_stars <- read_clum_stars(data_set = "clum_50m_2023_v2")
 #'
-#' cs
+#' clum_stars
 #'
-#' plot(cs)
+#' plot(clum_stars)
 #'
 #' @returns a \CRANpkg{stars} object that may be one or many layers depending
 #'  upon the requested data set.

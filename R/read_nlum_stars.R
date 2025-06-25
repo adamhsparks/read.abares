@@ -1,7 +1,7 @@
-#' Read national scale Land Use of Australia GeoTIFFs using stars
+#' Read national scale "Land Use of Australia" data using stars
 #'
 #' Download and import national scale \dQuote{Land Use of Australia v7} GeoTIFFs
-#'  as a \CRANpkg{stars} object.  Data can be cached on request.
+#'  as a \CRANpkg{stars} object.  Downloaded data can be cached on request.
 #'
 #' @details From the
 #' [ABARES website](https://www.agriculture.gov.au/abares/aclump/land-use/land-use-of-australia-2010-11-to-2020-21):

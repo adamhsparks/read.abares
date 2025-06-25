@@ -1,7 +1,8 @@
-#' Read national scale Land Use of Australia GeoTIFFs using terra
+#' Read national scale "Land Use of Australia" data using terra
 #'
 #' Download and import national scale \dQuote{Land Use of Australia v7} GeoTIFFs
-#'  as categorical [terra::rast()] objects.  Data can be cached on request.
+#'  as categorical [terra::rast()] objects.  Downloaded data can be cached on
+#'  request.
 #'
 #' @details From the
 #' [ABARES website](https://www.agriculture.gov.au/abares/aclump/land-use/land-use-of-australia-2010-11-to-2020-21):

@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_nlum_terra.R
 \name{read_nlum_terra}
 \alias{read_nlum_terra}
-\title{Read national scale Land Use of Australia GeoTIFFs using terra}
+\title{Read national scale "Land Use of Australia" data using terra}
 \source{
 \describe{
 \item{Y201011}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_ALUMV8_2010_11_alb_package_20241128.zip}}
@@ -50,7 +50,8 @@ the requested data set.
 }
 \description{
 Download and import national scale \dQuote{Land Use of Australia v7} GeoTIFFs
-as categorical \code{\link[terra:rast]{terra::rast()}} objects.  Data can be cached on request.
+as categorical \code{\link[terra:rast]{terra::rast()}} objects.  Downloaded data can be cached on
+request.
 }
 \details{
 From the
