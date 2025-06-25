@@ -16,19 +16,21 @@
 #' @autoglobal
 
 view_nlum_metadata_pdf <- function() {
-  nlum_metadata_pdf <- fs::path(
-    .find_user_cache(),
-    "nlum",
-    "NLUM_v7_DescriptiveMetadata_20241128_0.pdf"
-  )
-
-  if (fs::file_exists(nlum_metadata_pdf)) {
-    system(paste0('open "', nlum_metadata_pdf, '"'))
-  } else {
-    cli::cli_inform("Downloading NLUM metadata PDF...")
-    .retry_download(
-      url = "https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_DescriptiveMetadata_20241128_0.pdf",
-      .f = tempfile()
+  if (rlang::is_interactive()) {
+    nlum_metadata_pdf <- fs::path(
+      .find_user_cache(),
+      "nlum",
+      "NLUM_v7_DescriptiveMetadata_20241128_0.pdf"
     )
+
+    if (fs::file_exists(nlum_metadata_pdf)) {
+      system(paste0('open "', nlum_metadata_pdf, '"'))
+    } else {
+      cli::cli_inform("Downloading NLUM metadata PDF...")
+      .retry_download(
+        url = "https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_DescriptiveMetadata_20241128_0.pdf",
+        .f = tempfile()
+      )
+    }
   }
 }

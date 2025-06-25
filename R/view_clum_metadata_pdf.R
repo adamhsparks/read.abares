@@ -27,41 +27,43 @@
 #' @autoglobal
 
 view_clum_metadata_pdf <- function(commodities = FALSE) {
-  if (isFALSE(commodities)) {
-    clum_metadata_pdf <- fs::path(
-      .find_user_cache(),
-      "clum",
-      "CLUM_DescriptiveMetadata_December2023_v2.pdf"
-    )
+  if (rlang::is_interactive()) {
+    if (isFALSE(commodities)) {
+      clum_metadata_pdf <- fs::path(
+        .find_user_cache(),
+        "clum",
+        "CLUM_DescriptiveMetadata_December2023_v2.pdf"
+      )
 
-    if (fs::file_exists(clum_metadata_pdf)) {
+      if (fs::file_exists(clum_metadata_pdf)) {
+        system(paste0('open "', clum_metadata_pdf, '"'))
+      } else {
+        clum_metadata_pdf <- fs::path(tempdir(), "clum_metadata.pdf")
+        cli::cli_inform("Downloading CLUM metadata PDF...")
+        .retry_download(
+          url = "https://www.agriculture.gov.au/sites/default/files/documents/CLUM_DescriptiveMetadata_December2023_v2.pdf",
+          .f = clum_metadata_pdf
+        )
+      }
       system(paste0('open "', clum_metadata_pdf, '"'))
     } else {
-      clum_metadata_pdf <- fs::path(tempdir(), "clum_metadata.pdf")
-      cli::cli_inform("Downloading CLUM metadata PDF...")
-      .retry_download(
-        url = "https://www.agriculture.gov.au/sites/default/files/documents/CLUM_DescriptiveMetadata_December2023_v2.pdf",
-        .f = clum_metadata_pdf
+      clumc_metadata_pdf <- fs::path(
+        .find_user_cache(),
+        "clumc",
+        "CLUMC_DescriptiveMetadata_December2023.pdf"
       )
-    }
-    system(paste0('open "', clum_metadata_pdf, '"'))
-  } else {
-    clumc_metadata_pdf <- fs::path(
-      .find_user_cache(),
-      "clumc",
-      "CLUMC_DescriptiveMetadata_December2023.pdf"
-    )
 
-    if (fs::file_exists(clumc_metadata_pdf)) {
-      system(paste0('open "', clumc_metadata_pdf, '"'))
-    } else {
-      clumc_metadata_pdf <- fs::path(tempdir(), "clumc_metadata.pdf")
-      cli::cli_inform("Downloading CLUM Commodities metadata PDF...")
-      .retry_download(
-        url = "https://www.agriculture.gov.au/sites/default/files/documents/CLUMC_DescriptiveMetadata_December2023.pdf",
-        .f = clumc_metadata_pdf
-      )
-      system(paste0('open "', clumc_metadata_pdf, '"'))
+      if (fs::file_exists(clumc_metadata_pdf)) {
+        system(paste0('open "', clumc_metadata_pdf, '"'))
+      } else {
+        clumc_metadata_pdf <- fs::path(tempdir(), "clumc_metadata.pdf")
+        cli::cli_inform("Downloading CLUM Commodities metadata PDF...")
+        .retry_download(
+          url = "https://www.agriculture.gov.au/sites/default/files/documents/CLUMC_DescriptiveMetadata_December2023.pdf",
+          .f = clumc_metadata_pdf
+        )
+        system(paste0('open "', clumc_metadata_pdf, '"'))
+      }
     }
   }
 }
