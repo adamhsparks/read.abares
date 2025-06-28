@@ -41,7 +41,7 @@
 
 .get_nlum <- function(.data_set) {
   download_file <- data.table::fifelse(
-    getOption(read.abares.cache, FALSE),
+    getOption("read.abares.cache", FALSE),
     fs::path(.find_user_cache(), "nlum", sprintf("%s.zip", .data_set)),
     fs::path(tempdir(), "nlum", sprintf("%s.zip", .data_set))
   )
