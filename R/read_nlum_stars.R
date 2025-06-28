@@ -1,4 +1,4 @@
-#' Read national scale "Land Use of Australia" data using stars
+#' Read national scale \dQuote{Land Use of Australia} data using stars
 #'
 #' Download and import national scale \dQuote{Land Use of Australia v7} GeoTIFFs
 #'  as a \CRANpkg{stars} object.  Downloaded data can be cached on request.

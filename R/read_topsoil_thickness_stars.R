@@ -1,7 +1,7 @@
-#' Read a 'Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1' file with stars
+#' Read \dQuote{Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1} with stars
 #'
-#' Read Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1
-#'  data as a \CRANpkg{stars} object.
+#' Read \dQuote{Soil Thickness for Australian Areas of Intensive Agriculture of
+#'  Layer 1} data as a \CRANpkg{stars} object.
 #'
 #' @inheritParams read_agfd_dt
 #' @param ... Additional arguments passed to [terra::rast()], for *e.g.*,

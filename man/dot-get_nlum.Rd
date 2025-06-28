@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_nlum.R
 \name{.get_nlum}
 \alias{.get_nlum}
-\title{Get national scale Land Use of Australia data for local use}
+\title{Get national scale \dQuote{Land Use of Australia} data for local use}
 \source{
 \url{https://doi.org/10.25814/w175-xh85}
 }

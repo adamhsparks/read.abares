@@ -1,4 +1,4 @@
-#' Get topsoil thickness for 'Australian Areas of Intensive Agriculture of Layer 1' for local use
+#' Get topsoil thickness for \dQuote{Australian Areas of Intensive Agriculture of Layer 1} for local use
 #'
 #' Fetches topsoil thickness data and associated metadata from \acronym{ABARES}.
 #'

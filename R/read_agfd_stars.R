@@ -1,6 +1,6 @@
-#' Read Australian Gridded Farm Data (AGFD) NCDF files with stars
+#' Read \dQuote{Australian Gridded Farm Data} (AGFD) NCDF files with stars
 #'
-#' Read 'Australian Gridded Farm Data' (\acronym{AGFD}) as a list of
+#' Read \dQuote{Australian Gridded Farm Data} (\acronym{AGFD}) as a list of
 #'  \CRANpkg{stars} objects.
 #'
 #' @inherit read_agfd_dt details

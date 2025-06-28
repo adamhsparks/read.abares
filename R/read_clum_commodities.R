@@ -1,4 +1,4 @@
-#' Read catchment scale Land Use of Australia commodities shape file
+#' Read catchment scale \dQuote{Land Use of Australia} commodities shape file
 #'
 #' Download and import catchment scale \dQuote{Land Use of Australia} shapefile
 #'  of commodities data. Data are cached on request.

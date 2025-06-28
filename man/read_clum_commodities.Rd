@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_clum_commodities.R
 \name{read_clum_commodities}
 \alias{read_clum_commodities}
-\title{Read catchment scale Land Use of Australia commodities shape file}
+\title{Read catchment scale \dQuote{Land Use of Australia} commodities shape file}
 \source{
 \url{https://data.gov.au/data/dataset/catchment-scale-land-use-of-australia-and-commodities-update-december-2023/resource/b216cf90-f4f0-4d88-980f-af7d1ad746cb}
 }

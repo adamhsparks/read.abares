@@ -1,6 +1,7 @@
-#' Read 'Historical State Estimates' from ABARES
+#' Read \dQuote{Historical State Estimates} from ABARES
 #'
-#' Fetches and imports \acronym{ABARES} historical state estimates data.
+#' Fetches and imports \acronym{ABARES} \dQuote{Historical State Estimates}
+#'  data.
 #'
 #' @note
 #' Columns are renamed for consistency with other \acronym{ABARES} products
@@ -19,7 +20,7 @@
 #' # or shorter
 #' read_hist_sta_est()
 #'
-read_historical_state_estimates <- read_hist_sta_est <- function() {
+read_historical_state_estimates <- read_hist_st_est <- function() {
   f <- fs::path(tempdir(), "fdp-beta-state-historical.csv")
 
   .retry_download(
@@ -38,4 +39,4 @@ read_historical_state_estimates <- read_hist_sta_est <- function() {
 
 #' @export
 #' @rdname read_historical_state_estimates
-read_hist_sta_est <- read_historical_state_estimates
+read_hist_st_est <- read_historical_state_estimates

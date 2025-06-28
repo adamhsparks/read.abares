@@ -1,4 +1,4 @@
-#' Get national scale Land Use of Australia data for local use
+#' Get national scale \dQuote{Land Use of Australia} data for local use
 #'
 #' An internal function used by [read_nlum_terra] and [read_nlum_stars] that
 #'  downloads national level land use data GeoTIFF file, unzips the download

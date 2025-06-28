@@ -1,6 +1,6 @@
-#' Read Australian Gridded Farm Data (AGFD) NCDF files as a data.table object
+#' Read \dQuote{Australian Gridded Farm Data} (AGFD) NCDF files as a data.table object
 #'
-#' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a
+#' Read \dQuote{Australian Gridded Farm Data}, (\acronym{AGFD}) as a
 #'  [data.table::data.table()] object from a local file either in the user cache
 #'  or \R's `tempdir()` if caching is not enabled.
 #'

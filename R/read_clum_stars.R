@@ -1,4 +1,4 @@
-#' Read catchment scale "Land Use of Australia" data using stars
+#' Read catchment scale \dQuote{Land Use of Australia} data using stars
 #'
 #' Download and import catchment scale \dQuote{Land Use of Australia} GeoTIFFs
 #'  as a \CRANpkg{stars} object.  Downloaded data can be cached on request.

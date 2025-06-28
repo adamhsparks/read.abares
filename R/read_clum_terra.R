@@ -1,4 +1,4 @@
-#' Read catchment scale "Land Use of Australia GeoTIFFs" using terra
+#' Read catchment scale \dQuote{Land Use of Australia} GeoTIFFs using terra
 #'
 #' Download and import catchment scale \dQuote{Land Use of Australia} GeoTIFFs
 #'  using \CRANpkg{terra} as a categorical [terra::rast()] object.  Downloaded

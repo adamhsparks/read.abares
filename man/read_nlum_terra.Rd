@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_nlum_terra.R
 \name{read_nlum_terra}
 \alias{read_nlum_terra}
-\title{Read national scale "Land Use of Australia" data using terra}
+\title{Read national scale \dQuote{Land Use of Australia} data using terra}
 \source{
 \describe{
 \item{Y201011}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_ALUMV8_2010_11_alb_package_20241128.zip}}

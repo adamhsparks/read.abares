@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_nlum_stars.R
 \name{read_nlum_stars}
 \alias{read_nlum_stars}
-\title{Read national scale "Land Use of Australia" data using stars}
+\title{Read national scale \dQuote{Land Use of Australia} data using stars}
 \source{
 \describe{
 \item{Y201011}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_ALUMV8_2010_11_alb_package_20241128.zip}}

@@ -1,6 +1,6 @@
-#' Read Australian Gridded Farm Data (AGFD) NCDF files with terra
+#' Read \dQuote{Australian Gridded Farm Data} (AGFD) NCDF files with terra
 #'
-#' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a `list()` of
+#' Read \dQuote{Australian Gridded Farm Data}, (\acronym{AGFD}) as a `list()` of
 #'  [terra::rast()] objects.
 #'
 #' @inherit read_agfd_dt details

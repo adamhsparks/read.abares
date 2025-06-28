@@ -2,22 +2,23 @@
 % Please edit documentation in R/read_historical_state_estimates.R
 \name{read_historical_state_estimates}
 \alias{read_historical_state_estimates}
-\alias{read_hist_sta_est}
-\title{Read 'Historical State Estimates' from ABARES}
+\alias{read_hist_st_est}
+\title{Read \dQuote{Historical State Estimates} from ABARES}
 \source{
 \url{https://www.agriculture.gov.au/sites/default/files/documents/fdp-state-historical.csv}
 }
 \usage{
 read_historical_state_estimates()
 
-read_hist_sta_est()
+read_hist_st_est()
 }
 \value{
 A \code{\link[data.table:data.table]{data.table::data.table()}} object with the \code{Variable} field as the
 \code{key}.
 }
 \description{
-Fetches and imports \acronym{ABARES} historical state estimates data.
+Fetches and imports \acronym{ABARES} \dQuote{Historical State Estimates}
+data.
 }
 \note{
 Columns are renamed for consistency with other \acronym{ABARES} products

@@ -1,6 +1,7 @@
-#' Read Historical Forecast Database From ABARES
+#' Read \dQuote{Historical Forecast Database} from ABARES
 #'
-#' Fetches and imports \acronym{ABARES} historical forecast performance data.
+#' Fetches and imports \acronym{ABARES} \dQuote{Historical Forecast Database}
+#'  performance data.
 #'
 #' # Data Dictionary
 #' The resulting object will contain the following fields.

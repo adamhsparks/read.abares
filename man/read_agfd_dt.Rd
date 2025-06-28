@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_agfd_dt.R
 \name{read_agfd_dt}
 \alias{read_agfd_dt}
-\title{Read Australian Gridded Farm Data (AGFD) NCDF files as a data.table object}
+\title{Read \dQuote{Australian Gridded Farm Data} (AGFD) NCDF files as a data.table object}
 \source{
 \itemize{
 \item Historical climate prices fixed -- \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/3},
@@ -39,7 +39,7 @@ A \code{\link[data.table:data.table]{data.table::data.table()}} object of the \d
 Gridded Farm Data}.
 }
 \description{
-Read Australian Gridded Farm Data, (\acronym{AGFD}) as a
+Read \dQuote{Australian Gridded Farm Data}, (\acronym{AGFD}) as a
 \code{\link[data.table:data.table]{data.table::data.table()}} object from a local file either in the user cache
 or \R's \code{tempdir()} if caching is not enabled.
 }

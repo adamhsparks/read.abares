@@ -1,7 +1,7 @@
-#' Read a Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1 file with terra
+#' Read \dQuoteP{Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1} with terra
 #'
-#' Read Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1
-#'  data as a [terra::rast()] object.
+#' Read \dQuote{Soil Thickness for Australian Areas of Intensive Agriculture of
+#'  Layer 1} as a [terra::rast()] object.
 #'
 #' @inheritParams read_agfd_dt
 #' @param ... Additional arguments passed to [terra::rast()], for *e.g.*,

@@ -1,4 +1,4 @@
-#' Get catchment scale Land Use of Australia data for local use
+#' Get catchment scale \dQuote{Land Use of Australia} data for local use
 #'
 #' An internal function used by [read_clum_terra()] and [read_clum_stars()] or
 #'  [read_clum_commodities()] that downloads catchment level land use data

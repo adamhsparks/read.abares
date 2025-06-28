@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_clum_terra.R
 \name{read_clum_terra}
 \alias{read_clum_terra}
-\title{Read catchment scale "Land Use of Australia GeoTIFFs" using terra}
+\title{Read catchment scale \dQuote{Land Use of Australia} GeoTIFFs using terra}
 \source{
 \describe{
 \item{Catchment Scale Land Use of Australia v2 GeoTiff}{\url{https://www.agriculture.gov.au/sites/default/files/documents/clum_50m_2023_v2.zip}}

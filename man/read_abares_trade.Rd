@@ -14,7 +14,7 @@ A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
 }
 \description{
 Fetches and imports \acronym{ABARES} trade data. As the data file is large,
-~1.4GB uncompressed CSV file, caching is offered to save repeated
+~1.4GB uncompressed \acronym{CSV} file, caching is offered to save repeated
 downloading.
 }
 \note{

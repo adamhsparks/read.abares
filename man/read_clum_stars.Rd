@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_clum_stars.R
 \name{read_clum_stars}
 \alias{read_clum_stars}
-\title{Read catchment scale "Land Use of Australia" data using stars}
+\title{Read catchment scale \dQuote{Land Use of Australia} data using stars}
 \source{
 \url{https://doi.org/10.25814/2w2p-ph98}
 }

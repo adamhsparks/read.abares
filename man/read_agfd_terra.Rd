@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_agfd_terra.R
 \name{read_agfd_terra}
 \alias{read_agfd_terra}
-\title{Read Australian Gridded Farm Data (AGFD) NCDF files with terra}
+\title{Read \dQuote{Australian Gridded Farm Data} (AGFD) NCDF files with terra}
 \usage{
 read_agfd_terra(fixed_prices = TRUE, yyyy = 1991:2003, files = NULL)
 }
@@ -28,7 +28,7 @@ A \code{list()} object of \code{\link[terra:rast]{terra::rast()}} objects of the
 objects' names.
 }
 \description{
-Read Australian Gridded Farm Data, (\acronym{AGFD}) as a \code{list()} of
+Read \dQuote{Australian Gridded Farm Data}, (\acronym{AGFD}) as a \code{list()} of
 \code{\link[terra:rast]{terra::rast()}} objects.
 }
 \details{

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_agfd.R
 \name{.get_agfd}
 \alias{.get_agfd}
-\title{Get Australian Gridded Farm Data (AGFD) for local use}
+\title{Get \dQuote{Australian Gridded Farm Data} (AGFD) for local use}
 \usage{
 .get_agfd(.fixed_prices, .yyyy)
 }
@@ -30,8 +30,8 @@ A \code{list()} object, a list of NetCDF files containing the
 \dQuote{Australian Gridded Farm Data}.
 }
 \description{
-Used by the \code{read_agfd} family of functions, downloads the Australian
-Gridded Farm Data (\acronym{AGFD}) data and unzips the compressed files to
+Used by the \code{read_agfd} family of functions, downloads the \dQuote{Australian
+Gridded Farm Data} (\acronym{AGFD}) data and unzips the compressed files to
 NetCDF for importing.
 }
 \examples{

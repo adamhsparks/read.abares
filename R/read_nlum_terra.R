@@ -1,4 +1,4 @@
-#' Read national scale "Land Use of Australia" data using terra
+#' Read national scale \dQuote{Land Use of Australia} data using terra
 #'
 #' Download and import national scale \dQuote{Land Use of Australia v7} GeoTIFFs
 #'  as categorical [terra::rast()] objects.  Downloaded data can be cached on
