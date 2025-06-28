@@ -7,12 +7,12 @@
 .get_agfd(.fixed_prices, .yyyy)
 }
 \arguments{
-\item{fixed_prices}{Download historical climate and prices or historical
+\item{.fixed_prices}{Download historical climate and prices or historical
 climate and fixed prices as described in (Hughes \emph{et al.} 2022).}
 
-\item{yyyy}{Returns only data for the specified year or years for climate
+\item{.yyyy}{Returns only data for the specified year or years for climate
 data (fixed prices) or the years for historical climate and prices depending
-upon the setting of \code{fixed_prices}.  Note that this will still download the
+upon the setting of \code{.fixed_prices}.  Note that this will still download the
 entire data set, that cannot be avoided, but will only return the
 requested year(s) in your \R session.  Valid years are from 1991 to 2023
 inclusive.}
