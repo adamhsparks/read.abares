@@ -34,7 +34,7 @@
   .yyyy
 ) {
   download_file <- data.table::fifelse(
-    getOptions(read.abares.cache, FALSE),
+    getOption(read.abares.cache, FALSE),
     fs::path(.find_user_cache(), "agfd.zip"),
     fs::path(tempdir(), "agfd.zip")
   )

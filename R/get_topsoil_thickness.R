@@ -39,7 +39,7 @@
     return(.create_topsoil_thickness_list(topsoil_thickness_cache))
   } else {
     return(.create_topsoil_thickness_list(.download_topsoil_thickness(
-      getOptions(read.abares.cache, FALSE),
+      getOption(read.abares.cache, FALSE),
     )))
   }
 }
