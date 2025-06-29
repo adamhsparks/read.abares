@@ -1,7 +1,8 @@
 #' Get topsoil thickness for \dQuote{Australian Areas of Intensive Agriculture of Layer 1} for local use
 #'
 #' Fetches topsoil thickness data and associated metadata from \acronym{ABARES}.
-#'
+#' @param .files A character string passed that provides a file path to the
+#'  local directory holding the unzipped files for topsoil thickness.
 #' @note
 #' A custom `print()` method is provided that will print the metadata associated
 #'  with these data. Examples are provided for interacting with the metadata
@@ -30,36 +31,41 @@
 #' @autoglobal
 #' @dev
 
-.get_topsoil_thickness <- function() {
-  topsoil_thickness_cache <- fs::path(
-    .find_user_cache(),
-    "topsoil_thickness_dir"
-  )
-  if (fs::dir_exists(topsoil_thickness_cache)) {
-    return(.create_topsoil_thickness_list(topsoil_thickness_cache))
-  } else {
-    return(.create_topsoil_thickness_list(.download_topsoil_thickness(
-      getOption(read.abares.cache, FALSE),
-    )))
+.read_topsoil_thickness <- function(.files = NULL) {
+  if (is.null(.files)) {
+    topsoil_thickness_cache <- fs::path(
+      .find_user_cache(),
+      "topsoil_thickness_dir"
+    )
+    if (fs::dir_exists(topsoil_thickness_cache)) {
+      return(.list_topsoil_thickness_files(
+        .files_path = .files_path
+      ))
+    }
+    .files_path <- .download_topsoil_thickness()
   }
+  .files_path <- .convert_and_copy_files(.files_path = .files_path)
+  return(.list_topsoil_thickness_files(
+    .files_path = .files_path
+  ))
 }
 
-#' Create a object of read.abares.topsoil.thickness.files
+#' Create a list of topsoil thickness files for read_topsoil_thickness functions
 #'
-#' @param dir File where files have been stored.
+#' @param .files_path A character string pointed at the local storage where the
+#'  topsoil thickness files are found.
 #'
-#' @returns A `read.abares.soil.thickness` object, which is a named `list` with
-#' the [fs::path_file()] of the resulting GTiff file and text file of metadata.
+#' @return A `list` of class `read.abares.topsoil.thickness.files`.
 #' @dev
 
-.create_topsoil_thickness_list <- function(topsoil_thickness_cache) {
+.list_topsoil_thickness_files <- function(.files_path) {
   metadata <- readtext::readtext(fs::path(
-    topsoil_thickness_cache,
+    .files_path,
     "ANZCW1202000149.txt"
   ))
   topsoil_thickness <- list(
     "metadata" = metadata$text,
-    "GTiff" = fs::path(topsoil_thickness_cache, "thpk_1.tif")
+    "GTiff" = fs::path(.files_path, "thpk_1.tif")
   )
   class(topsoil_thickness) <- union(
     "read.abares.topsoil.thickness.files",
@@ -68,53 +74,29 @@
   return(topsoil_thickness)
 }
 
-#' Downloads Topsoil thickness data if not already found locally
-#' @param cache `Boolean` Cache the soil thickness data files after download
-#' using `tools::R_user_dir()` to identify the proper directory for storing
-#' user data in a cache for this package. Defaults to `FALSE`.
-#' locally. If `FALSE`, this function uses `tempdir()` and the files are deleted
-#' upon closing of the active \R session.
+#' Convert files to GTiff and copy metadata
 #'
-#' @returns An [fs::path()] of the resulting data and text file of metadata,
-#'  with metadata and data files being created in the user's cache if requested.
+#' @param .files_path Filepath where topsoil files have been stored locally.
 #'
+#' @return A list of files that have been converted to GeoTIFF and stripped of
+#'  the raster attribute table and metadata for the GeoTIFF file.
 #' @dev
-
-.download_topsoil_thickness <- function() {
-  download_file <- fs::path(tempdir(), "topsoil_thick.zip")
-  tempdir_topsoil_dir <- fs::path(tempdir(), "staiar9cl__05911a01eg_geo___/")
-  cache_topsoil_dir <- fs::path(.find_user_cache(), "topsoil_thickness_dir")
-
-  # only download if the files aren't already local
-  if (!fs::dir_exists(tempdir_topsoil_dir)) {
-    .retry_download(
-      "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
-      .f = download_file
-    )
-
-    withr::with_dir(
-      tempdir(),
-      utils::unzip(download_file, exdir = tempdir())
-    )
-    fs::file_delete(download_file)
-  }
-
-  # now move the files to the cache if caching is requested
+.convert_and_copy_files <- function(.files_path) {
   if (cache) {
     if (!fs::dir_exists(cache_topsoil_dir)) {
       fs::dir_create(cache_topsoil_dir, recurse = TRUE)
     }
-    x <- terra::rast(fs::path(tempdir_topsoil_dir, "thpk_1"))
+    x <- terra::rast(fs::path(.files_path, "thpk_1"))
     x <- terra::init(x, x[]) # remove RAT legend
 
     terra::writeRaster(
       x,
-      filename = fs::path(cache_topsoil_dir, "thpk_1.tif"),
+      filename = fs::path(.files_path, "thpk_1.tif"),
       overwrite = TRUE
     )
     fs::file_copy(
       path = fs::path(
-        tempdir_topsoil_dir,
+        .files_path,
         "ANZCW1202000149.txt"
       ),
       new_path = fs::path(cache_topsoil_dir)
@@ -215,4 +197,29 @@ print_topsoil_thickness_metadata <- function(x) {
   cli::cli_text(metadata)
   cli::cat_line()
   invisible(x)
+}
+
+#' Downloads topsoil thickness data if not already found locally
+#'
+#' @returns A list of the resulting data and text file of metadata after
+#'  downloading and upzipping.
+#'
+#' @dev
+
+.download_topsoil_thickness <- function() {
+  download_file <- fs::path(tempdir(), "topsoil_thick.zip")
+  tempdir_topsoil_dir <- fs::path(tempdir(), "staiar9cl__05911a01eg_geo___/")
+
+  if (!fs::dir_exists(tempdir_topsoil_dir)) {
+    .retry_download(
+      "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
+      .f = download_file
+    )
+  }
+  withr::with_dir(
+    tempdir(),
+    utils::unzip(download_file, exdir = tempdir())
+  )
+  fs::file_delete(download_file)
+  return(fs::dir_ls(fs::path_abs(tempdir_topsoil_dir)))
 }

@@ -25,11 +25,7 @@
 #' @autoglobal
 #' @export
 
-read_topsoil_thickness_stars <- function(
-  files = NULL
-) {
-  if (is.null(files)) {
-    files <- get_topsoil_thickness()
-  }
+read_topsoil_thickness_stars <- function(files = NULL) {
+  files <- .read_topsoil_thickness(.files = files)
   stars::read_stars(as.character(files$GTiff))
 }

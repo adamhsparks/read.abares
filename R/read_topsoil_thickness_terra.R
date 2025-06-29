@@ -28,19 +28,6 @@
 #' @export
 
 read_topsoil_thickness_terra <- function(files = NULL) {
-  if (is.null(files)) {
-    files <- get_topsoil_thickness()
-  }
-  # if we're reading from tempdir() we need to remove the RAT that is removed
-  # by default when caching the GTiff
-  if (!grepl(pattern = .find_user_cache(), files$GTiff)) {
-    tr <- terra::rast(
-      files$GTiff
-    )
-    return(terra::init(
-      tr,
-      tr[]
-    ))
-  }
+  files <- read_topsoil_thickness(.files = files)
   return(terra::rast(files$GTiff))
 }
