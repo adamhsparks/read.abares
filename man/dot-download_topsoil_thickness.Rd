@@ -2,22 +2,15 @@
 % Please edit documentation in R/get_topsoil_thickness.R
 \name{.download_topsoil_thickness}
 \alias{.download_topsoil_thickness}
-\title{Downloads Topsoil thickness data if not already found locally}
+\title{Downloads topsoil thickness data if not already found locally}
 \usage{
 .download_topsoil_thickness()
 }
-\arguments{
-\item{cache}{\code{Boolean} Cache the soil thickness data files after download
-using \code{tools::R_user_dir()} to identify the proper directory for storing
-user data in a cache for this package. Defaults to \code{FALSE}.
-locally. If \code{FALSE}, this function uses \code{tempdir()} and the files are deleted
-upon closing of the active \R session.}
-}
 \value{
-An \code{\link[fs:path]{fs::path()}} of the resulting data and text file of metadata,
-with metadata and data files being created in the user's cache if requested.
+A list of the resulting data and text file of metadata after
+downloading and upzipping.
 }
 \description{
-Downloads Topsoil thickness data if not already found locally
+Downloads topsoil thickness data if not already found locally
 }
 \keyword{internal}

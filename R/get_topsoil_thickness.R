@@ -28,7 +28,6 @@
 #' @source <https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip>
 #'
 #' @family topsoil thickness
-#' @autoglobal
 #' @dev
 
 .read_topsoil_thickness <- function(.files = NULL) {

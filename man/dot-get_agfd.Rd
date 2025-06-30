@@ -16,14 +16,6 @@ upon the setting of \code{.fixed_prices}.  Note that this will still download th
 entire data set, that cannot be avoided, but will only return the
 requested year(s) in your \R session.  Valid years are from 1991 to 2023
 inclusive.}
-
-\item{cache}{Boolean cache the files after download?  Defaults to \code{FALSE}
-with files being downloaded to \code{tempdir()} being available throughout the
-active \R session and cleaned up on exit. If set to \code{TRUE}, files will be
-cached locally for use between sessions.}
-
-\item{cache_location}{Character string providing the file path to use for
-cached files.}
 }
 \value{
 A \code{list()} object, a list of NetCDF files containing the
