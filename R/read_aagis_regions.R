@@ -34,6 +34,11 @@
 
 read_aagis_regions <- function(files = NULL) {
   .cache <- getOption("read.abares.cache", default = FALSE)
+  .verbosity <- getOption("read.abares.verbosity", default = "verbose")
+
+  if (.verbosity == "quiet") {
+    sf::sf_use_s2(FALSE) # disable s2 geometry processing
+  }
   aagis_regions_cache <- fs::path(.find_user_cache(), "aagis_regions_dir")
   if (fs::dir_exists(aagis_regions_cache)) {
     return(sf::st_read(

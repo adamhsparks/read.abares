@@ -73,14 +73,14 @@
       max_tries = getOption("read.abares.max_tries")
     ) |>
     httr2::req_cache(path = tempdir())
-  if (getOption("read.abares.verbosity") == 3) {
+  if (getOption("read.abares.verbosity") == 3L) {
     base_req |>
+      httr2::req_progress() |>
       httr2::req_perform() |>
       httr2::resp_body_raw() |>
       brio::write_file_raw(path = .f)
   } else {
     base_req |>
-      httr2::req_progress() |>
       httr2::req_perform() |>
       httr2::resp_body_raw() |>
       brio::write_file_raw(path = .f)
