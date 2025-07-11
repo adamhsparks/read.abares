@@ -15,28 +15,22 @@
   if (any(toset)) {
     options(op.read.abares[toset])
   }
-  rlang::run_on_load()
-  invisible(NULL)
-}
 
-rlang::on_load(
-  rlang::on_package_load({
-    data.table::fcase(
-      getOption(read.abares.verbosity) == "quiet",
-      options(
-        rlang_quiet = TRUE,
-        rlang_warning_verbosity = "quiet"
-      ),
-      getOption(read.abares.verbosity) == "verbose",
-      options(
-        rlang_quiet = FALSE,
-        rlang_warning_verbosity = "verbose"
-      ),
-      getOption(read.abares.verbosity) == "minimal",
-      options(
-        rlang_quiet = TRUE,
-        rlang_warning_verbosity = "minimal"
-      )
-    )
-  })
-)
+  verbosity <- getOption("read.abares.verbosity")
+  rlib_message_level <- switch(
+    verbosity,
+    "quiet" = "quiet",
+    "minimal" = "quiet",
+    "verbose" = "verbose"
+  )
+  rlib_warning_level <- switch(
+    verbosity,
+    "quiet" = "quiet",
+    "minimal" = "verbose",
+    "verbose" = "verbose"
+  )
+  options(
+    rlib_message_verbosity = rlib_message_level,
+    rlib_warning_verbosity = rlib_warning_level
+  )
+}
