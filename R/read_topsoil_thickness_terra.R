@@ -1,4 +1,4 @@
-#' Read \dQuoteP{Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1} with terra
+#' Read \dQuote{Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1} with terra
 #'
 #' Read \dQuote{Soil Thickness for Australian Areas of Intensive Agriculture of
 #'  Layer 1} as a [terra::rast()] object.
