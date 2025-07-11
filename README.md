@@ -107,10 +107,19 @@ Select from spatial classes for the Australian Gridded Farm Data (AGFD) NetCDF f
 - [{tidync}](https://CRAN.R-project.org/package=tidync), or if you prefer,
 - a [{data.table}](https://CRAN.R-project.org/package=data.table) data.frame of the whole data set.
 
-Or for the Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping) data select from:
+Or for the Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping) and land use change data sets, select from:
 
 - [{stars}](https://CRAN.R-project.org/package=stars), or
 - [{terra}](https://CRAN.R-project.org/package=terra).
+
+### Just Shutup and do Your Work!
+
+{read.abares} offers users a way to opt out of verbosity at the package level.
+There are three levels that are offered.
+
+  - `quiet` - no feedback except for on failure,
+  - `minimal` - feedback on failure and warnings is provided, and
+  - `verbose` - verbose feedback is provided on failure, warning and for processes like download time or data import.
 
 ## About Data Serviced
 
@@ -142,20 +151,12 @@ Citing {read.abares}: When citing the use of this package, please use,
 
 
 ``` r
-library("read.abares")
-#> 
-#> Attaching package: 'read.abares'
-#> The following object is masked from 'package:graphics':
-#> 
-#>     plot
-#> The following object is masked from 'package:base':
-#> 
-#>     plot
+library(read.abares)
 citation("read.abares")
 #> To cite package 'read.abares' in publications use:
 #> 
 #>   Sparks A (????). _read.abares: Simple downloading and importing of
-#>   ABARES Data_. R package version 1.0.1,
+#>   ABARES Data_. R package version 2.0.0,
 #>   <https://adamhsparks.github.io/read.abares/>.
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -163,7 +164,7 @@ citation("read.abares")
 #>   @Manual{,
 #>     title = {{read.abares}: Simple downloading and importing of ABARES Data},
 #>     author = {Adam H. Sparks},
-#>     note = {R package version 1.0.1},
+#>     note = {R package version 2.0.0},
 #>     url = {https://adamhsparks.github.io/read.abares/},
 #>   }
 ```
