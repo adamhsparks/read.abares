@@ -21,13 +21,15 @@
     verbosity,
     "quiet" = "quiet",
     "minimal" = "quiet",
-    "verbose" = "verbose"
+    "verbose" = "verbose",
+    "verbose"
   )
   rlib_warning_level <- switch(
     verbosity,
     "quiet" = "quiet",
     "minimal" = "verbose",
-    "verbose" = "verbose"
+    "verbose" = "verbose",
+    "verbose"
   )
   options(
     rlib_message_verbosity = rlib_message_level,
