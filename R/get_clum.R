@@ -45,6 +45,15 @@
     fs::path(tempdir(), "clum", sprintf("%s.zip", .data_set))
   )
 
+  if (
+    getOption("read.abares.verbosity") == "quiet" ||
+      getOption("read.abares.verbosity") == "minimal"
+  ) {
+    talktalk <- FALSE
+  } else {
+    talktalk <- TRUE
+  }
+
   # this is where the zip file is downloaded
   download_dir <- fs::path_dir(download_file)
 
@@ -101,14 +110,14 @@
         # handle the commodities shape file data
         x <- sf::st_read(
           fs::path(clum_dir, "CLUM_Commodities_2023.shp"),
-          quiet = TRUE
+          quiet = talktalk
         )
         x <- sf::st_make_valid(x)
 
         sf::st_write(
           x,
           fs::path(clum_dir, "CLUM_Commodities_2023.gpkg"),
-          quiet = TRUE
+          quiet = talktalk
         )
 
         if (
