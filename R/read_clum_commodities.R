@@ -40,6 +40,14 @@
 #' @autoglobal
 #' @export
 read_clum_commodities <- function() {
+  if (
+    getOption("read.abares.verbosity") == "quiet" ||
+      getOption("read.abares.verbosity") == "minimal"
+  ) {
+    talktalk <- FALSE
+  } else {
+    talktalk <- TRUE
+  }
   clum <- .get_clum(.data_set = "CLUM_Commodities_2023")
-  return(sf::st_read(clum, quiet = TRUE))
+  return(sf::st_read(clum, quiet = talktalk))
 }
