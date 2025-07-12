@@ -73,7 +73,7 @@
       max_tries = getOption("read.abares.max_tries")
     ) |>
     httr2::req_cache(path = tempdir())
-  if (getOption("read.abares.verbosity") == 3L) {
+  if (getOption("read.abares.verbosity") == "verbose") {
     base_req |>
       httr2::req_progress() |>
       httr2::req_perform() |>
