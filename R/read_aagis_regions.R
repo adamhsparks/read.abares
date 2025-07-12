@@ -34,11 +34,16 @@
 
 read_aagis_regions <- function(files = NULL) {
   .cache <- getOption("read.abares.cache", default = FALSE)
-  .verbosity <- getOption("read.abares.verbosity", default = "verbose")
 
-  if (.verbosity == "quiet") {
-    sf::sf_use_s2(FALSE) # disable s2 geometry processing
+  if (
+    getOption("read.abares.verbosity") == "quiet" ||
+      getOption("read.abares.verbosity") == "minimal"
+  ) {
+    talktalk <- FALSE
+  } else {
+    talktalk <- TRUE
   }
+
   aagis_regions_cache <- fs::path(.find_user_cache(), "aagis_regions_dir")
   if (fs::dir_exists(aagis_regions_cache)) {
     return(sf::st_read(
@@ -46,11 +51,10 @@ read_aagis_regions <- function(files = NULL) {
         aagis_regions_cache,
         "aagis.gpkg"
       ),
-      #TODO: set up quiet to match global here
-      quiet = TRUE
+      quiet = talktalk
     ))
   } else {
-    return(.download_aagis_shp(.cache))
+    return(.download_aagis_shp(.cache, .talktalk))
   }
 }
 
@@ -61,12 +65,13 @@ read_aagis_regions <- function(files = NULL) {
 #'  to the user.
 #'
 #' @param .cache Boolean, enable caching?
+#' @param .talktalk Boolean, how verbose should the function be?
 #'
 #' @returns An \CRANpkg{sf} object of AAGIS regions.
 #' @dev
 #' @autoglobal
 
-.download_aagis_shp <- function(.cache) {
+.download_aagis_shp <- function(.cache, .talktalk) {
   download_file <- fs::path(tempdir(), "aagis.zip")
   tempdir_aagis_dir <- fs::path(tempdir(), "aagis_regions_dir")
   cache_aagis_dir <- fs::path(.find_user_cache(), "aagis_regions_dir")
@@ -86,8 +91,7 @@ read_aagis_regions <- function(files = NULL) {
       tempdir_aagis_dir,
       "aagis_asgs16v1_g5a.shp"
     ),
-    # TODO: align this with verbosity option
-    quiet = TRUE
+    quiet = .talktalk
   )
 
   # From checking the unzipped file, some geometries are invalid, this corrects
@@ -106,8 +110,7 @@ read_aagis_regions <- function(files = NULL) {
     sf::st_write(
       obj = aagis_sf,
       dsn = fs::path(cache_aagis_dir, "aagis.gpkg"),
-      # TODO: align this with verbosity option
-      quiet = TRUE
+      quiet = .talktalk
     )
   }
 
