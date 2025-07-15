@@ -4,10 +4,12 @@
 \alias{.download_aagis_shp}
 \title{Download the 'Australian Agricultural and Grazing Industries Survey' (AAGIS) regions shapefile}
 \usage{
-.download_aagis_shp(.cache)
+.download_aagis_shp(.cache, .talktalk)
 }
 \arguments{
 \item{.cache}{Boolean, enable caching?}
+
+\item{.talktalk}{Boolean, how verbose should the function be?}
 }
 \value{
 An \CRANpkg{sf} object of AAGIS regions.

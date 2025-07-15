@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.5.0 (2025-04-11)",
+  "runtimePlatform": "R version 4.5.1 (2025-06-13)",
   "author": [
     {
       "@type": "Person",
@@ -35,7 +35,7 @@
   "copyrightHolder": [
     {
       "@type": "Organization",
-      "name": "Curtin University of Technology"
+      "name": "Curtin University"
     },
     {
       "@type": "Organization",
@@ -43,6 +43,10 @@
     }
   ],
   "funder": [
+    {
+      "@type": "Organization",
+      "name": "Curtin University"
+    },
     {
       "@type": "Organization",
       "name": "Grains Research and Development Corporation"
@@ -369,7 +373,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "688.018KB",
+  "fileSize": "660.736KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
