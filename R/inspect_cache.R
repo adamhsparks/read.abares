@@ -32,19 +32,20 @@
 
 inspect_cache <- function(recurse = FALSE) {
   f <- .find_user_cache()
-  if (isTRUE(fs::dir_exists)) {
+  if (fs::dir_exists(f)) {
     if (recurse) {
       f <- fs::dir_ls(fs::path_abs(f), recurse = TRUE)
     } else {
       f <- fs::dir_ls(fs::path_abs(f))
     }
-  } else if (isFALSE(fs::dir_exists(f)) || length(f) < 1L) {
-    return(cli::cli_inform(
-      "There do not appear to be any files cached for {.pkg {{read.abares}}}."
-    ))
-  } else {
-    cli::cli_h1("Locally Available {{read.abares}} Cached Files")
-    cli::cli_ul(basename(f))
-    return(invisible(f))
+    if (length(f) <= 1L) {
+      cli::cli_inform(
+        "There do not appear to be any files cached for {.pkg {{read.abares}}}."
+      )
+      return(invisible(NULL))
+    }
   }
+  cli::cli_h1("Locally Available {{read.abares}} Cached Files")
+  cli::cli_ul(basename(f))
+  return(invisible(f))
 }
