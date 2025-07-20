@@ -8,8 +8,8 @@
 #'  with these data. Examples are provided for interacting with the metadata
 #'  directly.
 #'
-#' @examplesIf interactive()
-#' x <- get_topsoil_thickness()
+#' @examples
+#' x <- .read_topsoil_thickness()
 #'
 #' # View the metadata with pretty printing
 #' x
@@ -30,7 +30,7 @@
 #' @family topsoil thickness
 #' @dev
 
-.read_topsoil_thickness <- function(.files = NULL) {
+.get_topsoil_thickness <- function(.files = NULL) {
   if (is.null(.files)) {
     topsoil_thickness_cache <- fs::path(
       .find_user_cache(),
@@ -43,9 +43,89 @@
     }
     .files_path <- .download_topsoil_thickness()
   }
-  .files_path <- .convert_and_copy_files(.files_path = .files_path)
-  return(.list_topsoil_thickness_files(
-    .files_path = .files_path
+  .files_path <- .convert_and_copy_files(.files_path)
+  return(.list_topsoil_thickness_files(.files_path))
+}
+
+#' Downloads topsoil thickness data if not already found locally
+#'
+#' @returns A list of the resulting data and text file of metadata after
+#'  downloading and upzipping.
+#'
+#' @dev
+
+.download_topsoil_thickness <- function() {
+  download_file <- fs::path(tempdir(), "topsoil_thick.zip")
+  tempdir_topsoil_unzip_dir <- fs::path(
+    tempdir(),
+    "staiar9cl__05911a01eg_geo___"
+  )
+  tempdir_topsoil_dir <- fs::path(tempdir(), "topsoil_thickness_dir")
+
+  if (!fs::dir_exists(tempdir_topsoil_dir)) {
+    .retry_download(
+      "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
+      .f = download_file
+    )
+    withr::with_dir(
+      tempdir(),
+      utils::unzip(download_file, exdir = tempdir())
+    )
+    fs::file_move(
+      tempdir_topsoil_unzip_dir,
+      fs::path(
+        tempdir(),
+        "topsoil_thickness_dir"
+      )
+    )
+    fs::file_delete(download_file)
+  }
+  return(fs::dir_ls(fs::path_abs(tempdir_topsoil_dir)))
+}
+
+
+#' Convert files to GTiff and copy metadata
+#'
+#' @param .files_path Filepath where topsoil files have been stored locally.
+#'
+#' @return A list of files that have been converted to GeoTIFF and stripped of
+#'  the raster attribute table and metadata for the GeoTIFF file.
+#' @dev
+.convert_and_copy_files <- function(.files_path) {
+  cache <- getOption("read.abares.cache", FALSE)
+  cache_topsoil_dir <- fs::path(
+    .find_user_cache(),
+    "topsoil_thickness_dir"
+  )
+  tempdir_topsoil_dir <- fs::path(tempdir(), "topsoil_thickness_dir")
+
+  thphk_1 <- .files_path[endsWith(x = .files_path, "thpk_1")]
+
+  x <- terra::rast(thphk_1)
+  x <- terra::init(x, x[]) # remove RAT legend
+
+  terra::writeRaster(
+    x,
+    filename = fs::path(unique(fs::path_dir(.files_path)), "thpk_1.tif"),
+    overwrite = TRUE
+  )
+
+  if (cache && !fs::dir_exists(cache_topsoil_dir)) {
+    fs::dir_create(cache_topsoil_dir, recurse = TRUE)
+  }
+  if (cache) {
+    fs::file_copy(
+      path = fs::path(
+        endsWith(.files_path, "ANZCW1202000149.txt")
+      ),
+      new_path = fs::path(cache_topsoil_dir)
+    )
+  }
+
+  return(data.table::fifelse(
+    cache,
+    cache_topsoil_dir,
+    tempdir_topsoil_dir
   ))
 }
 
@@ -63,8 +143,8 @@
     "ANZCW1202000149.txt"
   ))
   topsoil_thickness <- list(
-    "metadata" = metadata$text,
-    "GTiff" = fs::path(.files_path, "thpk_1.tif")
+    metadata = metadata$text,
+    GTiff = fs::path(.files_path, "thpk_1.tif")
   )
   class(topsoil_thickness) <- union(
     "read.abares.topsoil.thickness.files",
@@ -73,41 +153,6 @@
   return(topsoil_thickness)
 }
 
-#' Convert files to GTiff and copy metadata
-#'
-#' @param .files_path Filepath where topsoil files have been stored locally.
-#'
-#' @return A list of files that have been converted to GeoTIFF and stripped of
-#'  the raster attribute table and metadata for the GeoTIFF file.
-#' @dev
-.convert_and_copy_files <- function(.files_path) {
-  if (cache) {
-    if (!fs::dir_exists(cache_topsoil_dir)) {
-      fs::dir_create(cache_topsoil_dir, recurse = TRUE)
-    }
-    x <- terra::rast(fs::path(.files_path, "thpk_1"))
-    x <- terra::init(x, x[]) # remove RAT legend
-
-    terra::writeRaster(
-      x,
-      filename = fs::path(.files_path, "thpk_1.tif"),
-      overwrite = TRUE
-    )
-    fs::file_copy(
-      path = fs::path(
-        .files_path,
-        "ANZCW1202000149.txt"
-      ),
-      new_path = fs::path(cache_topsoil_dir)
-    )
-  }
-
-  return(data.table::fifelse(
-    cache,
-    cache_topsoil_dir,
-    tempdir_topsoil_dir
-  ))
-}
 
 #' Prints read.abares.topsoil.thickness.files object
 #'
@@ -162,7 +207,7 @@ print.read.abares.topsoil.thickness.files <- function(x, ...) {
 #'
 #' Displays the complete set of metadata associated with the soil thickness
 #'  data in your \R console. For including the metadata in documents or other
-#'  methods outside of \R, see `get_topsoil_thickness()` for an example using
+#'  methods outside of \R, see `.get_topsoil_thickness()` for an example using
 #'  [pander::pander()] to print the metadata.
 #'
 #' @param x A `read.abares.topsoil.thickness.files` object.
@@ -175,15 +220,18 @@ print.read.abares.topsoil.thickness.files <- function(x, ...) {
 #' @returns Nothing, called for its side effects, it prints the complete
 #'   metadata file to the \R console.
 #' @examplesIf interactive()
-#' get_topsoil_thickness() |>
-#'   print_topsoil thickness_metadata()
+#' .get_topsoil_thickness() |>
+#'   print_topsoil_thickness_metadata()
 #'
 #' @family topsoil thickness
 #'
 #' @export
-print_topsoil_thickness_metadata <- function(x) {
-  .check_class(x = x, class = "read.abares.topsoil.thickness.files")
-  loc <- stringr::str_locate(x$metadata, "Custodian")
+print_topsoil_thickness_metadata <- function() {
+  x <- .get_topsoil_thickness(.files = NULL)
+  loc <- stringr::str_locate(
+    x$metadata,
+    stringr::fixed("Custodian", ignore_case = FALSE)
+  )
   metadata <- stringr::str_sub(
     x$metadata,
     loc[, "start"] - 1L,
@@ -195,30 +243,5 @@ print_topsoil_thickness_metadata <- function(x) {
   cli::cli_h2("Dataset ANZLIC ID ANZCW1202000149")
   cli::cli_text(metadata)
   cli::cat_line()
-  invisible(x)
-}
-
-#' Downloads topsoil thickness data if not already found locally
-#'
-#' @returns A list of the resulting data and text file of metadata after
-#'  downloading and upzipping.
-#'
-#' @dev
-
-.download_topsoil_thickness <- function() {
-  download_file <- fs::path(tempdir(), "topsoil_thick.zip")
-  tempdir_topsoil_dir <- fs::path(tempdir(), "staiar9cl__05911a01eg_geo___/")
-
-  if (!fs::dir_exists(tempdir_topsoil_dir)) {
-    .retry_download(
-      "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
-      .f = download_file
-    )
-  }
-  withr::with_dir(
-    tempdir(),
-    utils::unzip(download_file, exdir = tempdir())
-  )
-  fs::file_delete(download_file)
-  return(fs::dir_ls(fs::path_abs(tempdir_topsoil_dir)))
+  return(invisible(NULL))
 }
