@@ -26,8 +26,7 @@
 #' @family topsoil thickness
 #' @autoglobal
 #' @export
-
 read_topsoil_thickness_terra <- function(files = NULL) {
-  files <- read_topsoil_thickness(.files = files)
+  files <- .get_topsoil_thickness(.files = files)
   return(terra::rast(files$GTiff))
 }
