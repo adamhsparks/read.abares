@@ -14,7 +14,7 @@
 ^man/dot-get_agfd\.Rd$
 ^man/dot-get_clum\.Rd$
 ^man/dot-get_nlum\.Rd$
-^man/dot-read_topsoil_thickness\.Rd$
+^man/dot-get_topsoil_thickness\.Rd$
 ^man/dot-list_topsoil_thickness_files\.Rd$
 ^man/dot-convert_and_copy_files\.Rd$
 ^man/dot-download_topsoil_thickness\.Rd$
