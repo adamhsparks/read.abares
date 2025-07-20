@@ -34,7 +34,7 @@ plot(st_stars)
 }
 \seealso{
 Other topsoil thickness: 
-\code{\link{.read_topsoil_thickness}()},
+\code{\link{.get_topsoil_thickness}()},
 \code{\link{print_topsoil_thickness_metadata}()},
 \code{\link{read_topsoil_thickness_terra}()}
 }

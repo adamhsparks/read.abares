@@ -43,11 +43,6 @@ One of:
 \item{...}{Additional arguments passed to \link[stars:read_stars]{stars::read_stars}, for \emph{e.g.},
 \code{RAT} if you wish to set the active category when loading any of the
 available GeoTIFF files that are encoded with a raster attribute table.}
-
-\item{active_cat}{A string value or integer indicating the active category to
-be used for the raster. Note that this value is dependent upon the
-\code{data_set} chosen and will always default to the first column of the
-attribute table for the requested data.}
 }
 \value{
 a \CRANpkg{stars} object that may be one or many layers depending

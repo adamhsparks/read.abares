@@ -32,7 +32,7 @@ get_topsoil_thickness() |>
 }
 \seealso{
 Other topsoil thickness: 
-\code{\link{.read_topsoil_thickness}()},
+\code{\link{.get_topsoil_thickness}()},
 \code{\link{read_topsoil_thickness_stars}()},
 \code{\link{read_topsoil_thickness_terra}()}
 }
