@@ -1,4 +1,4 @@
-#' Read national scale \dQuote{Land Use of Australia} data using terra
+#' Read national scale "Land Use of Australia" data using terra
 #'
 #' Download and import national scale \dQuote{Land Use of Australia v7} GeoTIFFs
 #'  as categorical [terra::rast()] objects.  Downloaded data can be cached on
@@ -71,8 +71,8 @@
 #'
 #' plot(nlum_terra)
 #'
-#' @returns A [terra::rast()] object that may be one or many layers depending upon
-#'  the requested data set.
+#' @returns A [terra::rast()] object that may be one or many layers depending
+#'  upon the requested data set.
 #' @family nlum
 #' @autoglobal
 #' @export
