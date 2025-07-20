@@ -51,10 +51,6 @@
 #'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 #'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 #' }.
-#' @param active_cat A string value or integer indicating the active category to
-#'  be used for the raster. Note that this value is dependent upon the
-#'  `data_set` chosen and will always default to the first column of the
-#'  attribute table for the requested data.
 #' @param ... Additional arguments passed to [stars::read_stars], for *e.g.*,
 #'  `RAT` if you wish to set the active category when loading any of the
 #'  available GeoTIFF files that are encoded with a raster attribute table.
