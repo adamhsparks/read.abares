@@ -54,7 +54,7 @@ read_aagis_regions <- function(files = NULL) {
       quiet = talktalk
     ))
   } else {
-    return(.download_aagis_shp(.cache, .talktalk))
+    return(.download_aagis_shp(.cache, .talktalk = talktalk))
   }
 }
 
@@ -103,7 +103,7 @@ read_aagis_regions <- function(files = NULL) {
   names(aagis_sf)[names(aagis_sf) == "class"] <- "Class"
   names(aagis_sf)[names(aagis_sf) == "zone"] <- "Zone"
 
-  if (cache) {
+  if (.cache) {
     if (!fs::dir_exists(cache_aagis_dir)) {
       fs::dir_create(cache_aagis_dir, recurse = TRUE)
     }
