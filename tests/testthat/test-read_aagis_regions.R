@@ -1,11 +1,11 @@
 # with caching ----
 # sets up a custom cache environment in `tempdir()` just for testing
 withr::local_envvar(R_USER_CACHE_DIR = tempdir())
+withr::local_options(read.abares.cache = TRUE)
 
 test_that("read_aagis_regions does cache", {
   skip_if_offline()
   skip_on_ci()
-  withr::local_options(list(cache = TRUE), getOption("read.abares.cache"))
   read_aagis_regions() # create the cache
   expect_true(fs::file_exists(
     fs::path(.find_user_cache(), "aagis_regions_dir/aagis.gpkg")
@@ -25,6 +25,7 @@ test_that("read_aagis_regions does cache", {
 
 
 # without caching ----
+withr::local_options(read.abares.cache = FALSE)
 test_that("read_aagis_regions doesn't cache", {
   skip_if_offline()
   skip_on_ci()
