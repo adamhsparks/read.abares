@@ -31,6 +31,7 @@
 #' @dev
 
 .get_topsoil_thickness <- function(.files = NULL) {
+  # if no files are supplied, find the user cache
   if (is.null(.files)) {
     topsoil_thickness_cache <- fs::path(
       .find_user_cache(),
