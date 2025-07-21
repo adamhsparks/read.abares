@@ -37,6 +37,7 @@
       .find_user_cache(),
       "topsoil_thickness_dir"
     )
+    # if there are files in the cache, return them
     if (fs::dir_exists(topsoil_thickness_cache)) {
       return(.list_topsoil_thickness_files(
         .files_path = .files_path
