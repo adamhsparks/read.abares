@@ -40,13 +40,17 @@
     # if there are files in the cache, return them
     if (fs::dir_exists(topsoil_thickness_cache)) {
       return(.list_topsoil_thickness_files(
-        .files_path = .files_path
+        .files_path = fs::dir_ls(
+          fs::path_abs(topsoil_thickness_cache)
+        )
       ))
-    }
-    .files_path <- .download_topsoil_thickness()
+    } # else we download them
+    .files <- .download_topsoil_thickness()
   }
-  .files_path <- .convert_and_copy_files(.files_path)
-  return(.list_topsoil_thickness_files(.files_path))
+  # finally, if `.files` are provided OR we downloaded them convert and move to
+  # cache (if specified)
+  .files <- .convert_and_copy_files(.files)
+  return(.list_topsoil_thickness_files(.files))
 }
 
 #' Downloads topsoil thickness data if not already found locally
@@ -136,7 +140,7 @@
 #' @param .files_path A character string pointed at the local storage where the
 #'  topsoil thickness files are found.
 #'
-#' @return A `list` of class `read.abares.topsoil.thickness.files`.
+#' @return A `list` object.
 #' @dev
 
 .list_topsoil_thickness_files <- function(.files_path) {
@@ -144,15 +148,10 @@
     .files_path,
     "ANZCW1202000149.txt"
   ))
-  topsoil_thickness <- list(
+  return(list(
     metadata = metadata$text,
     GTiff = fs::path(.files_path, "thpk_1.tif")
-  )
-  class(topsoil_thickness) <- union(
-    "read.abares.topsoil.thickness.files",
-    class(topsoil_thickness)
-  )
-  return(topsoil_thickness)
+  ))
 }
 
 
