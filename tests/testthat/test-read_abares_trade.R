@@ -52,6 +52,7 @@ test_that("read_abares_trade doesn't cache", {
 
 # with caching ----
 test_that("read_abares_trade caches", {
+  withr::local_options(read.abares.cache = TRUE)
   skip_if_offline()
   skip_on_ci()
   read_abares_trade()
