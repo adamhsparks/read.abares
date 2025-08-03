@@ -61,7 +61,7 @@
     "https://www.agriculture.gov.au/sites/default/files/documents/"
 
   file_url <- switch(
-    data_set,
+    .data_set,
     "Y202021" = sprintf(
       "%sNLUM_v7_250_ALUMV8_2020_21_alb_package_20241128.zip",
       file_url
