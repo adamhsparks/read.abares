@@ -35,3 +35,17 @@ test_that("read_nlum_stars() retrieves change use change data", {
     )
   )
 })
+
+test_that("read_nlum_stars() retrieves thematic land use layers", {
+  skip_if_offline()
+  skip_on_ci()
+  x <- read_nlum_stars(data_set = "T201011")
+  expect_s3_class(x, c("stars_proxy", "stars"))
+  expect_identical(
+    basename(names(x)),
+    c(
+      "NLUM_v7_250_SIMP_CHANGE_DETAIL_2011_to_2021_alb.tif",
+      "NLUM_v7_250_SIMP_CHANGE_SUMMARY_2011_to_2021_alb.tif"
+    )
+  )
+})
