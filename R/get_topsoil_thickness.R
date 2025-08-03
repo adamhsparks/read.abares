@@ -40,9 +40,7 @@
     # if there are files in the cache, return them
     if (fs::dir_exists(topsoil_thickness_cache)) {
       return(.list_topsoil_thickness_files(
-        .files_path = fs::dir_ls(
-          fs::path_abs(topsoil_thickness_cache)
-        )
+        .files_path = fs::path_abs(topsoil_thickness_cache)
       ))
     } # else we download them
     .files <- .download_topsoil_thickness()
@@ -50,7 +48,7 @@
   # finally, if `.files` are provided OR we downloaded them convert and move to
   # cache (if specified)
   .files <- .convert_and_copy_files(.files)
-  return(.list_topsoil_thickness_files(.files))
+  return(.list_topsoil_thickness_files(.files_path = .files))
 }
 
 #' Downloads topsoil thickness data if not already found locally
@@ -144,10 +142,7 @@
 #' @dev
 
 .list_topsoil_thickness_files <- function(.files_path) {
-  metadata <- readtext::readtext(fs::path(
-    .files_path,
-    "ANZCW1202000149.txt"
-  ))
+  metadata <- readtext::readtext(fs::path(.files_path, "ANZCW1202000149.txt"))
   return(list(
     metadata = metadata$text,
     GTiff = fs::path(.files_path, "thpk_1.tif")
