@@ -11,26 +11,6 @@
   )
 }
 
-#' Check for read.abares.something S3 class
-#'
-#' @param x An object for validating.
-#' @param class An S3 class to validate against.
-#'
-#' @returns An invisible `NULL`, called for its side-effects of class
-#'  validation.
-#' @autoglobal
-#' @dev
-.check_class <- function(x, class) {
-  if (missing(x) || !inherits(x, class)) {
-    cli::cli_abort(
-      "You must provide a {class} class object for this function.",
-      call = rlang::caller_env()
-    )
-  }
-  return(invisible(NULL))
-}
-
-
 #' Use httr2 to fetch a file with retries
 #'
 #' Retries to download the requested resource before stopping. Uses
