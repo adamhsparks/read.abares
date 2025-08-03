@@ -87,22 +87,22 @@
 #' @family nlum
 #' @autoglobal
 #' @export
-read_nlum_stars <- function(
-  data_set = c(
-    "Y201011",
-    "Y201516",
-    "C201021",
-    "T201011",
-    "T201516",
-    "T202021",
-    "P201011",
-    "P201516",
-    "P202021"
-  ),
-  ...
-) {
-  rlang::arg_match(data_set)
+read_nlum_stars <- function(data_set, ...) {
+  data_set <- rlang::arg_match(
+    data_set,
+    c(
+      "Y201011",
+      "Y201516",
+      "C201021",
+      "T201011",
+      "T201516",
+      "T202021",
+      "P201011",
+      "P201516",
+      "P202021"
+    )
+  )
 
   nlum <- .get_nlum(.data_set = data_set)
-  return(stars::read_stars(nlum[grep("tif$", nlum, ...)]))
+  return(stars::read_stars(nlum[grep("tif$", nlum)]))
 }
