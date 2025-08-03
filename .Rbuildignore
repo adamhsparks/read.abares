@@ -19,7 +19,6 @@
 ^man/dot-convert_and_copy_files\.Rd$
 ^man/dot-list_topsoil_thickness_files\.Rd$
 ^man/dot-find_user_cache\.Rd$
-^man/dot-check_class\.Rd$
 ^man/dot-retry_download\.Rd$
 ^man/dot-readabares_collaborators\.Rd$
 ^man/readabares_user_agent\.Rd$
