@@ -1,4 +1,5 @@
 #' Read \dQuote{Historical State Estimates} from ABARES
+#'
 #' Fetches and imports \acronym{ABARES} \dQuote{Historical State Estimates}
 #'  data.
 #'
