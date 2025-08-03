@@ -15,9 +15,9 @@
 ^man/dot-get_clum\.Rd$
 ^man/dot-get_nlum\.Rd$
 ^man/dot-get_topsoil_thickness\.Rd$
-^man/dot-list_topsoil_thickness_files\.Rd$
-^man/dot-convert_and_copy_files\.Rd$
 ^man/dot-download_topsoil_thickness\.Rd$
+^man/dot-convert_and_copy_files\.Rd$
+^man/dot-list_topsoil_thickness_files\.Rd$
 ^man/dot-find_user_cache\.Rd$
 ^man/dot-check_class\.Rd$
 ^man/dot-retry_download\.Rd$

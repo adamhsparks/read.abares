@@ -11,7 +11,7 @@
 topsoil thickness files are found.}
 }
 \value{
-A \code{list} of class \code{read.abares.topsoil.thickness.files}.
+A \code{list} object.
 }
 \description{
 Create a list of topsoil thickness files for read_topsoil_thickness functions

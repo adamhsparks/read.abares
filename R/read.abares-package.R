@@ -22,7 +22,7 @@ NULL
 #' @returns a vector of GitHub usernames.
 #'
 #' @author Adam H. Sparks and Maëlle Salmon
-#' via (<https://github.com/EMODnet/emodnet.wfs/blob/69ca933e5a4154cb651b1d3158072f86d0a7ccb9/R/emodnet.wfs-package.R).
+#' @source <https://github.com/EMODnet/emodnet.wfs/blob/69ca933e5a4154cb651b1d3158072f86d0a7ccb9/R/emodnet.wfs-package.R>.
 #' @dev
 .readabares_collaborators <- function() {
   readLines(system.file("collaborators.txt", package = "read.abares"))
@@ -36,7 +36,7 @@ NULL
 #' @returns A character string to be used by \CRANpkg{httr2} as a user-agent.
 #'
 #' @author Adam H. Sparks and Maëlle Salmon
-#' via (<https://github.com/EMODnet/emodnet.wfs/blob/69ca933e5a4154cb651b1d3158072f86d0a7ccb9/R/emodnet.wfs-package.R).
+#' @source <https://github.com/EMODnet/emodnet.wfs/blob/69ca933e5a4154cb651b1d3158072f86d0a7ccb9/R/emodnet.wfs-package.R>.
 #' @dev
 readabares_user_agent <- function() {
   readabares_version_string <- as.character(utils::packageVersion(

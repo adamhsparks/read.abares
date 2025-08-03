@@ -4,8 +4,6 @@ utils::globalVariables(c(
   "read.abares.cache", # <.get_clum>
   "cache", # <.get_clum>
   "data_set", # <.get_nlum>
-  ".talktalk", # <read_aagis_regions>
-  "cache", # <.download_aagis_shp>
   "Year_month", # <.download_abares_trade>
   "lat", # <read_agfd_dt>
   "lon", # <read_agfd_dt>

@@ -3,6 +3,9 @@
 \name{.readabares_collaborators}
 \alias{.readabares_collaborators}
 \title{Read collaborators.txt}
+\source{
+\url{https://github.com/EMODnet/emodnet.wfs/blob/69ca933e5a4154cb651b1d3158072f86d0a7ccb9/R/emodnet.wfs-package.R}.
+}
 \usage{
 .readabares_collaborators()
 }
@@ -14,6 +17,5 @@ Reads a text file containing GitHub usernames of collaborators.
 }
 \author{
 Adam H. Sparks and Maëlle Salmon
-via (<https://github.com/EMODnet/emodnet.wfs/blob/69ca933e5a4154cb651b1d3158072f86d0a7ccb9/R/emodnet.wfs-package.R).
 }
 \keyword{internal}

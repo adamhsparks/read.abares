@@ -3,6 +3,9 @@
 \name{readabares_user_agent}
 \alias{readabares_user_agent}
 \title{Create a custom user-agent string}
+\source{
+\url{https://github.com/EMODnet/emodnet.wfs/blob/69ca933e5a4154cb651b1d3158072f86d0a7ccb9/R/emodnet.wfs-package.R}.
+}
 \usage{
 readabares_user_agent()
 }
@@ -15,6 +18,5 @@ on whether the use is CI/development or interactive use.
 }
 \author{
 Adam H. Sparks and Maëlle Salmon
-via (<https://github.com/EMODnet/emodnet.wfs/blob/69ca933e5a4154cb651b1d3158072f86d0a7ccb9/R/emodnet.wfs-package.R).
 }
 \keyword{internal}

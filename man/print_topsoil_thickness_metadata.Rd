@@ -4,7 +4,7 @@
 \alias{print_topsoil_thickness_metadata}
 \title{Display complete metadata associated with soil thickness data}
 \usage{
-print_topsoil_thickness_metadata(x)
+print_topsoil_thickness_metadata()
 }
 \arguments{
 \item{x}{A \code{read.abares.topsoil.thickness.files} object.}
@@ -16,7 +16,7 @@ metadata file to the \R console.
 \description{
 Displays the complete set of metadata associated with the soil thickness
 data in your \R console. For including the metadata in documents or other
-methods outside of \R, see \code{get_topsoil_thickness()} for an example using
+methods outside of \R, see \code{.get_topsoil_thickness()} for an example using
 \code{\link[pander:pander]{pander::pander()}} to print the metadata.
 }
 \note{
@@ -26,8 +26,8 @@ actual values in the data.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
-get_topsoil_thickness() |>
-  print_topsoil thickness_metadata()
+.get_topsoil_thickness() |>
+  print_topsoil_thickness_metadata()
 \dontshow{\}) # examplesIf}
 }
 \seealso{
