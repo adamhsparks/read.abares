@@ -74,5 +74,5 @@ read_clum_stars <- function(
       .data_set = data_set
     )
   }
-  return(stars::read_stars(clum[grep("[.]tif$", files)]))
+  return(stars::read_stars(files[grep("[.]tif$", files)]))
 }
