@@ -40,7 +40,7 @@
 
 .get_clum <- function(.data_set) {
   download_file <- data.table::fifelse(
-    getOption(read.abares.cache, FALSE),
+    getOption("read.abares.cache", FALSE),
     fs::path(.find_user_cache(), "clum", sprintf("%s.zip", .data_set)),
     fs::path(tempdir(), "clum", sprintf("%s.zip", .data_set))
   )
@@ -152,7 +152,7 @@
     }
   )
 
-  if (cache) {
+  if (getOption("read.abares.cache", FALSE)) {
     fs::file_delete(download_file)
   }
 
