@@ -130,17 +130,19 @@
           fs::path(download_dir, "NLUM_v7_DescriptiveMetadata_20241128_0.pdf")
         )
       }
-      if (startswith(.data_set, "Y") || startswith(.data_set, "C")) {
-        fs::dir_delete(
-          c(fs::path(nlum_dir, "Maps"), fs::path(nlum_dir, "Symbology"))
+      fs::dir_delete(
+        setdiff(
+          fs::dir_ls(nlum_dir),
+          fs::dir_ls(nlum_dir, regexp = "^Maps$|^Symbology$")
         )
-        fs::file_delete(
-          setdiff(
-            fs::dir_ls(nlum_dir),
-            fs::dir_ls(nlum_dir, regexp = "[.]tif$|[.]tif[.]aux[.]xml$")
-          )
+      )
+
+      fs::file_delete(
+        setdiff(
+          fs::dir_ls(nlum_dir),
+          fs::dir_ls(nlum_dir, regexp = "[.]tif$|[.]tif[.]aux[.]xml$")
         )
-      }
+      )
     },
     error = function(e) {
       cli::cli_abort(
