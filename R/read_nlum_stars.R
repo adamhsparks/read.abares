@@ -43,7 +43,7 @@
 #'  \item{Y201011}{Land use of Australia 2010–11}
 #'  \item{Y201516}{Land use of Australia 2015–16}
 #'  \item{Y202021}{Land use of Australia 2020–21}
-#'  \item{C201021}{Land use of Australia change}
+#'  \item{C201121}{Land use of Australia change}
 #'  \item{T201011}{Land use of Australia 2010–11 thematic layers}
 #'  \item{T201516}{Land use of Australia 2015–16 thematic layers}
 #'  \item{T202021}{Land use of Australia 2020–21 thematic layers}
@@ -94,7 +94,7 @@ read_nlum_stars <- function(data_set, ...) {
       "Y201011",
       "Y201516",
       "Y202021",
-      "C201021",
+      "C201121",
       "T201011",
       "T201516",
       "T202021",

@@ -18,11 +18,7 @@
 }.
 }
 \usage{
-read_nlum_stars(
-  data_set = c("Y201011", "Y201516", "C201021", "T201011", "T201516", "T202021",
-    "P201011", "P201516", "P202021"),
-  ...
-)
+read_nlum_stars(data_set, ...)
 }
 \arguments{
 \item{data_set}{A string value indicating the GeoTIFF desired for download.
@@ -31,7 +27,7 @@ One of:
 \item{Y201011}{Land use of Australia 2010–11}
 \item{Y201516}{Land use of Australia 2015–16}
 \item{Y202021}{Land use of Australia 2020–21}
-\item{C201021}{Land use of Australia change}
+\item{C201121}{Land use of Australia change}
 \item{T201011}{Land use of Australia 2010–11 thematic layers}
 \item{T201516}{Land use of Australia 2015–16 thematic layers}
 \item{T202021}{Land use of Australia 2020–21 thematic layers}
