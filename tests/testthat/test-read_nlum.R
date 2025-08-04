@@ -83,3 +83,13 @@ test_that("read_nlum_stars() retrieves 2020-21 probability grids", {
   expect_s3_class(x, c("stars_proxy", "stars"))
   expect_length(x, 23L)
 })
+
+# terra -----
+
+test_that("read_nlum_terra() retrieves 2010-11 land use data", {
+  skip_if_offline()
+  skip_on_ci()
+  x <- read_nlum_terra(data_set = "Y201011")
+  expect_s4_class(x, "SpatRaster")
+  expect_named(x, "TERTV8")
+})
