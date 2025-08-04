@@ -16,8 +16,8 @@ read_clum_terra(data_set = "clum_50m_2023_v2", files = NULL)
 \item{data_set}{A string value indicating the data desired for download.
 One of:
 \describe{
-\item{clum_50m_2023_v2}{ (default)},
-\item{scale_date_update}{}
+\item{clum_50m_2023_v2}{Catchment Scale Land Use of Australia – Update December 2023 version 2}
+\item{scale_date_update}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
 }.}
 }
 \value{

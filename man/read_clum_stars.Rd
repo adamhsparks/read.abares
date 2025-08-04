@@ -13,8 +13,8 @@ read_clum_stars(data_set = "clum_50m_2023_v2", files = NULL)
 \item{data_set}{A string value indicating the data desired for download.
 One of:
 \describe{
-\item{clum_50m_2023_v2}{ (default)},
-\item{scale_date_update}{}
+\item{clum_50m_2023_v2}{Catchment Scale Land Use of Australia – Update December 2023 version 2}
+\item{scale_date_update}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
 }.}
 }
 \value{
@@ -50,10 +50,10 @@ Date and scale of mapping are provided in supporting datasets.}
 }
 \note{
 The raster will load with the default category for each data set, but you can
-specify a different category to use after loading.
-\code{active_cat} argument. To see which categories are available, please refer
-to the metadata for these data.  The PDF can be accessed in your default web
-browser by using \code{\link[=view_clum_metadata_pdf]{view_clum_metadata_pdf()}}.
+specify a different category to use by passing the \code{RAT} argument through
+the \code{...}.  To see which categories are available, please refer
+to the metadata for these data.  The \acronym{PDF} can be accessed in your
+default \acronym{PDF} viewer by using \code{\link[=view_nlum_metadata_pdf]{view_nlum_metadata_pdf()}}.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}

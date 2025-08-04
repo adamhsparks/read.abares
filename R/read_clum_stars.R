@@ -24,19 +24,18 @@
 #' to 1:250,000) vary, reflecting the source data, capture date and scale.
 #' Date and scale of mapping are provided in supporting datasets.}
 #'  -- \acronym{ABARES}, 2024-06-27
-#'
 #' @note
 #' The raster will load with the default category for each data set, but you can
-#'  specify a different category to use after loading.
-#'  `active_cat` argument. To see which categories are available, please refer
-#'  to the metadata for these data.  The PDF can be accessed in your default web
-#'  browser by using [view_clum_metadata_pdf()].
+#'  specify a different category to use by passing the `RAT` argument through
+#'  the `...`.  To see which categories are available, please refer
+#'  to the metadata for these data.  The \acronym{PDF} can be accessed in your
+#'  default \acronym{PDF} viewer by using [view_nlum_metadata_pdf()].
 #'
 #' @param data_set A string value indicating the data desired for download.
 #' One of:
 #' \describe{
-#'   \item{clum_50m_2023_v2}{ (default)},
-#'   \item{scale_date_update}{}
+#'  \item{clum_50m_2023_v2}{Catchment Scale Land Use of Australia – Update December 2023 version 2}
+#'  \item{scale_date_update}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
 #' }.
 #' @inheritParams read_agfd_dt
 #'
