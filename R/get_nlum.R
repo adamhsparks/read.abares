@@ -132,7 +132,7 @@
       }
       fs::dir_delete(
         setdiff(
-          fs::dir_ls(nlum_dir),
+          fs::dir_ls(nlum_dir, type = "directory"),
           fs::dir_ls(nlum_dir, regexp = "^Maps$|^Symbology$")
         )
       )
