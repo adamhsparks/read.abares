@@ -11,6 +11,7 @@
 ^flint$
 ^\.github$
 ^air\.toml$
+^man/dot-create_clum_50m_coltab\.Rd$
 ^man/dot-get_agfd\.Rd$
 ^man/dot-get_clum\.Rd$
 ^man/dot-get_nlum\.Rd$

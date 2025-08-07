@@ -6,7 +6,7 @@
 \source{
 \describe{
 \item{Catchment Scale Land Use of Australia v2 GeoTiff}{\url{https://www.agriculture.gov.au/sites/default/files/documents/clum_50m_2023_v2.zip}}
-\item{Date and Scale of Mapping Shapefile GeoTIFF}{\url{https://data.gov.au/data/dataset/catchment-scale-land-use-of-australia-and-commodities-update-december-2023/resource/98b1b93f-e5e1-4cc9-90bf-29641cfc4f11}}
+\item{Date and Scale of Mapping Shapefile GeoTIFF}{\url{https://data.gov.au/data/dataset/8af26be3-da5d-4255-b554-f615e950e46d/resource/98b1b93f-e5e1-4cc9-90bf-29641cfc4f11/download/scale_date_update.zip}}
 }
 }
 \usage{
@@ -52,17 +52,27 @@ to 1:250,000) vary, reflecting the source data, capture date and scale.
 Date and scale of mapping are provided in supporting datasets.}
 -- \acronym{ABARES}, 2024-06-27
 }
-\note{
-The raster will load with the default category for each data set, but you can
-specify a different category to use through \code{\link[terra:activeCat]{terra::activeCat()}} after
-loading.  To see which categories are available, please refer to the
-metadata for these data.  The PDF can be accessed in your default web
-browser by using \code{\link[=view_clum_metadata_pdf]{view_clum_metadata_pdf()}}.
+\section{Active categories}{
+
+The catchment scale land use data set is a categorical raster with many
+categories.  The raster will load with the default category for each data
+set, but you can specify a different category to use through
+\code{\link[terra:activeCat]{terra::activeCat()}} after loading.  To see which categories are available,
+please refer to the metadata for these data.  The PDF can be accessed in
+your default web browser by using \code{\link[=view_clum_metadata_pdf]{view_clum_metadata_pdf()}}.
 }
+
+\section{Map colours}{
+
+Where \acronym{ABARES} has provided a style guide, it will be applied by
+default to the raster object. Not all GeoTiff files have a colour guide
+availablei.
+}
+
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 
-read_clum_terra(data_set = "clum_50m_2023_v2")
+clum_terra <- read_clum_terra(data_set = "clum_50m_2023_v2")
 
 clum_terra
 
