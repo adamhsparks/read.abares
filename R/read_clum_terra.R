@@ -37,7 +37,7 @@
 #' @section Map colours:
 #' Where \acronym{ABARES} has provided a style guide, it will be applied by
 #'  default to the raster object. Not all GeoTiff files have a colour guide
-#'  availablei.
+#'  available.
 #'
 #' @inheritParams read_clum_stars
 #'
@@ -79,35 +79,7 @@ read_clum_terra <- function(
       .data_set = data_set
     )
   }
-
   r <- terra::rast(files[grep("[.]tif$", files)])
-
-  if (data_set == "scale_date_update") {
-    date_levels <- data.table(
-      int = 2008L:2023L,
-      rast_cat = 2008L:2023L
-    )
-    update_levels <- data.table(
-      int = 0L:1L,
-      rast_cat = c("Not Updated", "Updated Since CLUM Dec. 2020 Release")
-    )
-    scale_levels <- data.table(
-      int = c(5000L, 10000L, 20000L, 25000L, 50000L, 100000L, 250000L),
-      rast_cat = c(
-        "1:5,000",
-        "1:10,000",
-        "1:20,000",
-        "1:25,000",
-        "1:50,000",
-        "1:100,000",
-        "1:250,000"
-      )
-    )
-  }
-
-  if (data_set == "clum_50m_2023_v2") {
-    terra::coltab(r) <- .create_clum_50m_coltab()
-  }
-
+  terra::coltab(r) <- .create_clum_50m_coltab()
   return(r)
 }

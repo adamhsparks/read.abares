@@ -66,7 +66,7 @@ your default web browser by using \code{\link[=view_clum_metadata_pdf]{view_clum
 
 Where \acronym{ABARES} has provided a style guide, it will be applied by
 default to the raster object. Not all GeoTiff files have a colour guide
-availablei.
+available.
 }
 
 \examples{
