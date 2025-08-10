@@ -69,7 +69,7 @@ read_clum_terra <- function(
   data_set = "clum_50m_2023_v2",
   files = NULL
 ) {
-  rlang::arg_match(
+  data_set <- rlang::arg_match0(
     data_set,
     c("clum_50m_2023_v2", "scale_date_update")
   )
@@ -80,6 +80,8 @@ read_clum_terra <- function(
     )
   }
   r <- terra::rast(files[grep("[.]tif$", files)])
-  terra::coltab(r) <- .create_clum_50m_coltab()
+  if (data_set == "clum_50m_2023_v2") {
+    terra::coltab(r) <- .create_clum_50m_coltab()
+  }
   return(r)
 }

@@ -64,7 +64,7 @@ read_clum_stars <- function(
   data_set = "clum_50m_2023_v2",
   files = NULL
 ) {
-  rlang::arg_match(
+  data_set <- rlang::arg_match0(
     data_set,
     c("clum_50m_2023_v2", "scale_date_update")
   )
@@ -74,5 +74,6 @@ read_clum_stars <- function(
       .data_set = data_set
     )
   }
+
   return(stars::read_stars(files[grep("[.]tif$", files)]))
 }
