@@ -83,7 +83,7 @@ read_clum_terra <- function(
       .data_set = data_set
     )
   }
-  r <- terra::rast(files[grep("[.]tif$", files)])
+  r <- terra::rast(files[grep("[.]tif$", files)], ...)
   if (data_set == "clum_50m_2023_v2") {
     terra::coltab(r) <- .create_clum_50m_coltab()
   }

@@ -94,5 +94,5 @@ read_nlum_terra <- function(
   rlang::arg_match(data_set)
 
   nlum <- .get_nlum(.data_set = data_set)
-  return(terra::rast(nlum[grep("tif$", nlum, ...)]))
+  return(terra::rast(nlum[grep("tif$", nlum)], ...))
 }
