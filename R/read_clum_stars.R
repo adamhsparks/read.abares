@@ -38,6 +38,9 @@
 #'  \item{scale_date_update}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
 #' }.
 #' @inheritParams read_agfd_dt
+#' @param ... Additional arguments passed to [stars::read_stars()], for *e.g.*,
+#'  `RAT` if you wish to set the active category when loading any of the
+#'  available GeoTIFF files that are encoded with a raster attribute table.
 #'
 #' @references
 #' ABARES 2024, Catchment Scale Land Use of Australia – Update December 2023
@@ -62,7 +65,8 @@
 #' @export
 read_clum_stars <- function(
   data_set = "clum_50m_2023_v2",
-  files = NULL
+  files = NULL,
+  ...
 ) {
   data_set <- rlang::arg_match0(
     data_set,
@@ -75,5 +79,5 @@ read_clum_stars <- function(
     )
   }
 
-  return(stars::read_stars(files[grep("[.]tif$", files)]))
+  return(stars::read_stars(files[grep("[.]tif$", files)], ...))
 }

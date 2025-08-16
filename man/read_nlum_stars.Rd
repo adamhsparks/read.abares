@@ -36,7 +36,7 @@ One of:
 \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 }.}
 
-\item{...}{Additional arguments passed to \link[stars:read_stars]{stars::read_stars}, for \emph{e.g.},
+\item{...}{Additional arguments passed to \code{\link[stars:read_stars]{stars::read_stars()}}, for \emph{e.g.},
 \code{RAT} if you wish to set the active category when loading any of the
 available GeoTIFF files that are encoded with a raster attribute table.}
 }
@@ -86,7 +86,7 @@ default \acronym{PDF} viewer by using \code{\link[=view_nlum_metadata_pdf]{view_
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 
-read_nlum_stars()
+nlum_stars <- read_nlum_stars("Y202021")
 
 nlum_stars
 

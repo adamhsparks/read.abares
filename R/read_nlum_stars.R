@@ -51,7 +51,7 @@
 #'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 #'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 #' }.
-#' @param ... Additional arguments passed to [stars::read_stars], for *e.g.*,
+#' @param ... Additional arguments passed to [stars::read_stars()], for *e.g.*,
 #'  `RAT` if you wish to set the active category when loading any of the
 #'  available GeoTIFF files that are encoded with a raster attribute table.
 #'
@@ -76,7 +76,7 @@
 #'
 #' @examplesIf interactive()
 #'
-#' read_nlum_stars()
+#' nlum_stars <- read_nlum_stars("Y202021")
 #'
 #' nlum_stars
 #'
@@ -105,5 +105,5 @@ read_nlum_stars <- function(data_set, ...) {
   )
 
   nlum <- .get_nlum(.data_set = data_set)
-  return(stars::read_stars(nlum[grep("tif$", nlum)]))
+  return(stars::read_stars(nlum[grep("tif$", nlum)], ...))
 }

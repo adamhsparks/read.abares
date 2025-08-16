@@ -38,8 +38,20 @@
 #'  The PDF can be accessed in your default web browser by using
 #'  [view_nlum_metadata_pdf()].
 #'
-#' @inheritParams read_nlum_stars
-#' @inheritParams read_agfd_dt
+#' @param data_set A string value indicating the GeoTIFF desired for download.
+#' One of:
+#' \describe{
+#'  \item{Y201011}{Land use of Australia 2010–11}
+#'  \item{Y201516}{Land use of Australia 2015–16}
+#'  \item{Y202021}{Land use of Australia 2020–21}
+#'  \item{C201121}{Land use of Australia change}
+#'  \item{T201011}{Land use of Australia 2010–11 thematic layers}
+#'  \item{T201516}{Land use of Australia 2015–16 thematic layers}
+#'  \item{T202021}{Land use of Australia 2020–21 thematic layers}
+#'  \item{P201011}{Land use of Australia 2010–11 agricultural commodities probability grids}
+#'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
+#'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
+#' }.
 #' @param ... Additional arguments passed to [terra::rast()], for *e.g.*,
 #'  `activeCat` if you wished to set the active category when loading any of the
 #'  available GeoTIFF files that are encoded with a raster attribute table.
