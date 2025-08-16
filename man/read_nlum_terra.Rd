@@ -19,8 +19,8 @@
 }
 \usage{
 read_nlum_terra(
-  data_set = c("Y201011", "Y201516", "C201021", "T201011", "T201516", "T202021",
-    "P201011", "P201516", "P202021"),
+  data_set = c("Y201011", "Y201516", "Y202021", "C201021", "T201011", "T201516",
+    "T202021", "P201011", "P201516", "P202021"),
   ...
 )
 }
@@ -91,7 +91,7 @@ The PDF can be accessed in your default web browser by using
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 
-read_nlum_terra(data_set = "Y202021")
+nlum_terra <- read_nlum_terra(data_set = "Y202021")
 
 nlum_terra
 
