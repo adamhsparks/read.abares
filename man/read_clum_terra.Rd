@@ -10,7 +10,7 @@
 }
 }
 \usage{
-read_clum_terra(data_set = "clum_50m_2023_v2", files = NULL)
+read_clum_terra(data_set = "clum_50m_2023_v2", files = NULL, ...)
 }
 \arguments{
 \item{data_set}{A string value indicating the data desired for download.
@@ -19,6 +19,10 @@ One of:
 \item{clum_50m_2023_v2}{Catchment Scale Land Use of Australia – Update December 2023 version 2}
 \item{scale_date_update}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
 }.}
+
+\item{...}{Additional arguments passed to \code{\link[terra:rast]{terra::rast()}}, for \emph{e.g.},
+\code{activeCat} if you wished to set the active category when loading any of the
+available GeoTIFF files that are encoded with a raster attribute table.}
 }
 \value{
 A \code{\link[terra:rast]{terra::rast()}} object that may be one or many layers depending

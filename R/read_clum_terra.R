@@ -40,6 +40,9 @@
 #'  available.
 #'
 #' @inheritParams read_clum_stars
+#' @param ... Additional arguments passed to [terra::rast()], for *e.g.*,
+#'  `activeCat` if you wished to set the active category when loading any of the
+#'  available GeoTIFF files that are encoded with a raster attribute table.
 #'
 #' @references
 #' ABARES 2024, Catchment Scale Land Use of Australia – Update December 2023
@@ -67,7 +70,8 @@
 #' @export
 read_clum_terra <- function(
   data_set = "clum_50m_2023_v2",
-  files = NULL
+  files = NULL,
+  ...
 ) {
   data_set <- rlang::arg_match0(
     data_set,
