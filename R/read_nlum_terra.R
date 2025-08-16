@@ -65,7 +65,7 @@
 #'
 #' @examplesIf interactive()
 #'
-#' read_nlum_terra(data_set = "Y202021")
+#' nlum_terra <- read_nlum_terra(data_set = "Y202021")
 #'
 #' nlum_terra
 #'
@@ -80,6 +80,7 @@ read_nlum_terra <- function(
   data_set = c(
     "Y201011",
     "Y201516",
+    "Y202021",
     "C201021",
     "T201011",
     "T201516",
