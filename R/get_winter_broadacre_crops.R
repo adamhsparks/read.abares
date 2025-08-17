@@ -61,5 +61,11 @@ abares_crop_data <- function(filename) {
       fixed = FALSE
     )
   ]
-  x
+  x[, `Data item` := NULL]
+  cols_to_be_rectified <- names(x)[vapply(x, is.character, logical(1L))]
+  x[,
+    c(cols_to_be_rectified) := lapply(.SD, trimws),
+    .SDcols = cols_to_be_rectified
+  ]
+  return(x)
 }
