@@ -253,18 +253,6 @@
     },
     "8": {
       "@type": "SoftwareApplication",
-      "identifier": "openxlsx2",
-      "name": "openxlsx2",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=openxlsx2"
-    },
-    "9": {
-      "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
       "provider": {
@@ -275,7 +263,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
     },
-    "10": {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "readtext",
       "name": "readtext",
@@ -286,6 +274,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=readtext"
+    },
+    "10": {
+      "@type": "SoftwareApplication",
+      "identifier": "readxl",
+      "name": "readxl",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=readxl"
     },
     "11": {
       "@type": "SoftwareApplication",
@@ -373,7 +373,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "660.736KB",
+  "fileSize": "672.884KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -389,7 +389,7 @@
       "description": "R package version 2.0.0"
     }
   ],
-  "releaseNotes": "https://github.com/adamhsparks/read.abares/blob/master/NEWS.md",
+  "releaseNotes": "https://github.com/adamhsparks/read.abares/blob/main/NEWS.md",
   "readme": "https://github.com/adamhsparks/read.abares/blob/main/README.md",
   "contIntegration": ["https://github.com/adamhsparks/read.abares/actions/workflows/R-CMD-check.yaml", "https://codecov.io/gh/adamhsparks/read.abares"],
   "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html#stable", "https://www.repostatus.org/#active"],

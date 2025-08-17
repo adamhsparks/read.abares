@@ -50,7 +50,7 @@ read_historical_forecast_database <- function() {
     .f = f
   )
 
-  x <- data.table::as.data.table(openxlsx2::read_xlsx(
+  x <- data.table::as.data.table(readxl::read_excel(
     f,
     sheet = "Database",
     na.strings = "na"
