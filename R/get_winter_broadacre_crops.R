@@ -55,17 +55,12 @@ abares_crop_data <- function(filename) {
   x <- x[!grep("Commonwealth", x$Region, fixed = TRUE), ]
 
   x <- x[,
-    c("crop", "units", "dollar value") := data.table::tstrsplit(
+    c("crop", "units") := data.table::tstrsplit(
       `Data item`,
-      "-|for",
-      fixed = FALSE
+      " - ",
+      fixed = TRUE
     )
   ]
   x[, `Data item` := NULL]
-  cols_to_be_rectified <- names(x)[vapply(x, is.character, logical(1L))]
-  x[,
-    c(cols_to_be_rectified) := lapply(.SD, trimws),
-    .SDcols = cols_to_be_rectified
-  ]
   return(x)
 }
