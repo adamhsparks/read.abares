@@ -196,7 +196,7 @@ read_agfd_dt <- function(
 ) {
   rlang::arg_match(yyyy, values = 1991:2023, multiple = TRUE)
   if (is.null(files)) {
-    files <- get_agfd(
+    files <- .get_agfd(
       fixed_prices = fixed_prices,
       yyyy = yyyy,
       files = files
