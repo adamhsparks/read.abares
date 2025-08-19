@@ -9,6 +9,7 @@ ANZCW
 ANZLIC
 ASRIS
 Boult
+Broadacre
 Bui
 CLUM
 CLUMC
@@ -27,6 +28,7 @@ GTiff
 GeoPackage
 GeoTIFF
 GeoTIFFs
+GeoTiff
 Geopackages
 Geospatial
 Gridded
@@ -37,8 +39,8 @@ Licences
 Lifecycle
 MDBSIS
 MODIS
+Maëlle
 NCDF
-NETCDF
 NLUM
 NLWRA
 NRE
@@ -56,8 +58,10 @@ PPF's
 QDNR
 README
 ROR
+RStudio
 Rds
 ShapeFile
+Shutup
 Soh
 Spectroradiometer
 Standardised
@@ -74,6 +78,8 @@ broadacre
 capitalised
 clum
 codecov
+colour
+colours
 coverages
 curtin
 de
@@ -98,6 +104,7 @@ http
 https
 httptest
 httr
+installable
 kilometres
 labour
 locational
@@ -109,9 +116,9 @@ modelling
 multilayer
 nlum
 oilseeds
-overidden
 pak
 pfe
+qml
 quadrat
 rOpenSci
 rast
@@ -122,5 +129,6 @@ standardises
 terra
 tidync
 topsoils
+upzipping
 visualise
 www
