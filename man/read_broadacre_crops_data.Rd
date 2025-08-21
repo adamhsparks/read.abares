@@ -21,7 +21,7 @@ recent release available. Defaults to \code{"latest"}.}
 \item{file}{A string value providing a file path to an \acronym{ABS}
 Australian production data set that you have downloaded and saved locally.
 No checks are performed, it will attempt to parse any file you pass to it
-here. If this is used, the \code{crops} and \code{year} arguments will be ignored.}
+here. If this is used, other arguments will be ignored.}
 }
 \value{
 A \code{\link[data.table:data.table]{data.table::data.table()}} object of the requested data.
@@ -42,4 +42,7 @@ it's serviced in this package.
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 get_broadacre_crops_data()
 \dontshow{\}) # examplesIf}
+}
+\references{
+\url{https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops}.
 }

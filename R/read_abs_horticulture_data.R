@@ -14,12 +14,12 @@
 #' @examplesIf interactive()
 #' read_horticultural_crops_data()
 #'
-#' @reference <https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-horticulture/>.
+#' @references <https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-horticulture/>.
 #' @returns A [data.table::data.table()] object of the requested data.
 #' @autoglobal
 #' @export
 
-read_horticulture_data <- function(year = "latest", file = NULL) {
+read_abs_horticulture_data <- function(year = "latest", file = NULL) {
   if (is.null(file)) {
     # see parse_abs_production_data.R for .find_years()
     available <- .find_years(data_set = "horticulture")

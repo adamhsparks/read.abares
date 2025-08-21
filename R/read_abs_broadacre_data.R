@@ -20,11 +20,12 @@
 #' @param file A string value providing a file path to an \acronym{ABS}
 #'   Australian production data set that you have downloaded and saved locally.
 #'   No checks are performed, it will attempt to parse any file you pass to it
-#'   here. If this is used, the `crops` and `year` arguments will be ignored.
+#'   here. If this is used, other arguments will be ignored.
 #'
 #' @examplesIf interactive()
 #' get_broadacre_crops_data()
-#' @reference <https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops>.
+#'
+#' @references <https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops>.
 #' @returns A [data.table::data.table()] object of the requested data.
 #' @export
 #' @autoglobal

@@ -85,7 +85,7 @@ parse_abs_production_data <- function(filename) {
 #'
 #' Grabs the ABS website and uses a regexp to find what financial years are
 #'  available for download.
-#' @params as string providing the data set that is being requested. One of:
+#' @param as string providing the data set that is being requested. One of:
 #'   * broadacre,
 #'   * horticultural, or
 #'   * livestock.

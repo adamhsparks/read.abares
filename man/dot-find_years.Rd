@@ -6,6 +6,14 @@
 \usage{
 .find_years(data_set)
 }
+\arguments{
+\item{as}{string providing the data set that is being requested. One of:
+\itemize{
+\item broadacre,
+\item horticultural, or
+\item livestock.
+}}
+}
 \value{
 A string value of financial years that match availability from the
 ABS website, \emph{e.g.}, \code{2023-24}.
