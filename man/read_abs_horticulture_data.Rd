@@ -6,16 +6,6 @@
 \usage{
 read_abs_horticulture_data(year = "latest", file = NULL)
 }
-\arguments{
-\item{year}{A string value providing the year of interest to download.
-Formatted as \code{"2022-23"} or \code{"2023-24"} or use \code{"latest"} for the most
-recent release available. Defaults to \code{"latest"}.}
-
-\item{file}{A string value providing a file path to an \acronym{ABS}
-Australian production data set that you have downloaded and saved locally.
-No checks are performed, it will attempt to parse any file you pass to it
-here. If this is used, other arguments will be ignored.}
-}
 \value{
 A \code{\link[data.table:data.table]{data.table::data.table()}} object of the requested data.
 }
