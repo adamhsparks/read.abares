@@ -12,8 +12,6 @@
 ^\.github$
 ^air\.toml$
 ^man/dot-get_agfd\.Rd$
-^man/abares_crop_data\.Rd$
-^man/dot-find_years\.Rd$
 ^man/dot-get_clum\.Rd$
 ^man/dot-set_clum_update_levels\.Rd$
 ^man/dot-create_clum_50m_coltab\.Rd$
@@ -24,6 +22,8 @@
 ^man/dot-list_topsoil_thickness_files\.Rd$
 ^man/dot-find_user_cache\.Rd$
 ^man/dot-retry_download\.Rd$
+^man/parse_abs_production_data\.Rd$
+^man/dot-find_years\.Rd$
 ^man/dot-readabares_collaborators\.Rd$
 ^man/readabares_user_agent\.Rd$
 ^man/dot-download_aagis_shp\.Rd$

@@ -29,7 +29,7 @@ Imports:
     data.table,
     fs,
     httr2,
-    lubridate,
+    htm2txt,
     purrr,
     readtext,
     readxl,
