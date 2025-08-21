@@ -1,4 +1,4 @@
-#' Get Winter Broadacre Crops by Australia, State and Territory by Year
+#' Get Broadacre Crops by Australia, State and Territory by Year
 #'
 #' Technically these are from the Australian Bureau of Statistics (\acronym{ABS}
 #' data, not \acronym{ABARES}, but the data is agricultural and so it's serviced
@@ -8,26 +8,25 @@
 #'  * winter,
 #'  * summer or
 #'  * sugarcane.
-#' @param year A numeric value providing the year of interest to download.
-#'  Formatted as `202223` or `202324` or just use `"latest"` for the most
-#'  recent release.
+#' @param year A string value providing the year of interest to download.
+#'  Formatted as `"2022-23"` or `"2023-24"` or use `"latest"` for the most
+#'  recent release available. Defaults to `"latest"`.
 #'
 #' @examples
 #' get_broadacre_crops_data()
 #'
-#' @returns A [data.table::data.table() object of the requested data.
+#' @returns A [data.table::data.table()] object of the requested data.
 #' @autoglobal
 #'
 
 get_broadacre_crops_data <- function(crops, year = "latest") {
+  available <- .find_years()
+  year <- rlang::arg_match(year, c("latest", years))
+
+  if (year == "latest") {
+    year <- available[[1L]]
+  }
   base_url <- "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops/"
-
-
-
- year_url <- switch(year,
-         202223 = "2022-23",
-         202324 = "2023-24",
-         latest = "") 
 
   file_url <- "AABDC_Winter_Broadacre_202324.xlsx"
   winter_crops <- fs::path(tempdir(), "winter_crops")
@@ -83,13 +82,18 @@ abares_crop_data <- function(filename) {
   return(x)
 }
 
-https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops
 
-#' Find Which Financial Years Data are Available for
-.find_years <- function(crops) {
+#' Find Which Financial Years Data are Available
+#'
+#' Grabs the ABS website and uses a regexp to find what financial years are
+#'  available for download.
+#'
+#' @returns A string value of financial years that match availability from the
+#'  ABS website, *e.g.*, `2023-24`.
+#' @dev
+.find_years <- function() {
+  crop_url = "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops"
+  text <- htm2txt::gettxt(crop_url)
 
-  crop_url = "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops",
- text <- htm2text::gettxt(crop_url)
-
-matches <- regmatches(text, gregexpr("\\b\\d{4}-\\d{2}\\b", text))
+  return(unlist(regmatches(text, gregexpr("\\b\\d{4}-\\d{2}\\b", text))))
 }
