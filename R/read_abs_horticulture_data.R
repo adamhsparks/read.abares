@@ -9,14 +9,15 @@
 #' (\acronym{ABS}, not \acronym{ABARES}, but the data is agricultural and so
 #' it's serviced in this package.
 #'
-#' @inheritParams read_broadacre_crops_data
+#' @inheritParams read_abs_broadacre_data
 #'
 #' @examplesIf interactive()
-#' read_horticultural_crops_data()
+#' read_abs_horticultural_data()
 #'
 #' @references <https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-horticulture/>.
 #' @returns A [data.table::data.table()] object of the requested data.
 #' @autoglobal
+#' @family ABS
 #' @export
 
 read_abs_horticulture_data <- function(year = "latest", file = NULL) {
@@ -30,7 +31,7 @@ read_abs_horticulture_data <- function(year = "latest", file = NULL) {
     }
     base_url <- "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-horticulture/"
 
-    file <- fs::path(tempdir(), "crops_file")
+    file <- fs::path(tempdir(), "hort_crops_file")
     .retry_download(
       url = sprintf(
         "%s%s/AAHDC_Aust_Horticulture_%s.xlsx",

@@ -23,14 +23,15 @@
 #'   here. If this is used, other arguments will be ignored.
 #'
 #' @examplesIf interactive()
-#' get_broadacre_crops_data()
+#' read_abs_broadacre_data()
 #'
 #' @references <https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops>.
 #' @returns A [data.table::data.table()] object of the requested data.
 #' @export
+#' @family ABS
 #' @autoglobal
 
-read_abs_broadacre_crops_data <- function(
+read_abs_broadacre_data <- function(
   crops = "winter",
   year = "latest",
   file = NULL
@@ -45,7 +46,7 @@ read_abs_broadacre_crops_data <- function(
     }
     base_url <- "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops/"
 
-    file <- fs::path(tempdir(), "crops_file")
+    file <- fs::path(tempdir(), sprintf("%s_crops_file", crops))
     .retry_download(
       url = sprintf(
         "%s%s/AABDC_%s_%s.xlsx",
