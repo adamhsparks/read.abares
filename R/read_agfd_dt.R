@@ -41,7 +41,7 @@
 #'  These maps provide estimates of farm business profit, revenue, costs and
 #'  production by location (grid cell) and year for the period 1990-91 to
 #'  2022-23. The data do not include actual observed outcomes but rather model
-#'  predicted outcomes for representative or \sQuote{typical} broadacre farm
+#'  predicted outcomes for representative or 'typical' broadacre farm
 #'  businesses at each location considering likely farm characteristics and
 #'  prevailing weather conditions and commodity prices."\cr
 #'  -- \acronym{ABARES}, 2024-11-25
@@ -93,7 +93,7 @@
 #'  * \var{<farm year>} = Financial year of farm business data is used in simulations.
 #'  * \var{<climate year>} = Financial year of climate data is used in simulations.
 #'  * \var{<price year>} = Financial year of output and input prices used in simulations.
-#'  * \var{<technology year>} = Financial year of farm \sQuote{technology} (equal to farm year in all simulations)
+#'  * \var{<technology year>} = Financial year of farm 'technology' (equal to farm year in all simulations)
 #'  Here financial years are referred to by the closing calendar year
 #'   (*e.g.*, 2022 = 1 July 2021 to 30 June 2022).
 #'
