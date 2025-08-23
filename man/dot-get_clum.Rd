@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_clum_data.R
 \name{.get_clum}
 \alias{.get_clum}
-\title{Get catchment scale \dQuote{Land Use of Australia} data}
+\title{Get Catchment Scale "Land Use of Australia" Data}
 \source{
 \url{https://10.25814/2w2p-ph98}.
 }

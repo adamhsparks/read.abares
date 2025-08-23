@@ -8,7 +8,7 @@
 #'
 #' @param Commodities A `Boolean` value that indicates whether to download the
 #'  catchment land scale use metadata for commodities. Defaults to `FALSE`,
-#'  downloading the \dQuote{Catchment Land Scale Use Metadata}.
+#'  downloading the "Catchment Land Scale Use Metadata".
 #'
 #' @source
 #' \describe{

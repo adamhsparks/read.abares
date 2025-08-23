@@ -33,7 +33,7 @@ Download and import catchment scale "Land Use of Australia" GeoTIFFs using
 \details{
 From the
 \href{https://www.agriculture.gov.au/sites/default/files/documents/CLUM_DescriptiveMetadata_December2023_v2.pdf}{ABARES documentation}
-\dQuote{The Catchment Scale Land Use of Australia – Update December 2023
+"The Catchment Scale Land Use of Australia – Update December 2023
 version 2 dataset is the national compilation of catchment scale land use
 data available for Australia (CLUM), as at December 2023. It replaces the
 Catchment Scale Land Use of Australia – Update December 2020. It is a
@@ -50,7 +50,7 @@ combining land tenure and other types of land use information including,
 fine-scale satellite data, ancillary datasets, and information collected in
 the field. The date of mapping (2008 to 2023) and scale of mapping (1:5,000
 to 1:250,000) vary, reflecting the source data, capture date and scale.
-Date and scale of mapping are provided in supporting datasets.}
+Date and scale of mapping are provided in supporting datasets."
 -- \acronym{ABARES}, 2024-06-27
 }
 \section{Active categories}{

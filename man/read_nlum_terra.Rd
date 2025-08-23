@@ -40,9 +40,7 @@ One of:
 \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 }.}
 
-\item{...}{Additional arguments passed to \code{\link[terra:rast]{terra::rast()}}, for \emph{e.g.},
-\code{activeCat} if you wished to set the active category when loading any of the
-available GeoTIFF files that are encoded with a raster attribute table.}
+\item{...}{Additional arguments passed to \code{\link[terra:rast]{terra::rast()}}.}
 }
 \value{
 A \code{\link[terra:rast]{terra::rast()}} object that may be one or many layers depending
@@ -55,7 +53,7 @@ categorical \code{\link[terra:rast]{terra::rast()}} objects.
 \details{
 From the
 \href{https://www.agriculture.gov.au/abares/aclump/land-use/land-use-of-australia-2010-11-to-2020-21}{ABARES website}:
-\dQuote{The \emph{Land use of Australia 2010–11 to 2020–21} data package consists
+"The \emph{Land use of Australia 2010–11 to 2020–21} data package consists
 of seamless continental rasters that present land use at national scale for
 2010–11, 2015–16 and 2020–21 and the associated change between each target
 period.  Non-agricultural land uses are mapped using 7 thematic layers,
@@ -77,7 +75,7 @@ Geocentric Datum of Australian 1994 (GDA94) and a 0.002197 degree
 The \emph{Land use of Australia 2010–11 to 2020–21} data package is a product
 of the Australian Collaborative Land Use and Management Program. This data
 package replaces the Land use of Australia 2010–11 to 2015–16 data package,
-with updates to these time periods.}
+with updates to these time periods."
 -- \acronym{ABARES}, 2024-11-28
 }
 \note{

@@ -5,7 +5,7 @@
 #'
 #' @details From the
 #' [ABARES website](https://www.agriculture.gov.au/abares/aclump/land-use/land-use-of-australia-2010-11-to-2020-21):
-#' \dQuote{The _Land use of Australia 2010–11 to 2020–21_ data package consists
+#' "The _Land use of Australia 2010–11 to 2020–21_ data package consists
 #' of seamless continental rasters that present land use at national scale for
 #' 2010–11, 2015–16 and 2020–21 and the associated change between each target
 #' period.  Non-agricultural land uses are mapped using 7 thematic layers,
@@ -27,7 +27,7 @@
 #'    The _Land use of Australia 2010–11 to 2020–21_ data package is a product
 #' of the Australian Collaborative Land Use and Management Program. This data
 #' package replaces the Land use of Australia 2010–11 to 2015–16 data package,
-#' with updates to these time periods.}
+#' with updates to these time periods."
 #'  -- \acronym{ABARES}, 2024-11-28
 #'
 #' @note

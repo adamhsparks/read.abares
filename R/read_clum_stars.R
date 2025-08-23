@@ -5,7 +5,7 @@
 #'
 #' @details From the
 #' [ABARES documentation](https://www.agriculture.gov.au/sites/default/files/documents/CLUM_DescriptiveMetadata_December2023_v2.pdf)
-#' \dQuote{The Catchment Scale Land Use of Australia – Update December 2023
+#' "The Catchment Scale Land Use of Australia – Update December 2023
 #' version 2 dataset is the national compilation of catchment scale land use
 #' data available for Australia (CLUM), as at December 2023. It replaces the
 #' Catchment Scale Land Use of Australia – Update December 2020. It is a
@@ -22,7 +22,7 @@
 #' fine-scale satellite data, ancillary datasets, and information collected in
 #' the field. The date of mapping (2008 to 2023) and scale of mapping (1:5,000
 #' to 1:250,000) vary, reflecting the source data, capture date and scale.
-#' Date and scale of mapping are provided in supporting datasets.}
+#' Date and scale of mapping are provided in supporting datasets."
 #'  -- \acronym{ABARES}, 2024-06-27
 #' @note
 #' The raster will load with the default category for each data set, but you can

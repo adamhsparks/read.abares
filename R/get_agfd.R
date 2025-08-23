@@ -1,7 +1,7 @@
-#' Get \dQuote{Australian Gridded Farm Data} (AGFD) for local use
+#' Get "Australian Gridded Farm Data" (AGFD)
 #'
-#' Used by the `read_agfd` family of functions, downloads the \dQuote{Australian
-#'  Gridded Farm Data} (\acronym{AGFD}) data and unzips the compressed files to
+#' Used by the `read_agfd` family of functions, downloads the "Australian
+#'  Gridded Farm Data" (\acronym{AGFD}) data and unzips the compressed files to
 #'  NetCDF for importing.
 #'
 #' @param .fixed_prices Download historical climate and prices or historical
@@ -18,8 +18,8 @@
 #'
 #' agfd
 #'
-#' @returns A `list()` object, a list of NetCDF files containing the
-#'  \dQuote{Australian Gridded Farm Data}.
+#' @returns A `list()` object, a list of NetCDF files containing the "Australian
+#'   Gridded Farm Data".
 #' @autoglobal
 #' @dev
 

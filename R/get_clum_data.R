@@ -1,4 +1,4 @@
-#' Get catchment scale \dQuote{Land Use of Australia} data
+#' Get Catchment Scale "Land Use of Australia" Data
 #'
 #' An internal function used by [read_clum_terra()] and [read_clum_stars()] that
 #'  downloads catchment level land use data files.
@@ -45,7 +45,8 @@
   file_url <-
     "https://data.gov.au/data/dataset/8af26be3-da5d-4255-b554-f615e950e46d/resource/"
 
-  file_url <- switch(.data_set,
+  file_url <- switch(
+    .data_set,
     "clum_50m_2023_v2" = sprintf(
       "%s6deab695-3661-4135-abf7-19f25806cfd7/download/clum_50m_2023_v2.zip",
       file_url

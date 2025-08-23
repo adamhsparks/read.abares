@@ -10,9 +10,8 @@
 #' @inheritSection read_agfd_dt Data layers
 #' @inherit read_agfd_dt references
 #'
-#' @returns A `list` object of \CRANpkg{tidync} objects of the
-#'  \dQuote{Australian Gridded Farm Data} with the file names as the list's
-#'  objects' names.
+#' @returns A `list` object of \CRANpkg{tidync} objects of the "Australian
+#'  Gridded Farm Data" with the file names as the list's objects' names.
 #'
 #' @examplesIf interactive()
 #'

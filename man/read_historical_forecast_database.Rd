@@ -33,7 +33,7 @@ The resulting object will contain the following fields.\tabular{ll}{
    Estimate_type \tab Broad grouping of estimate by theme \emph{e.g.}, animal numbers, area, production, price, export and volume measures. \cr
    Estimate_description \tab Detailed description of each series. \cr
    Unit \tab Measurement unit of series. \emph{e.g.}, kt, $m, $/t. \cr
-   Region \tab Relevant region for each series. \dQuote{World} denotes relevant international market. \cr
+   Region \tab Relevant region for each series. "World" denotes relevant international market. \cr
    Year_Issued \tab Year that forecast was originally issued. \cr
    Month_issued \tab Month that forecast was originally issued. \cr
    Year_Issued_FY \tab Australian financial year (July-June) that forecast was originally issued. \cr

@@ -1,13 +1,13 @@
 #' Read "Australian Gridded Farm Data" (AGFD) NCDF Files as a data.table Object
 #'
-#' Read \dQuote{Australian Gridded Farm Data}, (\acronym{AGFD}) as a
+#' Read "Australian Gridded Farm Data", (\acronym{AGFD}) as a
 #'  [data.table::data.table()] object.
 #'
 #' @param fixed_prices Download historical climate and prices or historical
 #'  climate and fixed prices as described in  (Hughes *et al.* 2022). Defaults
 #'  to `TRUE` and downloads the data with historical climate and fixed prices
-#'  \dQuote{to isolate the effects of climate variability on financial incomes
-#'  for broadacre farm businesses} (ABARES 2024).  Using `TRUE` will download
+#'  "to isolate the effects of climate variability on financial incomes
+#'  for broadacre farm businesses" (ABARES 2024).  Using `TRUE` will download
 #'  simulations where global output and input price indexes are fixed at values
 #'  from the most recently completed financial year.
 #' @param yyyy Returns only data for the specified year or years for climate
@@ -20,7 +20,7 @@
 #' @details
 #'
 #' From the [ABARES website](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data):
-#' \dQuote{The Australian Gridded Farm Data (\acronym{AGFD}) are a set of national
+#'  "The Australian Gridded Farm Data (\acronym{AGFD}) are a set of national
 #'  scale maps containing simulated data on historical broadacre farm business
 #'  outcomes including farm profitability on an 0.05-degree (approximately 5 km)
 #'  grid.\cr
@@ -43,7 +43,7 @@
 #'  2022-23. The data do not include actual observed outcomes but rather model
 #'  predicted outcomes for representative or \sQuote{typical} broadacre farm
 #'  businesses at each location considering likely farm characteristics and
-#'  prevailing weather conditions and commodity prices.}\cr
+#'  prevailing weather conditions and commodity prices."\cr
 #'  -- \acronym{ABARES}, 2024-11-25
 #'
 #' If you have not already downloaded the files, both sets of data are large in

@@ -10,8 +10,8 @@ read_agfd_terra(fixed_prices = TRUE, yyyy = 1991:2003, files = NULL)
 \item{fixed_prices}{Download historical climate and prices or historical
 climate and fixed prices as described in  (Hughes \emph{et al.} 2022). Defaults
 to \code{TRUE} and downloads the data with historical climate and fixed prices
-\dQuote{to isolate the effects of climate variability on financial incomes
-for broadacre farm businesses} (ABARES 2024).  Using \code{TRUE} will download
+"to isolate the effects of climate variability on financial incomes
+for broadacre farm businesses" (ABARES 2024).  Using \code{TRUE} will download
 simulations where global output and input price indexes are fixed at values
 from the most recently completed financial year.}
 
@@ -32,7 +32,7 @@ Read "Australian Gridded Farm Data", (\acronym{AGFD}) as a \code{list()} of
 }
 \details{
 From the \href{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}{ABARES website}:
-\dQuote{The Australian Gridded Farm Data (\acronym{AGFD}) are a set of national
+"The Australian Gridded Farm Data (\acronym{AGFD}) are a set of national
 scale maps containing simulated data on historical broadacre farm business
 outcomes including farm profitability on an 0.05-degree (approximately 5 km)
 grid.\cr
@@ -54,7 +54,7 @@ production by location (grid cell) and year for the period 1990-91 to
 2022-23. The data do not include actual observed outcomes but rather model
 predicted outcomes for representative or \sQuote{typical} broadacre farm
 businesses at each location considering likely farm characteristics and
-prevailing weather conditions and commodity prices.}\cr
+prevailing weather conditions and commodity prices."\cr
 -- \acronym{ABARES}, 2024-11-25
 
 If you have not already downloaded the files, both sets of data are large in
