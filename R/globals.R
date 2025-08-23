@@ -3,6 +3,7 @@
 utils::globalVariables(c(
   "region_codes", # <parse_abs_production_data>
   "data_item", # <parse_abs_production_data>
+  ".talktalk", # <read_aagis_regions>
   "Year_month", # <.download_abares_trade>
   "lat", # <read_agfd_dt>
   "lon", # <read_agfd_dt>

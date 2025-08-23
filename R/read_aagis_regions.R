@@ -32,43 +32,7 @@
 #' @export
 
 read_aagis_regions <- function(files = NULL) {
-  .cache <- getOption("read.abares.cache", default = FALSE)
-
-  if (
-    getOption("read.abares.verbosity") == "quiet" ||
-      getOption("read.abares.verbosity") == "minimal"
-  ) {
-    talktalk <- FALSE
-  } else {
-    talktalk <- TRUE
-  }
-
-  aagis_regions_cache <- fs::path(.find_user_cache(), "aagis_regions_dir")
-  if (fs::dir_exists(aagis_regions_cache)) {
-    return(sf::st_read(
-      fs::path(
-        aagis_regions_cache,
-        "aagis.gpkg"
-      ),
-      quiet = talktalk
-    ))
-  } else {
-    return(.download_aagis_shp(.cache, .talktalk = talktalk))
-  }
-}
-
-#' Download the "Australian Agricultural and Grazing Industries Survey" (AAGIS) Regions Shapefile
-#'
-#' Handles downloading and importing of AAGIS regions geospatial data.  The
-#'  geometries are corrected for validity before returning to the user.
-#'
-#' @param .talktalk Boolean, how verbose should the function be?
-#'
-#' @returns An \CRANpkg{sf} object of AAGIS regions.
-#' @dev
-#' @autoglobal
-
-.download_aagis_shp <- function(.talktalk) {
+  talktalk <- !(getOption("read.abares.verbosity") %in% c("quiet", "minimal"))
   download_file <- fs::path(tempdir(), "aagis.zip")
   tempdir_aagis_dir <- fs::path(tempdir(), "aagis_regions_dir")
 

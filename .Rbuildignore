@@ -20,7 +20,6 @@
 ^man/dot-find_years\.Rd$
 ^man/dot-readabares_collaborators\.Rd$
 ^man/readabares_user_agent\.Rd$
-^man/dot-download_aagis_shp\.Rd$
 ^man/dot-download_abares_trade\.Rd$
 ^man/dot-set_clum_update_levels\.Rd$
 ^man/dot-create_clum_50m_coltab\.Rd$
