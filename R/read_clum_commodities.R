@@ -1,53 +1,61 @@
-#' Read catchment scale \dQuote{Land Use of Australia} commodities shape file
+#' Read ABARES catchment scale \dQuote{Land Use of Australia} commodities shapefile
 #'
-#' Download and import catchment scale \dQuote{Land Use of Australia} shapefile
-#'  of commodities data. Data are cached on request.
-#'
-#' @details From the
-#' [ABARES website](https://www.agriculture.gov.au/abares/aclump/land-use/land-use-of-australia-2010-11-to-2020-21):
-#' \dQuote{The Catchment Scale Land Use of Australia – Commodities – Update
-#' December 2023 dataset shows the location and extent of select commodities,
-#' where mapped. This dataset replaces the Catchment Scale Land Use of Australia
-#' – Commodities – Update December 2020. This dataset is the fourth national
-#' compilation of catchment scale commodity data for Australia (CLUMC), current
-#' as at December 2023. It has been compiled from vector land use datasets
-#' collected as part of state and territory mapping programs and other
-#' authoritative sources through the Australian Collaborative Land Use and
-#' Management Program (\acronym{ACLUMP}). The commodities data complements the
-#' Catchment Scale Land Use of Australia – Update December 2023 dataset
-#' (\acronym{ABARES} 2024).
-#'
-#' This dataset comprises more than 176 thousand features representing 185,
-#' predominantly agricultural, commodities over 63 million hectares.}
-#'  -- \acronym{ABARES}, 2024-11-28
+#' Download catchment level land use commodity data shapefile and import it into
+#' your active \R session after correcting invalid geometries.
 #'
 #' @references
-#' ABARES 2024, Catchment Scale Land Use of Australia – Commodities – Update
-#'  December 2023, Australian Bureau of Agricultural and Resource Economics and
-#' Sciences, Canberra, February CC BY 4.0. DOI: \doi{10.25814/zfjz-jt75}
+#' ABARES 2024, Catchment Scale Land Use of Australia – Update December 2023
+#' version 2, Australian Bureau of Agricultural and Resource Economics and
+#' Sciences, Canberra, June, CC BY 4.0, DOI: \doi{10.25814/2w2p-ph98}.
 #'
 #' @source
-#' \url{https://data.gov.au/data/dataset/catchment-scale-land-use-of-australia-and-commodities-update-december-2023/resource/b216cf90-f4f0-4d88-980f-af7d1ad746cb}
+#' \url{https://10.25814/2w2p-ph98}.
 #'
 #' @examplesIf interactive()
+#' clum_commodities <- get_clum_commodities()
 #'
-#' cc <- read_clum_commodities()
+#' clum_commodities
 #'
-#' cc
+#' @returns An [sf::sf()] object.
 #'
-#' @returns An [sf::sf()] object of the requested data set.
-#' @family clum
 #' @autoglobal
 #' @export
+
 read_clum_commodities <- function() {
-  if (
-    getOption("read.abares.verbosity") == "quiet" ||
-      getOption("read.abares.verbosity") == "minimal"
-  ) {
-    talktalk <- FALSE
-  } else {
-    talktalk <- TRUE
-  }
-  clum <- .get_clum(.data_set = "CLUM_Commodities_2023")
-  return(sf::st_read(clum, quiet = talktalk))
+  .data_set <- "clum_commodities"
+  talktalk <- !(getOption("read.abares.verbosity") %in% c("quiet", "minimal"))
+
+  download_file <- fs::path(tempdir(), "clum", sprintf("%s.zip", .data_set))
+
+  # this is where the zip file is downloaded
+  download_dir <- fs::path_dir(download_file)
+
+  file_url <-
+    .retry_download(
+      url = "https://data.gov.au/data/dataset/8af26be3-da5d-4255-b554-f615e950e46d/resource/b216cf90-f4f0-4d88-980f-af7d1ad746cb/download/clum_commodities_2023.zip",
+      .f = download_file
+    )
+
+  tryCatch(
+    {
+      withr::with_dir(
+        download_dir,
+        utils::unzip(zipfile = download_file, exdir = download_dir)
+      )
+      clum_commodities <- sf::st_read(
+        fs::path(clum_dir, "CLUM_Commodities_2023.shp"),
+        quiet = talktalk
+      )
+      clum_commodities <- sf::st_make_valid(x)
+    },
+    error = function(e) {
+      fs::file_delete(c(download_file, download_dir, clum_dir))
+      cli::cli_abort(
+        "There was an issue with the downloaded file. I've deleted
+           this bad version of the downloaded file, please retry.",
+        call = rlang::caller_env()
+      )
+    }
+  )
+  return(clum_commodities)
 }
