@@ -2,25 +2,28 @@
 % Please edit documentation in R/read_topsoil_thickness_stars.R
 \name{read_topsoil_thickness_stars}
 \alias{read_topsoil_thickness_stars}
-\title{Read \dQuote{Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1} with stars}
+\title{Read "Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1" with stars}
 \source{
 \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
 }
 \usage{
-read_topsoil_thickness_stars(files = NULL)
+read_topsoil_thickness_stars(files = NULL, ...)
 }
 \arguments{
-\item{...}{Additional arguments passed to \code{\link[terra:rast]{terra::rast()}}, for \emph{e.g.},
-\code{activeCat} if you wished to set the active category when loading any of the
-available GeoTIFF files that are encoded with a raster attribute table.}
+\item{...}{Additional arguments passed to \code{\link[stars:st_as_stars]{stars::st_as_stars()}}, for \emph{e.g.},
+\code{att} if you wished to set the active category.}
 }
 \value{
-A \link{stars} object of the 'Soil Thickness for Australian Areas of
-Intensive Agriculture of Layer 1'.
+A \link{stars} object of the "Soil Thickness for Australian Areas of
+Intensive Agriculture of Layer 1".
 }
 \description{
-Read \dQuote{Soil Thickness for Australian Areas of Intensive Agriculture of
-Layer 1} data as a \CRANpkg{stars} object.
+Read "Soil Thickness for Australian Areas of Intensive Agriculture of Layer
+1" data as a \CRANpkg{stars} object.
+}
+\note{
+This function converts a \code{\link[terra:rast]{terra::rast()}} object internally rather than
+reading directly from a file.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}

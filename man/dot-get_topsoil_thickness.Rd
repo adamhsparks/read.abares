@@ -15,7 +15,7 @@ local directory holding the unzipped files for topsoil thickness.}
 }
 \value{
 A \code{read.abares.topsoil.thickness} object, which is a named \code{list()}
-with the \code{\link[fs:path_file]{fs::path_file()}} of the data file and text file of metadata.
+with the \code{\link[terra:rast]{terra::rast()}} object of the data and text file of metadata.
 }
 \description{
 Fetches topsoil thickness data and associated metadata from \acronym{ABARES}.

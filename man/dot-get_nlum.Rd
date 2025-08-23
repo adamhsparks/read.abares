@@ -32,8 +32,7 @@ national scale land use data and a PDF file of metadata.
 \description{
 An internal function used by \link{read_nlum_terra} and \link{read_nlum_stars} that
 downloads national level land use data GeoTIFF file, unzips the download
-file and deletes unnecessary files that are included in the download.  Data
-are cached on request.
+file and deletes unnecessary files that are included in the download.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}

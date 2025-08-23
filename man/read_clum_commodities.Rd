@@ -2,55 +2,29 @@
 % Please edit documentation in R/read_clum_commodities.R
 \name{read_clum_commodities}
 \alias{read_clum_commodities}
-\title{Read catchment scale \dQuote{Land Use of Australia} commodities shape file}
+\title{Read ABARES catchment scale \dQuote{Land Use of Australia} commodities shapefile}
 \source{
-\url{https://data.gov.au/data/dataset/catchment-scale-land-use-of-australia-and-commodities-update-december-2023/resource/b216cf90-f4f0-4d88-980f-af7d1ad746cb}
+\url{https://10.25814/2w2p-ph98}.
 }
 \usage{
 read_clum_commodities()
 }
 \value{
-An \code{\link[sf:sf]{sf::sf()}} object of the requested data set.
+An \code{\link[sf:sf]{sf::sf()}} object.
 }
 \description{
-Download and import catchment scale \dQuote{Land Use of Australia} shapefile
-of commodities data. Data are cached on request.
-}
-\details{
-From the
-\href{https://www.agriculture.gov.au/abares/aclump/land-use/land-use-of-australia-2010-11-to-2020-21}{ABARES website}:
-\dQuote{The Catchment Scale Land Use of Australia – Commodities – Update
-December 2023 dataset shows the location and extent of select commodities,
-where mapped. This dataset replaces the Catchment Scale Land Use of Australia
-– Commodities – Update December 2020. This dataset is the fourth national
-compilation of catchment scale commodity data for Australia (CLUMC), current
-as at December 2023. It has been compiled from vector land use datasets
-collected as part of state and territory mapping programs and other
-authoritative sources through the Australian Collaborative Land Use and
-Management Program (\acronym{ACLUMP}). The commodities data complements the
-Catchment Scale Land Use of Australia – Update December 2023 dataset
-(\acronym{ABARES} 2024).
-
-This dataset comprises more than 176 thousand features representing 185,
-predominantly agricultural, commodities over 63 million hectares.}
--- \acronym{ABARES}, 2024-11-28
+Download catchment level land use commodity data shapefile and import it into
+your active \R session after correcting invalid geometries.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+clum_commodities <- get_clum_commodities()
 
-cc <- read_clum_commodities()
-
-cc
+clum_commodities
 \dontshow{\}) # examplesIf}
 }
 \references{
-ABARES 2024, Catchment Scale Land Use of Australia – Commodities – Update
-December 2023, Australian Bureau of Agricultural and Resource Economics and
-Sciences, Canberra, February CC BY 4.0. DOI: \doi{10.25814/zfjz-jt75}
+ABARES 2024, Catchment Scale Land Use of Australia – Update December 2023
+version 2, Australian Bureau of Agricultural and Resource Economics and
+Sciences, Canberra, June, CC BY 4.0, DOI: \doi{10.25814/2w2p-ph98}.
 }
-\seealso{
-Other clum: 
-\code{\link{read_clum_stars}()},
-\code{\link{read_clum_terra}()}
-}
-\concept{clum}

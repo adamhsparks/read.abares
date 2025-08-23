@@ -76,7 +76,6 @@ Sciences, Canberra, June, CC BY 4.0, DOI: \doi{10.25814/2w2p-ph98}
 }
 \seealso{
 Other clum: 
-\code{\link{read_clum_commodities}()},
 \code{\link{read_clum_terra}()}
 }
 \concept{clum}
