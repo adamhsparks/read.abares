@@ -2,8 +2,7 @@
 #'
 #' An internal function used by [read_nlum_terra] and [read_nlum_stars] that
 #'  downloads national level land use data GeoTIFF file, unzips the download
-#'  file and deletes unnecessary files that are included in the download.  Data
-#'  are cached on request.
+#'  file and deletes unnecessary files that are included in the download.
 #'
 #' @param .data_set A string value indicating the GeoTIFF desired for download.
 #' One of:
@@ -40,11 +39,7 @@
 #' @dev
 
 .get_nlum <- function(.data_set) {
-  download_file <- data.table::fifelse(
-    getOption("read.abares.cache", FALSE),
-    fs::path(.find_user_cache(), "nlum", sprintf("%s.zip", .data_set)),
-    fs::path(tempdir(), "nlum", sprintf("%s.zip", .data_set))
-  )
+  download_file <- fs::path(tempdir(), "nlum", sprintf("%s.zip", .data_set))
 
   # this is where the zip file is downloaded
   download_dir <- fs::path_dir(download_file)
@@ -145,6 +140,7 @@
       )
     },
     error = function(e) {
+      fs::file_delete(download_file, download_dir)
       cli::cli_abort(
         "There was an issue with the downloaded file. I've deleted
            this bad version of the downloaded file, please retry.",
