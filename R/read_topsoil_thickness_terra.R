@@ -1,21 +1,18 @@
-#' Read \dQuote{Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1} with terra
+#' Read "Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1" with terra
 #'
-#' Read \dQuote{Soil Thickness for Australian Areas of Intensive Agriculture of
-#'  Layer 1} as a [terra::rast()] object.
+#' Read "Soil Thickness for Australian Areas of Intensive Agriculture of Layer
+#'  1" as a [terra::rast()] object.
 #'
 #' @inheritParams read_agfd_dt
-#' @param ... Additional arguments passed to [terra::rast()], for *e.g.*,
-#'  [activeCat()] if you wished to set the active category when loading any of
-#'  the available GeoTIFF files that are encoded with a raster attribute table.
+#' @param ... Additional arguments passed to [terra::rast()].
 #'
 #' @references
 #' \url{https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6}
 #' @source
 #' \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
-
 #'
-#' @returns A [terra::rast()] object of the \dQuote{Soil Thickness for
-#'  Australian Areas of Intensive Agriculture of Layer 1}.
+#' @returns A [terra::rast()] object of the "Soil Thickness for Australian Areas
+#'  of Intensive Agriculture of Layer 1".
 #'
 #' @examplesIf interactive()
 #' st_terra <- read_topsoil_thickness_terra()
@@ -28,5 +25,5 @@
 #' @export
 read_topsoil_thickness_terra <- function(files = NULL) {
   files <- .get_topsoil_thickness(.files = files)
-  return(terra::rast(files$GTiff))
+  return(files$data)
 }
