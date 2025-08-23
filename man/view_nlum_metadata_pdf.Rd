@@ -11,11 +11,11 @@ Called for its side-effects, opens the system's native \acronym{PDF}
 viewer to display the requested metadata \acronym{PDF} document.
 }
 \description{
-Each National Land Use (NLUM) raster file comes with a \acronym{PDF} of
-metadata. This function will open and display that file using the native
-\acronym{PDF} viewer for any system with a graphical user interface and
-\acronym{PDF} viewer configured.  If the file does not exist locally, it
-will be fetched and displayed.
+Each National Land Use (\acronym{NLUM}) raster file comes with a
+\acronym{PDF} of metadata. This function will open and display that file
+using the native \acronym{PDF} viewer for any system with a graphical user
+interface and \acronym{PDF} viewer configured.  If the file does not exist
+locally, it will be fetched and displayed.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
