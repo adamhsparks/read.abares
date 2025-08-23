@@ -23,8 +23,8 @@
 #'
 #' CLUM50m
 #'
-#' @returns A list of files containing a spatial
-#'  data file of or related to Australian catchment scale land use data.
+#' @returns A list of files containing a spatial data file of or files related
+#' to Australian catchment scale land use data.
 #'
 #' @autoglobal
 #' @dev
@@ -45,8 +45,7 @@
   file_url <-
     "https://data.gov.au/data/dataset/8af26be3-da5d-4255-b554-f615e950e46d/resource/"
 
-  file_url <- switch(
-    .data_set,
+  file_url <- switch(.data_set,
     "clum_50m_2023_v2" = sprintf(
       "%s6deab695-3661-4135-abf7-19f25806cfd7/download/clum_50m_2023_v2.zip",
       file_url
