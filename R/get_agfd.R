@@ -27,12 +27,7 @@
   .fixed_prices,
   .yyyy
 ) {
-  cache <- getOption("read.abares.cache", FALSE)
-  download_file <- data.table::fifelse(
-    cache,
-    fs::path(.find_user_cache(), "agfd.zip"),
-    fs::path(tempdir(), "agfd.zip")
-  )
+  download_file <- fs::path(tempdir(), "agfd.zip")
 
   # this is where the zip file is downloaded
   download_dir <- fs::path_dir(download_file)
@@ -44,40 +39,33 @@
     fs::path(download_dir, "historical_climate_and_prices")
   )
 
-  # only download if the files aren't already local
-  if (!fs::dir_exists(agfd_nc_dir)) {
-    # if caching is enabled but {read.abares} cache doesn't exist, create it
-    if (cache) {
-      fs::dir_create(agfd_nc_dir, recurse = TRUE)
-    }
+  file_url <- data.table::fifelse(
+    .fixed_prices,
+    "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/3",
+    "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/2"
+  )
 
-    file_url <- data.table::fifelse(
-      .fixed_prices,
-      "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/3",
-      "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/2"
-    )
+  .retry_download(
+    url = file_url,
+    .f = download_file
+  )
 
-    .retry_download(
-      url = file_url,
-      .f = download_file
-    )
-
-    tryCatch(
-      {
-        withr::with_dir(
-          download_dir,
-          utils::unzip(zipfile = download_file, exdir = download_dir)
-        )
-      },
-      error = function(e) {
-        cli::cli_abort(
-          "There was an issue with the downloaded file. I've deleted
+  tryCatch(
+    {
+      withr::with_dir(
+        download_dir,
+        utils::unzip(zipfile = download_file, exdir = download_dir)
+      )
+    },
+    error = function(e) {
+      fs::file_delete(download_file, download_dir)
+      cli::cli_abort(
+        "There was an issue with the downloaded file. I've deleted
            this bad version of the downloaded file, please retry.",
-          call = rlang::caller_env()
-        )
-      }
-    )
-  }
+        call = rlang::caller_env()
+      )
+    }
+  )
 
   if (fs::file_exists(download_file)) {
     fs::file_delete(download_file)
