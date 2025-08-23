@@ -14,11 +14,6 @@
   assign(".read.abares_env", read.abares_env, envir = parent.env(environment()))
 
   op.read.abares <- list(
-    read.abares.cache = FALSE,
-    read.abares.cache_location = tools::R_user_dir(
-      package = "read.abares",
-      which = "cache"
-    ),
     read.abares.user_agent = readabares_user_agent(),
     read.abares.timeout = 2000L,
     read.abares.max_tries = 3L,
