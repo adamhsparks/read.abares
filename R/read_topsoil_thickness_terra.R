@@ -1,4 +1,4 @@
-#' Read "Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1" with terra
+#' Read ABARES' "Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1" with terra
 #'
 #' Read "Soil Thickness for Australian Areas of Intensive Agriculture of Layer
 #'  1" as a [terra::rast()] object.

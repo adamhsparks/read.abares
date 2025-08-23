@@ -1,6 +1,7 @@
 #' Get Topsoil Thickness for "Australian Areas of Intensive Agriculture of Layer 1"
 #'
 #' Fetches topsoil thickness data and associated metadata from \acronym{ABARES}.
+#'
 #' @param .files A character string passed that provides a file path to the
 #'  local directory holding the unzipped files for topsoil thickness.
 #' @note
