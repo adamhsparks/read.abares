@@ -23,34 +23,6 @@ knitr::opts_chunk$set(
 {read.abares} provides a number of global options that can be set to control the behavior of the package.
 These options can be set using the `options()` function in R, but a helper function, `read.abares_options()` is provided for more direct access and convenience.
 
-## Caching Options
-
-### Enable Caching
-
-By default {read.abares does not cache data downloads between R sessions.
-To enable caching data downloads between R sessions, you can use the `read.abares_options()` function with the `caching` argument set to `TRUE`:
-
-```r
-read.abares_options(caching = TRUE)
-```
-
-### Change the Default Cache Location
-
-{read.abares} uses R's default cache directory, which is typically set to `tools::R_user_dir(package = "read.abares", which = "cache")`.
-To change the default cache location, you can specify the `cache_location` argument in the `read.abares_options()` function:
-
-```r 
-read.abares_options(cache_location = "your_desired_file_path")
-```
-
-For example, to save the cache in your `Downloads` folder, you might use:
-
-```r 
-read.abares_options(cache_location = "~/Downloads")
-```
-
-For more information on caching, see the vignette on [Caching in read.abares](caching.html).
-
 ## Download Options
 
 ### User Agent String
