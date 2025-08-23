@@ -1,29 +1,10 @@
-#' Find the file path to your local R cache directory
-#'
-#' @returns A character string value of a file path indicating the proper
-#'  directory to use for cached files.
-#' @autoglobal
-#' @dev
-.find_user_cache <- function() {
-  getOption(
-    "read.abares.cache_location",
-    default = tools::R_user_dir(package = "read.abares", which = "cache")
-  )
-}
-
 #' Use httr2 to fetch a file with retries
 #'
 #' Retries to download the requested resource before stopping. Uses
 #'  \CRANpkg{httr2} to cache in-session results in the `tempdir()`.
 #'
 #' @param url Character the URL being requested.
-#' @param .f Character` a filepath to be written to local storage.
-#' @param .max_tries Integer the number of times to retry downloading the file
-#'  before failing.
-#' @param .user_agent Character a string value with a custom user-defined
-#'  user-agent.
-#' @param .timout Integer maximum number of seconds to wait before timing out
-#'  the request.
+#' @param .f Character a filepath to be written to local storage.
 #'
 #' @examples
 #'
