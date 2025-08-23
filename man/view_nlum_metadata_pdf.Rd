@@ -2,7 +2,7 @@
 % Please edit documentation in R/view_nlum_metadata_pdf.R
 \name{view_nlum_metadata_pdf}
 \alias{view_nlum_metadata_pdf}
-\title{Displays the PDF metadata for the \dQuote{National Land Use} (NLUM) raster files in a native viewer}
+\title{Displays PDF Metadata for ABARES' "National Land Use" (NLUM) Raster Files in a Native Viewer}
 \usage{
 view_nlum_metadata_pdf()
 }

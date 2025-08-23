@@ -2,21 +2,18 @@
 % Please edit documentation in R/read_aagis_regions.R
 \name{.download_aagis_shp}
 \alias{.download_aagis_shp}
-\title{Download the 'Australian Agricultural and Grazing Industries Survey' (AAGIS) regions shapefile}
+\title{Download the "Australian Agricultural and Grazing Industries Survey" (AAGIS) Regions Shapefile}
 \usage{
-.download_aagis_shp(.cache, .talktalk)
+.download_aagis_shp(.talktalk)
 }
 \arguments{
-\item{.cache}{Boolean, enable caching?}
-
 \item{.talktalk}{Boolean, how verbose should the function be?}
 }
 \value{
 An \CRANpkg{sf} object of AAGIS regions.
 }
 \description{
-Handles downloading, caching (if requested) and importing of AAGIS regions
-geospatial data.  The geometries are corrected for validity before returning
-to the user.
+Handles downloading and importing of AAGIS regions geospatial data.  The
+geometries are corrected for validity before returning to the user.
 }
 \keyword{internal}

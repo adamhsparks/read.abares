@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_clum_commodities.R
 \name{read_clum_commodities}
 \alias{read_clum_commodities}
-\title{Read ABARES catchment scale \dQuote{Land Use of Australia} commodities shapefile}
+\title{Read ABARES Catchment Scale "Land Use of Australia" Commodities Shapefile}
 \source{
 \url{https://10.25814/2w2p-ph98}.
 }

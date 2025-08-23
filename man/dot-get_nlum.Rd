@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_nlum.R
 \name{.get_nlum}
 \alias{.get_nlum}
-\title{Get national scale \dQuote{Land Use of Australia} data for local use}
+\title{Get National Scale "Land Use of Australia" Data}
 \source{
 \url{https://doi.org/10.25814/w175-xh85}
 }
@@ -30,7 +30,7 @@ A \code{read.abares.nlum} object, a list of GeoTIFF files containing
 national scale land use data and a PDF file of metadata.
 }
 \description{
-An internal function used by \link{read_nlum_terra} and \link{read_nlum_stars} that
+An internal function used by \code{\link[=read_nlum_terra]{read_nlum_terra()}} and \code{\link[=read_nlum_stars]{read_nlum_stars()}} that
 downloads national level land use data GeoTIFF file, unzips the download
 file and deletes unnecessary files that are included in the download.
 }

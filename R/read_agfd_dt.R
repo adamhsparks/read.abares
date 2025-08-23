@@ -1,8 +1,7 @@
-#' Read \dQuote{Australian Gridded Farm Data} (AGFD) NCDF files as a data.table object
+#' Read "Australian Gridded Farm Data" (AGFD) NCDF Files as a data.table Object
 #'
 #' Read \dQuote{Australian Gridded Farm Data}, (\acronym{AGFD}) as a
-#'  [data.table::data.table()] object from a local file either in the user cache
-#'  or \R's `tempdir()` if caching is not enabled.
+#'  [data.table::data.table()] object.
 #'
 #' @param fixed_prices Download historical climate and prices or historical
 #'  climate and fixed prices as described in  (Hughes *et al.* 2022). Defaults
@@ -17,11 +16,6 @@
 #'  entire data set, that cannot be avoided, but will only return the
 #'  requested year(s) in your \R session.  Valid years are from 1991 to 2023
 #'  inclusive.
-#' @param cache Boolean cache the files after download? Defaults to `FALSE`
-#'  with files being downloaded to `tempdir()` being available throughout the
-#'  active \R session and cleaned up on exit.  If set to `TRUE`, files will be
-#'  cached locally for use between sessions.  See \dQuote{Caching} section for
-#'  more.
 #'
 #' @details
 #'
@@ -175,8 +169,8 @@
 #'   * Historical climate prices fixed -- <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/3>,
 #'   * Historical climate and prices -- <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/2>
 #'
-#' @returns A [data.table::data.table()] object of the \dQuote{Australian
-#'  Gridded Farm Data}.
+#' @returns A [data.table::data.table()] object of the "Australian Gridded Farm
+#'  Data".
 #'
 #' @examplesIf interactive()
 #'

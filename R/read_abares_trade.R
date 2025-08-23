@@ -1,17 +1,12 @@
-#' Read data from the ABARES Trade Dashboard
+#' Read Data from the ABARES Trade Dashboard
 #'
 #' Fetches and imports \acronym{ABARES} trade data. As the data file is large,
-#'  ~1.4GB uncompressed \acronym{CSV} file, caching is offered to save repeated
-#'  downloading.
+#'  ~1.4GB uncompressed \acronym{CSV} file.
 #'
 #' @note
 #' Columns are renamed for consistency with other \acronym{ABARES} products
 #'  serviced in this package using a snake_case format and ordered
 #'  consistently.
-#'
-#' @note The cached file is not the same as the raw file that is available for
-#'  download. It will follow the renaming scheme and filling values that this
-#'  function will perform on the raw data.
 #'
 #' @examplesIf interactive()
 #' trade <- read_abares_trade()
@@ -26,34 +21,17 @@
 #' @export
 
 read_abares_trade <- function() {
-  .cache <- getOption("read.abares.cache")
-  abares_trade_gz <- fs::path(
-    .find_user_cache(),
-    "abares_trade_dir/abares_trade.gz"
-  )
-
-  if (fs::file_exists(abares_trade_gz)) {
-    return(data.table::fread(abares_trade_gz))
-  } else {
-    return(.download_abares_trade(.cache))
-  }
+  return(.download_abares_trade())
 }
 
-#' Download the ABARES trade CSV file
+#' Download the ABARES trade CSV File
 #'
-#' Handles downloading and caching (if requested) of ABARES Trade data files.
-#'
-#' @param .cache `Boolean` enable caching?
+#' Handles downloading of ABARES Trade data files.
 #'
 #' @returns A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
 #' @autoglobal
 #' @dev
-.download_abares_trade <- function(.cache) {
-  abares_trade_dir <- fs::path(.find_user_cache(), "abares_trade_dir/")
-  if (.cache && !fs::dir_exists(abares_trade_dir)) {
-    fs::dir_create(abares_trade_dir, recurse = TRUE)
-  }
-
+.download_abares_trade <- function() {
   trade_zip <- fs::path(tempdir(), "abares_trade_data.zip")
 
   .retry_download(
@@ -104,11 +82,5 @@ read_abares_trade <- function() {
     )
   ]
 
-  if (.cache) {
-    data.table::fwrite(
-      abares_trade,
-      file = fs::path(abares_trade_dir, "abares_trade.gz")
-    )
-  }
   return(abares_trade[])
 }

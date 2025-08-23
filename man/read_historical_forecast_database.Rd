@@ -3,7 +3,7 @@
 \name{read_historical_forecast_database}
 \alias{read_historical_forecast_database}
 \alias{read_historical_forecast}
-\title{Read \dQuote{Historical Forecast Database} from ABARES}
+\title{Read ABARES' "Historical Forecast Database"}
 \source{
 \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0}
 }
@@ -16,7 +16,7 @@ read_historical_forecast()
 A \code{\link[data.table:data.table]{data.table::data.table()}} object.
 }
 \description{
-Fetches and imports \acronym{ABARES} \dQuote{Historical Forecast Database}
+Fetches and imports \acronym{ABARES} "Historical Forecast Database"
 performance data.
 }
 \note{

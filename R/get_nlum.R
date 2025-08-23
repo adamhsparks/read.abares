@@ -1,6 +1,6 @@
-#' Get national scale \dQuote{Land Use of Australia} data for local use
+#' Get National Scale "Land Use of Australia" Data
 #'
-#' An internal function used by [read_nlum_terra] and [read_nlum_stars] that
+#' An internal function used by [read_nlum_terra()] and [read_nlum_stars()] that
 #'  downloads national level land use data GeoTIFF file, unzips the download
 #'  file and deletes unnecessary files that are included in the download.
 #'
@@ -160,7 +160,7 @@
 }
 
 
-#' Prints read.abares.nlum.files objects
+#' Prints read.abares.nlum.files Objects
 #'
 #' Custom [base::print()] method for `read.abares.nlum.files` objects.
 #'

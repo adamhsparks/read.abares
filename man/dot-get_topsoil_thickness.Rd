@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_topsoil_thickness.R
 \name{.get_topsoil_thickness}
 \alias{.get_topsoil_thickness}
-\title{Get topsoil thickness for \dQuote{Australian Areas of Intensive Agriculture of Layer 1} for local use}
+\title{Get Topsoil Thickness for "Australian Areas of Intensive Agriculture of Layer 1"}
 \source{
 \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
 }

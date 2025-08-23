@@ -31,8 +31,8 @@
 #'  to the metadata for these data.  The \acronym{PDF} can be accessed in your
 #'  default \acronym{PDF} viewer by using [view_nlum_metadata_pdf()].
 #'
-#' @param data_set A string value indicating the data desired for download.
-#' One of:
+#' @param data_set A string value indicating the data desired for download. One
+#' of:
 #' \describe{
 #'  \item{clum_50m_2023_v2}{Catchment Scale Land Use of Australia – Update December 2023 version 2}
 #'  \item{scale_date_update}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}

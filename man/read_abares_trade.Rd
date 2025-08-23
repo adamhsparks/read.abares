@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_abares_trade.R
 \name{read_abares_trade}
 \alias{read_abares_trade}
-\title{Read data from the ABARES Trade Dashboard}
+\title{Read Data from the ABARES Trade Dashboard}
 \source{
 \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0}
 }
@@ -14,17 +14,12 @@ A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
 }
 \description{
 Fetches and imports \acronym{ABARES} trade data. As the data file is large,
-~1.4GB uncompressed \acronym{CSV} file, caching is offered to save repeated
-downloading.
+~1.4GB uncompressed \acronym{CSV} file.
 }
 \note{
 Columns are renamed for consistency with other \acronym{ABARES} products
 serviced in this package using a snake_case format and ordered
 consistently.
-
-The cached file is not the same as the raw file that is available for
-download. It will follow the renaming scheme and filling values that this
-function will perform on the raw data.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}

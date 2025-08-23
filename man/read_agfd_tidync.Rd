@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_agfd_tidync.R
 \name{read_agfd_tidync}
 \alias{read_agfd_tidync}
-\title{Read \dQuote{Australian Gridded Farm Data} (AGFD) NCDF files with tidync}
+\title{Read "Australian Gridded Farm Data" (AGFD) NCDF Files with tidync}
 \usage{
 read_agfd_tidync(fixed_prices = TRUE, yyyy = 1991:2003, files = NULL)
 }
@@ -28,7 +28,7 @@ A \code{list} object of \CRANpkg{tidync} objects of the
 objects' names.
 }
 \description{
-Read \dQuote{Australian Gridded Farm Data}, (\acronym{AGFD}) as a list of
+Read "Australian Gridded Farm Data", (\acronym{AGFD}) as a list of
 \code{\link[tidync:tidync]{tidync::tidync()}} objects.
 }
 \details{

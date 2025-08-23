@@ -1,7 +1,6 @@
-#' Read \dQuote{Historical Regional Estimates} from ABARES
+#' Read ABARES' "Historical Regional Estimates"
 #'
-#' Fetches and imports \acronym{ABARES} \dQuote{Historical Regional Estimates}
-#'  data.
+#' Fetches and imports \acronym{ABARES} "Historical Regional Estimates" data.
 #'
 #' @note
 #' Columns are renamed for consistency with other \acronym{ABARES} products

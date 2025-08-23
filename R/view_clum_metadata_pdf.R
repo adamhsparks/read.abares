@@ -1,6 +1,6 @@
-#' Displays the PDF metadata for the \dQuote{Catchment Land Use} (CLUM) raster files in a native viewer
+#' Displays the PDF Metadata for ABARES' "Catchment Land Use" (CLUM) Raster Files in a Native Viewer
 #'
-#' Each \dQuote{Catchment Land Use} (\acronym{CLUM}) raster file comes with a
+#' Each "Catchment Land Use" (\acronym{CLUM}) raster file comes with a
 #'  \acronym{PDF} of metadata. This function will open and display that file
 #'  using the native \acronym{PDF} viewer for any system with a graphical user
 #'  interface and \acronym{PDF} viewer configured.  If the file does not exist

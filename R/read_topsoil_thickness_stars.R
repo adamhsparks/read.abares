@@ -1,4 +1,4 @@
-#' Read "Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1" with stars
+#' Read ABARES' "Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1" with stars
 #'
 #' Read "Soil Thickness for Australian Areas of Intensive Agriculture of Layer
 #'  1" data as a \CRANpkg{stars} object.

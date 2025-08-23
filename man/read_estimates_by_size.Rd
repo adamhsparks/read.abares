@@ -3,7 +3,7 @@
 \name{read_estimates_by_size}
 \alias{read_estimates_by_size}
 \alias{read_est_by_size}
-\title{Read \dQuote{Estimates by Size} from ABARES}
+\title{Read ABARES' "Estimates by Size"}
 \source{
 \url{https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv}
 }

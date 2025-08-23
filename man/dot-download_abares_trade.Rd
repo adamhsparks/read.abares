@@ -2,17 +2,14 @@
 % Please edit documentation in R/read_abares_trade.R
 \name{.download_abares_trade}
 \alias{.download_abares_trade}
-\title{Download the ABARES trade CSV file}
+\title{Download the ABARES trade CSV File}
 \usage{
-.download_abares_trade(.cache)
-}
-\arguments{
-\item{.cache}{\code{Boolean} enable caching?}
+.download_abares_trade()
 }
 \value{
 A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
 }
 \description{
-Handles downloading and caching (if requested) of ABARES Trade data files.
+Handles downloading of ABARES Trade data files.
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_agfd_dt.R
 \name{read_agfd_dt}
 \alias{read_agfd_dt}
-\title{Read \dQuote{Australian Gridded Farm Data} (AGFD) NCDF files as a data.table object}
+\title{Read "Australian Gridded Farm Data" (AGFD) NCDF Files as a data.table Object}
 \source{
 \itemize{
 \item Historical climate prices fixed -- \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/3},
@@ -27,21 +27,14 @@ upon the setting of \code{fixed_prices}.  Note that this will still download the
 entire data set, that cannot be avoided, but will only return the
 requested year(s) in your \R session.  Valid years are from 1991 to 2023
 inclusive.}
-
-\item{cache}{Boolean cache the files after download? Defaults to \code{FALSE}
-with files being downloaded to \code{tempdir()} being available throughout the
-active \R session and cleaned up on exit.  If set to \code{TRUE}, files will be
-cached locally for use between sessions.  See \dQuote{Caching} section for
-more.}
 }
 \value{
-A \code{\link[data.table:data.table]{data.table::data.table()}} object of the \dQuote{Australian
-Gridded Farm Data}.
+A \code{\link[data.table:data.table]{data.table::data.table()}} object of the "Australian Gridded Farm
+Data".
 }
 \description{
 Read \dQuote{Australian Gridded Farm Data}, (\acronym{AGFD}) as a
-\code{\link[data.table:data.table]{data.table::data.table()}} object from a local file either in the user cache
-or \R's \code{tempdir()} if caching is not enabled.
+\code{\link[data.table:data.table]{data.table::data.table()}} object.
 }
 \details{
 From the \href{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}{ABARES website}:

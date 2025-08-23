@@ -1,7 +1,7 @@
-#' Read \dQuote{Australian Agricultural and Grazing Industries Survey} (AAGIS) region mapping files
+#' Read "Australian Agricultural and Grazing Industries Survey" (AAGIS) Region Mapping Files
 #'
-#' Download, cache and import the \dQuote{Australian Agricultural and Grazing
-#'  Industries Survey} (\acronym{AAGIS}) regions geospatial shapefile.
+#' Download import the "Australian Agricultural and Grazing Industries Survey"
+#'   (\acronym{AAGIS}) regions geospatial shapefile.
 #'
 #'  @note Upon import a few operations are carried out,
 #'  * the geometries are automatically corrected to fix invalid geometries that
@@ -22,8 +22,7 @@
 #'
 #' plot(aagis)
 #'
-#' @returns An \CRANpkg{sf} object of the \acronym{AAGIS} regions and a
-#' cached GeoPackage file if requested.
+#' @returns An \CRANpkg{sf} object of the \acronym{AAGIS} regions.
 #'
 #' @family AAGIS
 #'
@@ -58,23 +57,20 @@ read_aagis_regions <- function(files = NULL) {
   }
 }
 
-#' Download the 'Australian Agricultural and Grazing Industries Survey' (AAGIS) regions shapefile
+#' Download the "Australian Agricultural and Grazing Industries Survey" (AAGIS) Regions Shapefile
 #'
-#' Handles downloading, caching (if requested) and importing of AAGIS regions
-#'  geospatial data.  The geometries are corrected for validity before returning
-#'  to the user.
+#' Handles downloading and importing of AAGIS regions geospatial data.  The
+#'  geometries are corrected for validity before returning to the user.
 #'
-#' @param .cache Boolean, enable caching?
 #' @param .talktalk Boolean, how verbose should the function be?
 #'
 #' @returns An \CRANpkg{sf} object of AAGIS regions.
 #' @dev
 #' @autoglobal
 
-.download_aagis_shp <- function(.cache, .talktalk) {
+.download_aagis_shp <- function(.talktalk) {
   download_file <- fs::path(tempdir(), "aagis.zip")
   tempdir_aagis_dir <- fs::path(tempdir(), "aagis_regions_dir")
-  cache_aagis_dir <- fs::path(.find_user_cache(), "aagis_regions_dir")
 
   .retry_download(
     "https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip",
@@ -102,17 +98,6 @@ read_aagis_regions <- function(files = NULL) {
   names(aagis_sf)[names(aagis_sf) == "name"] <- "ABARES_region"
   names(aagis_sf)[names(aagis_sf) == "class"] <- "Class"
   names(aagis_sf)[names(aagis_sf) == "zone"] <- "Zone"
-
-  if (.cache) {
-    if (!fs::dir_exists(cache_aagis_dir)) {
-      fs::dir_create(cache_aagis_dir, recurse = TRUE)
-    }
-    sf::st_write(
-      obj = aagis_sf,
-      dsn = fs::path(cache_aagis_dir, "aagis.gpkg"),
-      quiet = .talktalk
-    )
-  }
 
   fs::file_delete(download_file)
   return(aagis_sf)

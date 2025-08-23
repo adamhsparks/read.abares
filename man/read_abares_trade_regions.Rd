@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_abares_trade_regions.R
 \name{read_abares_trade_regions}
 \alias{read_abares_trade_regions}
-\title{Read ABARES \dQuote{Trade Data Regions} from the ABARES Trade Dashboard}
+\title{Read ABARES "Trade Data Regions" from the ABARES Trade Dashboard}
 \source{
 \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/2}
 }
@@ -14,7 +14,7 @@ A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
 regions.
 }
 \description{
-Fetches and imports \acronym{ABARES} \dQuote{Trade Data Regions}.
+Fetches and imports \acronym{ABARES} "Trade Data Regions".
 }
 \note{
 Columns are renamed for consistency with other \acronym{ABARES} products

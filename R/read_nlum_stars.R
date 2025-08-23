@@ -1,7 +1,7 @@
-#' Read national scale \dQuote{Land Use of Australia} data using stars
+#' Read National Scale "Land Use of Australia" Data Using stars
 #'
-#' Download and import national scale \dQuote{Land Use of Australia v7} GeoTIFFs
-#'  as a \CRANpkg{stars} object.  Downloaded data can be cached on request.
+#' Download and import national scale "Land Use of Australia v7" GeoTIFFs as a
+#' \CRANpkg{stars} object.
 #'
 #' @details From the
 #' [ABARES website](https://www.agriculture.gov.au/abares/aclump/land-use/land-use-of-australia-2010-11-to-2020-21):
@@ -105,5 +105,5 @@ read_nlum_stars <- function(data_set, ...) {
   )
 
   nlum <- .get_nlum(.data_set = data_set)
-  return(stars::read_stars(nlum[grep("tif$", nlum)], ...))
+  return(stars::read_stars(grep("tif$", nlum, value = TRUE), ...))
 }

@@ -1,4 +1,4 @@
-#' Read \dQuote{Estimates by Size} from ABARES
+#' Read ABARES' "Estimates by Performance"
 #'
 #' Fetches and imports \acronym{ABARES} estimates by performance category data.
 #'

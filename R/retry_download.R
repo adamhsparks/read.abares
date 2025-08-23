@@ -1,4 +1,4 @@
-#' Use httr2 to fetch a file with retries
+#' Use httr2 to Fetch a File with Retries
 #'
 #' Retries to download the requested resource before stopping. Uses
 #'  \CRANpkg{httr2} to cache in-session results in the `tempdir()`.

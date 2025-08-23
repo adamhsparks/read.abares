@@ -1,4 +1,4 @@
-#' Displays the PDF metadata for the \dQuote{National Land Use} (NLUM) raster files in a native viewer
+#' Displays PDF Metadata for ABARES' "National Land Use" (NLUM) Raster Files in a Native Viewer
 #'
 #' Each National Land Use (NLUM) raster file comes with a \acronym{PDF} of
 #'  metadata. This function will open and display that file using the native

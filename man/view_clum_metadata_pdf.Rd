@@ -2,7 +2,7 @@
 % Please edit documentation in R/view_clum_metadata_pdf.R
 \name{view_clum_metadata_pdf}
 \alias{view_clum_metadata_pdf}
-\title{Displays the PDF metadata for the \dQuote{Catchment Land Use} (CLUM) raster files in a native viewer}
+\title{Displays the PDF Metadata for ABARES' "Catchment Land Use" (CLUM) Raster Files in a Native Viewer}
 \source{
 \describe{
 \item{CLUM Metadata}{https://www.agriculture.gov.au/sites/default/files/documents/CLUM_DescriptiveMetadata_December2023_v2.pdf}
@@ -22,7 +22,7 @@ Called for its side-effects, opens the system's native \acronym{PDF}
 viewer to display the requested metadata \acronym{PDF} document.
 }
 \description{
-Each \dQuote{Catchment Land Use} (\acronym{CLUM}) raster file comes with a
+Each "Catchment Land Use" (\acronym{CLUM}) raster file comes with a
 \acronym{PDF} of metadata. This function will open and display that file
 using the native \acronym{PDF} viewer for any system with a graphical user
 interface and \acronym{PDF} viewer configured.  If the file does not exist

@@ -3,7 +3,7 @@
 \name{read_historical_state_estimates}
 \alias{read_historical_state_estimates}
 \alias{read_hist_st_est}
-\title{Read \dQuote{Historical State Estimates} from ABARES}
+\title{Read ABARES' "Historical State Estimates"}
 \source{
 \url{https://www.agriculture.gov.au/sites/default/files/documents/fdp-state-historical.csv}
 }
@@ -17,8 +17,7 @@ A \code{\link[data.table:data.table]{data.table::data.table()}} object with the 
 \code{key}.
 }
 \description{
-Fetches and imports \acronym{ABARES} \dQuote{Historical State Estimates}
-data.
+Fetches and imports \acronym{ABARES} "Historical State Estimates" data.
 }
 \note{
 Columns are renamed for consistency with other \acronym{ABARES} products

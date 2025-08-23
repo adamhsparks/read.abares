@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_topsoil_thickness_stars.R
 \name{read_topsoil_thickness_stars}
 \alias{read_topsoil_thickness_stars}
-\title{Read "Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1" with stars}
+\title{Read ABARES' "Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1" with stars}
 \source{
 \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
 }
