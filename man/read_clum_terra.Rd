@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_clum_terra.R
 \name{read_clum_terra}
 \alias{read_clum_terra}
-\title{Read catchment scale \dQuote{Land Use of Australia} GeoTIFFs using terra}
+\title{Read Catchment Scale "Land Use of Australia" GeoTIFFs Using terra}
 \source{
 \describe{
 \item{Catchment Scale Land Use of Australia v2 GeoTiff}{\url{https://www.agriculture.gov.au/sites/default/files/documents/clum_50m_2023_v2.zip}}
@@ -20,18 +20,15 @@ One of:
 \item{scale_date_update}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
 }.}
 
-\item{...}{Additional arguments passed to \code{\link[terra:rast]{terra::rast()}}, for \emph{e.g.},
-\code{activeCat} if you wished to set the active category when loading any of the
-available GeoTIFF files that are encoded with a raster attribute table.}
+\item{...}{Additional arguments passed to \code{\link[terra:rast]{terra::rast()}}.}
 }
 \value{
 A \code{\link[terra:rast]{terra::rast()}} object that may be one or many layers depending
 upon the requested data set.
 }
 \description{
-Download and import catchment scale \dQuote{Land Use of Australia} GeoTIFFs
-using \CRANpkg{terra} as a categorical \code{\link[terra:rast]{terra::rast()}} object.  Downloaded
-data can be cached on request.
+Download and import catchment scale "Land Use of Australia" GeoTIFFs using
+\CRANpkg{terra} as a categorical \code{\link[terra:rast]{terra::rast()}} object.
 }
 \details{
 From the

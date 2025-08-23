@@ -1,7 +1,7 @@
-#' Read catchment scale \dQuote{Land Use of Australia} data using stars
+#' Read Catchment Scale "Land Use of Australia" Data Using Stars
 #'
-#' Download and import catchment scale \dQuote{Land Use of Australia} GeoTIFFs
-#'  as a \CRANpkg{stars} object.  Downloaded data can be cached on request.
+#' Download and import catchment scale "Land Use of Australia" GeoTIFFs as a
+#'  \CRANpkg{stars} object.
 #'
 #' @details From the
 #' [ABARES documentation](https://www.agriculture.gov.au/sites/default/files/documents/CLUM_DescriptiveMetadata_December2023_v2.pdf)

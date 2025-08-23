@@ -1,8 +1,7 @@
-#' Read catchment scale \dQuote{Land Use of Australia} GeoTIFFs using terra
+#' Read Catchment Scale "Land Use of Australia" GeoTIFFs Using terra
 #'
-#' Download and import catchment scale \dQuote{Land Use of Australia} GeoTIFFs
-#'  using \CRANpkg{terra} as a categorical [terra::rast()] object.  Downloaded
-#'  data can be cached on request.
+#' Download and import catchment scale "Land Use of Australia" GeoTIFFs using
+#' \CRANpkg{terra} as a categorical [terra::rast()] object.
 #'
 #' @details From the
 #' [ABARES documentation](https://www.agriculture.gov.au/sites/default/files/documents/CLUM_DescriptiveMetadata_December2023_v2.pdf)
@@ -40,9 +39,7 @@
 #'  available.
 #'
 #' @inheritParams read_clum_stars
-#' @param ... Additional arguments passed to [terra::rast()], for *e.g.*,
-#'  `activeCat` if you wished to set the active category when loading any of the
-#'  available GeoTIFF files that are encoded with a raster attribute table.
+#' @param ... Additional arguments passed to [terra::rast()].
 #'
 #' @references
 #' ABARES 2024, Catchment Scale Land Use of Australia – Update December 2023
@@ -83,14 +80,18 @@ read_clum_terra <- function(
       .data_set = data_set
     )
   }
-  r <- terra::rast(files[grep("[.]tif$", files)], props = TRUE, ...)
+  r <- terra::rast(
+    grep("[.]tif$", files, value = TRUE),
+    props = TRUE,
+    ...
+  )
   if (data_set == "clum_50m_2023_v2") {
     terra::coltab(r) <- .create_clum_50m_coltab()
   }
   return(r)
 }
 
-#' Set CLUM scale update levels
+#' Set CLUM Scale Update Levels
 #'
 #' Creates data.tables containing the raster categories for the \acronym{CLUM}
 #'  scale update levels.
@@ -123,7 +124,7 @@ read_clum_terra <- function(
 }
 
 
-#' Create and apply a colour data.frame for the clum_50m_2023_v2 data
+#' Create and Apply a Colour data.frame for the clum_50m_2023_v2 Data
 #'
 #' Creates a `data.frame()` that contains the hexadecimal colour codes that
 #' correspond with the integer values to display the map colours as published

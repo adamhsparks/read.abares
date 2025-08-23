@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_clum_terra.R
 \name{.set_clum_update_levels}
 \alias{.set_clum_update_levels}
-\title{Set CLUM scale update levels}
+\title{Set CLUM Scale Update Levels}
 \usage{
 .set_clum_update_levels()
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_clum_stars.R
 \name{read_clum_stars}
 \alias{read_clum_stars}
-\title{Read catchment scale \dQuote{Land Use of Australia} data using stars}
+\title{Read Catchment Scale "Land Use of Australia" Data Using Stars}
 \source{
 \url{https://doi.org/10.25814/2w2p-ph98}
 }
@@ -26,8 +26,8 @@ a \CRANpkg{stars} object that may be one or many layers depending
 upon the requested data set.
 }
 \description{
-Download and import catchment scale \dQuote{Land Use of Australia} GeoTIFFs
-as a \CRANpkg{stars} object.  Downloaded data can be cached on request.
+Download and import catchment scale "Land Use of Australia" GeoTIFFs as a
+\CRANpkg{stars} object.
 }
 \details{
 From the
