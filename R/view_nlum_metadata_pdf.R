@@ -9,8 +9,9 @@
 #' @examplesIf interactive()
 #' view_nlum_metadata_pdf()
 #'
-#' @returns Called for its side-effects, opens the system's native \acronym{PDF}
-#'  viewer to display the requested metadata \acronym{PDF} document.
+#' @returns An invisible `NULL`. Called for its side-effects, opens the system's
+#'  native \acronym{PDF} viewer to display the requested metadata \acronym{PDF}
+#' \rf document.
 #'
 #' @family nlum
 #' @export
@@ -23,4 +24,5 @@ view_nlum_metadata_pdf <- function() {
       .f = tempfile()
     )
   }
+  return(invisible(NULL))
 }

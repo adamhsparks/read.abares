@@ -19,8 +19,9 @@
 #' @examplesIf interactive()
 #' view_clum_metadata_pdf()
 #'
-#' @returns Called for its side-effects, opens the system's native \acronym{PDF}
-#'  viewer to display the requested metadata \acronym{PDF} document.
+#' @returns An invisible `NULL`. Called for its side-effects, opens the system's
+#'  native \acronym{PDF} viewer to display the requested metadata \acronym{PDF}
+#'  document.
 #'
 #' @family nlum
 #' @export
@@ -42,4 +43,5 @@ view_clum_metadata_pdf <- function(commodities = FALSE) {
     )
     system(paste0('open "', clumc_metadata_pdf, '"'))
   }
+  return(invisible(NULL))
 }

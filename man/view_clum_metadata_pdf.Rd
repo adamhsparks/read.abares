@@ -18,8 +18,9 @@ catchment land scale use metadata for commodities. Defaults to \code{FALSE},
 downloading the "Catchment Land Scale Use Metadata".}
 }
 \value{
-Called for its side-effects, opens the system's native \acronym{PDF}
-viewer to display the requested metadata \acronym{PDF} document.
+An invisible \code{NULL}. Called for its side-effects, opens the system's
+native \acronym{PDF} viewer to display the requested metadata \acronym{PDF}
+document.
 }
 \description{
 Each "Catchment Land Use" (\acronym{CLUM}) raster file comes with a

@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_abs_horticulture_data.R
 \name{read_abs_horticulture_data}
 \alias{read_abs_horticulture_data}
-\title{Get Horticulture Crops Production and Value by Australia, State and Territory by Year}
+\title{Get ABS' Horticulture Crops Production and Value by Australia, State and Territory by Year}
 \usage{
 read_abs_horticulture_data(year = "latest", file = NULL)
 }
