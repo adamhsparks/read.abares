@@ -1,4 +1,4 @@
-#' Read "Australian Gridded Farm Data" (AGFD) NCDF Files as a data.table Object
+#' Read ABARES' "Australian Gridded Farm Data" (AGFD) NCDF Files as a data.table Object
 #'
 #' Read "Australian Gridded Farm Data", (\acronym{AGFD}) as a
 #'  [data.table::data.table()] object.

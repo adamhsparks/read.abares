@@ -1,4 +1,4 @@
-#' Get Topsoil Thickness for "Australian Areas of Intensive Agriculture of Layer 1"
+#' Get ABARES' Topsoil Thickness for "Australian Areas of Intensive Agriculture of Layer 1"
 #'
 #' Fetches topsoil thickness data and associated metadata from \acronym{ABARES}.
 #'
@@ -52,8 +52,10 @@
 
   x <- terra::rast(thphk_1)
   x <- terra::init(x, x[]) # remove RAT legend
-  metadata <- readtext::readtext(geo_files[endsWith(x = geo_files,
-                                                    "ANZCW1202000149.txt")])
+  metadata <- readtext::readtext(geo_files[endsWith(
+    x = geo_files,
+    "ANZCW1202000149.txt"
+  )])
   topsoil_thickness <- list(
     metadata = metadata$text,
     data = x

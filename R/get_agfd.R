@@ -1,4 +1,4 @@
-#' Get "Australian Gridded Farm Data" (AGFD)
+#' Get ABARES' "Australian Gridded Farm Data" (AGFD)
 #'
 #' Used by the `read_agfd` family of functions, downloads the "Australian
 #'  Gridded Farm Data" (\acronym{AGFD}) data and unzips the compressed files to

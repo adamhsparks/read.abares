@@ -1,4 +1,4 @@
-#' Read Catchment Scale "Land Use of Australia" GeoTIFFs Using terra
+#' Read ABARES' Catchment Scale "Land Use of Australia" GeoTIFFs Using terra
 #'
 #' Download and import catchment scale "Land Use of Australia" GeoTIFFs using
 #' \CRANpkg{terra} as a categorical [terra::rast()] object.

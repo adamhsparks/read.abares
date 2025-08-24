@@ -1,4 +1,4 @@
-#' Read "Australian Gridded Farm Data" (AGFD) NCDF Files with tidync
+#' Read ABARES' "Australian Gridded Farm Data" (AGFD) NCDF Files with tidync
 #'
 #' Read "Australian Gridded Farm Data", (\acronym{AGFD}) as a list of
 #'   [tidync::tidync()] objects.

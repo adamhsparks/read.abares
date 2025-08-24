@@ -1,4 +1,4 @@
-#' Read ABARES Catchment Scale "Land Use of Australia" Commodities Shapefile
+#' Read ABARES' Catchment Scale "Land Use of Australia" Commodities Shapefile
 #'
 #' Download catchment level land use commodity data shapefile and import it into
 #' your active \R session after correcting invalid geometries.

@@ -1,4 +1,4 @@
-#' Read "Australian Gridded Farm Data" (AGFD) NCDF files with stars
+#' Read ABARES' "Australian Gridded Farm Data" (AGFD) NCDF files with stars
 #'
 #' Read "Australian Gridded Farm Data" (\acronym{AGFD}) as a list of
 #'  \CRANpkg{stars} objects.

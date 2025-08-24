@@ -1,4 +1,4 @@
-#' Read "Australian Agricultural and Grazing Industries Survey" (AAGIS) Region Mapping Files
+#' Read ABARES' "Australian Agricultural and Grazing Industries Survey" (AAGIS) Region Mapping Files
 #'
 #' Download import the "Australian Agricultural and Grazing Industries Survey"
 #'   (\acronym{AAGIS}) regions geospatial shapefile.

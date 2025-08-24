@@ -1,4 +1,4 @@
-#' Read ABARES "Trade Data Regions" from the ABARES Trade Dashboard
+#' Read "Trade Data Regions" from the ABARES Trade Dashboard
 #'
 #' Fetches and imports \acronym{ABARES} "Trade Data Regions".
 #'

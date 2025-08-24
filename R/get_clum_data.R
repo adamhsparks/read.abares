@@ -1,4 +1,4 @@
-#' Get Catchment Scale "Land Use of Australia" Data
+#' Get ABARES' Catchment Scale "Land Use of Australia" Data
 #'
 #' An internal function used by [read_clum_terra()] and [read_clum_stars()] that
 #'  downloads catchment level land use data files.

@@ -1,4 +1,4 @@
-#' Read Livestock Production and Value by Australia, State and Territory by Year
+#' Read ABS' Livestock Production and Value by Australia, State and Territory by Year
 #'
 #' Automates downloading and importing of \acronym{ABS} livestock production
 #' data. Please view the comments embedded in the spreadsheets themselves (that

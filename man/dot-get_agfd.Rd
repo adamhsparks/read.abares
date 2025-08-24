@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_agfd.R
 \name{.get_agfd}
 \alias{.get_agfd}
-\title{Get "Australian Gridded Farm Data" (AGFD)}
+\title{Get ABARES' "Australian Gridded Farm Data" (AGFD)}
 \usage{
 .get_agfd(.fixed_prices, .yyyy)
 }

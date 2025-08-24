@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_agfd_tidync.R
 \name{read_agfd_tidync}
 \alias{read_agfd_tidync}
-\title{Read "Australian Gridded Farm Data" (AGFD) NCDF Files with tidync}
+\title{Read ABARES' "Australian Gridded Farm Data" (AGFD) NCDF Files with tidync}
 \usage{
 read_agfd_tidync(fixed_prices = TRUE, yyyy = 1991:2003, files = NULL)
 }

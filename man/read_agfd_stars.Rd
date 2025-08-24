@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_agfd_stars.R
 \name{read_agfd_stars}
 \alias{read_agfd_stars}
-\title{Read "Australian Gridded Farm Data" (AGFD) NCDF files with stars}
+\title{Read ABARES' "Australian Gridded Farm Data" (AGFD) NCDF files with stars}
 \usage{
 read_agfd_stars(fixed_prices = TRUE, yyyy = 1991:2003, files = NULL)
 }

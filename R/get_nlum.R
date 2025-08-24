@@ -1,4 +1,4 @@
-#' Get National Scale "Land Use of Australia" Data
+#' Get ABARES' National Scale "Land Use of Australia" Data
 #'
 #' An internal function used by [read_nlum_terra()] and [read_nlum_stars()] that
 #'  downloads national level land use data GeoTIFF file, unzips the download

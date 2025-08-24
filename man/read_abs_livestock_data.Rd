@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_abs_livestock_data.R
 \name{read_abs_livestock_data}
 \alias{read_abs_livestock_data}
-\title{Read Livestock Production and Value by Australia, State and Territory by Year}
+\title{Read ABS' Livestock Production and Value by Australia, State and Territory by Year}
 \usage{
 read_abs_livestock_data(year = "latest", file = NULL)
 }

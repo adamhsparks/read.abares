@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_abs_broadacre_data.R
 \name{read_abs_broadacre_data}
 \alias{read_abs_broadacre_data}
-\title{Get Broadacre Crops Production and Value by Australia, State and Territory by Year}
+\title{Get ABS' Broadacre Crops Production and Value by Australia, State and Territory by Year}
 \usage{
 read_abs_broadacre_data(crops = "winter", year = "latest", file = NULL)
 }

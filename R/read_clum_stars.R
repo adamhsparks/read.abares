@@ -1,4 +1,4 @@
-#' Read Catchment Scale "Land Use of Australia" Data Using Stars
+#' Read ABARES' Catchment Scale "Land Use of Australia" Data Using Stars
 #'
 #' Download and import catchment scale "Land Use of Australia" GeoTIFFs as a
 #'  \CRANpkg{stars} object.

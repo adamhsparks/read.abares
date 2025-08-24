@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_agfd_dt.R
 \name{read_agfd_dt}
 \alias{read_agfd_dt}
-\title{Read "Australian Gridded Farm Data" (AGFD) NCDF Files as a data.table Object}
+\title{Read ABARES' "Australian Gridded Farm Data" (AGFD) NCDF Files as a data.table Object}
 \source{
 \itemize{
 \item Historical climate prices fixed -- \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/3},
