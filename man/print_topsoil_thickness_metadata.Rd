@@ -32,7 +32,6 @@ actual values in the data.
 }
 \seealso{
 Other topsoil thickness: 
-\code{\link{.get_topsoil_thickness}()},
 \code{\link{read_topsoil_thickness_stars}()},
 \code{\link{read_topsoil_thickness_terra}()}
 }

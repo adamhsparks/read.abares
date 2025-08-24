@@ -27,7 +27,7 @@ One of:
 }
 \value{
 A \code{read.abares.nlum} object, a list of GeoTIFF files containing
-national scale land use data and a PDF file of metadata.
+national scale land use data and a \acronym{PDF} file of metadata.
 }
 \description{
 An internal function used by \code{\link[=read_nlum_terra]{read_nlum_terra()}} and \code{\link[=read_nlum_stars]{read_nlum_stars()}} that

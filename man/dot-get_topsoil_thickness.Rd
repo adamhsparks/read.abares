@@ -42,11 +42,4 @@ pander(y)
 \references{
 \url{https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6}
 }
-\seealso{
-Other topsoil thickness: 
-\code{\link{print_topsoil_thickness_metadata}()},
-\code{\link{read_topsoil_thickness_stars}()},
-\code{\link{read_topsoil_thickness_terra}()}
-}
-\concept{topsoil thickness}
 \keyword{internal}
