@@ -44,7 +44,6 @@ Suggests:
     bit64,
     httptest2,
     knitr,
-    mockery,
     pander,
     rmarkdown,
     roxyglobals,
