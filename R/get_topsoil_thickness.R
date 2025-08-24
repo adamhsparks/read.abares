@@ -46,21 +46,14 @@
     ex_dir,
     utils::unzip(download_file, exdir = ex_dir)
   )
-  fs::file_move(
-    tempdir_topsoil_unzip_dir,
-    fs::path(
-      tempdir(),
-      "topsoil_thickness_dir"
-    )
-  )
   fs::file_delete(download_file)
-  tempdir_topsoil_dir <- fs::path(tempdir(), "topsoil_thickness_dir")
-
-  thphk_1 <- .files[endsWith(x = .files, "thpk_1")]
+  geo_files <- fs::dir_ls(fs::path(ex_dir, "staiar9cl__05911a01eg_geo___"))
+  thphk_1 <- geo_files[endsWith(x = geo_files, "thpk_1")]
 
   x <- terra::rast(thphk_1)
   x <- terra::init(x, x[]) # remove RAT legend
-  metadata <- readtext::readtext(fs::path(.files, "ANZCW1202000149.txt"))
+  metadata <- readtext::readtext(geo_files[endsWith(x = geo_files,
+                                                    "ANZCW1202000149.txt")])
   topsoil_thickness <- list(
     metadata = metadata$text,
     data = x
