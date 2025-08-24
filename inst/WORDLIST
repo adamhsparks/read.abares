@@ -15,6 +15,7 @@ CLUMC
 CMD
 CSIRO
 Carlile
+Colour
 Curtin
 DAFF
 DLWC
@@ -23,7 +24,6 @@ FBP
 FYs
 GDA
 GRDC
-GeoPackage
 GeoTIFF
 GeoTIFFs
 GeoTiff
@@ -58,7 +58,6 @@ README
 ROR
 RStudio
 Rds
-ShapeFile
 Shutup
 Soh
 Spectroradiometer
@@ -66,7 +65,6 @@ Standardised
 Statistics’
 Topsoils
 YYYXXX
-aagis
 abares
 al
 au
@@ -127,6 +125,5 @@ standardises
 terra
 tidync
 topsoils
-upzipping
 visualise
 www
