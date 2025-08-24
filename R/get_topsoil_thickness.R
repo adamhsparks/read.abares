@@ -32,8 +32,29 @@
 #' @dev
 
 .get_topsoil_thickness <- function(.files = NULL) {
-  .files <- .download_topsoil_thickness()
-
+  if (!is.null(.files)) {
+    download_file <- .files
+  }
+  if (is.null(.files)) {
+    download_file <- fs::path(tempdir(), "topsoil_thick.zip")
+    .retry_download(
+      "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
+      .f = download_file
+    )
+  }
+  ex_dir <- fs::path_dir(download_file)
+  withr::with_dir(
+    ex_dir,
+    utils::unzip(download_file, exdir = ex_dir)
+  )
+  fs::file_move(
+    tempdir_topsoil_unzip_dir,
+    fs::path(
+      tempdir(),
+      "topsoil_thickness_dir"
+    )
+  )
+  fs::file_delete(download_file)
   tempdir_topsoil_dir <- fs::path(tempdir(), "topsoil_thickness_dir")
 
   thphk_1 <- .files[endsWith(x = .files, "thpk_1")]
@@ -53,44 +74,7 @@
   return(topsoil_thickness)
 }
 
-#' Downloads topsoil thickness data if not already found locally
-#'
-#' @returns A list of the resulting data and text file of metadata after
-#'  downloading and upzipping.
-#'
-#' @dev
-
-.download_topsoil_thickness <- function() {
-  download_file <- fs::path(tempdir(), "topsoil_thick.zip")
-  tempdir_topsoil_unzip_dir <- fs::path(
-    tempdir(),
-    "staiar9cl__05911a01eg_geo___"
-  )
-  tempdir_topsoil_dir <- fs::path(tempdir(), "topsoil_thickness_dir")
-
-  if (!fs::dir_exists(tempdir_topsoil_dir)) {
-    .retry_download(
-      "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
-      .f = download_file
-    )
-    withr::with_dir(
-      tempdir(),
-      utils::unzip(download_file, exdir = tempdir())
-    )
-    fs::file_move(
-      tempdir_topsoil_unzip_dir,
-      fs::path(
-        tempdir(),
-        "topsoil_thickness_dir"
-      )
-    )
-    fs::file_delete(download_file)
-  }
-  return(fs::dir_ls(fs::path_abs(tempdir_topsoil_dir)))
-}
-
-
-#' Prints a read.abares.topsoil.thickness.files object
+#' Prints a read.abares.topsoil.thickness.files Object
 #'
 #' Custom [base::print()] method for `read.abares.topsoil.thickness.files`
 #' objects.
