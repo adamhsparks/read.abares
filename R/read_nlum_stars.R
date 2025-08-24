@@ -1,4 +1,4 @@
-#' Read National Scale "Land Use of Australia" Data Using stars
+#' Read ABARES' National Scale "Land Use of Australia" Data Using stars
 #'
 #' Download and import national scale "Land Use of Australia v7" GeoTIFFs as a
 #' \CRANpkg{stars} object.

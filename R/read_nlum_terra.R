@@ -1,4 +1,4 @@
-#' Read National Scale "Land Use of Australia" Data Using terra
+#' Read ABARES' National Scale "Land Use of Australia" Data Using terra
 #'
 #' Download and import national scale "Land Use of Australia v7" GeoTIFFs as
 #'  categorical [terra::rast()] objects.
