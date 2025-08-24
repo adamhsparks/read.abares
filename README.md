@@ -24,7 +24,7 @@ ABARES data are not available from other sources but are mostly available under 
 ## About {read.abares}: why this package?
 
 ABARES makes several data sets freely available as spreadsheets in Microsoft Excel or CSV file formats and zip archives of geospatial data as NetCDF, GeoTIFF or shape files.
-{read.abares} facilitates downloading, caching and importing these files in your R session.
+{read.abares} facilitates downloading and importing these files in your R session.
 
 Data serviced include:
 
@@ -91,12 +91,6 @@ Columns are formatted correctly for the data type, _e.g._, dates are converted t
 The Australian Agricultural and Grazing Industries Survey (AAGIS) region mapping files report geometry errors that can be repaired using the `sf::st_make_valid()` function.
 {read.abares} automatically repairs these geometries for you when you import the data.
 
-### File Caching
-
-{read.abares} supports caching the files using `tools::R_user_dir(package = "read.abares", which = "cache")` to save the files in a standardised location across platforms so you don't have to worry about where the files went or if they're still there.
-When requesting the files {read.abares} will first check if they are available locally either in cached or temporary storage.
-Caching is not mandatory, you can just work with the downloaded files in `tempdir()`, which is cleaned up when your R session ends.
-
 ### Multiple Geospatial Data Classes Supported
 
 {read.abares} supports multiple classes of objects to support your workflow with the NetCDF data.
@@ -152,6 +146,14 @@ Citing {read.abares}: When citing the use of this package, please use,
 
 ``` r
 library(read.abares)
+#> 
+#> Attaching package: 'read.abares'
+#> The following object is masked from 'package:graphics':
+#> 
+#>     plot
+#> The following objects are masked from 'package:base':
+#> 
+#>     levels, plot
 citation("read.abares")
 #> To cite package 'read.abares' in publications use:
 #> 
@@ -171,13 +173,7 @@ citation("read.abares")
 
 ### Contributing
 
-#### A Note on Testing
-
-I've aimed to make the testing for this package as complete as possible.
-Some of the files downloaded are >1GB and may take several minutes or more than an hour to download and due to their size, I do not wish to include them in the package itself.
-If you wish to work with development of {read.abares} please be aware that it will take some time to as the tests use `tempdir()` for tests that involve caching and it will take a bit to establish your test environment cache.
-
-### Code of Conduct
+#### Code of Conduct
 
 Please note that the {read.abares} project is released with a [Contributor Code of Conduct](https://adamhsparks.github.io/read.abares/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
 

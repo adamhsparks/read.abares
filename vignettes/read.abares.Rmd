@@ -18,7 +18,7 @@ vignette: >
 
 This vignette demonstrates some of the functionality of {read.abares} and how to work with some of the spatial and tabular data available through {read.abares}.
 Please note that not all functions are demonstrated here, please refer to the [documentation reference](https://adamhsparks.github.io/read.abares/reference/) for a full list of functionality.
-The worked examples here show some of the more advanced features that {read.abares} offers beyond just fetching and importing data, _e.g._, Australian Agricultural and Grazing Industries Survey (AAGIS) spatial shapefile which can be used with tabular data from the historical estimates, the Australian Gridded Farm Data, which can be downloaded, cached and then imported using one of four types of object or the soil thickness data, which includes rich metadata.
+The worked examples here show some of the more advanced features that {read.abares} offers beyond just fetching and importing data, _e.g._, Australian Agricultural and Grazing Industries Survey (AAGIS) spatial shapefile which can be used with tabular data from the historical estimates, the Australian Gridded Farm Data, which can be downloaded and then imported using one of four types of object or the soil thickness data, which includes rich metadata.
 
 First we need to load the {read.abares} library.
 
@@ -35,7 +35,7 @@ ABARES offers spatial data for the Australian Agricultural and Grazing Industrie
 
 
 ``` r
-aagis_regions <- read_aagis_regions(cache = TRUE)
+aagis_regions <- read_aagis_regions()
 
 plot(aagis_regions)
 ```
@@ -158,7 +158,7 @@ Download or load from the local cache and read the AGFD files as a list of {star
 
 ``` r
 # A list of {stars} objects for the climate in year 2000
-star <- get_agfd(cache = TRUE, yr = 2000) |>
+star <- get_agfd(, yr = 2000) |>
   read_agfd_stars()
 #> Will return stars object with 612226 cells.
 #> No projection information found in nc file. 
@@ -193,7 +193,7 @@ Download or load from the local cache and read the AGFD files as a [terra::rast]
 
 ``` r
 # A {terra} `rast` object
-terr <- get_agfd(cache = TRUE, yr = 2000) |>
+terr <- get_agfd(, yr = 2000) |>
   read_agfd_terra()
 
 head(terr[[1]])
@@ -213,7 +213,7 @@ Download or load from the local cache and read the AGFD files as a list of {tidy
 
 ``` r
 # A list of {tidync} objects
-tdnc <- get_agfd(cache = TRUE, yr = 2000) |>
+tdnc <- get_agfd(, yr = 2000) |>
   read_agfd_tidync()
 
 head(tdnc[[1]])
@@ -293,7 +293,7 @@ Download or load from the local cache and read the AGFD files as a {data.table} 
 ``` r
 
 # A {data.table} object
-dtbl <- get_agfd(cache = TRUE, yr = 2000) |>
+dtbl <- get_agfd(, yr = 2000) |>
   read_agfd_dt()
 
 #Check the completeness and other metadata about the data 
@@ -387,7 +387,7 @@ You can download the soil depth map and import it as a {stars} or [terra::rast()
 
 ``` r
 library(read.abares)
-get_topsoil_thickness(cache = TRUE) |>
+get_topsoil_thickness() |>
   read_topsoil_thickness_stars()
 #> stars object with 2 dimensions and 1 attribute
 #> attribute(s), summary of first 100000 cells:
@@ -398,7 +398,7 @@ get_topsoil_thickness(cache = TRUE) |>
 #> x    1 4150  112.5  0.01 WGS 84 FALSE [x]
 #> y    1 3401 -9.995 -0.01 WGS 84 FALSE [y]
 
-x <- get_topsoil_thickness(cache = TRUE) |>
+x <- get_topsoil_thickness() |>
   read_topsoil_thickness_terra()
 ```
 
@@ -421,7 +421,7 @@ By default, a brief bit of metadata is printed to the console when you call the 
 
 ``` r
 library(read.abares)
-get_topsoil_thickness(cache = TRUE)
+get_topsoil_thickness()
 #> 
 #> ── Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Ho
 #> 
@@ -471,7 +471,7 @@ But, {read.abares} provides a function for you to browse the topsoil thickness m
 
 ``` r
 library(read.abares)
-get_topsoil_thickness(cache = TRUE) |>
+get_topsoil_thickness() |>
   print_topsoil_thickness_metadata()
 #> 
 #> ── Topsoil Thickness for Australian areas of intensive agriculture of Layer 1 (A
@@ -790,7 +790,7 @@ But you can also access it directly and use [pander::pander()] to include it in 
 ``` r
 library(read.abares)
 library(pander)
-x <- get_topsoil_thickness(cache = TRUE)
+x <- get_topsoil_thickness()
 y <- x$metadata
 pander(y)
 ```
