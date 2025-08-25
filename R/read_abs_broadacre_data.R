@@ -17,10 +17,7 @@
 #' @param year A string value providing the year of interest to download.
 #'  Formatted as `"2022-23"` or `"2023-24"` or use `"latest"` for the most
 #'  recent release available. Defaults to `"latest"`.
-#' @param file A string value providing a file path to an \acronym{ABS}
-#'   Australian production data set that you have downloaded and saved locally.
-#'   No checks are performed, it will attempt to parse any file you pass to it
-#'   here. If this is used, other arguments will be ignored.
+#' @inheritParams read_aagis_regions
 #'
 #' @examplesIf interactive()
 #' read_abs_broadacre_data()

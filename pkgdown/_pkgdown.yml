@@ -39,12 +39,6 @@ reference:
     desc: |
       Fetch and read the historical agricultural forecast database
     contents: read_historical_forecast_database
-  - title: Cache
-    desc: |
-      Work with your local file cache
-    contents:
-      - clear_cache
-      - inspect_cache
   - title: Land Use
     desc: National and catchment level land use GeoTIFF files
     contents:

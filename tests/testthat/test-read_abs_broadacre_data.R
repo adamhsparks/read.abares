@@ -1,5 +1,5 @@
 test_that("read_abs_broadacre_data() returns parsed data for default args", {
-  local_mock(
+  local_mocked_bindings(
     .find_years = function(data_set) c("2022-23", "2021-22"),
     parse_abs_production_data = function(file) {
       data.table(
@@ -18,7 +18,7 @@ test_that("read_abs_broadacre_data() returns parsed data for default args", {
 })
 
 test_that("read_abs_broadacre_data() handles explicit year and crops", {
-  local_mock(
+  local_mocked_bindings(
     .find_years = function(data_set) c("2022-23", "2021-22"),
     parse_abs_production_data = function(file) {
       data.table(

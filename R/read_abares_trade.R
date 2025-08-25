@@ -3,6 +3,7 @@
 #' Fetches and imports \acronym{ABARES} trade data. As the data file is large,
 #'  ~1.4GB uncompressed \acronym{CSV} file.
 #'
+#' @inheritParams read_aagis_regions
 #' @note
 #' Columns are renamed for consistency with other \acronym{ABARES} products
 #'  serviced in this package using a snake_case format and ordered
@@ -20,26 +21,16 @@
 #' @autoglobal
 #' @export
 
-read_abares_trade <- function() {
-  return(.download_abares_trade())
-}
+read_abares_trade <- function(file = NULL) {
+  if (is.null(file)) {
+    file <- fs::path(tempdir(), "abares_trade_data.zip")
 
-#' Download the ABARES trade CSV File
-#'
-#' Handles downloading of ABARES Trade data files.
-#'
-#' @returns A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
-#' @autoglobal
-#' @dev
-.download_abares_trade <- function() {
-  trade_zip <- fs::path(tempdir(), "abares_trade_data.zip")
-
-  .retry_download(
-    url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/1",
-    .f = trade_zip
-  )
-
-  abares_trade <- data.table::fread(trade_zip)
+    .retry_download(
+      url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/1",
+      .f = file
+    )
+  }
+  abares_trade <- data.table::fread(file)
   data.table::setnames(
     abares_trade,
     old = c(

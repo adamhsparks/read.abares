@@ -1,5 +1,5 @@
 test_that("read_clum_stars() retrieves catchment scale land use data", {
-  local_mock(
+  local_mocked_bindings(
     read_clum_stars = function(data_set) {
       structure(
         list(data = NULL),
@@ -15,7 +15,7 @@ test_that("read_clum_stars() retrieves catchment scale land use data", {
 })
 
 test_that("read_clum_stars() retrieves catchment scale scale and date data", {
-  local_mock(
+  local_mocked_bindings(
     read_clum_stars = function(data_set) {
       structure(
         list(data = NULL),

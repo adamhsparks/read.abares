@@ -3,12 +3,11 @@
 utils::globalVariables(c(
   "region_codes", # <parse_abs_production_data>
   "data_item", # <parse_abs_production_data>
+  "download_file", # <read_aagis_regions>
   ".talktalk", # <read_aagis_regions>
-  "Year_month", # <.download_abares_trade>
+  "Year_month", # <read_abares_trade>
   "lat", # <read_agfd_dt>
   "lon", # <read_agfd_dt>
-  "clum_dir", # <read_clum_commodities>
-  "x", # <read_clum_commodities>
   "Month_issued", # <read_historical_forecast_database>
   NULL
 ))

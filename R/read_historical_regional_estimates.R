@@ -2,6 +2,8 @@
 #'
 #' Fetches and imports \acronym{ABARES} "Historical Regional Estimates" data.
 #'
+#' @inheritParams read_aagis_regions
+#'
 #' @note
 #' Columns are renamed for consistency with other \acronym{ABARES} products
 #'  serviced in this package using a snake_case format and ordered consistently.
@@ -19,15 +21,19 @@
 #' # or shorter
 #' read_hist_reg_est()
 #'
-read_historical_regional_estimates <- read_hist_reg_est <- function() {
-  f <- fs::path(tempdir(), "fdp-beta-regional-historical.csv")
+read_historical_regional_estimates <- read_hist_reg_est <- function(
+  file = NULL
+) {
+  if (is.null(file)) {
+    file <- fs::path(tempdir(), "fdp-beta-regional-historical.csv")
 
-  .retry_download(
-    "https://www.agriculture.gov.au/sites/default/files/documents/fdp-regional-historical.csv",
-    .f = f
-  )
+    .retry_download(
+      "https://www.agriculture.gov.au/sites/default/files/documents/fdp-regional-historical.csv",
+      .f = file
+    )
+  }
 
-  x <- data.table::fread(f)
+  x <- data.table::fread(file)
   data.table::setnames(
     x,
     old = c("Variable", "Year", "ABARES region", "Value", "RSE"),

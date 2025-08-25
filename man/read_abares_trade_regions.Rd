@@ -7,7 +7,14 @@
 \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/2}
 }
 \usage{
-read_abares_trade_regions()
+read_abares_trade_regions(file = NULL)
+}
+\arguments{
+\item{file}{A file path providing the file with the data to be imported. The
+file is assumed to be unarchived locally. This function does not provide any
+checking whether this function is the proper function for the provided file.
+Defaults to \code{NULL}, assuming that the file will be downloaded in the active
+\R session.}
 }
 \value{
 A \CRANpkg{data.table} object of the \acronym{ABARES} trade data

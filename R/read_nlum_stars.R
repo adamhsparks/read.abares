@@ -87,7 +87,7 @@
 #' @family nlum
 #' @autoglobal
 #' @export
-read_nlum_stars <- function(data_set, ...) {
+read_nlum_stars <- function(data_set, file = NULL, ...) {
   data_set <- rlang::arg_match(
     data_set,
     c(

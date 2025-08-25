@@ -4,10 +4,17 @@
 \alias{read_clum_commodities}
 \title{Read ABARES' Catchment Scale "Land Use of Australia" Commodities Shapefile}
 \source{
-\url{https://10.25814/2w2p-ph98}.
+\url{https://data.gov.au/data/dataset/catchment-scale-land-use-of-australia-and-commodities-update-december-2023/resource/b216cf90-f4f0-4d88-980f-af7d1ad746cb}
 }
 \usage{
-read_clum_commodities()
+read_clum_commodities(file = NULL)
+}
+\arguments{
+\item{file}{A file path providing the file with the data to be imported. The
+file is assumed to be unarchived locally. This function does not provide any
+checking whether this function is the proper function for the provided file.
+Defaults to \code{NULL}, assuming that the file will be downloaded in the active
+\R session.}
 }
 \value{
 An \code{\link[sf:sf]{sf::sf()}} object.

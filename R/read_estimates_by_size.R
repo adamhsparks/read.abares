@@ -2,6 +2,8 @@
 #'
 #' Fetches and imports \acronym{ABARES} estimates by size data.
 #'
+#' @inheritParams read_aagis_regions
+#'
 #' @note
 #' Columns are renamed for consistency with other \acronym{ABARES} products
 #'  serviced in this package using a snake_case format and ordered consistently.
@@ -20,14 +22,15 @@
 #' # or shorter
 #' read_est_by_size()
 #'
-read_estimates_by_size <- read_est_by_size <- function() {
-  f <- fs::path(tempdir(), "fdp-beta-performance-by-size.csv")
+read_estimates_by_size <- read_est_by_size <- function(file = NULL) {
+  if (is.null(file)) {
+    file <- fs::path(tempdir(), "fdp-beta-performance-by-size.csv")
 
-  .retry_download(
-    "https://www.agriculture.gov.au/sites/default/files/documents/fdp-performance-by-size.csv",
-    .f = f
-  )
-
+    .retry_download(
+      "https://www.agriculture.gov.au/sites/default/files/documents/fdp-performance-by-size.csv",
+      .f = file
+    )
+  }
   x <- data.table::fread(f)
   data.table::setcolorder(
     x,

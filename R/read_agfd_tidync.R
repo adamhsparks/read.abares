@@ -4,10 +4,16 @@
 #'   [tidync::tidync()] objects.
 #'
 #' @inherit read_agfd_dt details
+#'
 #' @inheritParams read_agfd_dt
+#' @inheritParams read_aagis_regions
+#'
 #' @inheritSection read_agfd_dt Model scenarios
+#'
 #' @inheritSection read_agfd_dt Data files
+#'
 #' @inheritSection read_agfd_dt Data layers
+#'
 #' @inherit read_agfd_dt references
 #'
 #' @returns A `list` object of \CRANpkg{tidync} objects of the "Australian
@@ -25,17 +31,16 @@
 read_agfd_tidync <- function(
   fixed_prices = TRUE,
   yyyy = 1991:2003,
-  files = NULL
+  file = NULL
 ) {
   rlang::arg_match(yyyy, values = 1991:2023, multiple = TRUE)
-  if (is.null(files)) {
-    files <- get_agfd(
+  if (is.null(file)) {
+    file <- .get_agfd(
       fixed_prices = fixed_prices,
-      yyyy = yyyy,
-      files = files
+      yyyy = yyyy
     )
   }
   tnc <- purrr::map(files, tidync::tidync)
-  names(tnc) <- fs::path_file(files)
+  names(tnc) <- fs::path_file(file)
   return(tnc)
 }

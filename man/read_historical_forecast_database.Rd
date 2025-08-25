@@ -8,9 +8,9 @@
 \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0}
 }
 \usage{
-read_historical_forecast_database()
+read_historical_forecast_database(file = NULL)
 
-read_historical_forecast()
+read_historical_forecast(file = NULL)
 }
 \value{
 A \code{\link[data.table:data.table]{data.table::data.table()}} object.

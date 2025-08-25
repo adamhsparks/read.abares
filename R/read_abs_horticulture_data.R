@@ -10,6 +10,7 @@
 #' it's serviced in this package.
 #'
 #' @inheritParams read_abs_broadacre_data
+#' @inheritParams read_aagis_regions
 #'
 #' @examplesIf interactive()
 #' read_abs_horticultural_data()

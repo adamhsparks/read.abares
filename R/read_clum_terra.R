@@ -39,6 +39,7 @@
 #'  available.
 #'
 #' @inheritParams read_clum_stars
+#' @inheritParams @read_aagis_regions
 #' @param ... Additional arguments passed to [terra::rast()].
 #'
 #' @references
@@ -48,8 +49,8 @@
 #'
 #' @source
 #' \describe{
-#'  \item{Catchment Scale Land Use of Australia v2 GeoTiff}{\url{https://www.agriculture.gov.au/sites/default/files/documents/clum_50m_2023_v2.zip}}
-#'  \item{Date and Scale of Mapping Shapefile GeoTIFF}{\url{https://data.gov.au/data/dataset/8af26be3-da5d-4255-b554-f615e950e46d/resource/98b1b93f-e5e1-4cc9-90bf-29641cfc4f11/download/scale_date_update.zip}}
+#'  \item{Catchment Scale Land Use of Australia v2 GeoTiff}{<https://www.agriculture.gov.au/sites/default/files/documents/clum_50m_2023_v2.zip>}
+#'  \item{Date and Scale of Mapping Shapefile GeoTIFF}{<https://data.gov.au/data/dataset/8af26be3-da5d-4255-b554-f615e950e46d/resource/98b1b93f-e5e1-4cc9-90bf-29641cfc4f11/download/scale_date_update.zip>}
 #' }
 #'
 #' @examplesIf interactive()
@@ -67,7 +68,7 @@
 #' @export
 read_clum_terra <- function(
   data_set = "clum_50m_2023_v2",
-  files = NULL,
+  file = NULL,
   ...
 ) {
   data_set <- rlang::arg_match0(
@@ -75,13 +76,13 @@ read_clum_terra <- function(
     c("clum_50m_2023_v2", "scale_date_update")
   )
 
-  if (is.null(files)) {
-    files <- .get_clum(
+  if (is.null(file)) {
+    file <- .get_clum(
       .data_set = data_set
     )
   }
   r <- terra::rast(
-    grep("[.]tif$", files, value = TRUE),
+    grep("[.]tif$", file, value = TRUE),
     props = TRUE,
     ...
   )

@@ -2,6 +2,7 @@
 #'
 #' Fetches and imports \acronym{ABARES} estimates by performance category data.
 #'
+#' @inheritParams read_aagis_regions
 #' @note
 #' Columns are renamed for consistency with other \acronym{ABARES} products
 #'  serviced in this package using a snake_case format and ordered consistently.
@@ -19,15 +20,17 @@
 #' # or shorter
 #' read_est_by_perf_cat()
 #'
-read_estimates_by_performance_category <- function() {
-  f <- fs::path(tempdir(), "fdp-BySize-ByPerformance.csv")
+read_estimates_by_performance_category <- function(file = NULL) {
+  if (is.null(file)) {
+    file <- fs::path(tempdir(), "fdp-BySize-ByPerformance.csv")
 
-  .retry_download(
-    "https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv",
-    .f = f
-  )
+    .retry_download(
+      "https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv",
+      .f = file
+    )
+  }
 
-  x <- data.table::fread(f)
+  x <- data.table::fread(file)
   return(x[])
 }
 

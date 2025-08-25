@@ -7,7 +7,14 @@
 \url{https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip}
 }
 \usage{
-read_aagis_regions(files = NULL)
+read_aagis_regions(file = NULL)
+}
+\arguments{
+\item{file}{A file path providing the file with the data to be imported. The
+file is assumed to be unarchived locally. This function does not provide any
+checking whether this function is the proper function for the provided file.
+Defaults to \code{NULL}, assuming that the file will be downloaded in the active
+\R session.}
 }
 \value{
 An \CRANpkg{sf} object of the \acronym{AAGIS} regions.
@@ -16,12 +23,12 @@ An \CRANpkg{sf} object of the \acronym{AAGIS} regions.
 Download import the "Australian Agricultural and Grazing Industries Survey"
 (\acronym{AAGIS}) regions geospatial shapefile.
 }
-\details{
-@note Upon import a few operations are carried out,
+\note{
+Upon import a few operations are carried out,
 \itemize{
 \item the geometries are automatically corrected to fix invalid geometries that
 are present in the original shapefile,
-\item column names are set to start with an upper-case letter,
+\item column names are set to start with a upper-case letter,
 \item the original column named, "name", is set to "AAGIS_region" to align with
 column names that the \code{\link[data.table:data.table]{data.table::data.table()}} provided by
 \code{\link[=read_historical_regional_estimates]{read_historical_regional_estimates()}} to allow for easier merging of data

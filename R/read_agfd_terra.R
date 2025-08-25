@@ -28,17 +28,16 @@
 read_agfd_terra <- function(
   fixed_prices = TRUE,
   yyyy = 1991:2003,
-  files = NULL
+  file = NULL
 ) {
-  rlang::arg_match(yyyy, values = 1991:2023, multiple = TRUE)
-  if (is.null(files)) {
-    files <- get_agfd(
+  yyyy <- rlang::arg_match(yyyy, values = 1991:2023, multiple = TRUE)
+  if (is.null(file)) {
+    file <- get_agfd(
       fixed_prices = fixed_prices,
-      yyyy = yyyy,
-      files = files
+      yyyy = yyyy
     )
   }
-  r <- purrr::map(.x = files, .f = terra::rast)
-  names(r) <- fs::path_file(files)
+  r <- purrr::map(.x = file, .f = terra::rast)
+  names(r) <- fs::path_file(file)
   return(r)
 }

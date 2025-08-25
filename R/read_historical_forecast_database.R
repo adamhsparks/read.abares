@@ -3,6 +3,8 @@
 #' Fetches and imports \acronym{ABARES} "Historical Forecast Database"
 #'  performance data.
 #'
+#' @inheritParams read_aagis_regions
+#'
 #' # Data Dictionary
 #' The resulting object will contain the following fields.
 #'
@@ -42,18 +44,20 @@
 #' # or shorter
 #' read_historical_forecast()
 #'
-read_historical_forecast_database <- function() {
-  f <- fs::path(tempdir(), "historical_db.xlsx")
+read_historical_forecast_database <- function(file = NULL) {
+  if (is.null(file)) {
+    file <- fs::path(tempdir(), "historical_db.xlsx")
 
-  .retry_download(
-    "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0",
-    .f = f
-  )
+    .retry_download(
+      "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0",
+      .f = file
+    )
+  }
 
   x <- data.table::as.data.table(readxl::read_excel(
-    f,
+    file,
     sheet = "Database",
-    na.strings = "na"
+    na = "na"
   ))
 
   data.table::setnames(

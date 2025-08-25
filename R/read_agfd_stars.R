@@ -5,6 +5,7 @@
 #'
 #' @inherit read_agfd_dt details
 #' @inheritParams read_agfd_dt
+#' @inheritParams read_aagis_regions
 #' @inheritSection read_agfd_dt Model scenarios
 #' @inheritSection read_agfd_dt Data files
 #' @inheritSection read_agfd_dt Data layers
@@ -28,14 +29,13 @@
 read_agfd_stars <- function(
   fixed_prices = TRUE,
   yyyy = 1991:2003,
-  files = NULL
+  file = NULL
 ) {
-  rlang::arg_match(yyyy, values = 1991:2023, multiple = TRUE)
-  if (is.null(files)) {
-    files <- get_agfd(
+  yyyy <- rlang::arg_match(yyyy, values = 1991:2023, multiple = TRUE)
+  if (is.null(file)) {
+    file <- .get_agfd(
       fixed_prices = fixed_prices,
-      yyyy = yyyy,
-      files = files
+      yyyy = yyyy
     )
   }
   var <- c(
@@ -84,15 +84,15 @@ read_agfd_stars <- function(
   s2 <- NULL
   # read one file for the message
   s1 <- list(stars::read_ncdf(
-    files[1L],
+    file[1L],
     var = var
   ))
 
-  if (length(files) > 1L) {
+  if (length(file) > 1L) {
     # then suppress the rest of the messages
     q_read_ncdf <- purrr::quietly(stars::read_ncdf)
     s2 <- purrr::modify_depth(
-      purrr::map(files[2L:length(files)], q_read_ncdf, var = var),
+      purrr::map(file[2L:length(file)], q_read_ncdf, var = var),
       1L,
       "result"
     )
@@ -100,7 +100,7 @@ read_agfd_stars <- function(
     s1 <- append(s1, s2)
   }
 
-  names(s1) <- fs::path_file(files)
+  names(s1) <- fs::path_file(file)
 
   if (!is.null(s2)) {
     rm(s1, s2)

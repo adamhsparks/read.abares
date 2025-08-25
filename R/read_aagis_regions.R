@@ -2,11 +2,15 @@
 #'
 #' Download import the "Australian Agricultural and Grazing Industries Survey"
 #'   (\acronym{AAGIS}) regions geospatial shapefile.
-#'
-#'  @note Upon import a few operations are carried out,
+#' @param file A file path providing the file with the data to be imported. The
+#'  file is assumed to be unarchived locally. This function does not provide any
+#'  checking whether this function is the proper function for the provided file.
+#'  Defaults to `NULL`, assuming that the file will be downloaded in the active
+#'  \R session.
+#' @note Upon import a few operations are carried out,
 #'  * the geometries are automatically corrected to fix invalid geometries that
 #'  are present in the original shapefile,
-#'  * column names are set to start with an upper-case letter,
+#'  * column names are set to start with a upper-case letter,
 #'  * the original column named, "name", is set to "AAGIS_region" to align with
 #'  column names that the [data.table::data.table()] provided by
 #'  [read_historical_regional_estimates()] to allow for easier merging of data
@@ -31,27 +35,26 @@
 #' @autoglobal
 #' @export
 
-read_aagis_regions <- function(files = NULL) {
-  talktalk <- !(getOption("read.abares.verbosity") %in% c("quiet", "minimal"))
-  download_file <- fs::path(tempdir(), "aagis.zip")
-  tempdir_aagis_dir <- fs::path(tempdir(), "aagis_regions_dir")
+read_aagis_regions <- function(file = NULL) {
+  if (is.null(file)) {
+    file <- fs::path(tempdir(), "aagis.zip")
+    tempdir_aagis_dir <- fs::path(tempdir(), "aagis_regions_dir")
 
-  .retry_download(
-    "https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip",
-    .f = download_file
-  )
-
-  withr::with_dir(
-    tempdir(),
-    utils::unzip(download_file, exdir = tempdir_aagis_dir)
-  )
-
+    .retry_download(
+      "https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip",
+      .f = file
+    )
+    withr::with_dir(
+      tempdir(),
+      utils::unzip(download_file, exdir = tempdir_aagis_dir)
+    )
+  }
   aagis_sf <- sf::st_read(
     dsn = fs::path(
       tempdir_aagis_dir,
       "aagis_asgs16v1_g5a.shp"
     ),
-    quiet = .talktalk
+    quiet = !(getOption("read.abares.verbosity") %in% c("quiet", "minimal"))
   )
 
   # From checking the unzipped file, some geometries are invalid, this corrects

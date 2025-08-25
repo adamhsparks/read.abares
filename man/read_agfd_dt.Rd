@@ -10,7 +10,7 @@
 }
 }
 \usage{
-read_agfd_dt(fixed_prices = TRUE, yyyy = 1991:2003, files = NULL)
+read_agfd_dt(fixed_prices = TRUE, yyyy = 1991:2003, file = NULL)
 }
 \arguments{
 \item{fixed_prices}{Download historical climate and prices or historical
@@ -27,6 +27,12 @@ upon the setting of \code{fixed_prices}.  Note that this will still download the
 entire data set, that cannot be avoided, but will only return the
 requested year(s) in your \R session.  Valid years are from 1991 to 2023
 inclusive.}
+
+\item{file}{A file path providing the file with the data to be imported. The
+file is assumed to be unarchived locally. This function does not provide any
+checking whether this function is the proper function for the provided file.
+Defaults to \code{NULL}, assuming that the file will be downloaded in the active
+\R session.}
 }
 \value{
 A \code{\link[data.table:data.table]{data.table::data.table()}} object of the "Australian Gridded Farm

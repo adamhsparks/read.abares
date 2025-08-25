@@ -16,6 +16,7 @@
 #'  entire data set, that cannot be avoided, but will only return the
 #'  requested year(s) in your \R session.  Valid years are from 1991 to 2023
 #'  inclusive.
+#' @inheritParams read_aagis_regions
 #'
 #' @details
 #'
@@ -186,18 +187,17 @@
 read_agfd_dt <- function(
   fixed_prices = TRUE,
   yyyy = 1991:2003,
-  files = NULL
+  file = NULL
 ) {
   rlang::arg_match(yyyy, values = 1991:2023, multiple = TRUE)
-  if (is.null(files)) {
-    files <- .get_agfd(
+  if (is.null(file)) {
+    file <- .get_agfd(
       fixed_prices = fixed_prices,
-      yyyy = yyyy,
-      files = files
+      yyyy = yyyy
     )
   }
-  tnc_list <- lapply(files, tidync::tidync)
-  names(tnc_list) <- fs::path_file(files)
+  tnc_list <- lapply(file, tidync::tidync)
+  names(tnc_list) <- fs::path_file(file)
   dat <- data.table::rbindlist(
     lapply(tnc_list, tidync::hyper_tibble),
     idcol = "id"

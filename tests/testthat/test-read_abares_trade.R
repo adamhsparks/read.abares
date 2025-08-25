@@ -1,8 +1,4 @@
-# sets up a custom cache environment in `tempdir()` just for testing
-withr::local_envvar(R_USER_CACHE_DIR = tempdir())
-
-# without caching ----
-test_that("read_abares_trade doesn't cache", {
+test_that("read_abares_trade returns a data.table", {
   skip_if_offline()
   skip_on_ci()
   x <- read_abares_trade()
@@ -45,23 +41,4 @@ test_that("read_abares_trade doesn't cache", {
       Confidentiality_flag = "integer"
     )
   )
-  expect_false(fs::file_exists(
-    fs::path(.find_user_cache(), "abares_trade_dir/abares_trade.gz")
-  ))
 })
-
-# with caching ----
-test_that("read_abares_trade caches", {
-  withr::local_options(read.abares.cache = TRUE)
-  skip_if_offline()
-  skip_on_ci()
-  read_abares_trade()
-  expect_true(fs::file_exists(
-    fs::path(.find_user_cache(), "abares_trade_dir/abares_trade.gz")
-  ))
-})
-
-# cleanup cache if rerunning tests in same R session so first test passes ----
-
-clear_cache()
-withr::deferred_run()
