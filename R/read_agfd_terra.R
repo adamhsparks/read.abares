@@ -5,6 +5,7 @@
 #'
 #' @inherit read_agfd_dt details
 #' @inheritParams read_agfd_dt
+#' @inheritParams read_aagis_regions
 #' @inheritSection read_agfd_dt Model scenarios
 #' @inheritSection read_agfd_dt Data files
 #' @inheritSection read_agfd_dt Data layers
@@ -27,17 +28,20 @@
 
 read_agfd_terra <- function(
   fixed_prices = TRUE,
-  yyyy = 1991:2003,
+  yyyy = 1991:2023,
   file = NULL
 ) {
-  yyyy <- rlang::arg_match(yyyy, values = 1991:2023, multiple = TRUE)
-  if (is.null(file)) {
-    file <- get_agfd(
-      fixed_prices = fixed_prices,
-      yyyy = yyyy
+  if (any(yyyy %notin% 1991:2023)) {
+    cli::cli_abort(
+      "{.arg yyyy} must be between 1991 and 2023 inclusive"
     )
   }
-  r <- purrr::map(.x = file, .f = terra::rast)
-  names(r) <- fs::path_file(file)
+  files <- .get_agfd(
+    .fixed_prices = fixed_prices,
+    .yyyy = yyyy,
+    .file = file
+  )
+  r <- purrr::map(.x = files, .f = terra::rast)
+  names(r) <- fs::path_file(files)
   return(r)
 }

@@ -31,13 +31,16 @@ read_agfd_stars <- function(
   yyyy = 1991:2003,
   file = NULL
 ) {
-  yyyy <- rlang::arg_match(yyyy, values = 1991:2023, multiple = TRUE)
-  if (is.null(file)) {
-    file <- .get_agfd(
-      fixed_prices = fixed_prices,
-      yyyy = yyyy
+  if (any(yyyy %notin% 1991:2023)) {
+    cli::cli_abort(
+      "{.arg yyyy} must be between 1991 and 2023 inclusive"
     )
   }
+  files <- .get_agfd(
+    .fixed_prices = fixed_prices,
+    .yyyy = yyyy,
+    .file = file
+  )
   var <- c(
     "farmno",
     "R_total_hat_ha",
@@ -84,15 +87,15 @@ read_agfd_stars <- function(
   s2 <- NULL
   # read one file for the message
   s1 <- list(stars::read_ncdf(
-    file[1L],
+    files[1L],
     var = var
   ))
 
-  if (length(file) > 1L) {
+  if (length(files) > 1L) {
     # then suppress the rest of the messages
     q_read_ncdf <- purrr::quietly(stars::read_ncdf)
     s2 <- purrr::modify_depth(
-      purrr::map(file[2L:length(file)], q_read_ncdf, var = var),
+      purrr::map(files[2L:length(files)], q_read_ncdf, var = var),
       1L,
       "result"
     )
@@ -100,10 +103,10 @@ read_agfd_stars <- function(
     s1 <- append(s1, s2)
   }
 
-  names(s1) <- fs::path_file(file)
+  names(s1) <- fs::path_file(files)
 
   if (!is.null(s2)) {
-    rm(s1, s2)
+    rm(s2)
   }
   gc()
   return(s1)

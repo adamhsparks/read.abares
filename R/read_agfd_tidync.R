@@ -6,6 +6,7 @@
 #' @inherit read_agfd_dt details
 #'
 #' @inheritParams read_agfd_dt
+#'
 #' @inheritParams read_aagis_regions
 #'
 #' @inheritSection read_agfd_dt Model scenarios
@@ -30,17 +31,20 @@
 
 read_agfd_tidync <- function(
   fixed_prices = TRUE,
-  yyyy = 1991:2003,
+  yyyy = 1991:2023,
   file = NULL
 ) {
-  rlang::arg_match(yyyy, values = 1991:2023, multiple = TRUE)
-  if (is.null(file)) {
-    file <- .get_agfd(
-      fixed_prices = fixed_prices,
-      yyyy = yyyy
+  if (any(yyyy %notin% 1991:2023)) {
+    cli::cli_abort(
+      "{.arg yyyy} must be between 1991 and 2023 inclusive"
     )
   }
+  files <- .get_agfd(
+    .fixed_prices = fixed_prices,
+    .yyyy = yyyy,
+    .file = file
+  )
   tnc <- purrr::map(files, tidync::tidync)
-  names(tnc) <- fs::path_file(file)
+  names(tnc) <- fs::path_file(files)
   return(tnc)
 }
