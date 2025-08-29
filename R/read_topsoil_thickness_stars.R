@@ -28,6 +28,6 @@
 #' @export
 
 read_topsoil_thickness_stars <- function(file = NULL, ...) {
-  files <- .get_topsoil_thickness(.files = files)
+  files <- .get_topsoil_thickness(.file = file)
   return(stars::st_as_stars(files$data))
 }

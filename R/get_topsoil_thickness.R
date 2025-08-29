@@ -30,24 +30,19 @@
 #'
 #' @dev
 
-.get_topsoil_thickness <- function(.files = NULL) {
-  if (!is.null(.files)) {
-    download_file <- .files
-  }
-  if (is.null(.files)) {
-    download_file <- fs::path(tempdir(), "topsoil_thick.zip")
+.get_topsoil_thickness <- function(.file) {
+  if (is.null(.file)) {
+    .file <- fs::path(tempdir(), "topsoil_thick.zip")
     .retry_download(
       "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
-      .f = download_file
+      .f = .file
     )
   }
-  ex_dir <- fs::path_dir(download_file)
-  withr::with_dir(
-    ex_dir,
-    utils::unzip(download_file, exdir = ex_dir)
-  )
-  fs::file_delete(download_file)
-  geo_files <- fs::dir_ls(fs::path(ex_dir, "staiar9cl__05911a01eg_geo___"))
+  .unzip_file(.file)
+  geo_files <- fs::dir_ls(fs::path(
+    fs::path_dir(.file),
+    "topsoil_thick/staiar9cl__05911a01eg_geo___"
+  ))
   thphk_1 <- geo_files[endsWith(x = geo_files, "thpk_1")]
 
   x <- terra::rast(thphk_1)
@@ -67,7 +62,6 @@
   )
   return(topsoil_thickness)
 }
-
 #' Prints a read.abares.topsoil.thickness.files Object
 #'
 #' Custom [base::print()] method for `read.abares.topsoil.thickness.files`
