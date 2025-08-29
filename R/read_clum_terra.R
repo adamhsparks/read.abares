@@ -76,14 +76,12 @@ read_clum_terra <- function(
     c("clum_50m_2023_v2", "scale_date_update")
   )
 
-  if (is.null(file)) {
-    file <- .get_clum(
-      .data_set = data_set
-    )
-  }
+  file <- .get_clum(
+    .data_set = data_set,
+    .file = file
+  )
   r <- terra::rast(
-    grep("[.]tif$", file, value = TRUE),
-    props = TRUE,
+    file,
     ...
   )
   if (data_set == "clum_50m_2023_v2") {

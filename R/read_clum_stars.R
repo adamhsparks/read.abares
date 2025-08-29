@@ -74,11 +74,10 @@ read_clum_stars <- function(
     c("clum_50m_2023_v2", "scale_date_update")
   )
 
-  if (is.null(file)) {
-    file <- .get_clum(
-      .data_set = data_set
-    )
-  }
+  file <- .get_clum(
+    .data_set = data_set,
+    .file = file
+  )
 
-  return(stars::read_stars(grep("[.]tif$", file, value = TRUE), ...))
+  return(stars::read_stars(file, ...))
 }

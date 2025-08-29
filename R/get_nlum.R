@@ -68,11 +68,9 @@
 
   .unzip_file(.file)
 
-  .file_path <- fs::as_fs_path(.file)
-
-  fs::dir_ls(
+  return(fs::dir_ls(
     fs::path(fs::path_dir(.file), ds)
-  )
+  ))
 }
 
 

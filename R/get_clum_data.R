@@ -9,6 +9,7 @@
 #'  \item{clum_50m_2023_v2}{Catchment Scale Land Use of Australia – Update December 2023 version 2}
 #'  \item{scale_date_update}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
 #' }.
+#' @param .file A user specified path to a local zip file containing the data.
 #'
 #' @references
 #' ABARES 2024, Catchment Scale Land Use of Australia – Update December 2023
@@ -19,7 +20,7 @@
 #' \url{https://10.25814/2w2p-ph98}.
 #'
 #' @examplesIf interactive()
-#' CLUM50m <- get_clum(.data_set = "clum_50m_2023_v2")
+#' CLUM50m <- .get_clum(.data_set = "clum_50m_2023_v2", .file = NULL)
 #'
 #' CLUM50m
 #'
@@ -29,55 +30,40 @@
 #' @autoglobal
 #' @dev
 
-.get_clum <- function(.data_set) {
-  talktalk <- !(getOption("read.abares.verbosity") %in% c("quiet", "minimal"))
+.get_clum <- function(.data_set, .file) {
+  if (is.null(.file)) {
+    .file <- fs::path(tempdir(), sprintf("%s.zip", .data_set))
 
-  download_file <- fs::path(tempdir(), "clum", sprintf("%s.zip", .data_set))
+    if (!fs::file_exists(.file)) {
+      file_url <-
+        "https://data.gov.au/data/dataset/8af26be3-da5d-4255-b554-f615e950e46d/resource/"
 
-  # this is where the zip file is downloaded
-  download_dir <- fs::path_dir(download_file)
-
-  # this is where the zip files are unzipped and read from
-  clum_dir <- fs::path(download_dir, .data_set)
-
-  fs::dir_create(clum_dir, recurse = TRUE)
-
-  file_url <-
-    "https://data.gov.au/data/dataset/8af26be3-da5d-4255-b554-f615e950e46d/resource/"
-
-  file_url <- switch(
-    .data_set,
-    "clum_50m_2023_v2" = sprintf(
-      "%s6deab695-3661-4135-abf7-19f25806cfd7/download/clum_50m_2023_v2.zip",
-      file_url
-    ),
-    "scale_date_update" = sprintf(
-      "%s98b1b93f-e5e1-4cc9-90bf-29641cfc4f11/download/scale_date_update.zip",
-      file_url
-    )
-  )
-
-  .retry_download(
-    url = file_url,
-    .f = download_file
-  )
-
-  tryCatch(
-    {
-      withr::with_dir(
-        download_dir,
-        utils::unzip(zipfile = download_file, exdir = download_dir)
+      file_url <- switch(
+        .data_set,
+        "clum_50m_2023_v2" = sprintf(
+          "%s6deab695-3661-4135-abf7-19f25806cfd7/download/clum_50m_2023_v2.zip",
+          file_url
+        ),
+        "scale_date_update" = sprintf(
+          "%s98b1b93f-e5e1-4cc9-90bf-29641cfc4f11/download/scale_date_update.zip",
+          file_url
+        )
       )
-    },
-    error = function(e) {
-      cli::cli_abort(
-        "There was an issue with the downloaded file. I've deleted
-           this bad version of the downloaded file, please retry.",
-        call = rlang::caller_env()
+
+      .retry_download(
+        url = file_url,
+        .f = .file
       )
+      .unzip_file(.file)
     }
-  )
+  } else if (!is.null(.file)) {
+    ds <- fs::path_file(fs::path_ext_remove(.file))
+    .unzip_file(.file)
+  }
 
-  clum <- fs::dir_ls(fs::path_abs(clum_dir), regexp = "[.]tif$")
-  return(clum)
+  return(fs::dir_ls(
+    fs::path(fs::path_dir(.file), .data_set),
+    recurse = TRUE,
+    glob = "*.tif"
+  ))
 }
