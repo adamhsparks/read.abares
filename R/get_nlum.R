@@ -18,6 +18,7 @@
 #'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 #'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 #' }.
+#' @param .file A user specified path to a local zip file containing the data.
 #'
 #' @references
 #' ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
@@ -29,121 +30,49 @@
 #'
 #' Y202021
 #'
-#' @returns A `read.abares.nlum` object, a list of GeoTIFF files containing
-#'  national scale land use data and a \acronym{PDF} file of metadata.
+#' @returns A list object of NLUM files.
 #'
 #' @autoglobal
 #' @dev
 
 .get_nlum <- function(.data_set, .file) {
   if (is.null(.file)) {
-    .file <- fs::path(tempdir(), "nlum", sprintf("%s.zip", .data_set))
-
-    # this is where the zip file is downloaded
-    download_dir <- fs::path_dir(.file)
-
-    # this is where the zip files are unzipped and read from
-    nlum_dir <- fs::path(download_dir, .data_set)
-
-    # only download if the files aren't already local
-    if (isFALSE(fs::dir_exists(nlum_dir))) {
-      fs::dir_create(nlum_dir, recurse = TRUE)
-    }
+    ds <- switch(
+      .data_set,
+      "Y202021" = "NLUM_v7_250_ALUMV8_2020_21_alb_package_20241128",
+      "Y201516" = "NLUM_v7_250_ALUMV8_2015_16_alb_package_20241128",
+      "Y201011" = "NLUM_v7_250_ALUMV8_2010_11_alb_package_20241128",
+      "C201121" = "NLUM_v7_250_CHANGE_SIMP_2011_to_2021_alb_package_20241128",
+      "T202021" = "NLUM_v7_250_INPUTS_2020_21_geo_package_20241128",
+      "T201516" = "NLUM_v7_250_INPUTS_2015_16_geo_package_20241128",
+      "T201011" = "NLUM_v7_250_INPUTS_2010_11_geo_package_20241128",
+      "P202021" = "NLUM_v7_250_AgProbabilitySurfaces_2020_21_geo_package_20241128",
+      "P201516" = "NLUM_v7_250_AgProbabilitySurfaces_2015_16_geo_package_20241128",
+      "P201011" = "NLUM_v7_250_AgProbabilitySurfaces_2010_11_geo_package_20241128",
+    )
+    .file <- fs::path(tempdir(), sprintf("%s.zip", ds))
 
     file_url <-
-      "https://www.agriculture.gov.au/sites/default/files/documents/"
-
-    file_url <- switch(
-      .data_set,
-      "Y202021" = sprintf(
-        "%sNLUM_v7_250_ALUMV8_2020_21_alb_package_20241128.zip",
-        file_url
-      ),
-      "Y201516" = sprintf(
-        "%sNLUM_v7_250_ALUMV8_2015_16_alb_package_20241128.zip",
-        file_url
-      ),
-      "Y201011" = sprintf(
-        "%sNLUM_v7_250_ALUMV8_2010_11_alb_package_20241128.zip",
-        file_url
-      ),
-      "C201121" = sprintf(
-        "%sNLUM_v7_250_CHANGE_SIMP_2011_to_2021_alb_package_20241128.zip",
-        file_url
-      ),
-      "T202021" = sprintf(
-        "%sNLUM_v7_250_INPUTS_2020_21_geo_package_20241128.zip",
-        file_url
-      ),
-      "T201516" = sprintf(
-        "%sNLUM_v7_250_INPUTS_2015_16_geo_package_20241128.zip",
-        file_url
-      ),
-      "T201011" = sprintf(
-        "%sNLUM_v7_250_INPUTS_2010_11_geo_package_20241128.zip",
-        file_url
-      ),
-      "P202021" = sprintf(
-        "%sNLUM_v7_250_AgProbabilitySurfaces_2020_21_geo_package_20241128.zip",
-        file_url
-      ),
-      "P201516" = sprintf(
-        "%sNLUM_v7_250_AgProbabilitySurfaces_2015_16_geo_package_20241128.zip",
-        file_url
-      ),
-      "P201011" = sprintf(
-        "%sNLUM_v7_250_AgProbabilitySurfaces_2010_11_geo_package_20241128.zip",
-        file_url
+      sprintf(
+        "https://www.agriculture.gov.au/sites/default/files/documents/%s.zip",
+        ds
       )
-    )
 
     .retry_download(
       url = file_url,
       .f = .file
     )
-        withr::with_dir(
-          download_dir,
-          utils::unzip(zipfile = .file, exdir = nlum_dir)
-        )
-  }
-        if (
-          isFALSE(fs::file_exists(fs::path(
-            download_dir,
-            "NLUM_v7_DescriptiveMetadata_20241128_0.pdf"
-          )))
-        ) {
-          fs::file_move(
-            fs::path(
-              nlum_dir,
-              "NLUM_v7_DescriptiveMetadata_20241128_0.pdf"
-            ),
-            fs::path(download_dir, "NLUM_v7_DescriptiveMetadata_20241128_0.pdf")
-          )
-        }
-        fs::dir_delete(
-          setdiff(
-            fs::dir_ls(nlum_dir, type = "directory"),
-            fs::dir_ls(nlum_dir, regexp = "^Maps$|^Symbology$")
-          )
-        )
-
-        fs::file_delete(
-          setdiff(
-            fs::dir_ls(nlum_dir),
-            fs::dir_ls(nlum_dir, regexp = "[.]tif$|[.]tif[.]aux[.]xml$")
-          )
-        )
-      }
-
-    if (fs::file_exists(download_file)) {
-      fs::file_delete(download_file)
-    }
+  } else {
+    ds <- fs::path_file(fs::path_ext_remove(.file))
   }
 
-  nlum <- fs::dir_ls(fs::path_abs(nlum_dir), glob = "*.tif")
+  .unzip_file(.file)
 
-  class(nlum) <- union("read.abares.nlum.files", class(nlum))
-  return(nlum)
+  .file_path <- fs::as_fs_path(.file)
+
+  fs::dir_ls(
+    fs::path(fs::path_dir(.file), ds)
+  )
 }
 
 

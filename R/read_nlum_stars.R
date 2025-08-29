@@ -51,6 +51,9 @@
 #'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 #'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 #' }.
+#' This argument is ignored if `file` is provided.
+#' @param file A character string of a file path to a local zip file that has
+#'  been downloaded outside of R that contains the \acronym{NLUM} data.
 #' @param ... Additional arguments passed to [stars::read_stars()], for *e.g.*,
 #'  `RAT` if you wish to set the active category when loading any of the
 #'  available GeoTIFF files that are encoded with a raster attribute table.
@@ -87,23 +90,30 @@
 #' @family nlum
 #' @autoglobal
 #' @export
-read_nlum_stars <- function(data_set, file = NULL, ...) {
-  data_set <- rlang::arg_match(
-    data_set,
-    c(
-      "Y201011",
-      "Y201516",
-      "Y202021",
-      "C201121",
-      "T201011",
-      "T201516",
-      "T202021",
-      "P201011",
-      "P201516",
-      "P202021"
+read_nlum_stars <- function(
+  data_set = NULL,
+  file = NULL,
+  ...
+) {
+  if (is.null(file)) {
+    data_set <- rlang::arg_match(
+      data_set,
+      c(
+        "Y201011",
+        "Y201516",
+        "Y202021",
+        "C201121",
+        "T201011",
+        "T201516",
+        "T202021",
+        "P201011",
+        "P201516",
+        "P202021"
+      )
     )
-  )
-
-  nlum <- .get_nlum(.data_set = data_set)
+    nlum <- .get_nlum(.data_set = data_set)
+  } else {
+    nlum <- .get_nlum(.file = file)
+  }
   return(stars::read_stars(grep("tif$", nlum, value = TRUE), ...))
 }

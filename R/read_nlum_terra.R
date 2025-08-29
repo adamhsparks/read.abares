@@ -37,22 +37,8 @@
 #'  The PDF can be accessed in your default web browser by using
 #'  [view_nlum_metadata_pdf()].
 #'
-#' @param data_set A string value indicating the GeoTIFF desired for download.
-#' One of:
-#' \describe{
-#'  \item{Y201011}{Land use of Australia 2010–11}
-#'  \item{Y201516}{Land use of Australia 2015–16}
-#'  \item{Y202021}{Land use of Australia 2020–21}
-#'  \item{C201121}{Land use of Australia change}
-#'  \item{T201011}{Land use of Australia 2010–11 thematic layers}
-#'  \item{T201516}{Land use of Australia 2015–16 thematic layers}
-#'  \item{T202021}{Land use of Australia 2020–21 thematic layers}
-#'  \item{P201011}{Land use of Australia 2010–11 agricultural commodities probability grids}
-#'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
-#'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
-#' }.
-#' @param ... Additional arguments passed to [terra::rast()].
-#'
+#' @inheritParams read_nlum_stars
+#' @param ... Other arguments passed to [terra::rast()].
 #' @references
 #' ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
 #' Agricultural and Resource Economics and Sciences, Canberra, November, CC BY
@@ -86,22 +72,29 @@
 #' @autoglobal
 #' @export
 read_nlum_terra <- function(
-  data_set = c(
-    "Y201011",
-    "Y201516",
-    "Y202021",
-    "C201021",
-    "T201011",
-    "T201516",
-    "T202021",
-    "P201011",
-    "P201516",
-    "P202021"
-  ),
+  data_set = NULL,
+  file = NULL,
   ...
 ) {
-  rlang::arg_match(data_set)
-
-  nlum <- .get_nlum(.data_set = data_set)
+  if (is.null(file)) {
+    data_set <- rlang::arg_match(
+      data_set,
+      c(
+        "Y201011",
+        "Y201516",
+        "Y202021",
+        "C201121",
+        "T201011",
+        "T201516",
+        "T202021",
+        "P201011",
+        "P201516",
+        "P202021"
+      )
+    )
+    nlum <- .get_nlum(.data_set = data_set)
+  } else {
+    nlum <- .get_nlum(.file = file)
+  }
   return(terra::rast(grep("tif$", nlum, value = TRUE), ...))
 }
