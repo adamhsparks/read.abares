@@ -2,7 +2,7 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "read.abares",
-  "description": "Download and import data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) <https://www.agriculture.gov.au/abares>.",
+  "description": "Download and import agricultural data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) <https://www.agriculture.gov.au/abares> and Australian Bureau of Statistics (ABS) <https://abs.gov.au>.",
   "name": "read.abares: Provides simple downloading, parsing and importing of Australian\n    Bureau of Agricultural and Resource Economics and Sciences (ABARES)\n    data sources",
   "relatedLink": "https://adamhsparks.github.io/read.abares/",
   "codeRepository": "https://github.com/adamhsparks/read.abares",
@@ -373,7 +373,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "662.891KB",
+  "fileSize": "660.831KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
