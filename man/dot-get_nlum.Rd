@@ -3,11 +3,8 @@
 \name{.get_nlum}
 \alias{.get_nlum}
 \title{Get ABARES' National Scale "Land Use of Australia" Data}
-\source{
-\url{https://doi.org/10.25814/w175-xh85}
-}
 \usage{
-.get_nlum(.data_set)
+.get_nlum(.data_set, .file)
 }
 \arguments{
 \item{.data_set}{A string value indicating the GeoTIFF desired for download.
@@ -26,8 +23,7 @@ One of:
 }.}
 }
 \value{
-A \code{read.abares.nlum} object, a list of GeoTIFF files containing
-national scale land use data and a \acronym{PDF} file of metadata.
+A list object of NLUM files.
 }
 \description{
 An internal function used by \code{\link[=read_nlum_terra]{read_nlum_terra()}} and \code{\link[=read_nlum_stars]{read_nlum_stars()}} that

@@ -4,10 +4,10 @@ utils::globalVariables(c(
   "region_codes", # <parse_abs_production_data>
   "data_item", # <parse_abs_production_data>
   "download_file", # <read_aagis_regions>
-  ".talktalk", # <read_aagis_regions>
   "Year_month", # <read_abares_trade>
   "lat", # <read_agfd_dt>
   "lon", # <read_agfd_dt>
+  "f", # <read_estimates_by_size>
   "Month_issued", # <read_historical_forecast_database>
   NULL
 ))

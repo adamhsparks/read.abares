@@ -18,11 +18,7 @@
 }.
 }
 \usage{
-read_nlum_terra(
-  data_set = c("Y201011", "Y201516", "Y202021", "C201021", "T201011", "T201516",
-    "T202021", "P201011", "P201516", "P202021"),
-  ...
-)
+read_nlum_terra(data_set = NULL, file = NULL, ...)
 }
 \arguments{
 \item{data_set}{A string value indicating the GeoTIFF desired for download.
@@ -38,9 +34,13 @@ One of:
 \item{P201011}{Land use of Australia 2010–11 agricultural commodities probability grids}
 \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
-}.}
+}.
+This argument is ignored if \code{file} is provided.}
 
-\item{...}{Additional arguments passed to \code{\link[terra:rast]{terra::rast()}}.}
+\item{file}{A character string of a file path to a local zip file that has
+been downloaded outside of R that contains the \acronym{NLUM} data.}
+
+\item{...}{Other arguments passed to \code{\link[terra:rast]{terra::rast()}}.}
 }
 \value{
 A \code{\link[terra:rast]{terra::rast()}} object that may be one or many layers depending

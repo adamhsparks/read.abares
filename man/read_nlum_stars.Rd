@@ -18,7 +18,7 @@
 }.
 }
 \usage{
-read_nlum_stars(data_set, ...)
+read_nlum_stars(data_set = NULL, file = NULL, ...)
 }
 \arguments{
 \item{data_set}{A string value indicating the GeoTIFF desired for download.
@@ -34,7 +34,11 @@ One of:
 \item{P201011}{Land use of Australia 2010–11 agricultural commodities probability grids}
 \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
-}.}
+}.
+This argument is ignored if \code{file} is provided.}
+
+\item{file}{A character string of a file path to a local zip file that has
+been downloaded outside of R that contains the \acronym{NLUM} data.}
 
 \item{...}{Additional arguments passed to \code{\link[stars:read_stars]{stars::read_stars()}}, for \emph{e.g.},
 \code{RAT} if you wish to set the active category when loading any of the

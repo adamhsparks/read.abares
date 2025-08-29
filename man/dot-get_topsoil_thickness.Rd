@@ -7,7 +7,7 @@
 \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
 }
 \usage{
-.get_topsoil_thickness(.files = NULL)
+.get_topsoil_thickness(.file)
 }
 \arguments{
 \item{.files}{A character string passed that provides a file path to the
