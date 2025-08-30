@@ -21,8 +21,8 @@
 #' @family ABS
 #' @export
 
-read_abs_horticulture_data <- function(year = "latest", file = NULL) {
-  if (is.null(file)) {
+read_abs_horticulture_data <- function(year = "latest", x = NULL) {
+  if (is.null(x)) {
     # see parse_abs_production_data.R for .find_years()
     available <- .find_years(data_set = "horticulture")
     year <- rlang::arg_match(year, c("latest", available))
@@ -40,9 +40,9 @@ read_abs_horticulture_data <- function(year = "latest", file = NULL) {
         year,
         gsub("-", "", year, fixed = TRUE)
       ),
-      .f = file
+      .f = x
     )
   }
 
-  return(parse_abs_production_data(file))
+  return(parse_abs_production_data(x))
 }

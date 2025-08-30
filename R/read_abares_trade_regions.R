@@ -20,15 +20,15 @@
 #' @autoglobal
 #' @export
 
-read_abares_trade_regions <- function(file = NULL) {
-  if (is.null(file)) {
-    file <- fs::path(tempdir(), "trade_regions")
+read_abares_trade_regions <- function(x = NULL) {
+  if (is.null(x)) {
+    x <- fs::path(tempdir(), "trade_regions")
     .retry_download(
       url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/2",
-      .f = file
+      .f = x
     )
   }
-  abares_trade_regions <- data.table::fread(file, fill = TRUE)
+  abares_trade_regions <- data.table::fread(x, fill = TRUE)
 
   return(abares_trade_regions[])
 }

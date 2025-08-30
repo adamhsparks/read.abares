@@ -29,7 +29,7 @@
 read_agfd_terra <- function(
   fixed_prices = TRUE,
   yyyy = 1991:2023,
-  file = NULL
+  x = NULL
 ) {
   if (any(yyyy %notin% 1991:2023)) {
     cli::cli_abort(
@@ -39,7 +39,7 @@ read_agfd_terra <- function(
   files <- .get_agfd(
     .fixed_prices = fixed_prices,
     .yyyy = yyyy,
-    .file = file
+    .x = x
   )
   r <- purrr::map(.x = files, .f = terra::rast)
   names(r) <- fs::path_file(files)

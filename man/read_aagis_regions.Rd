@@ -7,10 +7,10 @@
 \url{https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip}
 }
 \usage{
-read_aagis_regions(file = NULL)
+read_aagis_regions(x = NULL)
 }
 \arguments{
-\item{file}{A file path providing the file with the data to be imported. The
+\item{x}{A file path providing the file with the data to be imported. The
 file is assumed to be unarchived locally. This function does not provide any
 checking whether this function is the proper function for the provided file.
 Defaults to \code{NULL}, assuming that the file will be downloaded in the active

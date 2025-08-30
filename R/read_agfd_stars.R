@@ -29,7 +29,7 @@
 read_agfd_stars <- function(
   fixed_prices = TRUE,
   yyyy = 1991:2003,
-  file = NULL
+  x = NULL
 ) {
   if (any(yyyy %notin% 1991:2023)) {
     cli::cli_abort(
@@ -39,7 +39,7 @@ read_agfd_stars <- function(
   files <- .get_agfd(
     .fixed_prices = fixed_prices,
     .yyyy = yyyy,
-    .file = file
+    .x = x
   )
   var <- c(
     "farmno",

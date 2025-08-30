@@ -2,7 +2,7 @@
 #'
 #' Fetches topsoil thickness data and associated metadata from \acronym{ABARES}.
 #'
-#' @param .files A character string passed that provides a file path to the
+#' @param .xs A character string passed that provides a file path to the
 #'  local directory holding the unzipped files for topsoil thickness.
 #' @note
 #' A custom `print()` method is provided that will print the metadata associated
@@ -30,17 +30,17 @@
 #'
 #' @dev
 
-.get_topsoil_thickness <- function(.file) {
-  if (is.null(.file)) {
-    .file <- fs::path(tempdir(), "topsoil_thick.zip")
+.get_topsoil_thickness <- function(.x) {
+  if (is.null(.x)) {
+    .x <- fs::path(tempdir(), "topsoil_thick.zip")
     .retry_download(
       "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
-      .f = .file
+      .f = .x
     )
   }
-  .unzip_file(.file)
+  .unzip_file(.x)
   geo_files <- fs::dir_ls(fs::path(
-    fs::path_dir(.file),
+    fs::path_dir(.x),
     "topsoil_thick/staiar9cl__05911a01eg_geo___"
   ))
   thphk_1 <- geo_files[endsWith(x = geo_files, "thpk_1")]
@@ -57,20 +57,22 @@
   )
 
   class(topsoil_thickness) <- union(
-    "read.abares.topsoil.thickness.files",
+    "read.abares.topsoil.thickness.xs",
     class(topsoil_thickness)
   )
   return(topsoil_thickness)
 }
-#' Prints a read.abares.topsoil.thickness.files Object
+
+#' Prints a read.abares.topsoil.thickness.xs Object
 #'
-#' Custom [base::print()] method for `read.abares.topsoil.thickness.files`
+#' Custom [base::print()] method for `read.abares.topsoil.thickness.xs`
 #' objects.
 #'
-#' @param x a `read.abares.topsoil.thickness.files` object.
+#' @param x a `read.abares.topsoil.thickness.xs` object.
 #' @param ... ignored.
 #' @export
 #' @noRd
+
 print.read.abares.topsoil.thickness.files <- function(x, ...) {
   cli::cli_h1(
     "Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil)"
@@ -118,7 +120,7 @@ print.read.abares.topsoil.thickness.files <- function(x, ...) {
 #'  methods outside of \R, see `.get_topsoil_thickness()` for an example using
 #'  [pander::pander()] to print the metadata.
 #'
-#' @param x A `read.abares.topsoil.thickness.files` object.
+#' @param x A `read.abares.topsoil.thickness.xs` object.
 #'
 #' @note
 #' The original metadata use a title of "Soil Thickness", in the context of this
@@ -135,7 +137,7 @@ print.read.abares.topsoil.thickness.files <- function(x, ...) {
 #'
 #' @export
 print_topsoil_thickness_metadata <- function() {
-  x <- .get_topsoil_thickness(.files = NULL)
+  x <- .get_topsoil_thickness(.xs = NULL)
   loc <- stringr::str_locate(
     x$metadata,
     stringr::fixed("Custodian", ignore_case = FALSE)

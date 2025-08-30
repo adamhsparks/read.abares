@@ -66,7 +66,7 @@
 #' @export
 read_clum_stars <- function(
   data_set = "clum_50m_2023_v2",
-  file = NULL,
+  x = NULL,
   ...
 ) {
   data_set <- rlang::arg_match0(
@@ -74,9 +74,9 @@ read_clum_stars <- function(
     c("clum_50m_2023_v2", "scale_date_update")
   )
 
-  file <- .get_clum(
+  x <- .get_clum(
     .data_set = data_set,
-    .file = file
+    .x = x
   )
 
   return(stars::read_stars(file, ...))

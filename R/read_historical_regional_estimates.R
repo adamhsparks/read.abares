@@ -22,14 +22,14 @@
 #' read_hist_reg_est()
 #'
 read_historical_regional_estimates <- read_hist_reg_est <- function(
-  file = NULL
+  x = NULL
 ) {
-  if (is.null(file)) {
-    file <- fs::path(tempdir(), "fdp-beta-regional-historical.csv")
+  if (is.null(x)) {
+    x <- fs::path(tempdir(), "fdp-beta-regional-historical.csv")
 
     .retry_download(
       "https://www.agriculture.gov.au/sites/default/files/documents/fdp-regional-historical.csv",
-      .f = file
+      .f = x
     )
   }
 

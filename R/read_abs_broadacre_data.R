@@ -31,9 +31,9 @@
 read_abs_broadacre_data <- function(
   crops = "winter",
   year = "latest",
-  file = NULL
+  x = NULL
 ) {
-  if (is.null(file)) {
+  if (is.null(x)) {
     available <- .find_years(data_set = "broadacre")
     year <- rlang::arg_match(year, c("latest", available))
     crops <- rlang::arg_match(crops, c("winter", "summer", "sugarcane"))
@@ -43,7 +43,7 @@ read_abs_broadacre_data <- function(
     }
     base_url <- "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops/"
 
-    file <- fs::path(tempdir(), sprintf("%s_crops_file", crops))
+    x <- fs::path(tempdir(), sprintf("%s_crops_file", crops))
     .retry_download(
       url = sprintf(
         "%s%s/AABDC_%s_%s.xlsx",
@@ -52,8 +52,8 @@ read_abs_broadacre_data <- function(
         crops,
         gsub("-", "", year, fixed = TRUE)
       ),
-      .f = file
+      .f = x
     )
   }
-  return(parse_abs_production_data(file))
+  return(parse_abs_production_data(x))
 }

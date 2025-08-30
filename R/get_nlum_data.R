@@ -18,7 +18,7 @@
 #'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 #'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 #' }.
-#' @param .file A user specified path to a local zip file containing the data.
+#' @param .x A user specified path to a local zip file containing the data.
 #'
 #' @references
 #' ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
@@ -35,8 +35,8 @@
 #' @autoglobal
 #' @dev
 
-.get_nlum <- function(.data_set, .file) {
-  if (is.null(.file)) {
+.get_nlum <- function(.data_set, .x) {
+  if (is.null(.x)) {
     ds <- switch(
       .data_set,
       "Y202021" = "NLUM_v7_250_ALUMV8_2020_21_alb_package_20241128",
@@ -50,7 +50,7 @@
       "P201516" = "NLUM_v7_250_AgProbabilitySurfaces_2015_16_geo_package_20241128",
       "P201011" = "NLUM_v7_250_AgProbabilitySurfaces_2010_11_geo_package_20241128",
     )
-    .file <- fs::path(tempdir(), sprintf("%s.zip", ds))
+    .x <- fs::path(tempdir(), sprintf("%s.zip", ds))
 
     file_url <-
       sprintf(
@@ -60,25 +60,25 @@
 
     .retry_download(
       url = file_url,
-      .f = .file
+      .f = .x
     )
   } else {
-    ds <- fs::path_file(fs::path_ext_remove(.file))
+    ds <- fs::path_file(fs::path_ext_remove(.x))
   }
 
-  .unzip_file(.file)
+  .unzip_file(.x)
 
   return(fs::dir_ls(
-    fs::path(fs::path_dir(.file), ds)
+    fs::path(fs::path_dir(.x), ds)
   ))
 }
 
 
-#' Prints read.abares.nlum.files Objects
+#' Prints read.abares.nlum.xs Objects
 #'
-#' Custom [base::print()] method for `read.abares.nlum.files` objects.
+#' Custom [base::print()] method for `read.abares.nlum.xs` objects.
 #'
-#' @param x a `read.abares.agfd.nlum.files` object.
+#' @param x a `read.abares.agfd.nlum.xs` object.
 #' @param ... ignored.
 #' @export
 #' @autoglobal

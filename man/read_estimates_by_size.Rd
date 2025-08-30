@@ -8,12 +8,12 @@
 \url{https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv}
 }
 \usage{
-read_estimates_by_size(file = NULL)
+read_estimates_by_size(x = NULL)
 
-read_est_by_size(file = NULL)
+read_est_by_size(x = NULL)
 }
 \arguments{
-\item{file}{A file path providing the file with the data to be imported. The
+\item{x}{A file path providing the file with the data to be imported. The
 file is assumed to be unarchived locally. This function does not provide any
 checking whether this function is the proper function for the provided file.
 Defaults to \code{NULL}, assuming that the file will be downloaded in the active

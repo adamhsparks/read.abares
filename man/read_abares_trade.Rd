@@ -7,10 +7,10 @@
 \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0}
 }
 \usage{
-read_abares_trade(file = NULL)
+read_abares_trade(x = NULL)
 }
 \arguments{
-\item{file}{A file path providing the file with the data to be imported. The
+\item{x}{A file path providing the file with the data to be imported. The
 file is assumed to be unarchived locally. This function does not provide any
 checking whether this function is the proper function for the provided file.
 Defaults to \code{NULL}, assuming that the file will be downloaded in the active
@@ -20,8 +20,8 @@ Defaults to \code{NULL}, assuming that the file will be downloaded in the active
 A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
 }
 \description{
-Fetches and imports \acronym{ABARES} trade data. As the data file is large,
-~1.4GB uncompressed \acronym{CSV} file.
+Fetches and imports \acronym{ABARES} trade data. As the data x is large,
+~1.4GB uncompressed \acronym{CSV} x.
 }
 \note{
 Columns are renamed for consistency with other \acronym{ABARES} products

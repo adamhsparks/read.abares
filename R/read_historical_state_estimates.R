@@ -21,16 +21,17 @@
 #' # or shorter
 #' read_hist_sta_est()
 #'
-read_historical_state_estimates <- read_hist_st_est <- function(file = NULL) {
-  if (is.null(file)) {
-    file <- fs::path(tempdir(), "fdp-beta-state-historical.csv")
+read_historical_state_estimates <- read_hist_st_est <- function(x = NULL) {
+  if (is.null(x)) {
+    x <- fs::path(tempdir(), "fdp-beta-state-historical.csv")
 
     .retry_download(
       "https://www.agriculture.gov.au/sites/default/files/documents/fdp-state-historical.csv",
-      .f = file
+      .f = x
     )
   }
-  x <- data.table::fread(file)
+
+  x <- data.table::fread(x)
   data.table::setcolorder(
     x,
     c("Variable", "Year", "State", "Industry", "Value", "RSE")

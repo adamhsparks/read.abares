@@ -22,16 +22,16 @@
 #' # or shorter
 #' read_hist_nat_est()
 #'
-read_historical_national_estimates <- function(file = NULL) {
-  if (is.null(file)) {
+read_historical_national_estimates <- function(x = NULL) {
+  if (is.null(x)) {
     file <- fs::path(tempdir(), "fdp-beta-national-historical.csv")
 
     .retry_download(
       "https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv",
-      .f = file
+      .f = x
     )
   }
-  x <- data.table::fread(file)
+  x <- data.table::fread(x)
   data.table::setcolorder(
     x,
     neworder = c("Variable", "Year", "Industry", "Value", "RSE")

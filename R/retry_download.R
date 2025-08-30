@@ -27,7 +27,7 @@
     httr2::req_headers("Accept-Encoding" = "identity") |>
     httr2::req_headers("Connection" = "Keep-Alive") |>
     httr2::req_options(
-      http_version = 2L,
+      http_version = 1L,
       timeout = getOption("read.abares.timeout")
     ) |>
     httr2::req_retry(

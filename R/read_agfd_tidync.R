@@ -32,7 +32,7 @@
 read_agfd_tidync <- function(
   fixed_prices = TRUE,
   yyyy = 1991:2023,
-  file = NULL
+  x = NULL
 ) {
   if (any(yyyy %notin% 1991:2023)) {
     cli::cli_abort(
@@ -42,7 +42,7 @@ read_agfd_tidync <- function(
   files <- .get_agfd(
     .fixed_prices = fixed_prices,
     .yyyy = yyyy,
-    .file = file
+    .x = x
   )
   tnc <- purrr::map(files, tidync::tidync)
   names(tnc) <- fs::path_file(files)

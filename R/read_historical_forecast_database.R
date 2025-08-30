@@ -44,18 +44,18 @@
 #' # or shorter
 #' read_historical_forecast()
 #'
-read_historical_forecast_database <- function(file = NULL) {
-  if (is.null(file)) {
-    file <- fs::path(tempdir(), "historical_db.xlsx")
+read_historical_forecast_database <- function(x = NULL) {
+  if (is.null(x)) {
+    x <- fs::path(tempdir(), "historical_db.xlsx")
 
     .retry_download(
       "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0",
-      .f = file
+      .f = x
     )
   }
 
   x <- data.table::as.data.table(readxl::read_excel(
-    file,
+    x,
     sheet = "Database",
     na = "na"
   ))

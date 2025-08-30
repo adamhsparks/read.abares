@@ -18,7 +18,7 @@
 }.
 }
 \usage{
-read_nlum_stars(data_set = NULL, file = NULL, ...)
+read_nlum_stars(data_set = NULL, x = NULL, ...)
 }
 \arguments{
 \item{data_set}{A string value indicating the GeoTIFF desired for download.
@@ -37,12 +37,12 @@ One of:
 }.
 This argument is ignored if \code{file} is provided.}
 
-\item{file}{A character string of a file path to a local zip file that has
-been downloaded outside of R that contains the \acronym{NLUM} data.}
-
 \item{...}{Additional arguments passed to \code{\link[stars:read_stars]{stars::read_stars()}}, for \emph{e.g.},
 \code{RAT} if you wish to set the active category when loading any of the
 available GeoTIFF files that are encoded with a raster attribute table.}
+
+\item{file}{A character string of a file path to a local zip file that has
+been downloaded outside of R that contains the \acronym{NLUM} data.}
 }
 \value{
 a \CRANpkg{stars} object that may be one or many layers depending

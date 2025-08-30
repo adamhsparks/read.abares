@@ -22,13 +22,13 @@
 #' # or shorter
 #' read_est_by_size()
 #'
-read_estimates_by_size <- read_est_by_size <- function(file = NULL) {
-  if (is.null(file)) {
-    file <- fs::path(tempdir(), "fdp-beta-performance-by-size.csv")
+read_estimates_by_size <- read_est_by_size <- function(x = NULL) {
+  if (is.null(x)) {
+    x <- fs::path(tempdir(), "fdp-beta-performance-by-size.csv")
 
     .retry_download(
       "https://www.agriculture.gov.au/sites/default/files/documents/fdp-performance-by-size.csv",
-      .f = file
+      .f = x
     )
   }
   x <- data.table::fread(f)

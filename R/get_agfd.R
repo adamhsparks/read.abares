@@ -12,11 +12,11 @@
 #'  entire data set, that cannot be avoided, but will only return the
 #'  requested year(s) in your \R session.  Valid years are from 1991 to 2023
 #'  inclusive.
-#' @param .file A user specified path to a local zip file containing the data.
+#' @param .x A user specified path to a local zip file containing the data.
 #'
 #' @examples
 #' # this will download the data and then return only 2020 and 2021 years' data
-#' agfd <- .get_agfd(.fixed_prices = TRUE, .yyyy = 2020:2021, .file = NULL)
+#' agfd <- .get_agfd(.fixed_prices = TRUE, .yyyy = 2020:2021, .x = NULL)
 #'
 #' agfd
 #'
@@ -28,35 +28,35 @@
 .get_agfd <- function(
   .fixed_prices,
   .yyyy,
-  .file
+  .x
 ) {
-  if (is.null(.file)) {
+  if (is.null(.x)) {
     ds <- data.table::fifelse(
       .fixed_prices,
       "historical_climate_prices_fixed",
       "historical_climate_prices"
     )
-    .file <- fs::path(tempdir(), sprintf("%s.zip", ds))
+    .x <- fs::path(tempdir(), sprintf("%s.zip", ds))
 
     file_url <- data.table::fifelse(
       .fixed_prices,
       "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/3",
       "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/2"
     )
-    if (!fs::file_exists(.file)) {
+    if (!fs::file_exists(.x)) {
       .retry_download(
         url = file_url,
-        .f = .file
+        .f = .x
       )
-      .unzip_file(.file)
+      .unzip_file(.x)
     }
-  } else if (!is.null(.file)) {
-    ds <- fs::path_file(fs::path_ext_remove(.file))
-    .unzip_file(.file)
+  } else if (!is.null(.x)) {
+    ds <- fs::path_file(fs::path_ext_remove(.x))
+    .unzip_file(.x)
   }
 
   agfd_nc <- fs::dir_ls(
-    fs::path(fs::path_dir(.file), ds),
+    fs::path(fs::path_dir(.x), ds),
     full_names = TRUE,
     recurse = TRUE
   )

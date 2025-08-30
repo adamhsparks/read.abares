@@ -4,10 +4,10 @@
 \alias{.unzip_file}
 \title{Unzip a Zip File}
 \usage{
-.unzip_file(.file)
+.unzip_file(.x)
 }
 \arguments{
-\item{.file}{A zip file for unzipping}
+\item{.x}{A zip file for unzipping}
 }
 \value{
 Called for its side-effects of unzipping a file, returns an

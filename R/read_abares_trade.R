@@ -1,7 +1,7 @@
 #' Read Data from the ABARES Trade Dashboard
 #'
-#' Fetches and imports \acronym{ABARES} trade data. As the data file is large,
-#'  ~1.4GB uncompressed \acronym{CSV} file.
+#' Fetches and imports \acronym{ABARES} trade data. As the data x is large,
+#'  ~1.4GB uncompressed \acronym{CSV} x.
 #'
 #' @inheritParams read_aagis_regions
 #' @note
@@ -21,16 +21,16 @@
 #' @autoglobal
 #' @export
 
-read_abares_trade <- function(file = NULL) {
-  if (is.null(file)) {
-    file <- fs::path(tempdir(), "abares_trade_data.zip")
+read_abares_trade <- function(x = NULL) {
+  if (is.null(x)) {
+    x <- fs::path(tempdir(), "abares_trade_data.zip")
 
     .retry_download(
       url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/1",
-      .f = file
+      .f = x
     )
   }
-  abares_trade <- data.table::fread(file)
+  abares_trade <- data.table::fread(x)
   data.table::setnames(
     abares_trade,
     old = c(

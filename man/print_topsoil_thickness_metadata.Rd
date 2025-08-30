@@ -7,7 +7,7 @@
 print_topsoil_thickness_metadata()
 }
 \arguments{
-\item{x}{A \code{read.abares.topsoil.thickness.files} object.}
+\item{x}{A \code{read.abares.topsoil.thickness.xs} object.}
 }
 \value{
 Nothing, called for its side effects, it prints the complete

@@ -18,7 +18,7 @@
 }.
 }
 \usage{
-read_nlum_terra(data_set = NULL, file = NULL, ...)
+read_nlum_terra(data_set = NULL, x = NULL, ...)
 }
 \arguments{
 \item{data_set}{A string value indicating the GeoTIFF desired for download.
@@ -36,9 +36,6 @@ One of:
 \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 }.
 This argument is ignored if \code{file} is provided.}
-
-\item{file}{A character string of a file path to a local zip file that has
-been downloaded outside of R that contains the \acronym{NLUM} data.}
 
 \item{...}{Other arguments passed to \code{\link[terra:rast]{terra::rast()}}.}
 }

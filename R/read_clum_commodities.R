@@ -23,21 +23,17 @@
 #' @autoglobal
 #' @export
 
-read_clum_commodities <- function(file = NULL) {
+read_clum_commodities <- function(x = NULL) {
   talktalk <- !(getOption("read.abares.verbosity") %in% c("quiet", "minimal"))
 
-  if (is.null(file)) {
-    file <- fs::path(tempdir(), "clum_commodities.zip")
+  if (is.null(x)) {
+    x <- fs::path(tempdir(), "clum_commodities.zip")
 
     .retry_download(
       url = "https://data.gov.au/data/dataset/8af26be3-da5d-4255-b554-f615e950e46d/resource/b216cf90-f4f0-4d88-980f-af7d1ad746cb/download/clum_commodities_2023.zip",
-      .f = file
+      .f = x
     )
-
-    withr::with_dir(
-      tempdir(),
-      utils::unzip(file, exdir = tempdir())
-    )
+    .unzip_file(x)
   }
   clum_commodities <- sf::st_read(
     fs::path(tempdir(), "CLUM_Commodities_2023"),

@@ -7,7 +7,7 @@
 \url{https://doi.org/10.25814/2w2p-ph98}
 }
 \usage{
-read_clum_stars(data_set = "clum_50m_2023_v2", file = NULL, ...)
+read_clum_stars(data_set = "clum_50m_2023_v2", x = NULL, ...)
 }
 \arguments{
 \item{data_set}{A string value indicating the data desired for download. One
@@ -17,7 +17,7 @@ of:
 \item{scale_date_update}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
 }.}
 
-\item{file}{A file path providing the file with the data to be imported. The
+\item{x}{A file path providing the file with the data to be imported. The
 file is assumed to be unarchived locally. This function does not provide any
 checking whether this function is the proper function for the provided file.
 Defaults to \code{NULL}, assuming that the file will be downloaded in the active

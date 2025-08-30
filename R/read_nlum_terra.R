@@ -73,10 +73,10 @@
 #' @export
 read_nlum_terra <- function(
   data_set = NULL,
-  file = NULL,
+  x = NULL,
   ...
 ) {
-  if (is.null(file)) {
+  if (is.null(x)) {
     data_set <- rlang::arg_match(
       data_set,
       c(
@@ -94,7 +94,7 @@ read_nlum_terra <- function(
     )
     nlum <- .get_nlum(.data_set = data_set)
   } else {
-    nlum <- .get_nlum(.file = file)
+    nlum <- .get_nlum(.x = x)
   }
   return(terra::rast(grep("tif$", nlum, value = TRUE), ...))
 }

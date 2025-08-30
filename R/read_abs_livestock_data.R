@@ -22,8 +22,8 @@
 #' @family ABS
 #' @autoglobal
 
-read_abs_livestock_data <- function(year = "latest", file = NULL) {
-  if (is.null(file)) {
+read_abs_livestock_data <- function(year = "latest", x = NULL) {
+  if (is.null(x)) {
     # see parse_abs_production_data.R for .find_years()
     available <- .find_years(data_set = "livestock")
     year <- rlang::arg_match(year, c("latest", available))
@@ -33,7 +33,7 @@ read_abs_livestock_data <- function(year = "latest", file = NULL) {
     }
     base_url <- "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-livestock/"
 
-    file <- fs::path(tempdir(), "livestock_file")
+    x <- fs::path(tempdir(), "livestock_file")
     .retry_download(
       url = sprintf(
         "%s%s/AALDC_Value%%20of%%20livestock%%20and%%20products%%20%s.xlsx",
@@ -41,8 +41,8 @@ read_abs_livestock_data <- function(year = "latest", file = NULL) {
         year,
         year
       ),
-      .f = file
+      .f = x
     )
   }
-  parse_abs_production_data(file)
+  parse_abs_production_data(x)
 }

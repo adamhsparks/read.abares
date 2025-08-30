@@ -2,7 +2,7 @@
 #'
 #' Download import the "Australian Agricultural and Grazing Industries Survey"
 #'   (\acronym{AAGIS}) regions geospatial shapefile.
-#' @param file A file path providing the file with the data to be imported. The
+#' @param x A file path providing the file with the data to be imported. The
 #'  file is assumed to be unarchived locally. This function does not provide any
 #'  checking whether this function is the proper function for the provided file.
 #'  Defaults to `NULL`, assuming that the file will be downloaded in the active
@@ -35,23 +35,20 @@
 #' @autoglobal
 #' @export
 
-read_aagis_regions <- function(file = NULL) {
-  if (is.null(file)) {
-    file <- fs::path(tempdir(), "aagis.zip")
-    tempdir_aagis_dir <- fs::path(tempdir(), "aagis_regions_dir")
-
-    .retry_download(
-      "https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip",
-      .f = file
-    )
-    withr::with_dir(
-      tempdir(),
-      utils::unzip(download_file, exdir = tempdir_aagis_dir)
-    )
+read_aagis_regions <- function(x = NULL) {
+  if (is.null(x)) {
+    x <- fs::path(tempdir(), "aagis.zip")
+    if (!fs::file_exists(x)) {
+      .retry_download(
+        "https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip",
+        .f = x
+      )
+      .unzip_file(x)
+    }
   }
   aagis_sf <- sf::st_read(
     dsn = fs::path(
-      tempdir_aagis_dir,
+      fs::path_dir(x),
       "aagis_asgs16v1_g5a.shp"
     ),
     quiet = !(getOption("read.abares.verbosity") %in% c("quiet", "minimal"))

@@ -27,7 +27,7 @@
 #' @autoglobal
 #' @export
 
-read_topsoil_thickness_stars <- function(file = NULL, ...) {
-  files <- .get_topsoil_thickness(.file = file)
+read_topsoil_thickness_stars <- function(x = NULL, ...) {
+  files <- .get_topsoil_thickness(.x = x)
   return(stars::st_as_stars(files$data))
 }

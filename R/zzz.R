@@ -15,7 +15,7 @@
 
   op.read.abares <- list(
     read.abares.user_agent = readabares_user_agent(),
-    read.abares.timeout = 2000L,
+    read.abares.timeout = 5000L,
     read.abares.max_tries = 3L,
     read.abares.verbosity = "verbose"
   )

@@ -23,7 +23,7 @@
 #' @family topsoil thickness
 #' @autoglobal
 #' @export
-read_topsoil_thickness_terra <- function(file = NULL) {
-  files <- .get_topsoil_thickness(.file = file)
+read_topsoil_thickness_terra <- function(x = NULL) {
+  files <- .get_topsoil_thickness(.x = x)
   return(files$data)
 }

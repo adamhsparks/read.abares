@@ -4,7 +4,7 @@
 \alias{read_abs_broadacre_data}
 \title{Get ABS' Broadacre Crops Production and Value by Australia, State and Territory by Year}
 \usage{
-read_abs_broadacre_data(crops = "winter", year = "latest", file = NULL)
+read_abs_broadacre_data(crops = "winter", year = "latest", x = NULL)
 }
 \arguments{
 \item{crops}{A character vector providing the desired cropping data, one of:
@@ -18,7 +18,7 @@ read_abs_broadacre_data(crops = "winter", year = "latest", file = NULL)
 Formatted as \code{"2022-23"} or \code{"2023-24"} or use \code{"latest"} for the most
 recent release available. Defaults to \code{"latest"}.}
 
-\item{file}{A file path providing the file with the data to be imported. The
+\item{x}{A file path providing the file with the data to be imported. The
 file is assumed to be unarchived locally. This function does not provide any
 checking whether this function is the proper function for the provided file.
 Defaults to \code{NULL}, assuming that the file will be downloaded in the active
