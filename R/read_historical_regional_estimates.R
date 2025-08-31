@@ -33,7 +33,7 @@ read_historical_regional_estimates <- read_hist_reg_est <- function(
     )
   }
 
-  x <- data.table::fread(file)
+  x <- data.table::fread(x)
   data.table::setnames(
     x,
     old = c("Variable", "Year", "ABARES region", "Value", "RSE"),

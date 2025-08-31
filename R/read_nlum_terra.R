@@ -92,7 +92,7 @@ read_nlum_terra <- function(
         "P202021"
       )
     )
-    nlum <- .get_nlum(.data_set = data_set)
+    nlum <- .get_nlum(.data_set = data_set, .x = x)
   } else {
     nlum <- .get_nlum(.x = x)
   }

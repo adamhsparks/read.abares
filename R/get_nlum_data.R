@@ -57,16 +57,16 @@
         "https://www.agriculture.gov.au/sites/default/files/documents/%s.zip",
         ds
       )
-
-    .retry_download(
-      url = file_url,
-      .f = .x
-    )
+    if (!fs::file_exists(.x)) {
+      .retry_download(
+        url = file_url,
+        .f = .x
+      )
+      .unzip_file(.x)
+    }
   } else {
     ds <- fs::path_file(fs::path_ext_remove(.x))
   }
-
-  .unzip_file(.x)
 
   return(fs::dir_ls(
     fs::path(fs::path_dir(.x), ds)

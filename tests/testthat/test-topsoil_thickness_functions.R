@@ -5,7 +5,7 @@ test_that("read_topsoil_thickness_stars returns a stars object", {
   skip_on_ci()
   x <- read_topsoil_thickness_stars()
   expect_s3_class(x, "stars")
-  expect_named(x, "thpk_1.tif")
+  expect_named(x, "thpk_1")
 })
 
 # test reading with terra ----

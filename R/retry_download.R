@@ -22,29 +22,34 @@
   url,
   .f
 ) {
-  base_req <- httr2::request(base_url = url) |>
-    httr2::req_user_agent(getOption("read.abares.user_agent")) |>
-    httr2::req_headers("Accept-Encoding" = "identity") |>
-    httr2::req_headers("Connection" = "Keep-Alive") |>
-    httr2::req_options(
-      http_version = 1L,
-      timeout = getOption("read.abares.timeout")
-    ) |>
-    httr2::req_retry(
-      max_tries = getOption("read.abares.max_tries")
-    ) |>
-    httr2::req_cache(path = tempdir())
-  if (getOption("read.abares.verbosity") == "verbose") {
-    base_req |>
-      httr2::req_progress() |>
-      httr2::req_perform() |>
-      httr2::resp_body_raw() |>
-      brio::write_file_raw(path = .f)
-  } else {
-    base_req |>
-      httr2::req_perform() |>
-      httr2::resp_body_raw() |>
-      brio::write_file_raw(path = .f)
-  }
+  curl::curl_download(
+    url = url,
+    destfile = .f,
+    quiet = !(getOption("read.abares.verbosity") %in% c("quiet", "minimal"))
+  )
+  #  base_req <- httr2::request(base_url = url) |>
+  #    httr2::req_user_agent(getOption("read.abares.user_agent")) |>
+  #    httr2::req_headers("Accept-Encoding" = "identity") |>
+  #    httr2::req_headers("Connection" = "Keep-Alive") |>
+  #    httr2::req_options(
+  #      http_version = 2L,
+  #      timeout = getOption("read.abares.timeout")
+  #    ) |>
+  #    httr2::req_retry(
+  #      max_tries = getOption("read.abares.max_tries")
+  #    ) |>
+  #    httr2::req_cache(path = tempdir())
+  #  if (getOption("read.abares.verbosity") == "verbose") {
+  #    base_req |>
+  #      httr2::req_progress() |>
+  #      httr2::req_perform() |>
+  #      httr2::resp_body_raw() |>
+  #      brio::write_file_raw(path = .f)
+  #  } else {
+  #    base_req |>
+  #      httr2::req_perform() |>
+  #      httr2::resp_body_raw() |>
+  #      brio::write_file_raw(path = .f)
+  #  }
   return(invisible(NULL))
 }

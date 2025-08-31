@@ -45,11 +45,13 @@ read_aagis_regions <- function(x = NULL) {
       )
       .unzip_file(x)
     }
+  } else {
+    .unzip_file(x)
   }
   aagis_sf <- sf::st_read(
     dsn = fs::path(
       fs::path_dir(x),
-      "aagis_asgs16v1_g5a.shp"
+      "aagis/aagis_asgs16v1_g5a.shp"
     ),
     quiet = !(getOption("read.abares.verbosity") %in% c("quiet", "minimal"))
   )
@@ -63,6 +65,6 @@ read_aagis_regions <- function(x = NULL) {
   names(aagis_sf)[names(aagis_sf) == "class"] <- "Class"
   names(aagis_sf)[names(aagis_sf) == "zone"] <- "Zone"
 
-  fs::file_delete(download_file)
+  fs::file_delete(x)
   return(aagis_sf)
 }
