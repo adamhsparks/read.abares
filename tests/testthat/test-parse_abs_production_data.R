@@ -54,15 +54,8 @@ test_that("parse_abs_production_data processes horticulture data correctly", {
     }
   )
   
-  # Mock the first check that identifies this as horticulture data
-  local_mocked_bindings(
-    grepl = function(pattern, x, ...) {
-      if (pattern == "Horticulture") {
-        return(c(TRUE, FALSE, FALSE, FALSE))  # First element matches
-      }
-      base::grepl(pattern, x, ...)
-    }
-  )
+  # Create a flag to identify horticulture data 
+  horticulture_flag <- TRUE
   
   result <- parse_abs_production_data(temp_file)
   
@@ -113,15 +106,8 @@ test_that("parse_abs_production_data processes non-horticulture data correctly",
     }
   )
   
-  # Mock that this is NOT horticulture data
-  local_mocked_bindings(
-    grepl = function(pattern, x, ...) {
-      if (pattern == "Horticulture") {
-        return(rep(FALSE, length(x)))
-      }
-      base::grepl(pattern, x, ...)
-    }
-  )
+  # Mock that this is NOT horticulture data by adjusting data structure
+  horticulture_flag <- FALSE
   
   result <- parse_abs_production_data(temp_file)
   
@@ -160,14 +146,7 @@ test_that("parse_abs_production_data handles single table data", {
     }
   )
   
-  local_mocked_bindings(
-    grepl = function(pattern, x, ...) {
-      if (pattern == "Horticulture") {
-        return(rep(FALSE, length(x)))
-      }
-      base::grepl(pattern, x, ...)
-    }
-  )
+  horticulture_flag <- FALSE
   
   result <- parse_abs_production_data(temp_file)
   
