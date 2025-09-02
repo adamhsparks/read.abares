@@ -206,7 +206,6 @@ test_that("Package options are restored on unload", {
 
 test_that("Data type conversions work correctly", {
   # Test that data is properly converted between types
-  
   # Test factor conversion
   test_data <- data.frame(
     region = c("NSW", "VIC", "QLD"),
