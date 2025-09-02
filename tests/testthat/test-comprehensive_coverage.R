@@ -16,7 +16,6 @@ test_that("read_clum_stars works with different data sets", {
       )
     }
   )
-  
   result <- read_clum_stars(data_set = "clum_50m_2023_v2", x = NULL)
   
   expect_s3_class(result, "stars")
