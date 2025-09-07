@@ -3,9 +3,6 @@
 exports <- getNamespaceExports("read.abares")
 reader_fns <- exports[grepl("^(read|get)_", exports)]
 
-# Avoid duplicating explicit tests for these:
-reader_fns <- setdiff(reader_fns, skip_list)
-
 ns <- asNamespace("read.abares")
 
 for (fn_name in reader_fns) {
