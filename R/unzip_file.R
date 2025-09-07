@@ -19,7 +19,7 @@
       )
     },
     error = function(e) {
-      fs::file_delete(.x)
+      .safe_delete(.x)
       cli::cli_abort(
         "There was an issue with the downloaded file. I've deleted
            this bad version of the zip file, please retry.",
@@ -29,4 +29,13 @@
   )
 
   return(invisible(NULL))
+}
+
+#' Delete only existing files (vector-safe)
+#' @keywords internal
+#' @noRd
+.safe_delete <- function(x) {
+  x <- x[fs::file_exists(x)]
+  if (length(x)) .safe_delete(x)
+  invisible(NULL)
 }
