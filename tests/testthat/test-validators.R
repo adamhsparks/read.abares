@@ -4,7 +4,6 @@ exports <- getNamespaceExports("read.abares")
 reader_fns <- exports[grepl("^(read|get)_", exports)]
 
 # Avoid duplicating explicit tests for these:
-skip_list <- c("inspect_cache") # not a reader
 reader_fns <- setdiff(reader_fns, skip_list)
 
 ns <- asNamespace("read.abares")
@@ -24,6 +23,6 @@ for (fn_name in reader_fns) {
 
   test_that(paste0(fn_name, ": errors or succeeds with wrong type for x"), {
     # Pass a list to x where a path string is expected
-    expect_error(fn(list(a = 1)))
+    expect_error(fn(list(a = 1L)))
   })
 }
