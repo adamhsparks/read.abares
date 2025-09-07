@@ -1,23 +1,26 @@
-skip_if_not("read_topsoil_thickness_stars" %in% ls(getNamespace("read.abares")))
-testthat::skip_if_not_installed("stars")
-
-test_that("soil_thickness: happy path with stars::read_stars mocked", {
-  # The function expects a special class on `files`; emulate it
-  files <- c("a.tif", "b.tif")
-  class(files) <- c("read.abares.soil.thickness.files", class(files))
-
-  # Return a tiny stars object (no disk I/O)
-  testthat::local_mocked_bindings(
-    read_stars = function(...) build_dummy_stars(),
-    .package = "stars"
+test_that("soil_thickness: happy path (mock .get_topsoil_thickness)", {
+  fake_stars <- structure(list(dummy = TRUE), class = "stars")
+  out <- NULL
+  with_mocked_bindings(
+    {
+      out <<- read_topsoil_thickness_stars(files = "ignored.zip")
+    },
+    .get_topsoil_thickness = function(.x) fake_stars,
+    .package = "read.abares"
   )
-
-  out <- read_topsoil_thickness_stars(files)
-  expect_true(inherits(out, "stars"))
+  expect_s3_class(out, "stars")
 })
 
-test_that("soil_thickness: wrong class for files errors cleanly", {
-  # no special class => should error
-  bad <- c("a.tif", "b.tif")
-  expect_error(read_topsoil_thickness_stars(bad))
+test_that("soil_thickness: error path (mocked failure from .get_topsoil_thickness)", {
+  with_mocked_bindings(
+    {
+      expect_error(
+        read_topsoil_thickness_stars(files = "ignored.zip"),
+        regexp = "issue|download|zip|retry|unzip",
+        ignore.case = TRUE
+      )
+    },
+    .get_topsoil_thickness = function(.x) stop("mocked failure"),
+    .package = "read.abares"
+  )
 })
