@@ -42,12 +42,12 @@
   #  if (getOption("read.abares.verbosity") == "verbose") {
   #    base_req |>
   #      httr2::req_progress() |>
-  #      httr2::req_perform() |>
+  #      .perform_request() |>
   #      httr2::resp_body_raw() |>
   #      brio::write_file_raw(path = .f)
   #  } else {
   #    base_req |>
-  #      httr2::req_perform() |>
+  #      .perform_request() |>
   #      httr2::resp_body_raw() |>
   #      brio::write_file_raw(path = .f)
   #  }
