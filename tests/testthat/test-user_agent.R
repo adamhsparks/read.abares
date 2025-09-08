@@ -1,4 +1,3 @@
-# tests/testthat/test_user_agent.R
 test_that("read.abares creates a proper useragent", {
   ua <- readabares_user_agent()
   ver <- as.character(utils::packageVersion("read.abares"))

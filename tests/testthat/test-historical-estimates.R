@@ -3,8 +3,10 @@ exports <- getNamespaceExports("read.abares")
 
 # Readers to exercise if present (some branches use aliases like read_hist_nat_est)
 candidates <- c(
-  "read_historical_national_estimates", "read_hist_nat_est",
-  "read_historical_state_estimates",    "read_hist_st_est",
+  "read_historical_national_estimates",
+  "read_hist_nat_est",
+  "read_historical_state_estimates",
+  "read_hist_st_est",
   "read_historical_regional_estimates"
 )
 present <- intersect(candidates, exports)
@@ -22,9 +24,15 @@ csv_hist_reg <- function() {
 }
 
 csv_for <- function(name) {
-  if (grepl("nat", name, TRUE)) return(csv_hist_nat())
-  if (grepl("state|st_", name, TRUE)) return(csv_hist_st())
-  if (grepl("regional", name, TRUE)) return(csv_hist_reg())
+  if (grepl("nat", name, TRUE)) {
+    return(csv_hist_nat())
+  }
+  if (grepl("state|st_", name, TRUE)) {
+    return(csv_hist_st())
+  }
+  if (grepl("regional", name, TRUE)) {
+    return(csv_hist_reg())
+  }
   return(csv_hist_nat())
 }
 
@@ -35,7 +43,9 @@ for (fn_name in present) {
     tmp <- withr::local_tempfile(fileext = ".csv")
     writeLines(csv_for(fn_name), tmp)
 
-    testthat::local_mocked_bindings(.retry_download = function(...) stop("should not run"))
+    testthat::local_mocked_bindings(.retry_download = function(...) {
+      stop("should not run")
+    })
     out <- fn(tmp)
 
     expect_true(data.table::is.data.table(out) || is.data.frame(out))
@@ -43,7 +53,10 @@ for (fn_name in present) {
   })
 
   test_that(paste0(fn_name, ": x=NULL flows through mocked download"), {
-    testthat::local_mocked_bindings(.retry_download = function(url, .f) { writeLines(csv_for(fn_name), .f); invisible(NULL) })
+    testthat::local_mocked_bindings(.retry_download = function(url, .f) {
+      writeLines(csv_for(fn_name), .f)
+      invisible(NULL)
+    })
     out <- fn()
     expect_true(data.table::is.data.table(out) || is.data.frame(out))
   })

@@ -25,7 +25,7 @@ test_that("x=NULL: mocked .retry_download writes CSV then read", {
   out <- read_abares_trade_regions()
   expect_s3_class(out, "data.table")
   expect_identical(out$Region, c("Canola", "Oats"))
-  expect_equal(as.numeric(out$Code), c(3, 4))
+  expect_identical(as.numeric(out$Code), c(3.0, 4.0))
 })
 
 test_that("non-existent path errors", {

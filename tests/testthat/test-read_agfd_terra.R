@@ -1,5 +1,3 @@
-# tests/testthat/test-read_agfd_terra.R
-
 skip_if_not("read_agfd_terra" %in% ls(getNamespace("read.abares")))
 testthat::skip_if_not_installed("terra")
 
@@ -20,12 +18,10 @@ test_that("AGFD terra: x=NULL => mocked download + .unzip_file + terra::rast (re
   writeLines("tif-bytes", fake_tif) # never read from disk, terra::rast is mocked
 
   testthat::local_mocked_bindings(
-    # No real network; just satisfy the API
     .retry_download = function(url, .f) {
       writeLines("zip-placeholder", .f) # path exists; contents irrelevant
       invisible(NULL)
     },
-    # <<< KEY PART: bypass real utils::unzip entirely >>>
     .unzip_file = function(.x) exdir
   )
 

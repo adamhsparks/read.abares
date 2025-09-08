@@ -1,5 +1,3 @@
-# tests/testthat/test-options.R
-
 test_that("verbosity option toggles .retry_download quiet (sanity)", {
   dest <- withr::local_tempfile()
   got <- new.env(parent = emptyenv())

@@ -1,5 +1,3 @@
-# tests/testthat/test-read_clum_terra.R
-
 skip_if_not("read_clum_terra" %in% ls(getNamespace("read.abares")))
 testthat::skip_if_not_installed("terra")
 
