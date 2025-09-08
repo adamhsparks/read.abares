@@ -49,7 +49,7 @@ for (fn_name in present) {
     out <- fn(tmp)
 
     expect_true(data.table::is.data.table(out) || is.data.frame(out))
-    expect_true(NROW(out) >= 0)
+    expect_gte(NROW(out), 0)
   })
 
   test_that(paste0(fn_name, ": x=NULL flows through mocked download"), {
