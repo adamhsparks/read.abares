@@ -62,6 +62,11 @@
   )
 
   yyyy <- sprintf("c%s", as.character(.yyyy))
-  agfd_nc <- agfd_nc[grepl(paste(yyyy, collapse = "|"), names(agfd_nc))]
+  nm <- names(agfd_nc)
+  if (is.null(nm)) {
+    nm <- agfd_nc
+  }
+  agfd_nc <- agfd_nc[grepl(paste(yyyy, collapse = "|"), nm)]
+
   return(agfd_nc)
 }
