@@ -36,6 +36,8 @@
 #' @noRd
 .safe_delete <- function(x) {
   x <- x[fs::file_exists(x)]
-  if (length(x)) .safe_delete(x)
+  if (length(x)) {
+    .safe_delete(x)
+  }
   invisible(NULL)
 }
