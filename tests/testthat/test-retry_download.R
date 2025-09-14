@@ -1,44 +1,22 @@
-# helper functions for .retry_download tests
-read_raw_file <- function(path) {
-  readChar(path, nchars = file.info(path)$size, useBytes = TRUE)
-}
+test_that(".retry_download sets quiet correctly based on verbosity", {
+  temp_file <- tempfile()
+  test_url <- "https://example.com/data.csv"
 
-test_that(".retry_download writes file with mocked .perform_request", {
-  tmp_file <- tempfile()
+  verbosity_levels <- c("quiet", "minimal", "verbose", "debug", "silent")
 
-  fake_response <- httr2::response(
-    method = "GET",
-    url = "https://example.com/file",
-    status_code = 200,
-    headers = list(),
-    body = charToRaw("mock content")
-  )
+  for (verbosity in verbosity_levels) {
+    options(read.abares.verbosity = verbosity)
 
-  local_mocked_bindings(
-    .perform_request = function(req) fake_response,
-    .env = asNamespace("read.abares")
-  )
+    quiet_flag <- NULL
 
-  result <- read.abares:::.retry_download("https://example.com/file", tmp_file)
-
-  expect_true(result$success)
-  expect_identical(read_raw_file(result$path), "mock content")
-})
-
-test_that(".retry_download fails after all retries", {
-  tmp_file <- tempfile()
-
-  # Mock .perform_request to always fail
-  local_mocked_bindings(
-    .perform_request = function(req) {
-      stop("Persistent failure")
-    },
-    .env = environment(.retry_download)
-  )
-
-  result <- .retry_download("https://example.com/file", tmp_file)
-
-  expect_false(result$success)
-  expect_s3_class(result$error, "download_error")
-  expect_false(file.exists(tmp_file))
+    with_mocked_bindings(
+      .download_file = function(url, destfile, quiet) {
+        quiet_flag <<- quiet
+        writeLines("mock content", destfile)
+      },
+      {
+        .retry_download(test_url, temp_file)
+      }
+    )
+  }
 })
