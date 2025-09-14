@@ -27,9 +27,9 @@ Depends:
 Imports: 
     brio,
     cli,
+    curl,
     data.table,
     fs,
-    httr2,
     htm2txt,
     purrr,
     readtext,
