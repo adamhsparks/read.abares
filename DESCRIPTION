@@ -25,12 +25,12 @@ BugReports: https://github.com/adamhsparks/read.abares/issues
 Depends: 
     R (>= 4.1.0)
 Imports: 
-    brio,
     cli,
     curl,
     data.table,
     fs,
     htm2txt,
+    lubridate,
     purrr,
     readtext,
     readxl,
@@ -40,7 +40,8 @@ Imports:
     stringr,
     terra,
     tidync,
-    withr
+    withr,
+    whoami
 Suggests: 
     bit64,
     httptest2,

@@ -10,7 +10,7 @@
 .get_topsoil_thickness(.x)
 }
 \arguments{
-\item{.xs}{A character string passed that provides a file path to the
+\item{.x}{A character string passed that provides a file path to the
 local directory holding the unzipped files for topsoil thickness.}
 }
 \value{

@@ -1,4 +1,4 @@
-#' Unzip a Zip File
+#' Unzip a zip file
 #'
 #' Unzips the provided zip file. If unzipping fails, it will return an error and
 #'  delete the corrupted zip file.

@@ -37,6 +37,9 @@ One of:
 }.
 This argument is ignored if \code{file} is provided.}
 
+\item{x}{A character string of a file path to a local zip file that has
+been downloaded outside of R that contains the \acronym{NLUM} data.}
+
 \item{...}{Other arguments passed to \code{\link[terra:rast]{terra::rast()}}.}
 }
 \value{

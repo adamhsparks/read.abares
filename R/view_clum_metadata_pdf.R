@@ -6,7 +6,7 @@
 #'  interface and \acronym{PDF} viewer configured.  If the file does not exist
 #'  locally, it will be fetched and displayed.
 #'
-#' @param Commodities A `Boolean` value that indicates whether to download the
+#' @param commodities A `Boolean` value that indicates whether to download the
 #'  catchment land scale use metadata for commodities. Defaults to `FALSE`,
 #'  downloading the "Catchment Land Scale Use Metadata".
 #'

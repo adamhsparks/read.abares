@@ -7,7 +7,7 @@
 \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
 }
 \usage{
-read_topsoil_thickness_terra(x = NULL)
+read_topsoil_thickness_terra(x = NULL, ...)
 }
 \arguments{
 \item{x}{A file path providing the file with the data to be imported. The

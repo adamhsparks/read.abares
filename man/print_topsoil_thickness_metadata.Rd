@@ -4,10 +4,10 @@
 \alias{print_topsoil_thickness_metadata}
 \title{Display complete metadata associated with soil thickness data}
 \usage{
-print_topsoil_thickness_metadata()
+print_topsoil_thickness_metadata(x)
 }
 \arguments{
-\item{x}{A \code{read.abares.topsoil.thickness.xs} object.}
+\item{x}{A \code{read.abares.topsoil.thickness} object.}
 }
 \value{
 Nothing, called for its side effects, it prints the complete

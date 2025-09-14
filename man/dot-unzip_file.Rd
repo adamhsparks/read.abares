@@ -2,7 +2,7 @@
 % Please edit documentation in R/unzip_file.R
 \name{.unzip_file}
 \alias{.unzip_file}
-\title{Unzip a Zip File}
+\title{Unzip a zip file}
 \usage{
 .unzip_file(.x)
 }

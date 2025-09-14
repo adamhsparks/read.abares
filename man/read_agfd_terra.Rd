@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_agfd_terra.R
 \name{read_agfd_terra}
 \alias{read_agfd_terra}
-\title{Read ABRES' "Australian Gridded Farm Data" (AGFD) NCDF Files with terra}
+\title{Read ABARES' "Australian Gridded Farm Data" (AGFD) NCDF Files with terra}
 \usage{
 read_agfd_terra(fixed_prices = TRUE, yyyy = 1991:2023, x = NULL)
 }

@@ -2,11 +2,13 @@
 #'
 #' Download import the "Australian Agricultural and Grazing Industries Survey"
 #'   (\acronym{AAGIS}) regions geospatial shapefile.
+#'
 #' @param x A file path providing the file with the data to be imported. The
 #'  file is assumed to be unarchived locally. This function does not provide any
 #'  checking whether this function is the proper function for the provided file.
 #'  Defaults to `NULL`, assuming that the file will be downloaded in the active
 #'  \R session.
+#'
 #' @note Upon import a few operations are carried out,
 #'  * the geometries are automatically corrected to fix invalid geometries that
 #'  are present in the original shapefile,

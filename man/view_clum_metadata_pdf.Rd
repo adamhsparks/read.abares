@@ -13,7 +13,7 @@
 view_clum_metadata_pdf(commodities = FALSE)
 }
 \arguments{
-\item{Commodities}{A \code{Boolean} value that indicates whether to download the
+\item{commodities}{A \code{Boolean} value that indicates whether to download the
 catchment land scale use metadata for commodities. Defaults to \code{FALSE},
 downloading the "Catchment Land Scale Use Metadata".}
 }

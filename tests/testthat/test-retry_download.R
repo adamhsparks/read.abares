@@ -1,22 +1,11 @@
-test_that(".retry_download sets quiet correctly based on verbosity", {
+test_that(".retry_download works with real download", {
+  skip_if_offline()
   temp_file <- tempfile()
-  test_url <- "https://example.com/data.csv"
+  url <- "https://httpbin.org/bytes/5" # small, safe test file
 
-  verbosity_levels <- c("quiet", "minimal", "verbose", "debug", "silent")
+  options(read.abares.verbosity = "quiet")
+  .retry_download(url, temp_file)
 
-  for (verbosity in verbosity_levels) {
-    options(read.abares.verbosity = verbosity)
-
-    quiet_flag <- NULL
-
-    with_mocked_bindings(
-      .download_file = function(url, destfile, quiet) {
-        quiet_flag <<- quiet
-        writeLines("mock content", destfile)
-      },
-      {
-        .retry_download(test_url, temp_file)
-      }
-    )
-  }
+  expect_true(file.exists(temp_file))
+  expect_equal(fs::file_info(temp_file)$size, 5L)
 })

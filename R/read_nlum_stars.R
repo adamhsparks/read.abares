@@ -52,7 +52,7 @@
 #'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 #' }.
 #' This argument is ignored if `file` is provided.
-#' @param file A character string of a file path to a local zip file that has
+#' @param x A character string of a file path to a local zip file that has
 #'  been downloaded outside of R that contains the \acronym{NLUM} data.
 #' @param ... Additional arguments passed to [stars::read_stars()], for *e.g.*,
 #'  `RAT` if you wish to set the active category when loading any of the

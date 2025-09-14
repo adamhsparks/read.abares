@@ -3,7 +3,12 @@
 #' Fetches and imports \acronym{ABARES} "Historical Forecast Database"
 #'  performance data.
 #'
-#' @inheritParams read_aagis_regions
+#'
+#' @param x A file path providing the file with the data to be imported. The
+#'  file is assumed to be unarchived locally. This function does not provide any
+#'  checking whether this function is the proper function for the provided file.
+#'  Defaults to `NULL`, assuming that the file will be downloaded in the active
+#'  \R session.
 #'
 #' # Data Dictionary
 #' The resulting object will contain the following fields.
@@ -44,6 +49,7 @@
 #' # or shorter
 #' read_historical_forecast()
 #'
+
 read_historical_forecast_database <- function(x = NULL) {
   if (is.null(x)) {
     x <- fs::path(tempdir(), "historical_db.xlsx")
