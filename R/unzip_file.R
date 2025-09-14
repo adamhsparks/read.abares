@@ -3,7 +3,7 @@
 #' Unzips the provided zip file. If unzipping fails, it will return an error and
 #'  delete the corrupted zip file.
 #'
-#' @param .x A zip file for unzipping
+#' @param .x A zip file for unzipping.
 #'
 #' @returns Called for its side-effects of unzipping a file, returns an
 #'  invisible `NULL`.
