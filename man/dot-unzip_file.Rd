@@ -7,7 +7,7 @@
 .unzip_file(.x)
 }
 \arguments{
-\item{.x}{A zip file for unzipping}
+\item{.x}{A zip file for unzipping.}
 }
 \value{
 Called for its side-effects of unzipping a file, returns an

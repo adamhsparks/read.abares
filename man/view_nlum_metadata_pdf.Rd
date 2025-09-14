@@ -9,7 +9,7 @@ view_nlum_metadata_pdf()
 \value{
 An invisible \code{NULL}. Called for its side-effects, opens the system's
 native \acronym{PDF} viewer to display the requested metadata \acronym{PDF}
-\rf document.
+document.
 }
 \description{
 Each National Land Use (\acronym{NLUM}) raster file comes with a
