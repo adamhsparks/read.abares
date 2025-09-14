@@ -11,7 +11,7 @@
 #'
 #' @returns An invisible `NULL`. Called for its side-effects, opens the system's
 #'  native \acronym{PDF} viewer to display the requested metadata \acronym{PDF}
-#' \rf document.
+#'  document.
 #'
 #' @family nlum
 #' @export
