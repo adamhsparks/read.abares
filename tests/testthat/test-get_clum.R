@@ -44,5 +44,5 @@ test_that("get_clum uses provided .x and unzips", {
   result <- .get_clum("scale_date_update", tmp_zip)
 
   expect_true(all(fs::file_exists(result)))
-  expect_true(endsWith(result, "tiff"))
+  expect_true(endsWith(result, "tif"))
 })
