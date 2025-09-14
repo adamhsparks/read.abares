@@ -19,57 +19,25 @@
 #' @dev
 
 .retry_download <- function(url, .f) {
-  base_req <- httr2::request(base_url = url) |>
-    httr2::req_user_agent(getOption("read.abares.user_agent")) |>
-    httr2::req_headers("Accept-Encoding" = "identity") |>
-    httr2::req_headers("Connection" = "Keep-Alive") |>
-    httr2::req_options(
-      http_version = 2L,
-      timeout = getOption("read.abares.timeout")
-    ) |>
-    httr2::req_retry(
-      max_tries = getOption("read.abares.max_tries")
-    ) |>
-    httr2::req_cache(path = tempdir())
-
-  tryCatch(
-    {
-      resp <- if (getOption("read.abares.verbosity") == "verbose") {
-        base_req |>
-          httr2::req_progress() |>
-          .perform_request()
-      } else {
-        base_req |>
-          .perform_request()
-      }
-
-      httr2::resp_body_raw(resp) |>
-        brio::write_file_raw(path = .f)
-
-      invisible(list(success = TRUE, path = .f, error = NULL))
-    },
-    error = function(e) {
-      cli::cli_alert_danger("Download failed: {conditionMessage(e)}")
-      invisible(list(
-        success = FALSE,
-        path = NULL,
-        error = download_error(conditionMessage(e), call = sys.call())
-      ))
-    }
+  .download_file(
+    url = url,
+    destfile = .f,
+    quiet = !(getOption("read.abares.verbosity") %in%
+      c("quiet", "minimal", "warn"))
   )
+  return(invisible(NULL))
 }
 
-#' Internal HTTP performer (shim for httr2::req_perform)
+#' Wrap curl::curl_download mainly for ease of testing
 #'
-#' All network I/O flows through this binding so tests can safely mock it.
-#' @keywords internal
-#' @noRd
-.perform_request <- httr2::req_perform
-
-
-download_error <- function(message, call = NULL) {
-  structure(
-    list(message = message, call = call),
-    class = c("download_error", "error", "condition")
-  )
+#' @param url Character the URL being requested.
+#' @param destfile Character a filepath to be written to local storage.
+#' @param quiet How verbose should the download be? Defaults to `TRUE`.
+#'
+#' @returns Invisibly returns `NULL`, called for its side-effects, writes an
+#'  object to disk.
+#'
+#' @dev
+.download_file <- function(url, destfile, quiet) {
+  curl::curl_download(url = url, destfile = destfile, quiet = quiet)
 }
