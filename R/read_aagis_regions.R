@@ -21,8 +21,6 @@
 #'  data for mapping state historical estimate values found in the
 #'  [data.table::data.table()] from [read_historical_state_estimates()].
 #'
-#' @inheritParams read_agfd_dt
-#'
 #' @examplesIf interactive()
 #' aagis <- read_aagis_regions()
 #'
