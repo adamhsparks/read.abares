@@ -4,20 +4,22 @@
 \alias{.retry_download}
 \title{Use httr2 to Fetch a File with Retries}
 \usage{
-.retry_download(url, .f)
+.retry_download(url, .f, base_delay = 1L)
 }
 \arguments{
 \item{url}{Character the URL being requested.}
 
 \item{.f}{Character a filepath to be written to local storage.}
+
+\item{base_delay}{Integer the starting value in seconds for exponential
+backoff when retrying failed downloads.}
 }
 \value{
 An invisible \code{NULL}, called for its side-effects, writes an object
 to the \code{tempdir()} for reading into the active \R session later.
 }
 \description{
-Retries to download the requested resource before stopping. Uses
-\CRANpkg{httr2} to cache in-session results in the \code{tempdir()}.
+Retries to download the requested resource before stopping.
 }
 \examples{
 

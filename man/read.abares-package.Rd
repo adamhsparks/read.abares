@@ -6,6 +6,8 @@
 \alias{read.abares-package}
 \title{read.abares: Provides simple downloading, parsing and importing of Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) data sources}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Download and import agricultural data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) \url{https://www.agriculture.gov.au/abares} and Australian Bureau of Statistics (ABS) \url{https://abs.gov.au}.
 }
 \seealso{

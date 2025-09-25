@@ -17,22 +17,7 @@ read_historical_forecast(x = NULL)
 file is assumed to be unarchived locally. This function does not provide any
 checking whether this function is the proper function for the provided file.
 Defaults to \code{NULL}, assuming that the file will be downloaded in the active
-\R session.Data Dictionary
-
-The resulting object will contain the following fields.\tabular{ll}{
-   Field \tab Description \cr
-   Commodity \tab Broad description of commodity (includes the Australian dollar) \cr
-   Estimate_type \tab Broad grouping of estimate by theme \emph{e.g.}, animal numbers, area, production, price, export and volume measures. \cr
-   Estimate_description \tab Detailed description of each series. \cr
-   Unit \tab Measurement unit of series. \emph{e.g.}, kt, $m, $/t. \cr
-   Region \tab Relevant region for each series. "World" denotes relevant international market. \cr
-   Year_Issued \tab Year that forecast was originally issued. \cr
-   Month_issued \tab Month that forecast was originally issued. \cr
-   Year_Issued_FY \tab Australian financial year (July-June) that forecast was originally issued. \cr
-   Forecast_Year_FY \tab Australian financial year (July-June) for which the forecast was issued. Where forecast year is earlier than Year Issued (FY), value is a backcast. \cr
-   Forecast_Value \tab Forecast as originally issued. \cr
-   Actual_Value \tab Actual outcome observed. Note that historical time series can be revised. Latest available data at time of update, including any revisions, are included in database. \cr
-}}
+\R session.}
 }
 \value{
 A \code{\link[data.table:data.table]{data.table::data.table()}} object.
@@ -48,6 +33,23 @@ serviced in this package using a snake_case format and ordered consistently.
 The "Month_issued" column is converted from a character string to a numeric
 value representing the month of year, \emph{e.g.}, "March" is converted to \code{3}.
 }
+\section{Data Dictionary}{
+The resulting object will contain the following fields.\tabular{ll}{
+   Field \tab Description \cr
+   Commodity \tab Broad description of commodity (includes the Australian dollar) \cr
+   Estimate_type \tab Broad grouping of estimate by theme \emph{e.g.}, animal numbers, area, production, price, export and volume measures. \cr
+   Estimate_description \tab Detailed description of each series. \cr
+   Unit \tab Measurement unit of series. \emph{e.g.}, kt, $m, $/t. \cr
+   Region \tab Relevant region for each series. "World" denotes relevant international market. \cr
+   Year_Issued \tab Year that forecast was originally issued. \cr
+   Month_issued \tab Month that forecast was originally issued. \cr
+   Year_Issued_FY \tab Australian financial year (July-June) that forecast was originally issued. \cr
+   Forecast_Year_FY \tab Australian financial year (July-June) for which the forecast was issued. Where forecast year is earlier than Year Issued (FY), value is a backcast. \cr
+   Forecast_Value \tab Forecast as originally issued. \cr
+   Actual_Value \tab Actual outcome observed. Note that historical time series can be revised. Latest available data at time of update, including any revisions, are included in database. \cr
+}
+}
+
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 
