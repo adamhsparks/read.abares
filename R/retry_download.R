@@ -30,8 +30,8 @@
       tryCatch(
         {
           curl::curl_download(
-            url,
-            destfile,
+            url = url,
+            destfile = .f,
             quiet = quiet
           )
           success <- TRUE
