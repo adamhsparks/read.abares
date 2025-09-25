@@ -1,10 +1,11 @@
 #' Use httr2 to Fetch a File with Retries
 #'
-#' Retries to download the requested resource before stopping. Uses
-#'  \CRANpkg{httr2} to cache in-session results in the `tempdir()`.
+#' Retries to download the requested resource before stopping.
 #'
 #' @param url Character the URL being requested.
 #' @param .f Character a filepath to be written to local storage.
+#' @param base_delay Integer the starting value in seconds for exponential
+#'  backoff when retrying failed downloads.
 #'
 #' @examples
 #'
@@ -18,26 +19,45 @@
 #'  to the `tempdir()` for reading into the active \R session later.
 #' @dev
 
-.retry_download <- function(url, .f) {
-  .download_file(
-    url = url,
-    destfile = .f,
-    quiet = !(getOption("read.abares.verbosity") %in%
+.retry_download <- function(url, .f, base_delay = 1L) {
+  if (curl::has_internet()) {
+    attempt <- 1L
+    success <- FALSE
+    quiet <- (getOption("read.abares.verbosity") %notin%
       c("quiet", "minimal", "warn"))
-  )
-  return(invisible(NULL))
-}
+    retries <- getOption("read.abares.max_tries", 3L)
+    while (attempt <= retries && !success) {
+      tryCatch(
+        {
+          curl::curl_download(
+            url,
+            destfile,
+            quiet = quiet
+          )
+          success <- TRUE
+          if (isFALSE(quiet)) {
+            cli::cli_inform(
+              "Download succeeded on attempt {attempt}."
+            )
+          }
+        },
+        error = function(e) {
+          message(sprintf("Attempt %d failed: %s", attempt, e$message))
+          if (attempt < retries) {
+            delay <- base_delay * 2L^(attempt - 1L)
+            cli::cli_inform("Waiting {delay} seconds before retrying...")
+            Sys.sleep(delay)
+          }
+          attempt <<- attempt + 1L
+          if (attempt > retries) {
+            cli::cli_abort("All download attempts failed.")
+          }
+        }
+      )
+    }
+  } else {
+    cli::cli_abort("No internet connection available.")
+  }
 
-#' Wrap curl::curl_download mainly for ease of testing
-#'
-#' @param url Character the URL being requested.
-#' @param destfile Character a filepath to be written to local storage.
-#' @param quiet How verbose should the download be? Defaults to `TRUE`.
-#'
-#' @returns Invisibly returns `NULL`, called for its side-effects, writes an
-#'  object to disk.
-#'
-#' @dev
-.download_file <- function(url, destfile, quiet) {
-  curl::curl_download(url = url, destfile = destfile, quiet = quiet)
+  return(invisible(NULL))
 }
