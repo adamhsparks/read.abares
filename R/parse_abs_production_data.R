@@ -33,7 +33,7 @@ parse_abs_production_data <- function(filename) {
       )
 
       # drop last rows that contain units and copyright info
-      y[, .SD[region_codes %in% as.character(0L:8L)], by = , .(region_codes)]
+      y[, .SD[region_codes %in% as.character(0L:8L)], by = "region_codes"]
       data.table::setcolorder(y, neworder = c(2L, 1L))
     })
   } else {
@@ -49,7 +49,7 @@ parse_abs_production_data <- function(filename) {
       )
 
       # drop last rows that contain units and copyright info
-      y[, .SD[region_codes %in% as.character(0L:8L)], by = , .(region_codes)]
+      y[, .SD[region_codes %in% as.character(0L:8L)], by = "region_codes"]
     })
   }
 
