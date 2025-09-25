@@ -12,7 +12,6 @@
 #' @importFrom data.table .SD
 #' @importFrom data.table data.table
 #' @importFrom data.table %notin%
-#' @importFrom data.table .
 ## usethis namespace: end
 NULL
 
