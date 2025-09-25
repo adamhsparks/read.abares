@@ -10,6 +10,7 @@
 #'  Defaults to `NULL`, assuming that the file will be downloaded in the active
 #'  \R session.
 #'
+#' @details
 #' # Data Dictionary
 #' The resulting object will contain the following fields.
 #'
