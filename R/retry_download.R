@@ -1,4 +1,4 @@
-#' Use curl to Fetch a File with Retries
+#' Use httr2 to Fetch a File with Retries
 #'
 #' Retries to download the requested resource before stopping.
 #'
@@ -28,12 +28,20 @@
     retries <- getOption("read.abares.max_tries", 3L)
 
     h <- curl::new_handle()
+    curl::handle_setheaders(
+      h,
+      .list = list(
+        "User-Agent" = getOption("read.abares.user_agent"),
+        "Accept-Encoding" = "identity",
+        "Connection" = "Keep-Alive"
+      )
+    )
     curl::handle_setopt(
       h,
       .list = list(
         followlocation = TRUE,
-        timeout = getOption("read.abares.timeout", 2000L),
-        useragent = getOption("read.abares.user_agent")
+        http_version = 2L,
+        timeout = getOption("read.abares.timeout", 2000L)
       )
     )
 
