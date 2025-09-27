@@ -1,4 +1,4 @@
-#' Use httr2 to Fetch a File with Retries
+#' Use curl to Fetch a File with Retries
 #'
 #' Retries to download the requested resource before stopping.
 #'

@@ -2,7 +2,7 @@
 % Please edit documentation in R/retry_download.R
 \name{.retry_download}
 \alias{.retry_download}
-\title{Use httr2 to Fetch a File with Retries}
+\title{Use curl to Fetch a File with Retries}
 \usage{
 .retry_download(url, .f, base_delay = 1L)
 }
