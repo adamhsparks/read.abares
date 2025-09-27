@@ -26,6 +26,7 @@
     quiet <- (getOption("read.abares.verbosity") %notin%
       c("quiet", "minimal", "warn"))
     retries <- getOption("read.abares.max_tries", 3L)
+
     h <- curl::new_handle()
     curl::handle_setopt(
       h,
@@ -53,7 +54,7 @@
           }
         },
         error = function(e) {
-          cli::cli_inform("Attempt {attempt} failed: {e$message}")
+          cli::cli_inform("Attempt {attempt} failed: {e$message}.")
           if (attempt < retries) {
             delay <- base_delay * 2L^(attempt - 1L)
             cli::cli_inform("Waiting {delay} seconds before retrying...")
