@@ -1,1 +1,2 @@
-R/globals.R
+# exclude .retry_download() file
+R/retry_download.R
