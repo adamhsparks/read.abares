@@ -34,7 +34,7 @@ file and deletes unnecessary files that are included in the download.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
-Y202021 <- get_nlum(data_set = "Y202021")
+Y202021 <- .get_nlum(.data_set = "Y202021", .x = NULL)
 
 Y202021
 \dontshow{\}) # examplesIf}
