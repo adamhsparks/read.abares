@@ -26,13 +26,24 @@
     quiet <- (getOption("read.abares.verbosity") %notin%
       c("quiet", "minimal", "warn"))
     retries <- getOption("read.abares.max_tries", 3L)
+    h <- curl::new_handle()
+    curl::handle_setopt(
+      h,
+      .list = list(
+        followlocation = TRUE,
+        timeout = getOption("read.abares.timeout", 2000L),
+        useragent = getOption("read.abares.user_agent")
+      )
+    )
+
     while (attempt <= retries && !success) {
       tryCatch(
         {
           curl::curl_download(
             url = url,
             destfile = .f,
-            quiet = quiet
+            quiet = quiet,
+            handle = h
           )
           success <- TRUE
           if (isFALSE(quiet)) {
