@@ -1,0 +1,14 @@
+{
+    "args": {
+
+    },
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "deflate, gzip",
+        "Host": "httpbin.org",
+        "User-Agent": "httr2/1.2.1 r-curl/7.0.0 libcurl/8.14.1",
+        "X-Amzn-Trace-Id": "Root=1-68d7518c-1601297c5d7cbd233d758b9a"
+    },
+    "origin": "180.150.81.4",
+    "url": "https://httpbin.org/get"
+}

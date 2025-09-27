@@ -42,7 +42,7 @@
           }
         },
         error = function(e) {
-          message(sprintf("Attempt %d failed: %s", attempt, e$message))
+          cli::cli_inform("Attempt {attempt} failed: {e$message}")
           if (attempt < retries) {
             delay <- base_delay * 2L^(attempt - 1L)
             cli::cli_inform("Waiting {delay} seconds before retrying...")
