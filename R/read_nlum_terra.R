@@ -58,6 +58,8 @@
 #'  \item{P202021}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_AgProbabilitySurfaces_2020_21_geo_package_20241128.zip}}
 #' }.
 #'
+#' @inheritsDetails read_nlum_stars
+#'
 #' @examplesIf interactive()
 #'
 #' nlum_terra <- read_nlum_terra(data_set = "Y202021")

@@ -18,6 +18,8 @@
 #'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 #'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 #' }.
+#' @param .proj A string value indicating the map projection of the data requested.
+#'  Can either be "Albers" or "geo". Capitalisation does not matter.
 #' @param .x A user specified path to a local zip file containing the data.
 #'
 #' @references
@@ -35,20 +37,51 @@
 #' @autoglobal
 #' @dev
 
-.get_nlum <- function(.data_set, .x) {
+.get_nlum <- function(.data_set, .proj, .x) {
+  .proj <- tolower(.proj)
   if (is.null(.x)) {
     ds <- switch(
       .data_set,
-      "Y202021" = "NLUM_v7_250_ALUMV8_2020_21_alb_package_20241128",
-      "Y201516" = "NLUM_v7_250_ALUMV8_2015_16_alb_package_20241128",
-      "Y201011" = "NLUM_v7_250_ALUMV8_2010_11_alb_package_20241128",
-      "C201121" = "NLUM_v7_250_CHANGE_SIMP_2011_to_2021_alb_package_20241128",
-      "T202021" = "NLUM_v7_250_INPUTS_2020_21_geo_package_20241128",
-      "T201516" = "NLUM_v7_250_INPUTS_2015_16_geo_package_20241128",
-      "T201011" = "NLUM_v7_250_INPUTS_2010_11_geo_package_20241128",
-      "P202021" = "NLUM_v7_250_AgProbabilitySurfaces_2020_21_geo_package_20241128",
-      "P201516" = "NLUM_v7_250_AgProbabilitySurfaces_2015_16_geo_package_20241128",
-      "P201011" = "NLUM_v7_250_AgProbabilitySurfaces_2010_11_geo_package_20241128",
+      "Y202021" = sprintf(
+        "NLUM_v7_250_ALUMV8_2020_21_%s_package_20241128",
+        .proj
+      ),
+      "Y201516" = sprintf(
+        "NLUM_v7_250_ALUMV8_2015_16_%s_package_20241128",
+        .proj
+      ),
+      "Y201011" = sprintf(
+        "NLUM_v7_250_ALUMV8_2010_11_%s_package_20241128",
+        .proj
+      ),
+      "C201121" = sprintf(
+        "NLUM_v7_250_CHANGE_SIMP_2011_to_2021_%s_package_20241128",
+        .proj
+      ),
+      "T202021" = sprintf(
+        "NLUM_v7_250_INPUTS_2020_21_%s_package_20241128",
+        .proj
+      ),
+      "T201516" = sprintf(
+        "NLUM_v7_250_INPUTS_2015_16_%s_package_20241128",
+        .proj
+      ),
+      "T201011" = sprintf(
+        "NLUM_v7_250_INPUTS_2010_11_%s_package_20241128",
+        .proj
+      ),
+      "P202021" = sprintf(
+        "NLUM_v7_250_AgProbabilitySurfaces_2020_21_%s_package_20241128",
+        .proj
+      ),
+      "P201516" = sprintf(
+        "NLUM_v7_250_AgProbabilitySurfaces_2015_16_%s_package_20241128",
+        .proj
+      ),
+      "P201011" = sprintf(
+        "NLUM_v7_250_AgProbabilitySurfaces_2010_11_%s_package_20241128",
+        .proj
+      )
     )
     .x <- fs::path(tempdir(), sprintf("%s.zip", ds))
 

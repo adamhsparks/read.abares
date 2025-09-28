@@ -52,6 +52,10 @@
 #'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 #' }.
 #' This argument is ignored if `file` is provided.
+#' @param proj A string value indicating the map projection of the data requested.
+#'  Should be one of "Albers" or "geo". Capitalisation does not matter. Albers is
+#'  used by default. This argument is ignored i#'  used by default. This argument is ignored if `file` is provided. See details
+#'  for more on these two options.
 #' @param x A character string of a file path to a local zip file that has
 #'  been downloaded outside of R that contains the \acronym{NLUM} data.
 #' @param ... Additional arguments passed to [stars::read_stars()], for *e.g.*,
@@ -76,6 +80,13 @@
 #'  \item{P201516}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_AgProbabilitySurfaces_2015_16_geo_package_20241128.zip}}
 #'  \item{P202021}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_AgProbabilitySurfaces_2020_21_geo_package_20241128.zip}}
 #' }.
+#'
+#' @details proj:
+#' Which should you choose?
+#' If you need accurate area calculations (_e.g._, hectares of land use),
+#'  use Albers.
+#' If you just need global compatibility or want to overlay with other lat/long
+#'  datasets, use Geographic.
 #'
 #' @examplesIf interactive()
 #'

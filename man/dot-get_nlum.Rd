@@ -4,7 +4,7 @@
 \alias{.get_nlum}
 \title{Get ABARES' National Scale "Land Use of Australia" Data}
 \usage{
-.get_nlum(.data_set, .x)
+.get_nlum(.data_set, .proj, .x)
 }
 \arguments{
 \item{.data_set}{A string value indicating the GeoTIFF desired for download.
@@ -21,6 +21,9 @@ One of:
 \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 }.}
+
+\item{.proj}{A string value indicating the map projection of the data requested.
+Can either be "Albers" or "geo". Capitalisation does not matter.}
 
 \item{.x}{A user specified path to a local zip file containing the data.}
 }
