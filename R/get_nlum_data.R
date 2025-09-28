@@ -1,123 +1,63 @@
 #' Get ABARES' National Scale "Land Use of Australia" Data
 #'
-#' An internal function used by [read_nlum_terra()] and [read_nlum_stars()] that
-#'  downloads national level land use data GeoTIFF file, unzips the download
-#'  file and deletes unnecessary files that are included in the download.
+#' Internal helper used by read_nlum_terra()/read_nlum_stars().
+#' Downloads the requested NLUM GeoTIFF ZIP (if needed), unzips into
+#' a deterministic folder, and returns the list of extracted files.
 #'
-#' @param .data_set A string value indicating the GeoTIFF desired for download.
-#' One of:
-#' \describe{
-#'  \item{Y201011}{Land use of Australia 2010–11}
-#'  \item{Y201516}{Land use of Australia 2015–16}
-#'  \item{Y202021}{Land use of Australia 2020–21}
-#'  \item{C201021}{Land use of Australia change}
-#'  \item{T201011}{Land use of Australia 2010–11 thematic layers}
-#'  \item{T201516}{Land use of Australia 2015–16 thematic layers}
-#'  \item{T202021}{Land use of Australia 2020–21 thematic layers}
-#'  \item{P201011}{Land use of Australia 2010–11 agricultural commodities probability grids}
-#'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
-#'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
-#' }.
-#' @param .proj A string value indicating the map projection of the data requested.
-#'  Can either be "Albers" or "geo". Capitalisation does not matter.
-#' @param .x A user specified path to a local zip file containing the data.
-#'
+#' @param .data_set One of: Y201011, Y201516, Y202021, C201121, T201011,
+#'  T201516, T202021, P201011, P201516, P202021.
+#' @param .x Optional path to a local ZIP to use instead of downloading.
+#' @returns A `read.abares.agfd.nlum.files` vector of file paths.
 #' @references
-#' ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
-#' Agricultural and Resource Economics and Sciences, Canberra, November, CC BY
-#' 4.0. \doi{10.25814/w175-xh85}.
-#'
-#' @examplesIf interactive()
-#' Y202021 <- .get_nlum(.data_set = "Y202021", .x = NULL)
-#'
-#' Y202021
-#'
-#' @returns A list object of NLUM files.
-#'
+#'  - Product page & downloads: https://www.agriculture.gov.au/abares/aclump/land-use/land-use-of-australia-2010-11-to-2020-21
+#'  - Metadata with canonical names: https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_DescriptiveMetadata_20241128_0.pdf
 #' @autoglobal
 #' @dev
+.get_nlum <- function(.data_set, .x = NULL) {
+  # ---- normalise dataset code (alias) ----
+  code <- toupper(.data_set)
 
-.get_nlum <- function(.data_set, .proj, .x) {
+  # ---- compose canonical filename stem (see metadata/product page) ----
+  ds <- switch(
+    code,
+    "Y202021" = "NLUM_v7_250m_ALUMV8_2020_21_alb",
+    "Y201516" = "NLUM_v7_250m_ALUMV8_2015_16_alb",
+    "Y201011" = "NLUM_v7_250m_ALUMV8_2010_11_alb",
+    "C201121" = "NLUM_v7_250_CHANGE_SIMP_2011_to_2021_alb",
+    "T202021" = "NLUM_v7_250m_INPUTS_2020_21_geo",
+    "T201516" = "NLUM_v7_250m_INPUTS_2015_16_geo",
+    "T201011" = "NLUM_v7_250m_INPUTS_2010_11_geo",
+    "P202021" = "NLUM_v7_250m_AgProbabilitySurfaces_2020_21_geo",
+    "P201516" = "NLUM_v7_250m_AgProbabilitySurfaces_2015_16_geo",
+    "P201011" = "NLUM_v7_250m_AgProbabilitySurfaces_2010_11_geo",
+    cli::cli_abort("Unknown {.arg .data_set} code: {.val {code}}")
+  )
+
+  # ---- decide ZIP path & extracted folder path ----
   if (is.null(.x)) {
-    ds <- switch(
-      .data_set,
-      "Y202021" = sprintf(
-        "NLUM_v7_250_ALUMV8_2020_21_%s_package_20241128",
-        .proj
-      ),
-      "Y201516" = sprintf(
-        "NLUM_v7_250_ALUMV8_2015_16_%s_package_20241128",
-        .proj
-      ),
-      "Y201011" = sprintf(
-        "NLUM_v7_250_ALUMV8_2010_11_%s_package_20241128",
-        .proj
-      ),
-      "C201121" = sprintf(
-        "NLUM_v7_250_CHANGE_SIMP_2011_to_2021_%s_package_20241128",
-        .proj
-      ),
-      "T202021" = sprintf(
-        "NLUM_v7_250_INPUTS_2020_21_%s_package_20241128",
-        .proj
-      ),
-      "T201516" = sprintf(
-        "NLUM_v7_250_INPUTS_2015_16_%s_package_20241128",
-        .proj
-      ),
-      "T201011" = sprintf(
-        "NLUM_v7_250_INPUTS_2010_11_%s_package_20241128",
-        .proj
-      ),
-      "P202021" = sprintf(
-        "NLUM_v7_250_AgProbabilitySurfaces_2020_21_%s_package_20241128",
-        .proj
-      ),
-      "P201516" = sprintf(
-        "NLUM_v7_250_AgProbabilitySurfaces_2015_16_%s_package_20241128",
-        .proj
-      ),
-      "P201011" = sprintf(
-        "NLUM_v7_250_AgProbabilitySurfaces_2010_11_%s_package_20241128",
-        .proj
-      )
-    )
     .x <- fs::path(tempdir(), sprintf("%s.zip", ds))
+  } else if (!fs::file_exists(.x)) {
+    cli::cli_abort("Provided ZIP {.path {.x}} does not exist.")
+  }
+  target_dir <- fs::path_ext_remove(.x) # unzip_file writes here
 
-    file_url <-
-      sprintf(
+  # ---- download if needed (then unzip) ----
+  if (!fs::dir_exists(target_dir)) {
+    if (!fs::file_exists(.x)) {
+      file_url <- sprintf(
         "https://www.agriculture.gov.au/sites/default/files/documents/%s.zip",
         ds
       )
-    if (!fs::file_exists(.x)) {
-      .retry_download(
-        url = file_url,
-        .f = .x
-      )
-      .unzip_file(.x)
+      .retry_download(url = file_url, .f = .x)
     }
-  } else {
-    ds <- fs::path_file(fs::path_ext_remove(.x))
+    .unzip_file(.x)
   }
 
-  return(fs::dir_ls(
-    fs::path(fs::path_dir(.x), ds)
-  ))
-}
+  if (!fs::dir_exists(target_dir)) {
+    cli::cli_abort(
+      "Expected extracted folder {.path {target_dir}} not found after unzip."
+    )
+  }
 
-
-#' Prints read.abares.nlum.xs Objects
-#'
-#' Custom [base::print()] method for `read.abares.nlum.xs` objects.
-#'
-#' @param x a `read.abares.agfd.nlum.xs` object.
-#' @param ... ignored.
-#' @export
-#' @autoglobal
-#' @noRd
-print.read.abares.agfd.nlum.files <- function(x, ...) {
-  cli::cli_h1("Locally Available ABARES National Scale Land Use Files")
-  cli::cli_ul(basename(x))
-  cli::cat_line()
-  invisible(x)
+  files <- fs::dir_ls(target_dir, recurse = FALSE)
 }

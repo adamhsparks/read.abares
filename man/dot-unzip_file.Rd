@@ -10,11 +10,10 @@
 \item{.x}{A zip file for unzipping.}
 }
 \value{
-Called for its side-effects of unzipping a file, returns an
-invisible \code{NULL}.
+Invisible NULL, called for side effects.
 }
 \description{
-Unzips the provided zip file. If unzipping fails, it will return an error and
-delete the corrupted zip file.
+Unzips the provided zip file into a folder named after the zip (without .zip).
+If unzipping fails, it will return an error and delete the corrupted zip file.
 }
 \keyword{internal}

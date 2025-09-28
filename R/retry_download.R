@@ -19,7 +19,7 @@
 #'  to the `tempdir()` for reading into the active \R session later.
 #' @dev
 
-.resume_retry_download <- function(url, .f, base_delay = 1L) {
+.retry_download <- function(url, .f, base_delay = 1L) {
   if (!curl::has_internet()) {
     cli::cli_abort("No internet connection available.")
   }
