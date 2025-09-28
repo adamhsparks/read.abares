@@ -38,7 +38,6 @@
 #' @dev
 
 .get_nlum <- function(.data_set, .proj, .x) {
-  .proj <- tolower(.proj)
   if (is.null(.x)) {
     ds <- switch(
       .data_set,
