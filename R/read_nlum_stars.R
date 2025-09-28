@@ -81,7 +81,7 @@
 #'  \item{P202021}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_AgProbabilitySurfaces_2020_21_geo_package_20241128.zip}}
 #' }.
 #'
-#' @details proj:
+#' @section proj:
 #' Which should you choose?
 #' If you need accurate area calculations (_e.g._, hectares of land use),
 #'  use Albers.
@@ -103,6 +103,7 @@
 #' @export
 read_nlum_stars <- function(
   data_set = NULL,
+  proj = "Albers",
   x = NULL,
   ...
 ) {
@@ -122,6 +123,8 @@ read_nlum_stars <- function(
         "P202021"
       )
     )
+    proj <- tolower(proj)
+    proj <- rlang::arg_match(proj, c("albers", "geographic"))
     nlum <- .get_nlum(.data_set = data_set, .x = x)
   } else {
     nlum <- .get_nlum(.x = x)

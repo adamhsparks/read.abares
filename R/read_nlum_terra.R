@@ -58,7 +58,7 @@
 #'  \item{P202021}{\url{https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_250_AgProbabilitySurfaces_2020_21_geo_package_20241128.zip}}
 #' }.
 #'
-#' @inheritsDetails read_nlum_stars
+#' @inheritSection read_nlum_stars proj
 #'
 #' @examplesIf interactive()
 #'
@@ -75,6 +75,7 @@
 #' @export
 read_nlum_terra <- function(
   data_set = NULL,
+  proj = "Albers",
   x = NULL,
   ...
 ) {
@@ -94,6 +95,8 @@ read_nlum_terra <- function(
         "P202021"
       )
     )
+    proj <- tolower(proj)
+    proj <- rlang::arg_match(proj, c("albers", "geographic"))
     nlum <- .get_nlum(.data_set = data_set, .x = x)
   } else {
     nlum <- .get_nlum(.x = x)

@@ -18,7 +18,7 @@
 }.
 }
 \usage{
-read_nlum_stars(data_set = NULL, x = NULL, ...)
+read_nlum_stars(data_set = NULL, proj = "Albers", x = NULL, ...)
 }
 \arguments{
 \item{data_set}{A string value indicating the GeoTIFF desired for download.
@@ -37,17 +37,17 @@ One of:
 }.
 This argument is ignored if \code{file} is provided.}
 
+\item{proj}{A string value indicating the map projection of the data requested.
+Should be one of "Albers" or "geo". Capitalisation does not matter. Albers is
+used by default. This argument is ignored i#'  used by default. This argument is ignored if \code{file} is provided. See details
+for more on these two options.}
+
 \item{x}{A character string of a file path to a local zip file that has
 been downloaded outside of R that contains the \acronym{NLUM} data.}
 
 \item{...}{Additional arguments passed to \code{\link[stars:read_stars]{stars::read_stars()}}, for \emph{e.g.},
 \code{RAT} if you wish to set the active category when loading any of the
 available GeoTIFF files that are encoded with a raster attribute table.}
-
-\item{proj}{A string value indicating the map projection of the data requested.
-Should be one of "Albers" or "geo". Capitalisation does not matter. Albers is
-used by default. This argument is ignored i#'  used by default. This argument is ignored if \code{file} is provided. See details
-for more on these two options.}
 }
 \value{
 a \CRANpkg{stars} object that may be one or many layers depending
@@ -84,13 +84,6 @@ of the Australian Collaborative Land Use and Management Program. This data
 package replaces the Land use of Australia 2010–11 to 2015–16 data package,
 with updates to these time periods."
 -- \acronym{ABARES}, 2024-11-28
-
-proj:
-Which should you choose?
-If you need accurate area calculations (\emph{e.g.}, hectares of land use),
-use Albers.
-If you just need global compatibility or want to overlay with other lat/long
-datasets, use Geographic.
 }
 \note{
 The raster will load with the default category for each data set, but you can
@@ -99,6 +92,15 @@ the \code{...}.  To see which categories are available, please refer
 to the metadata for these data.  The \acronym{PDF} can be accessed in your
 default \acronym{PDF} viewer by using \code{\link[=view_nlum_metadata_pdf]{view_nlum_metadata_pdf()}}.
 }
+\section{proj}{
+
+Which should you choose?
+If you need accurate area calculations (\emph{e.g.}, hectares of land use),
+use Albers.
+If you just need global compatibility or want to overlay with other lat/long
+datasets, use Geographic.
+}
+
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 
