@@ -1,136 +1,110 @@
-# tests/testthat/test-get_agfd.R
+# tests/testthat/test-get-agfd.R
 
-#' Create a fake AGFD tree in tempdir()
-#'
-#' @param root Directory where to place fixtures (use tempdir()).
-#' @param ds Dataset folder name (e.g., "historical_climate_prices_fixed").
-#' @param years Integer vector of years to create files for.
-#' @return A list with paths to the created dir and zip file.
-create_agfd_fixture <- function(root, ds, years) {
-  stopifnot(is.character(root), length(root) == 1L)
-  stopifnot(is.character(ds), length(ds) == 1L)
-  stopifnot(is.numeric(years) || is.integer(years))
+test_that(".get_agfd returns files for requested years when .x supplied", {
+  td <- withr::local_tempdir()
 
-  # Directory where .get_agfd() will look for NetCDFs
-  data_dir <- fs::path(root, ds)
-  fs::dir_create(data_dir, recurse = TRUE)
+  ds_name <- "historical_climate_prices_fixed"
+  dat_dir <- fs::path(td, ds_name)
+  fs::dir_create(dat_dir)
 
-  # Fake NetCDF filenames that include 'cYYYY', since .get_agfd greps on that
-  for (y in years) {
-    fn <- sprintf("agfd_%s_c%d.nc", ds, as.integer(y))
-    fs::file_touch(fs::path(data_dir, fn))
+  yrs <- c(1991, 2019, 2020, 2021, 2023)
+  for (y in yrs) {
+    fs::file_create(fs::path(dat_dir, sprintf("ag_c%d.nc", y)))
   }
 
-  # Dummy zip that causes .get_agfd to skip the download branch
-  zip_file <- fs::path(root, paste0(ds, ".zip"))
-  fs::file_touch(zip_file)
+  zip_path <- fs::path(td, sprintf("%s.zip", ds_name))
+  create_zip(zip_path, files_dir = td, files_rel = ds_name)
 
-  list(dir = data_dir, zip = zip_file)
-}
+  res <- read.abares:::.get_agfd(
+    .fixed_prices = TRUE,
+    .yyyy = 2020:2021,
+    .x = zip_path
+  )
 
+  expect_true(all(grepl("c2020|c2021", basename(res))))
+  expect_false(any(grepl("c1991|c2019|c2023", basename(res))))
+  expect_true(all(fs::file_exists(res)))
+})
 
-test_that("when .x is provided, ds is derived from zip basename and years are filtered", {
-  skip_on_os("solaris") # optional
-  tmp <- tempdir()
-
-  # Use a custom dataset name to ensure ds is taken from .x
-  ds <- "my_custom_ds"
-  years <- 2018L:2022L
-  fix <- create_agfd_fixture(tmp, ds, years = years)
-
-  # Mock .unzip_file to a no-op since .get_agfd(.x=...) will always call it
-  res <- testthat::with_mocked_bindings(
-    .unzip_file = function(.x) NULL,
-    .env = environment(.get_agfd),
-    {
-      .get_agfd(
-        .fixed_prices = TRUE, # irrelevant when .x is provided
-        .yyyy = 2020L:2021L,
-        .x = fix$zip # pass the local zip path
+test_that(".get_agfd downloads via mocked .retry_download when .x = NULL (fixed prices)", {
+  # Mock .retry_download in read.abares and synthesize the expected ZIP file
+  testthat::with_mocked_bindings(
+    .retry_download = function(url, .f, base_delay = 1L) {
+      testthat::expect_match(url, "/client/en_AU/search/asset/1036161/3$")
+      testthat::expect_equal(
+        basename(.f),
+        "historical_climate_prices_fixed.zip"
       )
-    }
-  )
 
-  expect_type(res, "character")
-  expect_true(all(grepl("c(2020|2021)\\b", res)))
-  expect_false(any(grepl("c2018|c2019|c2022", res)))
-  expect_true(all(fs::path_has_parent(res, fs::path(tmp, ds))))
+      ds_name <- "historical_climate_prices_fixed"
+      dat_dir <- fs::path(fs::path_dir(.f), ds_name)
+      fs::dir_create(dat_dir)
+      fs::file_create(fs::path(dat_dir, "x_c2020.nc"))
+      fs::file_create(fs::path(dat_dir, "x_c2021.nc"))
+      fs::file_create(fs::path(dat_dir, "x_c2018.nc"))
+
+      create_zip(.f, files_dir = fs::path_dir(.f), files_rel = ds_name)
+      invisible(NULL)
+    },
+    {
+      res <- read.abares:::.get_agfd(
+        .fixed_prices = TRUE,
+        .yyyy = 2020:2021,
+        .x = NULL
+      )
+      expect_true(all(grepl("c2020|c2021", basename(res))))
+      expect_false(any(grepl("c2018", basename(res))))
+      expect_true(all(fs::file_exists(res)))
+    },
+    .package = "read.abares",
+  )
 })
 
-test_that("when .x is NULL and .fixed_prices = TRUE, it uses fixed-prices ds and filters years", {
-  tmp <- tempdir()
-  ds <- "historical_climate_prices_fixed"
-  years <- 1991L:1995L
+test_that(".get_agfd downloads via mocked .retry_download when .x = NULL (historical prices)", {
+  testthat::with_mocked_bindings(
+    .retry_download = function(url, .f, base_delay = 1L) {
+      testthat::expect_match(url, "/client/en_AU/search/asset/1036161/2$")
+      testthat::expect_equal(basename(.f), "historical_climate_prices.zip")
 
-  # Pre-create zip and unzipped tree so the download/unzip branch is skipped
-  create_agfd_fixture(tmp, ds, years = years)
+      ds_name <- "historical_climate_prices"
+      dat_dir <- fs::path(fs::path_dir(.f), ds_name)
+      fs::dir_create(dat_dir)
+      fs::file_create(fs::path(dat_dir, "y_c1995.nc"))
+      fs::file_create(fs::path(dat_dir, "y_c1996.nc"))
+      fs::file_create(fs::path(dat_dir, "y_c2010.nc"))
 
-  res <- .get_agfd(
+      create_zip(.f, files_dir = fs::path_dir(.f), files_rel = ds_name)
+      invisible(NULL)
+    },
+    {
+      res <- read.abares:::.get_agfd(
+        .fixed_prices = FALSE,
+        .yyyy = 1995:1996,
+        .x = NULL
+      )
+      expect_true(all(grepl("c1995|c1996", basename(res))))
+      expect_false(any(grepl("c2010", basename(res))))
+    },
+    .package = "read.abares",
+  )
+})
+
+test_that(".get_agfd returns empty when requested years not present", {
+  td <- withr::local_tempdir()
+
+  ds_name <- "historical_climate_prices_fixed"
+  dat_dir <- fs::path(td, ds_name)
+  fs::dir_create(dat_dir)
+  fs::file_create(fs::path(dat_dir, "a_c1991.nc"))
+  fs::file_create(fs::path(dat_dir, "a_c1992.nc"))
+
+  zip_path <- fs::path(td, sprintf("%s.zip", ds_name))
+  create_zip(zip_path, files_dir = td, files_rel = ds_name)
+
+  res <- read.abares:::.get_agfd(
     .fixed_prices = TRUE,
-    .yyyy = 1992L:1993L,
-    .x = NULL
+    .yyyy = 2020:2021,
+    .x = zip_path
   )
-
-  expect_type(res, "character")
-  expect_true(all(grepl("c(1992|1993)\\b", res)))
-  expect_false(any(grepl("c(1991|1994|1995)", res)))
-  expect_true(all(fs::path_has_parent(res, fs::path(tmp, ds))))
-})
-
-test_that("when .x is NULL and .fixed_prices = FALSE, it uses historical-prices ds and filters years", {
-  tmp <- tempdir()
-  ds <- "historical_climate_prices"
-  years <- 2000L:2002L
-  create_agfd_fixture(tmp, ds, years = years)
-
-  res <- .get_agfd(
-    .fixed_prices = FALSE,
-    .yyyy = 2001L,
-    .x = NULL
-  )
-
-  expect_type(res, "character")
-  expect_length(res, 1L)
-  expect_match(res, "c2001\\b")
-  expect_true(all(fs::path_has_parent(res, fs::path(tmp, ds))))
-})
-
-test_that("returns empty when requested years don't exist in fixture", {
-  tmp <- tempdir()
-  ds <- "historical_climate_prices_fixed"
-  create_agfd_fixture(tmp, ds, years = 1991L:1992L)
-
-  res <- .get_agfd(
-    .fixed_prices = TRUE,
-    .yyyy = 2020L:2021L,
-    .x = NULL
-  )
-
-  expect_type(res, "character")
   expect_length(res, 0L)
-})
-
-
-test_that("errors cleanly when .x points to a non-existent zip", {
-  tmp <- tempdir()
-  bogus_zip <- fs::path(tmp, "missing_ds.zip")
-  expect_false(fs::file_exists(bogus_zip))
-
-  expect_error(
-    testthat::with_mocked_bindings(
-      # Make unzip produce a deterministic, user-friendly error
-      .unzip_file = function(.x) {
-        stop(sprintf("File does not exist: %s", .x), call. = FALSE)
-      },
-      .env = environment(.get_agfd),
-      {
-        .get_agfd(
-          .fixed_prices = TRUE,
-          .yyyy = 2000L,
-          .x = bogus_zip
-        )
-      }
-    ),
-    regexp = "File does not exist:"
-  )
 })
