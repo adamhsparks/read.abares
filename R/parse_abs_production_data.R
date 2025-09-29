@@ -13,7 +13,7 @@ parse_abs_production_data <- function(filename) {
       filename,
       sheet = X,
       .name_repair = "universal_quiet",
-      na = c("", "NA", "N/A", "n/a", "na")
+      na = c("", "NA", "N/A", "n/a", "na", "np", ".")
     ))
   })
 
@@ -45,11 +45,11 @@ parse_abs_production_data <- function(filename) {
       data.table::setnames(
         y,
         old = c("Region", "Region codes", "Data item"),
-        new = c("region", "region_codes", "data_item")
+        new = c("region", "region_code", "data_item")
       )
 
       # drop last rows that contain units and copyright info
-      y[, .SD[region_codes %in% as.character(0L:8L)], by = "region_codes"]
+      y[, .SD[region_codes %in% as.character(0L:8L)], by = "region_code"]
     })
   }
 
@@ -60,7 +60,7 @@ parse_abs_production_data <- function(filename) {
     x <- x[[1L]]
   }
   x <- x[,
-    c("commidity", "units") := data.table::tstrsplit(
+    c("commodity", "units") := data.table::tstrsplit(
       data_item,
       " - ",
       fixed = TRUE
@@ -69,7 +69,7 @@ parse_abs_production_data <- function(filename) {
   x[, data_item := NULL]
   data.table::setcolorder(
     x,
-    neworder = c("region", "region_codes", "", "units")
+    neworder = c("region", "region_code", "commodity", "units")
   )
   total_cols <- ncol(x)
   x[, 1L:2L := lapply(.SD, as.factor), .SDcols = 1L:2L]

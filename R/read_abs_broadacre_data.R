@@ -20,7 +20,9 @@
 #' @inheritParams read_aagis_regions
 #'
 #' @examplesIf interactive()
-#' read_abs_broadacre_data()
+#' broadacre_data  <- read_abs_broadacre_data()
+#' 
+#' broadacre_data
 #'
 #' @references <https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops>.
 #' @returns A [data.table::data.table()] object of the requested data.
@@ -37,7 +39,9 @@ read_abs_broadacre_data <- function(
     available <- .find_years(data_set = "broadacre")
     year <- rlang::arg_match(year, c("latest", available))
     crops <- rlang::arg_match(crops, c("winter", "summer", "sugarcane"))
-
+   
+    # winter broadacre has a different naming scheme than the other two crops
+    crops <- data.table::fifelse(crops == "winter", "winter_broadacre", crops)
     if (year == "latest") {
       year <- available[[1L]]
     }
