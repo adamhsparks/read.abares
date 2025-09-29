@@ -1,4 +1,4 @@
-#' Use httr2 to Fetch a File with Retries
+#' Use curl to Fetch a File with Retries
 #'
 #' Retries to download the requested resource before stopping.
 #'
@@ -20,107 +20,73 @@
 #' @dev
 
 .retry_download <- function(url, .f, base_delay = 1L) {
-  if (!curl::has_internet()) {
-    cli::cli_abort("No internet connection available.")
-  }
-  dir.create(dirname(.f), recursive = TRUE, showWarnings = FALSE)
+  if (curl::has_internet()) {
+    attempt <- 1L
+    success <- FALSE
+    quiet <- (getOption("read.abares.verbosity") %notin%
+      c("quiet", "minimal", "warn"))
+    retries <- getOption("read.abares.max_tries", 3L)
 
-  attempt <- 1L
-  success <- FALSE
-  retries <- getOption("read.abares.max_tries", 5L)
-
-  verbosity <- getOption("read.abares.verbosity", "warn")
-  quiet <- isTRUE(verbosity %in% c("quiet", "minimal", "warn"))
-
-  h <- curl::new_handle()
-
-  curl::handle_setheaders(h, "User-Agent" = getOption("read.abares.user_agent"))
-
-  curl::handle_setopt(
-    h,
-    followlocation = TRUE,
-    http_version = 0L, # auto
-    accept_encoding = "", # allow gzip/br
-    connecttimeout = 60L,
-    timeout = getOption("read.abares.timeout", 7200L),
-    low_speed_time = 0L,
-    low_speed_limit = 0L,
-    tcp_keepalive = 1L,
-    tcp_keepidle = 60L,
-    tcp_keepintvl = 60L,
-    failonerror = TRUE
-  )
-
-  while (attempt <= retries && !success) {
-    # Decide whether to resume
-    ofs <- if (file.exists(.f)) file.size(.f) else 0L
-    curl_mode <- if (!is.na(ofs) && ofs > 0L) "ab" else "wb"
-    if (!is.na(ofs) && ofs > 0L) {
-      curl::handle_setopt(h, resume_from_large = ofs)
-    } else {
-      curl::handle_setopt(h, resume_from_large = 0L)
-    }
-
-    res <- tryCatch(
-      curl::curl_fetch_disk(url, path = .f, handle = h, curl_mode = curl_mode),
-      error = function(e) {
-        # Handle "416 Range Not Satisfiable": treat as success if file looks complete
-        if (grepl("\\b416\\b", conditionMessage(e)) && file.exists(.f)) {
-          sig <- readBin(.f, "raw", 4L)
-          if (identical(as.integer(sig), c(0x50, 0x4B, 0x03, 0x04))) {
-            return(structure(list(status_code = 206L), class = "curl_response"))
-          }
-        }
-        if (!quiet) {
-          cli::cli_warn("Attempt {attempt} failed: {conditionMessage(e)}")
-        }
-        NULL
-      }
+    h <- curl::new_handle()
+    curl::handle_setheaders(
+      h,
+      "User-Agent" = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36",
+      "Accept" = "application/zip, application/octet-stream;q=0.9, */*;q=0.8",
+      "Accept-Language" = "en-AU,en;q=0.9",
+      "Connection" = "keep-alive"
     )
 
-    if (!is.null(res)) {
-      # If we attempted resume but got 200 OK, the server ignored our Range.
-      # Restart clean to avoid appending a full file after a partial (corruption).
-      if (ofs > 0L && identical(res$status_code, 200L)) {
-        if (!quiet) {
-          cli::cli_inform("Server ignored resume (HTTP 200). Restarting clean…")
-        }
-        unlink(.f)
-        curl::handle_setopt(h, resume_from_large = 0L)
-        res <- curl::curl_fetch_disk(
-          url,
-          path = .f,
-          handle = h,
-          curl_mode = "wb"
-        )
-      }
+    curl::handle_setopt(
+      h,
+      followlocation = TRUE,
+      maxredirs = 10L,
+      http_version = 2L,
+      ssl_verifypeer = TRUE,
+      ssl_verifyhost = 2L,
+      connecttimeout_ms = 15000L,
+      low_speed_time = 0L,
+      low_speed_limit = 0L,
+      tcp_keepalive = 1L,
+      tcp_keepidle = 60L,
+      tcp_keepintvl = 60L,
+      failonerror = TRUE,
+      timeout = getOption("read.abares.timeout", 7200L),
+      accept_encoding = "" # allow gzip/deflate/br for headers
+    )
 
-      # Final ZIP sanity check
-      sig <- readBin(.f, "raw", 4L)
-      if (!identical(as.integer(sig), c(0x50, 0x4B, 0x03, 0x04))) {
-        unlink(.f)
-        res <- NULL
-        if (!quiet) {
-          cli::cli_warn("Downloaded content is not a ZIP; will retry.")
+    while (attempt <= retries && !success) {
+      tryCatch(
+        {
+          curl::curl_download(
+            url = url,
+            destfile = .f,
+            quiet = quiet,
+            handle = h
+          )
+          success <- TRUE
+          if (isFALSE(quiet)) {
+            cli::cli_inform(
+              "Download succeeded on attempt {attempt}."
+            )
+          }
+        },
+        error = function(e) {
+          cli::cli_inform("Attempt {attempt} failed: {e$message}.")
+          if (attempt < retries) {
+            delay <- base_delay * 2L^(attempt - 1L)
+            cli::cli_inform("Waiting {delay} seconds before retrying...")
+            Sys.sleep(delay)
+          }
+          attempt <<- attempt + 1L
+          if (attempt > retries) {
+            cli::cli_abort("All download attempts failed.")
+          }
         }
-      }
+      )
     }
-
-    if (!is.null(res)) {
-      success <- TRUE
-      if (!quiet) cli::cli_inform("Download succeeded on attempt {attempt}.")
-    } else {
-      if (attempt < retries) {
-        delay <- base_delay * 2L^(attempt - 1L)
-        if (!quiet) {
-          cli::cli_inform("Waiting {delay} seconds before retrying…")
-        }
-        Sys.sleep(delay)
-      }
-      attempt <- attempt + 1L
-      if (attempt > retries) cli::cli_abort("All download attempts failed.")
-    }
+  } else {
+    cli::cli_abort("No internet connection available.")
   }
 
-  invisible(NULL)
+  return(invisible(NULL))
 }
