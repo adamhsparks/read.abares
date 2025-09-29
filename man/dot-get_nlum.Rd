@@ -4,26 +4,44 @@
 \alias{.get_nlum}
 \title{Get ABARES' National Scale "Land Use of Australia" Data}
 \usage{
-.get_nlum(.data_set, .x = NULL)
+.get_nlum(.data_set, .x)
 }
 \arguments{
-\item{.data_set}{One of: Y201011, Y201516, Y202021, C201121, T201011,
-T201516, T202021, P201011, P201516, P202021.}
+\item{.data_set}{A string value indicating the GeoTIFF desired for download.
+One of:
+\describe{
+\item{Y201011}{Land use of Australia 2010–11}
+\item{Y201516}{Land use of Australia 2015–16}
+\item{Y202021}{Land use of Australia 2020–21}
+\item{C201121}{Land use of Australia change}
+\item{T201011}{Land use of Australia 2010–11 thematic layers}
+\item{T201516}{Land use of Australia 2015–16 thematic layers}
+\item{T202021}{Land use of Australia 2020–21 thematic layers}
+\item{P201011}{Land use of Australia 2010–11 agricultural commodities probability grids}
+\item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
+\item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
+}.}
 
-\item{.x}{Optional path to a local ZIP to use instead of downloading.}
+\item{.x}{A user specified path to a local zip file containing the data.}
 }
 \value{
-A \code{read.abares.agfd.nlum.files} vector of file paths.
+A list object of NLUM files.
 }
 \description{
-Internal helper used by read_nlum_terra()/read_nlum_stars().
-Downloads the requested NLUM GeoTIFF ZIP (if needed), unzips into
-a deterministic folder, and returns the list of extracted files.
+An internal function used by \code{\link[=read_nlum_terra]{read_nlum_terra()}} and \code{\link[=read_nlum_stars]{read_nlum_stars()}} that
+downloads national level land use data GeoTIFF file, unzips the download
+file and deletes unnecessary files that are included in the download.
+}
+\examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+Y202021 <- .get_nlum(.data_set = "Y202021", .x = NULL)
+
+Y202021
+\dontshow{\}) # examplesIf}
 }
 \references{
-\itemize{
-\item Product page & downloads: https://www.agriculture.gov.au/abares/aclump/land-use/land-use-of-australia-2010-11-to-2020-21
-\item Metadata with canonical names: https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_DescriptiveMetadata_20241128_0.pdf
-}
+ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
+Agricultural and Resource Economics and Sciences, Canberra, November, CC BY
+4.0. \doi{10.25814/w175-xh85}.
 }
 \keyword{internal}

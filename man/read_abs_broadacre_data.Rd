@@ -41,7 +41,9 @@ it's serviced in this package.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
-read_abs_broadacre_data()
+broadacre_data  <- read_abs_broadacre_data()
+
+broadacre_data
 \dontshow{\}) # examplesIf}
 }
 \references{
