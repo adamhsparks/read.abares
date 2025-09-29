@@ -1,5 +1,3 @@
-# tests/testthat/test-get-agfd.R
-
 test_that(".get_agfd returns files for requested years when .x supplied", {
   td <- withr::local_tempdir()
 
