@@ -128,7 +128,7 @@ test_that("read_abares_trade() reads a provided ZIP path without calling .retry_
       ))
 
       expect_s3_class(res[["Year_month"]], "Date")
-      expect_identical(as.character(res[["Year_month"]][1]), "2019-12-01")
+      expect_identical(as.character(res[["Year_month"]][1L]), "2019-12-01")
 
       expect_identical(res$Value[1L], 123L)
       expect_identical(res$Quantity[1L], 10L)
