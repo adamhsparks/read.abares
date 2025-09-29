@@ -199,6 +199,16 @@ read_agfd_dt <- function(
     .yyyy = yyyy,
     .x = x
   )
+
+  if (length(files) == 0L) {
+    # Consistent, explicit empty schema
+    dat <- data.table::data.table(
+      id = character(),
+      lat = numeric(),
+      lon = numeric()
+    )[0L]
+    return(dat[])
+  }
   tnc_list <- lapply(files, tidync::tidync)
   names(tnc_list) <- fs::path_file(files)
   dat <- data.table::rbindlist(
