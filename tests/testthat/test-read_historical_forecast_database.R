@@ -28,12 +28,12 @@ test_that("reads from a provided local Excel path, renames columns, and maps Mon
   out <- read_historical_forecast_database(x = xlsx)
 
   # Must be a data.table with one row
-  expect_true(data.table::is.data.table(out))
-  expect_equal(nrow(out), 1L)
+  expect_s3_class(out, "data.table")
+  expect_identical(nrow(out), 1L)
 
   # Exact column names after renaming
-  expect_identical(
-    names(out),
+  expect_named(
+    out,
     c(
       "Year_issued",
       "Month_issued",
@@ -50,7 +50,7 @@ test_that("reads from a provided local Excel path, renames columns, and maps Mon
   )
 
   # Month mapping: "March" -> 3L
-  expect_true(is.integer(out$Month_issued))
+  expect_type(out$Month_issued, "integer")
   expect_identical(out$Month_issued, 3L)
 
   # "na" -> NA_real_ through readxl and conversion
