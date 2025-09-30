@@ -79,5 +79,5 @@ read_clum_stars <- function(
     .x = x
   )
 
-  return(stars::read_stars(file, ...))
+  return(stars::read_stars(x, ...))
 }
