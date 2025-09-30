@@ -52,7 +52,7 @@ testthat::test_that("read_abs_horticulture_data() uses .retry_download (mocked),
 
       testthat::expect_s3_class(res, "data.table")
       testthat::expect_identical(nrow(res), 1L)
-      testthat::expect_true(all(c("Dataset", "Year", "Rows") %in% names(res)))
+      testthat::expect_named(res, c("Dataset", "Year", "Rows"))
       testthat::expect_identical(res$Year[[1L]], "2023-24")
     },
     .package = "read.abares"
