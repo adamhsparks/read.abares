@@ -125,7 +125,7 @@ read_nlum_stars <- function(
     )
     proj <- tolower(proj)
     proj <- rlang::arg_match(proj, c("albers", "geographic"))
-    nlum <- .get_nlum(.data_set = data_set, .proj = proj, x = x)
+    nlum <- .get_nlum(.data_set = data_set, .proj = proj, .x = x)
   } else {
     nlum <- .get_nlum(.x = x)
   }
