@@ -18,7 +18,7 @@
 }.
 }
 \usage{
-read_nlum_terra(data_set = NULL, proj = "Albers", x = NULL, ...)
+read_nlum_terra(data_set = NULL, x = NULL, ...)
 }
 \arguments{
 \item{data_set}{A string value indicating the GeoTIFF desired for download.
@@ -36,11 +36,6 @@ One of:
 \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 }.
 This argument is ignored if \code{file} is provided.}
-
-\item{proj}{A string value indicating the map projection of the data requested.
-Should be one of "Albers" or "geo". Capitalisation does not matter. Albers is
-used by default. This argument is ignored i#'  used by default. This argument is ignored if \code{file} is provided. See details
-for more on these two options.}
 
 \item{x}{A character string of a file path to a local zip file that has
 been downloaded outside of R that contains the \acronym{NLUM} data.}
@@ -90,15 +85,6 @@ which categories are available, please refer to the metadata for these data.
 The PDF can be accessed in your default web browser by using
 \code{\link[=view_nlum_metadata_pdf]{view_nlum_metadata_pdf()}}.
 }
-\section{proj}{
-
-Which should you choose?
-If you need accurate area calculations (\emph{e.g.}, hectares of land use),
-use Albers.
-If you just need global compatibility or want to overlay with other lat/long
-datasets, use Geographic.
-}
-
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 
