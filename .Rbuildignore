@@ -23,3 +23,4 @@
 ^man/dot-create_clum_50m_coltab\.Rd$
 ^man/dot-retry_download\.Rd$
 ^man/dot-unzip_file\.Rd$
+^man/dot-safe_delete\.Rd$
