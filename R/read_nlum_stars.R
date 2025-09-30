@@ -52,10 +52,6 @@
 #'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 #' }.
 #' This argument is ignored if `file` is provided.
-#' @param proj A string value indicating the map projection of the data requested.
-#'  Should be one of "Albers" or "geo". Capitalisation does not matter. Albers is
-#'  used by default. This argument is ignored i#'  used by default. This argument is ignored if `file` is provided. See details
-#'  for more on these two options.
 #' @param x A character string of a file path to a local zip file that has
 #'  been downloaded outside of R that contains the \acronym{NLUM} data.
 #' @param ... Additional arguments passed to [stars::read_stars()], for *e.g.*,
@@ -103,7 +99,6 @@
 #' @export
 read_nlum_stars <- function(
   data_set = NULL,
-  proj = "Albers",
   x = NULL,
   ...
 ) {
@@ -123,9 +118,7 @@ read_nlum_stars <- function(
         "P202021"
       )
     )
-    proj <- tolower(proj)
-    proj <- rlang::arg_match(proj, c("albers", "geographic"))
-    nlum <- .get_nlum(.data_set = data_set, .proj = proj, .x = x)
+    nlum <- .get_nlum(.data_set = data_set, .x = x)
   } else {
     nlum <- .get_nlum(.x = x)
   }
