@@ -14,7 +14,10 @@
       dat_dir <- fs::path_ext_remove(.x) # deterministic extract folder
       fs::dir_create(dat_dir, recurse = TRUE)
 
-      utils::unzip(.x, exdir = dat_dir, overwrite = TRUE)
+      withr::with_dir(
+        base_dir,
+        utils::unzip(.x, exdir = dat_dir, overwrite = TRUE)
+      )
 
       # --- Optional: de-nest if the ZIP had a single top-level directory ---
       entries <- fs::dir_ls(dat_dir, all = TRUE, type = "any")
