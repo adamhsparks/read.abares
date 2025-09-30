@@ -66,6 +66,7 @@
 #' @family clum
 #' @autoglobal
 #' @export
+
 read_clum_terra <- function(
   data_set = "clum_50m_2023_v2",
   x = NULL,
@@ -76,17 +77,15 @@ read_clum_terra <- function(
     c("clum_50m_2023_v2", "scale_date_update")
   )
 
-  x <- .get_clum(
-    .data_set = data_set,
-    .x = x
-  )
-  r <- terra::rast(
-    x,
-    ...
-  )
+  x <- .get_clum(.data_set = data_set, .x = x)
+
+  r <- terra::rast(x, ...)
+
   if (data_set == "clum_50m_2023_v2") {
-    terra::coltab(r) <- .create_clum_50m_coltab()
+    ct <- .create_clum_50m_coltab()
+    terra::coltab(r) <- rep(list(ct), terra::nlyr(r))
   }
+
   return(r)
 }
 
@@ -338,7 +337,7 @@ read_clum_terra <- function(
         662L,
         663L
       ),
-      colour = c(
+      color = c(
         "#ffffff",
         "#9666cc",
         "#9666cc",
