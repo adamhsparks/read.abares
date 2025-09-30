@@ -6,9 +6,9 @@ test_that("retry_download succeeds with mocked download", {
     if (fs::file_exists(temp_file)) fs::file_delete(temp_file)
   })
 
-  httptest2::with_mock_dir("_mock/download-success", {
+  httptest2::with_mock_dir("_mock", {
     expect_invisible(.retry_download(
-      url = "https://httpbin.org/bytes/5", # small, safe test file
+      url = "https://httpbin.org/bytes/5",
       .f = temp_file
     ))
   })

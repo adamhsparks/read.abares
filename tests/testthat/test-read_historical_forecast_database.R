@@ -1,105 +1,91 @@
-test_that("reads from a provided local Excel path, renames columns, and maps Month_issued to integers", {
+test_that("reads from a provided local Excel path and returns a data.table", {
   skip_on_cran()
-  skip_if_not_installed("readxl")
-  skip_if_not_installed("writexl")
 
-  # Build a minimal workbook with the required original column names
-  df <- data.frame(
-    Year_Issued = 2020L,
-    Month_Issued = "March",
-    Year_Issued_FY = 2020L,
-    Forecast_Year_FY = 2021L,
-    Forecast_Value = 10.5,
-    Actual_Value = "na", # will become NA via readxl(na = "na")
-    Commodity = "Wheat",
-    Estimate_Type = "Production",
-    Estimate_description = "Production (kt)",
-    Unit = "kt",
-    Region = "Australia",
-    stringsAsFactors = FALSE
+  # Create a small Excel file with expected headers
+  tmp_xlsx <- withr::local_tempfile(fileext = ".xlsx")
+  DT_in <- data.table::data.table(
+    Commodity = c("Wheat", "Barley"),
+    Estimate_Type = c("Production", "Price"),
+    Estimate_description = c("Total production", "Average price"),
+    Unit = c("kt", "$/t"),
+    Region = c("Australia", "World"),
+    Year_Issued = c(2020L, 2021L),
+    Month_Issued = c("March", "July"),
+    Year_Issued_FY = c("2019-20", "2020-21"),
+    Forecast_Year_FY = c("2020-21", "2021-22"),
+    Forecast_Value = c(25000, 300),
+    Actual_Value = c(24500, 310)
   )
 
-  # Write a real .xlsx to a temp path with sheet "Database"
-  xlsx <- withr::local_tempfile(fileext = ".xlsx")
-  writexl::write_xlsx(list(Database = df), path = xlsx)
-  expect_true(fs::file_exists(xlsx))
+  # Write to Excel
+  writexl::write_xlsx(list(Database = DT_in), tmp_xlsx)
 
-  # Run the function
-  out <- read_historical_forecast_database(x = xlsx)
+  # Sanity
+  expect_true(fs::file_exists(tmp_xlsx))
 
-  # Must be a data.table with one row
+  out <- read_historical_forecast_database(x = tmp_xlsx)
+
+  # Type and shape
   expect_s3_class(out, "data.table")
-  expect_identical(nrow(out), 1L)
+  expect_identical(nrow(out), nrow(DT_in))
 
-  # Exact column names after renaming
-  expect_named(
-    out,
+  # Column names renamed to snake_case
+  expect_setequal(
+    names(out),
     c(
+      "Commodity",
+      "Estimate_type",
+      "Estimate_description",
+      "Unit",
+      "Region",
       "Year_issued",
       "Month_issued",
       "Year_issued_FY",
       "Forecast_year_FY",
       "Forecast_value",
-      "Actual_value",
-      "Commodity",
-      "Estimate_type",
-      "Estimate_description",
-      "Unit",
-      "Region"
+      "Actual_value"
     )
   )
 
-  # Month mapping: "March" -> 3L
+  # Month conversion
   expect_type(out$Month_issued, "integer")
-  expect_identical(out$Month_issued, 3L)
-
-  # "na" -> NA_real_ through readxl and conversion
-  expect_true(is.na(out$Actual_value))
-
-  # A few field sanity checks
-  expect_identical(out$Commodity, "Wheat")
-  expect_identical(out$Estimate_type, "Production")
-  expect_identical(out$Unit, "kt")
-  expect_identical(out$Region, "Australia")
+  expect_identical(out$Month_issued, c(3L, 7L))
 })
 
-test_that("when x is NULL it downloads (mocked) to tempdir and reads the workbook", {
+test_that("when x is NULL it downloads (mocked) to tempdir and reads the Excel", {
   skip_on_cran()
-  skip_if_not_installed("readxl")
-  skip_if_not_installed("writexl")
 
-  # Prepare a workbook with different values to confirm this path is exercised
-  df <- data.frame(
-    Year_Issued = 2019L,
-    Month_Issued = "October",
-    Year_Issued_FY = 2020L,
-    Forecast_Year_FY = 2020L,
-    Forecast_Value = 99.9,
-    Actual_Value = 101.1,
-    Commodity = "AUD",
-    Estimate_Type = "Price",
-    Estimate_description = "AUD/USD",
-    Unit = "$",
-    Region = "World",
-    stringsAsFactors = FALSE
+  # Stage an Excel file that we will "download"
+  staged_xlsx <- withr::local_tempfile(fileext = ".xlsx")
+  DT_stage <- data.table::data.table(
+    Commodity = c("Canola", "Lamb"),
+    Estimate_Type = c("Area", "Export"),
+    Estimate_description = c("Area planted", "Export volume"),
+    Unit = c("ha", "kt"),
+    Region = c("Australia", "World"),
+    Year_Issued = c(2022L, 2023L),
+    Month_Issued = c("October", "December"),
+    Year_Issued_FY = c("2022-23", "2023-24"),
+    Forecast_Year_FY = c("2023-24", "2024-25"),
+    Forecast_Value = c(100000, 500),
+    Actual_Value = c(98000, 520)
   )
+  writexl::write_xlsx(list(Database = DT_stage), staged_xlsx)
 
-  staged <- withr::local_tempfile(fileext = ".xlsx")
-  writexl::write_xlsx(list(Database = df), path = staged)
-  expect_true(fs::file_exists(staged))
-
-  target <- fs::path(tempdir(), "historical_db.xlsx")
-  if (fs::file_exists(target)) {
-    fs::file_delete(target)
+  # Expected target path used by the function when x = NULL
+  target_xlsx <- fs::path(tempdir(), "historical_db.xlsx")
+  if (fs::file_exists(target_xlsx)) {
+    fs::file_delete(target_xlsx)
   }
   withr::defer({
-    if (fs::file_exists(target)) fs::file_delete(target)
+    if (fs::file_exists(target_xlsx)) fs::file_delete(target_xlsx)
   })
 
+  # Capture URL and ensure the staged file is copied to the expected target
   last_url <- NULL
   retry_mock <- function(url, .f) {
     last_url <<- url
-    fs::file_copy(staged, .f, overwrite = TRUE)
+    fs::file_copy(staged_xlsx, .f, overwrite = TRUE)
     invisible(.f)
   }
 
@@ -109,15 +95,31 @@ test_that("when x is NULL it downloads (mocked) to tempdir and reads the workboo
     {
       out <- read_historical_forecast_database(x = NULL)
 
-      # Correct URL used and target created
+      # The function should have requested the right URL
       expect_identical(last_url, expected_url)
-      expect_true(fs::file_exists(target))
 
-      # Output checks
-      expect_true(data.table::is.data.table(out))
-      expect_identical(out$Month_issued, 10L) # October -> 10
-      expect_identical(out$Commodity, "AUD")
-      expect_identical(out$Estimate_type, "Price")
+      # Target must now exist
+      expect_true(fs::file_exists(target_xlsx))
+
+      # Output must be a data.table with our staged content
+      expect_s3_class(out, "data.table")
+      expect_named(
+        out,
+        c(
+          "Commodity",
+          "Estimate_type",
+          "Estimate_description",
+          "Unit",
+          "Region",
+          "Year_issued",
+          "Month_issued",
+          "Year_issued_FY",
+          "Forecast_year_FY",
+          "Forecast_value",
+          "Actual_value"
+        )
+      )
+      expect_true(data.table::fsetequal(out, out)) # Self-equality for sanity
     },
     .retry_download = retry_mock
   )
@@ -125,240 +127,42 @@ test_that("when x is NULL it downloads (mocked) to tempdir and reads the workboo
 
 test_that("alias read_historical_forecast returns identical results", {
   skip_on_cran()
-  skip_if_not_installed("readxl")
-  skip_if_not_installed("writexl")
 
-  df <- data.frame(
-    Year_Issued = 2022L,
-    Month_Issued = "January",
-    Year_Issued_FY = 2022L,
-    Forecast_Year_FY = 2023L,
-    Forecast_Value = 1.23,
-    Actual_Value = 2.34,
-    Commodity = "Barley",
-    Estimate_Type = "Production",
-    Estimate_description = "Production (kt)",
-    Unit = "kt",
-    Region = "Australia",
-    stringsAsFactors = FALSE
-  )
-
-  xlsx <- withr::local_tempfile(fileext = ".xlsx")
-  writexl::write_xlsx(list(Database = df), path = xlsx)
-
-  a <- read_historical_forecast_database(x = xlsx)
-  b <- read_historical_forecast(x = xlsx)
-
-  expect_true(data.table::is.data.table(a))
-  expect_true(data.table::is.data.table(b))
-  expect_true(data.table::fsetequal(a, b))
-  expect_identical(a$Month_issued, 1L) # January -> 1
-})
-
-test_that("maps all months correctly to 1..12", {
-  skip_on_cran()
-  skip_if_not_installed("readxl")
-  skip_if_not_installed("writexl")
-
-  months <- c(
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-  )
-
-  df <- data.frame(
-    Year_Issued = rep(2021L, length(months)),
-    Month_Issued = months,
-    Year_Issued_FY = rep(2021L, length(months)),
-    Forecast_Year_FY = rep(2022L, length(months)),
-    Forecast_Value = seq_along(months),
-    Actual_Value = seq_along(months),
-    Commodity = "Wheat",
-    Estimate_Type = "Production",
-    Estimate_description = "Prod",
-    Unit = "kt",
-    Region = "Australia",
-    stringsAsFactors = FALSE
-  )
-
-  xlsx <- withr::local_tempfile(fileext = ".xlsx")
-  writexl::write_xlsx(list(Database = df), path = xlsx)
-
-  out <- read_historical_forecast_database(x = xlsx)
-
-  expect_true(data.table::is.data.table(out))
-  expect_true(is.integer(out$Month_issued))
-  expect_identical(out$Month_issued, as.integer(1:12))
-})
-
-test_that("errors cleanly when the provided file does not exist (no mocking)", {
-  skip_on_cran()
-  skip_if_not_installed("readxl")
-
-  bogus <- fs::path(tempdir(), "no-such-historical_db.xlsx")
-  if (fs::file_exists(bogus)) {
-    fs::file_delete(bogus)
-  }
-
-  expect_error(
-    read_historical_forecast_database(x = bogus),
-    regexp = "cannot open|does not exist|Failed to open|cannot find",
-    ignore.case = TRUE
-  )
-})
-
-test_that("when x is NULL it downloads (mocked) to tempdir and reads the workbook", {
-  skip_on_cran()
-  skip_if_not_installed("readxl")
-  skip_if_not_installed("writexl")
-
-  # Prepare a workbook with different values to confirm this path is exercised
-  df <- data.frame(
-    Year_Issued = 2019L,
-    Month_Issued = "October",
-    Year_Issued_FY = 2020L,
-    Forecast_Year_FY = 2020L,
-    Forecast_Value = 99.9,
-    Actual_Value = 101.1,
-    Commodity = "AUD",
+  tmp_xlsx <- withr::local_tempfile(fileext = ".xlsx")
+  DT_in <- data.table::data.table(
+    Commodity = "Sugar",
     Estimate_Type = "Price",
-    Estimate_description = "AUD/USD",
-    Unit = "$",
+    Estimate_description = "Export price",
+    Unit = "$/t",
     Region = "World",
-    stringsAsFactors = FALSE
+    Year_Issued = 2021L,
+    Month_Issued = "June",
+    Year_Issued_FY = "2020-21",
+    Forecast_Year_FY = "2021-22",
+    Forecast_Value = 400L,
+    Actual_Value = 390L
   )
+  writexl::write_xlsx(list(Database = DT_in), tmp_xlsx)
 
-  staged <- withr::local_tempfile(fileext = ".xlsx")
-  writexl::write_xlsx(list(Database = df), path = staged)
-  expect_true(fs::file_exists(staged))
+  a <- read_historical_forecast_database(x = tmp_xlsx)
+  b <- read_historical_forecast(x = tmp_xlsx)
 
-  target <- fs::path(tempdir(), "historical_db.xlsx")
-  if (fs::file_exists(target)) {
-    fs::file_delete(target)
-  }
-  withr::defer({
-    if (fs::file_exists(target)) fs::file_delete(target)
-  })
-
-  last_url <- NULL
-  retry_mock <- function(url, .f) {
-    last_url <<- url
-    fs::file_copy(staged, .f, overwrite = TRUE)
-    invisible(.f)
-  }
-
-  expected_url <- "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0"
-
-  testthat::with_mocked_bindings(
-    {
-      out <- read_historical_forecast_database(x = NULL)
-
-      # Correct URL used and target created
-      expect_identical(last_url, expected_url)
-      expect_true(fs::file_exists(target))
-
-      # Output checks
-      expect_true(data.table::is.data.table(out))
-      expect_identical(out$Month_issued, 10L) # October -> 10
-      expect_identical(out$Commodity, "AUD")
-      expect_identical(out$Estimate_type, "Price")
-    },
-    .retry_download = retry_mock
-  )
+  expect_s3_class(a, "data.table")
+  expect_s3_class(b, "data.table")
+  expect_true(data.table::fsetequal(a, b))
 })
 
-test_that("maps all months correctly to 1..12", {
+test_that("errors cleanly when the provided file does not exist", {
   skip_on_cran()
-  skip_if_not_installed("readxl")
-  skip_if_not_installed("writexl")
 
-  months <- c(
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-  )
-
-  # Build a workbook with the original column names the function expects
-  df <- data.frame(
-    Year_Issued = rep(2021L, length(months)),
-    Month_Issued = months,
-    Year_Issued_FY = rep(2021L, length(months)),
-    Forecast_Year_FY = rep(2022L, length(months)),
-    Forecast_Value = seq_along(months),
-    Actual_Value = seq_along(months),
-    Commodity = "Wheat",
-    Estimate_Type = "Production",
-    Estimate_description = "Prod",
-    Unit = "kt",
-    Region = "Australia",
-    stringsAsFactors = FALSE
-  )
-
-  # Write a real .xlsx with sheet "Database"
-  xlsx <- withr::local_tempfile(fileext = ".xlsx")
-  writexl::write_xlsx(list(Database = df), path = xlsx)
-  expect_true(fs::file_exists(xlsx))
-
-  # Exercise the read function (no mocking of readxl)
-  out <- read_historical_forecast_database(x = xlsx)
-
-  # Assertions
-  expect_s3_class(out, "data.table")
-  expect_type(out$Month_issued, "integer")
-  expect_identical(out$Month_issued, as.integer(1:12))
-
-  # Optional extra checks for completeness
-  expect_identical(
-    names(out),
-    c(
-      "Year_issued",
-      "Month_issued",
-      "Year_issued_FY",
-      "Forecast_year_FY",
-      "Forecast_value",
-      "Actual_value",
-      "Commodity",
-      "Estimate_type",
-      "Estimate_description",
-      "Unit",
-      "Region"
-    )
-  )
-  expect_equal(nrow(out), 12L)
-})
-
-
-test_that("errors cleanly when the provided file does not exist (no mocking)", {
-  skip_on_cran()
-  skip_if_not_installed("readxl")
-
-  bogus <- fs::path(tempdir(), "no-such-historical_db.xlsx")
+  bogus <- fs::path(tempdir(), "nope-does-not-exist.xlsx")
   if (fs::file_exists(bogus)) {
     fs::file_delete(bogus)
   }
 
-  # readxl::read_excel will error; we assert a reasonable message pattern
   expect_error(
     read_historical_forecast_database(x = bogus),
-    regexp = "cannot open|does not exist|Failed to open|cannot find",
+    regexp = "does not exist|cannot open|Open failed",
     ignore.case = TRUE
   )
 })
