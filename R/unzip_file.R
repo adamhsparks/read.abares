@@ -11,18 +11,15 @@
   tryCatch(
     {
       base_dir <- fs::path_dir(.x)
-      dat_dir  <- fs::path_ext_remove(.x) # deterministic extract folder
+      dat_dir <- fs::path_ext_remove(.x) # deterministic extract folder
       fs::dir_create(dat_dir, recurse = TRUE)
 
-      withr::with_dir(
-        base_dir,
-        utils::unzip(.x, exdir = dat_dir, overwrite = TRUE)
-      )
+      utils::unzip(.x, exdir = dat_dir, overwrite = TRUE)
 
       # --- Optional: de-nest if the ZIP had a single top-level directory ---
       entries <- fs::dir_ls(dat_dir, all = TRUE, type = "any")
       subdirs <- entries[fs::is_dir(entries)]
-      files   <- entries[fs::is_file(entries)]
+      files <- entries[fs::is_file(entries)]
 
       if (length(files) == 0L && length(subdirs) == 1L) {
         inner <- subdirs
@@ -41,7 +38,9 @@
     error = function(e) {
       # Best-effort cleanup of partial output and bad zip
       dat_dir <- fs::path_ext_remove(.x)
-      if (fs::dir_exists(dat_dir)) .safe_delete(dat_dir)
+      if (fs::dir_exists(dat_dir)) {
+        .safe_delete(dat_dir)
+      }
       .safe_delete(.x)
 
       cli::cli_abort(
@@ -67,18 +66,25 @@
 #'  delete.
 #' @dev
 .safe_delete <- function(path, recursive = TRUE) {
-  if (is.null(path) || !nzchar(path)) return(invisible(FALSE))
+  if (is.null(path) || !nzchar(path)) {
+    return(invisible(FALSE))
+  }
 
   # Normalize & short-circuit if nothing exists
   path <- fs::path_abs(path)
   exists_any <- fs::file_exists(path) | fs::dir_exists(path)
-  if (!exists_any) return(invisible(FALSE))
+  if (!exists_any) {
+    return(invisible(FALSE))
+  }
 
   # Make writable (best-effort). Helps on Windows / read-only files.
   suppressWarnings({
     if (fs::dir_exists(path)) {
       # include all entries inside the directory
-      targets <- c(path, fs::dir_ls(path, recurse = TRUE, all = TRUE, type = "any"))
+      targets <- c(
+        path,
+        fs::dir_ls(path, recurse = TRUE, all = TRUE, type = "any")
+      )
     } else {
       targets <- path
     }
@@ -86,14 +92,17 @@
   })
 
   # Primary delete using fs
-  ok <- tryCatch({
-    if (fs::dir_exists(path)) {
-      fs::dir_delete(path)
-    } else {
-      fs::file_delete(path)
-    }
-    TRUE
-  }, error = function(e) FALSE)
+  ok <- tryCatch(
+    {
+      if (fs::dir_exists(path)) {
+        fs::dir_delete(path)
+      } else {
+        fs::file_delete(path)
+      }
+      TRUE
+    },
+    error = function(e) FALSE
+  )
 
   # Fallback: base unlink (forceful on Windows)
   if (!ok) {
