@@ -17,29 +17,33 @@ parse_abs_production_data <- function(filename) {
     ))
   })
 
-  x <- x[-1L] #drop first table with no data
-  x[length(x)] <- NULL #drop last table w/ no data
+  x <- x[-1L] # drop first table with no data
+  x[length(x)] <- NULL # drop last table w/ no data
 
   if (any(grepl("Horticulture", x[[1L]], fixed = TRUE))) {
     x <- lapply(x, function(y) {
-      region_index <- which(y[, 2L] == "Region") - 1L
-      y <- y[-c(1L:region_index)]
+      region_index <- which(y[[2L]] == "Region") - 1L
+      if (length(region_index) && region_index >= 1L) {
+        y <- y[-c(1L:region_index)]
+      }
       data.table::setnames(y, as.character(unlist(y[1L, ])))
       y <- y[-1L, ]
       data.table::setnames(
         y,
         old = c("Region codes", "Region", "Data item"),
-        new = c("region_codes", "region", "data_item")
+        new = c("region_code", "region", "data_item")
       )
-
-      # drop last rows that contain units and copyright info
-      y[, .SD[region_codes %in% as.character(0L:8L)], by = "region_codes"]
-      data.table::setcolorder(y, neworder = c(2L, 1L))
+      # keep only region codes 0..8
+      y <- y[region_code %in% as.character(0L:8L)]
+      data.table::setcolorder(y, neworder = c("region", "region_code"))
+      y
     })
   } else {
     x <- lapply(x, function(y) {
-      region_index <- which(y[, 1L] == "Region") - 1L
-      y <- y[-c(1L:region_index)]
+      region_index <- which(y[[1L]] == "Region") - 1L
+      if (length(region_index) && region_index >= 1L) {
+        y <- y[-c(1L:region_index)]
+      }
       data.table::setnames(y, as.character(unlist(y[1L, ])))
       y <- y[-1L, ]
       data.table::setnames(
@@ -47,18 +51,13 @@ parse_abs_production_data <- function(filename) {
         old = c("Region", "Region codes", "Data item"),
         new = c("region", "region_code", "data_item")
       )
-
-      # drop last rows that contain units and copyright info
-      y[, .SD[region_codes %in% as.character(0L:8L)], by = "region_code"]
+      y <- y[region_code %in% as.character(0L:8L)]
+      y
     })
   }
 
-  if (length(x) > 1L) {
-    x <- data.table::rbindlist(x)
-  } else {
-    # the cane is a single table so we need to unlist it here
-    x <- x[[1L]]
-  }
+  x <- if (length(x) > 1L) data.table::rbindlist(x) else x[[1L]]
+
   x <- x[,
     c("commodity", "units") := data.table::tstrsplit(
       data_item,
@@ -71,15 +70,14 @@ parse_abs_production_data <- function(filename) {
     x,
     neworder = c("region", "region_code", "commodity", "units")
   )
+
   total_cols <- ncol(x)
   x[, 1L:2L := lapply(.SD, as.factor), .SDcols = 1L:2L]
-  x[,
-    5L:total_cols := lapply(.SD, as.numeric),
-    .SDcols = 5L:total_cols
-  ]
+  if (total_cols >= 5L) {
+    x[, 5L:total_cols := lapply(.SD, as.numeric), .SDcols = 5L:total_cols]
+  }
   return(x[])
 }
-
 
 #' Find Which Financial Years Data are Available
 #'
