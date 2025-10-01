@@ -68,6 +68,8 @@
 #'
 #' @returns A [curl::handle] object with polite headers and options set.
 #' @dev
+# TODO: check custom useragent to see if it will work or if this version needs
+#  to be passed.
 set_curl_handle <- function() {
   h <- curl::new_handle()
   curl::handle_setheaders(
