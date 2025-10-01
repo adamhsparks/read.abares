@@ -1,2 +1,3 @@
-# exclude .retry_download() file
 R/retry_download.R
+R/view_clum_pdf.R
+R/view_nlum_pdf.R
