@@ -4,12 +4,15 @@
 \alias{read_abs_livestock_data}
 \title{Read ABS' Livestock Production and Value by Australia, State and Territory by Year}
 \usage{
-read_abs_livestock_data(year = "latest", x = NULL)
+read_abs_livestock_data(data_set = "herd_estimates", x = NULL)
 }
 \arguments{
-\item{year}{A string value providing the year of interest to download.
-Formatted as \code{"2022-23"} or \code{"2023-24"} or use \code{"latest"} for the most
-recent release available. Defaults to \code{"latest"}.}
+\item{data_set}{A string value providing the desired livestock data, one of:
+\describe{
+\item{livestock_and_products}{(default) value of livestock disposals and products by Australia, state and territory.}
+\item{cattle_herd}{Cattle herd experimental estimates by Australia, state and territory.}
+\item{cattle_herd_series}{Cattle herd experimental and historical estimates by Australia, state and territory – 2005 to 2024.}
+}}
 
 \item{x}{A file path providing the file with the data to be imported. The
 file is assumed to be unarchived locally. This function does not provide any
