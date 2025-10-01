@@ -10,8 +10,8 @@ testthat::test_that("read.abares_options() returns current read.abares.* options
   opts <- read.abares_options()
   testthat::expect_type(opts, "list")
   testthat::expect_true(all(grepl("^read\\.abares\\.", names(opts))))
-  testthat::expect_equal(opts$read.abares.quiet, FALSE)
-  testthat::expect_equal(opts$read.abares.verbose, TRUE)
+  testthat::expect_false(opts$read.abares.quiet)
+  testthat::expect_false(opts$read.abares.verbose)
 })
 
 testthat::test_that("read.abares_options() sets a single option and persists", {
@@ -25,7 +25,7 @@ testthat::test_that("read.abares_options() sets a single option and persists", {
 
   # Confirm function returns updated value
   opts <- read.abares_options()
-  testthat::expect_equal(opts$read.abares.quiet, TRUE)
+  testthat::expect_true(opts$read.abares.quiet)
 })
 
 testthat::test_that("read.abares_options() sets multiple options at once", {
@@ -42,8 +42,8 @@ testthat::test_that("read.abares_options() sets multiple options at once", {
   testthat::expect_true(getOption("read.abares.verbose"))
 
   opts <- read.abares_options()
-  testthat::expect_equal(opts$read.abares.quiet, TRUE)
-  testthat::expect_equal(opts$read.abares.verbose, TRUE)
+  testthat::expect_true(opts$read.abares.quiet)
+  testthat::expect_true(opts$read.abares.verbose)
 })
 
 testthat::test_that("read.abares_options() does not affect unrelated options", {
@@ -56,14 +56,14 @@ testthat::test_that("read.abares_options() does not affect unrelated options", {
 
   read.abares_options(read.abares.quiet = TRUE)
 
-  testthat::expect_equal(getOption("custom.option"), "keepme")
+  testthat::expect_identical(getOption("custom.option"), "keepme")
 })
 
 testthat::test_that("read.abares_options() snapshot of selected options", {
   testthat::skip_on_cran()
 
   # Keep snapshot output stable across environments
-  testthat::local_reproducible_output(width = 80)
+  testthat::local_reproducible_output(width = 80L)
 
   # Set deterministic option values for the snapshot
   withr::local_options(list(
