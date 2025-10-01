@@ -14,9 +14,9 @@ testthat::test_that("read_abs_broadacre_data() uses .retry_download (mocked), ma
       # Expect 'latest' resolves to first element of available_years
       testthat::expect_match(
         url,
-        "/2023-24/AABDC_winter_broadacre_202324\\.xlsx$"
+        "/2023-24/AABDC_Winter_Broadacre_202324\\.xlsx$"
       )
-      testthat::expect_identical(basename(.f), "winter_broadacre_crops_file")
+      testthat::expect_identical(basename(.f), "Winter_Broadacre_crops_file")
 
       # Create an empty file to simulate a download target existing
       if (!file.exists(.f)) {
@@ -74,9 +74,9 @@ testthat::test_that("read_abs_broadacre_data() constructs URL correctly for 'sum
     .retry_download = function(url, .f, base_delay = 1L) {
       testthat::expect_match(
         url,
-        "/2021-22/AABDC_summer_202122\\.xlsx$"
+        "/2021-22/AABDC_Summer_202122\\.xlsx$"
       )
-      testthat::expect_identical(basename(.f), "summer_crops_file")
+      testthat::expect_identical(basename(.f), "Summer_crops_file")
       # Create an empty file to satisfy parse path
       if (!file.exists(.f)) {
         dir.create(dirname(.f), showWarnings = FALSE, recursive = TRUE)
@@ -119,9 +119,9 @@ testthat::test_that("read_abs_broadacre_data() constructs URL correctly for 'sug
     .retry_download = function(url, .f, base_delay = 1L) {
       testthat::expect_match(
         url,
-        "/2022-23/AABDC_sugarcane_202223\\.xlsx$"
+        "/2022-23/AABDC_Sugarcane_202223\\.xlsx$"
       )
-      testthat::expect_identical(basename(.f), "sugarcane_crops_file")
+      testthat::expect_identical(basename(.f), "Sugarcane_crops_file")
       if (!file.exists(.f)) {
         dir.create(dirname(.f), showWarnings = FALSE, recursive = TRUE)
         file.create(.f)

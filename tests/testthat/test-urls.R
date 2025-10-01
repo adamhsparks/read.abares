@@ -51,8 +51,8 @@ delay_between_batches <- 2L # seconds
 
 # Helper to check a single URL
 check_url <- function(this_url) {
-  is_s3 <- grepl("s3[-.]", url)
-  host <- sub("^https?://([^/]+).*", "\\1", url)
+  is_s3 <- grepl("s3[-.]", this_url)
+  host <- sub("^https?://([^/]+).*", "\\1", this_url)
 
   if (!is_s3) {
     resolved <- tryCatch(nslookup(host, error = FALSE), error = function(e) {
