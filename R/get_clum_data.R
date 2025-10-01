@@ -19,7 +19,7 @@
 #' @source
 #' \url{https://10.25814/2w2p-ph98}.
 #'
-#' @examplesIf interactive()
+#' @examples
 #' CLUM50m <- .get_clum(.data_set = "clum_50m_2023_v2", .x = NULL)
 #'
 #' CLUM50m
