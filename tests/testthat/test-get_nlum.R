@@ -81,16 +81,13 @@ testthat::test_that(".get_nlum errors for unknown dataset key when .x is NULL", 
   testthat::expect_error(.get_nlum(.data_set = "NOT_A_KEY", .x = NULL))
 })
 
-# tests/testthat/test-nlum-snapshot.R
 
 testthat::test_that("summary header snapshot: print.read.abares.agfd.nlum.files", {
-  testthat::skip_on_cran()
+  # Make snapshot output stable across environments (fixed width, no ANSI colors)
+  testthat::local_reproducible_output(width = 80L)
+  withr::local_options(cli.num_colors = 0L)
 
-  # Keep snapshot output stable across environments
-  testthat::local_reproducible_output(width = 80)
-  withr::local_options(cli.num_colors = 0)
-
-  # Build minimal input: a character vector of file paths (as the printer expects)
+  # Minimal object with the class the S3 print method expects
   files <- c(
     "/tmp/NLUM/sample1.tif",
     "/tmp/NLUM/sample2.tif",
@@ -98,7 +95,7 @@ testthat::test_that("summary header snapshot: print.read.abares.agfd.nlum.files"
   )
   class(files) <- c("read.abares.agfd.nlum.files", class(files))
 
-  # Snapshot the full printed banner+list
+  # Snapshot the CLI banner + bulleted list
   testthat::expect_snapshot({
     print.read.abares.agfd.nlum.files(files)
   })
