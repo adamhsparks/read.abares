@@ -10,7 +10,7 @@
 #'  directly.
 #'
 #' @examples
-#' x <- .read_topsoil_thickness()
+#' x <- .get_topsoil_thickness(.x = NULL)
 #'
 #' x
 #'
@@ -30,6 +30,7 @@
 #' @dev
 
 .get_topsoil_thickness <- function(.x) {
+  #TODO: Troublshoot the download of this file, it's failing
   if (is.null(.x)) {
     .x <- fs::path(tempdir(), "topsoil_thick.zip")
     .retry_download(
