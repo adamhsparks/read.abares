@@ -12,7 +12,6 @@
 #' @examples
 #' x <- .read_topsoil_thickness()
 #'
-#' # View the metadata with pretty printing
 #' x
 #'
 #' # Extract the metadata as an object in your R session and use it with
