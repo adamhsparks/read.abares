@@ -21,7 +21,7 @@
 #'
 #' @examplesIf interactive()
 #' broadacre_data  <- read_abs_broadacre_data()
-#' 
+#'
 #' broadacre_data
 #'
 #' @references <https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops>.
@@ -36,12 +36,19 @@ read_abs_broadacre_data <- function(
   x = NULL
 ) {
   if (is.null(x)) {
+    # see parse_abs_production_data.R for .find_years()
     available <- .find_years(data_set = "broadacre")
-    year <- rlang::arg_match(year, c("latest", available))
-    crops <- rlang::arg_match(crops, c("winter", "summer", "sugarcane"))
-   
+    year <- rlang::arg_match0(year, c("latest", available))
+    crops <- stringr::str_to_title(crops)
+    crops <- rlang::arg_match0(crops, c("Winter", "Summer", "Sugarcane"))
+
     # winter broadacre has a different naming scheme than the other two crops
-    crops <- data.table::fifelse(crops == "winter", "winter_broadacre", crops)
+    if (crops == "Winter") {
+      crops <- "Winter_Broadacre"
+    }
+    if (crops == "Summer" && year == "2022-23") {
+      crops <- "Summer_Broadacre"
+    }
     if (year == "latest") {
       year <- available[[1L]]
     }
