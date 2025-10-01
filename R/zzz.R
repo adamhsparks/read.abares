@@ -34,6 +34,22 @@
 }
 
 .onLoad <- function(libname, pkgname) {
+  .init_read_abares_options()
+}
+
+
+.onUnload <- function(libpath) {
+  penv <- parent.env(environment())
+  withr::deferred_run(penv)
+  invisible()
+}
+
+
+#' Initialize read.abares options (internal)
+#'
+#' This is extracted from `.onLoad()` to allow testing.
+#' @noRd
+.init_read_abares_options <- function() {
   penv <- parent.env(environment())
 
   op <- options()
@@ -49,7 +65,11 @@
 
   read.abares_env <- new.env(parent = emptyenv())
   read.abares_env$old_options <- saved
-  assign(".read.abares_env", read.abares_env, envir = penv)
+
+  # Only assign if not already locked
+  if (!exists(".read.abares_env", envir = penv, inherits = FALSE)) {
+    assign(".read.abares_env", read.abares_env, envir = penv)
+  }
 
   ua <- tryCatch(
     withr::with_options(list(warn = 0L), readabares_user_agent()),
@@ -77,11 +97,5 @@
   mapped <- .map_verbosity(verbosity)
   withr::local_options(mapped, .local_envir = penv)
 
-  invisible()
-}
-
-.onUnload <- function(libpath) {
-  penv <- parent.env(environment())
-  withr::deferred_run(penv)
   invisible()
 }
