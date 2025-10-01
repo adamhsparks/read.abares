@@ -23,8 +23,8 @@
   if (curl::has_internet()) {
     attempt <- 1L
     success <- FALSE
-    quiet <- (getOption("read.abares.verbosity") %notin%
-      c("quiet", "minimal", "warn"))
+    quiet <- (getOption("read.abares.verbosity")) %notin%
+      c("quiet", "minimal", "warn")
     retries <- getOption("read.abares.max_tries", 3L)
 
     while (attempt <= retries && !success) {
@@ -68,13 +68,13 @@
 #'
 #' @returns A [curl::handle] object with polite headers and options set.
 #' @dev
-# TODO: check custom useragent to see if it will work or if this version needs
-#  to be passed.
 set_curl_handle <- function() {
+  user_agent <- getOption("read.abares.user_agent")
+  #user_agent <- "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
   h <- curl::new_handle()
   curl::handle_setheaders(
     h,
-    "User-Agent" = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36",
+    "User-Agent" = user_agent,
     "Accept" = "application/zip, application/octet-stream;q=0.9, */*;q=0.8",
     "Accept-Language" = "en-AU,en;q=0.9",
     "Connection" = "keep-alive"
