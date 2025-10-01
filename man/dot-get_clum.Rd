@@ -28,11 +28,10 @@ An internal function used by \code{\link[=read_clum_terra]{read_clum_terra()}} a
 downloads catchment level land use data files.
 }
 \examples{
-\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
-CLUM50m <- .get_clum(.data_set = "clum_50m_2023_v2", .x = NULL)
+clum_update <- .get_clum(.data_set = "scale_date_update", .x = NULL)
 
-CLUM50m
-\dontshow{\}) # examplesIf}
+clum_update
+
 }
 \references{
 ABARES 2024, Catchment Scale Land Use of Australia – Update December 2023

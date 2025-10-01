@@ -25,7 +25,7 @@
 #' Agricultural and Resource Economics and Sciences, Canberra, November, CC BY
 #' 4.0. \doi{10.25814/w175-xh85}.
 #'
-#' @examplesIf interactive()
+#' @examples
 #' Y202021 <- .get_nlum(.data_set = "Y202021", .x = NULL)
 #'
 #' Y202021

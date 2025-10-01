@@ -20,9 +20,9 @@
 #' \url{https://10.25814/2w2p-ph98}.
 #'
 #' @examples
-#' CLUM50m <- .get_clum(.data_set = "clum_50m_2023_v2", .x = NULL)
+#' clum_update <- .get_clum(.data_set = "scale_date_update", .x = NULL)
 #'
-#' CLUM50m
+#' clum_update
 #'
 #' @returns A list of files containing a spatial data file of or files related
 #' to Australian catchment scale land use data.

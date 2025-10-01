@@ -26,9 +26,8 @@ with these data. Examples are provided for interacting with the metadata
 directly.
 }
 \examples{
-x <- .read_topsoil_thickness()
+x <- .get_topsoil_thickness(.x = NULL)
 
-# View the metadata with pretty printing
 x
 
 # Extract the metadata as an object in your R session and use it with

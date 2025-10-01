@@ -33,11 +33,10 @@ downloads national level land use data GeoTIFF file, unzips the download
 file and deletes unnecessary files that are included in the download.
 }
 \examples{
-\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 Y202021 <- .get_nlum(.data_set = "Y202021", .x = NULL)
 
 Y202021
-\dontshow{\}) # examplesIf}
+
 }
 \references{
 ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
