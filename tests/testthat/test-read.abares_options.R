@@ -11,7 +11,7 @@ testthat::test_that("read.abares_options() returns current read.abares.* options
   testthat::expect_type(opts, "list")
   testthat::expect_true(all(grepl("^read\\.abares\\.", names(opts))))
   testthat::expect_false(opts$read.abares.quiet)
-  testthat::expect_false(opts$read.abares.verbose)
+  testthat::expect_true(opts$read.abares.verbose)
 })
 
 testthat::test_that("read.abares_options() sets a single option and persists", {
