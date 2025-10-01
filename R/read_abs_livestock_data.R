@@ -35,7 +35,6 @@ read_abs_livestock_data <- function(
   #
   if (is.null(x)) {
     # see parse_abs_production_data.R for .find_years()
-    available <- .find_years(data_set = "livestock")
     data_set <- rlang::arg_match0(
       data_set,
       c("livestock_and_products", "cattle_herd", "cattle_herd_series")
@@ -46,15 +45,12 @@ read_abs_livestock_data <- function(
       "cattle_herd" = "Cattle%20herd_2023_24.xlsx",
       "cattle_herd_series" = "Cattle%20herd%20series_2005%20to%202024.xlsx"
     )
-    if (year == "latest") {
-      year <- available[[1L]]
-    }
     base_url <- "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-livestock/AALDC_"
 
     x <- fs::path(tempdir(), "livestock_file")
     .retry_download(
       url = sprintf(
-        "%s%s/AALDC_Value%%20of%%20livestock%%20and%%20products%%20%s.xlsx",
+        "%s%s",
         base_url,
         data_set
       ),
