@@ -10,7 +10,7 @@
 \item{.x}{A zip file for unzipping.}
 }
 \value{
-Invisible NULL, called for side effects.
+Invisible directory path, called for side effects.
 }
 \description{
 Unzips the provided zip file into a folder named after the zip (without .zip).

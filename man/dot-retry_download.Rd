@@ -2,32 +2,37 @@
 % Please edit documentation in R/retry_download.R
 \name{.retry_download}
 \alias{.retry_download}
-\title{Use curl to Fetch a File with Retries}
+\title{Robust downloader for ABARES datasets (internal, auto streaming + resume)}
 \usage{
-.retry_download(url, .f, base_delay = 1L)
+.retry_download(url, .f, dataset_id = NULL, stream = NULL, base_delay = 1L)
 }
 \arguments{
-\item{url}{Character the URL being requested.}
+\item{url}{Character scalar; download URL.}
 
-\item{.f}{Character a filepath to be written to local storage.}
+\item{.f}{Character scalar; destination file path.}
 
-\item{base_delay}{Integer the starting value in seconds for exponential
-backoff when retrying failed downloads.}
+\item{dataset_id}{Character scalar or \code{NULL}; used for timeouts lookup.}
+
+\item{stream}{Logical(1) or \code{NULL}; if \code{NULL} we auto-decide; otherwise forced.}
+
+\item{base_delay}{Numeric(1); base seconds for exponential backoff.}
 }
 \value{
-An invisible \code{NULL}, called for its side-effects, writes an object
-to the \code{tempdir()} for reading into the active \R session later.
+Invisibly returns \code{NULL}. The file is written to \code{.f} on success.
 }
 \description{
-Retries to download the requested resource before stopping.
+Downloads a remote resource to a local file using \code{httr2}, with:
+\itemize{
+\item Retries via \code{httr2::req_retry()} and exponential backoff,
+\item Dataset-driven timeouts (see \code{.dataset_timeouts()}),
+\item Auto streaming decision by probe/heuristics; can be forced via \code{stream},
+\item \strong{Resume support} for partial files (Range + If-Range with ETag/Last-Modified),
+\item Atomic binary writes via \code{{brio}} when not streaming,
+\item A progress bar only when \code{options(read.abares.verbosity) == "verbose"},
+\item Internet availability check via \code{curl::has_internet()}.
 }
-\examples{
-
-f <- fs::path(tempdir(), "fdp-beta-national-historical.csv")
-.retry_download(
-  url = "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-national-historical.csv",
-  .f = f
-)
-
+}
+\details{
+This only downloads the file. To extract archives, call your own \code{.unzip_file()}.
 }
 \keyword{internal}
