@@ -50,7 +50,7 @@
             cli::cli_inform("Waiting {delay} seconds before retrying...")
             Sys.sleep(delay)
           }
-          attempt <<- attempt + 1L
+          attempt <- attempt + 1L
           if (attempt > retries) {
             cli::cli_abort("All download attempts failed.")
           }
