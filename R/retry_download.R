@@ -18,7 +18,6 @@
 #'   - `read.abares.low_speed_time` (default `0` seconds),
 #'   - `read.abares.low_speed_limit` (default `0` bytes/sec).
 #' - `read.abares.stream_threshold_mb`: numeric; auto-stream threshold (default 50).
-#'
 
 #' Check internet connectivity using curl (internal)
 #' @return Logical(1), `TRUE` if internet appears available.
@@ -28,13 +27,13 @@
 }
 
 #' Build a base httr2 request with polite defaults (internal)
-#' @param url Character scalar; the request URL.
+#' @param req_url Character scalar; the request URL.
 #' @return An `httr2_request` object.
 #' @dev
-build_httr2_request <- function(url) {
+.build_httr2_request <- function(req_url) {
   ua <- getOption("read.abares.user_agent")
 
-  httr2::request(url) |>
+  httr2::request(req_url) |>
     httr2::req_user_agent(ua) |>
     httr2::req_headers(
       "Accept" = "application/zip, application/octet-stream;q=0.9, */*;q=0.8",
@@ -60,7 +59,7 @@ build_httr2_request <- function(url) {
 #' @dev
 .dataset_timeouts <- function(dataset_id = NULL) {
   defaults <- list(
-    connect = getOption("read.abares.timeout_connect", 15),
+    connect = getOption("read.abares.timeout_connect", 15L),
     total = getOption(
       "read.abares.timeout_total",
       getOption("read.abares.timeout", 7200L)
@@ -464,7 +463,7 @@ build_httr2_request <- function(url) {
 #' @return Invisibly returns `NULL`. The file is written to `.f` on success.
 #' @dev
 .retry_download <- function(
-  url,
+  req_url,
   .f,
   dataset_id = NULL,
   stream = NULL,
@@ -498,7 +497,7 @@ build_httr2_request <- function(url) {
   }
 
   # Build request + progress
-  req <- build_httr2_request(url)
+  req <- .build_httr2_request(req_url)
   if (show_progress) {
     req <- httr2::req_progress(req)
   }
