@@ -29,8 +29,7 @@
 #'
 #' @dev
 
-.get_topsoil_thickness <- function(.x) {
-  #TODO: Troublshoot the download of this file, it's failing
+.get_topsoil_thickness <- function(.x = NULL) {
   if (is.null(.x)) {
     .x <- fs::path(tempdir(), "topsoil_thick.zip")
     .retry_download(
@@ -38,29 +37,19 @@
       .f = .x
     )
   }
-  .unzip_file(.x)
-  geo_files <- fs::dir_ls(fs::path(
-    fs::path_dir(.x),
-    "topsoil_thick/staiar9cl__05911a01eg_geo___"
-  ))
-  thphk_1 <- geo_files[endsWith(x = geo_files, "thpk_1")]
 
-  x <- terra::rast(thphk_1)
-  x <- terra::init(x, x[]) # remove RAT legend
-  metadata <- readtext::readtext(geo_files[endsWith(
-    x = geo_files,
-    "ANZCW1202000149.txt"
-  )])
-  topsoil_thickness <- list(
-    metadata = metadata$text,
-    data = x
-  )
+  dat_dir <- .unzip_file(.x)
 
-  class(topsoil_thickness) <- union(
-    "read.abares.topsoil.thickness",
-    class(topsoil_thickness)
-  )
-  return(topsoil_thickness)
+  x <- terra::rast(fs::path(dat_dir, "thpk_1"))
+  x <- terra::init(x, x[]) # remove RAT legend if present
+
+  # Metadata: prefer the specific code; fallback to any .txt
+  md_idx <- fs::path(dat_dir, "ANZCW1202000149.txt")
+  metadata <- readtext::readtext(md_idx)
+
+  out <- list(metadata = metadata$text, data = x)
+  class(out) <- union("read.abares.topsoil.thickness", class(out))
+  out
 }
 
 #' Prints a read.abares.topsoil.thickness Object

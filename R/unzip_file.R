@@ -5,8 +5,9 @@
 #' and any partially-created extract directory.
 #'
 #' @param .x A zip file for unzipping.
-#' @returns Invisible NULL, called for side effects.
+#' @returns Invisible directory path, called for side effects.
 #' @dev
+
 .unzip_file <- function(.x) {
   tryCatch(
     {
@@ -14,41 +15,23 @@
       dat_dir <- fs::path_ext_remove(.x) # deterministic extract folder
       fs::dir_create(dat_dir, recurse = TRUE)
 
-      withr::with_dir(
-        base_dir,
-        utils::unzip(.x, exdir = dat_dir, overwrite = TRUE)
+      # Use R's internal unzip to avoid system dependency
+      utils::unzip(
+        zipfile = .x,
+        exdir = dat_dir,
+        overwrite = TRUE,
+        unzip = "internal"
       )
 
-      # --- Optional: de-nest if the ZIP had a single top-level directory ---
-      entries <- fs::dir_ls(dat_dir, all = TRUE, type = "any")
-      subdirs <- entries[fs::is_dir(entries)]
-      files <- entries[fs::is_file(entries)]
-
-      if (length(files) == 0L && length(subdirs) == 1L) {
-        inner <- subdirs
-        inner_entries <- fs::dir_ls(inner, all = TRUE)
-        if (length(inner_entries)) {
-          fs::file_move(
-            inner_entries,
-            fs::path(dat_dir, fs::path_file(inner_entries))
-          )
-        }
-        fs::dir_delete(inner)
-      }
-
-      invisible(NULL)
+      invisible(dat_dir)
     },
     error = function(e) {
-      # Best-effort cleanup of partial output and bad zip
       dat_dir <- fs::path_ext_remove(.x)
       if (fs::dir_exists(dat_dir)) {
         .safe_delete(dat_dir)
       }
-      .safe_delete(.x)
-
       cli::cli_abort(
-        "There was an issue with the downloaded file.
-         I've deleted this bad zip and any partial extract; please retry.",
+        "Unzip failed for {.path {basename(.x)}}: {conditionMessage(e)}",
         call = rlang::caller_env()
       )
     }
