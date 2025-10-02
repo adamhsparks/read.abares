@@ -25,11 +25,13 @@ BugReports: https://github.com/adamhsparks/read.abares/issues
 Depends: 
     R (>= 4.1.0)
 Imports: 
+    brio,
     cli,
     curl,
     data.table,
     fs,
     htm2txt,
+    httr2,
     lubridate,
     purrr,
     readtext,
