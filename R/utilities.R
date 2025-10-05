@@ -14,7 +14,7 @@
   if (file.exists(file_path)) {
     tryCatch(
       {
-        fs::file_delete(path)
+        fs::file_delete(file_path)
         TRUE
       },
       error = function(e) {
