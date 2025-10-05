@@ -25,3 +25,43 @@
     TRUE
   }
 }
+
+#' Unzip a zip file
+#'
+#' Unzips the provided zip file into a folder named after the zip (without .zip).
+#' If unzipping fails, it will return an error and delete the corrupted zip file
+#' and any partially-created extract directory.
+#'
+#' @param .x A zip file for unzipping.
+#' @returns Invisible directory path, called for side effects.
+#' @dev
+
+.unzip_file <- function(.x) {
+  tryCatch(
+    {
+      base_dir <- fs::path_dir(.x)
+      dat_dir <- fs::path_ext_remove(.x) # deterministic extract folder
+      fs::dir_create(dat_dir, recurse = TRUE)
+
+      # Use R's internal unzip to avoid system dependency
+      utils::unzip(
+        zipfile = .x,
+        exdir = dat_dir,
+        overwrite = TRUE,
+        unzip = "internal"
+      )
+
+      invisible(dat_dir)
+    },
+    error = function(e) {
+      dat_dir <- fs::path_ext_remove(.x)
+      if (fs::dir_exists(dat_dir)) {
+        .safe_delete(dat_dir)
+      }
+      cli::cli_abort(
+        "Unzip failed for {.path {basename(.x)}}: {conditionMessage(e)}",
+        call = rlang::caller_env()
+      )
+    }
+  )
+}
