@@ -40,7 +40,11 @@
         valid = TRUE,
         hostname = parsed$hostname %||% "",
         path = parsed$path %||% "",
-        filename = if (!is.na(parsed$path)) basename(parsed$path) else ""
+        filename = ifelse(
+          nzchar(fs::path_ext(parsed$path)),
+          fs::path_file(parsed$path),
+          ""
+        )
       )
     },
     error = function(e) {
