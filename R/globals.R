@@ -19,6 +19,7 @@ utils::globalVariables(c(
   "Month_issued", # <read_historical_forecast_database>
   ".x", # <read_historical_national_estimates>
   ".x", # <read_historical_regional_estimates>
+  ".x", # <read_historical_state_estimates>
   "clum_metadata_pdf", # <view_clum_metadata_pdf>
   NULL
 ))
