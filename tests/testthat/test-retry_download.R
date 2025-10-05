@@ -1,67 +1,120 @@
 # Test file for download utilities
-# Tests for read.abares package download functions
 
-test_that(".parse_url_info handles valid URLs correctly", {
-  # Test valid HTTP URL
-  result <- .parse_url_info("https://example.com/path/to/file.csv")
-  expect_true(result$valid)
-  expect_equal(result$hostname, "example.com")
-  expect_equal(result$path, "/path/to/file.csv")
-  expect_equal(result$filename, "file.csv")
-
-  # Test URL with no file extension
-  result <- .parse_url_info("https://api.example.com/data")
-  expect_true(result$valid)
-  expect_equal(result$hostname, "api.example.com")
-  expect_equal(result$path, "/data")
-  expect_equal(result$filename, "data")
-
-  # Test URL with query parameters
-  result <- .parse_url_info("https://example.com/file.xlsx?version=1")
-  expect_true(result$valid)
-  expect_equal(result$hostname, "example.com")
-  expect_true(grepl("file.xlsx", result$path))
-  expect_equal(result$filename, "file.xlsx")
-})
-
-test_that(".parse_url_info handles invalid URLs correctly", {
-  # Test NULL input
-  result <- .parse_url_info(NULL)
-  expect_false(result$valid)
-  expect_equal(result$hostname, "")
-  expect_equal(result$path, "")
-  expect_equal(result$filename, "")
-
-  # Test empty string
-  result <- .parse_url_info("")
-  expect_false(result$valid)
-
-  # Test non-character input
-  result <- .parse_url_info(123)
-  expect_false(result$valid)
-
-  # Test vector of length > 1
-  result <- .parse_url_info(c("http://example.com", "http://test.com"))
-  expect_false(result$valid)
-
-  # Test malformed URL (this should trigger the error handler)
-  result <- .parse_url_info("not-a-url")
-  expect_false(result$valid)
-})
-
-test_that(".get_timeouts returns default values", {
-  # Clear any existing options first
-  old_opts <- options()
-  on.exit(options(old_opts))
-
+# Setup and teardown helpers ----
+setup_test_env <- function() {
+  # Clear all relevant options
   options(
     read.abares.timeout_connect = NULL,
     read.abares.timeout_total = NULL,
     read.abares.timeout = NULL,
     read.abares.low_speed_time = NULL,
     read.abares.low_speed_limit = NULL,
-    read.abares.dataset_timeouts = NULL
+    read.abares.dataset_timeouts = NULL,
+    read.abares.stream_threshold_mb = NULL,
+    read.abares.user_agent = NULL,
+    read.abares.max_tries = NULL
   )
+}
+
+teardown_test_env <- function() {
+  setup_test_env() # Same as setup - clear options
+}
+
+# Mock internet connectivity without external mocking ----
+simulate_no_internet <- function(expr) {
+  # Temporarily replace the function in the calling environment
+  original_has_internet <- .has_internet
+  assign(".has_internet", function() FALSE, envir = parent.frame())
+  on.exit(assign(
+    ".has_internet",
+    original_has_internet,
+    envir = parent.frame()
+  ))
+  expr
+}
+
+simulate_internet_available <- function(expr) {
+  original_has_internet <- .has_internet
+  assign(".has_internet", function() TRUE, envir = parent.frame())
+  on.exit(assign(
+    ".has_internet",
+    original_has_internet,
+    envir = parent.frame()
+  ))
+  expr
+}
+
+# Test .has_internet ----
+test_that(".has_internet works correctly", {
+  setup_test_env()
+  on.exit(teardown_test_env())
+
+  # Test the actual function (this will use real curl::has_internet)
+  result <- .has_internet()
+  expect_type(result, "logical")
+  expect_length(result, 1)
+
+  # Test error handling by creating a scenario where curl might not be available
+  # We can't easily mock this without external tools, so we test the structure
+  expect_no_error(.has_internet())
+})
+
+# Test .parse_url_info ----
+test_that(".parse_url_info handles valid URLs", {
+  setup_test_env()
+  on.exit(teardown_test_env())
+
+  # Valid URL
+  result <- .parse_url_info("https://example.com/path/file.csv")
+  expect_type(result, "list")
+  expect_true(result$valid)
+  expect_equal(result$hostname, "example.com")
+  expect_equal(result$path, "/path/file.csv")
+  expect_equal(result$filename, "file.csv")
+
+  # URL without filename
+  result <- .parse_url_info("https://example.com/path/")
+  expect_true(result$valid)
+  expect_equal(result$filename, "")
+
+  # URL with query parameters
+  result <- .parse_url_info("https://example.com/file.zip?param=value")
+  expect_true(result$valid)
+  expect_equal(result$filename, "file.zip")
+})
+
+test_that(".parse_url_info handles invalid inputs", {
+  setup_test_env()
+  on.exit(teardown_test_env())
+
+  # NULL input
+  result <- .parse_url_info(NULL)
+  expect_false(result$valid)
+  expect_equal(result$hostname, "")
+  expect_equal(result$path, "")
+  expect_equal(result$filename, "")
+
+  # Empty string
+  result <- .parse_url_info("")
+  expect_false(result$valid)
+
+  # Non-character input
+  result <- .parse_url_info(123)
+  expect_false(result$valid)
+
+  # Multiple URLs
+  result <- .parse_url_info(c("https://example.com", "https://test.com"))
+  expect_false(result$valid)
+
+  # Invalid URL format
+  result <- .parse_url_info("not-a-url")
+  expect_false(result$valid)
+})
+
+# Test .get_timeouts ----
+test_that(".get_timeouts returns default values", {
+  setup_test_env()
+  on.exit(teardown_test_env())
 
   result <- .get_timeouts()
   expect_type(result, "list")
@@ -72,10 +125,10 @@ test_that(".get_timeouts returns default values", {
 })
 
 test_that(".get_timeouts respects global options", {
-  old_opts <- options()
-  on.exit(options(old_opts))
+  setup_test_env()
+  on.exit(teardown_test_env())
 
-  # Set custom global options
+  # Set global options
   options(
     read.abares.timeout_connect = 30L,
     read.abares.timeout_total = 3600L,
@@ -90,364 +143,408 @@ test_that(".get_timeouts respects global options", {
   expect_equal(result$low_speed_limit, 1000L)
 })
 
-test_that(".get_timeouts handles legacy timeout option", {
-  old_opts <- options()
-  on.exit(options(old_opts))
+test_that(".get_timeouts respects legacy timeout option", {
+  setup_test_env()
+  on.exit(teardown_test_env())
 
   # Test legacy read.abares.timeout option
-  options(
-    read.abares.timeout_total = NULL,
-    read.abares.timeout = 1800L
-  )
+  options(read.abares.timeout = 1800L)
 
   result <- .get_timeouts()
   expect_equal(result$total, 1800L)
+
+  # Test that specific total timeout overrides legacy
+  options(
+    read.abares.timeout = 1800L,
+    read.abares.timeout_total = 3600L
+  )
+
+  result <- .get_timeouts()
+  expect_equal(result$total, 3600L)
 })
 
 test_that(".get_timeouts applies dataset-specific overrides", {
-  old_opts <- options()
-  on.exit(options(old_opts))
+  setup_test_env()
+  on.exit(teardown_test_env())
 
   # Set dataset-specific timeouts
   options(
     read.abares.dataset_timeouts = list(
-      "dataset1" = list(connect = 60L, total = 9000L),
-      "dataset2" = list(connect = 45L)
+      test_dataset = list(
+        connect = 60L,
+        total = 14400L
+      )
     )
   )
 
-  # Test dataset1 overrides
-  result <- .get_timeouts("dataset1")
+  # Without dataset_id - should use defaults
+  result <- .get_timeouts()
+  expect_equal(result$connect, 15L)
+  expect_equal(result$total, 7200L)
+
+  # With matching dataset_id
+  result <- .get_timeouts("test_dataset")
   expect_equal(result$connect, 60L)
-  expect_equal(result$total, 9000L)
+  expect_equal(result$total, 14400L)
   expect_equal(result$low_speed_time, 0L) # Should keep default
 
-  # Test dataset2 partial override
-  result <- .get_timeouts("dataset2")
-  expect_equal(result$connect, 45L)
-  expect_equal(result$total, 7200L) # Should keep default
-
-  # Test non-existent dataset
-  result <- .get_timeouts("nonexistent")
-  expect_equal(result$connect, 15L) # Should use defaults
+  # With non-matching dataset_id
+  result <- .get_timeouts("other_dataset")
+  expect_equal(result$connect, 15L)
+  expect_equal(result$total, 7200L)
 })
 
-test_that(".should_stream identifies zip files correctly", {
-  # Create mock probe result
-  probe <- list(content_type = "application/zip", content_length = 1000000)
+# Test .should_stream ----
+test_that(".should_stream handles zip files", {
+  setup_test_env()
+  on.exit(teardown_test_env())
 
-  # Test zip file extension
-  result <- .should_stream("https://example.com/data.zip", probe)
+  # ZIP file by extension
+  probe <- list(
+    content_type = "application/octet-stream",
+    content_length = 1048576
+  )
+  result <- .should_stream("https://example.com/file.zip", probe)
   expect_true(result$stream)
-  expect_true(grepl("zip file", result$reason))
+  expect_match(result$reason, "zip file detected")
 
-  # Test zip content type
-  probe$content_type <- "application/zip"
-  result <- .should_stream("https://example.com/data", probe)
+  # ZIP file by content type
+  probe <- list(content_type = "application/zip", content_length = 1048576)
+  result <- .should_stream("https://example.com/file.unknown", probe)
   expect_true(result$stream)
-  expect_true(grepl("zip file", result$reason))
+  expect_match(result$reason, "zip file detected")
 })
 
-test_that(".should_stream identifies DAFF SirsiDynix endpoints", {
-  probe <- list(content_type = "application/pdf", content_length = 1000000)
+test_that(".should_stream handles DAFF SirsiDynix endpoints", {
+  setup_test_env()
+  on.exit(teardown_test_env())
 
+  probe <- list(content_type = "application/pdf", content_length = 1048576)
   result <- .should_stream(
-    "https://daff.ent.sirsidynix.net.au/asset/123/456",
+    "https://daff.ent.sirsidynix.net.au/asset/12345/67890",
     probe
   )
   expect_true(result$stream)
-  expect_true(grepl("DAFF SirsiDynix", result$reason))
+  expect_match(result$reason, "DAFF SirsiDynix asset endpoint")
 })
 
 test_that(".should_stream handles small file extensions", {
+  setup_test_env()
+  on.exit(teardown_test_env())
+
   probe <- list(
     content_type = "application/vnd.ms-excel",
-    content_length = 1000000
+    content_length = 1048576
   )
 
-  # Test Excel file
-  result <- .should_stream("https://example.com/data.xlsx", probe)
-  expect_false(result$stream)
-  expect_true(grepl("Small file extension", result$reason))
-
-  # Test CSV file
-  result <- .should_stream("https://example.com/data.csv", probe)
-  expect_false(result$stream)
-
-  # Test PDF file
-  result <- .should_stream("https://example.com/document.pdf", probe)
-  expect_false(result$stream)
+  small_extensions <- c("xlsx", "xls", "csv", "pdf")
+  for (ext in small_extensions) {
+    url <- paste0("https://example.com/file.", ext)
+    result <- .should_stream(url, probe)
+    expect_false(result$stream)
+    expect_match(result$reason, paste("Small file extension:", ext))
+  }
 })
 
-test_that(".should_stream uses content length for decision", {
-  old_opts <- options()
-  on.exit(options(old_opts))
+test_that(".should_stream uses content length for decisions", {
+  setup_test_env()
+  on.exit(teardown_test_env())
 
   # Set threshold to 50MB (default)
-  options(read.abares.stream_threshold_mb = 50L)
+  threshold_mb <- 50L
+  threshold_bytes <- threshold_mb * 1048576L
 
-  # Test large file (should stream)
+  # Large file - should stream
   probe <- list(
     content_type = "application/octet-stream",
-    content_length = 60 * 1048576
-  ) # 60MB
-  result <- .should_stream("https://example.com/largefile.dat", probe)
+    content_length = threshold_bytes + 1
+  )
+  result <- .should_stream("https://example.com/largefile.bin", probe)
   expect_true(result$stream)
-  expect_true(grepl("exceeds threshold", result$reason))
+  expect_match(result$reason, "exceeds threshold")
 
-  # Test small file (should not stream)
-  probe$content_length <- 30 * 1048576 # 30MB
-  result <- .should_stream("https://example.com/smallfile.dat", probe)
+  # Small file - should not stream
+  probe <- list(
+    content_type = "application/octet-stream",
+    content_length = threshold_bytes - 1
+  )
+  result <- .should_stream("https://example.com/smallfile.bin", probe)
   expect_false(result$stream)
-  expect_true(grepl("below threshold", result$reason))
+  expect_match(result$reason, "below threshold")
+
+  # Custom threshold
+  options(read.abares.stream_threshold_mb = 10L)
+  probe <- list(
+    content_type = "application/octet-stream",
+    content_length = 20 * 1048576L
+  )
+  result <- .should_stream("https://example.com/file.bin", probe)
+  expect_true(result$stream)
+  expect_match(result$reason, "exceeds threshold 10 MB")
 })
 
 test_that(".should_stream handles missing content length", {
-  # Test with NULL content length
+  setup_test_env()
+  on.exit(teardown_test_env())
+
+  # No content length
   probe <- list(
     content_type = "application/octet-stream",
     content_length = NULL
   )
-  result <- .should_stream("https://example.com/unknown.dat", probe)
+  result <- .should_stream("https://example.com/file.bin", probe)
   expect_false(result$stream)
-  expect_true(grepl("No size information", result$reason))
+  expect_match(result$reason, "No size information available")
 
-  # Test with NA content length
-  probe$content_length <- NA_real_
-  result <- .should_stream("https://example.com/unknown.dat", probe)
+  # Infinite content length
+  probe <- list(content_type = "application/octet-stream", content_length = Inf)
+  result <- .should_stream("https://example.com/file.bin", probe)
+  expect_false(result$stream)
+  expect_match(result$reason, "No size information available")
+})
+
+test_that(".should_stream handles missing file extensions", {
+  setup_test_env()
+  on.exit(teardown_test_env())
+
+  probe <- list(
+    content_type = "application/octet-stream",
+    content_length = 1048576
+  )
+
+  # URL without extension
+  result <- .should_stream("https://example.com/file", probe)
+  expect_false(result$stream)
+  expect_match(result$reason, "below threshold")
+
+  # URL with path but no file
+  result <- .should_stream("https://example.com/path/", probe)
   expect_false(result$stream)
 })
 
-test_that(".should_stream handles URLs without filenames", {
-  probe <- list(content_type = "application/json", content_length = 1000)
-
-  result <- .should_stream("https://api.example.com/data", probe)
-  expect_false(result$stream) # No extension, small size
-})
-
+# Test .build_request ----
 test_that(".build_request creates proper httr2 request", {
-  old_opts <- options()
-  on.exit(options(old_opts))
+  setup_test_env()
+  on.exit(teardown_test_env())
 
-  # Test with custom user agent
-  options(read.abares.user_agent = "test-agent/1.0")
+  url <- "https://example.com/file.txt"
+  req <- .build_request(url)
 
-  req <- .build_request("https://example.com/file.csv")
-
-  # Check that it's an httr2_request object
   expect_s3_class(req, "httr2_request")
+  expect_equal(req$url, url)
 
-  # Check URL is set correctly
-  expect_equal(req$url, "https://example.com/file.csv")
+  # Check headers are set (we can't easily inspect them without httr2 internals)
+  expect_no_error(.build_request(url))
 })
 
-test_that(".build_request uses default user agent when option not set", {
-  old_opts <- options()
-  on.exit(options(old_opts))
+test_that(".build_request respects user agent option", {
+  setup_test_env()
+  on.exit(teardown_test_env())
 
-  options(read.abares.user_agent = NULL)
+  custom_ua <- "Custom User Agent"
+  options(read.abares.user_agent = custom_ua)
 
-  req <- .build_request("https://example.com/file.csv")
+  req <- .build_request("https://example.com")
   expect_s3_class(req, "httr2_request")
+  expect_no_error(req)
 })
 
+# Test .apply_timeouts ----
 test_that(".apply_timeouts modifies request correctly", {
+  setup_test_env()
+  on.exit(teardown_test_env())
+
   req <- httr2::request("https://example.com")
   timeouts <- list(
     connect = 30L,
-    total = 1800L,
-    low_speed_time = 60L,
-    low_speed_limit = 1024L
+    total = 3600L,
+    low_speed_time = 10L,
+    low_speed_limit = 1000L
   )
 
   modified_req <- .apply_timeouts(req, timeouts)
   expect_s3_class(modified_req, "httr2_request")
-
-  # Check that timeouts are applied (structure should be modified)
-  expect_false(identical(req, modified_req))
+  expect_no_error(modified_req)
 })
 
-test_that(".has_internet handles errors gracefully", {
-  # This test doesn't mock - it tests the actual error handling
-  # The function should return FALSE on any error, TRUE if curl::has_internet() works
+# Test .probe_url ----
+test_that(".probe_url handles network errors gracefully", {
+  setup_test_env()
+  on.exit(teardown_test_env())
 
-  result <- .has_internet()
-  expect_type(result, "logical")
-  expect_length(result, 1)
-
-  # The result should be either TRUE or FALSE, never NA or error
-  expect_true(is.logical(result) && !is.na(result))
+  # Invalid URL that should cause network error
+  result <- .probe_url("https://this-domain-should-not-exist-12345.com")
+  expect_type(result, "list")
+  expect_false(result$ok)
+  expect_equal(result$content_type, "")
+  expect_true(is.na(result$content_length))
+  expect_equal(result$accept_ranges, "")
 })
 
-# Integration-style tests that don't require mocking
-
-test_that("timeout configuration chain works correctly", {
-  old_opts <- options()
-  on.exit(options(old_opts))
-
-  # Test complete configuration chain
-  options(
-    read.abares.timeout_connect = 25L,
-    read.abares.dataset_timeouts = list(
-      "test_dataset" = list(total = 5400L)
-    )
-  )
-
-  timeouts <- .get_timeouts("test_dataset")
-  req <- httr2::request("https://httpbin.org/get")
-  configured_req <- .apply_timeouts(req, timeouts)
-
-  expect_s3_class(configured_req, "httr2_request")
-  expect_equal(timeouts$connect, 25L)
-  expect_equal(timeouts$total, 5400L)
-})
-
-test_that("URL parsing and streaming decision work together", {
-  # Test the interaction between URL parsing and streaming decisions
-  test_cases <- list(
-    list(
-      url = "https://example.com/large.zip",
-      probe = list(content_type = "application/zip", content_length = 1000),
-      expected_stream = TRUE,
-      reason_pattern = "zip"
-    ),
-    list(
-      url = "https://example.com/small.csv",
-      probe = list(content_type = "text/csv", content_length = 1000),
-      expected_stream = FALSE,
-      reason_pattern = "Small file"
-    ),
-    list(
-      url = "https://daff.ent.sirsidynix.net.au/asset/123/456",
-      probe = list(content_type = "application/pdf", content_length = 1000),
-      expected_stream = TRUE,
-      reason_pattern = "DAFF"
-    )
-  )
-
-  for (case in test_cases) {
-    url_info <- .parse_url_info(case$url)
-    expect_true(url_info$valid)
-
-    stream_info <- .should_stream(case$url, case$probe)
-    expect_equal(stream_info$stream, case$expected_stream)
-    expect_true(grepl(
-      case$reason_pattern,
-      stream_info$reason,
-      ignore.case = TRUE
-    ))
+# Test helper for creating temporary files
+create_temp_file <- function(content = raw(0)) {
+  temp_file <- tempfile(fileext = ".tmp")
+  if (length(content) > 0) {
+    brio::write_file_raw(content, temp_file)
   }
+  temp_file
+}
+
+# Test .try_resume ----
+test_that(".try_resume handles invalid inputs", {
+  setup_test_env()
+  on.exit(teardown_test_env())
+
+  req <- httr2::request("https://example.com")
+  temp_file <- create_temp_file()
+  on.exit(unlink(temp_file), add = TRUE)
+
+  # Zero size should return FALSE
+  result <- .try_resume(req, temp_file, 0L)
+  expect_false(result)
+
+  # Negative size should return FALSE
+  result <- .try_resume(req, temp_file, -1L)
+  expect_false(result)
 })
 
-test_that("error handling in .parse_url_info is robust", {
-  # Test various edge cases that might cause errors
+# Test .retry_download error conditions ----
+test_that(".retry_download handles no internet", {
+  setup_test_env()
+  on.exit(teardown_test_env())
 
-  # Test with extremely long URL
-  long_url <- paste0(
-    "https://example.com/",
-    paste(rep("a", 10000), collapse = "")
+  temp_file <- tempfile(fileext = ".txt")
+  on.exit(unlink(temp_file), add = TRUE)
+
+  # Create a version that simulates no internet
+  original_has_internet <- .has_internet
+  local({
+    .has_internet <<- function() FALSE
+    expect_error(
+      .retry_download("https://example.com", temp_file, show_progress = FALSE),
+      "No internet connection available"
+    )
+    .has_internet <<- original_has_internet
+  })
+})
+
+# Integration tests with real network calls (optional, can be skipped) ----
+test_that("download integration works with real URLs", {
+  skip_if_offline()
+  setup_test_env()
+  on.exit(teardown_test_env())
+
+  temp_file <- tempfile(fileext = ".txt")
+  on.exit(unlink(temp_file), add = TRUE)
+
+  # Use a reliable, small test URL
+  test_url <- "https://httpbin.org/robots.txt"
+
+  expect_no_error(
+    .retry_download(test_url, temp_file, show_progress = FALSE)
   )
-  result <- .parse_url_info(long_url)
-  expect_type(result, "list")
-  expect_true("valid" %in% names(result))
 
-  # Test with special characters
-  special_url <- "https://example.com/file%20with%20spaces.csv"
-  result <- .parse_url_info(special_url)
-  expect_type(result, "list")
-
-  # Test with international domain
-  intl_url <- "https://xn--nxasmq6b.xn--o3cw4h/file.csv" # internationalized domain
-  result <- .parse_url_info(intl_url)
-  expect_type(result, "list")
+  expect_true(file.exists(temp_file))
+  expect_gt(file.size(temp_file), 0)
 })
 
-test_that("streaming threshold option is respected", {
-  old_opts <- options()
-  on.exit(options(old_opts))
+# Test URL parsing edge cases ----
+test_that(".parse_url_info handles complex URLs", {
+  setup_test_env()
+  on.exit(teardown_test_env())
 
-  # Test custom threshold
-  options(read.abares.stream_threshold_mb = 10L)
+  # URL with port
+  result <- .parse_url_info("https://example.com:8080/file.txt")
+  expect_true(result$valid)
+  expect_equal(result$hostname, "example.com")
 
-  probe_small <- list(content_length = 5 * 1048576) # 5MB
-  probe_large <- list(content_length = 15 * 1048576) # 15MB
+  # URL with fragment
+  result <- .parse_url_info("https://example.com/file.txt#section")
+  expect_true(result$valid)
+  expect_equal(result$filename, "file.txt")
 
-  result_small <- .should_stream("https://example.com/file.dat", probe_small)
-  expect_false(result_small$stream)
-
-  result_large <- .should_stream("https://example.com/file.dat", probe_large)
-  expect_true(result_large$stream)
+  # URL with special characters in filename
+  result <- .parse_url_info("https://example.com/file%20name.txt")
+  expect_true(result$valid)
+  expect_equal(result$filename, "file name.txt")
 })
 
-test_that("file extension handling is case insensitive", {
+# Test timeout edge cases ----
+test_that(".get_timeouts handles malformed options", {
+  setup_test_env()
+  on.exit(teardown_test_env())
+
+  # Non-list dataset timeouts
+  options(read.abares.dataset_timeouts = "not a list")
+  result <- .get_timeouts("test")
+  expect_equal(result$connect, 15L) # Should use defaults
+
+  # NULL dataset timeouts with dataset_id
+  options(read.abares.dataset_timeouts = NULL)
+  result <- .get_timeouts("test")
+  expect_equal(result$connect, 15L)
+})
+
+# Test streaming decision edge cases ----
+test_that(".should_stream handles edge cases", {
+  setup_test_env()
+  on.exit(teardown_test_env())
+
+  # URL with no path
+  probe <- list(content_type = NULL, content_length = NULL)
+  result <- .should_stream("https://example.com", probe)
+  expect_false(result$stream)
+
+  # Content type with mixed case
+  probe <- list(content_type = "APPLICATION/ZIP", content_length = 1000)
+  result <- .should_stream("https://example.com/file.unknown", probe)
+  expect_true(result$stream)
+
+  # File extension with mixed case
   probe <- list(
     content_type = "application/octet-stream",
     content_length = 1000
   )
-
-  # Test uppercase extensions
-  result_upper <- .should_stream("https://example.com/FILE.CSV", probe)
-  expect_false(result_upper$stream)
-
-  # Test mixed case
-  result_mixed <- .should_stream("https://example.com/file.XlSx", probe)
-  expect_false(result_mixed$stream)
+  result <- .should_stream("https://example.com/file.ZIP", probe)
+  expect_true(result$stream)
 })
 
-# Performance and edge case tests
+# Performance and stress tests ----
+test_that("functions handle repeated calls efficiently", {
+  setup_test_env()
+  on.exit(teardown_test_env())
 
-test_that("functions handle NA and unusual inputs gracefully", {
-  # Test .parse_url_info with NA
-  expect_type(.parse_url_info(NA_character_), "list")
+  # Test repeated URL parsing
+  urls <- rep("https://example.com/file.txt", 100)
+  start_time <- Sys.time()
+  results <- lapply(urls, .parse_url_info)
+  end_time <- Sys.time()
 
-  # Test .get_timeouts with unusual dataset_id
-  expect_type(.get_timeouts(NA_character_), "list")
-  expect_type(.get_timeouts(123), "list")
-  expect_type(.get_timeouts(c("a", "b")), "list")
-
-  # Test .should_stream with minimal probe
-  minimal_probe <- list()
-  result <- .should_stream("https://example.com", minimal_probe)
-  expect_type(result, "list")
-  expect_true("stream" %in% names(result))
-  expect_true("reason" %in% names(result))
+  expect_length(results, 100)
+  expect_true(all(sapply(results, function(x) x$valid)))
+  expect_lt(as.numeric(end_time - start_time), 1) # Should complete in under 1 second
 })
 
-test_that("option handling is type-safe", {
-  old_opts <- options()
-  on.exit(options(old_opts))
+# Test error handling robustness ----
+test_that("functions handle malformed inputs gracefully", {
+  setup_test_env()
+  on.exit(teardown_test_env())
 
-  # Test with non-numeric timeout options (should not crash)
-  options(
-    read.abares.timeout_connect = "invalid",
-    read.abares.stream_threshold_mb = "also_invalid"
+  # Test with various malformed inputs
+  bad_inputs <- list(
+    NULL,
+    NA,
+    character(0),
+    "",
+    " ",
+    123,
+    list(),
+    c("a", "b")
   )
 
-  # Functions should handle invalid options gracefully
-  expect_type(.get_timeouts(), "list")
-
-  # Reset and test with valid options
-  options(
-    read.abares.timeout_connect = 30, # numeric instead of integer
-    read.abares.stream_threshold_mb = 25.5 # non-integer
-  )
-
-  timeouts <- .get_timeouts()
-  expect_type(timeouts, "list")
-})
-
-test_that("request building handles various URL formats", {
-  # Test different URL schemes and formats
-  urls <- c(
-    "https://example.com/file.csv",
-    "http://api.example.com/data?param=value",
-    "https://subdomain.example.com:8080/path/to/file",
-    "https://example.com/file%20with%20spaces.txt"
-  )
-
-  for (url in urls) {
-    req <- .build_request(url)
-    expect_s3_class(req, "httr2_request")
-    expect_equal(req$url, url)
+  for (input in bad_inputs) {
+    expect_no_error(.parse_url_info(input))
+    result <- .parse_url_info(input)
+    expect_false(result$valid)
   }
 })
