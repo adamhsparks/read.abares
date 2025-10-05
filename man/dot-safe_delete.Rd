@@ -2,23 +2,17 @@
 % Please edit documentation in R/utilities.R
 \name{.safe_delete}
 \alias{.safe_delete}
-\title{Safely delete a file or directory (internal)}
+\title{Safe file deletion helper.}
 \usage{
-.safe_delete(path, recursive = TRUE)
+.safe_delete(file_path)
 }
 \arguments{
-\item{path}{Path to a file or directory.}
-
-\item{recursive}{Whether to delete directories recursively (default \code{TRUE}).}
+\item{file_path}{Path to file to delete.}
 }
 \value{
-(Invisibly) \code{TRUE} if a delete was attempted; \code{FALSE} if nothing to
-delete.
+Logical indicating success.
 }
 \description{
-Attempts to delete a file or directory reliably across platforms.
-If the target doesn't exist, it does nothing and returns quietly.
-It relaxes permissions first (best-effort) to avoid failures on read-only
-paths.
+Safe file deletion helper.
 }
 \keyword{internal}

@@ -29,19 +29,14 @@
 
 view_clum_metadata_pdf <- function(commodities = FALSE) {
   if (rlang::is_interactive()) {
-    clum_metadata_pdf <- fs::path(tempdir(), "clum_metadata.pdf")
+    .x <- fs::path(tempdir(), "clum_metadata.pdf")
     .retry_download(
       url = "https://www.agriculture.gov.au/sites/default/files/documents/CLUM_DescriptiveMetadata_December2023_v2.pdf",
-      .f = clum_metadata_pdf
+      dest = .x,
+      dataset_id = "clum_commodities_metadata",
+      show_progress = TRUE
     )
     system(paste0('open "', clum_metadata_pdf, '"'))
-  } else {
-    clumc_metadata_pdf <- fs::path(tempdir(), "clumc_metadata.pdf")
-    .retry_download(
-      url = "https://www.agriculture.gov.au/sites/default/files/documents/CLUMC_DescriptiveMetadata_December2023.pdf",
-      .f = clumc_metadata_pdf
-    )
-    system(paste0('open "', clumc_metadata_pdf, '"'))
   }
   return(invisible(NULL))
 }

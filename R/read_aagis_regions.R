@@ -41,7 +41,9 @@ read_aagis_regions <- function(x = NULL) {
     if (!fs::file_exists(x)) {
       .retry_download(
         "https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip",
-        .f = x
+        dest = .x,
+        dataset_id = "abares_regions",
+        show_progress = TRUE
       )
       .unzip_file(x)
     }

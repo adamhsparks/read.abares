@@ -28,7 +28,9 @@ read_historical_national_estimates <- function(x = NULL) {
 
     .retry_download(
       "https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv",
-      .f = x
+      dest = .x,
+      dataset_id = "historical_national_estimates",
+      show_progress = TRUE
     )
   }
   x <- data.table::fread(x)

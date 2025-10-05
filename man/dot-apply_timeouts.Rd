@@ -2,19 +2,19 @@
 % Please edit documentation in R/retry_download.R
 \name{.apply_timeouts}
 \alias{.apply_timeouts}
-\title{Apply timeouts to an httr2 request (internal)}
+\title{Apply timeouts to httr2 request.}
 \usage{
-.apply_timeouts(req, t_o)
+.apply_timeouts(req, timeouts)
 }
 \arguments{
-\item{req}{An \code{httr2_request} object.}
+\item{req}{httr2_request object.}
 
-\item{t_o}{A list like that returned by \code{.dataset_timeouts()}.}
+\item{timeouts}{List of timeout values from \code{.get_timeouts()}.}
 }
 \value{
-An \code{httr2_request} with timeouts applied.
+Modified httr2_request object.
 }
 \description{
-Apply timeouts to an httr2 request (internal)
+Apply timeouts to httr2 request.
 }
 \keyword{internal}

@@ -2,11 +2,19 @@
 % Please edit documentation in R/utilities.R
 \name{\%||\%}
 \alias{\%||\%}
-\title{Return the left-hand side if it's not NULL, otherwise it return the right-hand side}
+\title{Utility operator for NULL coalescing}
 \usage{
 x \%||\% y
 }
+\arguments{
+\item{x}{First value}
+
+\item{y}{Second value (used if x is \code{NULL})}
+}
+\value{
+\code{x} if not \code{NULL}, otherwise \code{y}
+}
 \description{
-Return the left-hand side if it's not NULL, otherwise it return the right-hand side
+Utility operator for NULL coalescing
 }
 \keyword{internal}

@@ -2,37 +2,31 @@
 % Please edit documentation in R/retry_download.R
 \name{.retry_download}
 \alias{.retry_download}
-\title{Robust downloader for ABARES datasets (internal, auto streaming + resume)}
+\title{Main download function with retry logic using brio.}
 \usage{
-.retry_download(url, .f, dataset_id = NULL, stream = NULL, base_delay = 1L)
+.retry_download(
+  url,
+  dest,
+  dataset_id = NULL,
+  force_stream = NULL,
+  show_progress = TRUE
+)
 }
 \arguments{
-\item{url}{Character scalar; download URL.}
+\item{url}{URL to download.}
 
-\item{.f}{Character scalar; destination file path.}
+\item{dest}{Destination file path.}
 
-\item{dataset_id}{Character scalar or \code{NULL}; used for timeouts lookup.}
+\item{dataset_id}{Optional dataset ID for timeout configuration.}
 
-\item{stream}{Logical(1) or \code{NULL}; if \code{NULL} we auto-decide; otherwise forced.}
+\item{force_stream}{Force streaming mode (optional).}
 
-\item{base_delay}{Numeric(1); base seconds for exponential backoff.}
+\item{show_progress}{Show progress bar.}
 }
 \value{
-Invisibly returns \code{NULL}. The file is written to \code{.f} on success.
+\code{NULL} (downloads file to dest).
 }
 \description{
-Downloads a remote resource to a local file using \code{httr2}, with:
-\itemize{
-\item Retries via \code{httr2::req_retry()} and exponential backoff,
-\item Dataset-driven timeouts (see \code{.dataset_timeouts()}),
-\item Auto streaming decision by probe/heuristics; can be forced via \code{stream},
-\item \strong{Resume support} for partial files (Range + If-Range with ETag/Last-Modified),
-\item Atomic binary writes via \code{{brio}} when not streaming,
-\item A progress bar only when \code{options(read.abares.verbosity) == "verbose"},
-\item Internet availability check via \code{curl::has_internet()}.
-}
-}
-\details{
-This only downloads the file. To extract archives, call your own \code{.unzip_file()}.
+Main download function with retry logic using brio.
 }
 \keyword{internal}

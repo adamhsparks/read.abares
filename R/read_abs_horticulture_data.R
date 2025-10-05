@@ -41,7 +41,9 @@ read_abs_horticulture_data <- function(year = "latest", x = NULL) {
         year,
         gsub("-", "", year, fixed = TRUE)
       ),
-      .f = x
+      dest = .x,
+      dataset_id = "horticulture",
+      show_progress = TRUE
     )
   }
 

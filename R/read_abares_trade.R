@@ -27,7 +27,9 @@ read_abares_trade <- function(x = NULL) {
 
     .retry_download(
       url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/1",
-      .f = x
+      dest = .x,
+      dataset_id = "trade",
+      show_progress = TRUE
     )
   }
   abares_trade <- data.table::fread(x)

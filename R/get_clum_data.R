@@ -52,7 +52,9 @@
 
       .retry_download(
         url = file_url,
-        .f = .x
+        dest = .x,
+        dataset_id = "clum",
+        show_progress = TRUE
       )
       .unzip_file(.x)
     }
