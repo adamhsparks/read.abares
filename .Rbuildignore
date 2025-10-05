@@ -30,6 +30,5 @@
 ^man/dot-probe_url\.Rd$
 ^man/dot-try_resume\.Rd$
 ^man/dot-retry_download\.Rd$
-^man/dot-unzip_file\.Rd$
 ^man/grapes-or-or-grapes\.Rd$
 ^man/dot-safe_delete\.Rd$
