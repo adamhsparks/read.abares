@@ -23,10 +23,10 @@ testthat::test_that(".readabares_collaborators returns contents of installed col
 })
 
 # ---------------------------------------------------------------------------
-# readabares_user_agent() — CI branch (env var set)
+# read.abares_user_agent() — CI branch (env var set)
 # ---------------------------------------------------------------------------
 
-testthat::test_that("readabares_user_agent returns CI UA when CI env var is set", {
+testthat::test_that("read.abares_user_agent returns CI UA when CI env var is set", {
   testthat::skip_on_cran()
 
   withr::local_envvar(c("READABARES _CI" = "true"))
@@ -34,7 +34,7 @@ testthat::test_that("readabares_user_agent returns CI UA when CI env var is set"
   # Mock package version for deterministic output.
   testthat::with_mocked_bindings(
     {
-      ua <- readabares_user_agent()
+      ua <- read.abares_user_agent()
       testthat::expect_identical(
         ua,
         "read.abares R package 9.9.9 CI https://github.com/adamhsparks/read.abares"
@@ -46,10 +46,10 @@ testthat::test_that("readabares_user_agent returns CI UA when CI env var is set"
 })
 
 # ---------------------------------------------------------------------------
-# readabares_user_agent() — DEV branch (collaborator, NOT CI)
+# read.abares_user_agent() — DEV branch (collaborator, NOT CI)
 # ---------------------------------------------------------------------------
 
-testthat::test_that("readabares_user_agent returns DEV UA when gh_username is a collaborator and NOT CI", {
+testthat::test_that("read.abares_user_agent returns DEV UA when gh_username is a collaborator and NOT CI", {
   testthat::skip_on_cran()
 
   withr::local_envvar(c("READABARES _CI" = "")) # explicit NOT CI
@@ -63,7 +63,7 @@ testthat::test_that("readabares_user_agent returns DEV UA when gh_username is a 
           # 3) Mock collaborators list IN THE PACKAGE NAMESPACE to include "alice"
           testthat::with_mocked_bindings(
             {
-              ua <- readabares_user_agent()
+              ua <- read.abares_user_agent()
               testthat::expect_identical(
                 ua,
                 "read.abares R package 2.0.0 DEV https://github.com/adamhsparks/read.abares"
@@ -84,10 +84,10 @@ testthat::test_that("readabares_user_agent returns DEV UA when gh_username is a 
 })
 
 # ---------------------------------------------------------------------------
-# readabares_user_agent() — default branch (NOT CI, NOT collaborator)
+# read.abares_user_agent() — default branch (NOT CI, NOT collaborator)
 # ---------------------------------------------------------------------------
 
-testthat::test_that("readabares_user_agent returns default UA when NOT CI and user is NOT a collaborator", {
+testthat::test_that("read.abares_user_agent returns default UA when NOT CI and user is NOT a collaborator", {
   testthat::skip_on_cran()
 
   withr::local_envvar(c("READABARES _CI" = "")) # explicit NOT CI
@@ -101,7 +101,7 @@ testthat::test_that("readabares_user_agent returns default UA when NOT CI and us
           # 3) Mock collaborators list IN PACKAGE NAMESPACE to exclude 'charlie'
           testthat::with_mocked_bindings(
             {
-              ua <- readabares_user_agent()
+              ua <- read.abares_user_agent()
               testthat::expect_identical(
                 ua,
                 "read.abares R package 3.1.4 https://github.com/adamhsparks/read.abares"
@@ -123,10 +123,10 @@ testthat::test_that("readabares_user_agent returns default UA when NOT CI and us
 })
 
 # ---------------------------------------------------------------------------
-# readabares_user_agent() — robustness: gh_username errors -> default UA (NOT CI)
+# read.abares_user_agent() — robustness: gh_username errors -> default UA (NOT CI)
 # ---------------------------------------------------------------------------
 
-testthat::test_that("readabares_user_agent falls back to default UA if gh_username errors (NOT CI)", {
+testthat::test_that("read.abares_user_agent falls back to default UA if gh_username errors (NOT CI)", {
   testthat::skip_on_cran()
 
   withr::local_envvar(c("READABARES _CI" = "")) # NOT CI
@@ -137,7 +137,7 @@ testthat::test_that("readabares_user_agent falls back to default UA if gh_userna
         {
           testthat::with_mocked_bindings(
             {
-              ua <- readabares_user_agent()
+              ua <- read.abares_user_agent()
               testthat::expect_identical(
                 ua,
                 "read.abares R package 1.2.3 https://github.com/adamhsparks/read.abares"

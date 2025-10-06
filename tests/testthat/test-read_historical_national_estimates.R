@@ -53,15 +53,16 @@ test_that("when x is NULL it downloads (mocked) to tempdir and reads the CSV", {
   })
 
   last_url <- NULL
-  retry_mock <- function(url, .f) {
+  retry_mock <- function(url, dest, dataset_id, show_progress = TRUE, ...) {
     last_url <<- url
-    fs::file_copy(staged, .f, overwrite = TRUE)
-    invisible(.f)
+    fs::file_copy(staged, dest, overwrite = TRUE)
+    invisible(dest)
   }
 
   expected_url <- "https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv"
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
+    .retry_download = retry_mock,
     {
       out <- read_historical_national_estimates(x = NULL)
 
@@ -70,8 +71,7 @@ test_that("when x is NULL it downloads (mocked) to tempdir and reads the CSV", {
       expect_s3_class(out, "data.table")
       expect_identical(out$Variable, "Farm business profit")
       expect_identical(out$Year, 2021L)
-    },
-    .retry_download = retry_mock
+    }
   )
 })
 

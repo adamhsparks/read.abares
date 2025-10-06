@@ -83,15 +83,16 @@ test_that("when x is NULL it downloads (mocked) to tempdir and reads the Excel",
 
   # Capture URL and ensure the staged file is copied to the expected target
   last_url <- NULL
-  retry_mock <- function(url, .f) {
+  retry_mock <- function(url, dest, dataset_id, show_progress = TRUE, ...) {
     last_url <<- url
-    fs::file_copy(staged_xlsx, .f, overwrite = TRUE)
-    invisible(.f)
+    fs::file_copy(staged_xlsx, dest, overwrite = TRUE)
+    invisible(dest)
   }
 
   expected_url <- "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0"
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
+    .retry_download = retry_mock,
     {
       out <- read_historical_forecast_database(x = NULL)
 
@@ -120,8 +121,7 @@ test_that("when x is NULL it downloads (mocked) to tempdir and reads the Excel",
         )
       )
       expect_true(data.table::fsetequal(out, out)) # Self-equality for sanity
-    },
-    .retry_download = retry_mock
+    }
   )
 })
 
