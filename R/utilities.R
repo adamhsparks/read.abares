@@ -11,7 +11,7 @@
 #' @return Logical indicating success.
 #' @dev
 .safe_delete <- function(file_path) {
-  if (file.exists(file_path)) {
+  if (fs::file_exists(file_path)) {
     tryCatch(
       {
         fs::file_delete(file_path)
