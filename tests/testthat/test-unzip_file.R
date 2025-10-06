@@ -46,9 +46,9 @@ test_that("safe_delete deletes files and directories", {
   expect_false(fs::dir_exists(tmp_dir))
 })
 
-test_that("safe_delete returns FALSE for non-existent paths", {
+test_that("safe_delete returns TRUE for non-existent paths", {
   skip_on_cran()
 
   bogus <- fs::path(tempdir(), "does-not-exist")
-  expect_false(.safe_delete(bogus))
+  expect_true(.safe_delete(bogus))
 })
