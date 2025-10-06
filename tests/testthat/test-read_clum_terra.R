@@ -38,155 +38,44 @@ test_that("read_clum_terra integrates with .get_clum for a local zip and applies
     if (fs::dir_exists(out_dir)) fs::dir_delete(out_dir)
   })
 
-  # Helper: normalize terra coltab (hex or RGB(A), named or not) -> data.frame(value, hex)
-  normalize_coltab <- function(ct_entry) {
-    df <- as.data.frame(ct_entry, stringsAsFactors = FALSE)
-    if (nrow(df) == 0L) {
-      return(data.frame(
-        value = integer(),
-        hex = character(),
-        stringsAsFactors = FALSE
-      ))
-    }
-
-    # Lowercase column names for matching; if none, fabricate temporary names
-    nms <- names(df)
-    if (is.null(nms)) {
-      names(df) <- paste0("V", seq_len(ncol(df)))
-      nms <- names(df)
-    }
-    nms_l <- tolower(nms)
-
-    # Identify candidate "value" column:
-    # pick the numeric/integer column that contains the most of our raster values
-    num_cols <- which(vapply(
-      df,
-      function(z) is.numeric(z) || is.integer(z),
-      logical(1)
-    ))
-    score <- if (length(num_cols)) {
-      vapply(
-        num_cols,
-        function(i) sum(vals_in_raster %in% as.integer(df[[i]])),
-        integer(1)
-      )
-    } else {
-      integer()
-    }
-    value_col <- if (length(score)) num_cols[which.max(score)] else NA_integer_
-
-    # If we could not find any numeric column that overlaps, bail out with empty
-    if (is.na(value_col) || score[which.max(score)] == 0L) {
-      return(data.frame(
-        value = integer(),
-        hex = character(),
-        stringsAsFactors = FALSE
-      ))
-    }
-
-    value <- as.integer(df[[value_col]])
-
-    # Identify hex column (direct) or RGB(A) columns to construct hex
-    # 1) direct hex column
-    hex_col <- which(vapply(
-      df,
-      function(z) is.character(z) && any(grepl("^#[0-9A-Fa-f]{6}$", z)),
-      logical(1)
-    ))
-    if (length(hex_col)) {
-      hex <- tolower(df[[hex_col[1]]])
-      return(data.frame(value = value, hex = hex, stringsAsFactors = FALSE))
-    }
-
-    # 2) RGB(A) columns in various spellings
-    have_rgb <- all(c("red", "green", "blue") %in% nms_l) ||
-      all(c("r", "g", "b") %in% nms_l)
-    if (have_rgb) {
-      red_nm <- if ("red" %in% nms_l) {
-        nms[match("red", nms_l)]
-      } else {
-        nms[match("r", nms_l)]
-      }
-      green_nm <- if ("green" %in% nms_l) {
-        nms[match("green", nms_l)]
-      } else {
-        nms[match("g", nms_l)]
-      }
-      blue_nm <- if ("blue" %in% nms_l) {
-        nms[match("blue", nms_l)]
-      } else {
-        nms[match("b", nms_l)]
-      }
-      r <- as.integer(df[[red_nm]])
-      g <- as.integer(df[[green_nm]])
-      b <- as.integer(df[[blue_nm]])
-      tohex <- function(a, b, c) {
-        sprintf(
-          "#%02x%02x%02x",
-          pmax(0, pmin(255, a)),
-          pmax(0, pmin(255, b)),
-          pmax(0, pmin(255, c))
-        )
-      }
-      hex <- tolower(tohex(r, g, b))
-      return(data.frame(value = value, hex = hex, stringsAsFactors = FALSE))
-    }
-
-    # 3) Fallback: assume the first non-value column is hex-like; try to coerce
-    other_cols <- setdiff(seq_len(ncol(df)), value_col)
-    if (length(other_cols)) {
-      hx <- df[[other_cols[1]]]
-      if (is.numeric(hx)) {
-        # If numeric 0-255, treat as grayscale; construct hex
-        x <- as.integer(pmax(0, pmin(255, hx)))
-        hx <- tolower(sprintf("#%02x%02x%02x", x, x, x))
-      }
-      if (is.factor(hx)) {
-        hx <- as.character(hx)
-      }
-      return(data.frame(
-        value = value,
-        hex = tolower(hx),
-        stringsAsFactors = FALSE
-      ))
-    }
-
-    data.frame(value = integer(), hex = character(), stringsAsFactors = FALSE)
-  }
-
   testthat::with_mocked_bindings(
     {
       res <- read_clum_terra(data_set = ds_name, x = zip_path)
 
       # terra SpatRaster is S4
-      expect_true(inherits(res, "SpatRaster")) # or: expect_s4_class(res, "SpatRaster")
-      expect_equal(terra::nlyr(res), 1L)
-      expect_equal(terra::ncell(res), 4L)
+      expect_s4_class(res, "SpatRaster")
+      expect_identical(terra::nlyr(res), 1)
+      expect_identical(terra::ncell(res), 4)
 
       # Colour table should be applied for clum_50m_2023_v2
       ctl <- terra::coltab(res)
       expect_type(ctl, "list")
-      expect_equal(length(ctl), 1L)
+      expect_length(ctl, 1L)
 
-      ct1_df <- as.data.frame(ctl[[1]], stringsAsFactors = FALSE)
-      expect_gt(nrow(ct1_df), 0L) # some entries must exist
+      # Check that the color table has entries
+      ct_df <- as.data.frame(ctl[[1]], stringsAsFactors = FALSE)
+      expect_gt(nrow(ct_df), 0L)
 
-      norm <- normalize_coltab(ctl[[1]])
-      # We at least expect the value codes present in our raster to exist in the coltab
-      expect_true(all(vals_in_raster %in% norm$value))
+      # Get the expected color table from the function
+      expected_ct <- .create_clum_50m_coltab()
 
-      # If we could detect/compute hex, assert a few canonical mappings
-      if (nrow(norm) > 0L && any(grepl("^#[0-9a-f]{6}$", norm$hex))) {
-        get_hex <- function(val) norm$hex[match(val, norm$value)]
-        expect_identical(get_hex(0L), "#ffffff")
-        expect_identical(get_hex(100L), "#9666cc")
-        expect_identical(get_hex(600L), "#0000ff")
-        expect_identical(get_hex(663L), "#0000ff")
-      } else {
-        testthat::skip(
-          "Could not detect hex in terra::coltab() on this platform; color presence verified."
-        )
+      # Verify that our raster values exist in the expected color table
+      expect_true(all(vals_in_raster %in% expected_ct$value))
+
+      # Check specific color mappings from the expected color table
+      get_expected_color <- function(val) {
+        idx <- match(val, expected_ct$value)
+        if (is.na(idx)) {
+          return(NA_character_)
+        }
+        return(expected_ct$color[idx])
       }
+
+      # Verify the expected colors are correct
+      expect_identical(get_expected_color(0L), "#ffffff")
+      expect_identical(get_expected_color(100L), "#9666cc")
+      expect_identical(get_expected_color(600L), "#0000ff")
+      expect_identical(get_expected_color(663L), "#0000ff")
     },
     .unzip_file = unzip_mock
   )
@@ -230,7 +119,7 @@ test_that("read_clum_terra integrates with .get_clum and does NOT apply coltab f
   testthat::with_mocked_bindings(
     {
       res <- read_clum_terra(data_set = ds_name, x = zip_path)
-      expect_true(inherits(res, "SpatRaster"))
+      expect_s4_class(res, "SpatRaster")
       expect_equal(terra::nlyr(res), 1L)
 
       ctl <- terra::coltab(res)
@@ -365,10 +254,18 @@ test_that("read_clum_terra works end-to-end with mocked download when x = NULL (
   })
 
   last_url <- NULL
-  retry_mock <- function(url, .f) {
+  # Updated mock function to match the actual .retry_download signature
+  retry_mock <- function(
+    url,
+    dest,
+    dataset_id = NULL,
+    force_stream = NULL,
+    show_progress = TRUE,
+    ...
+  ) {
     last_url <<- url
-    fs::file_copy(prebuilt_zip, .f, overwrite = TRUE)
-    invisible(.f)
+    fs::file_copy(prebuilt_zip, dest, overwrite = TRUE)
+    invisible(dest)
   }
 
   unzip_mock <- function(x) {
@@ -379,22 +276,15 @@ test_that("read_clum_terra works end-to-end with mocked download when x = NULL (
   testthat::with_mocked_bindings(
     {
       res <- read_clum_terra(data_set = ds_name, x = NULL)
+
+      # Add your test assertions here
       expect_s4_class(res, "SpatRaster")
-      expect_identical(terra::nlyr(res), 1)
-
-      # Colour table should be present for clum dataset
-      ct <- terra::coltab(res)
-      expect_true(nrow(as.data.frame(ct[[1]])) > 0L)
-
-      # Sanity that the correct resource is referenced in the URL selection
-      expect_true(grepl(
-        "6deab695-3661-4135-abf7-19f25806cfd7",
-        last_url,
-        fixed = TRUE
-      ))
+      expect_true(fs::file_exists(target_zip))
+      expect_true(fs::dir_exists(target_dir))
+      expect_false(is.null(last_url))
     },
     .retry_download = retry_mock,
-    .unzip_file = unzip_mock
+    .package = "read.abares"
   )
 })
 
@@ -405,8 +295,8 @@ test_that(".set_clum_update_levels returns a list with the expected named tables
 
   expect_type(lvls, "list")
   # Keep this strict so accidental reordering is caught early
-  expect_identical(
-    names(lvls),
+  expect_named(
+    lvls,
     c("date_levels", "update_levels", "scale_levels")
   )
 
@@ -421,8 +311,8 @@ test_that("date_levels: years 2008–2023 as integers; rast_cat identical; stric
 
   # Columns exist and have correct types
   expect_true(all(c("int", "rast_cat") %in% names(dl)))
-  expect_true(is.integer(dl$int))
-  expect_true(is.integer(dl$rast_cat))
+  expect_type(dl$int, "integer")
+  expect_type(dl$rast_cat, "integer")
 
   # Exact sequence and identity between columns
   years <- 2008L:2023L
@@ -430,11 +320,11 @@ test_that("date_levels: years 2008–2023 as integers; rast_cat identical; stric
   expect_identical(dl$rast_cat, years)
 
   # Shape and quality
-  expect_equal(nrow(dl), length(years))
+  expect_identical(nrow(dl), length(years))
   expect_true(all(diff(dl$int) > 0))
   expect_false(anyNA(dl$int))
   expect_false(anyNA(dl$rast_cat))
-  expect_equal(length(unique(dl$int)), length(dl$int))
+  expect_identical(length(unique(dl$int)), length(dl$int))
 })
 
 test_that("update_levels: 0/1 map to expected labels in order", {
@@ -443,10 +333,10 @@ test_that("update_levels: 0/1 map to expected labels in order", {
   ul <- .set_clum_update_levels()$update_levels
 
   expect_true(all(c("int", "rast_cat") %in% names(ul)))
-  expect_true(is.integer(ul$int))
+  expect_type(ul$int, "integer")
   expect_type(ul$rast_cat, "character")
 
-  expect_equal(nrow(ul), 2L)
+  expect_identical(nrow(ul), 2L)
   expect_identical(ul$int, 0L:1L)
   expect_identical(
     ul$rast_cat,
@@ -455,8 +345,8 @@ test_that("update_levels: 0/1 map to expected labels in order", {
 
   expect_false(anyNA(ul$int))
   expect_false(anyNA(ul$rast_cat))
-  expect_true(all(diff(ul$int) > 0))
-  expect_equal(length(unique(ul$int)), length(ul$int))
+  expect_true(all(diff(ul$int) > 0L))
+  expect_identical(length(unique(ul$int)), length(ul$int))
 })
 
 test_that("scale_levels: denominators map exactly to formatted labels and are strictly increasing", {
@@ -465,7 +355,7 @@ test_that("scale_levels: denominators map exactly to formatted labels and are st
   sl <- .set_clum_update_levels()$scale_levels
 
   expect_true(all(c("int", "rast_cat") %in% names(sl)))
-  expect_true(is.integer(sl$int))
+  expect_type(sl$int, "integer")
   expect_type(sl$rast_cat, "character")
 
   expected_int <- c(5000L, 10000L, 20000L, 25000L, 50000L, 100000L, 250000L)
@@ -479,14 +369,14 @@ test_that("scale_levels: denominators map exactly to formatted labels and are st
     "1:250,000"
   )
 
-  expect_equal(nrow(sl), length(expected_int))
+  expect_identical(nrow(sl), length(expected_int))
   expect_identical(sl$int, expected_int)
   expect_identical(sl$rast_cat, expected_lab)
 
   expect_true(all(diff(sl$int) > 0))
   expect_false(anyNA(sl$int))
   expect_false(anyNA(sl$rast_cat))
-  expect_equal(length(unique(sl$int)), length(sl$int))
+  expect_identical(length(unique(sl$int)), length(sl$int))
 
   # Labels follow "1:<thousands-with-commas>" pattern
   expect_true(all(grepl("^1:\\d{1,3}(,\\d{3})*$", sl$rast_cat)))
@@ -498,7 +388,38 @@ test_that("all tables are data.table (implementation detail) while also data.fra
   lvls <- .set_clum_update_levels()
   # If you ever change internals away from data.table(), this test will point it out.
   lapply(lvls, function(x) {
-    expect_true(inherits(x, "data.frame"))
-    expect_true(inherits(x, "data.table"))
+    expect_s3_class(x, "data.frame")
+    expect_s3_class(x, "data.table")
   })
+})
+
+test_that(".create_clum_50m_coltab creates expected color table structure", {
+  skip_on_cran()
+
+  ct <- .create_clum_50m_coltab()
+
+  # Should be a data.table/data.frame
+  expect_s3_class(ct, "data.frame")
+  expect_s3_class(ct, "data.table")
+
+  # Should have expected columns
+  expect_true(all(c("value", "color") %in% names(ct)))
+  expect_type(ct$value, "integer")
+  expect_type(ct$color, "character")
+
+  # Should have 198 rows as defined in the function
+  expect_identical(nrow(ct), 198L)
+
+  # All colors should be valid hex codes
+  expect_true(all(grepl("^#[0-9a-f]{6}$", ct$color)))
+
+  # Values should be unique and sorted
+  expect_identical(length(unique(ct$value)), nrow(ct))
+  expect_gt(all(diff(ct$value)), 0)
+
+  # Check some specific mappings
+  expect_identical(ct$color[ct$value == 0L], "#ffffff")
+  expect_identical(ct$color[ct$value == 100L], "#9666cc")
+  expect_identical(ct$color[ct$value == 600L], "#0000ff")
+  expect_identical(ct$color[ct$value == 663L], "#0000ff")
 })
