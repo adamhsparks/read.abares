@@ -38,7 +38,7 @@ NULL
 #' @author Adam H. Sparks and Maëlle Salmon
 #' @source <https://github.com/EMODnet/emodnet.wfs/blob/69ca933e5a4154cb651b1d3158072f86d0a7ccb9/R/emodnet.wfs-package.R>.
 #' @dev
-readabares_user_agent <- function() {
+read.abares_user_agent <- function() {
   readabares_version_string <- as.character(utils::packageVersion(
     "read.abares"
   ))
