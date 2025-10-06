@@ -264,7 +264,7 @@
   tryCatch(
     {
       resp <- httr2::req_perform_stream(resume_req, function(chunk) {
-        brio::write_file_raw(chunk, dest, append = TRUE)
+        brio::write_file_raw(chunk, dest)
       })
 
       httr2::resp_status(resp) == 206L # Partial Content
