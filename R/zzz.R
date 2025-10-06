@@ -1,7 +1,3 @@
-# Small helper: base R has no %||%
-#' @noRd
-`%||%` <- function(x, y) if (is.null(x)) y else x
-
 # Internal: map read.abares.verbosity to derived options
 #' @noRd
 .map_verbosity <- function(verbosity) {
@@ -72,7 +68,7 @@
   }
 
   ua <- tryCatch(
-    withr::with_options(list(warn = 0L), readabares_user_agent()),
+    withr::with_options(list(warn = 0L), read.abares_user_agent()),
     error = function(e) {
       ver <- tryCatch(
         as.character(utils::packageVersion("read.abares")),
@@ -85,6 +81,7 @@
   op.read.abares <- list(
     read.abares.user_agent = ua,
     read.abares.timeout = 5000L,
+    read.abares.timeout_connect = 20L,
     read.abares.max_tries = 3L,
     read.abares.verbosity = "verbose"
   )
