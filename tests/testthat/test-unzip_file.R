@@ -34,7 +34,7 @@ test_that("safe_delete deletes files and directories", {
   tmp_file <- withr::local_tempfile()
   writeLines("delete me", tmp_file)
   expect_true(fs::file_exists(tmp_file))
-  expect_invisible(.safe_delete(tmp_file))
+  expect_true(.safe_delete(tmp_file))
   expect_false(fs::file_exists(tmp_file))
 
   # Directory deletion
@@ -42,7 +42,7 @@ test_that("safe_delete deletes files and directories", {
   file_in_dir <- fs::path(tmp_dir, "file.txt")
   writeLines("delete me too", file_in_dir)
   expect_true(fs::dir_exists(tmp_dir))
-  expect_invisible(.safe_delete(tmp_dir))
+  expect_true(.safe_delete(tmp_dir))
   expect_false(fs::dir_exists(tmp_dir))
 })
 
