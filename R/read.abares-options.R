@@ -7,6 +7,7 @@
 #' \describe{
 #'   \item{`read.abares.user_agent`}{Character string to set a custom user agent for web requests. Default is `read.abares R package {version no.} https://github.com/adamhsparks/read.abares`.}
 #'   \item{`read.abares.timeout`}{Integer providing the timeout in seconds for download operations. Default is `2000`.}
+#'   \item{`read.abares.timeout_connect`}{Integer providing the connection timeout in seconds. Default is `20`.}
 #'   \item{`read.abares.max_tries`}{Integer providing the number of times to retry download before giving up. Default is `3`.}
 #'   \item{`read.abares.quiet`}{Set the desired level of verbosity.
 #'    * "quiet" - no messages at all but errors will be reported,
