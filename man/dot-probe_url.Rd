@@ -2,7 +2,7 @@
 % Please edit documentation in R/retry_download.R
 \name{.probe_url}
 \alias{.probe_url}
-\title{Core download functionality}
+\title{Probe URL for headers and metadata}
 \usage{
 .probe_url(url)
 }
@@ -13,7 +13,6 @@
 List with response metadata.
 }
 \description{
-Main download functions with probing, streaming, and resume capabilities.
-Probe URL for headers and metadata.
+Probe URL for headers and metadata
 }
 \keyword{internal}

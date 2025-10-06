@@ -2,7 +2,7 @@
 % Please edit documentation in R/retry_download.R
 \name{.should_stream}
 \alias{.should_stream}
-\title{Determine if streaming should be used.}
+\title{Determine if streaming should be used}
 \usage{
 .should_stream(url, probe)
 }
@@ -15,6 +15,6 @@
 List with stream decision and reason.
 }
 \description{
-Determine if streaming should be used.
+Determine if streaming should be used
 }
 \keyword{internal}

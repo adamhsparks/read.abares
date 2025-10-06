@@ -2,7 +2,7 @@
 % Please edit documentation in R/retry_download.R
 \name{.try_resume}
 \alias{.try_resume}
-\title{Try to resume a partial download using brio.}
+\title{Try to resume a partial download using brio}
 \usage{
 .try_resume(req, dest, existing_size)
 }
@@ -17,6 +17,6 @@
 Logical indicating if resume was successful.
 }
 \description{
-Try to resume a partial download using brio.
+Try to resume a partial download using brio
 }
 \keyword{internal}

@@ -19,7 +19,7 @@
   )
 }
 
-#' Parse URL information.
+#' Parse URL information
 #' @param url Character string URL to parse.
 #' @return List with parsed URL components.
 #' @dev
@@ -58,7 +58,7 @@
   )
 }
 
-#' Get timeout configuration.
+#' Get timeout configuration
 #' @param dataset_id Optional dataset identifier for custom timeouts.
 #' @return List of timeout values.
 #' @dev
@@ -94,7 +94,7 @@
   defaults
 }
 
-#' Determine if streaming should be used.
+#' Determine if streaming should be used
 #' @param url Original URL.
 #' @param probe Probe result from `.probe_url()`.
 #' @return List with stream decision and reason.
@@ -161,7 +161,7 @@
   list(stream = FALSE, reason = "No size information available")
 }
 
-#' Build httr2 request with standard headers.
+#' Build httr2 request with standard headers
 #' @param url Request URL.
 #' @return httr2_request object.
 #' @dev
@@ -176,7 +176,7 @@
     )
 }
 
-#' Apply timeouts to httr2 request.
+#' Apply timeouts to httr2 request
 #' @param req httr2_request object.
 #' @param timeouts List of timeout values from `.get_timeouts()`.
 #' @return Modified httr2_request object.
@@ -192,11 +192,10 @@
 }
 
 
-#' Core download functionality
-#'
-#' Main download functions with probing, streaming, and resume capabilities.
+# Core download functionality ------
+# Main download functions with probing, streaming, and resume capabilities.
 
-#' Probe URL for headers and metadata.
+#' Probe URL for headers and metadata
 #' @param url URL to probe.
 #' @return List with response metadata.
 #' @dev
@@ -248,7 +247,7 @@
   )
 }
 
-#' Try to resume a partial download using brio.
+#' Try to resume a partial download using brio
 #' @param req httr2_request object.
 #' @param dest Destination file path.
 #' @param existing_size Size of existing partial file.
@@ -276,7 +275,7 @@
   )
 }
 
-#' Main download function with retry logic using brio.
+#' Main download function with retry logic using brio
 #' @param url URL to download.
 #' @param dest Destination file path.
 #' @param dataset_id Optional dataset ID for timeout configuration.
@@ -346,7 +345,7 @@
         }
 
         # Full streaming download - initialize empty file first
-        brio::write_file_raw(raw(0), dest)
+        brio::write_file_raw(raw(0L), dest)
 
         resp <- httr2::req_perform_stream(req, function(chunk) {
           brio::write_file_raw(chunk, dest, append = TRUE)

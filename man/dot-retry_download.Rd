@@ -2,7 +2,7 @@
 % Please edit documentation in R/retry_download.R
 \name{.retry_download}
 \alias{.retry_download}
-\title{Main download function with retry logic using brio.}
+\title{Main download function with retry logic using brio}
 \usage{
 .retry_download(
   url,
@@ -27,6 +27,6 @@
 \code{NULL} (downloads file to dest).
 }
 \description{
-Main download function with retry logic using brio.
+Main download function with retry logic using brio
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/retry_download.R
 \name{.apply_timeouts}
 \alias{.apply_timeouts}
-\title{Apply timeouts to httr2 request.}
+\title{Apply timeouts to httr2 request}
 \usage{
 .apply_timeouts(req, timeouts)
 }
@@ -15,6 +15,6 @@
 Modified httr2_request object.
 }
 \description{
-Apply timeouts to httr2 request.
+Apply timeouts to httr2 request
 }
 \keyword{internal}

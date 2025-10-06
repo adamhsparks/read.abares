@@ -2,7 +2,7 @@
 % Please edit documentation in R/retry_download.R
 \name{.get_timeouts}
 \alias{.get_timeouts}
-\title{Get timeout configuration.}
+\title{Get timeout configuration}
 \usage{
 .get_timeouts(dataset_id = NULL)
 }
@@ -13,6 +13,6 @@
 List of timeout values.
 }
 \description{
-Get timeout configuration.
+Get timeout configuration
 }
 \keyword{internal}

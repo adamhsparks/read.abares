@@ -11,8 +11,8 @@
 #' it's serviced in this package.
 #' @param data_set A string value providing the desired livestock data, one of:
 #' \describe{
-#'  \item{livestock_and_products}{(default) value of livestock disposals and products by Australia, state and territory.}
-#'  \item{cattle_herd}{Cattle herd experimental estimates by Australia, state and territory.}
+#'  \item{livestock_and_products}{(default) value of livestock disposals and products by Australia, state and territory,}
+#'  \item{cattle_herd}{Cattle herd experimental estimates by Australia, state and territory,}
 #'  \item{cattle_herd_series}{Cattle herd experimental and historical estimates by Australia, state and territory – 2005 to 2024.}
 #' }
 #' @inheritParams read_aagis_regions

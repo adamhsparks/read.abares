@@ -7,12 +7,12 @@
 x \%||\% y
 }
 \arguments{
-\item{x}{First value}
+\item{x}{First value.}
 
-\item{y}{Second value (used if x is \code{NULL})}
+\item{y}{Second value (used if x is \code{NULL}).}
 }
 \value{
-\code{x} if not \code{NULL}, otherwise \code{y}
+\code{x} if not \code{NULL}, otherwise \code{y}.
 }
 \description{
 Utility operator for NULL coalescing

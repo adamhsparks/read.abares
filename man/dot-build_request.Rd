@@ -2,7 +2,7 @@
 % Please edit documentation in R/retry_download.R
 \name{.build_request}
 \alias{.build_request}
-\title{Build httr2 request with standard headers.}
+\title{Build httr2 request with standard headers}
 \usage{
 .build_request(url)
 }
@@ -13,6 +13,6 @@
 httr2_request object.
 }
 \description{
-Build httr2 request with standard headers.
+Build httr2 request with standard headers
 }
 \keyword{internal}

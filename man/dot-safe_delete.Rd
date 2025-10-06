@@ -2,7 +2,7 @@
 % Please edit documentation in R/utilities.R
 \name{.safe_delete}
 \alias{.safe_delete}
-\title{Safe file deletion helper.}
+\title{Safe file deletion helper}
 \usage{
 .safe_delete(file_path)
 }
@@ -13,6 +13,6 @@
 Logical indicating success.
 }
 \description{
-Safe file deletion helper.
+Safe file deletion helper
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/retry_download.R
 \name{.parse_url_info}
 \alias{.parse_url_info}
-\title{Parse URL information.}
+\title{Parse URL information}
 \usage{
 .parse_url_info(url)
 }
@@ -13,6 +13,6 @@
 List with parsed URL components.
 }
 \description{
-Parse URL information.
+Parse URL information
 }
 \keyword{internal}
