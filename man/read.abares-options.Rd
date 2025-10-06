@@ -12,6 +12,7 @@ The following options can be set via \code{\link[=options]{options()}} to contro
 \describe{
    \item{\code{read.abares.user_agent}}{Character string to set a custom user agent for web requests. Default is \verb{read.abares R package \{version no.\} https://github.com/adamhsparks/read.abares}.}
    \item{\code{read.abares.timeout}}{Integer providing the timeout in seconds for download operations. Default is \code{2000}.}
+\item{\code{read.abares.timeout_connect}}{Integer providing the connection timeout in seconds. Default is \code{20}.}
 \item{\code{read.abares.max_tries}}{Integer providing the number of times to retry download before giving up. Default is \code{3}.}
 \item{\code{read.abares.quiet}}{Set the desired level of verbosity.
 \itemize{
