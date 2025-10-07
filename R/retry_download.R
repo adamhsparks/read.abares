@@ -270,7 +270,7 @@
 
   tryCatch(
     {
-      resp <- httr2::req_perform_stream(resume_req, function(chunk) {
+      resp <- httr2::req_perform_connection(resume_req, function(chunk) {
         # Append to existing file instead of overwriting
         con <- file(dest, "ab")
         on.exit(close(con))
@@ -358,7 +358,7 @@
         # Full streaming download - initialize empty file first
         brio::write_file_raw(raw(0L), dest)
 
-        resp <- httr2::req_perform_stream(req, function(chunk) {
+        resp <- httr2::req_perform_connection(req, function(chunk) {
           # Append to file instead of overwriting
           con <- file(dest, "ab")
           on.exit(close(con))
