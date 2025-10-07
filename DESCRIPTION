@@ -47,6 +47,7 @@ Imports:
     whoami
 Suggests: 
     bit64,
+    future,
     httptest2,
     knitr,
     pander,
