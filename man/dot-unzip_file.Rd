@@ -13,8 +13,9 @@
 Invisible directory path, called for side effects.
 }
 \description{
-Unzips the provided zip file into a folder named after the zip (without .zip).
-If unzipping fails, it will return an error and delete the corrupted zip file
-and any partially-created extract directory.
+Unzips the provided zip file into a folder named after the zip (without
+.zip).
+If unzipping fails, it will return an error and delete any partially-created
+extract directory.
 }
 \keyword{internal}
