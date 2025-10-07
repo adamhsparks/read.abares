@@ -34,9 +34,7 @@
     .x <- fs::path(tempdir(), "topsoil_thick.zip")
     .retry_download(
       "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
-      dest = .x,
-      dataset_id = "soil_thickness",
-      show_progress = TRUE
+      dest = .x
     )
   }
 
