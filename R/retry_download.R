@@ -87,12 +87,19 @@
 
   # Apply dataset-specific overrides if available
   dataset_timeouts <- getOption("read.abares.dataset_timeouts", list())
-  if (!is.null(dataset_id) && !is.null(dataset_timeouts[[dataset_id]])) {
+
+  # Check that dataset_timeouts is actually a list and dataset_id exists
+  if (
+    !is.null(dataset_id) &&
+      is.list(dataset_timeouts) &&
+      !is.null(dataset_timeouts[[dataset_id]])
+  ) {
     defaults <- utils::modifyList(defaults, dataset_timeouts[[dataset_id]])
   }
 
   defaults
 }
+
 
 #' Determine if streaming should be used
 #' @param url Original URL.
@@ -264,7 +271,10 @@
   tryCatch(
     {
       resp <- httr2::req_perform_stream(resume_req, function(chunk) {
-        brio::write_file_raw(chunk, dest)
+        # Append to existing file instead of overwriting
+        con <- file(dest, "ab")
+        on.exit(close(con))
+        writeBin(chunk, con)
       })
 
       httr2::resp_status(resp) == 206L # Partial Content
@@ -274,6 +284,7 @@
     }
   )
 }
+
 
 #' Main download function with retry logic using brio
 #' @param url URL to download.
@@ -348,13 +359,17 @@
         brio::write_file_raw(raw(0L), dest)
 
         resp <- httr2::req_perform_stream(req, function(chunk) {
-          brio::write_file_raw(chunk, dest)
+          # Append to file instead of overwriting
+          con <- file(dest, "ab")
+          on.exit(close(con))
+          writeBin(chunk, con)
         })
         httr2::resp_check_status(resp)
       } else {
-        # Buffered download
         resp <- httr2::req_perform(req)
         httr2::resp_check_status(resp)
+
+        # Write the response body to file
         brio::write_file_raw(httr2::resp_body_raw(resp), dest)
       }
 
