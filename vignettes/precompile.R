@@ -23,7 +23,7 @@ build_vignettes()
 
 # move resource files to /docs
 resources <-
-  list.xs("vignettes/", pattern = ".png$", full.names = TRUE)
+  list.files("vignettes/", pattern = ".png$", full.names = TRUE)
 file.copy(
   from = resources,
   to = here("doc"),
