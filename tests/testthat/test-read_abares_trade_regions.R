@@ -18,7 +18,7 @@ test_that("read_abares_trade_regions() downloads via mocked .retry_download and 
       show_progress = TRUE
     ) {
       testthat::expect_match(url, "/client/en_AU/search/asset/1033841/2$")
-      testthat::expect_identical(basename(dest), "trade_regions")
+      testthat::expect_identical(fs::path_file(dest), "trade_regions")
 
       fs::dir_create(fs::path_dir(dest), recurse = TRUE)
       writeLines(csv_text, dest, useBytes = TRUE)
@@ -37,8 +37,8 @@ test_that("read_abares_trade_regions() downloads via mocked .retry_download and 
       expect_identical(nrow(res), 2L)
 
       # Column names as in the source (no renaming occurs in this function)
-      expect_identical(
-        names(res),
+      expect_named(
+        res,
         c("Region", "State", "Australian_port", "Value")
       )
 
@@ -80,8 +80,8 @@ test_that("read_abares_trade_regions() reads a provided local file and does not 
 
       expect_s3_class(res, "data.table")
       expect_identical(nrow(res), 2L)
-      expect_identical(
-        names(res),
+      expect_named(
+        res,
         c("Region", "State", "Australian_port", "Value")
       )
 
