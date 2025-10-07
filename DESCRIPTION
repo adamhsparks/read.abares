@@ -25,6 +25,7 @@ BugReports: https://github.com/adamhsparks/read.abares/issues
 Depends: 
     R (>= 4.1.0)
 Imports: 
+    archive,
     brio,
     cli,
     curl,
