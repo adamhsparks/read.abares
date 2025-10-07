@@ -63,7 +63,7 @@ read_abs_broadacre_data <- function(
         crops,
         gsub("-", "", year, fixed = TRUE)
       ),
-      dest = .x,
+      dest = x,
       dataset_id = "broadacre",
       show_progress = TRUE
     )
