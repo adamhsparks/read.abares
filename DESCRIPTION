@@ -63,7 +63,6 @@ VignetteBuilder:
 Config/Needs/build: moodymudskipper/devtag
 Config/roxyglobals/filename: globals.R
 Config/roxyglobals/unique: FALSE
-Config/roxylint: list(linters = roxylint::tidy)
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
