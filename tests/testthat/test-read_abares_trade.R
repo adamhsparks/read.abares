@@ -12,9 +12,11 @@ test_that("read_abares_trade() uses .retry_download (mocked) and parses/renames 
   called <- FALSE
 
   testthat::with_mocked_bindings(
-    .retry_download = function(url, .f, base_delay = 1L) {
+    .retry_download = function(url, dest, dataset_id, show_progress) {
       testthat::expect_match(url, "/client/en_AU/search/asset/1033841/1$")
-      testthat::expect_identical(basename(.f), "abares_trade_data.zip")
+      testthat::expect_identical(basename(dest), "abares_trade_data.zip")
+      testthat::expect_identical(dataset_id, "trade")
+      testthat::expect_true(show_progress)
 
       tmp_dir <- withr::local_tempdir()
       csv_path <- fs::path(tmp_dir, "abares_trade_data.csv")
@@ -22,7 +24,7 @@ test_that("read_abares_trade() uses .retry_download (mocked) and parses/renames 
 
       # Use the provided helper to create a *real* zip archive
       create_zip(
-        zip_path = .f,
+        zip_path = dest,
         files_dir = tmp_dir,
         files_rel = "abares_trade_data.csv"
       )
