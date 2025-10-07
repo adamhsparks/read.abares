@@ -11,7 +11,9 @@
 .has_internet <- function() {
   tryCatch(
     {
-      curl::has_internet()
+      # Try a simple DNS lookup instead
+      curl::nslookup("www.google.com", error = FALSE)
+      TRUE
     },
     error = function(e) {
       FALSE
