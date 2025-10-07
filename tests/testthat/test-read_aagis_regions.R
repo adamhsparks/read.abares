@@ -1,5 +1,5 @@
 test_that("read_aagis_regions reads and cleans data from a provided local ZIP", {
-  skip_on_cran()
+  testthat::skip_on_cran()
   testthat::skip_if_not_installed("sf")
 
   # Build a minimal shapefile matching the expected on-disk structure:
@@ -90,7 +90,7 @@ test_that("read_aagis_regions reads and cleans data from a provided local ZIP", 
 })
 
 test_that("read_aagis_regions works with x = NULL by mocking download + unzip", {
-  skip_on_cran()
+  testthat::skip_on_cran()
   testthat::skip_if_not_installed("sf")
 
   # Build a fresh payload and staged ZIP we'll 'download' via mocking
@@ -137,9 +137,16 @@ test_that("read_aagis_regions works with x = NULL by mocking download + unzip", 
     files_rel = files_rel
   )
 
-  # We’ll capture where the function plans to put the temp zip
+  # Ensure a clean slate where the function expects to place the temp zip
   # (read_aagis_regions uses fs::path(tempdir(), "aagis.zip") when x = NULL)
   expected_temp_zip <- fs::path(tempdir(), "aagis.zip")
+  expected_unzip_dir <- fs::path(tempdir(), "aagis")
+  if (fs::file_exists(expected_temp_zip)) {
+    fs::file_delete(expected_temp_zip)
+  }
+  if (fs::dir_exists(expected_unzip_dir)) {
+    fs::dir_delete(expected_unzip_dir)
+  }
 
   res <- testthat::with_mocked_bindings(
     {
@@ -147,10 +154,10 @@ test_that("read_aagis_regions works with x = NULL by mocking download + unzip", 
         read_aagis_regions(x = NULL)
       })
     },
-    .retry_download = function(url, .f) {
+    .retry_download = function(url, dest, dataset_id, show_progress) {
       # Simulate a successful download by copying our staged ZIP to the target
-      fs::file_copy(staged_zip, .f, overwrite = TRUE)
-      invisible(.f)
+      fs::file_copy(staged_zip, dest, overwrite = TRUE)
+      invisible(dest)
     },
     .unzip_file = function(x) {
       utils::unzip(x, exdir = fs::path_dir(x))
@@ -173,7 +180,7 @@ test_that("read_aagis_regions works with x = NULL by mocking download + unzip", 
 })
 
 test_that("read_aagis_regions leaves no legacy columns", {
-  skip_on_cran()
+  testthat::skip_on_cran()
   testthat::skip_if_not_installed("sf")
 
   td <- withr::local_tempdir()
