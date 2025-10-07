@@ -2,31 +2,36 @@
 % Please edit documentation in R/retry_download.R
 \name{.retry_download}
 \alias{.retry_download}
-\title{Main download function with retry logic using brio}
+\title{Use httr2 to fetch a file with retries}
 \usage{
-.retry_download(
-  url,
-  dest,
-  dataset_id = NULL,
-  force_stream = NULL,
-  show_progress = TRUE
-)
+.retry_download(url, dest, .max_tries = 3L)
 }
 \arguments{
-\item{url}{URL to download.}
+\item{url}{\code{Character} The URL being requested.}
 
-\item{dest}{Destination file path.}
+\item{.max_tries}{\code{Integer} The number of times to retry a failed download
+before emitting an error message.}
 
-\item{dataset_id}{Optional dataset ID for timeout configuration.}
+\item{.f}{\code{Character} A filepath to be written to local storage.}
 
-\item{force_stream}{Force streaming mode (optional).}
-
-\item{show_progress}{Show progress bar.}
+\item{.initial_delay}{\code{Integer} The number of seconds to delay before
+retrying the download.  This increases as the tries increment.}
 }
 \value{
-\code{NULL} (downloads file to dest).
+Called for its side-effects, writes an object to the specified
+director for reading into the active \R session later.
 }
 \description{
-Main download function with retry logic using brio
+Retries to download the requested resource before stopping. Uses
+\CRANpkg{httr2} to cache in-session results in the \code{tempdir()}.
+}
+\examples{
+
+f <- fs::path(tempdir(), "fdp-beta-national-historical.csv")
+.retry_download(
+  url = "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-national-historical.csv",
+  dest = f
+)
+
 }
 \keyword{internal}
