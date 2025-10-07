@@ -20,7 +20,7 @@ test_that("reads from a provided local CSV path, reorders columns, and sets key 
   out <- read_estimates_by_size(x = tmp_csv)
 
   # Type and shape
-  expect_true(data.table::is.data.table(out))
+  expect_s3_class(out, "data.table")
   expect_identical(nrow(out), nrow(DT_in))
 
   # Exact column order enforced by the function
@@ -66,37 +66,36 @@ test_that("when x is NULL it downloads (mocked) to tempdir and reads/reorders/ke
 
   # Capture URL and ensure the staged file is copied to the expected target
   last_url <- NULL
-  retry_mock <- function(url, .f) {
+  retry_mock <- function(url, dest, dataset_id, show_progress) {
     last_url <<- url
-    fs::file_copy(staged_csv, .f, overwrite = TRUE)
-    invisible(.f)
+    fs::file_copy(staged_csv, dest, overwrite = TRUE)
+    invisible(dest)
   }
 
   expected_url <- "https://www.agriculture.gov.au/sites/default/files/documents/fdp-performance-by-size.csv"
 
-  testthat::with_mocked_bindings(
-    {
-      out <- read_estimates_by_size(x = NULL)
-
-      # The function should have requested the right URL
-      expect_identical(last_url, expected_url)
-      # Target must now exist
-      expect_true(fs::file_exists(target_csv))
-
-      # Output must be a data.table with correct order and key
-      expect_s3_class(out, "data.table")
-      expect_named(
-        out,
-        c("Variable", "Year", "Size", "Industry", "Value", "RSE")
-      )
-      expect_true(data.table::haskey(out))
-      expect_identical(data.table::key(out), "Variable")
-
-      # Content equality ignoring row order
-      expect_true(data.table::fsetequal(out, DT_stage))
-    },
+  local_mocked_bindings(
     .retry_download = retry_mock
   )
+
+  out <- read_estimates_by_size(x = NULL)
+
+  # The function should have requested the right URL
+  expect_identical(last_url, expected_url)
+  # Target must now exist
+  expect_true(fs::file_exists(target_csv))
+
+  # Output must be a data.table with correct order and key
+  expect_s3_class(out, "data.table")
+  expect_named(
+    out,
+    c("Variable", "Year", "Size", "Industry", "Value", "RSE")
+  )
+  expect_true(data.table::haskey(out))
+  expect_identical(data.table::key(out), "Variable")
+
+  # Content equality ignoring row order
+  expect_true(data.table::fsetequal(out, DT_stage))
 })
 
 test_that("alias read_est_by_size returns identical results", {
@@ -116,8 +115,8 @@ test_that("alias read_est_by_size returns identical results", {
   a <- read_estimates_by_size(x = tmp_csv)
   b <- read_est_by_size(x = tmp_csv)
 
-  expect_true(data.table::is.data.table(a))
-  expect_true(data.table::is.data.table(b))
+  expect_s3_class(a, "data.table")
+  expect_s3_class(b, "data.table")
   expect_true(data.table::fsetequal(a, b))
   # Also ensure both reorder columns and set the key
   expect_named(
