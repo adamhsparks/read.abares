@@ -50,7 +50,7 @@
   metadata <- readtext::readtext(md_idx)
 
   out <- list(metadata = metadata$text, data = x)
-  class(out) <- union("read.abares.topsoil.thickness", class(out))
+  class(out) <- union("read.abares.topsoil.thickness.files", class(out))
   out
 }
 
@@ -128,7 +128,9 @@ print.read.abares.topsoil.thickness.files <- function(x, ...) {
 #'
 #' @export
 print_topsoil_thickness_metadata <- function(x) {
-  x <- .get_topsoil_thickness(.x = NULL)
+  if (missing(x) || is.null(x)) {
+    x <- .get_topsoil_thickness(.x = NULL)
+  }
   loc <- stringr::str_locate(
     x$metadata,
     stringr::fixed("Custodian", ignore_case = FALSE)
