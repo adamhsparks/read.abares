@@ -3,17 +3,9 @@
 utils::globalVariables(c(
   "region_code", # <parse_abs_production_data>
   "data_item", # <parse_abs_production_data>
-  ".x", # <read_aagis_regions>
-  ".x", # <read_abares_trade>
   "Year_month", # <read_abares_trade>
-  ".x", # <read_abs_broadacre_data>
-  ".x", # <read_abs_horticulture_data>
-  ".x", # <read_abs_livestock_data>
   "lat", # <read_agfd_dt>
   "lon", # <read_agfd_dt>
-  ".x", # <read_clum_commodities>
-  ".x", # <read_estimates_by_performance_category>
-  ".x", # <read_estimates_by_size>
   "Month_issued", # <read_historical_forecast_database>
   "clum_metadata_pdf", # <view_clum_metadata_pdf>
   NULL
