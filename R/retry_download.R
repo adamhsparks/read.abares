@@ -348,7 +348,7 @@
         brio::write_file_raw(raw(0L), dest)
 
         resp <- httr2::req_perform_stream(req, function(chunk) {
-          brio::write_file_raw(chunk, dest, append = TRUE)
+          brio::write_file_raw(chunk, dest)
         })
         httr2::resp_check_status(resp)
       } else {
