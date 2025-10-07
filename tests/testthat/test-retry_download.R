@@ -525,7 +525,7 @@ test_that("functions handle repeated calls efficiently", {
   end_time <- Sys.time()
 
   expect_length(results, 100L)
-  expect_true(all(sapply(results, function(x) x$valid)))
+  expect_true(all(vapply(results, function(x) x$valid, logical(1L))))
   expect_lt(as.numeric(end_time - start_time), 1L) # Should complete in under 1 second
 })
 

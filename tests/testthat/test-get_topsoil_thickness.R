@@ -50,15 +50,14 @@ test_that(".get_topsoil_thickness works with valid zip file", {
     metadata_path <- fs::path(test_dir, "ANZCW1202000149.txt")
     create_test_metadata(metadata_path)
 
-    # Create zip file using base R zip
+    # Create zip file using base R zip with withr::with_dir
     test_zip <- fs::path("test_topsoil.zip")
-    old_wd <- getwd()
-    setwd(test_dir)
-    utils::zip(
-      zipfile = file.path("..", "test_topsoil.zip"),
-      files = list.files()
-    )
-    setwd(old_wd)
+    withr::with_dir(test_dir, {
+      utils::zip(
+        zipfile = file.path("..", "test_topsoil.zip"),
+        files = list.files()
+      )
+    })
 
     # Test the function
     result <- .get_topsoil_thickness(.x = test_zip)
@@ -87,13 +86,12 @@ test_that(".get_topsoil_thickness returns correct class structure", {
     create_test_metadata(metadata_path)
 
     test_zip <- fs::path("structure_test.zip")
-    old_wd <- getwd()
-    setwd(test_dir)
-    utils::zip(
-      zipfile = file.path("..", "structure_test.zip"),
-      files = list.files()
-    )
-    setwd(old_wd)
+    withr::with_dir(test_dir, {
+      utils::zip(
+        zipfile = file.path("..", "structure_test.zip"),
+        files = list.files()
+      )
+    })
 
     result <- .get_topsoil_thickness(.x = test_zip)
 
@@ -150,7 +148,6 @@ test_that("print_topsoil_thickness_metadata displays complete metadata", {
   })
 })
 
-
 test_that("print_topsoil_thickness_metadata returns invisible NULL", {
   mock_obj <- structure(
     list(
@@ -165,7 +162,6 @@ test_that("print_topsoil_thickness_metadata returns invisible NULL", {
   expect_false(returned_obj$visible)
 })
 
-
 test_that(".unzip_file successfully unzips valid zip file", {
   withr::with_tempdir({
     # Create test content
@@ -177,10 +173,9 @@ test_that(".unzip_file successfully unzips valid zip file", {
 
     # Create zip
     test_zip <- fs::path("test.zip")
-    old_wd <- getwd()
-    setwd(test_dir)
-    utils::zip(zipfile = file.path("..", "test.zip"), files = list.files())
-    setwd(old_wd)
+    withr::with_dir(test_dir, {
+      utils::zip(zipfile = file.path("..", "test.zip"), files = list.files())
+    })
 
     # Test unzip
     result_dir <- .unzip_file(test_zip)
@@ -190,7 +185,6 @@ test_that(".unzip_file successfully unzips valid zip file", {
     expect_equal(fs::path_file(result_dir), "test")
   })
 })
-
 
 test_that(".unzip_file handles corrupted zip file without creating directories", {
   withr::with_tempdir({
@@ -232,13 +226,12 @@ test_that(".unzip_file creates extract directory with correct name", {
     fs::file_create(fs::path(test_dir, "data.txt"))
 
     test_zip <- fs::path("my_special_data_file.zip")
-    old_wd <- getwd()
-    setwd(test_dir)
-    utils::zip(
-      zipfile = file.path("..", "my_special_data_file.zip"),
-      files = list.files()
-    )
-    setwd(old_wd)
+    withr::with_dir(test_dir, {
+      utils::zip(
+        zipfile = file.path("..", "my_special_data_file.zip"),
+        files = list.files()
+      )
+    })
 
     result_dir <- .unzip_file(test_zip)
 
@@ -255,10 +248,9 @@ test_that(".unzip_file overwrites existing extraction directory", {
     writeLines("original content", fs::path(test_dir, "file.txt"))
 
     test_zip <- fs::path("test.zip")
-    old_wd <- getwd()
-    setwd(test_dir)
-    utils::zip(zipfile = file.path("..", "test.zip"), files = list.files())
-    setwd(old_wd)
+    withr::with_dir(test_dir, {
+      utils::zip(zipfile = file.path("..", "test.zip"), files = list.files())
+    })
 
     # First extraction
     result1 <- .unzip_file(test_zip)
@@ -270,10 +262,9 @@ test_that(".unzip_file overwrites existing extraction directory", {
     writeLines("new content", fs::path(test_dir, "file.txt"))
     fs::file_delete(test_zip)
 
-    old_wd <- getwd()
-    setwd(test_dir)
-    utils::zip(zipfile = file.path("..", "test.zip"), files = list.files())
-    setwd(old_wd)
+    withr::with_dir(test_dir, {
+      utils::zip(zipfile = file.path("..", "test.zip"), files = list.files())
+    })
 
     # Second extraction should overwrite
     result2 <- .unzip_file(test_zip)
