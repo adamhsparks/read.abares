@@ -26,9 +26,7 @@ read_estimates_by_performance_category <- function(x = NULL) {
 
     .retry_download(
       "https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv",
-      dest = x,
-      dataset_id = "fdp_by_performance",
-      show_progress = TRUE
+      dest = x
     )
   }
 

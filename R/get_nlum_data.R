@@ -60,9 +60,7 @@
     if (!fs::file_exists(.x)) {
       .retry_download(
         url = file_url,
-        dest = .x,
-        dataset_id = "nlum",
-        show_progress = TRUE
+        dest = .x
       )
       .unzip_file(.x)
     }

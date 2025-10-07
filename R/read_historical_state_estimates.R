@@ -27,9 +27,7 @@ read_historical_state_estimates <- read_hist_st_est <- function(x = NULL) {
 
     .retry_download(
       "https://www.agriculture.gov.au/sites/default/files/documents/fdp-state-historical.csv",
-      dest = x,
-      dataset_id = "historical_state_estimates",
-      show_progress = TRUE
+      dest = x
     )
   }
 

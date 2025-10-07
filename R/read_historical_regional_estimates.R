@@ -29,9 +29,7 @@ read_historical_regional_estimates <- read_hist_reg_est <- function(
 
     .retry_download(
       "https://www.agriculture.gov.au/sites/default/files/documents/fdp-regional-historical.csv",
-      dest = x,
-      dataset_id = "historical_regional_estimates",
-      show_progress = TRUE
+      dest = x
     )
   }
 

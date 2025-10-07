@@ -29,12 +29,10 @@
 
 view_clum_metadata_pdf <- function(commodities = FALSE) {
   if (rlang::is_interactive()) {
-    .x <- fs::path(tempdir(), "clum_metadata.pdf")
+    x <- fs::path(tempdir(), "clum_metadata.pdf")
     .retry_download(
       url = "https://www.agriculture.gov.au/sites/default/files/documents/CLUM_DescriptiveMetadata_December2023_v2.pdf",
-      dest = .x,
-      dataset_id = "clum_commodities_metadata",
-      show_progress = TRUE
+      dest = x
     )
     system(paste0('open "', clum_metadata_pdf, '"'))
   }

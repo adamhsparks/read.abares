@@ -54,9 +54,7 @@ read_abs_livestock_data <- function(
         base_url,
         data_set
       ),
-      dest = x,
-      dataset_id = "livestock",
-      show_progress = TRUE
+      dest = x
     )
   }
   parse_abs_production_data(x)

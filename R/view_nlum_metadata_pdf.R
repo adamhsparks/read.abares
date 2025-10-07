@@ -19,12 +19,10 @@
 
 view_nlum_metadata_pdf <- function() {
   if (rlang::is_interactive()) {
-    .x <- fs::path(tempdir(), "nlum_metadata.pdf")
+    x <- fs::path(tempdir(), "nlum_metadata.pdf")
     .retry_download(
       url = "https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_DescriptiveMetadata_20241128_0.pdf",
-      dest = .x,
-      dataset_id = "nlum_metadata",
-      show_progress = TRUE
+      dest = x
     )
   }
   return(invisible(NULL))

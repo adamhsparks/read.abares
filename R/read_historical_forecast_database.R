@@ -57,9 +57,7 @@ read_historical_forecast_database <- function(x = NULL) {
 
     .retry_download(
       "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0",
-      dest = x,
-      dataset_id = "historical_forecast_database",
-      show_progress = TRUE
+      dest = x
     )
   }
 
