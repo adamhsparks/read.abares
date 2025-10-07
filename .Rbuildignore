@@ -21,14 +21,6 @@
 ^man/read.abares_user_agent\.Rd$
 ^man/dot-set_clum_update_levels\.Rd$
 ^man/dot-create_clum_50m_coltab\.Rd$
-^man/dot-has_internet\.Rd$
-^man/dot-parse_url_info\.Rd$
-^man/dot-get_timeouts\.Rd$
-^man/dot-should_stream\.Rd$
-^man/dot-build_request\.Rd$
-^man/dot-apply_timeouts\.Rd$
-^man/dot-probe_url\.Rd$
-^man/dot-try_resume\.Rd$
 ^man/dot-retry_download\.Rd$
 ^man/grapes-or-or-grapes\.Rd$
 ^man/dot-safe_delete\.Rd$
