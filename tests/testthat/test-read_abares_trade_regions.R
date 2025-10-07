@@ -11,12 +11,17 @@ test_that("read_abares_trade_regions() downloads via mocked .retry_download and 
   called <- FALSE
 
   testthat::with_mocked_bindings(
-    .retry_download = function(url, .f, base_delay = 1L) {
+    .retry_download = function(
+      url,
+      dest,
+      dataset_id = NULL,
+      show_progress = TRUE
+    ) {
       testthat::expect_match(url, "/client/en_AU/search/asset/1033841/2$")
-      testthat::expect_identical(basename(.f), "trade_regions")
+      testthat::expect_identical(basename(dest), "trade_regions")
 
-      fs::dir_create(fs::path_file(.f), recurse = TRUE)
-      writeLines(csv_text, .f, useBytes = TRUE)
+      fs::dir_create(fs::path_dir(dest), recurse = TRUE)
+      writeLines(csv_text, dest, useBytes = TRUE)
 
       called <<- TRUE
       invisible(NULL)
@@ -32,7 +37,7 @@ test_that("read_abares_trade_regions() downloads via mocked .retry_download and 
       expect_identical(nrow(res), 2L)
 
       # Column names as in the source (no renaming occurs in this function)
-      expect_setequal(
+      expect_identical(
         names(res),
         c("Region", "State", "Australian_port", "Value")
       )
@@ -75,7 +80,10 @@ test_that("read_abares_trade_regions() reads a provided local file and does not 
 
       expect_s3_class(res, "data.table")
       expect_identical(nrow(res), 2L)
-      expect_named(res, c("Region", "State", "Australian_port", "Value"))
+      expect_identical(
+        names(res),
+        c("Region", "State", "Australian_port", "Value")
+      )
 
       expect_identical(res$Region, c("Europe", "Africa"))
       expect_identical(res$State, c("SA", "QLD"))

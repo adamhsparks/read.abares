@@ -25,7 +25,7 @@ read_abares_trade_regions <- function(x = NULL) {
     x <- fs::path(tempdir(), "trade_regions")
     .retry_download(
       url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/2",
-      dest = .x,
+      dest = x,
       dataset_id = "trade_regions",
       show_progress = TRUE
     )
