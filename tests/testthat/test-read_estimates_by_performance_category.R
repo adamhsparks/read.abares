@@ -49,30 +49,43 @@ test_that("when x is NULL it downloads (mocked) to tempdir and reads the CSV", {
 
   # Capture URL and ensure the staged file is copied to the expected target
   last_url <- NULL
-  retry_mock <- function(url, .f) {
+  got_dest <- NULL
+  called_retry <- FALSE
+
+  retry_mock <- function(url, dest, dataset_id, show_progress, ...) {
     last_url <<- url
-    fs::file_copy(staged_csv, .f, overwrite = TRUE)
-    invisible(.f)
+    got_dest <<- dest
+    expect_identical(dataset_id, "fdp_by_performance")
+    expect_true(show_progress)
+    expect_identical(basename(dest), "fdp-BySize-ByPerformance.csv")
+
+    fs::dir_create(fs::path_dir(dest), recurse = TRUE)
+    fs::file_copy(staged_csv, dest, overwrite = TRUE)
+    called_retry <<- TRUE
+    invisible(NULL)
   }
 
   expected_url <- "https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv"
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
+    .retry_download = retry_mock,
     {
       out <- read_estimates_by_performance_category(x = NULL)
 
       # The function should have requested the right URL
       expect_identical(last_url, expected_url)
+      expect_true(called_retry)
 
-      # Target must now exist
+      # Target must now exist and match the destination passed
       expect_true(fs::file_exists(target_csv))
+      expect_identical(got_dest, target_csv)
 
       # Output must be a data.table with our staged content
       expect_true(data.table::is.data.table(out))
       expect_setequal(names(out), names(DT_stage))
       expect_true(data.table::fsetequal(out, DT_stage))
     },
-    .retry_download = retry_mock
+    .package = "read.abares"
   )
 })
 
