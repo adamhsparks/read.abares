@@ -40,7 +40,7 @@ read_aagis_regions <- function(x = NULL) {
     x <- fs::path(tempdir(), "aagis.zip")
     if (!fs::file_exists(x)) {
       .retry_download(
-        "https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip",
+        url = "https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip",
         dest = x,
         dataset_id = "abares_regions",
         show_progress = TRUE
