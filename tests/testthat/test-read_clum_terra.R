@@ -1,5 +1,5 @@
 test_that("read_clum_terra integrates with .get_clum for a local zip and applies coltab (clum_50m_2023_v2)", {
-  skip_on_cran()
+  skip_if_offline()
   skip_if_not_installed("terra")
 
   ds_name <- "clum_50m_2023_v2"
@@ -82,7 +82,7 @@ test_that("read_clum_terra integrates with .get_clum for a local zip and applies
 })
 
 test_that("read_clum_terra integrates with .get_clum and does NOT apply coltab for scale_date_update", {
-  skip_on_cran()
+  skip_if_offline()
   skip_if_not_installed("terra")
 
   ds_name <- "scale_date_update"
@@ -134,7 +134,7 @@ test_that("read_clum_terra integrates with .get_clum and does NOT apply coltab f
 })
 
 test_that("read_clum_terra validates data_set choices", {
-  skip_on_cran()
+  skip_if_offline()
 
   expect_error(
     read_clum_terra(data_set = "not-a-valid-dataset"),
@@ -144,7 +144,7 @@ test_that("read_clum_terra validates data_set choices", {
 })
 
 test_that("read_clum_terra passes data_set and x to .get_clum and reads returned files", {
-  skip_on_cran()
+  skip_if_offline()
   skip_if_not_installed("terra")
 
   # Build a tiny GeoTIFF that terra can read
@@ -183,7 +183,7 @@ test_that("read_clum_terra passes data_set and x to .get_clum and reads returned
 })
 
 test_that("read_clum_terra handles multiple files from .get_clum() and applies coltab to each layer", {
-  skip_on_cran()
+  skip_if_offline()
   skip_if_not_installed("terra")
 
   # Two small rasters -> two layers when passed as multiple files
@@ -217,7 +217,7 @@ test_that("read_clum_terra handles multiple files from .get_clum() and applies c
 })
 
 test_that("read_clum_terra works end-to-end with mocked download when x = NULL (unzips into tempdir)", {
-  skip_on_cran()
+  skip_if_offline()
   skip_if_not_installed("terra")
 
   ds_name <- "clum_50m_2023_v2"
@@ -289,7 +289,7 @@ test_that("read_clum_terra works end-to-end with mocked download when x = NULL (
 })
 
 test_that(".set_clum_update_levels returns a list with the expected named tables", {
-  skip_on_cran()
+  skip_if_offline()
 
   lvls <- .set_clum_update_levels()
 
@@ -305,7 +305,7 @@ test_that(".set_clum_update_levels returns a list with the expected named tables
 })
 
 test_that("date_levels: years 2008–2023 as integers; rast_cat identical; strictly increasing", {
-  skip_on_cran()
+  skip_if_offline()
 
   dl <- .set_clum_update_levels()$date_levels
 
@@ -328,7 +328,7 @@ test_that("date_levels: years 2008–2023 as integers; rast_cat identical; stric
 })
 
 test_that("update_levels: 0/1 map to expected labels in order", {
-  skip_on_cran()
+  skip_if_offline()
 
   ul <- .set_clum_update_levels()$update_levels
 
@@ -350,7 +350,7 @@ test_that("update_levels: 0/1 map to expected labels in order", {
 })
 
 test_that("scale_levels: denominators map exactly to formatted labels and are strictly increasing", {
-  skip_on_cran()
+  skip_if_offline()
 
   sl <- .set_clum_update_levels()$scale_levels
 
@@ -383,7 +383,7 @@ test_that("scale_levels: denominators map exactly to formatted labels and are st
 })
 
 test_that("all tables are data.table (implementation detail) while also data.frame", {
-  skip_on_cran()
+  skip_if_offline()
 
   lvls <- .set_clum_update_levels()
   # If you ever change internals away from data.table(), this test will point it out.
@@ -394,7 +394,7 @@ test_that("all tables are data.table (implementation detail) while also data.fra
 })
 
 test_that(".create_clum_50m_coltab creates expected color table structure", {
-  skip_on_cran()
+  skip_if_offline()
 
   ct <- .create_clum_50m_coltab()
 

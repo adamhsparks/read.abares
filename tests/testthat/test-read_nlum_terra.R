@@ -69,7 +69,7 @@
   }
 }
 test_that("reads from a provided local zip file and returns a terra rast object", {
-  skip_on_cran()
+  skip_if_offline()
   skip_if_not_installed("terra")
 
   # Create a valid dummy GeoTIFF using terra
@@ -102,7 +102,7 @@ test_that("reads from a provided local zip file and returns a terra rast object"
 })
 
 test_that("downloads when x is NULL and reads terra rast object", {
-  skip_on_cran()
+  skip_if_offline()
   skip_if_not_installed("terra")
 
   temp_dir <- withr::local_tempdir()
@@ -141,7 +141,7 @@ test_that("downloads when x is NULL and reads terra rast object", {
 })
 
 test_that("errors cleanly when file does not exist", {
-  skip_on_cran()
+  skip_if_offline()
   skip_if_not_installed("terra")
 
   bogus <- fs::path(tempdir(), "no-such-nlum.zip")

@@ -1,5 +1,5 @@
 test_that(".get_nlum(.x = NULL) builds the dataset folder under tempdir() and returns file listing", {
-  skip_on_cran()
+  skip_if_offline()
 
   ds_key <- "Y202021"
   ds_name <- "NLUM_v7_250_ALUMV8_2020_21_alb_package_20241128"
@@ -42,7 +42,7 @@ test_that(".get_nlum(.x = NULL) builds the dataset folder under tempdir() and re
 })
 
 test_that(".get_nlum with explicit local zip path (.x) returns listing under sibling folder", {
-  skip_on_cran()
+  skip_if_offline()
 
   root <- withr::local_tempdir()
   zip_path <- fs::path(root, "my_nlum.zip")
@@ -63,7 +63,7 @@ test_that(".get_nlum with explicit local zip path (.x) returns listing under sib
 })
 
 test_that(".get_nlum errors for unknown dataset key when .x is NULL", {
-  skip_on_cran()
+  skip_if_offline()
   expect_error(.get_nlum(.data_set = "NOT_A_KEY", .x = NULL))
 })
 

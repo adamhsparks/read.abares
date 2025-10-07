@@ -43,126 +43,50 @@ urls_to_test <- c(
   "https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_DescriptiveMetadata_20241128_0.pdf"
 )
 
-#' Create a curl Handle for read.abares to use
-#'
-#' @returns A [curl::handle] object with polite headers and options set.
-#' @dev
-set_curl_handle <- function() {
-  user_agent <- getOption("read.abares.user_agent", "read.abares R package")
-  h <- curl::new_handle()
-  curl::handle_setheaders(
-    h,
-    "User-Agent" = user_agent,
-    "Accept" = "application/zip, application/octet-stream;q=0.9, */*;q=0.8",
-    "Accept-Language" = "en-AU,en;q=0.9",
-    "Connection" = "keep-alive"
-  )
+# Add these dependencies to your DESCRIPTION file:
+# future, future.apply, httr2
 
-  curl::handle_setopt(
-    h,
-    followlocation = TRUE,
-    maxredirs = 10L,
-    http_version = 2L,
-    ssl_verifypeer = TRUE,
-    ssl_verifyhost = 2L,
-    connecttimeout_ms = 15000L,
-    low_speed_time = 0L,
-    low_speed_limit = 0L,
-    tcp_keepalive = 1L,
-    tcp_keepidle = 60L,
-    tcp_keepintvl = 60L,
-    failonerror = FALSE, # Changed to FALSE to handle status codes manually
-    timeout = getOption("read.abares.timeout", 7200L),
-    accept_encoding = "" # allow gzip/deflate/br for headers
-  )
-  return(h)
-}
-
-# Helper to check DNS resolution (simplified approach)
-check_dns <- function(host) {
-  tryCatch(
-    {
-      # Simple ping-like check using curl itself
-      test_url <- paste0("https://", host)
-      h <- curl::new_handle()
-      curl::handle_setopt(
-        h,
-        connecttimeout_ms = 5000L,
-        nobody = TRUE, # HEAD request only
-        failonerror = FALSE
-      )
-      result <- curl::curl_fetch_memory(test_url, handle = h)
-      return(TRUE)
-    },
-    error = function(e) {
-      # Check if it's a DNS-related error
-      return(
-        !grepl("Could not resolve host|Name or service not known", e$message)
-      )
-    }
-  )
-}
-
-# Helper to check a single URL
-check_url <- function(this_url) {
-  is_s3 <- grepl("s3[-.]", this_url)
-  host <- sub("^https?://([^/]+).*", "\\1", this_url)
-
-  # Skip DNS check for S3 URLs as they're usually reliable
-  if (!is_s3) {
-    dns_ok <- check_dns(host)
-    if (!dns_ok) {
-      return(list(
-        url = this_url, # Fixed: was 'url' but should be 'this_url'
-        status = NA,
-        error = paste("DNS resolution failed for", host)
-      ))
-    }
-  }
-
-  result <- tryCatch(
-    curl::curl_fetch_memory(this_url, handle = set_curl_handle()),
-    error = function(e) e
-  )
-
-  if (inherits(result, "error")) {
-    return(list(url = this_url, status = NA, error = conditionMessage(result)))
-  } else {
-    return(list(url = this_url, status = result$status_code, error = NULL))
-  }
-}
-
-# Test for URL availability
-test_that("All known ABARES/ABS URLs resolve and return HTTP 200", {
+test_that("All known ABARES/ABS URLs resolve and return HTTP 200 (parallel)", {
   skip_if_offline()
 
-  batch_size <- 5L # Reduced batch size to be more conservative
-  delay_between_batches <- 3L # Increased delay
+  # Set up parallel processing
+  future::plan(
+    future::multisession,
+    workers = min(4L, future::availableCores() - 1L)
+  )
+  on.exit(future::plan(future::sequential), add = TRUE)
 
-  all_results <- list()
+  check_url_parallel <- function(this_url) {
+    # Use httr2 for better connection pooling and HTTP/2 support
+    resp <- httr2::request(this_url) |>
+      httr2::req_method("HEAD") |> # HEAD request - no body download
+      httr2::req_timeout(10L) |>
+      httr2::req_retry(max_tries = 2L) |>
+      httr2::req_user_agent("read.abares R package test") |>
+      httr2::req_perform(verbosity = 0L)
 
-  for (i in seq(1L, length(urls_to_test), by = batch_size)) {
-    batch_end <- min(i + batch_size - 1L, length(urls_to_test))
-    batch <- urls_to_test[i:batch_end]
-
-    cat(
-      "Testing batch",
-      ceiling(i / batch_size),
-      "of",
-      ceiling(length(urls_to_test) / batch_size),
-      "\n"
+    list(
+      url = this_url,
+      status = httr2::resp_status(resp),
+      error = NULL
     )
-
-    batch_results <- lapply(batch, check_url)
-    all_results <- c(all_results, batch_results)
-
-    # Add delay between batches (except for the last batch)
-    if (batch_end < length(urls_to_test)) {
-      Sys.sleep(delay_between_batches)
-    }
   }
 
-  # Process all results at once for better test reporting
+  # Run all requests in parallel
+  all_results <- future.apply::future_lapply(
+    urls_to_test,
+    function(url) {
+      tryCatch(
+        check_url_parallel(url),
+        error = function(e) {
+          list(url = url, status = NA, error = conditionMessage(e))
+        }
+      )
+    },
+    future.seed = TRUE
+  )
+
+  # Process results (same as your existing code)
   failed_urls <- character(0L)
   error_urls <- character(0L)
 
@@ -174,7 +98,7 @@ test_that("All known ABARES/ABS URLs resolve and return HTTP 200", {
     }
   }
 
-  # Report all failures at once
+  # Report and assert (same as existing)
   if (length(error_urls) > 0L) {
     cat("URLs with errors:\n")
     cat(paste(error_urls, collapse = "\n"), "\n")
@@ -185,32 +109,6 @@ test_that("All known ABARES/ABS URLs resolve and return HTTP 200", {
     cat(paste(failed_urls, collapse = "\n"), "\n")
   }
 
-  # Final assertions
-  expect_length(
-    error_urls,
-    0L,
-  )
-  expect_length(
-    failed_urls,
-    0L,
-  )
-})
-
-# Additional test for individual URL checking function
-test_that("check_url function works correctly", {
-  # Test with a reliable URL
-  result <- check_url("https://httpbin.org/status/200")
-  expect_null(result$error)
-  expect_identical(result$status, 200L)
-
-  # Test with a 404 URL
-  result_404 <- check_url("https://httpbin.org/status/404")
-  expect_null(result_404$error)
-  expect_identical(result_404$status, 404L)
-})
-
-# Test for curl handle creation
-test_that("set_curl_handle creates valid handle", {
-  handle <- set_curl_handle()
-  expect_s3_class(handle, "curl_handle")
+  expect_length(error_urls, 0L)
+  expect_length(failed_urls, 0L)
 })

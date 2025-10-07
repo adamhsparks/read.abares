@@ -1,5 +1,5 @@
 test_that(".get_clum(.x = NULL) builds the dataset folder under tempdir() and returns .tif file listing", {
-  skip_on_cran()
+  skip_if_offline()
 
   for (ds_key in c("clum_50m_2023_v2", "scale_date_update")) {
     base_tmp <- tempdir()
@@ -41,7 +41,7 @@ test_that(".get_clum(.x = NULL) builds the dataset folder under tempdir() and re
 })
 
 test_that(".get_clum with explicit local zip path (.x) returns .tif listing under sibling folder", {
-  skip_on_cran()
+  skip_if_offline()
 
   root <- withr::local_tempdir()
   zip_path <- fs::path(root, "my_clum.zip")
@@ -71,7 +71,7 @@ test_that(".get_clum with explicit local zip path (.x) returns .tif listing unde
 
 
 test_that(".get_clum returns empty character if no .tif files in folder", {
-  skip_on_cran()
+  skip_if_offline()
 
   root <- withr::local_tempdir()
   zip_path <- fs::path(root, "clum_empty.zip")
@@ -94,6 +94,6 @@ test_that(".get_clum returns empty character if no .tif files in folder", {
 
 
 test_that(".get_clum errors for unknown dataset key when .x is NULL", {
-  skip_on_cran()
+  skip_if_offline()
   expect_error(.get_clum(.data_set = "not_a_key", .x = NULL))
 })

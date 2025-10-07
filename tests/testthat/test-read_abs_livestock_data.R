@@ -1,5 +1,5 @@
 testthat::test_that("read_abs_livestock_data() downloads and parses livestock_and_products data", {
-  skip_on_cran()
+  skip_if_offline()
 
   temp_file <- fs::path(tempdir(), "livestock_file")
   last_url <- NULL
@@ -50,7 +50,7 @@ testthat::test_that("read_abs_livestock_data() downloads and parses livestock_an
 })
 
 testthat::test_that("read_abs_livestock_data() downloads and parses cattle_herd data", {
-  skip_on_cran()
+  skip_if_offline()
 
   temp_file <- fs::path(tempdir(), "livestock_file")
   last_url <- NULL
@@ -99,7 +99,7 @@ testthat::test_that("read_abs_livestock_data() downloads and parses cattle_herd 
 })
 
 testthat::test_that("read_abs_livestock_data() downloads and parses cattle_herd_series data", {
-  skip_on_cran()
+  skip_if_offline()
 
   temp_file <- fs::path(tempdir(), "livestock_file")
   last_url <- NULL
@@ -154,7 +154,7 @@ testthat::test_that("read_abs_livestock_data() downloads and parses cattle_herd_
 })
 
 testthat::test_that("read_abs_livestock_data() uses provided file path and parses it", {
-  skip_on_cran()
+  skip_if_offline()
 
   tmp_file <- withr::local_tempfile(fileext = ".xlsx")
   fs::file_create(tmp_file)
@@ -183,7 +183,7 @@ testthat::test_that("read_abs_livestock_data() uses provided file path and parse
 })
 
 testthat::test_that("read_abs_livestock_data() errors on invalid data_set", {
-  skip_on_cran()
+  skip_if_offline()
 
   testthat::expect_error(
     read_abs_livestock_data(data_set = "invalid_set"),

@@ -34,7 +34,7 @@ test_that(".onUnload runs deferred cleanup without error", {
 })
 
 test_that(".init_read_abares_options sets expected options", {
-  skip_on_cran()
+  skip_if_offline()
   local_reproducible_output()
 
   # Save current options

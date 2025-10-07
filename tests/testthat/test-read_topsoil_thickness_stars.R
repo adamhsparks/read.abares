@@ -1,5 +1,5 @@
 test_that("reads from a provided local zip file and returns a stars object", {
-  skip_on_cran()
+  skip_if_offline()
 
   # Create a valid dummy raster
   temp_dir <- withr::local_tempdir()
@@ -41,7 +41,7 @@ test_that("reads from a provided local zip file and returns a stars object", {
 })
 
 test_that("downloads when x is NULL and returns stars object", {
-  skip_on_cran()
+  skip_if_offline()
 
   temp_dir <- withr::local_tempdir()
   tif_path <- fs::path(
@@ -85,7 +85,7 @@ test_that("downloads when x is NULL and returns stars object", {
 })
 
 test_that("errors cleanly when file does not exist", {
-  skip_on_cran()
+  skip_if_offline()
   skip_if_not_installed("stars")
 
   bogus <- fs::path(tempdir(), "no-such-topsoil.zip")

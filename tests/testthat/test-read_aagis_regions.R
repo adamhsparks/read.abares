@@ -1,5 +1,5 @@
 test_that("read_aagis_regions reads and cleans data from a provided local ZIP", {
-  testthat::skip_on_cran()
+  testthat::skip_if_offline()
   testthat::skip_if_not_installed("sf")
 
   # Build a minimal shapefile matching the expected on-disk structure:
@@ -90,7 +90,7 @@ test_that("read_aagis_regions reads and cleans data from a provided local ZIP", 
 })
 
 test_that("read_aagis_regions works with x = NULL by mocking download + unzip", {
-  testthat::skip_on_cran()
+  testthat::skip_if_offline()
   testthat::skip_if_not_installed("sf")
 
   # Build a fresh payload and staged ZIP we'll 'download' via mocking
@@ -180,7 +180,7 @@ test_that("read_aagis_regions works with x = NULL by mocking download + unzip", 
 })
 
 test_that("read_aagis_regions leaves no legacy columns", {
-  testthat::skip_on_cran()
+  testthat::skip_if_offline()
   testthat::skip_if_not_installed("sf")
 
   td <- withr::local_tempdir()

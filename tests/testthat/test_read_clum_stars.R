@@ -1,5 +1,5 @@
 test_that("read_clum_stars integrates with .get_clum for a local zip and returns a stars object", {
-  skip_on_cran()
+  skip_if_offline()
 
   ds_name <- "clum_50m_2023_v2"
 
@@ -56,7 +56,7 @@ test_that("read_clum_stars integrates with .get_clum for a local zip and returns
 })
 
 test_that("read_clum_stars forwards ... to stars::read_stars (proxy = TRUE)", {
-  skip_on_cran()
+  skip_if_offline()
 
   ds_name <- "scale_date_update"
 
@@ -111,7 +111,7 @@ test_that("read_clum_stars forwards ... to stars::read_stars (proxy = TRUE)", {
 })
 
 test_that("read_clum_stars validates data_set choices", {
-  skip_on_cran()
+  skip_if_offline()
 
   expect_error(
     read_clum_stars(data_set = "this_is_not_valid"),
@@ -121,7 +121,7 @@ test_that("read_clum_stars validates data_set choices", {
 })
 
 test_that("read_clum_stars passes x and data_set to .get_clum and reads returned files", {
-  skip_on_cran()
+  skip_if_offline()
 
   tmpdir <- withr::local_tempdir()
   tif_dir <- fs::path(tmpdir, "clum_50m_2023_v2")
@@ -165,7 +165,7 @@ test_that("read_clum_stars passes x and data_set to .get_clum and reads returned
 })
 
 test_that("read_clum_stars handles multiple files returned by .get_clum()", {
-  skip_on_cran()
+  skip_if_offline()
 
   tmpdir <- withr::local_tempdir()
   tif_dir <- fs::path(tmpdir, "clum_50m_2023_v2")

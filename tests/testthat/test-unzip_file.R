@@ -1,5 +1,5 @@
 test_that("unzips a valid zip file into a named folder", {
-  skip_on_cran()
+  skip_if_offline()
 
   # Create a temp directory and file to zip
   tmp_dir <- withr::local_tempdir()
@@ -28,7 +28,7 @@ test_that("unzips a valid zip file into a named folder", {
 
 
 test_that("safe_delete deletes files and directories", {
-  skip_on_cran()
+  skip_if_offline()
 
   # File deletion
   tmp_file <- withr::local_tempfile()
@@ -47,7 +47,7 @@ test_that("safe_delete deletes files and directories", {
 })
 
 test_that("safe_delete returns TRUE for non-existent paths", {
-  skip_on_cran()
+  skip_if_offline()
 
   bogus <- fs::path(tempdir(), "does-not-exist")
   expect_true(.safe_delete(bogus))

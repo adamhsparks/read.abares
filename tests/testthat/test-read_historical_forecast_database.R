@@ -1,5 +1,5 @@
 test_that("reads from a provided local Excel path and returns a data.table", {
-  skip_on_cran()
+  skip_if_offline()
 
   # Create a small Excel file with expected headers
   tmp_xlsx <- withr::local_tempfile(fileext = ".xlsx")
@@ -53,7 +53,7 @@ test_that("reads from a provided local Excel path and returns a data.table", {
 })
 
 test_that("when x is NULL it downloads (mocked) to tempdir and reads the Excel", {
-  skip_on_cran()
+  skip_if_offline()
 
   # Stage an Excel file that we will "download"
   staged_xlsx <- withr::local_tempfile(fileext = ".xlsx")
@@ -126,7 +126,7 @@ test_that("when x is NULL it downloads (mocked) to tempdir and reads the Excel",
 })
 
 test_that("alias read_historical_forecast returns identical results", {
-  skip_on_cran()
+  skip_if_offline()
 
   tmp_xlsx <- withr::local_tempfile(fileext = ".xlsx")
   DT_in <- data.table::data.table(
@@ -153,7 +153,7 @@ test_that("alias read_historical_forecast returns identical results", {
 })
 
 test_that("errors cleanly when the provided file does not exist", {
-  skip_on_cran()
+  skip_if_offline()
 
   bogus <- fs::path(tempdir(), "nope-does-not-exist.xlsx")
   if (fs::file_exists(bogus)) {

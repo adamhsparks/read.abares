@@ -10,7 +10,7 @@ test_that("read_agfd_dt validates yyyy bounds", {
 })
 
 test_that("read_agfd_dt integrates correctly: binds rows, sets id to basenames, coerces lat/lon (fixed prices)", {
-  skip_on_cran()
+  skip_if_offline()
   testthat::skip_if_not_installed("tidync")
 
   files <- file.path(tempdir(), c("x_c2020.nc", "x_c2021.nc"))
@@ -68,7 +68,7 @@ test_that("read_agfd_dt integrates correctly: binds rows, sets id to basenames, 
 })
 
 test_that("read_agfd_dt forwards fixed_prices = FALSE to .get_agfd (historical prices path)", {
-  skip_on_cran()
+  skip_if_offline()
   testthat::skip_if_not_installed("tidync")
 
   files <- file.path(tempdir(), c("y_c1995.nc", "y_c1996.nc"))
@@ -112,7 +112,7 @@ test_that("read_agfd_dt forwards fixed_prices = FALSE to .get_agfd (historical p
 })
 
 test_that("read_agfd_dt forwards x to .get_agfd when supplied", {
-  skip_on_cran()
+  skip_if_offline()
   testthat::skip_if_not_installed("tidync")
 
   fake_zip <- file.path(tempdir(), "some_agfd.zip")
@@ -165,7 +165,7 @@ test_that("read_agfd_dt forwards x to .get_agfd when supplied", {
 })
 
 test_that("read_agfd_dt returns empty data.table with lat/lon when .get_agfd returns no files", {
-  skip_on_cran()
+  skip_if_offline()
 
   testthat::with_mocked_bindings(
     .get_agfd = function(...) character(),

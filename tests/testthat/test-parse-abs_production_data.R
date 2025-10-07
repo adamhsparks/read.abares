@@ -1,5 +1,5 @@
 testthat::test_that("parse_abs_production_data (horticulture, multiple sheets) returns unified wide data.table with expected columns, types, and values", {
-  testthat::skip_on_cran()
+  testthat::skip_if_offline()
 
   # Build a horticulture-style sheet:
   #  - Title row BEFORE header (so pre-header rows are dropped)
@@ -131,7 +131,7 @@ testthat::test_that("parse_abs_production_data (horticulture, multiple sheets) r
 })
 
 testthat::test_that("parse_abs_production_data (horticulture, single sheet) returns a single wide table with correct coercions", {
-  testthat::skip_on_cran()
+  testthat::skip_if_offline()
 
   sheet <- rbind(
     data.frame(
@@ -212,7 +212,7 @@ testthat::test_that("parse_abs_production_data (horticulture, single sheet) retu
 })
 
 testthat::test_that("parse_abs_production_data (non-horticulture) handles 'Region' in first column and returns tidy wide output", {
-  testthat::skip_on_cran()
+  testthat::skip_if_offline()
 
   # Non-horticulture branch: header row has 'Region' in the first column (A)
   broad <- rbind(
@@ -287,7 +287,7 @@ testthat::test_that("parse_abs_production_data (non-horticulture) handles 'Regio
 })
 
 testthat::test_that("parse_abs_production_data handles header as first row (no pre-header) in both branches", {
-  testthat::skip_on_cran()
+  testthat::skip_if_offline()
 
   # Horticulture-like with header already first row
   hort_first_row_header <- rbind(
@@ -383,7 +383,7 @@ testthat::test_that("parse_abs_production_data handles header as first row (no p
 })
 
 testthat::test_that(".find_years extracts financial years and calls the expected ABS URLs", {
-  testthat::skip_on_cran()
+  testthat::skip_if_offline()
 
   fake_page <- paste(
     "Australian agriculture horticulture 2018-19 and 2019-20, 2020-21;",
@@ -466,6 +466,6 @@ testthat::test_that(".find_years extracts financial years and calls the expected
 })
 
 testthat::test_that(".find_years errors for unknown data_set key", {
-  testthat::skip_on_cran()
+  testthat::skip_if_offline()
   testthat::expect_error(.find_years("unknown_data_set"))
 })

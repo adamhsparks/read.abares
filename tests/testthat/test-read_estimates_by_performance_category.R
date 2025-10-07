@@ -1,5 +1,5 @@
 test_that("reads from a provided local CSV path and returns a data.table", {
-  skip_on_cran()
+  skip_if_offline()
 
   # Create a small CSV with headers
   tmp_csv <- withr::local_tempfile(fileext = ".csv")
@@ -27,7 +27,7 @@ test_that("reads from a provided local CSV path and returns a data.table", {
 })
 
 test_that("when x is NULL it downloads (mocked) to tempdir and reads the CSV", {
-  skip_on_cran()
+  skip_if_offline()
 
   # Stage a CSV that we will "download"
   staged_csv <- withr::local_tempfile(fileext = ".csv")
@@ -90,7 +90,7 @@ test_that("when x is NULL it downloads (mocked) to tempdir and reads the CSV", {
 })
 
 test_that("alias read_est_by_perf_cat returns identical results", {
-  skip_on_cran()
+  skip_if_offline()
 
   tmp_csv <- withr::local_tempfile(fileext = ".csv")
   DT_in <- data.table::data.table(
@@ -110,7 +110,7 @@ test_that("alias read_est_by_perf_cat returns identical results", {
 })
 
 test_that("errors cleanly when the provided file does not exist", {
-  skip_on_cran()
+  skip_if_offline()
 
   # Point to a path that doesn't exist
   bogus <- fs::path(tempdir(), "nope-does-not-exist.csv")

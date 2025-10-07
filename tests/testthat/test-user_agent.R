@@ -3,7 +3,7 @@
 # ---------------------------------------------------------------------------
 
 testthat::test_that(".readabares_collaborators returns contents of installed collaborators.txt", {
-  testthat::skip_on_cran()
+  testthat::skip_if_offline()
 
   path <- system.file("collaborators.txt", package = "read.abares")
   testthat::expect_true(
@@ -27,7 +27,7 @@ testthat::test_that(".readabares_collaborators returns contents of installed col
 # ---------------------------------------------------------------------------
 
 testthat::test_that("read.abares_user_agent returns CI UA when CI env var is set", {
-  testthat::skip_on_cran()
+  testthat::skip_if_offline()
 
   withr::local_envvar(c("READABARES _CI" = "true"))
 
@@ -50,7 +50,7 @@ testthat::test_that("read.abares_user_agent returns CI UA when CI env var is set
 # ---------------------------------------------------------------------------
 
 testthat::test_that("read.abares_user_agent returns DEV UA when gh_username is a collaborator and NOT CI", {
-  testthat::skip_on_cran()
+  testthat::skip_if_offline()
 
   withr::local_envvar(c("READABARES _CI" = "")) # explicit NOT CI
 
@@ -88,7 +88,7 @@ testthat::test_that("read.abares_user_agent returns DEV UA when gh_username is a
 # ---------------------------------------------------------------------------
 
 testthat::test_that("read.abares_user_agent returns default UA when NOT CI and user is NOT a collaborator", {
-  testthat::skip_on_cran()
+  testthat::skip_if_offline()
 
   withr::local_envvar(c("READABARES _CI" = "")) # explicit NOT CI
 
@@ -127,7 +127,7 @@ testthat::test_that("read.abares_user_agent returns default UA when NOT CI and u
 # ---------------------------------------------------------------------------
 
 testthat::test_that("read.abares_user_agent falls back to default UA if gh_username errors (NOT CI)", {
-  testthat::skip_on_cran()
+  testthat::skip_if_offline()
 
   withr::local_envvar(c("READABARES _CI" = "")) # NOT CI
 

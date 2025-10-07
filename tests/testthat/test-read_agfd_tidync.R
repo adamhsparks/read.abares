@@ -10,7 +10,7 @@ test_that("read_agfd_tidync validates yyyy bounds", {
 })
 
 test_that("read_agfd_tidync integrates: calls .get_agfd, returns named list of tidync (fixed prices)", {
-  skip_on_cran()
+  skip_if_offline()
 
   files <- file.path(tempdir(), c("x_c2020.nc", "x_c2021.nc"))
 
@@ -62,7 +62,7 @@ test_that("read_agfd_tidync integrates: calls .get_agfd, returns named list of t
 
 
 test_that("read_agfd_tidync forwards fixed_prices = FALSE to .get_agfd (historical prices path)", {
-  skip_on_cran()
+  skip_if_offline()
 
   files <- file.path(tempdir(), c("y_c1995.nc", "y_c1996.nc"))
 
@@ -106,7 +106,7 @@ test_that("read_agfd_tidync forwards fixed_prices = FALSE to .get_agfd (historic
 })
 
 test_that("read_agfd_tidync forwards x to .get_agfd when supplied", {
-  skip_on_cran()
+  skip_if_offline()
 
   fake_zip <- file.path(tempdir(), "some_agfd.zip")
   files <- file.path(tempdir(), "z_c2022.nc")
@@ -142,7 +142,7 @@ test_that("read_agfd_tidync forwards x to .get_agfd when supplied", {
 })
 
 test_that("read_agfd_tidync returns empty list when .get_agfd returns no files (document current behavior)", {
-  skip_on_cran()
+  skip_if_offline()
 
   # purrr::map(character(0), ...) yields list(), and names(list()) <- character(0)
   testthat::with_mocked_bindings(
@@ -163,7 +163,7 @@ test_that("read_agfd_tidync returns empty list when .get_agfd returns no files (
 })
 
 test_that("read_agfd_tidync forwards defaults to .get_agfd (fixed_prices=TRUE, yyyy=1991:2023, x=NULL)", {
-  skip_on_cran()
+  skip_if_offline()
 
   observed <- NULL
   ret_files <- file.path(tempdir(), c("default1.nc", "default2.nc"))

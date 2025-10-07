@@ -32,7 +32,7 @@ test_that("read_agfd_terra validates yyyy bounds", {
 })
 
 test_that("read_agfd_terra integrates: calls .get_agfd, reads real GeoTIFFs, returns named list of SpatRaster (fixed prices)", {
-  skip_on_cran()
+  skip_if_offline()
   testthat::skip_if_not_installed("terra")
 
   # Create two actual GeoTIFFs
@@ -85,7 +85,7 @@ test_that("read_agfd_terra integrates: calls .get_agfd, reads real GeoTIFFs, ret
 })
 
 test_that("read_agfd_terra forwards fixed_prices = FALSE to .get_agfd and reads real rasters", {
-  skip_on_cran()
+  skip_if_offline()
   testthat::skip_if_not_installed("terra")
 
   f1 <- tempfile(fileext = "_y_c1995.tif")
@@ -125,7 +125,7 @@ test_that("read_agfd_terra forwards fixed_prices = FALSE to .get_agfd and reads 
 })
 
 test_that("read_agfd_terra forwards x to .get_agfd and reads real raster", {
-  skip_on_cran()
+  skip_if_offline()
   testthat::skip_if_not_installed("terra")
 
   fake_zip <- file.path(tempdir(), "some_agfd.zip")
@@ -160,7 +160,7 @@ test_that("read_agfd_terra forwards x to .get_agfd and reads real raster", {
 })
 
 test_that("read_agfd_terra returns empty list when .get_agfd returns no files (document current behavior)", {
-  skip_on_cran()
+  skip_if_offline()
 
   # With character(0) input, purrr::map() yields list(), and names(list()) <- character(0)
   testthat::with_mocked_bindings(
@@ -181,7 +181,7 @@ test_that("read_agfd_terra returns empty list when .get_agfd returns no files (d
 })
 
 test_that("read_agfd_terra forwards defaults to .get_agfd (fixed_prices=TRUE, yyyy=1991:2023, x=NULL)", {
-  skip_on_cran()
+  skip_if_offline()
   testthat::skip_if_not_installed("terra")
 
   observed <- NULL

@@ -1,5 +1,5 @@
 test_that("reads from a provided local CSV path, renames columns, and sets key", {
-  skip_on_cran()
+  skip_if_offline()
 
   df <- data.frame(
     Variable = "Farm cash income",
@@ -28,7 +28,7 @@ test_that("reads from a provided local CSV path, renames columns, and sets key",
 })
 
 test_that("when x is NULL it downloads (mocked) to tempdir and reads the CSV", {
-  skip_on_cran()
+  skip_if_offline()
 
   df <- data.frame(
     Variable = "Farm business profit",
@@ -76,7 +76,7 @@ test_that("when x is NULL it downloads (mocked) to tempdir and reads the CSV", {
 })
 
 test_that("alias read_hist_reg_est returns identical results", {
-  skip_on_cran()
+  skip_if_offline()
 
   df <- data.frame(
     Variable = "Total cash receipts",
@@ -100,7 +100,7 @@ test_that("alias read_hist_reg_est returns identical results", {
 })
 
 test_that("errors cleanly when the provided file does not exist", {
-  skip_on_cran()
+  skip_if_offline()
   skip_if_not_installed("data.table")
 
   bogus <- fs::path(tempdir(), "no-such-regional-historical.csv")

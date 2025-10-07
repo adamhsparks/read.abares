@@ -1,5 +1,5 @@
 test_that("reads from a provided local zip file and returns a stars object", {
-  skip_on_cran()
+  skip_if_offline()
   skip_if_not_installed("stars")
   skip_if_not_installed("terra")
 
@@ -33,7 +33,7 @@ test_that("reads from a provided local zip file and returns a stars object", {
 })
 
 test_that("downloads when x is NULL and reads stars object", {
-  skip_on_cran()
+  skip_if_offline()
   skip_if_not_installed("stars")
   skip_if_not_installed("terra")
 
@@ -73,7 +73,7 @@ test_that("downloads when x is NULL and reads stars object", {
 })
 
 test_that("errors cleanly when file does not exist", {
-  skip_on_cran()
+  skip_if_offline()
   skip_if_not_installed("stars")
 
   bogus <- fs::path(tempdir(), "no-such-nlum.zip")

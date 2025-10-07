@@ -1,5 +1,5 @@
 test_that("reads from a provided local CSV path, reorders columns, and sets key = 'Variable'", {
-  skip_on_cran()
+  skip_if_offline()
 
   # Create a small CSV with the required columns but in a shuffled order
   tmp_csv <- withr::local_tempfile(fileext = ".csv")
@@ -41,7 +41,7 @@ test_that("reads from a provided local CSV path, reorders columns, and sets key 
 })
 
 test_that("when x is NULL it downloads (mocked) to tempdir and reads/reorders/keys the CSV", {
-  skip_on_cran()
+  skip_if_offline()
 
   # Stage a CSV that we will "download"
   staged_csv <- withr::local_tempfile(fileext = ".csv")
@@ -99,7 +99,7 @@ test_that("when x is NULL it downloads (mocked) to tempdir and reads/reorders/ke
 })
 
 test_that("alias read_est_by_size returns identical results", {
-  skip_on_cran()
+  skip_if_offline()
 
   tmp_csv <- withr::local_tempfile(fileext = ".csv")
   DT_in <- data.table::data.table(
@@ -132,7 +132,7 @@ test_that("alias read_est_by_size returns identical results", {
 })
 
 test_that("errors cleanly when the provided file does not exist", {
-  skip_on_cran()
+  skip_if_offline()
 
   bogus <- fs::path(tempdir(), "nope-does-not-exist.csv")
   if (fs::file_exists(bogus)) {
@@ -147,7 +147,7 @@ test_that("errors cleanly when the provided file does not exist", {
 })
 
 test_that("column order is enforced even if input CSV columns are shuffled", {
-  skip_on_cran()
+  skip_if_offline()
 
   tmp_csv <- withr::local_tempfile(fileext = ".csv")
   DT_in <- data.table::data.table(

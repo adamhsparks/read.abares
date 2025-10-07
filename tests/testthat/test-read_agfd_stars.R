@@ -10,7 +10,7 @@ test_that("read_agfd_stars validates yyyy bounds", {
 })
 
 test_that("read_agfd_stars integrates: calls .get_agfd, passes var, returns named list of stars (fixed prices)", {
-  skip_on_cran()
+  skip_if_offline()
   testthat::skip_if_not_installed("stars")
 
   files <- file.path(tempdir(), c("x_c2020.nc", "x_c2021.nc"))
@@ -115,7 +115,7 @@ test_that("read_agfd_stars integrates: calls .get_agfd, passes var, returns name
 })
 
 test_that("read_agfd_stars forwards fixed_prices = FALSE to .get_agfd (historical prices path)", {
-  skip_on_cran()
+  skip_if_offline()
   testthat::skip_if_not_installed("stars")
 
   files <- file.path(tempdir(), c("y_c1995.nc", "y_c1996.nc"))
@@ -156,7 +156,7 @@ test_that("read_agfd_stars forwards fixed_prices = FALSE to .get_agfd (historica
 })
 
 test_that("read_agfd_stars forwards x to .get_agfd", {
-  skip_on_cran()
+  skip_if_offline()
   testthat::skip_if_not_installed("stars")
 
   fake_zip <- file.path(tempdir(), "some_agfd.zip")
@@ -195,7 +195,7 @@ test_that("read_agfd_stars forwards x to .get_agfd", {
 })
 
 test_that("read_agfd_stars errors when .get_agfd returns no files (document current behavior)", {
-  skip_on_cran()
+  skip_if_offline()
 
   # When .get_agfd returns character(0), the function tries to access files[1L],
   # leading to an error. We document this current behavior here.

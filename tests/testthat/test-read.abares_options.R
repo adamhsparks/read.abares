@@ -1,5 +1,5 @@
 testthat::test_that("read.abares_options() returns current read.abares.* options", {
-  testthat::skip_on_cran()
+  testthat::skip_if_offline()
 
   # Ensure a clean baseline
   withr::local_options(list(
@@ -15,7 +15,7 @@ testthat::test_that("read.abares_options() returns current read.abares.* options
 })
 
 testthat::test_that("read.abares_options() sets a single option and persists", {
-  testthat::skip_on_cran()
+  testthat::skip_if_offline()
 
   withr::local_options(list(read.abares.quiet = FALSE))
 
@@ -29,7 +29,7 @@ testthat::test_that("read.abares_options() sets a single option and persists", {
 })
 
 testthat::test_that("read.abares_options() sets multiple options at once", {
-  testthat::skip_on_cran()
+  testthat::skip_if_offline()
 
   withr::local_options(list(
     read.abares.quiet = FALSE,
@@ -47,7 +47,7 @@ testthat::test_that("read.abares_options() sets multiple options at once", {
 })
 
 testthat::test_that("read.abares_options() does not affect unrelated options", {
-  testthat::skip_on_cran()
+  testthat::skip_if_offline()
 
   withr::local_options(list(
     custom.option = "keepme",
@@ -60,7 +60,7 @@ testthat::test_that("read.abares_options() does not affect unrelated options", {
 })
 
 testthat::test_that("read.abares_options() snapshot of selected options", {
-  testthat::skip_on_cran()
+  testthat::skip_if_offline()
 
   # Keep snapshot output stable across environments
   testthat::local_reproducible_output(width = 80L)

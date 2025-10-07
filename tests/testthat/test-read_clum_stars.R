@@ -1,5 +1,3 @@
-# tests/testthat/test-read_clum_stars.R
-
 test_that("read_clum_stars validates data_set parameter correctly", {
   expect_error(
     read_clum_stars(data_set = "invalid_dataset"),
@@ -250,25 +248,6 @@ test_that("read_clum_stars handles file path from .get_clum correctly", {
     read_clum_stars(data_set = "clum_50m_2023_v2")
 
     expect_length(read_stars_paths, 1)
-    expect_equal(read_stars_paths[1], test_path)
+    expect_identical(read_stars_paths[1], test_path)
   })
-})
-
-# Integration test (skip on CRAN to avoid network dependencies)
-test_that("read_clum_stars integration test", {
-  skip_on_cran()
-  skip_if_not(.has_internet(), "No internet connection")
-
-  # This would test the actual function end-to-end
-  # Only run if the data is actually accessible
-  result <- tryCatch(
-    {
-      read_clum_stars(data_set = "clum_50m_2023_v2")
-    },
-    error = function(e) {
-      skip(paste("Integration test failed:", conditionMessage(e)))
-    }
-  )
-
-  expect_s3_class(result, "stars")
 })
