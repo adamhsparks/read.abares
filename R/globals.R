@@ -7,6 +7,5 @@ utils::globalVariables(c(
   "lat", # <read_agfd_dt>
   "lon", # <read_agfd_dt>
   "Month_issued", # <read_historical_forecast_database>
-  "clum_metadata_pdf", # <view_clum_metadata_pdf>
   NULL
 ))
