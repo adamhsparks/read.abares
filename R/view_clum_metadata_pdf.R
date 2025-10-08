@@ -34,7 +34,7 @@ view_clum_metadata_pdf <- function(commodities = FALSE) {
       url = "https://www.agriculture.gov.au/sites/default/files/documents/CLUM_DescriptiveMetadata_December2023_v2.pdf",
       dest = x
     )
-    system(paste0('open "', clum_metadata_pdf, '"'))
+    system(paste0('open "', x, '"'))
   }
   return(invisible(NULL))
 }
