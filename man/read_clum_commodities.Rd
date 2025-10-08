@@ -25,7 +25,7 @@ import it into your active \R session after correcting invalid geometries.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
-clum_commodities <- get_clum_commodities()
+clum_commodities <- read_clum_commodities()
 
 clum_commodities
 \dontshow{\}) # examplesIf}

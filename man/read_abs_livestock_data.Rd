@@ -4,7 +4,7 @@
 \alias{read_abs_livestock_data}
 \title{Read ABS' Livestock Production and Value by Australia, State and Territory by Year}
 \usage{
-read_abs_livestock_data(data_set = "herd_estimates", x = NULL)
+read_abs_livestock_data(data_set = "livestock_and_products", x = NULL)
 }
 \arguments{
 \item{data_set}{A string value providing the desired livestock data, one of:
@@ -37,7 +37,9 @@ it's serviced in this package.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
-read_abs_livestock_data()
+livestock_data <- read_abs_livestock_data()
+
+livestock_data
 \dontshow{\}) # examplesIf}
 }
 \references{

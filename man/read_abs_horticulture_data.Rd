@@ -33,7 +33,8 @@ it's serviced in this package.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
-read_abs_horticultural_data()
+horticulture_data <- read_abs_horticulture_data()
+horticulture_data
 \dontshow{\}) # examplesIf}
 }
 \references{

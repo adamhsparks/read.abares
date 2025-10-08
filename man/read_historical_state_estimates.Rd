@@ -35,7 +35,7 @@ serviced in this package using a snake_case format and ordered consistently.
 read_historical_state_estimates()
 
 # or shorter
-read_hist_sta_est()
+read_hist_st_est()
 \dontshow{\}) # examplesIf}
 }
 \references{
