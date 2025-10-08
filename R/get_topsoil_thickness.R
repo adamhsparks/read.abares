@@ -31,23 +31,28 @@
 
 .get_topsoil_thickness <- function(.x = NULL) {
   if (is.null(.x)) {
-    .x <- fs::path(tempdir(), "topsoil_thick.zip")
+    .x <- fs::path(tempdir(), "staiar9cl__05911a01eg_geo___.zip")
     .retry_download(
       "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
       dest = .x
     )
   }
 
-  dat_dir <- .unzip_file(.x)
+  .unzip_file(.x)
 
-  x <- terra::rast(fs::path(dat_dir, "thpk_1"))
-  x <- terra::init(x, x[]) # remove RAT legend if present
-
-  # Metadata: prefer the specific code; fallback to any .txt
-  md_idx <- fs::path(dat_dir, "ANZCW1202000149.txt")
+  md_idx <- fs::path(
+    fs::path_dir(.x),
+    "staiar9cl__05911a01eg_geo___/staiar9cl__05911a01eg_geo___/ANZCW1202000149.txt"
+  )
   metadata <- readtext::readtext(md_idx)
 
-  out <- list(metadata = metadata$text, data = x)
+  .x <- terra::rast(fs::path(
+    fs::path_dir(.x),
+    "staiar9cl__05911a01eg_geo___/staiar9cl__05911a01eg_geo___/thpk_1"
+  ))
+  .x <- terra::init(.x, .x[]) # remove RAT legend if present
+
+  out <- list(metadata = metadata$text, data = .x)
   class(out) <- union("read.abares.topsoil.thickness.files", class(out))
   out
 }
