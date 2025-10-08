@@ -1,7 +1,7 @@
 #' Read ABARES' Catchment Scale "Land Use of Australia" Commodities Shapefile
 #'
-#' Download catchment level land use commodity data shapefile and import it into
-#' your active \R session after correcting invalid geometries.
+#' Download (if desired) catchment level land use commodity data shapefile and
+#'  import it into your active \R session after correcting invalid geometries.
 #'
 #' @inheritParams read_aagis_regions
 #'
@@ -34,10 +34,11 @@ read_clum_commodities <- function(x = NULL) {
       dest = x
     )
     .unzip_file(x)
+    x <- fs::path(tempdir(), "CLUM_Commodities_2023")
   }
   clum_commodities <- sf::st_read(
-    fs::path(tempdir(), "CLUM_Commodities_2023"),
-    quiet = talktalk
+    dsn = x,
+    quiet = !talktalk
   )
   return(sf::st_make_valid(clum_commodities))
 }
