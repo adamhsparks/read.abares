@@ -72,6 +72,9 @@ read_clum_terra <- function(
   x = NULL,
   ...
 ) {
+  if (length(data_set) != 1L || !is.character(data_set) || is.na(data_set)) {
+    cli::cli_abort("{.var data_set} must be a single character string value.")
+  }
   data_set <- rlang::arg_match0(
     data_set,
     c("clum_50m_2023_v2", "scale_date_update")
@@ -89,7 +92,8 @@ read_clum_terra <- function(
   return(r)
 }
 
-#' Set CLUM Scale Update Levels
+
+#' Set CLUM scale update levels
 #'
 #' Creates data.tables containing the raster categories for the \acronym{CLUM}
 #'  scale update levels.
@@ -122,7 +126,7 @@ read_clum_terra <- function(
 }
 
 
-#' Create and Apply a Colour data.frame for the clum_50m_2023_v2 Data
+#' Create and apply a color data.frame for the clum_50m_2023_v2 data
 #'
 #' Creates a `data.frame()` that contains the hexadecimal colour codes that
 #' correspond with the integer values to display the map colours as published
@@ -134,6 +138,7 @@ read_clum_terra <- function(
 #' .apply_clum_50m_col_df()
 #'
 #' @dev
+
 .create_clum_50m_coltab <- function() {
   col_df <- data.table::as.data.table(
     list(
@@ -537,8 +542,6 @@ read_clum_terra <- function(
         "#0000ff",
         "#0000ff"
       )
-    ),
-    row.names = c(NA, -198L),
-    class = "data.frame"
+    )
   )
 }

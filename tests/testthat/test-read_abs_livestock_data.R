@@ -7,11 +7,10 @@ testthat::test_that("read_abs_livestock_data() downloads and parses livestock_an
   called_retry <- FALSE
   called_parse <- FALSE
 
-  retry_mock <- function(url, dest, dataset_id, show_progress, ...) {
+  retry_mock <- function(url, dest, ...) {
     last_url <<- url
     got_dest <<- dest
-    testthat::expect_identical(dataset_id, "livestock")
-    testthat::expect_true(show_progress)
+
     testthat::expect_identical(basename(dest), "livestock_file")
     fs::dir_create(fs::path_dir(dest), recurse = TRUE)
     fs::file_create(dest)
@@ -58,11 +57,10 @@ testthat::test_that("read_abs_livestock_data() downloads and parses cattle_herd 
   called_retry <- FALSE
   called_parse <- FALSE
 
-  retry_mock <- function(url, dest, dataset_id, show_progress, ...) {
+  retry_mock <- function(url, dest, ...) {
     last_url <<- url
     got_dest <<- dest
-    testthat::expect_identical(dataset_id, "livestock")
-    testthat::expect_true(show_progress)
+
     testthat::expect_identical(basename(dest), "livestock_file")
     fs::dir_create(fs::path_dir(dest), recurse = TRUE)
     fs::file_create(dest)
@@ -107,11 +105,10 @@ testthat::test_that("read_abs_livestock_data() downloads and parses cattle_herd_
   called_retry <- FALSE
   called_parse <- FALSE
 
-  retry_mock <- function(url, dest, dataset_id, show_progress, ...) {
+  retry_mock <- function(url, dest, ...) {
     last_url <<- url
     got_dest <<- dest
-    testthat::expect_identical(dataset_id, "livestock")
-    testthat::expect_true(show_progress)
+
     testthat::expect_identical(basename(dest), "livestock_file")
     fs::dir_create(fs::path_dir(dest), recurse = TRUE)
     fs::file_create(dest)

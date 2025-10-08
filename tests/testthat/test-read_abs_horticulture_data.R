@@ -11,7 +11,7 @@ testthat::test_that("read_abs_horticulture_data() uses .retry_download (mocked),
       testthat::expect_identical(data_set, "horticulture")
       available_years
     },
-    .retry_download = function(url, dest, dataset_id, show_progress, ...) {
+    .retry_download = function(url, dest, ...) {
       # Base URL and tail should match exactly
       testthat::expect_match(
         url,
@@ -19,9 +19,6 @@ testthat::test_that("read_abs_horticulture_data() uses .retry_download (mocked),
       )
       # Expect the temp file naming convention
       testthat::expect_identical(basename(dest), "hort_crops_file")
-      # Expect dataset_id and show_progress flags
-      testthat::expect_identical(dataset_id, "horticulture")
-      testthat::expect_true(show_progress)
 
       # Create a real file where we were told to download
       fs::dir_create(fs::path_dir(dest), recurse = TRUE)
@@ -75,15 +72,13 @@ testthat::test_that("read_abs_horticulture_data() constructs URL correctly for a
       testthat::expect_identical(data_set, "horticulture")
       available_years
     },
-    .retry_download = function(url, dest, dataset_id, show_progress, ...) {
+    .retry_download = function(url, dest, ...) {
       # Explicit year should appear and dashes removed in trailing code
       testthat::expect_match(
         url,
         "^https://www\\.abs\\.gov\\.au/statistics/industry/agriculture/australian-agriculture-horticulture/2021-22/AAHDC_Aust_Horticulture_202122\\.xlsx$"
       )
       testthat::expect_identical(basename(dest), "hort_crops_file")
-      testthat::expect_identical(dataset_id, "horticulture")
-      testthat::expect_true(show_progress)
 
       fs::dir_create(fs::path_dir(dest), recurse = TRUE)
       fs::file_create(dest)
@@ -178,15 +173,13 @@ testthat::test_that("read_abs_horticulture_data() uses the 'latest' year (first 
       testthat::expect_identical(data_set, "horticulture")
       available_years
     },
-    .retry_download = function(url, dest, dataset_id, show_progress, ...) {
+    .retry_download = function(url, dest, ...) {
       # Should pick "2022-23" and 202223 suffix
       testthat::expect_match(
         url,
         "/2022-23/AAHDC_Aust_Horticulture_202223\\.xlsx$"
       )
       testthat::expect_identical(basename(dest), "hort_crops_file")
-      testthat::expect_identical(dataset_id, "horticulture")
-      testthat::expect_true(show_progress)
 
       fs::dir_create(fs::path_dir(dest), recurse = TRUE)
       fs::file_create(dest)

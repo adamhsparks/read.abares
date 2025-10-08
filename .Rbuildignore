@@ -22,6 +22,9 @@
 ^man/dot-set_clum_update_levels\.Rd$
 ^man/dot-create_clum_50m_coltab\.Rd$
 ^man/dot-retry_download\.Rd$
+^man/dot-apply_conditional_options\.Rd$
+^man/dot-is_agriculture_url\.Rd$
+^man/dot-should_show_progress\.Rd$
 ^man/grapes-or-or-grapes\.Rd$
 ^man/dot-safe_delete\.Rd$
 ^man/dot-unzip_file\.Rd$

@@ -9,17 +9,14 @@
 \arguments{
 \item{url}{\code{Character} The URL being requested.}
 
+\item{dest}{\code{Character} A filepath to be written to local storage.}
+
 \item{.max_tries}{\code{Integer} The number of times to retry a failed download
 before emitting an error message.}
-
-\item{.f}{\code{Character} A filepath to be written to local storage.}
-
-\item{.initial_delay}{\code{Integer} The number of seconds to delay before
-retrying the download.  This increases as the tries increment.}
 }
 \value{
 Called for its side-effects, writes an object to the specified
-director for reading into the active \R session later.
+directory for reading into the active \R session later.
 }
 \description{
 Retries to download the requested resource before stopping. Uses

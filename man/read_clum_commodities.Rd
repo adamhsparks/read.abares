@@ -20,8 +20,8 @@ Defaults to \code{NULL}, assuming that the file will be downloaded in the active
 An \code{\link[sf:sf]{sf::sf()}} object.
 }
 \description{
-Download catchment level land use commodity data shapefile and import it into
-your active \R session after correcting invalid geometries.
+Download (if desired) catchment level land use commodity data shapefile and
+import it into your active \R session after correcting invalid geometries.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}

@@ -17,7 +17,7 @@ test_that("reads from a provided local CSV path and returns a data.table", {
 
   # Type and shape
   expect_true(data.table::is.data.table(out))
-  expect_equal(nrow(out), nrow(DT_in))
+  expect_identical(nrow(out), nrow(DT_in))
 
   # Columns preserved as written (function currently does no renaming)
   expect_setequal(names(out), names(DT_in))
@@ -52,11 +52,9 @@ test_that("when x is NULL it downloads (mocked) to tempdir and reads the CSV", {
   got_dest <- NULL
   called_retry <- FALSE
 
-  retry_mock <- function(url, dest, dataset_id, show_progress, ...) {
+  retry_mock <- function(url, dest, .max_tries = 3L) {
     last_url <<- url
     got_dest <<- dest
-    expect_identical(dataset_id, "fdp_by_performance")
-    expect_true(show_progress)
     expect_identical(basename(dest), "fdp-BySize-ByPerformance.csv")
 
     fs::dir_create(fs::path_dir(dest), recurse = TRUE)

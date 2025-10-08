@@ -10,15 +10,14 @@ test_that("read_abs_broadacre_data() uses .retry_download (mocked), maps 'winter
       expect_identical(data_set, "broadacre")
       available_years
     },
-    .retry_download = function(url, dest, dataset_id, show_progress, ...) {
+    .retry_download = function(url, dest, .max_tries = 3L) {
       # Expect 'latest' resolves to first element of available_years and winter -> Winter_Broadacre
       expect_match(
         url,
         "^https://www\\.abs\\.gov\\.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops/2023-24/AABDC_Winter_Broadacre_202324\\.xlsx$"
       )
       expect_identical(basename(dest), "Winter_Broadacre_crops_file")
-      expect_identical(dataset_id, "broadacre")
-      expect_true(show_progress)
+      expect_identical(.max_tries, 3L)
 
       # Create an empty file to simulate a download target existing
       fs::dir_create(fs::path_dir(dest), recurse = TRUE)
@@ -40,7 +39,7 @@ test_that("read_abs_broadacre_data() uses .retry_download (mocked), maps 'winter
       )
     },
     {
-      res <- read_abs_broadacre_data(
+      res <- read.abares::read_abs_broadacre_data(
         crops = "winter",
         year = "latest",
         x = NULL
@@ -72,14 +71,13 @@ test_that("read_abs_broadacre_data() constructs URL correctly for 'summer' with 
       expect_identical(data_set, "broadacre")
       available_years
     },
-    .retry_download = function(url, dest, dataset_id, show_progress, ...) {
+    .retry_download = function(url, dest, .max_tries = 3L) {
       expect_match(
         url,
         "^https://www\\.abs\\.gov\\.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops/2021-22/AABDC_Summer_202122\\.xlsx$"
       )
       expect_identical(basename(dest), "Summer_crops_file")
-      expect_identical(dataset_id, "broadacre")
-      expect_true(show_progress)
+      expect_identical(.max_tries, 3L)
 
       # Create an empty file to satisfy parse path
       fs::dir_create(fs::path_dir(dest), recurse = TRUE)
@@ -92,7 +90,7 @@ test_that("read_abs_broadacre_data() constructs URL correctly for 'summer' with 
       data.table::data.table(Crop = "summer", Year = "2021-22")
     },
     {
-      res <- read_abs_broadacre_data(
+      res <- read.abares::read_abs_broadacre_data(
         crops = "summer",
         year = "2021-22",
         x = NULL
@@ -118,14 +116,13 @@ test_that("read_abs_broadacre_data() constructs URL correctly for 'sugarcane' wi
       expect_identical(data_set, "broadacre")
       available_years
     },
-    .retry_download = function(url, dest, dataset_id, show_progress, ...) {
+    .retry_download = function(url, dest, .max_tries = 3L) {
       expect_match(
         url,
         "^https://www\\.abs\\.gov\\.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops/2022-23/AABDC_Sugarcane_202223\\.xlsx$"
       )
       expect_identical(basename(dest), "Sugarcane_crops_file")
-      expect_identical(dataset_id, "broadacre")
-      expect_true(show_progress)
+      expect_identical(.max_tries, 3L)
 
       fs::dir_create(fs::path_dir(dest), recurse = TRUE)
       fs::file_create(dest)
@@ -137,7 +134,7 @@ test_that("read_abs_broadacre_data() constructs URL correctly for 'sugarcane' wi
       data.table::data.table(Crop = "sugarcane", Year = "2022-23")
     },
     {
-      res <- read_abs_broadacre_data(
+      res <- read.abares::read_abs_broadacre_data(
         crops = "sugarcane",
         year = "2022-23",
         x = NULL
@@ -172,7 +169,7 @@ test_that("read_abs_broadacre_data() reads a provided path without calling .retr
       data.table::data.table(OK = TRUE)
     },
     {
-      res <- read_abs_broadacre_data(x = x_path)
+      res <- read.abares::read_abs_broadacre_data(x = x_path)
       expect_true(called_parse)
       expect_s3_class(res, "data.table")
       expect_true(res$OK[[1L]])
@@ -198,7 +195,7 @@ test_that("read_abs_broadacre_data() validates arguments for crops and year", {
     },
     {
       expect_error(
-        read_abs_broadacre_data(
+        read.abares::read_abs_broadacre_data(
           crops = "notacrop",
           year = "latest"
         ),
@@ -222,7 +219,7 @@ test_that("read_abs_broadacre_data() validates arguments for crops and year", {
     },
     {
       expect_error(
-        read_abs_broadacre_data(
+        read.abares::read_abs_broadacre_data(
           crops = "winter",
           year = "2019-20"
         ),

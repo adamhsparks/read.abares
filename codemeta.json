@@ -197,6 +197,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "webmockr",
+      "name": "webmockr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=webmockr"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "writexl",
       "name": "writexl",
       "provider": {
@@ -253,18 +265,6 @@
     },
     "5": {
       "@type": "SoftwareApplication",
-      "identifier": "curl",
-      "name": "curl",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=curl"
-    },
-    "6": {
-      "@type": "SoftwareApplication",
       "identifier": "data.table",
       "name": "data.table",
       "provider": {
@@ -275,7 +275,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=data.table"
     },
-    "7": {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "fs",
       "name": "fs",
@@ -287,7 +287,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=fs"
     },
-    "8": {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "htm2txt",
       "name": "htm2txt",
@@ -299,7 +299,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=htm2txt"
     },
-    "9": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "httr2",
       "name": "httr2",
@@ -311,7 +311,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=httr2"
     },
-    "10": {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "lubridate",
       "name": "lubridate",
@@ -323,7 +323,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=lubridate"
     },
-    "11": {
+    "10": {
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
@@ -335,7 +335,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
     },
-    "12": {
+    "11": {
       "@type": "SoftwareApplication",
       "identifier": "readtext",
       "name": "readtext",
@@ -347,7 +347,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=readtext"
     },
-    "13": {
+    "12": {
       "@type": "SoftwareApplication",
       "identifier": "readxl",
       "name": "readxl",
@@ -359,7 +359,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=readxl"
     },
-    "14": {
+    "13": {
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
@@ -371,7 +371,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     },
-    "15": {
+    "14": {
       "@type": "SoftwareApplication",
       "identifier": "sf",
       "name": "sf",
@@ -383,7 +383,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=sf"
     },
-    "16": {
+    "15": {
       "@type": "SoftwareApplication",
       "identifier": "stars",
       "name": "stars",
@@ -395,7 +395,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stars"
     },
-    "17": {
+    "16": {
       "@type": "SoftwareApplication",
       "identifier": "stringr",
       "name": "stringr",
@@ -407,7 +407,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stringr"
     },
-    "18": {
+    "17": {
       "@type": "SoftwareApplication",
       "identifier": "terra",
       "name": "terra",
@@ -419,7 +419,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=terra"
     },
-    "19": {
+    "18": {
       "@type": "SoftwareApplication",
       "identifier": "tidync",
       "name": "tidync",
@@ -431,7 +431,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tidync"
     },
-    "20": {
+    "19": {
       "@type": "SoftwareApplication",
       "identifier": "withr",
       "name": "withr",
@@ -443,7 +443,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=withr"
     },
-    "21": {
+    "20": {
       "@type": "SoftwareApplication",
       "identifier": "whoami",
       "name": "whoami",
@@ -457,7 +457,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "855.419KB",
+  "fileSize": "799.829KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

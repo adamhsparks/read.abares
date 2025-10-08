@@ -12,12 +12,11 @@ test_that("read_abares_trade() uses .retry_download (mocked) and parses/renames 
   called <- FALSE
 
   testthat::with_mocked_bindings(
-    .retry_download = function(url, dest, dataset_id, show_progress) {
+    .retry_download = function(url, dest, .max_tries = 3L) {
       testthat::expect_match(url, "/client/en_AU/search/asset/1033841/1$")
       testthat::expect_identical(basename(dest), "abares_trade_data.zip")
-      testthat::expect_identical(dataset_id, "trade")
-      testthat::expect_true(show_progress)
 
+      # Create a temporary CSV file and zip it
       tmp_dir <- withr::local_tempdir()
       csv_path <- fs::path(tmp_dir, "abares_trade_data.csv")
       writeLines(csv_text, csv_path, useBytes = TRUE)
@@ -81,7 +80,7 @@ test_that("read_abares_trade() uses .retry_download (mocked) and parses/renames 
       expect_identical(res[["Value"]], c(1000L, 2000L))
       expect_identical(res[["Quantity"]], c(200L, 50L))
     },
-    .package = "read.abares" # IMPORTANT: pass package name as a string
+    .package = "read.abares"
   )
 })
 
@@ -97,11 +96,9 @@ test_that("read_abares_trade() reads a provided ZIP path without calling .retry_
     collapse = "\n"
   )
 
-  writeLines(
-    csv_text,
-    fs::path(tmp_dir, "abares_trade_data.csv"),
-    useBytes = TRUE
-  )
+  # Create CSV file and zip it
+  csv_path <- fs::path(tmp_dir, "abares_trade_data.csv")
+  writeLines(csv_text, csv_path, useBytes = TRUE)
   create_zip(
     zip_path = zip_path,
     files_dir = tmp_dir,
