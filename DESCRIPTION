@@ -17,7 +17,10 @@ Authors@R: c(
 Description: Download and import agricultural data from the Australian
     Bureau of Agricultural and Resource Economics and Sciences (ABARES)
     <https://www.agriculture.gov.au/abares> and Australian Bureau of
-    Statistics (ABS) <https://abs.gov.au>.
+    Statistics (ABS) <https://abs.gov.au>. Data types servided include
+    spreadsheets, CSV files, geospatial data including shape files and
+    geotiffs covering topics including broadacre crops, livestock, soil
+    data, commodities and more.
 License: MIT + file LICENSE
 URL: https://github.com/adamhsparks/read.abares,
     https://adamhsparks.github.io/read.abares/
