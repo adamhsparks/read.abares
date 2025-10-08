@@ -28,8 +28,7 @@ read_estimates_by_size <- read_est_by_size <- function(x = NULL) {
 
     .retry_download(
       "https://www.agriculture.gov.au/sites/default/files/documents/fdp-performance-by-size.csv",
-      dest = x,
-      show_progress = TRUE
+      dest = x
     )
   }
   x <- data.table::fread(x)
