@@ -77,16 +77,15 @@ aagis_dat <- left_join(aagis_regions, aagis_region_data)
 ```
 
 Once we've joined the data, we can visualise it using {ggplot2}.
-Here we can plot the total area cropped (ha) and facet by year for all of Australia for the year 2023.
+Here we can plot the total area cropped (ha) for all of Australia for the year 2023.
 
 ```{r aagis-regions-plot, fig.cap="Plot of AAGIS estimated total area cropped by year and region."}
 library(ggplot2)
 
-ggplot(total_area) +
+ggplot(aagis_dat) +
   geom_sf(aes(fill = Value), colour = NA) +
   scale_fill_viridis_c() +
   labs(
-
     fill = "Total Area Cropped (ha)"
   ) +
   facet_wrap(~Year) +

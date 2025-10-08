@@ -1,7 +1,7 @@
 ---
 title: "Working with spatial data available through read.abares"
 author: "Adam H. Sparks"
-date: "2025-10-07"
+date: "2025-10-08"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Working with spatial data available through read.abares}
@@ -36,12 +36,14 @@ ABARES offers spatial data for the Australian Agricultural and Grazing Industrie
 
 ``` r
 aagis_regions <- read_aagis_regions()
-#> Error in `.retry_download()` at read.abares/R/read_aagis_regions.R:42:7:
-#> ! Failed to access URL: HTTP NA
 
 plot(aagis_regions)
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'plot': object 'aagis_regions' not found
 ```
+
+<div class="figure" style="text-align: center">
+<img src="aagis-regions-1.png" alt="AAGIS regions shapefile"  />
+<p class="caption">AAGIS regions shapefile</p>
+</div>
 
 ### Obtaining AAGIS Data by Region
 
@@ -51,8 +53,6 @@ For this example, we will use the `read_historical_regional_estimates()` functio
 
 ``` r
 aagis_region_data <- read_historical_regional_estimates()
-#> Error in `.retry_download()` at read.abares/R/read_historical_regional_estimates.R:30:5:
-#> ! Failed to access URL: HTTP NA
 ```
 
 Filter the AAGIS region data to represent the total area cropped for the year of 2023.
@@ -61,22 +61,10 @@ This will make the next few examples execute much more quickly.
 
 ``` r
 library(dplyr)
-#> 
-#> Attaching package: 'dplyr'
-#> The following object is masked from 'package:testthat':
-#> 
-#>     matches
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 
 aagis_region_data <- filter(aagis_region_data,
                             Variable == "Total area cropped (ha)",
                             Year == 2023)
-#> Error: object 'aagis_region_data' not found
 ```
 
 ### Merging the AAGIS Regions Spatial Data with the AAGIS Regional Data
@@ -87,27 +75,30 @@ To join the data, we will use the `left_join()` function from the {dplyr} packag
 
 ``` r
 aagis_dat <- left_join(aagis_regions, aagis_region_data)
-#> Error: object 'aagis_regions' not found
+#> Joining with `by = join_by(ABARES_region)`
 ```
 
 Once we've joined the data, we can visualise it using {ggplot2}.
-Here we can plot the total area cropped (ha) and facet by year for all of Australia for the year 2023.
+Here we can plot the total area cropped (ha) for all of Australia for the year 2023.
 
 
 ``` r
 library(ggplot2)
 
-ggplot(total_area) +
+ggplot(aagis_dat) +
   geom_sf(aes(fill = Value), colour = NA) +
   scale_fill_viridis_c() +
   labs(
-
     fill = "Total Area Cropped (ha)"
   ) +
   facet_wrap(~Year) +
   theme_minimal()
-#> Error: object 'total_area' not found
 ```
+
+<div class="figure" style="text-align: center">
+<img src="aagis-regions-plot-1.png" alt="Plot of AAGIS estimated total area cropped by year and region."  />
+<p class="caption">Plot of AAGIS estimated total area cropped by year and region.</p>
+</div>
 
 ## Working With AGFD Data
 
