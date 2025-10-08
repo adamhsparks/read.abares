@@ -39,22 +39,32 @@
   }
 
   .unzip_file(.x)
+  root <- fs::path_dir(.x)
 
-  md_idx <- fs::path(
-    fs::path_dir(.x),
-    "staiar9cl__05911a01eg_geo___/staiar9cl__05911a01eg_geo___/ANZCW1202000149.txt"
+  # Locate metadata file anywhere under root
+  md_idx <- fs::dir_ls(
+    root,
+    recurse = TRUE,
+    type = "file",
+    regexp = "(^|/)ANZCW1202000149\\.txt$"
   )
-  metadata <- readtext::readtext(md_idx)
+  metadata <- readtext::readtext(md_idx[[1L]])
 
-  .x <- terra::rast(fs::path(
-    fs::path_dir(.x),
-    "staiar9cl__05911a01eg_geo___/staiar9cl__05911a01eg_geo___/thpk_1"
-  ))
-  .x <- terra::init(.x, .x[]) # remove RAT legend if present
+  # Locate raster file; accept thpk_1 or thpk_1.tif
+  ras_candidates <- fs::dir_ls(
+    root,
+    recurse = TRUE,
+    type = "file",
+    regexp = "(^|/)thpk_1(\\.tif)?$"
+  )
+  rast_path <- ras_candidates[[1L]]
 
-  out <- list(metadata = metadata$text, data = .x)
-  class(out) <- union("read.abares.topsoil.thickness.files", class(out))
-  out
+  x <- terra::rast(rast_path)
+  x <- terra::init(x, x[]) # remove RAT legend if present
+
+  out <- list(metadata = metadata$text, data = x)
+  class(out) <- union("read.abares.topsoil.thickness", class(out))
+  return(out)
 }
 
 #' Prints a read.abares.topsoil.thickness Object
@@ -67,7 +77,7 @@
 #' @export
 #' @noRd
 
-print.read.abares.topsoil.thickness.files <- function(x, ...) {
+print.read.abares.topsoil.thickness <- function(x, ...) {
   cli::cli_h1(
     "Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil)"
   )
