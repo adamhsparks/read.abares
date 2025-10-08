@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_clum_terra.R
 \name{.create_clum_50m_coltab}
 \alias{.create_clum_50m_coltab}
-\title{Create and Apply a Colour data.frame for the clum_50m_2023_v2 Data}
+\title{Create and apply a color data.frame for the clum_50m_2023_v2 data}
 \usage{
 .create_clum_50m_coltab()
 }

@@ -4,7 +4,7 @@
 \name{read.abares-package}
 \alias{read.abares}
 \alias{read.abares-package}
-\title{read.abares: Provides simple downloading, parsing and importing of Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) data sources}
+\title{read.abares: Download and Import Agricultural Data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) and Australian Bureau of Statistics (ABS)}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
