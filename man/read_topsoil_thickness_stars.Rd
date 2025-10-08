@@ -11,10 +11,10 @@ read_topsoil_thickness_stars(x = NULL, ...)
 }
 \arguments{
 \item{x}{A file path providing the file with the data to be imported. The
-file is assumed to be unarchived locally. This function does not provide any
-checking whether this function is the proper function for the provided file.
-Defaults to \code{NULL}, assuming that the file will be downloaded in the active
-\R session.}
+file is assumed to be unarchived (*i.e., still zipped). This function does
+not provide any checking whether this function is the proper function for
+the provided file.  Defaults to \code{NULL}, assuming that the file will be
+downloaded in the active \R session.}
 
 \item{...}{Additional arguments passed to \code{\link[stars:st_as_stars]{stars::st_as_stars()}}, for \emph{e.g.},
 \code{att} if you wished to set the active category.}

@@ -11,10 +11,10 @@ read_clum_commodities(x = NULL)
 }
 \arguments{
 \item{x}{A file path providing the file with the data to be imported. The
-file is assumed to be unarchived locally. This function does not provide any
-checking whether this function is the proper function for the provided file.
-Defaults to \code{NULL}, assuming that the file will be downloaded in the active
-\R session.}
+file is assumed to be unarchived (*i.e., still zipped). This function does
+not provide any checking whether this function is the proper function for
+the provided file.  Defaults to \code{NULL}, assuming that the file will be
+downloaded in the active \R session.}
 }
 \value{
 An \code{\link[sf:sf]{sf::sf()}} object.
