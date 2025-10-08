@@ -24,6 +24,7 @@ view_nlum_metadata_pdf <- function() {
       url = "https://www.agriculture.gov.au/sites/default/files/documents/NLUM_v7_DescriptiveMetadata_20241128_0.pdf",
       dest = x
     )
+    system(paste0('open "', x, '"'))
   }
   return(invisible(NULL))
 }
