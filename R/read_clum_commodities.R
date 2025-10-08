@@ -14,7 +14,7 @@
 #' <https://data.gov.au/data/dataset/catchment-scale-land-use-of-australia-and-commodities-update-december-2023/resource/b216cf90-f4f0-4d88-980f-af7d1ad746cb>
 #'
 #' @examplesIf interactive()
-#' clum_commodities <- get_clum_commodities()
+#' clum_commodities <- read_clum_commodities()
 #'
 #' clum_commodities
 #'
@@ -34,7 +34,7 @@ read_clum_commodities <- function(x = NULL) {
       dest = x
     )
     .unzip_file(x)
-    x <- fs::path(tempdir(), "CLUM_Commodities_2023")
+    x <- fs::path(tempdir(), "clum_commodities/CLUM_Commodities_2023")
   }
   clum_commodities <- sf::st_read(
     dsn = x,
