@@ -441,23 +441,23 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=withr"
+      "sameAs": "https://CRAN.R-project.org/package=whoami"
     },
     "20": {
       "@type": "SoftwareApplication",
-      "identifier": "whoami",
-      "name": "whoami",
+      "identifier": "withr",
+      "name": "withr",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=whoami"
+      "sameAs": "https://CRAN.R-project.org/package=withr"
     },
     "SystemRequirements": null
   },
-  "fileSize": "799.829KB",
+  "fileSize": "800.188KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
