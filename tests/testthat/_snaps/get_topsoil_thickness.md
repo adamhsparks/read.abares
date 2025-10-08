@@ -1,7 +1,7 @@
-# print.read.abares.topsoil.thickness.files prints correctly
+# print.read.abares.topsoil.thickness prints correctly
 
     Code
-      print.read.abares.topsoil.thickness.files(mock_obj)
+      print.read.abares.topsoil.thickness(mock_obj)
     Message
       
       -- Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Ho

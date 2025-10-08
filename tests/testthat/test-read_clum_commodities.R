@@ -29,7 +29,7 @@ test_that("read_clum_commodities downloads and processes data when x is NULL", {
   # Mock sf functions
   local_mocked_bindings(
     st_read = function(dsn, quiet) {
-      expect_identical(dsn, "/tmp/test/CLUM_Commodities_2023")
+      expect_identical(dsn, "/tmp/test/clum_commodities/CLUM_Commodities_2023")
       expect_false(quiet)
       return(mock_sf_data)
     },
@@ -56,7 +56,7 @@ test_that("read_clum_commodities downloads and processes data when x is NULL", {
           args[[1]] == "/tmp/test" &&
           args[[2]] == "CLUM_Commodities_2023"
       ) {
-        return("/tmp/test/CLUM_Commodities_2023")
+        return("/tmp/test/clum_commodities/CLUM_Commodities_2023")
       }
       return(paste(args, collapse = "/"))
     },
@@ -265,7 +265,10 @@ test_that("read_clum_commodities constructs correct file paths", {
 
   local_mocked_bindings(
     st_read = function(dsn, quiet) {
-      expect_identical(dsn, "/tmp/test_dir/CLUM_Commodities_2023")
+      expect_identical(
+        dsn,
+        "/tmp/test_dir/clum_commodities/CLUM_Commodities_2023"
+      )
       return(mock_sf_data)
     },
     st_make_valid = function(x) x,
@@ -275,7 +278,9 @@ test_that("read_clum_commodities constructs correct file paths", {
   result <- read_clum_commodities()
 
   expect_true("/tmp/test_dir/clum_commodities.zip" %in% paths_created)
-  expect_true("/tmp/test_dir/CLUM_Commodities_2023" %in% paths_created)
+  expect_true(
+    "/tmp/test_dir/clum_commodities/CLUM_Commodities_2023" %in% paths_created
+  )
   expect_s3_class(result, "sf")
 })
 

@@ -62,7 +62,7 @@ test_that(".get_topsoil_thickness works with valid zip file", {
     # Test the function
     result <- .get_topsoil_thickness(.x = test_zip)
 
-    expect_s3_class(result, "read.abares.topsoil.thickness.files")
+    expect_s3_class(result, "read.abares.topsoil.thickness")
     expect_type(result, "list")
     expect_named(result, c("metadata", "data"))
     expect_type(result$metadata, "character")
@@ -95,7 +95,7 @@ test_that(".get_topsoil_thickness returns correct class structure", {
 
     result <- .get_topsoil_thickness(.x = test_zip)
 
-    expect_s3_class(result, "read.abares.topsoil.thickness.files")
+    expect_s3_class(result, "read.abares.topsoil.thickness")
     expect_type(result, "list")
     expect_length(result, 2L)
     expect_named(result, c("metadata", "data"))
@@ -111,7 +111,7 @@ test_that(".get_topsoil_thickness returns correct class structure", {
   })
 })
 
-test_that("print.read.abares.topsoil.thickness.files prints correctly", {
+test_that("print.read.abares.topsoil.thickness prints correctly", {
   # Create a mock object
   mock_obj <- structure(
     list(
@@ -122,7 +122,7 @@ test_that("print.read.abares.topsoil.thickness.files prints correctly", {
   )
 
   # Use snapshot testing for cli output
-  expect_snapshot(print.read.abares.topsoil.thickness.files(mock_obj))
+  expect_snapshot(print.read.abares.topsoil.thickness(mock_obj))
 })
 
 test_that("print_topsoil_thickness_metadata displays complete metadata", {

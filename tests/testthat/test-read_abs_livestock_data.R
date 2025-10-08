@@ -39,7 +39,7 @@ testthat::test_that("read_abs_livestock_data() downloads and parses livestock_an
       testthat::expect_identical(nrow(out), 2L)
       testthat::expect_match(
         last_url,
-        "^https://www\\.abs\\.gov\\.au/statistics/industry/agriculture/australian-agriculture-livestock/AALDC_Value%20of%20livestock%20and%20products%202023-24\\.xlsx$"
+        "^https://www\\.abs\\.gov\\.au/statistics/industry/agriculture/australian-agriculture-livestock/2023-24/AALDC_Value%20of%20livestock%20and%20products%202023-24\\.xlsx$"
       )
       testthat::expect_true(fs::file_exists(temp_file))
       testthat::expect_identical(got_dest, temp_file)
@@ -87,7 +87,7 @@ testthat::test_that("read_abs_livestock_data() downloads and parses cattle_herd 
       testthat::expect_identical(nrow(out), 2L)
       testthat::expect_match(
         last_url,
-        "^https://www\\.abs\\.gov\\.au/statistics/industry/agriculture/australian-agriculture-livestock/AALDC_Cattle%20herd_2023_24\\.xlsx$"
+        "^https://www\\.abs\\.gov\\.au/statistics/industry/agriculture/australian-agriculture-livestock/2023-24/AALDC_Cattle%20herd_2023_24\\.xlsx$"
       )
       testthat::expect_true(fs::file_exists(temp_file))
       testthat::expect_identical(got_dest, temp_file)
@@ -141,7 +141,7 @@ testthat::test_that("read_abs_livestock_data() downloads and parses cattle_herd_
       testthat::expect_identical(nrow(out), 2L)
       testthat::expect_match(
         last_url,
-        "^https://www\\.abs\\.gov\\.au/statistics/industry/agriculture/australian-agriculture-livestock/AALDC_Cattle%20herd%20series_2005%20to%202024\\.xlsx$"
+        "^https://www\\.abs\\.gov\\.au/statistics/industry/agriculture/australian-agriculture-livestock/2023-24/AALDC_Cattle%20herd%20series_2005%20to%202024\\.xlsx$"
       )
       testthat::expect_true(fs::file_exists(temp_file))
       testthat::expect_identical(got_dest, temp_file)
