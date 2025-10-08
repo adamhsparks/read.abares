@@ -13,7 +13,8 @@
 #' @inheritParams read_aagis_regions
 #'
 #' @examplesIf interactive()
-#' read_abs_horticultural_data()
+#' horticulture_data <- read_abs_horticulture_data()
+#' horticulture_data
 #'
 #' @references <https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-horticulture/>.
 #' @returns A [data.table::data.table()] object of the requested data.
