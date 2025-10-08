@@ -1,8 +1,8 @@
 Type: Package
 Package: read.abares
-Title: Provides simple downloading, parsing and importing of Australian
-    Bureau of Agricultural and Resource Economics and Sciences (ABARES)
-    data sources
+Title: Download and Import Agricultural Data from the Australian Bureau of
+    Agricultural and Resource Economics and Sciences (ABARES) and
+    Australian Bureau of Statistics (ABS)
 Version: 2.0.0
 Authors@R: c(
     person("Adam H.", "Sparks", , "adamhsparks@gmail.com", role = c("cre", "aut"),
@@ -14,10 +14,10 @@ Authors@R: c(
     person("Jacob", , , "jacob@wujciak.de", role = "ctb",
            comment = c("Assisted with troubleshooting formatting in documentation to display '<' and '>' properly", ORCID = "0000-0002-7281-3989"))
   )
-Description: Download and import agricultural data from the Australian Bureau of
-    Agricultural and Resource Economics and Sciences (ABARES)
-    <https://www.agriculture.gov.au/abares> and Australian Bureau of Statistics
-    (ABS) <https://abs.gov.au>.
+Description: Download and import agricultural data from the Australian
+    Bureau of Agricultural and Resource Economics and Sciences (ABARES)
+    <https://www.agriculture.gov.au/abares> and Australian Bureau of
+    Statistics (ABS) <https://abs.gov.au>.
 License: MIT + file LICENSE
 URL: https://github.com/adamhsparks/read.abares,
     https://adamhsparks.github.io/read.abares/
@@ -42,8 +42,8 @@ Imports:
     stringr,
     terra,
     tidync,
-    withr,
-    whoami
+    whoami,
+    withr
 Suggests: 
     bit64,
     future,
