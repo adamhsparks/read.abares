@@ -19,7 +19,7 @@
 #' read_historical_state_estimates()
 #'
 #' # or shorter
-#' read_hist_sta_est()
+#' read_hist_st_est()
 #'
 read_historical_state_estimates <- read_hist_st_est <- function(x = NULL) {
   if (is.null(x)) {
