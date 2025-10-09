@@ -37,7 +37,7 @@ read_abs_horticulture_data <- function(year = "latest", x = NULL) {
 
     .retry_download(
       url = sprintf(
-        "%s%s/AAHDC_Aust_Horticulture_%s.xlsx",
+        "%s/%s/AAHDC_Aust_Horticulture_%s.xlsx",
         base_url,
         year,
         gsub("-", "", year, fixed = TRUE)
