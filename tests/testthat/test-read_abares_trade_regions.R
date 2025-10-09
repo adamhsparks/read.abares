@@ -1,4 +1,5 @@
 test_that("read_abares_trade_regions() downloads via mocked .retry_download and reads/handles ragged rows (fill=TRUE)", {
+  skip_if_offline()
   csv_text <- paste(
     c(
       "Region,State,Australian_port,Value",
@@ -10,15 +11,15 @@ test_that("read_abares_trade_regions() downloads via mocked .retry_download and 
 
   called <- FALSE
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     .retry_download = function(
       url,
       dest,
       dataset_id = NULL,
       show_progress = TRUE
     ) {
-      testthat::expect_match(url, "/client/en_AU/search/asset/1033841/2$")
-      testthat::expect_identical(fs::path_file(dest), "trade_regions")
+      expect_match(url, "/client/en_AU/search/asset/1033841/2$")
+      expect_identical(fs::path_file(dest), "trade_regions")
 
       fs::dir_create(fs::path_dir(dest), recurse = TRUE)
       writeLines(csv_text, dest, useBytes = TRUE)
@@ -57,6 +58,7 @@ test_that("read_abares_trade_regions() downloads via mocked .retry_download and 
 })
 
 test_that("read_abares_trade_regions() reads a provided local file and does not download", {
+  skip_if_offline()
   tmp <- withr::local_tempfile()
   writeLines(
     paste(
@@ -71,7 +73,7 @@ test_that("read_abares_trade_regions() reads a provided local file and does not 
     useBytes = TRUE
   )
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     .retry_download = function(...) {
       stop("`.retry_download()` should not be called when x != NULL")
     },
@@ -95,7 +97,8 @@ test_that("read_abares_trade_regions() reads a provided local file and does not 
 })
 
 test_that("read_abares_trade_regions() propagates errors from .retry_download", {
-  testthat::with_mocked_bindings(
+  skip_if_offline()
+  with_mocked_bindings(
     .retry_download = function(...) stop("download failed", call. = FALSE),
     {
       expect_error(

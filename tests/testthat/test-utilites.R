@@ -1,6 +1,4 @@
 test_that("unzips a valid zip file into a named folder", {
-  skip_if_offline()
-
   # Create a temp directory and file to zip
   tmp_dir <- withr::local_tempdir()
   file_path <- fs::path(tmp_dir, "test.txt")
@@ -28,8 +26,6 @@ test_that("unzips a valid zip file into a named folder", {
 
 
 test_that("safe_delete deletes files and directories", {
-  skip_if_offline()
-
   # File deletion
   tmp_file <- withr::local_tempfile()
   writeLines("delete me", tmp_file)
@@ -73,7 +69,7 @@ test_that(".unzip_file successfully unzips valid zip file", {
 
     expect_true(fs::dir_exists(result_dir))
     expect_true(fs::file_exists(fs::path(result_dir, "test_file.txt")))
-    expect_equal(fs::path_file(result_dir), "test")
+    expect_identical(fs::path_file(result_dir), "test")
   })
 })
 

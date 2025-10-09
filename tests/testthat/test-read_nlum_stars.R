@@ -1,7 +1,5 @@
 test_that("reads from a provided local zip file and returns a stars object", {
   skip_if_offline()
-  skip_if_not_installed("stars")
-  skip_if_not_installed("terra")
 
   # Create a valid dummy GeoTIFF using terra
   temp_dir <- withr::local_tempdir()
@@ -21,7 +19,7 @@ test_that("reads from a provided local zip file and returns a stars object", {
   utils::zip(zipfile = zip_path, files = tif_path, flags = "-j")
 
   # Mock .get_nlum to return the path to the dummy tif
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     {
       out <- read_nlum_stars(x = zip_path)
       expect_s3_class(out, "stars")
@@ -34,8 +32,6 @@ test_that("reads from a provided local zip file and returns a stars object", {
 
 test_that("downloads when x is NULL and reads stars object", {
   skip_if_offline()
-  skip_if_not_installed("stars")
-  skip_if_not_installed("terra")
 
   temp_dir <- withr::local_tempdir()
   tif_path <- fs::path(
@@ -59,7 +55,7 @@ test_that("downloads when x is NULL and reads stars object", {
     invisible(.f)
   }
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     {
       out <- read_nlum_stars(data_set = "Y202021", proj = "Albers")
       expect_s3_class(out, "stars")
@@ -81,7 +77,7 @@ test_that("errors cleanly when file does not exist", {
     fs::file_delete(bogus)
   }
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     {
       expect_error(
         read_nlum_stars(x = bogus),

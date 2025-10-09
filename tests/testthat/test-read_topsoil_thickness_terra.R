@@ -23,7 +23,7 @@ test_that("reads from a provided local zip file and returns a terra rast object"
   zip_path <- fs::path(temp_dir, "topsoil_thick.zip")
   utils::zip(zipfile = zip_path, files = c(tif_path, txt_path), flags = "-j")
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     {
       out <- read_topsoil_thickness_terra(x = zip_path)
       expect_s4_class(out, "SpatRaster")
@@ -62,7 +62,7 @@ test_that("downloads when x is NULL and returns terra rast object", {
 
   zip_path <- fs::path(temp_dir, "topsoil_thick.zip")
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     {
       out <- read_topsoil_thickness_terra(x = NULL)
       expect_s4_class(out, "SpatRaster")
@@ -92,7 +92,7 @@ test_that("errors cleanly when file does not exist", {
     fs::file_delete(bogus)
   }
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     {
       expect_error(
         read_topsoil_thickness_terra(x = bogus),

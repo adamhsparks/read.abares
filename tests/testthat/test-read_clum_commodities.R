@@ -1,4 +1,5 @@
 test_that("read_clum_commodities downloads and processes data when x is NULL", {
+  skip_if_offline\(\)
   # Mock data to return from sf::st_read
   mock_sf_data <- data.frame(
     id = 1:3,
@@ -120,6 +121,8 @@ test_that("read_clum_commodities respects verbosity options", {
 })
 
 test_that("read_clum_commodities uses provided file path when x is not NULL", {
+
+  skip_if_offline\(\)
   mock_sf_data <- data.frame(
     id = 1:2,
     commodity = c("Wheat", "Barley"),
@@ -146,6 +149,8 @@ test_that("read_clum_commodities uses provided file path when x is not NULL", {
 })
 
 test_that("read_clum_commodities handles sf::st_make_valid correctly", {
+  
+  skip_if_offline\(\)
   mock_invalid_data <- data.frame(id = 1, name = "invalid")
   class(mock_invalid_data) <- c("sf", "data.frame")
 
@@ -185,6 +190,8 @@ test_that("read_clum_commodities handles sf::st_make_valid correctly", {
 })
 
 test_that("read_clum_commodities handles download errors gracefully", {
+  
+  skip_if_offline\(\)
   local_mocked_bindings(
     tempdir = function() "/tmp/test",
     .package = "base"
@@ -208,6 +215,8 @@ test_that("read_clum_commodities handles download errors gracefully", {
 })
 
 test_that("read_clum_commodities handles sf::st_read errors gracefully", {
+  
+  skip_if_offline\(\)
   local_mocked_bindings(
     tempdir = function() "/tmp/test",
     .package = "base"
@@ -238,6 +247,8 @@ test_that("read_clum_commodities handles sf::st_read errors gracefully", {
 })
 
 test_that("read_clum_commodities constructs correct file paths", {
+  
+  skip_if_offline\(\)
   mock_sf_data <- data.frame(id = 1)
   class(mock_sf_data) <- c("sf", "data.frame")
 
@@ -285,6 +296,8 @@ test_that("read_clum_commodities constructs correct file paths", {
 })
 
 test_that("read_clum_commodities returns sf object with expected structure", {
+
+  skip_if_offline\(\)
   # Create mock data that mimics expected CLUM structure
   mock_sf_data <- data.frame(
     OBJECTID = 1:3,

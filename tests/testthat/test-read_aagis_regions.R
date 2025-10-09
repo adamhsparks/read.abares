@@ -1,6 +1,5 @@
 test_that("read_aagis_regions reads and cleans data from a provided local ZIP", {
-  testthat::skip_if_offline()
-  testthat::skip_if_not_installed("sf")
+  skip_if_offline()
 
   # Build a minimal shapefile matching the expected on-disk structure:
   #   aagis/aagis_asgs16v1_g5a.(shp|shx|dbf|prj...)
@@ -56,7 +55,7 @@ test_that("read_aagis_regions reads and cleans data from a provided local ZIP", 
   create_zip(zip_path = zip_path, files_dir = files_dir, files_rel = files_rel)
 
   # Mock only the unzip step to ensure it extracts next to 'x'
-  res <- testthat::with_mocked_bindings(
+  res <- with_mocked_bindings(
     {
       withr::with_options(list(read.abares.verbosity = "quiet"), {
         read_aagis_regions(x = zip_path)
@@ -69,29 +68,28 @@ test_that("read_aagis_regions reads and cleans data from a provided local ZIP", 
   )
 
   # ---- Assertions ----
-  testthat::expect_s3_class(res, "sf")
-  testthat::expect_true(all(sf::st_is_valid(res)))
+  expect_s3_class(res, "sf")
+  expect_true(all(sf::st_is_valid(res)))
 
   # Column checks
-  testthat::expect_false("aagis" %in% names(res))
-  testthat::expect_false(any(c("name", "class", "zone") %in% names(res)))
-  testthat::expect_true(all(
+  expect_false("aagis" %in% names(res))
+  expect_false(any(c("name", "class", "zone") %in% names(res)))
+  expect_true(all(
     c("ABARES_region", "Class", "Zone", "State") %in% names(res)
   ))
 
   # Values derived from 'name'
-  testthat::expect_equal(res$State, c("NSW", "WA"))
-  testthat::expect_equal(res$ABARES_region, c("NSW East", "WA West"))
+  expect_identical(res$State, c("NSW", "WA"))
+  expect_identical(res$ABARES_region, c("NSW East", "WA West"))
 
   # The ZIP should be deleted by the function
-  testthat::expect_false(fs::file_exists(zip_path))
+  expect_false(fs::file_exists(zip_path))
 
   # Extracted folder can be cleaned up automatically with local_tempdir()
 })
 
 test_that("read_aagis_regions works with x = NULL by mocking download + unzip", {
-  testthat::skip_if_offline()
-  testthat::skip_if_not_installed("sf")
+  skip_if_offline()
 
   # Build a fresh payload and staged ZIP we'll 'download' via mocking
   td <- withr::local_tempdir()
@@ -148,7 +146,7 @@ test_that("read_aagis_regions works with x = NULL by mocking download + unzip", 
     fs::dir_delete(expected_unzip_dir)
   }
 
-  res <- testthat::with_mocked_bindings(
+  res <- with_mocked_bindings(
     {
       withr::with_options(list(read.abares.verbosity = "quiet"), {
         read_aagis_regions(x = NULL)
@@ -166,22 +164,21 @@ test_that("read_aagis_regions works with x = NULL by mocking download + unzip", 
   )
 
   # ---- Assertions ----
-  testthat::expect_s3_class(res, "sf")
-  testthat::expect_true(all(sf::st_is_valid(res)))
+  expect_s3_class(res, "sf")
+  expect_true(all(sf::st_is_valid(res)))
 
-  testthat::expect_true(all(
+  expect_true(all(
     c("ABARES_region", "Class", "Zone", "State") %in% names(res)
   ))
-  testthat::expect_identical(res$State, "QLD")
-  testthat::expect_identical(res$ABARES_region, "QLD North")
+  expect_identical(res$State, "QLD")
+  expect_identical(res$ABARES_region, "QLD North")
 
   # The temp zip created by the function should be gone
-  testthat::expect_false(fs::file_exists(expected_temp_zip))
+  expect_false(fs::file_exists(expected_temp_zip))
 })
 
 test_that("read_aagis_regions leaves no legacy columns", {
-  testthat::skip_if_offline()
-  testthat::skip_if_not_installed("sf")
+  skip_if_offline()
 
   td <- withr::local_tempdir()
   files_dir <- fs::path(td, "payload")
@@ -217,7 +214,7 @@ test_that("read_aagis_regions leaves no legacy columns", {
   )
   create_zip(zip_path, files_dir, files_rel)
 
-  res <- testthat::with_mocked_bindings(
+  res <- with_mocked_bindings(
     {
       read_aagis_regions(x = zip_path)
     },
@@ -229,5 +226,5 @@ test_that("read_aagis_regions leaves no legacy columns", {
 
   # Only the cleaned set of fields should remain (plus geometry)
   kept <- c("ABARES_region", "Class", "Zone", "State", attr(res, "sf_column"))
-  testthat::expect_setequal(names(res), kept)
+  expect_setequal(names(res), kept)
 })

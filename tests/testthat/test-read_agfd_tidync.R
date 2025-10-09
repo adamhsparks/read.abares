@@ -15,18 +15,18 @@ test_that("read_agfd_tidync integrates: calls .get_agfd, returns named list of t
   files <- file.path(tempdir(), c("x_c2020.nc", "x_c2021.nc"))
 
   # Mock tidync::tidync to assert path and return a light tidync object
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     tidync = function(p) {
-      testthat::expect_true(p %in% files)
+      expect_true(p %in% files)
       structure(list(src = p), class = "tidync")
     },
     {
       # Mock .get_agfd in read.abares
-      testthat::with_mocked_bindings(
+      with_mocked_bindings(
         .get_agfd = function(.fixed_prices, .yyyy, .x) {
-          testthat::expect_true(.fixed_prices)
-          testthat::expect_identical(.yyyy, 2020:2021)
-          testthat::expect_null(.x)
+          expect_true(.fixed_prices)
+          expect_identical(.yyyy, 2020:2021)
+          expect_null(.x)
           files
         },
         {
@@ -37,12 +37,12 @@ test_that("read_agfd_tidync integrates: calls .get_agfd, returns named list of t
           )
 
           # Structure and naming
-          testthat::expect_type(tnc, "list")
-          testthat::expect_length(tnc, length(files))
-          testthat::expect_named(tnc, basename(files))
+          expect_type(tnc, "list")
+          expect_length(tnc, length(files))
+          expect_named(tnc, basename(files))
 
           # Elements are tidync objects
-          testthat::expect_true(all(vapply(
+          expect_true(all(vapply(
             tnc,
             inherits,
             logical(1),
@@ -51,7 +51,7 @@ test_that("read_agfd_tidync integrates: calls .get_agfd, returns named list of t
 
           # Compare the underlying file paths, ignoring names on the character vector
           actual_src <- vapply(tnc, function(e) e$src, character(1))
-          testthat::expect_identical(unname(actual_src), unname(files))
+          expect_identical(unname(actual_src), unname(files))
         },
         .package = "read.abares"
       )
@@ -66,16 +66,16 @@ test_that("read_agfd_tidync forwards fixed_prices = FALSE to .get_agfd (historic
 
   files <- file.path(tempdir(), c("y_c1995.nc", "y_c1996.nc"))
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     tidync = function(p) {
       structure(list(src = p), class = "tidync")
     },
     {
-      testthat::with_mocked_bindings(
+      with_mocked_bindings(
         .get_agfd = function(.fixed_prices, .yyyy, .x) {
-          testthat::expect_false(.fixed_prices)
-          testthat::expect_identical(.yyyy, 1995:1996)
-          testthat::expect_null(.x)
+          expect_false(.fixed_prices)
+          expect_identical(.yyyy, 1995:1996)
+          expect_null(.x)
           files
         },
         {
@@ -85,10 +85,10 @@ test_that("read_agfd_tidync forwards fixed_prices = FALSE to .get_agfd (historic
             x = NULL
           )
 
-          testthat::expect_type(tnc, "list")
-          testthat::expect_length(tnc, length(files))
-          testthat::expect_named(tnc, basename(files))
-          testthat::expect_true(all(vapply(
+          expect_type(tnc, "list")
+          expect_length(tnc, length(files))
+          expect_named(tnc, basename(files))
+          expect_true(all(vapply(
             tnc,
             inherits,
             logical(1L),
@@ -96,7 +96,7 @@ test_that("read_agfd_tidync forwards fixed_prices = FALSE to .get_agfd (historic
           )))
 
           actual_src <- vapply(tnc, function(e) e$src, character(1L))
-          testthat::expect_identical(unname(actual_src), unname(files))
+          expect_identical(unname(actual_src), unname(files))
         },
         .package = "read.abares"
       )
@@ -111,14 +111,14 @@ test_that("read_agfd_tidync forwards x to .get_agfd when supplied", {
   fake_zip <- file.path(tempdir(), "some_agfd.zip")
   files <- file.path(tempdir(), "z_c2022.nc")
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     tidync = function(p) structure(list(src = p), class = "tidync"),
     {
-      testthat::with_mocked_bindings(
+      with_mocked_bindings(
         .get_agfd = function(.fixed_prices, .yyyy, .x) {
-          testthat::expect_true(.fixed_prices)
-          testthat::expect_identical(.yyyy, 2022)
-          testthat::expect_identical(.x, fake_zip)
+          expect_true(.fixed_prices)
+          expect_identical(.yyyy, 2022)
+          expect_identical(.x, fake_zip)
           files
         },
         {
@@ -128,11 +128,11 @@ test_that("read_agfd_tidync forwards x to .get_agfd when supplied", {
             x = fake_zip
           )
 
-          testthat::expect_type(tnc, "list")
-          testthat::expect_length(tnc, 1L)
-          testthat::expect_named(tnc, basename(files))
-          testthat::expect_s3_class(tnc[[1]], "tidync")
-          testthat::expect_identical(tnc[[1]]$src, files)
+          expect_type(tnc, "list")
+          expect_length(tnc, 1L)
+          expect_named(tnc, basename(files))
+          expect_s3_class(tnc[[1]], "tidync")
+          expect_identical(tnc[[1]]$src, files)
         },
         .package = "read.abares"
       )
@@ -145,7 +145,7 @@ test_that("read_agfd_tidync returns empty list when .get_agfd returns no files (
   skip_if_offline()
 
   # purrr::map(character(0), ...) yields list(), and names(list()) <- character(0)
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     .get_agfd = function(...) character(),
     {
       tnc <- read.abares::read_agfd_tidync(
@@ -154,9 +154,9 @@ test_that("read_agfd_tidync returns empty list when .get_agfd returns no files (
         x = NULL
       )
 
-      testthat::expect_type(tnc, "list")
-      testthat::expect_length(tnc, 0L)
-      testthat::expect_named(tnc, character(0))
+      expect_type(tnc, "list")
+      expect_length(tnc, 0L)
+      expect_named(tnc, character(0))
     },
     .package = "read.abares"
   )
@@ -168,10 +168,10 @@ test_that("read_agfd_tidync forwards defaults to .get_agfd (fixed_prices=TRUE, y
   observed <- NULL
   ret_files <- file.path(tempdir(), c("default1.nc", "default2.nc"))
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     tidync = function(p) structure(list(src = p), class = "tidync"),
     {
-      testthat::with_mocked_bindings(
+      with_mocked_bindings(
         .get_agfd = function(.fixed_prices, .yyyy, .x) {
           observed <<- list(
             .fixed_prices = .fixed_prices,
@@ -184,15 +184,15 @@ test_that("read_agfd_tidync forwards defaults to .get_agfd (fixed_prices=TRUE, y
           tnc <- read.abares::read_agfd_tidync()
 
           # Confirm defaults were forwarded
-          testthat::expect_true(observed$.fixed_prices)
-          testthat::expect_identical(observed$.yyyy, 1991:2023)
-          testthat::expect_null(observed$.x)
+          expect_true(observed$.fixed_prices)
+          expect_identical(observed$.yyyy, 1991:2023)
+          expect_null(observed$.x)
 
           # Confirm structure on returned files
-          testthat::expect_type(tnc, "list")
-          testthat::expect_length(tnc, length(ret_files))
-          testthat::expect_named(tnc, basename(ret_files))
-          testthat::expect_true(all(vapply(
+          expect_type(tnc, "list")
+          expect_length(tnc, length(ret_files))
+          expect_named(tnc, basename(ret_files))
+          expect_true(all(vapply(
             tnc,
             inherits,
             logical(1),

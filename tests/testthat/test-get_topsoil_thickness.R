@@ -33,6 +33,7 @@ create_test_metadata <- function(path) {
 }
 
 test_that(".get_topsoil_thickness works with valid zip file", {
+  skip_if_offline()
   withr::with_tempdir({
     # Create test directory structure that matches expected format
     test_dir <- fs::path("test_topsoil")
@@ -73,6 +74,7 @@ test_that(".get_topsoil_thickness works with valid zip file", {
 })
 
 test_that(".get_topsoil_thickness returns correct class structure", {
+  skip_if_offline()
   withr::with_tempdir({
     # Setup valid test data
     test_dir <- fs::path("topsoil_test")

@@ -1,4 +1,5 @@
 test_that("read_agfd_dt validates yyyy bounds", {
+  skip_if_offline()
   expect_error(
     read.abares::read_agfd_dt(yyyy = c(1990, 1991)),
     "must be between 1991 and 2023 inclusive"
@@ -11,12 +12,11 @@ test_that("read_agfd_dt validates yyyy bounds", {
 
 test_that("read_agfd_dt integrates correctly: binds rows, sets id to basenames, coerces lat/lon (fixed prices)", {
   skip_if_offline()
-  testthat::skip_if_not_installed("tidync")
 
   files <- file.path(tempdir(), c("x_c2020.nc", "x_c2021.nc"))
 
   # Mock the tidync package bindings in the tidync namespace
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     tidync = function(p) list(src = p),
     hyper_tibble = function(obj) {
       id <- basename(obj$src)
@@ -38,11 +38,11 @@ test_that("read_agfd_dt integrates correctly: binds rows, sets id to basenames, 
     },
     {
       # Mock .get_agfd inside read.abares
-      testthat::with_mocked_bindings(
+      with_mocked_bindings(
         .get_agfd = function(.fixed_prices, .yyyy, .x) {
-          testthat::expect_true(.fixed_prices)
-          testthat::expect_equal(.yyyy, 2020:2021)
-          testthat::expect_null(.x)
+          expect_true(.fixed_prices)
+          expect_equal(.yyyy, 2020:2021)
+          expect_null(.x)
           files
         },
         {
@@ -52,13 +52,13 @@ test_that("read_agfd_dt integrates correctly: binds rows, sets id to basenames, 
             x = NULL
           )
 
-          testthat::expect_s3_class(dat, "data.table")
-          testthat::expect_setequal(unique(dat$id), basename(files))
-          testthat::expect_true(is.numeric(dat$lat))
-          testthat::expect_true(is.numeric(dat$lon))
-          testthat::expect_equal(nrow(dat), 3L)
-          testthat::expect_equal(sort(dat$lat), c(1, 2, 3))
-          testthat::expect_equal(sort(dat$lon), c(10, 20, 30))
+          expect_s3_class(dat, "data.table")
+          expect_setequal(unique(dat$id), basename(files))
+          expect_true(is.numeric(dat$lat))
+          expect_true(is.numeric(dat$lon))
+          expect_equal(nrow(dat), 3L)
+          expect_equal(sort(dat$lat), c(1, 2, 3))
+          expect_equal(sort(dat$lon), c(10, 20, 30))
         },
         .package = "read.abares"
       )
@@ -69,11 +69,10 @@ test_that("read_agfd_dt integrates correctly: binds rows, sets id to basenames, 
 
 test_that("read_agfd_dt forwards fixed_prices = FALSE to .get_agfd (historical prices path)", {
   skip_if_offline()
-  testthat::skip_if_not_installed("tidync")
 
   files <- file.path(tempdir(), c("y_c1995.nc", "y_c1996.nc"))
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     tidync = function(p) list(src = p),
     hyper_tibble = function(obj) {
       data.frame(
@@ -84,11 +83,11 @@ test_that("read_agfd_dt forwards fixed_prices = FALSE to .get_agfd (historical p
       )
     },
     {
-      testthat::with_mocked_bindings(
+      with_mocked_bindings(
         .get_agfd = function(.fixed_prices, .yyyy, .x) {
-          testthat::expect_false(.fixed_prices)
-          testthat::expect_equal(.yyyy, 1995:1996)
-          testthat::expect_null(.x)
+          expect_false(.fixed_prices)
+          expect_equal(.yyyy, 1995:1996)
+          expect_null(.x)
           files
         },
         {
@@ -98,11 +97,11 @@ test_that("read_agfd_dt forwards fixed_prices = FALSE to .get_agfd (historical p
             x = NULL
           )
 
-          testthat::expect_s3_class(dat, "data.table")
-          testthat::expect_setequal(unique(dat$id), basename(files))
-          testthat::expect_true(is.numeric(dat$lat))
-          testthat::expect_true(is.numeric(dat$lon))
-          testthat::expect_equal(nrow(dat), 2L)
+          expect_s3_class(dat, "data.table")
+          expect_setequal(unique(dat$id), basename(files))
+          expect_true(is.numeric(dat$lat))
+          expect_true(is.numeric(dat$lon))
+          expect_equal(nrow(dat), 2L)
         },
         .package = "read.abares"
       )
@@ -113,23 +112,22 @@ test_that("read_agfd_dt forwards fixed_prices = FALSE to .get_agfd (historical p
 
 test_that("read_agfd_dt forwards x to .get_agfd when supplied", {
   skip_if_offline()
-  testthat::skip_if_not_installed("tidync")
 
   fake_zip <- file.path(tempdir(), "some_agfd.zip")
   files <- file.path(tempdir(), c("z_c2022.nc"))
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     tidync = function(p) list(src = p),
     hyper_tibble = function(obj) {
       # Return 0-row payload but with expected columns; pipeline should still run
       data.frame(lat = character(), lon = character(), stringsAsFactors = FALSE)
     },
     {
-      testthat::with_mocked_bindings(
+      with_mocked_bindings(
         .get_agfd = function(.fixed_prices, .yyyy, .x) {
-          testthat::expect_true(.fixed_prices)
-          testthat::expect_equal(.yyyy, 2022)
-          testthat::expect_identical(.x, fake_zip)
+          expect_true(.fixed_prices)
+          expect_equal(.yyyy, 2022)
+          expect_identical(.x, fake_zip)
           files
         },
         {
@@ -139,7 +137,7 @@ test_that("read_agfd_dt forwards x to .get_agfd when supplied", {
             x = fake_zip
           )
 
-          testthat::expect_s3_class(dat, "data.table")
+          expect_s3_class(dat, "data.table")
           # Depending on data.table version, id may or may not be present for 0-row bind.
           # Determine expected behavior dynamically using an equivalent 0-row example:
           example_zero <- data.table::as.data.table(
@@ -150,11 +148,11 @@ test_that("read_agfd_dt forwards x to .get_agfd when supplied", {
             idcol = "id"
           )
           if ("id" %in% names(expected_zero)) {
-            testthat::expect_true("id" %in% names(dat))
+            expect_true("id" %in% names(dat))
           }
           # If any rows, id must match basenames
           if (nrow(dat) > 0L) {
-            testthat::expect_setequal(unique(dat$id), basename(files))
+            expect_setequal(unique(dat$id), basename(files))
           }
         },
         .package = "read.abares"
@@ -167,7 +165,7 @@ test_that("read_agfd_dt forwards x to .get_agfd when supplied", {
 test_that("read_agfd_dt returns empty data.table with lat/lon when .get_agfd returns no files", {
   skip_if_offline()
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     .get_agfd = function(...) character(),
     {
       dat <- read.abares::read_agfd_dt(

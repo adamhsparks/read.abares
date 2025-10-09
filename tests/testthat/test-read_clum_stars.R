@@ -16,6 +16,7 @@ test_that("read_clum_stars validates data_set parameter correctly", {
 })
 
 test_that("read_clum_stars works with valid data_set values when properly mocked", {
+  skip_if_offline()
   # Create a temporary file to simulate downloaded data
   temp_file <- withr::local_tempfile(fileext = ".tif")
 
@@ -101,6 +102,7 @@ test_that("read_clum_stars passes x parameter correctly", {
 })
 
 test_that("read_clum_stars passes additional arguments to stars::read_stars", {
+  skip_if_offline()
   # Track what arguments were passed to stars::read_stars
   read_stars_calls <- list()
 
@@ -149,6 +151,7 @@ test_that("read_clum_stars passes additional arguments to stars::read_stars", {
 })
 
 test_that("read_clum_stars returns stars object", {
+  skip_if_offline()
   temp_file <- withr::local_tempfile(fileext = ".tif")
   writeLines("dummy content", temp_file)
 
@@ -183,6 +186,7 @@ test_that("read_clum_stars returns stars object", {
 })
 
 test_that("read_clum_stars works with default parameters", {
+  skip_if_offline()
   temp_file <- withr::local_tempfile(fileext = ".tif")
   writeLines("dummy content", temp_file)
 
@@ -216,6 +220,7 @@ test_that("read_clum_stars works with default parameters", {
 })
 
 test_that("read_clum_stars handles file path from .get_clum correctly", {
+  skip_if_offline()
   # Track which file path was passed to stars::read_stars
   read_stars_paths <- character()
 

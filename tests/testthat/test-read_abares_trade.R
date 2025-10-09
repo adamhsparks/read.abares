@@ -1,4 +1,5 @@
 test_that("read_abares_trade() uses .retry_download (mocked) and parses/renames correctly", {
+  skip_if_offline()
   # Minimal CSV content with ORIGINAL column names (before renaming)
   csv_text <- paste(
     c(
@@ -11,10 +12,10 @@ test_that("read_abares_trade() uses .retry_download (mocked) and parses/renames 
 
   called <- FALSE
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     .retry_download = function(url, dest, .max_tries = 3L) {
-      testthat::expect_match(url, "/client/en_AU/search/asset/1033841/1$")
-      testthat::expect_identical(basename(dest), "abares_trade_data.zip")
+      expect_match(url, "/client/en_AU/search/asset/1033841/1$")
+      expect_identical(basename(dest), "abares_trade_data.zip")
 
       # Create a temporary CSV file and zip it
       tmp_dir <- withr::local_tempdir()
@@ -85,6 +86,7 @@ test_that("read_abares_trade() uses .retry_download (mocked) and parses/renames 
 })
 
 test_that("read_abares_trade() reads a provided ZIP path without calling .retry_download", {
+  skip_if_offline()
   tmp_dir <- withr::local_tempdir()
   zip_path <- fs::path(tmp_dir, "abares_trade_data.zip")
 
@@ -105,7 +107,7 @@ test_that("read_abares_trade() reads a provided ZIP path without calling .retry_
     files_rel = "abares_trade_data.csv"
   )
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     .retry_download = function(...) {
       stop("`.retry_download()` should not be called when x != NULL")
     },

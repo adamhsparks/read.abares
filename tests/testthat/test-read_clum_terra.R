@@ -1,6 +1,5 @@
 test_that("read_clum_terra integrates with .get_clum for a local zip and applies coltab (clum_50m_2023_v2)", {
   skip_if_offline()
-  skip_if_not_installed("terra")
 
   ds_name <- "clum_50m_2023_v2"
 
@@ -38,7 +37,7 @@ test_that("read_clum_terra integrates with .get_clum for a local zip and applies
     if (fs::dir_exists(out_dir)) fs::dir_delete(out_dir)
   })
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     {
       res <- read_clum_terra(data_set = ds_name, x = zip_path)
 
@@ -83,7 +82,6 @@ test_that("read_clum_terra integrates with .get_clum for a local zip and applies
 
 test_that("read_clum_terra integrates with .get_clum and does NOT apply coltab for scale_date_update", {
   skip_if_offline()
-  skip_if_not_installed("terra")
 
   ds_name <- "scale_date_update"
 
@@ -116,7 +114,7 @@ test_that("read_clum_terra integrates with .get_clum and does NOT apply coltab f
     if (fs::dir_exists(out_dir)) fs::dir_delete(out_dir)
   })
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     {
       res <- read_clum_terra(data_set = ds_name, x = zip_path)
       expect_s4_class(res, "SpatRaster")
@@ -145,7 +143,6 @@ test_that("read_clum_terra validates data_set choices", {
 
 test_that("read_clum_terra passes data_set and x to .get_clum and reads returned files", {
   skip_if_offline()
-  skip_if_not_installed("terra")
 
   # Build a tiny GeoTIFF that terra can read
   m <- matrix(c(0L, 100L, 600L, 663L), nrow = 2L, ncol = 2L, byrow = TRUE)
@@ -161,7 +158,7 @@ test_that("read_clum_terra passes data_set and x to .get_clum and reads returned
     return(tif1)
   }
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     {
       res <- read_clum_terra(
         data_set = "clum_50m_2023_v2",
@@ -184,7 +181,6 @@ test_that("read_clum_terra passes data_set and x to .get_clum and reads returned
 
 test_that("read_clum_terra handles multiple files from .get_clum() and applies coltab to each layer", {
   skip_if_offline()
-  skip_if_not_installed("terra")
 
   # Two small rasters -> two layers when passed as multiple files
   m <- matrix(c(0L, 100L, 600L, 663L), nrow = 2, ncol = 2, byrow = TRUE)
@@ -197,7 +193,7 @@ test_that("read_clum_terra handles multiple files from .get_clum() and applies c
 
   get_clum_mock <- function(.data_set, .x) c(tif1, tif2)
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     {
       res <- read_clum_terra(data_set = "clum_50m_2023_v2", x = NULL)
       expect_s4_class(res, "SpatRaster")
@@ -218,7 +214,6 @@ test_that("read_clum_terra handles multiple files from .get_clum() and applies c
 
 test_that("read_clum_terra works end-to-end with mocked download when x = NULL (unzips into tempdir)", {
   skip_if_offline()
-  skip_if_not_installed("terra")
 
   ds_name <- "clum_50m_2023_v2"
 
@@ -273,7 +268,7 @@ test_that("read_clum_terra works end-to-end with mocked download when x = NULL (
     invisible(x)
   }
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     {
       res <- read_clum_terra(data_set = ds_name, x = NULL)
 

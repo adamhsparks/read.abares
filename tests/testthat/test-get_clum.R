@@ -92,7 +92,6 @@ test_that(".get_clum returns empty character if no .tif files in folder", {
   )
 })
 
-
 test_that(".get_clum errors for unknown dataset key when .x is NULL", {
   skip_if_offline()
   expect_error(.get_clum(.data_set = "not_a_key", .x = NULL))

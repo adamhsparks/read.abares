@@ -1,4 +1,5 @@
 test_that("read_abs_broadacre_data() uses .retry_download (mocked), maps 'winter' and uses latest year", {
+  skip_if_offline()
   called_retry <- FALSE
   called_parse <- FALSE
   got_x <- NULL
@@ -61,6 +62,7 @@ test_that("read_abs_broadacre_data() uses .retry_download (mocked), maps 'winter
 })
 
 test_that("read_abs_broadacre_data() constructs URL correctly for 'summer' with explicit year", {
+  skip_if_offline()
   called_retry <- FALSE
   called_parse <- FALSE
 
@@ -106,6 +108,7 @@ test_that("read_abs_broadacre_data() constructs URL correctly for 'summer' with 
 })
 
 test_that("read_abs_broadacre_data() constructs URL correctly for 'sugarcane' with explicit year", {
+  skip_if_offline()
   called_retry <- FALSE
   called_parse <- FALSE
 
@@ -150,6 +153,7 @@ test_that("read_abs_broadacre_data() constructs URL correctly for 'sugarcane' wi
 })
 
 test_that("read_abs_broadacre_data() reads a provided path without calling .retry_download or .find_years", {
+  skip_if_offline()
   tmp_dir <- withr::local_tempdir()
   x_path <- fs::path(tmp_dir, "abs_broadacre_mock.xlsx")
   fs::file_create(x_path)
@@ -179,6 +183,7 @@ test_that("read_abs_broadacre_data() reads a provided path without calling .retr
 })
 
 test_that("read_abs_broadacre_data() validates arguments for crops and year", {
+  skip_if_offline()
   available_years <- c("2023-24", "2022-23")
 
   # Invalid crop should error

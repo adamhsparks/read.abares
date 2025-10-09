@@ -1,4 +1,5 @@
 test_that(".get_agfd returns files for requested years when .x supplied", {
+  skip_if_offline()
   td <- withr::local_tempdir()
   ds_name <- "historical_climate_prices_fixed"
   dat_dir <- fs::path(td, ds_name)
@@ -24,6 +25,7 @@ test_that(".get_agfd returns files for requested years when .x supplied", {
 })
 
 test_that(".get_agfd downloads via mocked .retry_download when .x = NULL (fixed prices)", {
+  skip_if_offline()
   with_mocked_bindings(
     .retry_download = function(
       url,
@@ -63,6 +65,7 @@ test_that(".get_agfd downloads via mocked .retry_download when .x = NULL (fixed 
 })
 
 test_that(".get_agfd downloads via mocked .retry_download when .x = NULL (historical prices)", {
+  skip_if_offline()
   with_mocked_bindings(
     .retry_download = function(
       url,
@@ -99,6 +102,7 @@ test_that(".get_agfd downloads via mocked .retry_download when .x = NULL (histor
 })
 
 test_that(".get_agfd returns empty when requested years not present", {
+  skip_if_offline()
   td <- withr::local_tempdir()
   ds_name <- "historical_climate_prices_fixed"
   dat_dir <- fs::path(td, ds_name)

@@ -1,4 +1,5 @@
 test_that("print_topsoil_thickness_metadata displays complete metadata", {
+  skip_if_offline()
   # Create metadata with Custodian marker
   metadata_content <- paste(
     "Some initial content",
@@ -22,6 +23,7 @@ test_that("print_topsoil_thickness_metadata displays complete metadata", {
 })
 
 test_that("print_topsoil_thickness_metadata returns invisible NULL", {
+  skip_if_offline()
   mock_obj <- structure(
     list(
       metadata = "Some content\nCustodian: Test\nMore content",

@@ -90,7 +90,7 @@ test_that("reads from a provided local zip file and returns a terra rast object"
   utils::zip(zipfile = zip_path, files = tif_path, flags = "-j")
 
   # Mock .get_nlum to return the path to the dummy tif
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     {
       out <- read_nlum_terra(x = zip_path)
       expect_s4_class(out, "SpatRaster")
@@ -127,7 +127,7 @@ test_that("downloads when x is NULL and reads terra rast object", {
     invisible(.f)
   }
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     {
       out <- read_nlum_terra(data_set = "Y202021")
       expect_s4_class(out, "SpatRaster")
@@ -149,7 +149,7 @@ test_that("errors cleanly when file does not exist", {
     fs::file_delete(bogus)
   }
 
-  testthat::with_mocked_bindings(
+  with_mocked_bindings(
     {
       expect_error(
         read_nlum_terra(x = bogus),
