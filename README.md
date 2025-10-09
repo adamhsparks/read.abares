@@ -135,7 +135,7 @@ sudo apt update && sudo apt install libcurl4-openssl-dev libgdal-dev gdal-bin li
 
 Please report any [issues or bugs](https://github.com/adamhsparks/read.abares/issues).
 
-License: [MIT](LICENSE.md)
+License: [MIT](https://adamhsparks.github.io/read.abares/LICENSE.md)
 
 ### Citations
 
