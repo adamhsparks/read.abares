@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 ```
 
 This vignette demonstrates some of the functionality of {read.abares} and how to work with some of the spatial and tabular data available through {read.abares}.
-Please note that not all functions are demonstrated here, please refer to the [reference documentation](../reference/) for a full list of functionality.
+Please note that not all functions are demonstrated here, please refer to the [reference documentation](/reference/) for a full list of functionality.
 The worked examples here show some of the more advanced features that {read.abares} offers beyond just fetching and importing data, _e.g._, Australian Agricultural and Grazing Industries Survey (AAGIS) spatial shapefile which can be used with tabular data from the historical estimates, the Australian Gridded Farm Data, which can be downloaded and imported using one of four types of object or the soil thickness data, which includes rich metadata.
 
 First we need to load the {read.abares} library.
