@@ -44,29 +44,39 @@
 
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The following options can be set via <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options()</a></code> to control package behavior:</p>
+    <p>The following options can be set via [options()] to control package behavior:</p>
 <dl>
    <dt><code>read.abares.user_agent</code></dt>
-<dd><p>Character string to set a custom user agent for web requests. Default is <code>read.abares R package {version no.} https://github.com/adamhsparks/read.abares</code>.</p></dd>
+<dd><p>Character string to set a custom user agent
+for web requests. Default is
+<code>read.abares R package {version no.} https://github.com/adamhsparks/read.abares</code>.</p></dd>
 
    <dt><code>read.abares.timeout</code></dt>
-<dd><p>Integer providing the timeout in seconds for download operations. Default is <code>2000</code>.</p></dd>
+<dd><p>Integer providing the timeout in seconds for
+download operations. Default is <code>2000</code>.</p></dd>
 
 <dt><code>read.abares.timeout_connect</code></dt>
-<dd><p>Integer providing the connection timeout in seconds. Default is <code>20</code>.</p></dd>
+<dd><p>Integer providing the connection
+timeout in seconds. Default is <code>20</code>.</p></dd>
 
 <dt><code>read.abares.max_tries</code></dt>
-<dd><p>Integer providing the number of times to retry download before giving up. Default is <code>3</code>.</p></dd>
+<dd><p>Integer providing the number of times to
+retry download before giving up. Default is <code>3</code>.</p></dd>
 
-<dt><code>read.abares.quiet</code></dt>
+<dt><code>read.abares.verbosity</code></dt>
 <dd><p>Set the desired level of verbosity.</p><ul><li><p>"quiet" - no messages at all but errors will be reported,</p></li>
 <li><p>"minimal" - warnings and errors only reported,</p></li>
-<li><p>"verbose" - full messages including downloading, importing files, etc. reported.</p></li>
+<li><p>"verbose" - full messages including downloading, importing files, etc.
+reported.</p></li>
 </ul></dd>
 
 
 </dl><p>These options can be set globally using:</p>
-<p></p><div class="sourceCode r"><pre><code><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>read.abares.user_agent <span class="op">=</span> <span class="st">"myCustomUserAgent"</span><span class="op">)</span></span></code></pre><p></p></div>
+<p></p><div class="sourceCode r"><pre><code>options(read.abares.user_agent = "myCustomUserAgent") or
+read.abares_options(read.abares.user_agent = "myCustomUserAgent")
+
+[options()]: R:options()
+</code></pre><p></p></div>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
