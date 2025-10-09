@@ -2,7 +2,13 @@
 #'
 #' Read "Australian Gridded Farm Data", (\acronym{AGFD}) as a
 #'  [data.table::data.table()] object.
-#'
+#
+#' @param yyyy Returns only data for the specified year or years for climate
+#'  data (fixed prices) or the years for historical climate and prices depending
+#'  upon the setting of `fixed_prices`.  Note that this will still download the
+#'  entire data set, that cannot be avoided, but will only return the
+#'  requested year(s) in your \R session.  Valid years are from 1991 to 2023
+#'  inclusive.
 #' @param fixed_prices Download historical climate and prices or historical
 #'  climate and fixed prices as described in  (Hughes *et al.* 2022). Defaults
 #'  to `TRUE` and downloads the data with historical climate and fixed prices
@@ -10,12 +16,6 @@
 #'  for broadacre farm businesses" (ABARES 2024).  Using `TRUE` will download
 #'  simulations where global output and input price indexes are fixed at values
 #'  from the most recently completed financial year.
-#' @param yyyy Returns only data for the specified year or years for climate
-#'  data (fixed prices) or the years for historical climate and prices depending
-#'  upon the setting of `fixed_prices`.  Note that this will still download the
-#'  entire data set, that cannot be avoided, but will only return the
-#'  requested year(s) in your \R session.  Valid years are from 1991 to 2023
-#'  inclusive.
 #' @inheritParams read_aagis_regions
 #'
 #' @details
@@ -185,8 +185,8 @@
 #' @export
 
 read_agfd_dt <- function(
-  fixed_prices = TRUE,
   yyyy = 1991:2023,
+  fixed_prices = TRUE,
   x = NULL
 ) {
   if (any(yyyy %notin% 1991:2023)) {

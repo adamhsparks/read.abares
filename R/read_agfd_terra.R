@@ -27,8 +27,8 @@
 #' @export
 
 read_agfd_terra <- function(
-  fixed_prices = TRUE,
   yyyy = 1991:2023,
+  fixed_prices = TRUE,
   x = NULL
 ) {
   if (any(yyyy %notin% 1991:2023)) {

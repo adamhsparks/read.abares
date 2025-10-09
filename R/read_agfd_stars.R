@@ -27,8 +27,8 @@
 #' @export
 
 read_agfd_stars <- function(
-  fixed_prices = TRUE,
   yyyy = 1991:2003,
+  fixed_prices = TRUE,
   x = NULL
 ) {
   if (any(yyyy %notin% 1991:2023)) {
