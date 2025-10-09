@@ -41,7 +41,7 @@
 <div class="section level3">
 <h3 id="breaking-changes-2-0-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-2-0-0"></a></h3>
 <ul><li><p><code>soil_thickness</code> functions are now <code>topsoil_thickness</code> functions, <em>e.g.</em>, <code>read_soil_thickness_stars()</code> is now <code><a href="../reference/read_topsoil_thickness_stars.html">read_topsoil_thickness_stars()</a></code>. This is to clarify that the data is for topsoil only and not all soil layers, thanks, <a href="https://github.com/obrsoil" class="external-link">@obrsoil</a>!</p></li>
-<li><p><code>get_</code> functions are now integrated into <code>read_</code>, there is no need to call any <code>get_</code> functions separately.</p></li>
+<li><p><code>get_</code> functions are now integrated into <code>read_</code>, there is no need to call any <code>get_</code> functions separately or use piping.</p></li>
 <li><p>Caching is no longer possible between sessions to simplify the package’s maintenance and CRAN-proof it. I would encourage users to look into using <a href="https://books.ropensci.org/targets/" class="external-link">{targets}</a> or other methods of managing their data in the workflow.</p></li>
 </ul></div>
 <div class="section level3">
@@ -64,7 +64,7 @@
 <li>
 <p>Improved documentation including:</p>
 <ul><li>All data sets now have an <code>@source</code> field that points to the file being provided</li>
-<li>All data sets now have an <code>@references</code> field that points to references for the data</li>
+<li>All data sets now have an <code>@references</code> field that points to references for the data.</li>
 </ul></li>
 <li>
 <p>Improved testing:</p>
@@ -75,11 +75,12 @@
 </ul></div>
 <div class="section level3">
 <h3 id="minor-improvements-and-fixes-2-0-0">Minor improvements and fixes<a class="anchor" aria-label="anchor" href="#minor-improvements-and-fixes-2-0-0"></a></h3>
-<ul><li><p>Files are more reliably downloaded rather than timing out for some users, thanks to <a href="https://github.com/obrsoil" class="external-link">@obrsoil</a> for the help troubleshooting this issue, painful as it was</p></li>
-<li><p><code><a href="https://docs.ropensci.org/skimr/reference/skim.html" class="external-link">skimr::skim()</a></code> is used in the vignette to display the AGFD {data.table} formatted data rather than just using <code><a href="https://rdrr.io/r/utils/head.html" class="external-link">head()</a></code></p></li>
-<li><p><a href="https://cran.r-project.org/package=bit64" class="external-link">{bit64}</a> has been added to the Suggested packages to help users avoid warning messages when working with data in the console via {data.table}, thanks, <a href="https://github.com/potterzot" class="external-link">@potterzot</a></p></li>
-<li><p>Alternative installation instructions using {remotes} are provided in the README for users that may prefer or may not use <a href="https://cran.r-project.org/package=pak" class="external-link">{pak}</a>, thanks, <a href="https://github.com/potterzot" class="external-link">@potterzot</a></p></li>
-<li><p>The topsoil thickness map now displays proper continuous values rather than classes, thanks, <a href="https://github.com/obrsoil" class="external-link">@obrsoil</a></p></li>
+<ul><li><p>Files are more reliably downloaded rather than timing out for some users, thanks to <a href="https://github.com/obrsoil" class="external-link">@obrsoil</a> for the help troubleshooting this issue, painful as it was.</p></li>
+<li><p><code><a href="https://docs.ropensci.org/skimr/reference/skim.html" class="external-link">skimr::skim()</a></code> is used in the vignette to display the AGFD {data.table} formatted data rather than just using <code><a href="https://rdrr.io/r/utils/head.html" class="external-link">head()</a></code>.</p></li>
+<li><p><a href="https://cran.r-project.org/package=bit64" class="external-link">{bit64}</a> has been added to the Suggested packages to help users avoid warning messages when working with data in the console via {data.table}, thanks, <a href="https://github.com/potterzot" class="external-link">@potterzot</a>.</p></li>
+<li><p>Alternative installation instructions using {remotes} are provided in the README for users that may prefer or may not use <a href="https://cran.r-project.org/package=pak" class="external-link">{pak}</a>, thanks, <a href="https://github.com/potterzot" class="external-link">@potterzot</a>.</p></li>
+<li><p>The topsoil thickness map now correctly displays proper continuous values rather than classes, thanks, <a href="https://github.com/obrsoil" class="external-link">@obrsoil</a>.</p></li>
+<li><p>The geospatial vignette examples run more quickly, except for the AAGIS examples, which are still slow due to large downloads, but all local operations in R now run much more quickly, thanks to <a href="https://github.com/potterzot" class="external-link">@potterzot</a>.</p></li>
 </ul></div>
 </div>
     <div class="section level2">
