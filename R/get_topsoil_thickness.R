@@ -55,7 +55,7 @@
     root,
     recurse = TRUE,
     type = "file",
-    regexp = "(^|/)thpk_1(\\.tif)?$"
+    regexp = "(^|/)thpk_1"
   )
   rast_path <- ras_candidates[[1L]]
 
