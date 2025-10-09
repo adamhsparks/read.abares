@@ -7,24 +7,33 @@
 This page documents the global options used by the \pkg{read.abares} package.
 }
 \details{
-The following options can be set via \code{\link[=options]{options()}} to control package behavior:
+The following options can be set via [options()] to control package behavior:
 
 \describe{
-   \item{\code{read.abares.user_agent}}{Character string to set a custom user agent for web requests. Default is \verb{read.abares R package \{version no.\} https://github.com/adamhsparks/read.abares}.}
-   \item{\code{read.abares.timeout}}{Integer providing the timeout in seconds for download operations. Default is \code{2000}.}
-\item{\code{read.abares.timeout_connect}}{Integer providing the connection timeout in seconds. Default is \code{20}.}
-\item{\code{read.abares.max_tries}}{Integer providing the number of times to retry download before giving up. Default is \code{3}.}
-\item{\code{read.abares.quiet}}{Set the desired level of verbosity.
+   \item{\code{read.abares.user_agent}}{Character string to set a custom user agent
+for web requests. Default is
+\verb{read.abares R package \{version no.\} https://github.com/adamhsparks/read.abares}.}
+   \item{\code{read.abares.timeout}}{Integer providing the timeout in seconds for
+download operations. Default is \code{2000}.}
+\item{\code{read.abares.timeout_connect}}{Integer providing the connection
+timeout in seconds. Default is \code{20}.}
+\item{\code{read.abares.max_tries}}{Integer providing the number of times to
+retry download before giving up. Default is \code{3}.}
+\item{\code{read.abares.verbosity}}{Set the desired level of verbosity.
 \itemize{
 \item "quiet" - no messages at all but errors will be reported,
 \item "minimal" - warnings and errors only reported,
-\item "verbose" - full messages including downloading, importing files, etc. reported.}
+\item "verbose" - full messages including downloading, importing files, etc.
+reported.}
 }
 }
 
 These options can be set globally using:
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{options(read.abares.user_agent = "myCustomUserAgent")
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{options(read.abares.user_agent = "myCustomUserAgent") or
+read.abares_options(read.abares.user_agent = "myCustomUserAgent")
+
+[options()]: R:options()
 }\if{html}{\out{</div>}}
 }
 \seealso{

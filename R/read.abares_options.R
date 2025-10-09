@@ -9,8 +9,8 @@
 #' # See currently set options for {read.abares}
 #' read.abares_options()
 #'
-#' # Set to "quiet" `TRUE` to suppress messages
-#' read.abares_options(read.abares.quiet = TRUE)
+#' # Set to "verbosity" to "quiet" suppress messages
+#' read.abares_options(read.abares.verbosity = "quiet")
 #' read.abares_options()
 #'
 #' @export
