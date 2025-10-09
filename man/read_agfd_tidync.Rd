@@ -4,9 +4,16 @@
 \alias{read_agfd_tidync}
 \title{Read ABARES' "Australian Gridded Farm Data" (AGFD) NCDF Files with tidync}
 \usage{
-read_agfd_tidync(fixed_prices = TRUE, yyyy = 1991:2023, x = NULL)
+read_agfd_tidync(yyyy = 1991:2023, fixed_prices = TRUE, x = NULL)
 }
 \arguments{
+\item{yyyy}{Returns only data for the specified year or years for climate
+data (fixed prices) or the years for historical climate and prices depending
+upon the setting of \code{fixed_prices}.  Note that this will still download the
+entire data set, that cannot be avoided, but will only return the
+requested year(s) in your \R session.  Valid years are from 1991 to 2023
+inclusive.}
+
 \item{fixed_prices}{Download historical climate and prices or historical
 climate and fixed prices as described in  (Hughes \emph{et al.} 2022). Defaults
 to \code{TRUE} and downloads the data with historical climate and fixed prices
@@ -14,13 +21,6 @@ to \code{TRUE} and downloads the data with historical climate and fixed prices
 for broadacre farm businesses" (ABARES 2024).  Using \code{TRUE} will download
 simulations where global output and input price indexes are fixed at values
 from the most recently completed financial year.}
-
-\item{yyyy}{Returns only data for the specified year or years for climate
-data (fixed prices) or the years for historical climate and prices depending
-upon the setting of \code{fixed_prices}.  Note that this will still download the
-entire data set, that cannot be avoided, but will only return the
-requested year(s) in your \R session.  Valid years are from 1991 to 2023
-inclusive.}
 
 \item{x}{A file path providing the file with the data to be imported. The
 file is assumed to be unarchived (*i.e., still zipped). This function does
