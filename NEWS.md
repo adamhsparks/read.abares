@@ -5,10 +5,10 @@
 - `soil_thickness` functions are now `topsoil_thickness` functions, _e.g._, `read_soil_thickness_stars()` is now `read_topsoil_thickness_stars()`.
   This is to clarify that the data is for topsoil only and not all soil layers, thanks, @obrsoil!
 
-- `get_` functions are now integrated into `read_`, there is no need to call any `get_` functions separately.
+- `get_` functions are now integrated into `read_`, there is no need to call any `get_` functions separately or use piping.
 
 - Caching is no longer possible between sessions to simplify the package's maintenance and CRAN-proof it.
-I would encourage users to look into using [{targets}](https://books.ropensci.org/targets/) or other methods of managing their data in the workflow.
+  I would encourage users to look into using [{targets}](https://books.ropensci.org/targets/) or other methods of managing their data in the workflow.
 
 ## New features
 
@@ -16,7 +16,7 @@ I would encourage users to look into using [{targets}](https://books.ropensci.or
   This functionality still requires **ALL** of the AGFD to be fetched, so this isn't faster, but any of the `read_agfd` functions are faster since they are only reading a smaller portion of data into the active R session, thanks @potterzot!.
 
 - All `read_` functions now support importing local files and parsing them.
-Users may now download the data using methods other than an R session and import local data.
+  Users may now download the data using methods other than an R session and import local data.
 
 - Additional datasets are now serviced:
   - National and Catchment Scale Land Use data and
@@ -28,11 +28,11 @@ Users may now download the data using methods other than an R session and import
   - Connect-timeout for downloads,
   - Number of download retries and
   - Verbosity of the package's messages.
-Thanks, @mpaulacaldas.
+    Thanks, @mpaulacaldas.
 
 - Improved documentation including:
   - All data sets now have an `@source` field that points to the file being provided
-  - All data sets now have an `@references` field that points to references for the data
+  - All data sets now have an `@references` field that points to references for the data.
 
 - Improved testing:
   - Better coverage, >95% covered,
@@ -41,15 +41,17 @@ Thanks, @mpaulacaldas.
 
 ## Minor improvements and fixes
 
-- Files are more reliably downloaded rather than timing out for some users, thanks to @obrsoil for the help troubleshooting this issue, painful as it was
+- Files are more reliably downloaded rather than timing out for some users, thanks to @obrsoil for the help troubleshooting this issue, painful as it was.
 
-- `skimr::skim()` is used in the vignette to display the AGFD {data.table} formatted data rather than just using `head()`
+- `skimr::skim()` is used in the vignette to display the AGFD {data.table} formatted data rather than just using `head()`.
 
-- [{bit64}](https://cran.r-project.org/package=bit64) has been added to the Suggested packages to help users avoid warning messages when working with data in the console via {data.table}, thanks, @potterzot
+- [{bit64}](https://cran.r-project.org/package=bit64) has been added to the Suggested packages to help users avoid warning messages when working with data in the console via {data.table}, thanks, @potterzot.
 
-- Alternative installation instructions using {remotes} are provided in the README for users that may prefer or may not use [{pak}](https://cran.r-project.org/package=pak), thanks, @potterzot
+- Alternative installation instructions using {remotes} are provided in the README for users that may prefer or may not use [{pak}](https://cran.r-project.org/package=pak), thanks, @potterzot.
 
-- The topsoil thickness map now displays proper continuous values rather than classes, thanks, @obrsoil
+- The topsoil thickness map now correctly displays proper continuous values rather than classes, thanks, @obrsoil.
+
+- The geospatial vignette examples run more quickly, except for the AAGIS examples, which are still slow due to large downloads, but all local operations in R now run much more quickly, thanks to @potterzot.
 
 # read.abares 1.0.0
 
@@ -66,14 +68,12 @@ Thanks, @mpaulacaldas.
 ## New features
 
 - Improved documentation
-
   - All data sets now have an `@source` field that points to the file being provided
   - All data sets now have an `@references` field that points to references for the data
 
 - Code linting thanks to [{flint}](https://flint.etiennebacher.com)
 
 - Use {httr2} to handle downloads
-
   - Increase timeout values to deal with stubborn long-running file downloads
   - Uses {httr2}'s caching functionality to simplify in-session caching
 
