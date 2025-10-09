@@ -8,24 +8,21 @@ reference:
     desc: |
       Fetch and read the ABARES Agricultural and Grazing Industries Survey (AAGIS) regions shapefile
     contents: read_aagis_regions
+  - title: ABS data
+    desc: |
+      Fetch and read agricultural data provided by the Australian Bureau of Statistics
+    contents:
+      - read_abs_broadacre_data
+      - read_abs_horticulture_data
+      - read_abs_livestock_data
   - title: AGFD
-  - subtitle: Fetch
     desc: |
-      Fetch the Australian Gridded Farm Data (AGFD) NetCDF files
-    contents: get_agfd
-  - subtitle: Read
-    desc: |
-      Read the Australian Gridded Farm Data (AGFD) NetCDF files
+      Fetch and read the Australian Gridded Farm Data (AGFD) NetCDF files
     contents:
       - read_agfd_dt
       - read_agfd_stars
       - read_agfd_terra
       - read_agfd_tidync
-  - subtitle: Meta
-    desc: |
-      Information about the AGFD NetCDF files and contents
-    contents:
-      - print_agfd_nc_file_format
   - title: Estimates
     desc: |
       Fetch and read the ABARES Estimates data
@@ -35,23 +32,44 @@ reference:
       - read_historical_national_estimates
       - read_historical_regional_estimates
       - read_historical_state_estimates
-  - title: Historical agricultural forecast database
+  - title: Historical Agricultural Forecast Database
     desc: |
-      Fetch and read the historical agricultural forecast database
-    contents: read_historical_forecast_database
-  - title: Land Use
-    desc: National and catchment level land use GeoTIFF files
+      Fetch and read the agricultural forecast database
     contents:
+      - read_historical_forecast
+      - read_historical_forecast_database
+  - title: Land Use
+    desc: National (NLUM) and catchment (CLUM) level land use data
+  - subtitle: |
+      Fetch and read land use related GeoTIFF files
+    contents:
+      - read_clum_terra
+      - read_clum_stars
       - read_nlum_stars
       - read_nlum_terra
+  - subtitle: CLUM Commodities
+    desc: |
+      Fetch and read the catchment level commodities shapefile
+    contents:
+      - read_clum_commodities
+  - subtitle: Meta
+    desc: |
+      Information about the CLUM and NLUM data sets
+    contents:
+      - view_clum_metadata_pdf
       - view_nlum_metadata_pdf
   - title: Topsoil Thickness
     desc: |
       Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)
+  - subtitle: |
+      Fetch and read soil thickness GeoTIFF files
     contents:
-      - get_topsoil_thickness
       - read_topsoil_thickness_stars
       - read_topsoil_thickness_terra
+  - subtitle: Meta
+    desc: |
+      View metadata associated with soil thickness data
+    contents:
       - print_topsoil_thickness_metadata
   - title: Trade
     desc: |
@@ -59,3 +77,8 @@ reference:
     contents:
       - read_abares_trade
       - read_abares_trade_regions
+  - title: \{read.abares\} Options
+    desc: |
+      Get or set package options
+    contents:
+      - read.abares_options
