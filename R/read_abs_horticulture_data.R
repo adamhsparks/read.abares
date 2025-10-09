@@ -16,7 +16,7 @@
 #' horticulture_data <- read_abs_horticulture_data()
 #' horticulture_data
 #'
-#' @references <https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-horticulture/>.
+#' @references <https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-horticulture>.
 #' @returns A [data.table::data.table()] object of the requested data.
 #' @autoglobal
 #' @family ABS
@@ -31,7 +31,7 @@ read_abs_horticulture_data <- function(year = "latest", x = NULL) {
     if (year == "latest") {
       year <- available[[1L]]
     }
-    base_url <- "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-horticulture/"
+    base_url <- "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-horticulture"
 
     x <- fs::path(tempdir(), "hort_crops_file")
 

@@ -49,7 +49,7 @@
 #'  Sciences, Canberra, June, CC BY 4.0, DOI: \doi{10.25814/2w2p-ph98}
 #'
 #' @source
-#' \url{https://doi.org/10.25814/2w2p-ph98}
+#' \doi{10.25814/2w2p-ph98}
 #'
 #' @examplesIf interactive()
 #'

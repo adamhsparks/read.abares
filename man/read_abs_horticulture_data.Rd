@@ -38,7 +38,7 @@ horticulture_data
 \dontshow{\}) # examplesIf}
 }
 \references{
-\url{https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-horticulture/}.
+\url{https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-horticulture}.
 }
 \seealso{
 Other ABS: 

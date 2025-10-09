@@ -4,7 +4,7 @@
 \alias{read_clum_stars}
 \title{Read ABARES' Catchment Scale "Land Use of Australia" Data Using Stars}
 \source{
-\url{https://doi.org/10.25814/2w2p-ph98}
+\doi{10.25814/2w2p-ph98}
 }
 \usage{
 read_clum_stars(data_set = "clum_50m_2023_v2", x = NULL, ...)
