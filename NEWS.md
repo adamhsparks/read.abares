@@ -2,13 +2,41 @@
 
 ## Breaking changes
 
-- `soil_thickness` functions are now `topsoil_thickness` functions, _e.g._, `get_soil_thickness()` is now `get_topsoil_thickness()`.
-  This is to clarify that the data is for topsoil only and not all soil layers, thanks @obrsoil!
+- `soil_thickness` functions are now `topsoil_thickness` functions, _e.g._, `read_soil_thickness_stars()` is now `read_topsoil_thickness_stars()`.
+  This is to clarify that the data is for topsoil only and not all soil layers, thanks, @obrsoil!
+
+- `get_` functions are now integrated into `read_`, there is no need to call any `get_` functions separately.
+
+- Caching is no longer possible between sessions to simplify the package's maintenance and CRAN-proof it.
+I would encourage users to look into using [{targets}](https://books.ropensci.org/targets/) or other methods of managing their data in the workflow.
 
 ## New features
 
 - When fetching AGFD, users can filter data by climate year or climate/price year depending on the data and only work with that year or years.
   This functionality still requires **ALL** of the AGFD to be fetched, so this isn't faster, but any of the `read_agfd` functions are faster since they are only reading a smaller portion of data into the active R session, thanks @potterzot!.
+
+- All `read_` functions now support importing local files and parsing them.
+Users may now download the data using methods other than an R session and import local data.
+
+- Additional datasets are now serviced:
+  - National and Catchment Scale Land Use data and
+  - ABS production data on broadacre crops, horticulture, and livestock.
+
+- Users can set options for {read.abares} including:
+  - User-agent string for downloads,
+  - Timeout for downloads,
+  - Connect-timeout for downloads,
+  - Number of download retries and
+  - Verbosity of the package's messages.
+
+- Improved documentation including:
+  - All data sets now have an `@source` field that points to the file being provided
+  - All data sets now have an `@references` field that points to references for the data
+
+- Improved testing:
+  - Better coverage, >95% covered,
+  - Tests are faster due to using mocking to avoid downloading files during testing,
+  - Adds a check of URLs to ensure that they are still valid since no downloads occur during testing.
 
 ## Minor improvements and fixes
 
@@ -16,9 +44,9 @@
 
 - `skimr::skim()` is used in the vignette to display the AGFD {data.table} formatted data rather than just using `head()`
 
-- {64bit} has been added to the Suggested packages to help users avoid warning messages when working with data in the console via {data.table}, thanks, @potterzot
+- [{bit64}](https://cran.r-project.org/package=bit64) has been added to the Suggested packages to help users avoid warning messages when working with data in the console via {data.table}, thanks, @potterzot
 
-- Alternative installation instructions using {remotes} are provided in the README for users that may prefer or may not use {pak}, thanks, @potterzot
+- Alternative installation instructions using {remotes} are provided in the README for users that may prefer or may not use [{pak}](https://cran.r-project.org/package=pak), thanks, @potterzot
 
 - The topsoil thickness map now displays proper continuous values rather than classes, thanks, @obrsoil
 
