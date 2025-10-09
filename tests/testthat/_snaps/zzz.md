@@ -93,9 +93,6 @@
     Code
       opts
     Output
-      $read.abares.user_agent
-      [1] "read.abares R package 2.0.0 DEV https://github.com/adamhsparks/read.abares"
-      
       $read.abares.timeout
       [1] 5000
       

@@ -43,9 +43,9 @@ test_that(".init_read_abares_options sets expected options", {
   # Run the init logic
   expect_invisible(.init_read_abares_options())
 
-  # Snapshot the relevant options
+  # Snapshot the relevant options (useragent is not relevant here as it's
+  # different on CI and so a snapshot won't work)
   opts <- options()[c(
-    "read.abares.user_agent",
     "read.abares.timeout",
     "read.abares.max_tries",
     "read.abares.verbosity",
