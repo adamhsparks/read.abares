@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 ```
 
 This vignette demonstrates some of the functionality of {read.abares} and how to work with some of the spatial and tabular data available through {read.abares}.
-Please note that not all functions are demonstrated here, please refer to the [documentation reference](https://adamhsparks.github.io/read.abares/reference/) for a full list of functionality.
+Please note that not all functions are demonstrated here, please refer to the [reference documentation](../reference/) for a full list of functionality.
 The worked examples here show some of the more advanced features that {read.abares} offers beyond just fetching and importing data, _e.g._, Australian Agricultural and Grazing Industries Survey (AAGIS) spatial shapefile which can be used with tabular data from the historical estimates, the Australian Gridded Farm Data, which can be downloaded and imported using one of four types of object or the soil thickness data, which includes rich metadata.
 
 First we need to load the {read.abares} library.
@@ -102,7 +102,7 @@ Directly from the DAFF website:
 
 >The Australian Gridded Farm Data are a set of national scale maps containing simulated data on historical broadacre farm business outcomes including farm profitability on an 0.05-degree (approximately 5 km) grid.
 
->These data have been produced by read.abares as part of the ongoing Australian Agricultural Drought Indicator (AADI) project (previously known as the Drought Early Warning System Project) and were derived using read.abares farmpredict model, which in turn is based on read.abares Agricultural and Grazing Industries Survey (AAGIS) data.
+>These data have been produced by ABARES as part of the ongoing [Australian Agricultural Drought Indicator](https://www.agriculture.gov.au/abares/research-topics/climate/australian-agricultural-drought-indicators-project) (AADI) project (previously known as the Drought Early Warning System Project) and were derived using ABARES [*farmpredict*](https://www.agriculture.gov.au/abares/research-topics/climate/drought/farmpredict) model, which in turn is based on ABARES [Agricultural and Grazing Industries Survey](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-definitions-methods) (AAGIS) data.
 
 >These maps provide estimates of farm business profit, revenue, costs and production by location (grid cell) and year for the period 1990-91 to 2022-23. The data do not include actual observed outcomes but rather model predicted outcomes for representative or ‘typical' broadacre farm businesses at each location considering likely farm characteristics and prevailing weather conditions and commodity prices.
 
@@ -110,18 +110,11 @@ Directly from the DAFF website:
 
 -- Australian Department of Agriculture, Fisheries and Forestry.
 
-Check the file format information for the NetCDF files.
-
-```{r agfd-file-format}
-print_agfd_nc_file_format()
-```
-
-Download and read the AGFD files as a list of {stars} objects.
+Download and read the AGFD files as a list of {stars} objects returning only data for the year 2000.
 
 ```{r agfd-stars}
 # A list of {stars} objects for the climate in year 2000
-star <- get_agfd(yr = 2000) |>
-  read_agfd_stars()
+star <- read_agfd_stars(2000)
 
 head(star[[1]])
 ```
@@ -130,8 +123,7 @@ Download and read the AGFD files as a [terra::rast](https://rspatial.github.io/t
 
 ```{r agfd-terra}
 # A {terra} `rast` object
-terr <- get_agfd(yr = 2000) |>
-  read_agfd_terra()
+terr <- read_agfd_terra(2000)
 
 head(terr[[1]])
 ```
@@ -140,8 +132,7 @@ Download and read the AGFD files as a list of {tidync} objects.
 
 ```{r agfd-tidync}
 # A list of {tidync} objects
-tdnc <- get_agfd(yr = 2000) |>
-  read_agfd_tidync()
+tdnc <- read_agfd_tidync(2000)
 
 head(tdnc[[1]])
 ```
@@ -151,8 +142,7 @@ Download and read the AGFD files as a {data.table} object.
 ```{r agfd-dt}
 
 # A {data.table} object
-dtbl <- get_agfd(yr = 2000) |>
-  read_agfd_dt()
+dtbl <- read_agfd_dt(2000)
 
 #Check the completeness and other metadata about the data 
 library(skimr)
@@ -164,41 +154,21 @@ skim(dtbl)
 You can download the soil depth map and import it as a {stars} or [terra::rast()](https://rspatial.github.io/terra/reference/rast.html) object.
 
 ```{r soil-thickness}
-get_topsoil_thickness() |>
-  read_topsoil_thickness_stars()
-
-x <- get_topsoil_thickness() |>
-  read_topsoil_thickness_terra()
+ts_t <- read_topsoil_thickness_terra()
+ts_s <- read_topsoil_thickness_stars()
 ```
 
-For your convenience, {read.abares} re-exports [terra::plot()](https://rspatial.github.io/terra/reference/plot.html), so you can just use `plot()` with the {terra} objects in {read.abares}.
+For your convenience, {read.abares} re-exports [terra::plot()](https://rspatial.github.io/terra/reference/plot.html), so you can just use `plot()` with the {terra} objects in {read.abares}, by default {stars} already handles `plot` gracefully.
 
 ```{r plot-topsoil-depth, fig.cap = "Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)"}
-plot(x)
+plot(ts_t)
 ```
 
 ### Soil Thickness Metadata
 
-By default, a brief bit of metadata is printed to the console when you call the topsoil thickness object in your R session.
+The topsoil thickness data object will contain the associated metadata no matter which R package you choose, {terra} or {stars}.
 
 ```{r brief-metadata}
-get_topsoil_thickness()
+print_topsoil_thickness_metadata()
 ```
 
-But, {read.abares} provides a function for you to browse the topsoil thickness metadata in your console.
-
-```{r soil-thickness-metadata}
-get_topsoil_thickness() |>
-  print_topsoil_thickness_metadata()
-```
-
-But you can also access it directly and use [pander::pander()] to include it in a document like this vignette.
-
-<blockquote>
-```{r soil-thickness-metadata-pander}
-library(pander)
-x <- get_topsoil_thickness()
-y <- x$metadata
-pander(y)
-```
-</blockquote>

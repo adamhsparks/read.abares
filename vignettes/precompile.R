@@ -4,6 +4,9 @@ library(knitr)
 library(here)
 library(devtools)
 
+# ensure using latest version
+install("./")
+
 knit(
   input = "vignettes/read.abares.Rmd.orig",
   output = "vignettes/read.abares.Rmd"
