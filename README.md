@@ -26,7 +26,7 @@ ABARES data are not available from other sources but are mostly available under 
 ABARES makes several data sets freely available as spreadsheets in Microsoft Excel or CSV file formats and zip archives of geospatial data as NetCDF, GeoTIFF or shape files.
 {read.abares} facilitates downloading and importing these files in your R session.
 
-Data serviced include:
+Data serviced includes but is not limited to:
 
 - the [ABARES Estimates](https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download);
 - the [Australian Gridded Farm Data (AGFD) set](https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data);
@@ -99,7 +99,7 @@ Select from spatial classes for the Australian Gridded Farm Data (AGFD) NetCDF f
 - [{stars}](https://CRAN.R-project.org/package=stars),
 - [{terra}](https://CRAN.R-project.org/package=terra),
 - [{tidync}](https://CRAN.R-project.org/package=tidync), or if you prefer,
-- a [{data.table}](https://CRAN.R-project.org/package=data.table) data.frame of the whole data set.
+- a [{data.table}](https://CRAN.R-project.org/package=data.table) data.frame object of the whole data set.
 
 Or for the Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping) and land use change data sets, select from:
 
@@ -146,14 +146,6 @@ Citing {read.abares}: When citing the use of this package, please use,
 
 ``` r
 library(read.abares)
-#> 
-#> Attaching package: 'read.abares'
-#> The following object is masked from 'package:graphics':
-#> 
-#>     plot
-#> The following objects are masked from 'package:base':
-#> 
-#>     levels, plot
 citation("read.abares")
 #> To cite package 'read.abares' in publications use:
 #> 
