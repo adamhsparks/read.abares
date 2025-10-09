@@ -1,24 +1,22 @@
-#' Read 'Australian Gridded Farm Data' (AGFD) NCDF files with terra
+#' Read ABARES' "Australian Gridded Farm Data" (AGFD) NCDF Files with terra
 #'
-#' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a `list()` of
-#'  [terra::rast] objects.
+#' Read "Australian Gridded Farm Data", (\acronym{AGFD}) as a `list()` of
+#'  [terra::rast()] objects.
 #'
-#' @inherit get_agfd details
+#' @inherit read_agfd_dt details
 #' @inheritParams read_agfd_dt
-#' @inheritSection get_agfd Model scenarios
-#' @inheritSection get_agfd Data files
-#' @inheritSection get_agfd Data layers
-#' @inherit get_agfd references
+#' @inheritParams read_aagis_regions
+#' @inheritSection read_agfd_dt Model scenarios
+#' @inheritSection read_agfd_dt Data files
+#' @inheritSection read_agfd_dt Data layers
+#' @inherit read_agfd_dt references
 #'
-#' @returns A `list()` object of [terra::rast] objects of the Australian Gridded
-#'  Farm Data with the file names as the list's objects' names.
+#' @returns A `list()` object of [terra::rast()] objects of the "Australian
+#'  Gridded Farm Data" with the file names as the list's objects' names.
 #'
 #' @examplesIf interactive()
 #'
-#' # using piping, which can use the {read.abares} cache after the first DL
-#'
-#' agfd_terra <- get_agfd(cache = TRUE) |>
-#'   read_agfd_terra()
+#' agfd_terra <- read_agfd_terra()
 #'
 #' head(agfd_terra)
 #'
@@ -28,8 +26,21 @@
 #' @autoglobal
 #' @export
 
-read_agfd_terra <- function(files) {
-  .check_class(x = files, class = "read.abares.agfd.nc.files")
+read_agfd_terra <- function(
+  yyyy = 1991:2023,
+  fixed_prices = TRUE,
+  x = NULL
+) {
+  if (any(yyyy %notin% 1991:2023)) {
+    cli::cli_abort(
+      "{.arg yyyy} must be between 1991 and 2023 inclusive"
+    )
+  }
+  files <- .get_agfd(
+    .fixed_prices = fixed_prices,
+    .yyyy = yyyy,
+    .x = x
+  )
   r <- purrr::map(.x = files, .f = terra::rast)
   names(r) <- fs::path_file(files)
   return(r)

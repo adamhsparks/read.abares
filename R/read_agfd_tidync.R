@@ -1,32 +1,49 @@
-#' Read 'Australian Gridded Farm Data' (AGFD) NCDF files with tidync
+#' Read ABARES' "Australian Gridded Farm Data" (AGFD) NCDF Files with tidync
 #'
-#' Read Australian Gridded Farm Data, (\acronym{AGFD}) as a list of
-#'   [tidync::tidync] objects.
+#' Read "Australian Gridded Farm Data", (\acronym{AGFD}) as a list of
+#'   [tidync::tidync()] objects.
 #'
-#' @inherit get_agfd details
+#' @inherit read_agfd_dt details
+#'
 #' @inheritParams read_agfd_dt
-#' @inheritSection get_agfd Model scenarios
-#' @inheritSection get_agfd Data files
-#' @inheritSection get_agfd Data layers
-#' @inherit get_agfd references
 #'
-#' @returns A `list` object of \CRANpkg{tidync} objects of the Australian
-#'  Gridded Farm Data with the file names as the  list's objects' names.
+#' @inheritParams read_aagis_regions
+#'
+#' @inheritSection read_agfd_dt Model scenarios
+#'
+#' @inheritSection read_agfd_dt Data files
+#'
+#' @inheritSection read_agfd_dt Data layers
+#'
+#' @inherit read_agfd_dt references
+#'
+#' @returns A `list` object of \CRANpkg{tidync} objects of the "Australian
+#'  Gridded Farm Data" with the file names as the list's objects' names.
 #'
 #' @examplesIf interactive()
 #'
-#' # using piping, which can use the {read.abares} cache after the first DL
-#'
-#' agfd_tnc <- get_agfd(cache = TRUE) |>
-#'   read_agfd_tidync()
+#' agfd_tnc <- read_agfd_tidync()
 #'
 #' head(agfd_tnc)
 #'
 #' @family AGFD
 #' @export
 
-read_agfd_tidync <- function(files) {
-  .check_class(x = files, class = "read.abares.agfd.nc.files")
+read_agfd_tidync <- function(
+  yyyy = 1991:2023,
+  fixed_prices = TRUE,
+  x = NULL
+) {
+  if (any(yyyy %notin% 1991:2023)) {
+    cli::cli_abort(
+      "{.arg yyyy} must be between 1991 and 2023 inclusive"
+    )
+  }
+  files <- .get_agfd(
+    .fixed_prices = fixed_prices,
+    .yyyy = yyyy,
+    .x = x
+  )
   tnc <- purrr::map(files, tidync::tidync)
   names(tnc) <- fs::path_file(files)
   return(tnc)

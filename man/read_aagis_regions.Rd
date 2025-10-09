@@ -2,35 +2,33 @@
 % Please edit documentation in R/read_aagis_regions.R
 \name{read_aagis_regions}
 \alias{read_aagis_regions}
-\title{Read 'Australian Agricultural and Grazing Industries Survey' (AAGIS) region mapping files}
+\title{Read ABARES' "Australian Agricultural and Grazing Industries Survey" (AAGIS) Region Mapping Files}
 \source{
 \url{https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip}
 }
 \usage{
-read_aagis_regions(cache = TRUE)
+read_aagis_regions(x = NULL)
 }
 \arguments{
-\item{cache}{Cache the \acronym{AAGIS} regions' geospatial file after
-downloading using \code{tools::R_user_dir("read.abares", "cache")} to identify the
-proper directory for storing user data in a cache for this package. Defaults
-to \code{TRUE}, caching the files locally as a GeoPackage. If \code{FALSE}, this
-function uses \code{tempdir()} and the files are deleted upon closing of the
-active \R session.}
+\item{x}{A file path providing the file with the data to be imported. The
+file is assumed to be unarchived (*i.e., still zipped). This function does
+not provide any checking whether this function is the proper function for
+the provided file.  Defaults to \code{NULL}, assuming that the file will be
+downloaded in the active \R session.}
 }
 \value{
-An \CRANpkg{sf} object of the \acronym{AAGIS} regions and a
-cached geopackage file if requested.
+An \CRANpkg{sf} object of the \acronym{AAGIS} regions.
 }
 \description{
-Download, cache and import the Australian Agricultural and Grazing
-Industries Survey (\acronym{AAGIS}) regions geospatial shapefile.
+Download import the "Australian Agricultural and Grazing Industries Survey"
+(\acronym{AAGIS}) regions geospatial shapefile.
 }
-\details{
-@note Upon import a few operations are carried out,
+\note{
+Upon import a few operations are carried out,
 \itemize{
 \item the geometries are automatically corrected to fix invalid geometries that
 are present in the original shapefile,
-\item column names are set to start with an upper-case letter,
+\item column names are set to start with a upper-case letter,
 \item the original column named, "name", is set to "AAGIS_region" to align with
 column names that the \code{\link[data.table:data.table]{data.table::data.table()}} provided by
 \code{\link[=read_historical_regional_estimates]{read_historical_regional_estimates()}} to allow for easier merging of data
@@ -41,7 +39,7 @@ data for mapping state historical estimate values found in the
 }
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 aagis <- read_aagis_regions()
 
 plot(aagis)

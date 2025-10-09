@@ -8,5 +8,4 @@
 
 library(testthat)
 library(read.abares)
-
 test_check("read.abares")

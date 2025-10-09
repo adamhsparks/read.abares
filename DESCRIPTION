@@ -1,22 +1,26 @@
 Type: Package
 Package: read.abares
-Title: Provides simple downloading, parsing and importing of Australian
-    Bureau of Agricultural and Resource Economics and Sciences (ABARES)
-    data sources
-Version: 1.0.1
+Title: Download and Import Agricultural Data from the Australian Bureau of
+    Agricultural and Resource Economics and Sciences (ABARES) and
+    Australian Bureau of Statistics (ABS)
+Version: 2.0.0
 Authors@R: c(
     person("Adam H.", "Sparks", , "adamhsparks@gmail.com", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0002-0061-8359")),
-    person("Jacob", , , "jacob@wujciak.de", role = "ctb",
-           comment = c("Assisted with troubleshooting formatting in documentation to display '<' and '>' properly", ORCID = "0000-0002-7281-3989")),
-    person("Curtin University of Technology", role = "cph",
-           comment = "Provided support through Adam Sparks's time."),
+    person("Curtin University", role = c("fnd", "cph"),
+           comment = c("http://www.curtin.edu.au/", ROR = "02n415q13")),
     person("Grains Research and Development Corporation", role = c("fnd", "cph"),
-           comment = "GRDC Project CUR2210-005OPX (AAGI-CU)")
+           comment = c(Project = "GRDC Project CUR2210-005OPX (AAGI-CU)", ROR = "02xwr1996")),
+    person("Jacob", , , "jacob@wujciak.de", role = "ctb",
+           comment = c("Assisted with troubleshooting formatting in documentation to display '<' and '>' properly", ORCID = "0000-0002-7281-3989"))
   )
-Description: Download and import data from the Australian Bureau of
-    Agricultural and Resource Economics and Sciences (ABARES)
-    <https://www.agriculture.gov.au/abares>.
+Description: Download and import agricultural data from the Australian
+    Bureau of Agricultural and Resource Economics and Sciences (ABARES)
+    <https://www.agriculture.gov.au/abares> and Australian Bureau of
+    Statistics (ABS) <https://abs.gov.au>. Data types serviced include
+    spreadsheets, CSV files, geospatial data including shape files and
+    geotiffs covering topics including broadacre crops, livestock, soil
+    data, commodities and more.
 License: MIT + file LICENSE
 URL: https://github.com/adamhsparks/read.abares,
     https://adamhsparks.github.io/read.abares/
@@ -24,36 +28,44 @@ BugReports: https://github.com/adamhsparks/read.abares/issues
 Depends: 
     R (>= 4.1.0)
 Imports: 
+    archive,
     brio,
     cli,
     data.table,
     fs,
+    htm2txt,
     httr2,
     lubridate,
-    openxlsx2,
     purrr,
     readtext,
+    readxl,
     rlang,
     sf,
     stars,
     stringr,
     terra,
     tidync,
+    whoami,
     withr
 Suggests: 
+    bit64,
+    future,
+    future.apply,
     httptest2,
     knitr,
     pander,
     rmarkdown,
     roxyglobals,
+    skimr,
     spelling,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    webmockr,
+    writexl
 VignetteBuilder: 
     knitr
 Config/Needs/build: moodymudskipper/devtag
 Config/roxyglobals/filename: globals.R
 Config/roxyglobals/unique: FALSE
-Config/roxylint: list(linters = roxylint::tidy)
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
@@ -61,4 +73,4 @@ Language: en-US
 Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
     "roxyglobals::global_roclet", "roxylint::roxylint",
     "devtag::dev_roclet"))
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3

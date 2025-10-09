@@ -1,12 +1,18 @@
-#' Read 'Australian Agricultural and Grazing Industries Survey' (AAGIS) region mapping files
+#' Read ABARES' "Australian Agricultural and Grazing Industries Survey" (AAGIS) Region Mapping Files
 #'
-#' Download, cache and import the Australian Agricultural and Grazing
-#'  Industries Survey (\acronym{AAGIS}) regions geospatial shapefile.
+#' Download import the "Australian Agricultural and Grazing Industries Survey"
+#'   (\acronym{AAGIS}) regions geospatial shapefile.
 #'
-#'  @note Upon import a few operations are carried out,
+#' @param x A file path providing the file with the data to be imported. The
+#'  file is assumed to be unarchived (*i.e., still zipped). This function does
+#'  not provide any checking whether this function is the proper function for
+#'  the provided file.  Defaults to `NULL`, assuming that the file will be
+#'  downloaded in the active \R session.
+#'
+#' @note Upon import a few operations are carried out,
 #'  * the geometries are automatically corrected to fix invalid geometries that
 #'  are present in the original shapefile,
-#'  * column names are set to start with an upper-case letter,
+#'  * column names are set to start with a upper-case letter,
 #'  * the original column named, "name", is set to "AAGIS_region" to align with
 #'  column names that the [data.table::data.table()] provided by
 #'  [read_historical_regional_estimates()] to allow for easier merging of data
@@ -15,21 +21,12 @@
 #'  data for mapping state historical estimate values found in the
 #'  [data.table::data.table()] from [read_historical_state_estimates()].
 #'
-#'
-#' @param cache Cache the \acronym{AAGIS} regions' geospatial file after
-#' downloading using `tools::R_user_dir("read.abares", "cache")` to identify the
-#' proper directory for storing user data in a cache for this package. Defaults
-#' to `TRUE`, caching the files locally as a GeoPackage. If `FALSE`, this
-#' function uses `tempdir()` and the files are deleted upon closing of the
-#' active \R session.
-#'
 #' @examplesIf interactive()
 #' aagis <- read_aagis_regions()
 #'
 #' plot(aagis)
 #'
-#' @returns An \CRANpkg{sf} object of the \acronym{AAGIS} regions and a
-#' cached geopackage file if requested.
+#' @returns An \CRANpkg{sf} object of the \acronym{AAGIS} regions.
 #'
 #' @family AAGIS
 #'
@@ -38,59 +35,25 @@
 #' @autoglobal
 #' @export
 
-read_aagis_regions <- function(cache = TRUE) {
-  aagis_regions_cache <- fs::path(.find_user_cache(), "aagis_regions_dir")
-  if (fs::dir_exists(aagis_regions_cache)) {
-    return(sf::st_read(
-      fs::path(
-        aagis_regions_cache,
-        "aagis.gpkg"
-      ),
-      quiet = TRUE
-    ))
+read_aagis_regions <- function(x = NULL) {
+  if (is.null(x)) {
+    x <- fs::path(tempdir(), "aagis.zip")
+    if (!fs::file_exists(x)) {
+      .retry_download(
+        url = "https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip",
+        dest = x
+      )
+      .unzip_file(x)
+    }
   } else {
-    return(.download_aagis_shp(cache))
+    .unzip_file(x)
   }
-}
-
-#' Download the 'Australian Agricultural and Grazing Industries Survey' (AAGIS) regions shapefile
-#'
-#' Handles downloading, caching (if requested) and importing of AAGIS regions
-#'  geospatial data.  The geometries are corrected for validity before returning
-#'  to the user.
-#'
-#' @param cache `Boolean` Cache the \acronym{AAGIS} regions shape files after
-#'  download using `tools::R_user_dir("read.abares")` to identify the proper
-#'  directory for storing user data in a cache for this package. Defaults to
-#'  `TRUE`, caching the files locally as a native \R object. If `FALSE`, this
-#'  function uses `tempdir()` and the files are deleted upon closing of the \R
-#'  session.
-#'
-#' @returns An \CRANpkg{sf} object of AAGIS regions.
-#' @dev
-#' @autoglobal
-
-.download_aagis_shp <- function(cache) {
-  download_file <- fs::path(tempdir(), "aagis.zip")
-  tempdir_aagis_dir <- fs::path(tempdir(), "aagis_regions_dir")
-  cache_aagis_dir <- fs::path(.find_user_cache(), "aagis_regions_dir")
-
-  .retry_download(
-    "https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip",
-    .f = download_file
-  )
-
-  withr::with_dir(
-    tempdir(),
-    utils::unzip(download_file, exdir = tempdir_aagis_dir)
-  )
-
   aagis_sf <- sf::st_read(
     dsn = fs::path(
-      tempdir_aagis_dir,
-      "aagis_asgs16v1_g5a.shp"
+      fs::path_dir(x),
+      "aagis/aagis_asgs16v1_g5a.shp"
     ),
-    quiet = TRUE
+    quiet = !(getOption("read.abares.verbosity") %in% c("quiet", "minimal"))
   )
 
   # From checking the unzipped file, some geometries are invalid, this corrects
@@ -102,17 +65,6 @@ read_aagis_regions <- function(cache = TRUE) {
   names(aagis_sf)[names(aagis_sf) == "class"] <- "Class"
   names(aagis_sf)[names(aagis_sf) == "zone"] <- "Zone"
 
-  if (cache) {
-    if (!fs::dir_exists(cache_aagis_dir)) {
-      fs::dir_create(cache_aagis_dir, recurse = TRUE)
-    }
-    sf::st_write(
-      obj = aagis_sf,
-      dsn = fs::path(cache_aagis_dir, "aagis.gpkg"),
-      quiet = TRUE
-    )
-  }
-
-  fs::file_delete(download_file)
+  fs::file_delete(x)
   return(aagis_sf)
 }

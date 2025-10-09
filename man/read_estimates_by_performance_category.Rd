@@ -3,17 +3,24 @@
 \name{read_estimates_by_performance_category}
 \alias{read_estimates_by_performance_category}
 \alias{read_est_by_perf_cat}
-\title{Read 'Estimates by Size' from ABARES}
+\title{Read ABARES' "Estimates by Performance"}
 \source{
 \url{https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv}
 }
 \usage{
-read_estimates_by_performance_category()
+read_estimates_by_performance_category(x = NULL)
 
-read_est_by_perf_cat()
+read_est_by_perf_cat(x = NULL)
+}
+\arguments{
+\item{x}{A file path providing the file with the data to be imported. The
+file is assumed to be unarchived (*i.e., still zipped). This function does
+not provide any checking whether this function is the proper function for
+the provided file.  Defaults to \code{NULL}, assuming that the file will be
+downloaded in the active \R session.}
 }
 \value{
-A \link[data.table:data.table]{data.table::data.table} object.
+A \code{\link[data.table:data.table]{data.table::data.table()}} object.
 }
 \description{
 Fetches and imports \acronym{ABARES} estimates by performance category data.
@@ -23,7 +30,7 @@ Columns are renamed for consistency with other \acronym{ABARES} products
 serviced in this package using a snake_case format and ordered consistently.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 
 read_estimates_by_performance_category()
 

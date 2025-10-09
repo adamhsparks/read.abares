@@ -4,11 +4,11 @@
 \name{read.abares-package}
 \alias{read.abares}
 \alias{read.abares-package}
-\title{read.abares: Provides simple downloading, parsing and importing of Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) data sources}
+\title{read.abares: Download and Import Agricultural Data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) and Australian Bureau of Statistics (ABS)}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Download and import data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) \url{https://www.agriculture.gov.au/abares}.
+Download and import agricultural data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) \url{https://www.agriculture.gov.au/abares} and Australian Bureau of Statistics (ABS) \url{https://abs.gov.au}. Data types serviced include spreadsheets, CSV files, geospatial data including shape files and geotiffs covering topics including broadacre crops, livestock, soil data, commodities and more.
 }
 \seealso{
 Useful links:
@@ -24,9 +24,9 @@ Useful links:
 
 Other contributors:
 \itemize{
+  \item Curtin University (\href{https://ror.org/02n415q13}{ROR}) (http://www.curtin.edu.au/) [funder, copyright holder]
+  \item Grains Research and Development Corporation (\href{https://ror.org/02xwr1996}{ROR}) (GRDC Project CUR2210-005OPX (AAGI-CU)) [funder, copyright holder]
   \item Jacob \email{jacob@wujciak.de} (\href{https://orcid.org/0000-0002-7281-3989}{ORCID}) (Assisted with troubleshooting formatting in documentation to display '<' and '>' properly) [contributor]
-  \item Curtin University of Technology (Provided support through Adam Sparks's time.) [copyright holder]
-  \item Grains Research and Development Corporation (GRDC Project CUR2210-005OPX (AAGI-CU)) [funder, copyright holder]
 }
 
 }

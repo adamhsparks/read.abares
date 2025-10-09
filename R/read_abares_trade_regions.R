@@ -1,7 +1,8 @@
-#' Read ABARES 'Trade Data Regions' from the ABARES Trade Dashboard
+#' Read "Trade Data Regions" from the ABARES Trade Dashboard
 #'
-#' Fetches and imports \acronym{ABARES} trade regions data.
+#' Fetches and imports \acronym{ABARES} "Trade Data Regions".
 #'
+#' @inheritParams read_aagis_regions
 #' @note
 #' Columns are renamed for consistency with other \acronym{ABARES} products
 #'  serviced in this package using a snake_case format and ordered consistently.
@@ -19,14 +20,15 @@
 #' @autoglobal
 #' @export
 
-read_abares_trade_regions <- function() {
-  trade_regions <- fs::path(tempdir(), "trade_regions")
-  .retry_download(
-    url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/2",
-    .f = trade_regions
-  )
-
-  abares_trade_regions <- data.table::fread(trade_regions, fill = TRUE)
+read_abares_trade_regions <- function(x = NULL) {
+  if (is.null(x)) {
+    x <- fs::path(tempdir(), "trade_regions")
+    .retry_download(
+      url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/2",
+      dest = x
+    )
+  }
+  abares_trade_regions <- data.table::fread(x, fill = TRUE)
 
   return(abares_trade_regions[])
 }

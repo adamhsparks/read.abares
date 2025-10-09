@@ -2,6 +2,10 @@
 # while to run
 library(knitr)
 library(here)
+library(devtools)
+
+# ensure using latest version
+install("./")
 
 knit(
   input = "vignettes/read.abares.Rmd.orig",
@@ -18,7 +22,6 @@ writeLines(ra_replace, ra_file_conn)
 close(ra_file_conn)
 
 # build vignettes
-library("devtools")
 build_vignettes()
 
 # move resource files to /docs

@@ -1,7 +1,16 @@
-#' Read Historical Forecast Database From ABARES
+#' Read ABARES' "Historical Forecast Database"
 #'
-#' Fetches and imports \acronym{ABARES} historical forecast performance data.
+#' Fetches and imports \acronym{ABARES} "Historical Forecast Database"
+#'  performance data.
 #'
+#'
+#' @param x A file path providing the file with the data to be imported. The
+#'  file is assumed to be unarchived locally. This function does not provide any
+#'  checking whether this function is the proper function for the provided file.
+#'  Defaults to `NULL`, assuming that the file will be downloaded in the active
+#'  \R session.
+#'
+#' @details
 #' # Data Dictionary
 #' The resulting object will contain the following fields.
 #'
@@ -11,7 +20,7 @@
 #' | Estimate_type | Broad grouping of estimate by theme *e.g.*, animal numbers, area, production, price, export and volume measures. |
 #' | Estimate_description | Detailed description of each series. |
 #' | Unit | Measurement unit of series. *e.g.*, kt, $m, $/t. |
-#' | Region | Relevant region for each series. \dQuote{World} denotes relevant international market. |
+#' | Region | Relevant region for each series. "World" denotes relevant international market. |
 #' | Year_Issued | Year that forecast was originally issued. |
 #' | Month_issued | Month that forecast was originally issued. |
 #' | Year_Issued_FY | Australian financial year (July-June) that forecast was originally issued. |
@@ -30,7 +39,7 @@
 #' @references <https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/historical-forecasts#:~:text=About%20the%20historical%20agricultural%20forecast,relevant%20to%20Australian%20agricultural%20markets>
 #' @source <https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0>
 #'
-#' @returns A [data.table::data.table] object.
+#' @returns A [data.table::data.table()] object.
 #'
 #' @autoglobal
 #' @export
@@ -41,18 +50,21 @@
 #' # or shorter
 #' read_historical_forecast()
 #'
-read_historical_forecast_database <- function() {
-  f <- fs::path(tempdir(), "historical_db.xlsx")
 
-  .retry_download(
-    "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0",
-    .f = f
-  )
+read_historical_forecast_database <- function(x = NULL) {
+  if (is.null(x)) {
+    x <- fs::path(tempdir(), "historical_db.xlsx")
 
-  x <- data.table::as.data.table(openxlsx2::read_xlsx(
-    f,
+    .retry_download(
+      "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0",
+      dest = x
+    )
+  }
+
+  x <- data.table::as.data.table(readxl::read_excel(
+    x,
     sheet = "Database",
-    na.strings = "na"
+    na = "na"
   ))
 
   data.table::setnames(
@@ -85,8 +97,7 @@ read_historical_forecast_database <- function() {
     )
   )
 
-  x[
-    ,
+  x[,
     Month_issued := data.table::fcase(
       Month_issued == "January",
       1L,

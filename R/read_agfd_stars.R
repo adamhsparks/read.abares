@@ -1,24 +1,22 @@
-#' Read 'Australian Gridded Farm Data' (AGFD) NCDF files with stars
+#' Read ABARES' "Australian Gridded Farm Data" (AGFD) NCDF files with stars
 #'
-#' Read 'Australian Gridded Farm Data' (\acronym{AGFD}) as a list of
+#' Read "Australian Gridded Farm Data" (\acronym{AGFD}) as a list of
 #'  \CRANpkg{stars} objects.
 #'
-#' @inherit get_agfd details
+#' @inherit read_agfd_dt details
 #' @inheritParams read_agfd_dt
-#' @inheritSection get_agfd Model scenarios
-#' @inheritSection get_agfd Data files
-#' @inheritSection get_agfd Data layers
-#' @inherit get_agfd references
+#' @inheritParams read_aagis_regions
+#' @inheritSection read_agfd_dt Model scenarios
+#' @inheritSection read_agfd_dt Data files
+#' @inheritSection read_agfd_dt Data layers
+#' @inherit read_agfd_dt references
 #'
-#' @returns A `list` object of \CRANpkg{stars} objects of the Australian Gridded
-#'  Farm Data with the file names as the list's objects' names.
+#' @returns A `list` object of \CRANpkg{stars} objects of the "Australian
+#' Gridded Farm Data" with the file names as the list's  objects' names.
 #'
 #' @examplesIf interactive()
 #'
-#' # using piping, which can use the {read.abares} cache after the first DL
-#'
-#' agfd_stars <- get_agfd(cache = TRUE) |>
-#'   read_agfd_stars()
+#' agfd_stars <- read_agfd_stars()
 #'
 #' head(agfd_stars)
 #'
@@ -28,8 +26,21 @@
 #' @autoglobal
 #' @export
 
-read_agfd_stars <- function(files) {
-  .check_class(x = files, class = "read.abares.agfd.nc.files")
+read_agfd_stars <- function(
+  yyyy = 1991:2003,
+  fixed_prices = TRUE,
+  x = NULL
+) {
+  if (any(yyyy %notin% 1991:2023)) {
+    cli::cli_abort(
+      "{.arg yyyy} must be between 1991 and 2023 inclusive"
+    )
+  }
+  files <- .get_agfd(
+    .fixed_prices = fixed_prices,
+    .yyyy = yyyy,
+    .x = x
+  )
   var <- c(
     "farmno",
     "R_total_hat_ha",
@@ -73,26 +84,30 @@ read_agfd_stars <- function(files) {
     "FBP_pfe_hat_ha",
     "farmland_per_cell"
   )
-
+  s2 <- NULL
   # read one file for the message
   s1 <- list(stars::read_ncdf(
-    files[1],
+    files[1L],
     var = var
   ))
 
-  # then suppress the rest of the messages
-  q_read_ncdf <- purrr::quietly(stars::read_ncdf)
-  s2 <- purrr::modify_depth(
-    purrr::map(files[2:length(files)], q_read_ncdf, var = var),
-    1,
-    "result"
-  )
+  if (length(files) > 1L) {
+    # then suppress the rest of the messages
+    q_read_ncdf <- purrr::quietly(stars::read_ncdf)
+    s2 <- purrr::modify_depth(
+      purrr::map(files[2L:length(files)], q_read_ncdf, var = var),
+      1L,
+      "result"
+    )
 
-  out <- append(s1, s2)
+    s1 <- append(s1, s2)
+  }
 
-  names(out) <- fs::path_file(files)
+  names(s1) <- fs::path_file(files)
 
-  rm(s1, s2)
+  if (!is.null(s2)) {
+    rm(s2)
+  }
   gc()
-  return(out)
+  return(s1)
 }

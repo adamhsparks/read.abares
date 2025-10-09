@@ -3,28 +3,35 @@
 \name{read_historical_regional_estimates}
 \alias{read_historical_regional_estimates}
 \alias{read_hist_reg_est}
-\title{Read 'Historical Regional Estimates' from ABARES}
+\title{Read ABARES' "Historical Regional Estimates"}
 \source{
 \url{https://www.agriculture.gov.au/sites/default/files/documents/fdp-regional-historical.csv}
 }
 \usage{
-read_historical_regional_estimates()
+read_historical_regional_estimates(x = NULL)
 
-read_hist_reg_est()
+read_hist_reg_est(x = NULL)
+}
+\arguments{
+\item{x}{A file path providing the file with the data to be imported. The
+file is assumed to be unarchived (*i.e., still zipped). This function does
+not provide any checking whether this function is the proper function for
+the provided file.  Defaults to \code{NULL}, assuming that the file will be
+downloaded in the active \R session.}
 }
 \value{
-A \link[data.table:data.table]{data.table::data.table} object with the \code{Variable} field as the
+A \code{\link[data.table:data.table]{data.table::data.table()}} object with the \code{Variable} field as the
 \code{key}.
 }
 \description{
-Fetches and imports \acronym{ABARES} historical regional estimates data.
+Fetches and imports \acronym{ABARES} "Historical Regional Estimates" data.
 }
 \note{
 Columns are renamed for consistency with other \acronym{ABARES} products
 serviced in this package using a snake_case format and ordered consistently.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 read_historical_regional_estimates()
 
 # or shorter

@@ -3,20 +3,28 @@
 \name{read_historical_forecast_database}
 \alias{read_historical_forecast_database}
 \alias{read_historical_forecast}
-\title{Read Historical Forecast Database From ABARES}
+\title{Read ABARES' "Historical Forecast Database"}
 \source{
 \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0}
 }
 \usage{
-read_historical_forecast_database()
+read_historical_forecast_database(x = NULL)
 
-read_historical_forecast()
+read_historical_forecast(x = NULL)
+}
+\arguments{
+\item{x}{A file path providing the file with the data to be imported. The
+file is assumed to be unarchived locally. This function does not provide any
+checking whether this function is the proper function for the provided file.
+Defaults to \code{NULL}, assuming that the file will be downloaded in the active
+\R session.}
 }
 \value{
-A \link[data.table:data.table]{data.table::data.table} object.
+A \code{\link[data.table:data.table]{data.table::data.table()}} object.
 }
 \description{
-Fetches and imports \acronym{ABARES} historical forecast performance data.
+Fetches and imports \acronym{ABARES} "Historical Forecast Database"
+performance data.
 }
 \note{
 Columns are renamed for consistency with other \acronym{ABARES} products
@@ -32,7 +40,7 @@ The resulting object will contain the following fields.\tabular{ll}{
    Estimate_type \tab Broad grouping of estimate by theme \emph{e.g.}, animal numbers, area, production, price, export and volume measures. \cr
    Estimate_description \tab Detailed description of each series. \cr
    Unit \tab Measurement unit of series. \emph{e.g.}, kt, $m, $/t. \cr
-   Region \tab Relevant region for each series. \dQuote{World} denotes relevant international market. \cr
+   Region \tab Relevant region for each series. "World" denotes relevant international market. \cr
    Year_Issued \tab Year that forecast was originally issued. \cr
    Month_issued \tab Month that forecast was originally issued. \cr
    Year_Issued_FY \tab Australian financial year (July-June) that forecast was originally issued. \cr
@@ -43,7 +51,7 @@ The resulting object will contain the following fields.\tabular{ll}{
 }
 
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 
 read_historical_forecast_database()
 

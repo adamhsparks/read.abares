@@ -2,26 +2,33 @@
 % Please edit documentation in R/read_abares_trade_regions.R
 \name{read_abares_trade_regions}
 \alias{read_abares_trade_regions}
-\title{Read ABARES 'Trade Data Regions' from the ABARES Trade Dashboard}
+\title{Read "Trade Data Regions" from the ABARES Trade Dashboard}
 \source{
 \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/2}
 }
 \usage{
-read_abares_trade_regions()
+read_abares_trade_regions(x = NULL)
+}
+\arguments{
+\item{x}{A file path providing the file with the data to be imported. The
+file is assumed to be unarchived (*i.e., still zipped). This function does
+not provide any checking whether this function is the proper function for
+the provided file.  Defaults to \code{NULL}, assuming that the file will be
+downloaded in the active \R session.}
 }
 \value{
 A \CRANpkg{data.table} object of the \acronym{ABARES} trade data
 regions.
 }
 \description{
-Fetches and imports \acronym{ABARES} trade regions data.
+Fetches and imports \acronym{ABARES} "Trade Data Regions".
 }
 \note{
 Columns are renamed for consistency with other \acronym{ABARES} products
 serviced in this package using a snake_case format and ordered consistently.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 trade_regions <- read_abares_trade_regions()
 
 trade_regions

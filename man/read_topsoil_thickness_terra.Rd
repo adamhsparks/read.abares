@@ -2,29 +2,33 @@
 % Please edit documentation in R/read_topsoil_thickness_terra.R
 \name{read_topsoil_thickness_terra}
 \alias{read_topsoil_thickness_terra}
-\title{Read a Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1 file with terra}
+\title{Read ABARES' "Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1" with terra}
 \source{
 \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
 }
 \usage{
-read_topsoil_thickness_terra(files)
+read_topsoil_thickness_terra(x = NULL, ...)
 }
 \arguments{
-\item{files}{An \pkg{read.abares} \code{read.abares.topsoil.thickness} object, a
-\code{list} that contains the \acronym{ESRI} grid file to import.}
+\item{x}{A file path providing the file with the data to be imported. The
+file is assumed to be unarchived (*i.e., still zipped). This function does
+not provide any checking whether this function is the proper function for
+the provided file.  Defaults to \code{NULL}, assuming that the file will be
+downloaded in the active \R session.}
+
+\item{...}{Additional arguments passed to \code{\link[terra:rast]{terra::rast()}}.}
 }
 \value{
-A \link[terra:rast]{terra::rast} object of the 'Soil Thickness for Australian Areas
-of Intensive Agriculture of Layer 1'.
+A \code{\link[terra:rast]{terra::rast()}} object of the "Soil Thickness for Australian Areas
+of Intensive Agriculture of Layer 1".
 }
 \description{
-Read Soil Thickness for Australian Areas of Intensive Agriculture of Layer 1
-data as a \link[terra:rast]{terra::rast} object.
+Read "Soil Thickness for Australian Areas of Intensive Agriculture of Layer
+1" as a \code{\link[terra:rast]{terra::rast()}} object.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-st_terra <- get_topsoil_thickness(cache = TRUE) |>
-  read_topsoil_thickness_terra()
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+st_terra <- read_topsoil_thickness_terra()
 
 # terra::plot() is reexported for convenience
 plot(st_terra)
@@ -34,9 +38,8 @@ plot(st_terra)
 \url{https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6}
 }
 \seealso{
-Other topsoil_thickness: 
-\code{\link{get_topsoil_thickness}()},
+Other topsoil thickness: 
 \code{\link{print_topsoil_thickness_metadata}()},
 \code{\link{read_topsoil_thickness_stars}()}
 }
-\concept{topsoil_thickness}
+\concept{topsoil thickness}

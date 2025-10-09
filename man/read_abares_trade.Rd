@@ -2,40 +2,34 @@
 % Please edit documentation in R/read_abares_trade.R
 \name{read_abares_trade}
 \alias{read_abares_trade}
-\title{Read data from the ABARES Trade Dashboard}
+\title{Read Data from the ABARES Trade Dashboard}
 \source{
 \url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/0}
 }
 \usage{
-read_abares_trade(cache = TRUE)
+read_abares_trade(x = NULL)
 }
 \arguments{
-\item{cache}{\code{Boolean} Cache the \acronym{ABARES} trade data locally after
-download to save download time in the future. Uses \link[tools:userdir]{tools::R_user_dir} to
-identify the proper directory for storing user data in a cache for this
-package. Defaults to \code{TRUE}, caching the file as a gzipped CSV file. If
-\code{FALSE}, this function uses \code{tempdir()} and the files are deleted upon
-closing of the active \R session.}
+\item{x}{A file path providing the file with the data to be imported. The
+file is assumed to be unarchived (*i.e., still zipped). This function does
+not provide any checking whether this function is the proper function for
+the provided file.  Defaults to \code{NULL}, assuming that the file will be
+downloaded in the active \R session.}
 }
 \value{
 A \CRANpkg{data.table} object of the \acronym{ABARES} trade data.
 }
 \description{
-Fetches and imports \acronym{ABARES} trade data. As the data file is large,
-~1.4GB uncompressed CSV file, caching is offered to save repeated
-downloading.
+Fetches and imports \acronym{ABARES} trade data. As the data x is large,
+~1.4GB uncompressed \acronym{CSV} x.
 }
 \note{
 Columns are renamed for consistency with other \acronym{ABARES} products
 serviced in this package using a snake_case format and ordered
 consistently.
-
-The cached file is not the same as the raw file that is available for
-download. It will follow the renaming scheme and filling values that this
-function will perform on the raw data.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 trade <- read_abares_trade()
 
 trade

@@ -1,12 +1,14 @@
-#' Read 'Historical State Estimates' from ABARES
+#' Read ABARES' "Historical State Estimates"
 #'
-#' Fetches and imports \acronym{ABARES} historical state estimates data.
+#' Fetches and imports \acronym{ABARES} "Historical State Estimates" data.
+#'
+#' @inheritParams read_aagis_regions
 #'
 #' @note
 #' Columns are renamed for consistency with other \acronym{ABARES} products
 #'  serviced in this package using a snake_case format and ordered consistently.
 #'
-#' @returns A [data.table::data.table] object with the `Variable` field as the
+#' @returns A [data.table::data.table()] object with the `Variable` field as the
 #'  `key`.
 #' @autoglobal
 #' @family Estimates
@@ -17,17 +19,19 @@
 #' read_historical_state_estimates()
 #'
 #' # or shorter
-#' read_hist_sta_est()
+#' read_hist_st_est()
 #'
-read_historical_state_estimates <- read_hist_sta_est <- function() {
-  f <- fs::path(tempdir(), "fdp-beta-state-historical.csv")
+read_historical_state_estimates <- read_hist_st_est <- function(x = NULL) {
+  if (is.null(x)) {
+    x <- fs::path(tempdir(), "fdp-beta-state-historical.csv")
 
-  .retry_download(
-    "https://www.agriculture.gov.au/sites/default/files/documents/fdp-state-historical.csv",
-    .f = f
-  )
+    .retry_download(
+      "https://www.agriculture.gov.au/sites/default/files/documents/fdp-state-historical.csv",
+      dest = x
+    )
+  }
 
-  x <- data.table::fread(f)
+  x <- data.table::fread(x)
   data.table::setcolorder(
     x,
     c("Variable", "Year", "State", "Industry", "Value", "RSE")
@@ -38,4 +42,4 @@ read_historical_state_estimates <- read_hist_sta_est <- function() {
 
 #' @export
 #' @rdname read_historical_state_estimates
-read_hist_sta_est <- read_historical_state_estimates
+read_hist_st_est <- read_historical_state_estimates

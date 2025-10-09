@@ -4,6 +4,10 @@
 \name{reexports}
 \alias{reexports}
 \alias{plot}
+\alias{activeCat}
+\alias{levels}
+\alias{categories}
+\alias{cats}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -11,6 +15,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{terra}{\code{\link[terra]{plot}}}
+  \item{terra}{\code{\link[terra]{activeCat}}, \code{\link[terra:factors]{categories}}, \code{\link[terra:factors]{cats}}, \code{\link[terra:factors]{levels}}, \code{\link[terra]{plot}}}
 }}
 

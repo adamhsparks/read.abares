@@ -2,24 +2,43 @@
 % Please edit documentation in R/read_agfd_tidync.R
 \name{read_agfd_tidync}
 \alias{read_agfd_tidync}
-\title{Read 'Australian Gridded Farm Data' (AGFD) NCDF files with tidync}
+\title{Read ABARES' "Australian Gridded Farm Data" (AGFD) NCDF Files with tidync}
 \usage{
-read_agfd_tidync(files)
+read_agfd_tidync(yyyy = 1991:2023, fixed_prices = TRUE, x = NULL)
 }
 \arguments{
-\item{files}{A list of \acronym{AGFD} NetCDF files to import.}
+\item{yyyy}{Returns only data for the specified year or years for climate
+data (fixed prices) or the years for historical climate and prices depending
+upon the setting of \code{fixed_prices}.  Note that this will still download the
+entire data set, that cannot be avoided, but will only return the
+requested year(s) in your \R session.  Valid years are from 1991 to 2023
+inclusive.}
+
+\item{fixed_prices}{Download historical climate and prices or historical
+climate and fixed prices as described in  (Hughes \emph{et al.} 2022). Defaults
+to \code{TRUE} and downloads the data with historical climate and fixed prices
+"to isolate the effects of climate variability on financial incomes
+for broadacre farm businesses" (ABARES 2024).  Using \code{TRUE} will download
+simulations where global output and input price indexes are fixed at values
+from the most recently completed financial year.}
+
+\item{x}{A file path providing the file with the data to be imported. The
+file is assumed to be unarchived (*i.e., still zipped). This function does
+not provide any checking whether this function is the proper function for
+the provided file.  Defaults to \code{NULL}, assuming that the file will be
+downloaded in the active \R session.}
 }
 \value{
-A \code{list} object of \CRANpkg{tidync} objects of the Australian
-Gridded Farm Data with the file names as the  list's objects' names.
+A \code{list} object of \CRANpkg{tidync} objects of the "Australian
+Gridded Farm Data" with the file names as the list's objects' names.
 }
 \description{
-Read Australian Gridded Farm Data, (\acronym{AGFD}) as a list of
-\link[tidync:tidync]{tidync::tidync} objects.
+Read "Australian Gridded Farm Data", (\acronym{AGFD}) as a list of
+\code{\link[tidync:tidync]{tidync::tidync()}} objects.
 }
 \details{
 From the \href{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}{ABARES website}:
-\dQuote{The Australian Gridded Farm Data (\acronym{AGFD}) are a set of national
+"The Australian Gridded Farm Data (\acronym{AGFD}) are a set of national
 scale maps containing simulated data on historical broadacre farm business
 outcomes including farm profitability on an 0.05-degree (approximately 5 km)
 grid.\cr
@@ -39,19 +58,19 @@ model, which in turn is based on ABARES \href{https://www.agriculture.gov.au/aba
 These maps provide estimates of farm business profit, revenue, costs and
 production by location (grid cell) and year for the period 1990-91 to
 2022-23. The data do not include actual observed outcomes but rather model
-predicted outcomes for representative or \sQuote{typical} broadacre farm
+predicted outcomes for representative or 'typical' broadacre farm
 businesses at each location considering likely farm characteristics and
-prevailing weather conditions and commodity prices.}\cr
+prevailing weather conditions and commodity prices."\cr
 -- \acronym{ABARES}, 2024-11-25
 
-Both sets of data are large in file size, \emph{i.e.}, >1GB, and will require time
-to download.
+If you have not already downloaded the files, both sets of data are large in
+file size, \emph{i.e.}, >1GB, and will require time to download.
 }
 \section{Model scenarios}{
 
-\subsection{Historical climate (fixed prices)}{
+\subsection{Historical Climate (fixed prices)}{
 
-The Historical climate (fixed prices) scenario is similar to that described
+The Historical Climate (fixed prices) scenario is similar to that described
 in Hughes \emph{et al.} (2022) and is intended to isolate the effects of climate
 variability on financial incomes for broadacre farm businesses. In these
 simulations, global output and input price indexes are fixed at values from
@@ -65,18 +84,18 @@ sequence (including historical simulated crop and pasture data from the
 2022-23).
 }
 
-\subsection{Historical climate and prices}{
+\subsection{Historical Climate and Prices}{
 
-As part of the AADI project an additional scenario was developed accounting
-for changes in both climate conditions and output and input prices (\emph{i.e.},
-global commodity market variability). In this historical climate and prices
-scenario the 33-year reference period allows for variation in both\
-historical climate conditions and historical prices. For this scenario,
-historical price indexes were de-trended, to account for consistent long-
-term trends in some real commodity prices (particularly sheep and lamb). The
-resulting simulation results and percentile indicators are intended to
-reflect the combined impacts of annual climate and commodity price
-variability."
+As part of the \acronym{AADI} project an additional scenario was developed
+accounting for changes in both climate conditions and output and input
+prices (\emph{i.e.}, global commodity market variability). In this historical
+climate and prices scenario the 33-year reference period allows for
+variation in both historical climate conditions and historical prices. For
+this scenario, historical price indexes were de-trended, to account for
+consistent long-term trends in some real commodity prices (particularly
+sheep and lamb). The resulting simulation results and percentile indicators
+are intended to reflect the combined impacts of annual climate and commodity
+price variability."
 
 -- Taken from  \cite{Australian Bureau of Agricultural and Resource
 Economics and Sciences (2024)}
@@ -96,7 +115,7 @@ where:
 \item \var{<farm year>} = Financial year of farm business data is used in simulations.
 \item \var{<climate year>} = Financial year of climate data is used in simulations.
 \item \var{<price year>} = Financial year of output and input prices used in simulations.
-\item \var{<technology year>} = Financial year of farm \sQuote{technology} (equal to farm year in all simulations)
+\item \var{<technology year>} = Financial year of farm 'technology' (equal to farm year in all simulations)
 Here financial years are referred to by the closing calendar year
 (\emph{e.g.}, 2022 = 1 July 2021 to 30 June 2022).
 }
@@ -162,12 +181,9 @@ farmland_per_cell     \tab ha        \tab Indicative area of farmland in the gri
 }
 
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 
-# using piping, which can use the {read.abares} cache after the first DL
-
-agfd_tnc <- get_agfd(cache = TRUE) |>
-  read_agfd_tidync()
+agfd_tnc <- read_agfd_tidync()
 
 head(agfd_tnc)
 \dontshow{\}) # examplesIf}
@@ -184,7 +200,6 @@ the perspective of Australian farmers}, Climate Risk Management, Volume 35,
 }
 \seealso{
 Other AGFD: 
-\code{\link{get_agfd}()},
 \code{\link{read_agfd_dt}()},
 \code{\link{read_agfd_stars}()},
 \code{\link{read_agfd_terra}()}
