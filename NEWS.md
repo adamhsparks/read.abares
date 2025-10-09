@@ -28,6 +28,7 @@ Users may now download the data using methods other than an R session and import
   - Connect-timeout for downloads,
   - Number of download retries and
   - Verbosity of the package's messages.
+Thanks, @mpaulacaldas.
 
 - Improved documentation including:
   - All data sets now have an `@source` field that points to the file being provided
@@ -40,7 +41,7 @@ Users may now download the data using methods other than an R session and import
 
 ## Minor improvements and fixes
 
-- Files are more reliably downloaded rather than timing out for some users, thanks @obrsoil for the help troubleshooting this issue, painful as it was
+- Files are more reliably downloaded rather than timing out for some users, thanks to @obrsoil for the help troubleshooting this issue, painful as it was
 
 - `skimr::skim()` is used in the vignette to display the AGFD {data.table} formatted data rather than just using `head()`
 
