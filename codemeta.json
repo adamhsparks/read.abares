@@ -2,7 +2,7 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "read.abares",
-  "description": "Download and import agricultural data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) <https://www.agriculture.gov.au/abares> and Australian Bureau of Statistics (ABS) <https://abs.gov.au>. Data types servided include spreadsheets, CSV files, geospatial data including shape files and geotiffs covering topics including broadacre crops, livestock, soil data, commodities and more.",
+  "description": "Download and import agricultural data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) <https://www.agriculture.gov.au/abares> and Australian Bureau of Statistics (ABS) <https://abs.gov.au>. Data types serviced include spreadsheets, CSV files, geospatial data including shape files and geotiffs covering topics including broadacre crops, livestock, soil data, commodities and more.",
   "name": "read.abares: Download and Import Agricultural Data from the Australian Bureau of\n    Agricultural and Resource Economics and Sciences (ABARES) and\n    Australian Bureau of Statistics (ABS)",
   "relatedLink": "https://adamhsparks.github.io/read.abares/",
   "codeRepository": "https://github.com/adamhsparks/read.abares",
@@ -457,7 +457,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "735.791KB",
+  "fileSize": "735.491KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
