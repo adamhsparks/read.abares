@@ -457,7 +457,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "726.003KB",
+  "fileSize": "726.381KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -468,7 +468,7 @@
           "familyName": "Sparks"
         }
       ],
-      "name": "{read.abares}: Simple downloading and importing of ABARES Data",
+      "name": "{read.abares}: Download and Import Agricultural Data from the\n    Australian Bureau of Agricultural and Resource Economics and Sciences\n    (ABARES) and Australian Bureau of Statistics (ABS)",
       "url": "https://adamhsparks.github.io/read.abares/",
       "description": "R package version 2.0.0"
     }
@@ -477,5 +477,5 @@
   "readme": "https://github.com/adamhsparks/read.abares/blob/main/README.md",
   "contIntegration": ["https://github.com/adamhsparks/read.abares/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/adamhsparks/read.abares"],
   "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html#stable", "https://www.repostatus.org/#active"],
-  "keywords": ["agriculture", "australia", "data-retrieval", "open-data", "open-datasets", "r"]
+  "keywords": ["agriculture", "australia", "data-retrieval", "open-data", "open-datasets", "r", "agriculture-data", "agriculture-dataset", "land-use-classification", "agriculture-trade-data", "land-use-data"]
 }

@@ -1,7 +1,9 @@
 
 bibentry(
   bibtype = "Manual",
-  title = "{read.abares}: Simple downloading and importing of ABARES Data",
+  title = "{read.abares}: Download and Import Agricultural Data from the
+    Australian Bureau of Agricultural and Resource Economics and Sciences
+    (ABARES) and Australian Bureau of Statistics (ABS)",
   author = c(
     person("Adam H.", "Sparks")
   ),
