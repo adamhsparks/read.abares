@@ -16,7 +16,7 @@ test_that("read_abs_horticulture_data() uses .retry_download (mocked), resolves 
       # Base URL and tail should match exactly
       expect_match(
         url,
-        "https://www\\.abs\\.gov\\.au/statistics/industry/agriculture/australian-agriculture-horticulture2023-24/AAHDC_Aust_Horticulture_202324\\.xlsx"
+        "https://www\\.abs\\.gov\\.au/statistics/industry/agriculture/australian-agriculture-horticulture/2023-24/AAHDC_Aust_Horticulture_202324\\.xlsx"
       )
       # Expect the temp file naming convention
       expect_identical(basename(dest), "hort_crops_file")
@@ -78,7 +78,7 @@ test_that("read_abs_horticulture_data() constructs URL correctly for an explicit
       # Explicit year should appear and dashes removed in trailing code
       expect_match(
         url,
-        "https://www\\.abs\\.gov\\.au/statistics/industry/agriculture/australian-agriculture-horticulture2021-22/AAHDC_Aust_Horticulture_202122\\.xlsx"
+        "https://www\\.abs\\.gov\\.au/statistics/industry/agriculture/australian-agriculture-horticulture/2021-22/AAHDC_Aust_Horticulture_202122\\.xlsx"
       )
       expect_identical(basename(dest), "hort_crops_file")
 
@@ -182,7 +182,7 @@ test_that("read_abs_horticulture_data() uses the 'latest' year (first in availab
       # Should pick "2022-23" and 202223 suffix
       expect_match(
         url,
-        "https://www\\.abs\\.gov\\.au/statistics/industry/agriculture/australian-agriculture-horticulture2022-23/AAHDC_Aust_Horticulture_202223\\.xlsx"
+        "https://www\\.abs\\.gov\\.au/statistics/industry/agriculture/australian-agriculture-horticulture/2022-23/AAHDC_Aust_Horticulture_202223\\.xlsx"
       )
       expect_identical(basename(dest), "hort_crops_file")
 
