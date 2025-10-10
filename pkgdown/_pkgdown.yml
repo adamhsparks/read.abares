@@ -43,8 +43,8 @@ reference:
   - subtitle: |
       Fetch and read land use related GeoTIFF files
     contents:
-      - read_clum_terra
       - read_clum_stars
+      - read_clum_terra
       - read_nlum_stars
       - read_nlum_terra
   - subtitle: CLUM Commodities
