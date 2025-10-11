@@ -19,7 +19,7 @@ Formatted as \code{"2022-23"} or \code{"2023-24"} or use \code{"latest"} for the
 recent release available. Defaults to \code{"latest"}.}
 
 \item{x}{A file path providing the file with the data to be imported. The
-file is assumed to be unarchived (*i.e., still zipped). This function does
+file is assumed to be unarchived (\emph{i.e.}, still zipped). This function does
 not provide any checking whether this function is the proper function for
 the provided file.  Defaults to \code{NULL}, assuming that the file will be
 downloaded in the active \R session.}

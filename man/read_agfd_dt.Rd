@@ -29,7 +29,7 @@ simulations where global output and input price indexes are fixed at values
 from the most recently completed financial year.}
 
 \item{x}{A file path providing the file with the data to be imported. The
-file is assumed to be unarchived (*i.e., still zipped). This function does
+file is assumed to be unarchived (\emph{i.e.}, still zipped). This function does
 not provide any checking whether this function is the proper function for
 the provided file.  Defaults to \code{NULL}, assuming that the file will be
 downloaded in the active \R session.}

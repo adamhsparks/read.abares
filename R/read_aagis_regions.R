@@ -4,7 +4,7 @@
 #'   (\acronym{AAGIS}) regions geospatial shapefile.
 #'
 #' @param x A file path providing the file with the data to be imported. The
-#'  file is assumed to be unarchived (*i.e., still zipped). This function does
+#'  file is assumed to be unarchived (*i.e.*, still zipped). This function does
 #'  not provide any checking whether this function is the proper function for
 #'  the provided file.  Defaults to `NULL`, assuming that the file will be
 #'  downloaded in the active \R session.
