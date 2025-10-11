@@ -9,7 +9,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# {read.abares}: Simple downloading and importing of ABARES Data <img src="man/figures/logo.png" align="right"/>
+# {read.abares}: Download and Import Agricultural Data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) and Australian Bureau of Statistics (ABS) <img src="man/figures/logo.png" align="right"/>
 
 <!-- badges: start -->
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
