@@ -49,6 +49,7 @@ urls_to_test <- c(
 test_that("All known ABARES/ABS URLs resolve and return HTTP 200 (parallel)", {
   skip_if_offline()
   skip_on_ci()
+  skip_on_covr()
   # Set up parallel processing
   future::plan(
     future::multisession,
