@@ -27,8 +27,6 @@ A \code{\link[data.table:data.table]{data.table::data.table()}} object of the re
 Automates downloading and importing of \acronym{ABS} livestock production
 data. Please view the comments embedded in the spreadsheets themselves (that
 really should be columns of comments on the data) for important information.
-The \code{source} link provides a direct download for the spreadsheet to
-download and open in Excel.
 }
 \details{
 Technically these data are from the Australian Bureau of Statistics

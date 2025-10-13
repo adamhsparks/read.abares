@@ -3,8 +3,7 @@
 #' Automates downloading and importing of \acronym{ABS} broadacre crop
 #' production data. Please view the comments embedded in the spreadsheets
 #' themselves (that really should be columns of comments on the data) for
-#' important information. The `source` link provides a direct download for the
-#' latest available spreadsheet to download and open in Excel.
+#' important information.
 #'
 #' Technically these data are from the Australian Bureau of Statistics
 #' (\acronym{ABS}, not \acronym{ABARES}, but the data is agricultural and so

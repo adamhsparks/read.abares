@@ -3,8 +3,6 @@
 #' Automates downloading and importing of \acronym{ABS} livestock production
 #' data. Please view the comments embedded in the spreadsheets themselves (that
 #' really should be columns of comments on the data) for important information.
-#' The `source` link provides a direct download for the spreadsheet to
-#' download and open in Excel.
 #'
 #' Technically these data are from the Australian Bureau of Statistics
 #' (\acronym{ABS}, not \acronym{ABARES}, but the data is agricultural and so
