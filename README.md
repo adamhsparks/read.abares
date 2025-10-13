@@ -18,7 +18,7 @@ An R package for automated downloading and ingestion of data from the Australian
 ABARES is the research arm of the Australian federal Government Department of Agriculture, Fisheries and Forestry (DAFF).
 ABARES' main role is "to provide professionally independent data, research, analysis and advice that informs public and private decisions affecting Australian agriculture, fisheries and forestry"[^1].
 
-The data provided by ABARES is extensive and varied, and includes data on agricultural production, trade, and forecasts, as well as spatial data on farm locations and top-soil thickness.
+The data provided by ABARES is extensive and varied, and includes data on agricultural production, trade, and forecasts, as well as spatial data on farm locations and topsoil thickness.
 ABARES data are not available from other sources but are mostly available under Creative Commons Licences for reuse.
 
 ## About {read.abares}: why this package?
@@ -44,7 +44,8 @@ Data serviced includes but is not limited to:
 
 {read.abares} is not available through CRAN (yet).
 The preferred method is to use [{remotes}](https://remotes.r-lib.org) like so.
-Note that for Linux users, you will need to install system libraries to support geospatial packages in R, _e.g._, {sf} and {terra} as well as some packages for downloading data via [curl](https://curl.se/download.html), please see [Note for Linux Installers](#Note-for-Linux-Installers).
+Note that for Linux users, you will need to install system libraries to support geospatial packages in R, _e.g._, {sf} and {terra} as well as some packages for downloading data via [curl](https://curl.se/download.html).
+Linux users, please see[^2].
 
 ```r
 if (!require("remotes")) {
@@ -120,16 +121,6 @@ You might note that not all ABARES data are serviced by this package.
 The list is hand-picked to be reasonably useful and maintainable, _i.e._, frequently updated values are not included in this, _e.g._, [Australian crop reports](https://daff.ent.sirsidynix.net.au/client/en_AU/ABARES/search/results?te=ASSET&st=PD#).
 However, if there is a data set that you feel would be useful to be serviced by {read.abares}, please feel free to [open an issue](https://github.com/adamhsparks/read.abares/issues/new) with details about the data set or better yet, open a pull request!
 
-## Note for Linux Installers
-
-If you are using Linux, you will likely need to install several system-level libraries, {pak} will do it's best to install most of them but some may not be installable this way.
-For [Nectar](https://ardc.edu.au/services/ardc-nectar-research-cloud/) with a fresh Ubuntu image, you can use the following command to install system libraries to install {pak} and then {read.abares}.
-In your Linux terminal (not your R console, the "terminal" tab in RStudio should do here in most cases) type:
-
-```bash
-sudo apt update && sudo apt install libcurl4-openssl-dev libgdal-dev gdal-bin libgeos-dev libproj-dev libsqlite3-dev libudunits2-dev libxml2-dev
-```
-
 ## Metadata
 
 Please report any [issues or bugs](https://github.com/adamhsparks/read.abares/issues).
@@ -145,6 +136,14 @@ Citing {read.abares}: When citing the use of this package, please use,
 
 ``` r
 library(read.abares)
+#> 
+#> Attaching package: 'read.abares'
+#> The following object is masked from 'package:graphics':
+#> 
+#>     plot
+#> The following objects are masked from 'package:base':
+#> 
+#>     levels, plot
 citation("read.abares")
 #> To cite package 'read.abares' in publications use:
 #> 
@@ -172,3 +171,12 @@ citation("read.abares")
 Please note that the {read.abares} project is released with a [Contributor Code of Conduct](https://adamhsparks.github.io/read.abares/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
 
 [^1]: <https://www.agriculture.gov.au/abares/about>
+
+
+[^2] If you are using Linux, you will likely need to install several system-level libraries, {pak} will do it's best to install most of them but some may not be installable this way.
+For [Nectar](https://ardc.edu.au/services/ardc-nectar-research-cloud/) with a fresh Ubuntu image, you can use the following command to install system libraries to install {pak} and then {read.abares}.
+In your Linux terminal (not your R console, the "terminal" tab in RStudio should do here in most cases) type:
+
+```bash
+sudo apt update && sudo apt install libcurl4-openssl-dev libgdal-dev gdal-bin libgeos-dev libproj-dev libsqlite3-dev libudunits2-dev libxml2-dev
+```
