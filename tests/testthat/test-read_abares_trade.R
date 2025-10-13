@@ -77,7 +77,7 @@ test_that("read_abares_trade() uses .retry_download (mocked) and parses/renames 
         as.character(res[["Year_month"]]),
         c("2020-07-01", "2021-01-01")
       )
-
+      expect_type(res$Trade_code, "integer") # factor so will appear as integer
       expect_identical(res[["Value"]], c(1000L, 2000L))
       expect_identical(res[["Quantity"]], c(200L, 50L))
     },

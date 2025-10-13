@@ -72,6 +72,9 @@ read_abares_trade <- function(x = NULL) {
       gsub(".", "-", Year_month, fixed = TRUE)
     )
   ]
+  abares_trade[,
+    Trade_code := as.factor(Trade_code)
+  ]
 
   return(abares_trade[])
 }
