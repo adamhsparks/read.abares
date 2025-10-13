@@ -90,7 +90,8 @@ Columns are formatted correctly for the data type, _e.g._, dates are converted t
 ### Automated Repairing of Geospatial Data
 
 The Australian Agricultural and Grazing Industries Survey (AAGIS) region mapping files report geometry errors that can be repaired using the `sf::st_make_valid()` function; {read.abares} automatically repairs these geometries for you when you import the data.
-Or the Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping) NetCDF file has a classification that makes the resulting maps have an incongruous legend; {read.abares} cleans this up on import so that you only have nice continous data in your resulting map.
+Or the Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping) NetCDF file has a classification that makes the resulting maps have an incongruous legend; {read.abares} cleans this up on import so that you only have nice continuous data in your resulting map.
+
 ### Multiple Geospatial Data Classes Supported
 
 {read.abares} supports multiple classes of objects to support your workflow with the NetCDF data.
@@ -136,14 +137,6 @@ Citing {read.abares}: When citing the use of this package, please use,
 
 ``` r
 library(read.abares)
-#> 
-#> Attaching package: 'read.abares'
-#> The following object is masked from 'package:graphics':
-#> 
-#>     plot
-#> The following objects are masked from 'package:base':
-#> 
-#>     levels, plot
 citation("read.abares")
 #> To cite package 'read.abares' in publications use:
 #> 
@@ -171,9 +164,7 @@ citation("read.abares")
 Please note that the {read.abares} project is released with a [Contributor Code of Conduct](https://adamhsparks.github.io/read.abares/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
 
 [^1]: <https://www.agriculture.gov.au/abares/about>
-
-
-[^2] If you are using Linux, you will likely need to install several system-level libraries, {pak} will do it's best to install most of them but some may not be installable this way.
+[^2]: If you are using Linux, you will likely need to install several system-level libraries, {pak} will do it's best to install most of them but some may not be installable this way.
 For [Nectar](https://ardc.edu.au/services/ardc-nectar-research-cloud/) with a fresh Ubuntu image, you can use the following command to install system libraries to install {pak} and then {read.abares}.
 In your Linux terminal (not your R console, the "terminal" tab in RStudio should do here in most cases) type:
 
