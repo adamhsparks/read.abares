@@ -279,6 +279,7 @@ test_that("read_clum_terra works end-to-end with mocked download when x = NULL (
       expect_false(is.null(last_url))
     },
     .retry_download = retry_mock,
+    .unzip_file = unzip_mock,
     .package = "read.abares"
   )
 })
