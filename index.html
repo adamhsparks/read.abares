@@ -71,7 +71,7 @@
 <h2 id="about-abares">About ABARES<a class="anchor" aria-label="anchor" href="#about-abares"></a>
 </h2>
 <p>ABARES is the research arm of the Australian federal Government Department of Agriculture, Fisheries and Forestry (DAFF). ABARES’ main role is “to provide professionally independent data, research, analysis and advice that informs public and private decisions affecting Australian agriculture, fisheries and forestry”<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="https://www.agriculture.gov.au/abares/about" class="external-link uri"&gt;https://www.agriculture.gov.au/abares/about&lt;/a&gt;&lt;/p&gt;'><sup>1</sup></a>.</p>
-<p>The data provided by ABARES is extensive and varied, and includes data on agricultural production, trade, and forecasts, as well as spatial data on farm locations and top-soil thickness. ABARES data are not available from other sources but are mostly available under Creative Commons Licences for reuse.</p>
+<p>The data provided by ABARES is extensive and varied, and includes data on agricultural production, trade, and forecasts, as well as spatial data on farm locations and topsoil thickness. ABARES data are not available from other sources but are mostly available under Creative Commons Licences for reuse.</p>
 </div>
 <div class="section level2">
 <h2 id="about-readabares-why-this-package">About {read.abares}: why this package?<a class="anchor" aria-label="anchor" href="#about-readabares-why-this-package"></a>
@@ -101,7 +101,7 @@
 <div class="section level2">
 <h2 id="quick-start">Quick Start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
-<p>{read.abares} is not available through CRAN (yet). The preferred method is to use <a href="https://remotes.r-lib.org" class="external-link">{remotes}</a> like so. Note that for Linux users, you will need to install system libraries to support geospatial packages in R, <em>e.g.</em>, {sf} and {terra} as well as some packages for downloading data via <a href="https://curl.se/download.html" class="external-link">curl</a>, please see <a href="#Note-for-Linux-Installers">Note for Linux Installers</a>.</p>
+<p>{read.abares} is not available through CRAN (yet). The preferred method is to use <a href="https://remotes.r-lib.org" class="external-link">{remotes}</a> like so. Note that for Linux users, you will need to install system libraries to support geospatial packages in R, <em>e.g.</em>, {sf} and {terra} as well as some packages for downloading data via <a href="https://curl.se/download.html" class="external-link">curl</a>. Linux users, please see[^2].</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://remotes.r-lib.org" class="external-link">"remotes"</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
@@ -178,12 +178,6 @@
 <p>You might note that not all ABARES data are serviced by this package. The list is hand-picked to be reasonably useful and maintainable, <em>i.e.</em>, frequently updated values are not included in this, <em>e.g.</em>, <a href="https://daff.ent.sirsidynix.net.au/client/en_AU/ABARES/search/results?te=ASSET&amp;st=PD#" class="external-link">Australian crop reports</a>. However, if there is a data set that you feel would be useful to be serviced by {read.abares}, please feel free to <a href="https://github.com/adamhsparks/read.abares/issues/new" class="external-link">open an issue</a> with details about the data set or better yet, open a pull request!</p>
 </div>
 <div class="section level2">
-<h2 id="note-for-linux-installers">Note for Linux Installers<a class="anchor" aria-label="anchor" href="#note-for-linux-installers"></a>
-</h2>
-<p>If you are using Linux, you will likely need to install several system-level libraries, {pak} will do it’s best to install most of them but some may not be installable this way. For <a href="https://ardc.edu.au/services/ardc-nectar-research-cloud/" class="external-link">Nectar</a> with a fresh Ubuntu image, you can use the following command to install system libraries to install {pak} and then {read.abares}. In your Linux terminal (not your R console, the “terminal” tab in RStudio should do here in most cases) type:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">sudo</span> apt update <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt install libcurl4-openssl-dev libgdal-dev gdal-bin libgeos-dev libproj-dev libsqlite3-dev libudunits2-dev libxml2-dev</span></code></pre></div>
-</div>
-<div class="section level2">
 <h2 id="metadata">Metadata<a class="anchor" aria-label="anchor" href="#metadata"></a>
 </h2>
 <p>Please report any <a href="https://github.com/adamhsparks/read.abares/issues" class="external-link">issues or bugs</a>.</p>
@@ -193,8 +187,16 @@
 </h3>
 <p>Citing the data: Please refer to the ABARES website, <a href="https://www.agriculture.gov.au/abares/products/citations" class="external-link uri">https://www.agriculture.gov.au/abares/products/citations</a>, on how to cite these data when you use them.</p>
 <p>Citing {read.abares}: When citing the use of this package, please use,</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'read.abares'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:graphics':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     plot</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     levels, plot</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"read.abares"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; To cite package 'read.abares' in publications use:</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -221,6 +223,8 @@
 <h4 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
 </h4>
 <p>Please note that the {read.abares} project is released with a <a href="https://adamhsparks.github.io/read.abares/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+<p>[^2] If you are using Linux, you will likely need to install several system-level libraries, {pak} will do it’s best to install most of them but some may not be installable this way. For <a href="https://ardc.edu.au/services/ardc-nectar-research-cloud/" class="external-link">Nectar</a> with a fresh Ubuntu image, you can use the following command to install system libraries to install {pak} and then {read.abares}. In your Linux terminal (not your R console, the “terminal” tab in RStudio should do here in most cases) type:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">sudo</span> apt update <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt install libcurl4-openssl-dev libgdal-dev gdal-bin libgeos-dev libproj-dev libsqlite3-dev libudunits2-dev libxml2-dev</span></code></pre></div>
 </div>
 </div>
 </div>
