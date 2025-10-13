@@ -296,7 +296,7 @@ test_that(".set_clum_update_levels returns a list with the expected named tables
   )
 
   # Each element should behave like a data frame (data.table inherits data.frame)
-  lapply(lvls, function(x) expect_true(inherits(x, "data.frame")))
+  lapply(lvls, function(x) expect_s3_class(x, "data.frame"))
 })
 
 test_that("date_levels: years 2008–2023 as integers; rast_cat identical; strictly increasing", {
