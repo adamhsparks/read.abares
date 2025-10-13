@@ -43,32 +43,45 @@ read_aagis_regions <- function(x = NULL) {
         url = "https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip",
         dest = x
       )
-      .unzip_file(x)
     }
-  } else {
-    .unzip_file(x)
   }
+  # Create an isolated extraction dir under tempdir()
+  extract_dir <- fs::path(
+    tempdir(),
+    paste0("aagis_extract_", as.integer(Sys.time()), "_", sample.int(1e6, 1))
+  )
+  fs::dir_create(extract_dir)
+
+  # Unzip *only* into our isolated directory
+  utils::unzip(x, exdir = extract_dir)
+
+  on.exit(
+    {
+      if (fs::file_exists(x)) fs::file_delete(x)
+    },
+    add = TRUE
+  )
+
+  # Search *only* for the exact expected shapefile
+  shp_paths <- fs::dir_ls(
+    fs::path_dir(x),
+    regexp = "aagis_asgs16v1_g5a[.]shp$",
+    recurse = TRUE,
+    type = "file"
+  )
+
   aagis_sf <- sf::st_read(
-    dsn = fs::path(
-      fs::dir_ls(
-        fs::path_dir(x),
-        regexp = "[.]shp$",
-        recurse = TRUE,
-        type = "file"
-      )
-    ),
+    dsn = shp_paths[[1]],
     quiet = !(getOption("read.abares.verbosity") %in% c("quiet", "minimal"))
   )
 
-  # From checking the unzipped file, some geometries are invalid, this corrects
   aagis_sf <- sf::st_make_valid(aagis_sf)
-  aagis_sf["aagis"] <- NULL # drop an identical column with class
-  # pull the state codes out and create a new state column
+  aagis_sf["aagis"] <- NULL
   aagis_sf$State <- gsub(" .*$", "", aagis_sf$name)
   names(aagis_sf)[names(aagis_sf) == "name"] <- "ABARES_region"
   names(aagis_sf)[names(aagis_sf) == "class"] <- "Class"
   names(aagis_sf)[names(aagis_sf) == "zone"] <- "Zone"
 
   fs::file_delete(x)
-  return(aagis_sf)
+  aagis_sf
 }
