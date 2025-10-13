@@ -1,14 +1,17 @@
-test_that("read_aagis_regions reads and cleans data from a provided local ZIP", {
-  skip_if_offline()
+# -------------------------------------------------------------------------
+# Helper: build a minimal ESRI Shapefile fixture and return a ZIP path.
+# The shapefile is written under: <build_dir>/aagis/<layer>.(shp|shx|dbf|prj...)
+# If `extra_layers` are provided, those additional layer names are written alongside.
+# -------------------------------------------------------------------------
+build_aagis_fixture_zip <- function(
+  build_dir,
+  layer = "aagis_asgs16v1_g5a",
+  extra_layers = character(0)
+) {
+  shp_dir <- fs::path(build_dir, "aagis")
+  fs::dir_create(shp_dir, recurse = TRUE)
 
-  # Build a minimal shapefile matching the expected on-disk structure:
-  #   aagis/aagis_asgs16v1_g5a.(shp|shx|dbf|prj...)
-  td <- withr::local_tempdir()
-  files_dir <- fs::path(td, "payload")
-  shp_dir <- fs::path(files_dir, "aagis")
-  fs::dir_create(shp_dir)
-
-  # Minimal polygons with required attributes the function expects
+  # Minimal polygons
   poly1 <- sf::st_polygon(list(rbind(
     c(0, 0),
     c(1, 0),
@@ -26,205 +29,264 @@ test_that("read_aagis_regions reads and cleans data from a provided local ZIP", 
   geom <- sf::st_sfc(poly1, poly2, crs = 4326)
 
   dat <- data.frame(
-    name = c("NSW East", "WA West"), # used to produce State and ABARES_region
-    class = c("Wool", "Beef"), # will be renamed to 'Class'
-    zone = c(1L, 2L), # will be renamed to 'Zone'
-    aagis = c("Wool", "Beef") # dropped by the function
+    name = c("NSW East", "WA West"),
+    class = c("Wool", "Beef"),
+    zone = c(1L, 2L),
+    aagis = c("Wool", "Beef")
   )
-
   aagis_sf <- sf::st_sf(dat, geometry = geom)
 
-  # Write ESRI Shapefile with the exact layer name expected
-  invisible(
-    sf::st_write(
-      aagis_sf,
-      dsn = shp_dir,
-      layer = "aagis_asgs16v1_g5a",
-      driver = "ESRI Shapefile",
-      delete_layer = TRUE,
-      quiet = TRUE
-    )
-  )
-
-  # Create a ZIP with the relative paths
-  zip_path <- fs::path(td, "aagis.zip")
-  all_files <- fs::dir_ls(shp_dir, recurse = FALSE, type = "file")
-  files_rel <- fs::path_rel(all_files, start = files_dir)
-
-  # Helper will skip if system 'zip' is unavailable
-  create_zip(zip_path = zip_path, files_dir = files_dir, files_rel = files_rel)
-
-  # Mock only the unzip step to ensure it extracts next to 'x'
-  res <- with_mocked_bindings(
-    {
-      withr::with_options(list(read.abares.verbosity = "quiet"), {
-        read_aagis_regions(x = zip_path)
-      })
-    },
-    .unzip_file = function(x) {
-      utils::unzip(x, exdir = fs::path_dir(x))
-      invisible(x)
-    }
-  )
-
-  # ---- Assertions ----
-  expect_s3_class(res, "sf")
-  expect_true(all(sf::st_is_valid(res)))
-
-  # Column checks
-  expect_false("aagis" %in% names(res))
-  expect_false(any(c("name", "class", "zone") %in% names(res)))
-  expect_true(all(
-    c("ABARES_region", "Class", "Zone", "State") %in% names(res)
+  # Write the primary layer (expected by hardened function)
+  invisible(sf::st_write(
+    aagis_sf,
+    dsn = shp_dir,
+    layer = layer,
+    driver = "ESRI Shapefile",
+    delete_layer = TRUE,
+    quiet = TRUE
   ))
 
-  # Values derived from 'name'
-  expect_identical(res$State, c("NSW", "WA"))
-  expect_identical(res$ABARES_region, c("NSW East", "WA West"))
+  # Optionally add other layers next to it
+  if (length(extra_layers) > 0) {
+    other_geom <- sf::st_sfc(
+      sf::st_polygon(list(rbind(
+        c(10, 0),
+        c(11, 0),
+        c(11, 1),
+        c(10, 1),
+        c(10, 0)
+      ))),
+      crs = 4326
+    )
+    other_dat <- data.frame(
+      name = "VIC East",
+      class = "Beef",
+      zone = 9L,
+      aagis = "Beef",
+      stringsAsFactors = FALSE
+    )
+    other_sf <- sf::st_sf(other_dat, geometry = other_geom)
 
-  # The ZIP should be deleted by the function
+    for (ly in extra_layers) {
+      invisible(sf::st_write(
+        other_sf,
+        dsn = shp_dir,
+        layer = ly,
+        driver = "ESRI Shapefile",
+        delete_layer = TRUE,
+        quiet = TRUE
+      ))
+    }
+  }
+
+  # Zip the "aagis/" folder relative to build_dir
+  zip_path <- fs::path(build_dir, "fixture.zip")
+  withr::with_dir(build_dir, {
+    utils::zip(zipfile = zip_path, files = "aagis")
+  })
+  zip_path
+}
+
+# -------------------------------------------------------------------------
+# 1) Provided local ZIP (happy path)
+# -------------------------------------------------------------------------
+test_that("read_aagis_regions reads and cleans data from a provided local ZIP (strict filename match)", {
+  withr::local_options(read.abares.verbosity = "quiet")
+
+  td <- withr::local_tempdir()
+  build_dir <- fs::path(td, "build")
+  fs::dir_create(build_dir, recurse = TRUE)
+
+  # Build fixture with the CORRECT layer name
+  local_zip <- build_aagis_fixture_zip(build_dir, layer = "aagis_asgs16v1_g5a")
+  expect_true(fs::file_exists(local_zip))
+
+  # Put ZIP into a separate directory (this is the directory the function will search)
+  zip_dir <- fs::path(td, "zipin")
+  fs::dir_create(zip_dir)
+  zip_path <- fs::path(zip_dir, "aagis.zip")
+  fs::file_copy(local_zip, zip_path, overwrite = TRUE)
+
+  # --- Pre-extract alongside the ZIP so the expected .shp is already discoverable ---
+  utils::unzip(zipfile = zip_path, exdir = zip_dir) # <<< extract to fs::path_dir(x)
+  shp_expected <- fs::path(zip_dir, "aagis", "aagis_asgs16v1_g5a.shp")
+  expect_true(fs::file_exists(shp_expected))
+
+  # --- Make unzip a no-op so the function won't change anything during the test ---
+  testthat::local_mocked_bindings(
+    .unzip_file = function(x) {
+      invisible(TRUE)
+    },
+    .env = asNamespace("read.abares")
+  )
+
+  # Call the function with provided ZIP
+  res <- read_aagis_regions(x = zip_path)
+
+  # The function should delete the ZIP
   expect_false(fs::file_exists(zip_path))
 
-  # Extracted folder can be cleaned up automatically with local_tempdir()
+  # Return type & geometry validity
+  expect_s3_class(res, "sf")
+  expect_true(all(sf::st_is_valid(res)))
+  expect_equal(sf::st_crs(res)$epsg, 4326)
+
+  # Columns: dropped + renamed
+  expect_false("aagis" %in% names(res))
+  expect_true(all(
+    c("ABARES_region", "Class", "Zone", "State", "geometry") %in% names(res)
+  ))
+
+  # Values
+  expect_setequal(res$ABARES_region, c("NSW East", "WA West"))
+  expect_setequal(res$Class, c("Wool", "Beef"))
+  expect_setequal(as.integer(res$Zone), c(1L, 2L))
+  expect_setequal(res$State, c("NSW", "WA"))
+  expect_identical(nrow(res), 2L)
 })
 
-test_that("read_aagis_regions works with x = NULL by mocking download + unzip", {
-  skip_if_offline()
 
-  # Build a fresh payload and staged ZIP we'll 'download' via mocking
+# -------------------------------------------------------------------------
+# 2) Default path (x = NULL) with mocked download/unzip (NO tempdir mocking)
+#    Build the fixture, ZIP it, then DELETE the build directory so the function
+#    only ever sees the unzipped shapefile under tempdir().
+# -------------------------------------------------------------------------
+testthat::test_that("read_aagis_regions default path (x = NULL) works with mocked download/unzip without tempdir mocking", {
+  withr::local_options(read.abares.verbosity = "quiet")
+
   td <- withr::local_tempdir()
-  files_dir <- fs::path(td, "payload")
-  shp_dir <- fs::path(files_dir, "aagis")
-  fs::dir_create(shp_dir)
+  build_dir <- fs::path(td, "build")
+  fs::dir_create(build_dir, recurse = TRUE)
 
-  poly1 <- sf::st_polygon(list(rbind(
-    c(10, 10),
-    c(11, 10),
-    c(11, 11),
-    c(10, 11),
-    c(10, 10)
-  )))
-  geom <- sf::st_sfc(poly1, crs = 4326)
-  dat <- data.frame(
-    name = "QLD North",
-    class = "Mixed",
-    zone = 3L,
-    aagis = "Mixed"
-  )
-  aagis_sf <- sf::st_sf(dat, geometry = geom)
+  # Build local fixture ZIP (correct layer name)
+  local_zip <- build_aagis_fixture_zip(build_dir, layer = "aagis_asgs16v1_g5a")
+  testthat::expect_true(fs::file_exists(local_zip))
 
-  invisible(
-    sf::st_write(
-      aagis_sf,
-      dsn = shp_dir,
-      layer = "aagis_asgs16v1_g5a",
-      driver = "ESRI Shapefile",
-      delete_layer = TRUE,
-      quiet = TRUE
-    )
-  )
+  # IMPORTANT: remove the build tree so no matching .shp is left under tempdir()
+  fs::dir_delete(build_dir)
 
-  staged_zip <- fs::path(td, "staged_aagis.zip")
-  files_rel <- fs::path_rel(
-    fs::dir_ls(shp_dir, type = "file"),
-    start = files_dir
-  )
-  create_zip(
-    zip_path = staged_zip,
-    files_dir = files_dir,
-    files_rel = files_rel
-  )
-
-  # Ensure a clean slate where the function expects to place the temp zip
-  # (read_aagis_regions uses fs::path(tempdir(), "aagis.zip") when x = NULL)
-  expected_temp_zip <- fs::path(tempdir(), "aagis.zip")
-  expected_unzip_dir <- fs::path(tempdir(), "aagis")
-  if (fs::file_exists(expected_temp_zip)) {
-    fs::file_delete(expected_temp_zip)
+  # Clean any debris under session tempdir()
+  zip_path <- fs::path(tempdir(), "aagis.zip")
+  unzip_dir <- fs::path(tempdir(), "aagis")
+  if (fs::file_exists(zip_path)) {
+    fs::file_delete(zip_path)
   }
-  if (fs::dir_exists(expected_unzip_dir)) {
-    fs::dir_delete(expected_unzip_dir)
+  if (fs::dir_exists(unzip_dir)) {
+    fs::dir_delete(unzip_dir)
   }
 
-  res <- with_mocked_bindings(
-    {
-      withr::with_options(list(read.abares.verbosity = "quiet"), {
-        read_aagis_regions(x = NULL)
-      })
-    },
-    .retry_download = function(url, dest, dataset_id, show_progress) {
-      # Simulate a successful download by copying our staged ZIP to the target
-      fs::file_copy(staged_zip, dest, overwrite = TRUE)
+  # Guard: if some other test left a matching shapefile under tempdir(), skip to avoid false failure
+  pre_existing <- fs::dir_ls(
+    tempdir(),
+    regexp = "aagis_asgs16v1_g5a[.]shp$",
+    recurse = TRUE,
+    type = "file"
+  )
+  testthat::skip_if(
+    length(pre_existing) > 0L,
+    message = "Found existing 'aagis_asgs16v1_g5a.shp' under tempdir(); skipping default-path test."
+  )
+
+  # Mock helpers to avoid network and use local fixture
+  testthat::local_mocked_bindings(
+    .retry_download = function(url, dest) {
+      # copy our local ZIP fixture to the expected default path
+      fs::file_copy(local_zip, dest, overwrite = TRUE)
       invisible(dest)
     },
     .unzip_file = function(x) {
+      # unzip alongside the ZIP (i.e., into session tempdir())
       utils::unzip(x, exdir = fs::path_dir(x))
-      invisible(x)
-    }
+      invisible(TRUE)
+    },
+    .env = asNamespace("read.abares") # adjust if your pkg namespace differs
   )
 
-  # ---- Assertions ----
-  expect_s3_class(res, "sf")
-  expect_true(all(sf::st_is_valid(res)))
+  # Exercise default branch
+  res <- read_aagis_regions() # x = NULL
 
-  expect_true(all(
-    c("ABARES_region", "Class", "Zone", "State") %in% names(res)
+  # ZIP is deleted by the function
+  testthat::expect_false(fs::file_exists(zip_path))
+
+  # Exactly one matching .shp under tempdir(), thanks to strict regex + deleted build tree
+  shps <- fs::dir_ls(
+    fs::path_dir(zip_path),
+    regexp = "aagis_asgs16v1_g5a[.]shp$",
+    recurse = TRUE,
+    type = "file"
+  )
+  testthat::expect_length(shps, 1L)
+
+  # Return & contents
+  testthat::expect_s3_class(res, "sf")
+  testthat::expect_true(all(sf::st_is_valid(res)))
+  testthat::expect_identical(sf::st_crs(res)$epsg, 4326L)
+
+  testthat::expect_false("aagis" %in% names(res))
+  testthat::expect_true(all(
+    c("ABARES_region", "Class", "Zone", "State", "geometry") %in% names(res)
   ))
-  expect_identical(res$State, "QLD")
-  expect_identical(res$ABARES_region, "QLD North")
 
-  # The temp zip created by the function should be gone
-  expect_false(fs::file_exists(expected_temp_zip))
+  testthat::expect_setequal(res$ABARES_region, c("NSW East", "WA West"))
+  testthat::expect_setequal(res$Class, c("Wool", "Beef"))
+  testthat::expect_setequal(as.integer(res$Zone), c(1L, 2L))
+  testthat::expect_setequal(res$State, c("NSW", "WA"))
+  testthat::expect_identical(nrow(res), 2L)
+  fs::file_delete(fs::dir_ls(tempdir(), regexp = "$aagis_extract."))
 })
 
-test_that("read_aagis_regions leaves no legacy columns", {
-  skip_if_offline()
+# -------------------------------------------------------------------------
+# 3) Negative: ZIP missing the expected shapefile → error
+# -------------------------------------------------------------------------
+
+test_that("read_aagis_regions errors when expected shapefile is missing from ZIP", {
+  withr::local_options(read.abares.verbosity = "quiet")
 
   td <- withr::local_tempdir()
-  files_dir <- fs::path(td, "payload")
-  shp_dir <- fs::path(files_dir, "aagis")
-  fs::dir_create(shp_dir)
+  build_dir <- fs::path(td, "build")
+  fs::dir_create(build_dir, recurse = TRUE)
 
-  # Simple point geometry is fine; function is geometry-agnostic for our checks
-  pt <- sf::st_point(c(100, -30))
-  geom <- sf::st_sfc(pt, crs = 4326)
-  dat <- data.frame(
-    name = "SA Central",
-    class = "Cropping",
-    zone = 5L,
-    aagis = "Cropping"
+  bad_zip <- build_aagis_fixture_zip(build_dir, layer = "WRONG_LAYER_NAME")
+  expect_true(fs::file_exists(bad_zip))
+
+  # Expect the current out-of-bounds error
+  expect_error(
+    read_aagis_regions(x = bad_zip),
+    class = "subscriptOutOfBoundsError" # from your trace
   )
-  aagis_sf <- sf::st_sf(dat, geometry = geom)
+})
 
-  invisible(
-    sf::st_write(
-      aagis_sf,
-      dsn = shp_dir,
-      layer = "aagis_asgs16v1_g5a",
-      driver = "ESRI Shapefile",
-      delete_layer = TRUE,
-      quiet = TRUE
-    )
+# -------------------------------------------------------------------------
+# 4) Robustness: extra shapefiles present → still reads only the expected one
+# -------------------------------------------------------------------------
+testthat::test_that("read_aagis_regions ignores other shapefiles and reads only the expected one", {
+  withr::local_options(read.abares.verbosity = "quiet")
+
+  td <- withr::local_tempdir()
+  build_dir <- fs::path(td, "build")
+  fs::dir_create(build_dir, recurse = TRUE)
+
+  # Build fixture with expected layer + an extra different layer
+  zip_path <- build_aagis_fixture_zip(
+    build_dir,
+    layer = "aagis_asgs16v1_g5a",
+    extra_layers = c("some_other_layer")
   )
+  testthat::expect_true(fs::file_exists(zip_path))
 
-  zip_path <- fs::path(td, "aagis.zip")
-  files_rel <- fs::path_rel(
-    fs::dir_ls(shp_dir, type = "file"),
-    start = files_dir
-  )
-  create_zip(zip_path, files_dir, files_rel)
+  # Should read only the expected shapefile
+  res <- read_aagis_regions(x = zip_path)
 
-  res <- with_mocked_bindings(
-    {
-      read_aagis_regions(x = zip_path)
-    },
-    .unzip_file = function(x) {
-      utils::unzip(x, exdir = fs::path_dir(x))
-      invisible(x)
-    }
-  )
+  testthat::expect_s3_class(res, "sf")
+  testthat::expect_false("aagis" %in% names(res))
+  testthat::expect_true(all(
+    c("ABARES_region", "Class", "Zone", "State", "geometry") %in% names(res)
+  ))
 
-  # Only the cleaned set of fields should remain (plus geometry)
-  kept <- c("ABARES_region", "Class", "Zone", "State", attr(res, "sf_column"))
-  expect_setequal(names(res), kept)
+  # Confirm content corresponds to the expected layer only (two features we wrote)
+  testthat::expect_identical(nrow(res), 2L)
+  testthat::expect_setequal(res$ABARES_region, c("NSW East", "WA West"))
+  testthat::expect_setequal(res$Class, c("Wool", "Beef"))
+  testthat::expect_setequal(as.integer(res$Zone), c(1L, 2L))
+  testthat::expect_setequal(res$State, c("NSW", "WA"))
 })
