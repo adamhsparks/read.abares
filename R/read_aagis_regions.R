@@ -50,8 +50,12 @@ read_aagis_regions <- function(x = NULL) {
   }
   aagis_sf <- sf::st_read(
     dsn = fs::path(
-      fs::path_dir(x),
-      "aagis/aagis_asgs16v1_g5a.shp"
+      fs::dir_ls(
+        fs::path_dir(x),
+        regexp = "[.]shp$",
+        recurse = TRUE,
+        type = "file"
+      )
     ),
     quiet = !(getOption("read.abares.verbosity") %in% c("quiet", "minimal"))
   )
