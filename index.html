@@ -101,7 +101,7 @@
 <div class="section level2">
 <h2 id="quick-start">Quick Start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
-<p>{read.abares} is not available through CRAN (yet). The preferred method is to use <a href="https://remotes.r-lib.org" class="external-link">{remotes}</a> like so. Note that for Linux users, you will need to install system libraries to support geospatial packages in R, <em>e.g.</em>, {sf} and {terra} as well as some packages for downloading data via <a href="https://curl.se/download.html" class="external-link">curl</a>. Linux users, please see[^2].</p>
+<p>{read.abares} is not available through CRAN (yet). The preferred method is to use <a href="https://remotes.r-lib.org" class="external-link">{remotes}</a> like so. Note that for Linux users, you will need to install system libraries to support geospatial packages in R, <em>e.g.</em>, {sf} and {terra} as well as some packages for downloading data via <a href="https://curl.se/download.html" class="external-link">curl</a>. Linux users, please see<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;If you are using Linux, you will likely need to install several system-level libraries, {pak} will do it’s best to install most of them but some may not be installable this way. For &lt;a href="https://ardc.edu.au/services/ardc-nectar-research-cloud/" class="external-link"&gt;Nectar&lt;/a&gt; with a fresh Ubuntu image, you can use the following command to install system libraries to install {pak} and then {read.abares}. In your Linux terminal (not your R console, the “terminal” tab in RStudio should do here in most cases) type:&lt;/p&gt;'><sup>2</sup></a>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://remotes.r-lib.org" class="external-link">"remotes"</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
@@ -139,7 +139,11 @@
 <div class="section level3">
 <h3 id="automated-repairing-of-geospatial-data">Automated Repairing of Geospatial Data<a class="anchor" aria-label="anchor" href="#automated-repairing-of-geospatial-data"></a>
 </h3>
-<p>The Australian Agricultural and Grazing Industries Survey (AAGIS) region mapping files report geometry errors that can be repaired using the <code><a href="https://r-spatial.github.io/sf/reference/valid.html" class="external-link">sf::st_make_valid()</a></code> function; {read.abares} automatically repairs these geometries for you when you import the data. Or the Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping) NetCDF file has a classification that makes the resulting maps have an incongruous legend; {read.abares} cleans this up on import so that you only have nice continous data in your resulting map. ### Multiple Geospatial Data Classes Supported</p>
+<p>The Australian Agricultural and Grazing Industries Survey (AAGIS) region mapping files report geometry errors that can be repaired using the <code><a href="https://r-spatial.github.io/sf/reference/valid.html" class="external-link">sf::st_make_valid()</a></code> function; {read.abares} automatically repairs these geometries for you when you import the data. Or the Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping) NetCDF file has a classification that makes the resulting maps have an incongruous legend; {read.abares} cleans this up on import so that you only have nice continuous data in your resulting map.</p>
+</div>
+<div class="section level3">
+<h3 id="multiple-geospatial-data-classes-supported">Multiple Geospatial Data Classes Supported<a class="anchor" aria-label="anchor" href="#multiple-geospatial-data-classes-supported"></a>
+</h3>
 <p>{read.abares} supports multiple classes of objects to support your workflow with the NetCDF data. Select from spatial classes for the Australian Gridded Farm Data (AGFD) NetCDF files:</p>
 <ul>
 <li>
@@ -189,14 +193,6 @@
 <p>Citing {read.abares}: When citing the use of this package, please use,</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'read.abares'</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:graphics':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     plot</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     levels, plot</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"read.abares"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; To cite package 'read.abares' in publications use:</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -223,7 +219,6 @@
 <h4 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
 </h4>
 <p>Please note that the {read.abares} project is released with a <a href="https://adamhsparks.github.io/read.abares/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
-<p>[^2] If you are using Linux, you will likely need to install several system-level libraries, {pak} will do it’s best to install most of them but some may not be installable this way. For <a href="https://ardc.edu.au/services/ardc-nectar-research-cloud/" class="external-link">Nectar</a> with a fresh Ubuntu image, you can use the following command to install system libraries to install {pak} and then {read.abares}. In your Linux terminal (not your R console, the “terminal” tab in RStudio should do here in most cases) type:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">sudo</span> apt update <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt install libcurl4-openssl-dev libgdal-dev gdal-bin libgeos-dev libproj-dev libsqlite3-dev libudunits2-dev libxml2-dev</span></code></pre></div>
 </div>
 </div>
