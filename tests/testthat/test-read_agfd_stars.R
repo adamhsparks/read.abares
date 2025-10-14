@@ -80,7 +80,7 @@ test_that("read_agfd_stars integrates: calls .get_agfd, passes var, returns name
       with_mocked_bindings(
         .get_agfd = function(.fixed_prices, .yyyy, .x) {
           expect_true(.fixed_prices)
-          expect_equal(.yyyy, 2020:2021)
+          expect_identical(.yyyy, 2020:2021)
           expect_null(.x)
           files
         },
@@ -104,7 +104,7 @@ test_that("read_agfd_stars integrates: calls .get_agfd, passes var, returns name
           )
 
           # read_ncdf should be called once per file (first normally, rest via quietly)
-          expect_equal(calls, length(files))
+          expect_length(files, calls)
         },
         .package = "read.abares"
       )
@@ -129,7 +129,7 @@ test_that("read_agfd_stars forwards fixed_prices = FALSE to .get_agfd (historica
       with_mocked_bindings(
         .get_agfd = function(.fixed_prices, .yyyy, .x) {
           expect_false(.fixed_prices)
-          expect_equal(.yyyy, 1995:1996)
+          expect_identical(.yyyy, 1995:1996)
           expect_null(.x)
           files
         },
@@ -144,7 +144,7 @@ test_that("read_agfd_stars forwards fixed_prices = FALSE to .get_agfd (historica
           expect_length(s, length(files))
           expect_setequal(names(s), basename(files))
           expect_true(all(vapply(s, inherits, logical(1), "stars")))
-          expect_equal(calls, length(files))
+          expect_length(files, calls)
         },
         .package = "read.abares"
       )
@@ -167,7 +167,7 @@ test_that("read_agfd_stars forwards x to .get_agfd", {
       with_mocked_bindings(
         .get_agfd = function(.fixed_prices, .yyyy, .x) {
           expect_true(.fixed_prices)
-          expect_equal(.yyyy, 2022)
+          expect_identical(.yyyy, 2022)
           expect_identical(.x, fake_zip)
           files
         },
@@ -180,7 +180,7 @@ test_that("read_agfd_stars forwards x to .get_agfd", {
 
           expect_type(s, "list")
           expect_length(s, 1L)
-          expect_identical(names(s), basename(files))
+          expect_named(s, basename(files))
           expect_true(inherits(s[[1]], "stars"))
           expect_identical(s[[1]]$filename, files)
         },

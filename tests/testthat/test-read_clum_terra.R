@@ -118,14 +118,17 @@ test_that("read_clum_terra integrates with .get_clum and does NOT apply coltab f
     {
       res <- read_clum_terra(data_set = ds_name, x = zip_path)
       expect_s4_class(res, "SpatRaster")
-      expect_equal(terra::nlyr(res), 1L)
+      expect_identical(terra::nlyr(res), 1)
 
       ctl <- terra::coltab(res)
       expect_type(ctl, "list")
-      expect_identical(length(ctl), 1L)
+      expect_length(ctl, 1L)
 
       # For scale_date_update we expect no coltab entries (terra returns empty)
-      expect_equal(nrow(as.data.frame(ctl[[1]], stringsAsFactors = FALSE)), 0L)
+      expect_identical(
+        nrow(as.data.frame(ctl[[1]], stringsAsFactors = FALSE)),
+        0L
+      )
     },
     .unzip_file = unzip_mock
   )
@@ -172,7 +175,7 @@ test_that("read_clum_terra passes data_set and x to .get_clum and reads returned
 
       # Colour table should be present (applied for clum_50m_2023_v2)
       ct <- terra::coltab(res)
-      expect_identical(length(ct), 1L)
+      expect_length(ct, 1L)
       expect_gte(nrow(as.data.frame(ct[[1L]])), 1L)
     },
     .get_clum = get_clum_mock
@@ -197,11 +200,11 @@ test_that("read_clum_terra handles multiple files from .get_clum() and applies c
     {
       res <- read_clum_terra(data_set = "clum_50m_2023_v2", x = NULL)
       expect_s4_class(res, "SpatRaster")
-      expect_equal(terra::nlyr(res), 2L)
+      expect_identical(terra::nlyr(res), 2)
 
       # Colour table applied to each layer
       ct <- terra::coltab(res)
-      expect_equal(length(ct), 2L)
+      expect_length(ct, 2L)
       expect_true(all(vapply(
         ct,
         function(z) nrow(as.data.frame(z)) > 0L,
@@ -316,7 +319,7 @@ test_that("date_levels: years 2008–2023 as integers; rast_cat identical; stric
   expect_identical(dl$rast_cat, years)
 
   # Shape and quality
-  expect_identical(nrow(dl), length(years))
+  expect_length(years, nrow(dl))
   expect_true(all(diff(dl$int) > 0))
   expect_false(anyNA(dl$int))
   expect_false(anyNA(dl$rast_cat))
@@ -365,7 +368,7 @@ test_that("scale_levels: denominators map exactly to formatted labels and are st
     "1:250,000"
   )
 
-  expect_identical(nrow(sl), length(expected_int))
+  expect_length(expected_int, nrow(sl))
   expect_identical(sl$int, expected_int)
   expect_identical(sl$rast_cat, expected_lab)
 
@@ -410,7 +413,7 @@ test_that(".create_clum_50m_coltab creates expected color table structure", {
   expect_true(all(grepl("^#[0-9a-f]{6}$", ct$color)))
 
   # Values should be unique and sorted
-  expect_identical(length(unique(ct$value)), nrow(ct))
+  expect_length(unique(ct$value), nrow(ct))
   expect_gt(all(diff(ct$value)), 0)
 
   # Check some specific mappings

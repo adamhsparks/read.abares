@@ -15,7 +15,7 @@ test_that(".readabares_collaborators returns contents of installed collaborators
   out <- .readabares_collaborators()
 
   expect_type(out, "character")
-  expect_equal(out, expected)
+  expect_identical(out, expected)
 })
 
 

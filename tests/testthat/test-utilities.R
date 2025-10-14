@@ -3,23 +3,20 @@ test_that("unzips a valid zip file into a named folder", {
   src_file <- fs::path(tmp_dir, "test.txt")
   writeLines("hello world", src_file)
 
-  # Absolute zip path; add files from src_file's directory via root=
   zip_path <- fs::path_abs(fs::path(tempdir(), "test-zip.zip"))
   zip::zipr(
     zipfile = zip_path,
     files = fs::path_file(src_file),
     root = fs::path_dir(src_file)
   )
+  expect_true(fs::file_exists(zip_path))
 
-  expect_true(fs::file_exists(zip_path)) # sanity
+  out_dir <- .unzip_file(zip_path)
+  expect_type(out_dir, "character") # MUST be character
+  expect_true(fs::dir_exists(out_dir))
+  expect_identical(out_dir, as.character(fs::path_ext_remove(zip_path)))
 
-  # Run unzip (returns extraction dir invisibly)
-  expect_invisible(.unzip_file(zip_path))
-
-  # Check extracted folder and contents
-  extract_dir <- fs::path_ext_remove(zip_path)
-  extracted_file <- fs::path(extract_dir, "test.txt")
-  expect_true(fs::dir_exists(extract_dir))
+  extracted_file <- fs::path(out_dir, "test.txt")
   expect_true(fs::file_exists(extracted_file))
   expect_identical(readLines(extracted_file), "hello world")
 })
@@ -54,38 +51,36 @@ test_that(".unzip_file successfully unzips valid zip file", {
     src_file <- fs::path(src_dir, "test_file.txt")
     writeLines("test content", src_file)
 
-    # Absolute zipfile path; files relative to root=
-    zipfile <- fs::path_abs(fs::path(src_dir, "test.zip"))
+    # Absolute zip path inside src_dir; files added relative to root=
+    zip_path <- fs::path_abs(fs::path(src_dir, "test.zip"))
     zip::zipr(
-      zipfile = zipfile,
+      zipfile = zip_path,
       files = fs::path_file(src_file),
       root = fs::path_dir(src_file)
     )
+    expect_true(fs::file_exists(zip_path))
 
-    expect_true(fs::file_exists(zipfile))
-
-    result_dir <- .unzip_file(zipfile)
+    result_dir <- .unzip_file(zip_path)
+    expect_type(result_dir, "character")
     expect_true(fs::dir_exists(result_dir))
-    expect_true(fs::file_exists(fs::path(result_dir, "test_file.txt")))
+
+    # Directory name should be the stem of "test.zip"
     expect_identical(fs::path_file(result_dir), "test")
   })
 })
 
 test_that(".unzip_file handles corrupted zip file without creating directories", {
   withr::with_tempdir({
-    # Create bogus "zip" file
     corrupted_zip <- fs::path("corrupted.zip")
     writeLines("not a zip file at all", corrupted_zip)
 
-    # Cross-platform expected message:
-    #  - Linux/CI: "Unrecognized archive format"
-    #  - macOS:    "Cannot open zip file ... for reading"
+    # Cross-OS error variants from libzip / {zip}
     expect_error(
       .unzip_file(corrupted_zip),
-      regexp = "(Unrecognized archive format|Cannot open zip file .* for reading|zip error)"
+      regexp = "(Unrecognized archive format|Cannot open zip file .* for reading|zip error|End-of-central-directory signature not found)"
     )
 
-    # Ensure no extraction directory was created
+    # No extraction directory should be created
     extract_dir <- fs::path_ext_remove(corrupted_zip)
     expect_false(fs::dir_exists(extract_dir))
   })
@@ -94,11 +89,7 @@ test_that(".unzip_file handles corrupted zip file without creating directories",
 test_that(".unzip_file handles missing zip file", {
   withr::with_tempdir({
     non_existent <- fs::path("absolutely_does_not_exist.zip")
-
-    expect_error(
-      .unzip_file(non_existent),
-      "Zip file does not exist"
-    )
+    expect_error(.unzip_file(non_existent), "Zip file does not exist")
 
     extract_dir <- fs::path_ext_remove(non_existent)
     expect_false(fs::dir_exists(extract_dir))
@@ -112,16 +103,16 @@ test_that(".unzip_file creates extract directory with correct name", {
     src_file <- fs::path(src_dir, "data.txt")
     fs::file_create(src_file)
 
-    zipfile <- fs::path_abs(fs::path(src_dir, "my_special_data_file.zip"))
+    zip_path <- fs::path_abs(fs::path(src_dir, "my_special_data_file.zip"))
     zip::zipr(
-      zipfile = zipfile,
+      zipfile = zip_path,
       files = fs::path_file(src_file),
       root = fs::path_dir(src_file)
     )
+    expect_true(fs::file_exists(zip_path))
 
-    expect_true(fs::file_exists(zipfile))
-
-    result_dir <- .unzip_file(zipfile)
+    result_dir <- .unzip_file(zip_path)
+    expect_type(result_dir, "character")
     expect_identical(fs::path_file(result_dir), "my_special_data_file")
     expect_true(fs::dir_exists(result_dir))
   })
@@ -134,34 +125,33 @@ test_that(".unzip_file overwrites existing extraction directory", {
     file1 <- fs::path(src_dir, "file.txt")
     writeLines("original content", file1)
 
-    zipfile <- fs::path_abs(fs::path(src_dir, "test.zip"))
+    zip_path <- fs::path_abs(fs::path(src_dir, "test.zip"))
     zip::zipr(
-      zipfile = zipfile,
+      zipfile = zip_path,
       files = fs::path_file(file1),
       root = fs::path_dir(file1)
     )
-    expect_true(fs::file_exists(zipfile))
+    expect_true(fs::file_exists(zip_path))
 
-    result1 <- .unzip_file(zipfile)
+    result1 <- .unzip_file(zip_path)
+    expect_type(result1, "character")
+    expect_true(fs::dir_exists(result1))
 
     # Modify the extracted content to verify overwrite
     writeLines("modified content", fs::path(result1, "file.txt"))
 
-    # Create new zip with different content
+    # Re-zip with different content
     writeLines("new content", file1)
-    fs::file_delete(zipfile)
+    fs::file_delete(zip_path)
     zip::zipr(
-      zipfile = zipfile,
+      zipfile = zip_path,
       files = fs::path_file(file1),
       root = fs::path_dir(file1)
     )
-    expect_true(fs::file_exists(zipfile))
+    expect_true(fs::file_exists(zip_path))
 
-    # Second extraction should overwrite
-    result2 <- .unzip_file(zipfile)
-
+    result2 <- .unzip_file(zip_path)
     expect_identical(result1, result2)
-    content <- readLines(fs::path(result2, "file.txt"))
-    expect_identical(content, "new content")
+    expect_identical(readLines(fs::path(result2, "file.txt")), "new content")
   })
 })

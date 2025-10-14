@@ -1,8 +1,3 @@
-# -------------------------------------------------------------------------
-# Helper: build a minimal ESRI Shapefile fixture and return a ZIP path.
-# The shapefile is written under: <build_dir>/aagis/<layer>.(shp|shx|dbf|prj...)
-# If `extra_layers` are provided, those additional layer names are written alongside.
-# -------------------------------------------------------------------------
 build_aagis_fixture_zip <- function(
   build_dir,
   layer = "aagis_asgs16v1_g5a",
@@ -129,7 +124,7 @@ test_that("read_aagis_regions reads and cleans data from a provided local ZIP (s
   # Return type & geometry validity
   expect_s3_class(res, "sf")
   expect_true(all(sf::st_is_valid(res)))
-  expect_equal(sf::st_crs(res)$epsg, 4326)
+  expect_identical(sf::st_crs(res)$epsg, 4326L)
 
   # Columns: dropped + renamed
   expect_false("aagis" %in% names(res))

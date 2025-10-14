@@ -132,7 +132,7 @@ test_that("read_clum_commodities uses provided file path when x is not NULL", {
 
   local_mocked_bindings(
     st_read = function(dsn, quiet) {
-      expect_equal(dsn, "/custom/path/to/data")
+      expect_identical(dsn, "/custom/path/to/data")
       return(mock_sf_data)
     },
     st_make_valid = function(x) {

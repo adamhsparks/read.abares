@@ -46,7 +46,7 @@ test_that("read_agfd_terra integrates: calls .get_agfd, reads real GeoTIFFs, ret
   with_mocked_bindings(
     .get_agfd = function(.fixed_prices, .yyyy, .x) {
       expect_true(.fixed_prices)
-      expect_equal(.yyyy, 2020:2021)
+      expect_identical(.yyyy, 2020:2021)
       expect_null(.x)
       files
     },
@@ -60,16 +60,16 @@ test_that("read_agfd_terra integrates: calls .get_agfd, reads real GeoTIFFs, ret
       # Structure and names
       expect_type(r, "list")
       expect_length(r, length(files))
-      expect_identical(names(r), basename(files))
+      expect_named(r, basename(files))
 
       # Each element is a real SpatRaster read by terra::rast()
       expect_true(all(vapply(r, inherits, logical(1), "SpatRaster")))
 
       # Sanity check raster properties
       for (ri in r) {
-        expect_equal(terra::nlyr(ri), 1L)
-        expect_equal(terra::ncol(ri), 4L)
-        expect_equal(terra::nrow(ri), 3L)
+        expect_identical(terra::nlyr(ri), 1)
+        expect_identical(terra::ncol(ri), 4)
+        expect_identical(terra::nrow(ri), 3)
         expect_false(is.na(terra::crs(ri, proj = TRUE)))
       }
 
@@ -96,7 +96,7 @@ test_that("read_agfd_terra forwards fixed_prices = FALSE to .get_agfd and reads 
   with_mocked_bindings(
     .get_agfd = function(.fixed_prices, .yyyy, .x) {
       expect_false(.fixed_prices)
-      expect_equal(.yyyy, 1995:1996)
+      expect_identical(.yyyy, 1995:1996)
       expect_null(.x)
       files
     },
@@ -109,7 +109,7 @@ test_that("read_agfd_terra forwards fixed_prices = FALSE to .get_agfd and reads 
 
       expect_type(r, "list")
       expect_length(r, length(files))
-      expect_identical(names(r), basename(files))
+      expect_named(r, basename(files))
       expect_true(all(vapply(r, inherits, logical(1), "SpatRaster")))
 
       # Values
@@ -132,7 +132,7 @@ test_that("read_agfd_terra forwards x to .get_agfd and reads real raster", {
   with_mocked_bindings(
     .get_agfd = function(.fixed_prices, .yyyy, .x) {
       expect_true(.fixed_prices)
-      expect_equal(.yyyy, 2022)
+      expect_identical(.yyyy, 2022)
       expect_identical(.x, fake_zip)
       files
     },
@@ -145,7 +145,7 @@ test_that("read_agfd_terra forwards x to .get_agfd and reads real raster", {
 
       expect_type(r, "list")
       expect_length(r, 1L)
-      expect_identical(names(r), basename(files))
+      expect_named(r, basename(files))
       expect_true(inherits(r[[1]], "SpatRaster"))
 
       # Values sanity check
@@ -171,7 +171,7 @@ test_that("read_agfd_terra returns empty list when .get_agfd returns no files (d
 
       expect_type(r, "list")
       expect_length(r, 0L)
-      expect_identical(names(r), character(0))
+      expect_named(r, character(0))
     },
     .package = "read.abares"
   )
@@ -203,9 +203,9 @@ test_that("read_agfd_terra forwards defaults to .get_agfd (fixed_prices=TRUE, yy
       # Confirm reading works on the returned files
       expect_type(r, "list")
       expect_length(r, length(ret_files))
-      expect_identical(names(r), basename(ret_files))
+      expect_named(r, basename(ret_files))
       expect_true(all(vapply(r, inherits, logical(1), "SpatRaster")))
     },
     .package = "read.abares"
-  )
-})
+  
+}

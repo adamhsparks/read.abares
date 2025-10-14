@@ -1,12 +1,12 @@
 test_that("%||% returns left-hand side when not NULL", {
-  expect_equal("value" %||% "fallback", "value")
-  expect_equal(0 %||% 1, 0)
-  expect_equal(FALSE %||% TRUE, FALSE)
+  expect_identical("value" %||% "fallback", "value")
+  expect_identical(0 %||% 1, 0)
+  expect_false(FALSE %||% TRUE)
 })
 
 test_that("%||% returns right-hand side when left is NULL", {
-  expect_equal(NULL %||% "fallback", "fallback")
-  expect_equal(NULL %||% 123, 123)
+  expect_identical(NULL %||% "fallback", "fallback")
+  expect_identical(NULL %||% 123, 123)
 })
 
 test_that(".map_verbosity returns correct mappings for 'quiet'", {

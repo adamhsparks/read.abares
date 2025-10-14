@@ -41,7 +41,7 @@ test_that("read_agfd_dt integrates correctly: binds rows, sets id to basenames, 
       with_mocked_bindings(
         .get_agfd = function(.fixed_prices, .yyyy, .x) {
           expect_true(.fixed_prices)
-          expect_equal(.yyyy, 2020:2021)
+          expect_identical(.yyyy, 2020:2021)
           expect_null(.x)
           files
         },
@@ -56,9 +56,9 @@ test_that("read_agfd_dt integrates correctly: binds rows, sets id to basenames, 
           expect_setequal(unique(dat$id), basename(files))
           expect_true(is.numeric(dat$lat))
           expect_true(is.numeric(dat$lon))
-          expect_equal(nrow(dat), 3L)
-          expect_equal(sort(dat$lat), c(1, 2, 3))
-          expect_equal(sort(dat$lon), c(10, 20, 30))
+          expect_identical(nrow(dat), 3L)
+          expect_identical(sort(dat$lat), c(1, 2, 3))
+          expect_identical(sort(dat$lon), c(10, 20, 30))
         },
         .package = "read.abares"
       )
@@ -86,7 +86,7 @@ test_that("read_agfd_dt forwards fixed_prices = FALSE to .get_agfd (historical p
       with_mocked_bindings(
         .get_agfd = function(.fixed_prices, .yyyy, .x) {
           expect_false(.fixed_prices)
-          expect_equal(.yyyy, 1995:1996)
+          expect_identical(.yyyy, 1995:1996)
           expect_null(.x)
           files
         },
@@ -101,7 +101,7 @@ test_that("read_agfd_dt forwards fixed_prices = FALSE to .get_agfd (historical p
           expect_setequal(unique(dat$id), basename(files))
           expect_true(is.numeric(dat$lat))
           expect_true(is.numeric(dat$lon))
-          expect_equal(nrow(dat), 2L)
+          expect_identical(nrow(dat), 2L)
         },
         .package = "read.abares"
       )
@@ -126,7 +126,7 @@ test_that("read_agfd_dt forwards x to .get_agfd when supplied", {
       with_mocked_bindings(
         .get_agfd = function(.fixed_prices, .yyyy, .x) {
           expect_true(.fixed_prices)
-          expect_equal(.yyyy, 2022)
+          expect_identical(.yyyy, 2022)
           expect_identical(.x, fake_zip)
           files
         },
@@ -175,7 +175,7 @@ test_that("read_agfd_dt returns empty data.table with lat/lon when .get_agfd ret
       )
 
       expect_s3_class(dat, "data.table")
-      expect_equal(nrow(dat), 0L)
+      expect_identical(nrow(dat), 0L)
 
       # Guaranteed by the function via coercion lines even after empty rbindlist
       expect_true(all(c("lat", "lon") %in% names(dat)))

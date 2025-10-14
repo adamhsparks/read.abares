@@ -96,8 +96,8 @@ test_that("read_clum_stars passes x parameter correctly", {
 
     # Check that .get_clum was called with correct arguments
     expect_length(get_clum_calls, 1)
-    expect_equal(get_clum_calls[[1]]$data_set, "clum_50m_2023_v2")
-    expect_equal(get_clum_calls[[1]]$x, test_x)
+    expect_identical(get_clum_calls[[1]]$data_set, "clum_50m_2023_v2")
+    expect_identical(get_clum_calls[[1]]$x, test_x)
   })
 })
 
@@ -145,8 +145,8 @@ test_that("read_clum_stars passes additional arguments to stars::read_stars", {
 
     # Check that stars::read_stars was called with correct arguments
     expect_length(read_stars_calls, 1)
-    expect_equal(read_stars_calls[[1]]$x, temp_file)
-    expect_equal(read_stars_calls[[1]]$dots$RAT, "land_use")
+    expect_identical(read_stars_calls[[1]]$x, temp_file)
+    expect_identical(read_stars_calls[[1]]$dots$RAT, "land_use")
   })
 })
 
