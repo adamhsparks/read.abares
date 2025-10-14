@@ -11,19 +11,19 @@
 #' @returns Logical indicating success.
 #' @dev
 
-.safe_delete <- function(path) {
+.safe_delete <- function(file_path) {
   # Return TRUE even if 'path' doesn't exist
-  if (!fs::file_exists(path) && !fs::dir_exists(path)) {
+  if (!fs::file_exists(file_path) && !fs::dir_exists(file_path)) {
     return(TRUE)
   }
 
   # Try to delete; return TRUE on success, FALSE on failure
   tryCatch(
     {
-      if (fs::dir_exists(path)) {
-        fs::dir_delete(path)
+      if (fs::dir_exists(file_path)) {
+        fs::dir_delete(file_path)
       } else {
-        fs::file_delete(path)
+        fs::file_delete(file_path)
       }
       TRUE
     },
@@ -43,35 +43,38 @@
 #' @param .x A zip file for unzipping.
 #' @returns Invisible directory path, called for side effects.
 #' @dev
-.unzip_file <- function(zip_path) {
-  # Input sanity: must be a single, non-NA character path and must exist
-  if (!is.character(zip_path) || length(zip_path) != 1L || is.na(zip_path)) {
-    cli::cli_abort("Zip file does not exist", call = rlang::caller_env())
-  }
-  if (!fs::file_exists(zip_path)) {
+#'
+
+.unzip_file <- function(.x) {
+  # Validate input (return a CHARACTER path, not logical)
+  if (
+    !is.character(.x) ||
+      length(.x) != 1L ||
+      is.na(.x) ||
+      !fs::file_exists(.x)
+  ) {
     cli::cli_abort("Zip file does not exist", call = rlang::caller_env())
   }
 
   extract_dir <- fs::path_ext_remove(zip_path)
 
-  # Overwrite existing extraction directory
+  # Overwrite extraction directory
   if (fs::dir_exists(extract_dir)) {
     fs::dir_delete(extract_dir)
   }
   fs::dir_create(extract_dir)
 
-  # Unzip and return the extraction directory path invisibly
+  # Use {zip} for consistent cross-platform unzipping
   tryCatch(
     {
-      zip::unzip(zipfile = zip_path, exdir = extract_dir, junkpaths = FALSE)
-      invisible(extract_dir)
+      zip::unzip(zipfile = .x, exdir = extract_dir, junkpaths = FALSE)
+      invisible(as.character(extract_dir)) # ensure CHARACTER output
     },
     error = function(e) {
-      # Roll back on failure
+      # Roll back partial extraction and propagate ORIGINAL message
       if (fs::dir_exists(extract_dir)) {
         fs::dir_delete(extract_dir)
       }
-      # Re-throw original message so tests can match (e.g., "Unrecognized archive format")
       cli::cli_abort(e$message, call = rlang::caller_env())
     }
   )
