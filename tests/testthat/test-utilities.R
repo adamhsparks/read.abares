@@ -6,7 +6,7 @@ test_that("unzips a valid zip file into a named folder", {
 
   # Create zip
   zip_path <- fs::path(tempdir(), "test-zip.zip")
-  utils::zip(zipfile = zip_path, files = file_path, flags = "-j")
+  utils::zip(zipfile = zip_path, files = file_path)
 
   # Sanity
   expect_true(fs::file_exists(zip_path))
