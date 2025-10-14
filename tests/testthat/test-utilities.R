@@ -1,7 +1,6 @@
-
 test_that("unzips a valid zip file into a named folder", {
   # Create a temp directory and file to zip
-  tmp_dir  <- withr::local_tempdir()
+  tmp_dir <- withr::local_tempdir()
   src_file <- fs::path(tmp_dir, "test.txt")
   writeLines("hello world", src_file)
 
@@ -52,7 +51,7 @@ test_that("safe_delete returns TRUE for non-existent paths", {
 test_that(".unzip_file successfully unzips valid zip file", {
   withr::with_tempdir({
     # Create test content
-    src_dir  <- fs::path("test_content")
+    src_dir <- fs::path("test_content")
     fs::dir_create(src_dir)
 
     src_file <- fs::path(src_dir, "test_file.txt")
@@ -111,7 +110,7 @@ test_that(".unzip_file handles missing zip file", {
 test_that(".unzip_file creates extract directory with correct name", {
   withr::with_tempdir({
     # Create test zip with specific name
-    src_dir  <- fs::path("source")
+    src_dir <- fs::path("source")
     fs::dir_create(src_dir)
     src_file <- fs::path(src_dir, "data.txt")
     fs::file_create(src_file)
@@ -172,3 +171,4 @@ test_that(".unzip_file overwrites existing extraction directory", {
     content <- readLines(fs::path(result2, "file.txt"))
     expect_identical(content, "new content")
   })
+})
