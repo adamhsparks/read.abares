@@ -1,3 +1,39 @@
+test_that("sanity: tests see the patched .unzip_file", {
+  fun <- getFromNamespace(".unzip_file", "read.abares")
+  msg <- paste(capture.output(fun), collapse = "\n")
+  cat(
+    "----- .unzip_file being tested -----\n",
+    msg,
+    "\n-------------------------------------\n"
+  )
+  expect_true(
+    grepl("zip::unzip\\(", msg),
+    info = "Expected zip::unzip() in .unzip_file"
+  )
+  expect_true(
+    grepl("invisible\\(as\\.character\\(", msg),
+    info = "Expected return: invisible(as.character(extract_dir))"
+  )
+})
+
+test_that("sanity: tests see the patched .unzip_file", {
+  fun <- getFromNamespace(".unzip_file", "read.abares")
+  msg <- paste(capture.output(fun), collapse = "\n")
+  cat(
+    "----- .unzip_file being tested -----\n",
+    msg,
+    "\n-------------------------------------\n"
+  )
+  expect_true(
+    grepl("zip::unzip\\(", msg),
+    info = "Expected zip::unzip() in .unzip_file"
+  )
+  expect_true(
+    grepl("invisible\\(as\\.character\\(", msg),
+    info = "Expected return: invisible(as.character(extract_dir))"
+  )
+})
+
 test_that("unzips a valid zip file into a named folder", {
   tmp_dir <- withr::local_tempdir()
   src_file <- fs::path(tmp_dir, "test.txt")
