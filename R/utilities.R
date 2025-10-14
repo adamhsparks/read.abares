@@ -10,22 +10,28 @@
 #' @param file_path Path to file to delete.
 #' @returns Logical indicating success.
 #' @dev
-.safe_delete <- function(file_path) {
-  if (fs::file_exists(file_path)) {
-    tryCatch(
-      {
-        fs::file_delete(file_path)
-        TRUE
-      },
-      error = function(e) {
-        FALSE
-      }
-    )
-  } else {
-    TRUE
-  }
-}
 
+.safe_delete <- function(path) {
+  # Return TRUE even if 'path' doesn't exist
+  if (!fs::file_exists(path) && !fs::dir_exists(path)) {
+    return(TRUE)
+  }
+
+  # Try to delete; return TRUE on success, FALSE on failure
+  tryCatch(
+    {
+      if (fs::dir_exists(path)) {
+        fs::dir_delete(path)
+      } else {
+        fs::file_delete(path)
+      }
+      TRUE
+    },
+    error = function(e) {
+      FALSE
+    }
+  )
+}
 
 #' Unzip a zip file
 #'
@@ -37,52 +43,36 @@
 #' @param .x A zip file for unzipping.
 #' @returns Invisible directory path, called for side effects.
 #' @dev
-
-.unzip_file <- function(.x) {
-  # Check if zip file exists first
-  if (!fs::file_exists(.x)) {
-    cli::cli_abort(
-      "Zip file does not exist: {.path {.x}}",
-      call = rlang::caller_env()
-    )
+.unzip_file <- function(zip_path) {
+  # Input sanity: must be a single, non-NA character path and must exist
+  if (!is.character(zip_path) || length(zip_path) != 1L || is.na(zip_path)) {
+    cli::cli_abort("Zip file does not exist", call = rlang::caller_env())
+  }
+  if (!fs::file_exists(zip_path)) {
+    cli::cli_abort("Zip file does not exist", call = rlang::caller_env())
   }
 
-  # Determine extraction directory path
-  dat_dir <- fs::path_ext_remove(.x) # deterministic extract folder
+  extract_dir <- fs::path_ext_remove(zip_path)
 
-  # Clean up any existing extraction directory first
-  if (fs::dir_exists(dat_dir)) {
-    .safe_delete(dat_dir)
+  # Overwrite existing extraction directory
+  if (fs::dir_exists(extract_dir)) {
+    fs::dir_delete(extract_dir)
   }
+  fs::dir_create(extract_dir)
 
+  # Unzip and return the extraction directory path invisibly
   tryCatch(
     {
-      # Create directory for extraction
-      fs::dir_create(dat_dir, recurse = TRUE)
-
-      # Use R's internal unzip to avoid system dependency
-      unzip_result <- archive::archive_extract(
-        archive = .x,
-        dir = dat_dir
-      )
-
-      # If archive::archive_extract() is successful, check that unzip was
-      # successful by verifying some content was extracted
-      if (length(fs::dir_ls(dat_dir)) == 0L) {
-        cli::cli_abort("No files were extracted from the zip archive")
-      }
-
-      invisible(dat_dir)
+      zip::unzip(zipfile = zip_path, exdir = extract_dir, junkpaths = FALSE)
+      invisible(extract_dir)
     },
     error = function(e) {
-      # Clean up extraction directory if it was created but extraction failed
-      if (fs::dir_exists(dat_dir)) {
-        .safe_delete(dat_dir)
+      # Roll back on failure
+      if (fs::dir_exists(extract_dir)) {
+        fs::dir_delete(extract_dir)
       }
-      cli::cli_abort(
-        "Unzip failed for {.path {basename(.x)}}: {conditionMessage(e)}",
-        call = rlang::caller_env()
-      )
+      # Re-throw original message so tests can match (e.g., "Unrecognized archive format")
+      cli::cli_abort(e$message, call = rlang::caller_env())
     }
   )
 }
