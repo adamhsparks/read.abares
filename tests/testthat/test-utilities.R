@@ -1,17 +1,20 @@
+
 test_that("unzips a valid zip file into a named folder", {
   # Create a temp directory and file to zip
-  tmp_dir <- withr::local_tempdir()
-  file_path <- fs::path(tmp_dir, "test.txt")
-  writeLines("hello world", file_path)
+  tmp_dir  <- withr::local_tempdir()
+  src_file <- fs::path(tmp_dir, "test.txt")
+  writeLines("hello world", src_file)
 
-  # Create zip
+  # Create zip at a known absolute path in tempdir
   zip_path <- fs::path(tempdir(), "test-zip.zip")
-  zip::zipr(zipfile = zip_path, files = file_path)
+  withr::with_dir(fs::path_dir(src_file), {
+    zip::zipr(zipfile = zip_path, files = fs::path_file(src_file))
+  })
 
   # Sanity
   expect_true(fs::file_exists(zip_path))
 
-  # Run unzip
+  # Run unzip (returns extraction dir invisibly)
   expect_invisible(.unzip_file(zip_path))
 
   # Check extracted folder
@@ -23,7 +26,6 @@ test_that("unzips a valid zip file into a named folder", {
   expect_true(fs::file_exists(extracted_file))
   expect_identical(readLines(extracted_file), "hello world")
 })
-
 
 test_that("safe_delete deletes files and directories", {
   # File deletion
@@ -43,8 +45,6 @@ test_that("safe_delete deletes files and directories", {
 })
 
 test_that("safe_delete returns TRUE for non-existent paths", {
-  skip_if_offline()
-
   bogus <- fs::path(tempdir(), "does-not-exist")
   expect_true(.safe_delete(bogus))
 })
@@ -52,20 +52,23 @@ test_that("safe_delete returns TRUE for non-existent paths", {
 test_that(".unzip_file successfully unzips valid zip file", {
   withr::with_tempdir({
     # Create test content
-    test_dir <- fs::path("test_content")
-    fs::dir_create(test_dir)
+    src_dir  <- fs::path("test_content")
+    fs::dir_create(src_dir)
 
-    test_file <- fs::path(test_dir, "test_file.txt")
-    writeLines("test content", test_file)
+    src_file <- fs::path(src_dir, "test_file.txt")
+    writeLines("test content", src_file)
 
-    # Create zip
-    test_zip <- fs::path("test.zip")
-    withr::with_dir(test_dir, {
-      utils::zip(zipfile = file.path("..", "test.zip"), files = list.files())
+    # Create zip INSIDE src_dir; use absolute path so we can find it later
+    zipfile <- fs::path(src_dir, "test.zip")
+    withr::with_dir(fs::path_dir(src_file), {
+      zip::zipr(zipfile = zipfile, files = fs::path_file(src_file))
     })
 
+    # Sanity
+    expect_true(fs::file_exists(zipfile))
+
     # Test unzip
-    result_dir <- .unzip_file(test_zip)
+    result_dir <- .unzip_file(zipfile)
 
     expect_true(fs::dir_exists(result_dir))
     expect_true(fs::file_exists(fs::path(result_dir, "test_file.txt")))
@@ -108,19 +111,21 @@ test_that(".unzip_file handles missing zip file", {
 test_that(".unzip_file creates extract directory with correct name", {
   withr::with_tempdir({
     # Create test zip with specific name
-    test_dir <- fs::path("source")
-    fs::dir_create(test_dir)
-    fs::file_create(fs::path(test_dir, "data.txt"))
+    src_dir  <- fs::path("source")
+    fs::dir_create(src_dir)
+    src_file <- fs::path(src_dir, "data.txt")
+    fs::file_create(src_file)
 
-    test_zip <- fs::path("my_special_data_file.zip")
-    withr::with_dir(test_dir, {
-      utils::zip(
-        zipfile = file.path("..", "my_special_data_file.zip"),
-        files = list.files()
-      )
+    # Put the zip inside source dir so we know exactly where it is
+    zipfile <- fs::path(src_dir, "my_special_data_file.zip")
+    withr::with_dir(fs::path_dir(src_file), {
+      zip::zipr(zipfile = zipfile, files = fs::path_file(src_file))
     })
 
-    result_dir <- .unzip_file(test_zip)
+    # Sanity
+    expect_true(fs::file_exists(zipfile))
+
+    result_dir <- .unzip_file(zipfile)
 
     expect_identical(fs::path_file(result_dir), "my_special_data_file")
     expect_true(fs::dir_exists(result_dir))
@@ -130,34 +135,40 @@ test_that(".unzip_file creates extract directory with correct name", {
 test_that(".unzip_file overwrites existing extraction directory", {
   withr::with_tempdir({
     # Setup initial content
-    test_dir <- fs::path("content")
-    fs::dir_create(test_dir)
-    writeLines("original content", fs::path(test_dir, "file.txt"))
+    src_dir <- fs::path("content")
+    fs::dir_create(src_dir)
+    file1 <- fs::path(src_dir, "file.txt")
+    writeLines("original content", file1)
 
-    test_zip <- fs::path("test.zip")
-    withr::with_dir(test_dir, {
-      utils::zip(zipfile = file.path("..", "test.zip"), files = list.files())
+    # Zip inside src_dir; absolute path avoids cwd confusion
+    zipfile <- fs::path(src_dir, "test.zip")
+    withr::with_dir(fs::path_dir(file1), {
+      zip::zipr(zipfile = zipfile, files = fs::path_file(file1))
     })
 
+    # Sanity
+    expect_true(fs::file_exists(zipfile))
+
     # First extraction
-    result1 <- .unzip_file(test_zip)
+    result1 <- .unzip_file(zipfile)
 
     # Modify the extracted content to verify overwrite
     writeLines("modified content", fs::path(result1, "file.txt"))
 
     # Create new zip with different content
-    writeLines("new content", fs::path(test_dir, "file.txt"))
-    fs::file_delete(test_zip)
-
-    withr::with_dir(test_dir, {
-      utils::zip(zipfile = file.path("..", "test.zip"), files = list.files())
+    writeLines("new content", file1)
+    fs::file_delete(zipfile)
+    withr::with_dir(fs::path_dir(file1), {
+      zip::zipr(zipfile = zipfile, files = fs::path_file(file1))
     })
 
+    # Sanity again
+    expect_true(fs::file_exists(zipfile))
+
     # Second extraction should overwrite
-    result2 <- .unzip_file(test_zip)
+    result2 <- .unzip_file(zipfile)
 
     expect_identical(result1, result2)
     content <- readLines(fs::path(result2, "file.txt"))
     expect_identical(content, "new content")
   })
-})
