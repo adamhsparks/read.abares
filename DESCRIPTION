@@ -60,7 +60,6 @@ Suggests:
     spelling,
     testthat (>= 3.0.0),
     webmockr,
-    withr,
     writexl
 VignetteBuilder: 
     knitr
