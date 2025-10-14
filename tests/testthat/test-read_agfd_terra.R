@@ -207,5 +207,5 @@ test_that("read_agfd_terra forwards defaults to .get_agfd (fixed_prices=TRUE, yy
       expect_true(all(vapply(r, inherits, logical(1), "SpatRaster")))
     },
     .package = "read.abares"
-  
-}
+  )
+})
