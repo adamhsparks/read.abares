@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   options: options.html
   read.abares: read.abares.html
-last_built: 2025-10-14T04:40Z
+last_built: 2025-10-14T05:02Z
 urls:
   reference: https://adamhsparks.github.io/read.abares/reference
   article: https://adamhsparks.github.io/read.abares/articles
