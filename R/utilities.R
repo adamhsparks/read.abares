@@ -56,7 +56,7 @@
     cli::cli_abort("Zip file does not exist", call = rlang::caller_env())
   }
 
-  extract_dir <- fs::path_ext_remove(zip_path)
+  extract_dir <- fs::path_ext_remove(.x)
 
   # Overwrite extraction directory
   if (fs::dir_exists(extract_dir)) {
