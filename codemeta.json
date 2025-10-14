@@ -218,6 +218,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=writexl"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "zip",
+      "name": "zip",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=zip"
     }
   ],
   "softwareRequirements": {
@@ -457,7 +469,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "730.733KB",
+  "fileSize": "730.727KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

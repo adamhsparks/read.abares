@@ -60,7 +60,8 @@ Suggests:
     spelling,
     testthat (>= 3.0.0),
     webmockr,
-    writexl
+    writexl,
+    zip
 VignetteBuilder: 
     knitr
 Config/Needs/build: moodymudskipper/devtag
