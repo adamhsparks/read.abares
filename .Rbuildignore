@@ -1,5 +1,3 @@
-^.*\.Rproj$
-^\.Rproj\.user$
 ^LICENSE\.md$
 ^codemeta\.json$
 ^docs$
@@ -8,9 +6,12 @@
 ^doc$
 ^Meta$
 ^.covrignore$
-^flint$
 ^\.github$
 ^air\.toml$
+
+
+# flir files
+^flir$
 ^man/dot-get_agfd\.Rd$
 ^man/dot-get_clum\.Rd$
 ^man/dot-get_nlum\.Rd$
