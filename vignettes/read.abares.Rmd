@@ -1,7 +1,7 @@
 ---
 title: "Working with spatial data available through read.abares"
 author: "Adam H. Sparks"
-date: "2025-10-09"
+date: "2025-10-14"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Working with spatial data available through read.abares}
@@ -92,8 +92,6 @@ Here we can plot the total area cropped (ha) for all of Australia for the year 2
 
 ``` r
 library(ggplot2)
-#> Want to understand how all the pieces fit together? Read R for Data
-#> Science: https://r4ds.hadley.nz/
 
 ggplot(aagis_dat) +
   geom_sf(aes(fill = Value), colour = NA) +
@@ -134,7 +132,7 @@ Download and read the AGFD files as a list of {stars} objects returning only dat
 ``` r
 # A list of {stars} objects for the climate in year 2000
 star <- read_agfd_stars(2000)
-#> ⠙ 16 extracted | 3.3 GB (1.5 GB/s) | 2.2s[K⠹ 18 extracted | 3.6 GB (1.5 GB/s) | 2.4s[K⠸ 19 extracted | 3.9 GB (1.5 GB/s) | 2.6s[K⠼ 21 extracted | 4.2 GB (1.5 GB/s) | 2.8s[K⠴ 22 extracted | 4.5 GB (1.5 GB/s) | 3s[K⠦ 24 extracted | 4.8 GB (1.5 GB/s) | 3.2s[K⠧ 25 extracted | 5.1 GB (1.5 GB/s) | 3.4s[K⠇ 27 extracted | 5.4 GB (1.5 GB/s) | 3.6s[K⠏ 28 extracted | 5.7 GB (1.5 GB/s) | 3.8s[K⠋ 30 extracted | 6.1 GB (1.5 GB/s) | 4s[K⠙ 32 extracted | 6.4 GB (1.5 GB/s) | 4.2s[K[KWill return stars object with 612226 cells.
+#> Will return stars object with 612226 cells.
 #> No projection information found in nc file. 
 #>  Coordinate variable units found to be degrees, 
 #>  assuming WGS84 Lat/Lon.
@@ -193,7 +191,7 @@ head(tdnc[[1]])
 #> # A tibble: 1 × 2
 #>   access              source                                                    
 #>   <dttm>              <chr>                                                     
-#> 1 2025-10-09 16:36:00 /private/var/folders/r4/wwsd3hsn48j5gck6qv6npkpc0000gr/T/…
+#> 1 2025-10-14 12:57:44 /private/var/folders/r4/wwsd3hsn48j5gck6qv6npkpc0000gr/T/…
 #> 
 #> $axis
 #> # A tibble: 84 × 3
