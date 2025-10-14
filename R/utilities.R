@@ -46,36 +46,29 @@
 #'
 
 .unzip_file <- function(.x) {
-  # Validate input (return a CHARACTER path, not logical)
   if (
-    !is.character(.x) ||
-      length(.x) != 1L ||
-      is.na(.x) ||
-      !fs::file_exists(.x)
+    !is.character(.x) || length(.x) != 1L || is.na(.x) || !fs::file_exists(.x)
   ) {
     cli::cli_abort("Zip file does not exist", call = rlang::caller_env())
   }
 
   extract_dir <- fs::path_ext_remove(.x)
 
-  # Overwrite extraction directory
   if (fs::dir_exists(extract_dir)) {
     fs::dir_delete(extract_dir)
   }
   fs::dir_create(extract_dir)
 
-  # Use {zip} for consistent cross-platform unzipping
   tryCatch(
     {
       zip::unzip(zipfile = .x, exdir = extract_dir, junkpaths = FALSE)
-      invisible(as.character(extract_dir)) # ensure CHARACTER output
+      invisible(as.character(extract_dir)) # MUST return a CHARACTER path (not logical)
     },
     error = function(e) {
-      # Roll back partial extraction and propagate ORIGINAL message
       if (fs::dir_exists(extract_dir)) {
         fs::dir_delete(extract_dir)
       }
-      cli::cli_abort(e$message, call = rlang::caller_env())
+      cli::cli_abort(e$message, call = rlang::caller_env()) # rethrow original error text
     }
   )
 }
