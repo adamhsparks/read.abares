@@ -11,7 +11,7 @@
 #' Sciences, Canberra, June, CC BY 4.0, DOI: \doi{10.25814/2w2p-ph98}.
 #'
 #' @source
-#' <https://data.gov.au/data/dataset/catchment-scale-land-use-of-australia-and-commodities-update-december-2023/resource/b216cf90-f4f0-4d88-980f-af7d1ad746cb>
+#' \doi{10.25814/zfjz-jt75}
 #'
 #' @examplesIf interactive()
 #' clum_commodities <- read_clum_commodities()
@@ -33,12 +33,14 @@ read_clum_commodities <- function(x = NULL) {
       url = "https://data.gov.au/data/dataset/8af26be3-da5d-4255-b554-f615e950e46d/resource/b216cf90-f4f0-4d88-980f-af7d1ad746cb/download/clum_commodities_2023.zip",
       dest = x
     )
-    .unzip_file(x)
-    x <- fs::path(tempdir(), "clum_commodities/CLUM_Commodities_2023")
   }
   clum_commodities <- sf::st_read(
-    dsn = x,
-    quiet = !talktalk
+    dsn = paste0(
+      "/vsizip//",
+      x,
+      "/CLUM_Commodities_2023/CLUM_Commodities_2023.shp"
+    ),
+    quiet = talktalk
   )
   return(sf::st_make_valid(clum_commodities))
 }
