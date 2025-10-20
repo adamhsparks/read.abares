@@ -4,7 +4,10 @@
 \alias{.get_clum}
 \title{Get ABARES' Catchment Scale "Land Use of Australia" Data}
 \source{
-\url{https://10.25814/2w2p-ph98}.
+\itemize{
+\item Land Use: \doi{10.25814/2w2p-ph98},
+\item Commodities: \doi{10.25814/zfjz-jt75}.
+}
 }
 \usage{
 .get_clum(.data_set, .x)

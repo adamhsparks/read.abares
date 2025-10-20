@@ -4,7 +4,7 @@
 \alias{read_clum_commodities}
 \title{Read ABARES' Catchment Scale "Land Use of Australia" Commodities Shapefile}
 \source{
-\url{https://data.gov.au/data/dataset/catchment-scale-land-use-of-australia-and-commodities-update-december-2023/resource/b216cf90-f4f0-4d88-980f-af7d1ad746cb}
+\doi{10.25814/zfjz-jt75}
 }
 \usage{
 read_clum_commodities(x = NULL)

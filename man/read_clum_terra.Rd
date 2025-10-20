@@ -4,10 +4,7 @@
 \alias{read_clum_terra}
 \title{Read ABARES' Catchment Scale "Land Use of Australia" GeoTIFFs Using terra}
 \source{
-\describe{
-\item{Catchment Scale Land Use of Australia v2 GeoTiff}{\url{https://www.agriculture.gov.au/sites/default/files/documents/clum_50m_2023_v2.zip}}
-\item{Date and Scale of Mapping Shapefile GeoTIFF}{\url{https://data.gov.au/data/dataset/8af26be3-da5d-4255-b554-f615e950e46d/resource/98b1b93f-e5e1-4cc9-90bf-29641cfc4f11/download/scale_date_update.zip}}
-}
+\doi{/10.25814/2w2p-ph98}
 }
 \usage{
 read_clum_terra(data_set = "clum_50m_2023_v2", x = NULL, ...)
