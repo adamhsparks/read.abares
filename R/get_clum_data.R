@@ -17,7 +17,8 @@
 #' Sciences, Canberra, June, CC BY 4.0, DOI: \doi{10.25814/2w2p-ph98}.
 #'
 #' @source
-#' \url{https://10.25814/2w2p-ph98}.
+#' * Land Use: \doi{10.25814/2w2p-ph98},
+#' * Commodities: \doi{10.25814/zfjz-jt75}.
 #'
 #' @examples
 #' clum_update <- .get_clum(.data_set = "scale_date_update", .x = NULL)
