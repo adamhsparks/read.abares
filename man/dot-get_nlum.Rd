@@ -27,8 +27,7 @@ A list object of NLUM files.
 }
 \description{
 An internal function used by \code{\link[=read_nlum_terra]{read_nlum_terra()}} and \code{\link[=read_nlum_stars]{read_nlum_stars()}} that
-downloads national level land use data GeoTIFF file, unzips the download
-file and deletes unnecessary files that are included in the download.
+downloads national level land use data GeoTIFF file.
 }
 \examples{
 Y202021 <- .get_nlum(.data_set = "Y202021", .x = NULL)

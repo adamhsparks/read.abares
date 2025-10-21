@@ -1,8 +1,7 @@
 #' Get ABARES' National Scale "Land Use of Australia" Data
 #'
 #' An internal function used by [read_nlum_terra()] and [read_nlum_stars()] that
-#'  downloads national level land use data GeoTIFF file, unzips the download
-#'  file and deletes unnecessary files that are included in the download.
+#'  downloads national level land use data GeoTIFF file.
 #'
 #' @param .data_set A string value indicating the GeoTIFF desired for download.
 #' One of:
@@ -38,7 +37,8 @@
   .x <- fs::path(tempdir(), sprintf("%s.zip", ds))
 
   if (!fs::file_exists(.x)) {
-    ds <- switch(.data_set,
+    ds <- switch(
+      .data_set,
       "Y202021" = "NLUM_v7_250_ALUMV8_2020_21_alb_package_20241128",
       "Y201516" = "NLUM_v7_250_ALUMV8_2015_16_alb_package_20241128",
       "Y201011" = "NLUM_v7_250_ALUMV8_2010_11_alb_package_20241128",

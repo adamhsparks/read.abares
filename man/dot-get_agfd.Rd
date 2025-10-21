@@ -23,8 +23,7 @@ Gridded Farm Data".
 }
 \description{
 Used by the \code{read_agfd} family of functions, downloads the "Australian
-Gridded Farm Data" (\acronym{AGFD}) data and unzips the compressed files to
-NetCDF for importing.
+Gridded Farm Data" (\acronym{AGFD}) data.
 }
 \examples{
 # this will download the data and then return only 2020 and 2021 years' data

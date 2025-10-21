@@ -1,8 +1,7 @@
 #' Get ABARES' "Australian Gridded Farm Data" (AGFD)
 #'
 #' Used by the `read_agfd` family of functions, downloads the "Australian
-#'  Gridded Farm Data" (\acronym{AGFD}) data and unzips the compressed files to
-#'  NetCDF for importing.
+#'  Gridded Farm Data" (\acronym{AGFD}) data.
 #'
 #' @param .fixed_prices Download historical climate and prices or historical
 #'  climate and fixed prices as described in (Hughes *et al.* 2022).
