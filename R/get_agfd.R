@@ -63,13 +63,13 @@
 #' @dev
 .read_ncdf_from_zip <- function(zip_path) {
   # List files in the ZIP
-  zip_contents <- unzip(zip_path, list = TRUE)
+  zip_contents <- utils::unzip(zip_path, list = TRUE)
 
   # Filter NetCDF files by pattern
   nc_files <- zip_contents$Name[grepl("//.nc$", zip_contents$Name)]
 
   # Extract only NetCDF files
-  unzip(zip_path, files = nc_files, exdir = tempdir())
+  utils::unzip(zip_path, files = nc_files, exdir = tempdir())
 
   return(lapply(nc_files, function(f) {
     fs::path(tmpdir(), f)
