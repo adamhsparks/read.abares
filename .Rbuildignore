@@ -13,6 +13,7 @@
 # flir files
 ^flir$
 ^man/dot-get_agfd\.Rd$
+^man/dot-read_ncdf_from_zip\.Rd$
 ^man/dot-get_clum\.Rd$
 ^man/dot-get_nlum\.Rd$
 ^man/dot-get_topsoil_thickness\.Rd$
