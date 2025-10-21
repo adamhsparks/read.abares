@@ -9,7 +9,6 @@
 #'  \item{clum_50m_2023_v2}{Catchment Scale Land Use of Australia – Update December 2023 version 2}
 #'  \item{scale_date_update}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
 #' }.
-#' @param .x A user specified path to a local zip file containing the data.
 #'
 #' @references
 #' ABARES 2024, Catchment Scale Land Use of Australia – Update December 2023
@@ -55,11 +54,9 @@
         url = file_url,
         dest = .x
       )
-      .unzip_file(.x)
     }
   } else if (!is.null(.x)) {
     ds <- fs::path_file(fs::path_ext_remove(.x))
-    .unzip_file(.x)
   }
 
   return(fs::dir_ls(

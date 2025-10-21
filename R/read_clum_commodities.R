@@ -24,8 +24,6 @@
 #' @export
 
 read_clum_commodities <- function(x = NULL) {
-  talktalk <- !(getOption("read.abares.verbosity") %in% c("quiet", "minimal"))
-
   if (is.null(x)) {
     x <- fs::path(tempdir(), "clum_commodities.zip")
 
@@ -40,7 +38,7 @@ read_clum_commodities <- function(x = NULL) {
       x,
       "/CLUM_Commodities_2023/CLUM_Commodities_2023.shp"
     ),
-    quiet = talktalk
+    quiet = !(getOption("read.abares.verbosity") %in% c("quiet", "minimal"))
   )
   return(sf::st_make_valid(clum_commodities))
 }

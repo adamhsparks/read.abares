@@ -19,8 +19,6 @@ One of:
 \item{clum_50m_2023_v2}{Catchment Scale Land Use of Australia – Update December 2023 version 2}
 \item{scale_date_update}{Catchment Scale Land Use of Australia - Date and Scale of Mapping}
 }.}
-
-\item{.x}{A user specified path to a local zip file containing the data.}
 }
 \value{
 A list of files containing a spatial data file of or files related

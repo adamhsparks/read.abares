@@ -36,7 +36,6 @@ Imports:
     httr2,
     lubridate,
     purrr,
-    readtext,
     readxl,
     rlang,
     sf,

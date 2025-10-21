@@ -2,15 +2,12 @@
 #'
 #' Fetches topsoil thickness data and associated metadata from \acronym{ABARES}.
 #'
-#' @param .x A character string passed that provides a file path to the
-#'  local directory holding the unzipped files for topsoil thickness.
-#' @note
 #' A custom `print()` method is provided that will print the metadata associated
 #'  with these data. Examples are provided for interacting with the metadata
 #'  directly.
 #'
 #' @examples
-#' x <- .get_topsoil_thickness(.x = NULL)
+#' x <- .get_topsoil_thickness()
 #'
 #' x
 #'
@@ -29,37 +26,25 @@
 #'
 #' @dev
 
-.get_topsoil_thickness <- function(.x = NULL) {
-  if (is.null(.x)) {
-    .x <- fs::path(tempdir(), "staiar9cl__05911a01eg_geo___.zip")
+.get_topsoil_thickness <- function() {
+  .x <- fs::path(tempdir(), "staiar9cl__05911a01eg_geo___.zip")
+  .y <- "staiar9cl__05911a01eg_geo___/ANZCW1202000149.txt"
+  if (!fs::file_exists(.x)) {
     .retry_download(
       "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
       dest = .x
     )
   }
 
-  .unzip_file(.x)
-  root <- fs::path_dir(.x)
+ con <- unz(.x, .y)
+  metadata <- paste(
+    readLines(con),
+    collapse = "\n")
 
-  # Locate metadata file anywhere under root
-  md_idx <- fs::dir_ls(
-    root,
-    recurse = TRUE,
-    type = "file",
-    regexp = "(^|/)ANZCW1202000149\\.txt$"
+  x <- terra::rast(
+    paste0("/vsizip//", .x, "/", .y)
   )
-  metadata <- readtext::readtext(md_idx[[1L]])
 
-  # Locate raster file; accept thpk_1 or thpk_1.tif
-  ras_candidates <- fs::dir_ls(
-    root,
-    recurse = TRUE,
-    type = "file",
-    regexp = "(^|/)thpk_1"
-  )
-  rast_path <- ras_candidates[[1L]]
-
-  x <- terra::rast(rast_path)
   x <- terra::init(x, x[]) # remove RAT legend if present
 
   out <- list(metadata = metadata$text, data = x)

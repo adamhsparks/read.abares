@@ -7,11 +7,7 @@
 \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
 }
 \usage{
-.get_topsoil_thickness(.x = NULL)
-}
-\arguments{
-\item{.x}{A character string passed that provides a file path to the
-local directory holding the unzipped files for topsoil thickness.}
+.get_topsoil_thickness()
 }
 \value{
 A \code{read.abares.topsoil.thickness} object, which is a named \code{list()}
@@ -20,13 +16,13 @@ with the \code{\link[terra:rast]{terra::rast()}} object of the data and text fil
 \description{
 Fetches topsoil thickness data and associated metadata from \acronym{ABARES}.
 }
-\note{
+\details{
 A custom \code{print()} method is provided that will print the metadata associated
 with these data. Examples are provided for interacting with the metadata
 directly.
 }
 \examples{
-x <- .get_topsoil_thickness(.x = NULL)
+x <- .get_topsoil_thickness()
 
 x
 

@@ -18,7 +18,6 @@
 #'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 #'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 #' }.
-#' @param .x A user specified path to a local zip file containing the data.
 #'
 #' @references
 #' ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
@@ -35,10 +34,11 @@
 #' @autoglobal
 #' @dev
 
-.get_nlum <- function(.data_set, .x) {
-  if (is.null(.x)) {
-    ds <- switch(
-      .data_set,
+.get_nlum <- function(.data_set) {
+  .x <- fs::path(tempdir(), sprintf("%s.zip", ds))
+
+  if (!fs::file_exists(.x)) {
+    ds <- switch(.data_set,
       "Y202021" = "NLUM_v7_250_ALUMV8_2020_21_alb_package_20241128",
       "Y201516" = "NLUM_v7_250_ALUMV8_2015_16_alb_package_20241128",
       "Y201011" = "NLUM_v7_250_ALUMV8_2010_11_alb_package_20241128",
@@ -50,22 +50,16 @@
       "P201516" = "NLUM_v7_250_AgProbabilitySurfaces_2015_16_geo_package_20241128",
       "P201011" = "NLUM_v7_250_AgProbabilitySurfaces_2010_11_geo_package_20241128",
     )
-    .x <- fs::path(tempdir(), sprintf("%s.zip", ds))
 
     file_url <-
       sprintf(
         "https://www.agriculture.gov.au/sites/default/files/documents/%s.zip",
         ds
       )
-    if (!fs::file_exists(.x)) {
-      .retry_download(
-        url = file_url,
-        dest = .x
-      )
-      .unzip_file(.x)
-    }
-  } else {
-    ds <- fs::path_file(fs::path_ext_remove(.x))
+    .retry_download(
+      url = file_url,
+      dest = .x
+    )
   }
 
   return(fs::dir_ls(
