@@ -58,7 +58,7 @@
   } else if (!is.null(.x)) {
     ds <- fs::path_file(fs::path_ext_remove(.x))
   }
-
+  #TODO: update the CLUM fns to read tiffs directly from zip
   return(fs::dir_ls(
     fs::path(fs::path_dir(.x), .data_set),
     recurse = TRUE,
