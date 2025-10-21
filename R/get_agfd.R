@@ -44,11 +44,7 @@
     )
   }
 
-  agfd_nc <- fs::dir_ls(
-    fs::path(fs::path_dir(.x), ds),
-    full_names = TRUE,
-    recurse = TRUE
-  )
+  agfd_nc <- .read_ncdf_from_zip(zip_path = .x)
 
   yyyy <- sprintf("c%s", as.character(.yyyy))
   nm <- names(agfd_nc)
@@ -58,4 +54,24 @@
   agfd_nc <- agfd_nc[grepl(paste(yyyy, collapse = "|"), nm)]
 
   return(agfd_nc)
+}
+
+#' Unzip AGFD NetCDF files from ZIP
+#'
+#' @param zip_path Path to the ZIP file containing NetCDF files.
+#' @returns A list of paths to the extracted NetCDF files.
+#' @dev
+.read_ncdf_from_zip <- function(zip_path) {
+  # List files in the ZIP
+  zip_contents <- unzip(zip_path, list = TRUE)
+
+  # Filter NetCDF files by pattern
+  nc_files <- zip_contents$Name[grepl("//.nc$", zip_contents$Name)]
+
+  # Extract only NetCDF files
+  unzip(zip_path, files = nc_files, exdir = tempdir())
+
+  return(lapply(nc_files, function(f) {
+    fs::path(tmpdir(), f)
+  }))
 }
