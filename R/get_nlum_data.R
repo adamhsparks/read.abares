@@ -28,7 +28,7 @@
 #'
 #' Y202021
 #'
-#' @returns A list object of NLUM files.
+#' @returns An [fs::path_dir()] object pointed to the downloaded zip file.
 #'
 #' @autoglobal
 #' @dev

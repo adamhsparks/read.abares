@@ -23,7 +23,7 @@ One of:
 }.}
 }
 \value{
-A list object of NLUM files.
+An \code{\link[fs:path_file]{fs::path_dir()}} object pointed to the downloaded zip file.
 }
 \description{
 An internal function used by \code{\link[=read_nlum_terra]{read_nlum_terra()}} and \code{\link[=read_nlum_stars]{read_nlum_stars()}} that
