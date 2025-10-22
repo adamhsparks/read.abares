@@ -83,5 +83,5 @@ read_clum_stars <- function(
     .x = x
   )
 
-  return(stars::read_stars(x, ...))
+  return(stars::read_stars(paste0("/vsizip//", x), ...))
 }

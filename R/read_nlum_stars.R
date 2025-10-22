@@ -118,9 +118,7 @@ read_nlum_stars <- function(
         "P202021"
       )
     )
-    nlum <- .get_nlum(.data_set = data_set, .x = x)
-  } else {
-    nlum <- .get_nlum(.x = x)
+    x <- .get_nlum(.data_set = data_set, .x = x)
   }
-  return(stars::read_stars(grep("tif$", nlum, value = TRUE), ...))
+  return(stars::read_stars(paste0("/vsizip//", nlum), ...))
 }
