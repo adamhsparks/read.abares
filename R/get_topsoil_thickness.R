@@ -36,10 +36,11 @@
     )
   }
 
- con <- unz(.x, .y)
+  con <- unz(.x, .y)
   metadata <- paste(
     readLines(con),
-    collapse = "\n")
+    collapse = "\n"
+  )
 
   x <- terra::rast(
     paste0("/vsizip//", .x, "/", .y)
