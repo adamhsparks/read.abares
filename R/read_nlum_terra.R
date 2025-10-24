@@ -92,7 +92,11 @@ read_nlum_terra <- function(
         "P202021"
       )
     )
-    x <- .get_nlum(.data_set = data_set, .x = x)
+    x <- .get_nlum(.data_set = data_set)
   }
-  return(terra::rast(paste0("/vsizip//", nlum), ...))
+
+  return(terra::rast(
+    sprintf("/vsizip//%s/%s.zip/%s", tempdir(), data_set, x),
+    ...
+  ))
 }

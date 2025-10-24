@@ -118,7 +118,10 @@ read_nlum_stars <- function(
         "P202021"
       )
     )
-    x <- .get_nlum(.data_set = data_set, .x = x)
+    x <- .get_nlum(.data_set = data_set)
   }
-  return(stars::read_stars(paste0("/vsizip//", nlum), ...))
+  return(stars::read_stars(
+    sprintf("/vsizip//%s/%s.zip/%s", tempdir(), data_set, x),
+    ...
+  ))
 }

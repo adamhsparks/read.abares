@@ -28,16 +28,17 @@
 #'
 #' Y202021
 #'
-#' @returns An [fs::path_dir()] object pointed to the downloaded zip file.
+#' @returns A character string value of the file name of the GeoTIFF within the
+#'  downloaded zip file.
 #'
 #' @autoglobal
 #' @dev
 
 .get_nlum <- function(.data_set) {
-  .x <- fs::path(tempdir(), sprintf("%s.zip", ds))
+  .x <- fs::path(tempdir(), sprintf("%s.zip", .data_set))
 
   if (!fs::file_exists(.x)) {
-    ds <- switch(
+    file_url <- switch(
       .data_set,
       "Y202021" = "NLUM_v7_250_ALUMV8_2020_21_alb_package_20241128",
       "Y201516" = "NLUM_v7_250_ALUMV8_2015_16_alb_package_20241128",
@@ -54,17 +55,15 @@
     file_url <-
       sprintf(
         "https://www.agriculture.gov.au/sites/default/files/documents/%s.zip",
-        ds
+        file_url
       )
     .retry_download(
       url = file_url,
       dest = .x
     )
   }
-
-  return(fs::dir_ls(
-    fs::path(fs::path_dir(.x), ds)
-  ))
+  zip_list <- utils::unzip(.x, list = TRUE)$Name
+  return(grep(".tif$", zip_list, value = TRUE))
 }
 
 
