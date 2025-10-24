@@ -8,7 +8,5 @@ utils::globalVariables(c(
   "lat", # <read_agfd_dt>
   "lon", # <read_agfd_dt>
   "Month_issued", # <read_historical_forecast_database>
-  "nlum", # <read_nlum_stars>
-  "nlum", # <read_nlum_terra>
   NULL
 ))
