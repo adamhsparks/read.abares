@@ -20,7 +20,7 @@ test_that(".get_agfd returns files for requested years (fixed prices)", {
       res <- .get_agfd(.fixed_prices = TRUE, .yyyy = 2020:2021)
       res_paths <- as.character(unlist(res))
       expect_true(all(grepl("c2020|c2021", basename(res_paths))))
-      expect_false(any(grepl("c2019", basename(res_paths))))
+      expect_false(any(grepl("c2019", basename(res_paths), fixed = TRUE)))
       expect_true(all(fs::file_exists(res_paths)))
     }
   )
@@ -45,7 +45,7 @@ test_that(".get_agfd returns files for requested years (historical prices)", {
       res <- .get_agfd(.fixed_prices = FALSE, .yyyy = 1995:1996)
       res_paths <- as.character(unlist(res))
       expect_true(all(grepl("c1995|c1996", basename(res_paths))))
-      expect_false(any(grepl("c2010", basename(res_paths))))
+      expect_false(any(grepl("c2010", basename(res_paths), fixed = TRUE)))
       expect_true(all(fs::file_exists(res_paths)))
     }
   )
