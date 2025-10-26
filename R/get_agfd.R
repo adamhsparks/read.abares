@@ -24,12 +24,17 @@
 #' @dev
 
 .get_agfd <- function(.fixed_prices, .yyyy) {
-  ds <- data.table::fifelse(
-    .fixed_prices,
-    "historical_climate_prices_fixed",
-    "historical_climate_prices"
+  .x <- fs::path(
+    tempdir(),
+    sprintf(
+      "%s.zip",
+      data.table::fifelse(
+        .fixed_prices,
+        "historical_climate_prices_fixed",
+        "historical_climate_prices"
+      )
+    )
   )
-  .x <- fs::path(tempdir(), sprintf("%s.zip", ds))
 
   if (!fs::file_exists(.x)) {
     file_url <- data.table::fifelse(
