@@ -89,22 +89,28 @@ read_agfd_stars <- function(
     "farmland_per_cell"
   )
   s2 <- NULL
-  # read one file for the message
-  s1 <- list(stars::read_ncdf(
-    files[1L],
-    var = var
-  ))
+  q_read_ncdf <- purrr::quietly(stars::read_ncdf)
+  n_files <- length(files)
+  if (getOption("read.abares.verbosity" == "verbose")) {
+    # read one file for the message
+    s1 <- list(stars::read_ncdf(
+      files[1L],
+      var = var
+    ))
 
-  if (length(files) > 1L) {
-    # then suppress the rest of the messages
-    q_read_ncdf <- purrr::quietly(stars::read_ncdf)
-    s2 <- purrr::modify_depth(
-      purrr::map(files[2L:length(files)], q_read_ncdf, var = var),
-      1L,
-      "result"
-    )
+    if (length(files) > 1L) {
+      # then suppress the rest of the messages
+      s2 <- purrr::modify_depth(
+        purrr::map(files[seq_along(2L:n_files)], q_read_ncdf, var = var),
+        1L,
+        "result"
+      )
 
-    s1 <- append(s1, s2)
+      s1 <- append(s1, s2)
+    }
+  } else {
+    #quietly read all files
+    list(q_read_ncdf, files, var = var)
   }
 
   names(s1) <- fs::path_file(files)
