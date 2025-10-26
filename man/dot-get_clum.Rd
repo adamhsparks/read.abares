@@ -10,7 +10,7 @@
 }
 }
 \usage{
-.get_clum(.data_set, .x)
+.get_clum(.data_set)
 }
 \arguments{
 \item{.data_set}{A string value indicating the data desired for download.

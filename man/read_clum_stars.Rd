@@ -4,7 +4,7 @@
 \alias{read_clum_stars}
 \title{Read ABARES' Catchment Scale "Land Use of Australia" Data Using Stars}
 \source{
-\doi{10.25814/2w2p-ph98}
+\doi{10.25814/2w2p-ph98}.
 }
 \usage{
 read_clum_stars(data_set = "clum_50m_2023_v2", x = NULL, ...)
@@ -78,7 +78,7 @@ plot(clum_stars)
 \references{
 ABARES 2024, Catchment Scale Land Use of Australia – Update December 2023
 version 2, Australian Bureau of Agricultural and Resource Economics and
-Sciences, Canberra, June, CC BY 4.0, DOI: \doi{10.25814/2w2p-ph98}
+Sciences, Canberra, June, CC BY 4.0, DOI: \doi{10.25814/2w2p-ph98}.
 }
 \seealso{
 Other clum: 
