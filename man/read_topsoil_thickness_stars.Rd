@@ -20,8 +20,8 @@ downloaded in the active \R session.}
 \code{att} if you wished to set the active category.}
 }
 \value{
-A \link{stars} object of the "Soil Thickness for Australian Areas of
-Intensive Agriculture of Layer 1".
+A \CRANpkg{stars} object of the "Soil Thickness for Australian Areas
+of Intensive Agriculture of Layer 1".
 }
 \description{
 Read "Soil Thickness for Australian Areas of Intensive Agriculture of Layer

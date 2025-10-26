@@ -15,8 +15,8 @@
 #' @source
 #' <https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip>.
 #'
-#' @returns A [stars] object of the "Soil Thickness for Australian Areas of
-#'  Intensive Agriculture of Layer 1".
+#' @returns A \CRANpkg{stars} object of the "Soil Thickness for Australian Areas
+#'  of Intensive Agriculture of Layer 1".
 #'
 #' @examplesIf interactive()
 #' st_stars <- read_topsoil_thickness_stars()
