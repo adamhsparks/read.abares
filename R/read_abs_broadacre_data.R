@@ -54,7 +54,8 @@ read_abs_broadacre_data <- function(
     if (year == "latest") {
       year <- available[[1L]]
     }
-    base_url <- "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops/"
+    base_url <-
+      "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops/"
 
     x <- fs::path(tempdir(), sprintf("%s_crops_file", crops))
     .retry_download(
