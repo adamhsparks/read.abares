@@ -23,7 +23,8 @@
 #'
 #' broadacre_data
 #'
-#' @references <https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops>.
+#' @references
+#' <https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops>.
 #' @returns A [data.table::data.table()] object of the requested data.
 #' @export
 #' @family ABS

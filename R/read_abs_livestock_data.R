@@ -20,7 +20,8 @@
 #'
 #' livestock_data
 #'
-#' @references <https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-livestock>.
+#' @references
+#' <https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-livestock>.
 #' @returns A [data.table::data.table()] object of the requested data.
 #' @export
 #' @family ABS

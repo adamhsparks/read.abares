@@ -12,8 +12,10 @@
 #'  `key`.
 #' @autoglobal
 #' @family Estimates
-#' @references <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
-#' @source <https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv>
+#' @references
+#' <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>.
+#' @source
+#' <https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv>.
 #' @export
 #' @examplesIf interactive()
 #'
