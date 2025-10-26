@@ -30,38 +30,31 @@
 #' @autoglobal
 #' @dev
 
-.get_clum <- function(.data_set, .x) {
-  if (is.null(.x)) {
-    .x <- fs::path(tempdir(), sprintf("%s.zip", .data_set))
+.get_clum <- function(.data_set) {
+  .x <- fs::path(tempdir(), sprintf("%s.zip", .data_set))
 
-    if (!fs::file_exists(.x)) {
-      file_url <-
-        "https://data.gov.au/data/dataset/8af26be3-da5d-4255-b554-f615e950e46d/resource/"
+  if (!fs::file_exists(.x)) {
+    file_url <-
+      "https://data.gov.au/data/dataset/8af26be3-da5d-4255-b554-f615e950e46d/resource/"
 
-      file_url <- switch(
-        .data_set,
-        "clum_50m_2023_v2" = sprintf(
-          "%s6deab695-3661-4135-abf7-19f25806cfd7/download/clum_50m_2023_v2.zip",
-          file_url
-        ),
-        "scale_date_update" = sprintf(
-          "%s98b1b93f-e5e1-4cc9-90bf-29641cfc4f11/download/scale_date_update.zip",
-          file_url
-        )
+    file_url <- switch(
+      .data_set,
+      "clum_50m_2023_v2" = sprintf(
+        "%s6deab695-3661-4135-abf7-19f25806cfd7/download/clum_50m_2023_v2.zip",
+        file_url
+      ),
+      "scale_date_update" = sprintf(
+        "%s98b1b93f-e5e1-4cc9-90bf-29641cfc4f11/download/scale_date_update.zip",
+        file_url
       )
+    )
 
-      .retry_download(
-        url = file_url,
-        dest = .x
-      )
-    }
-  } else if (!is.null(.x)) {
-    ds <- fs::path_file(fs::path_ext_remove(.x))
+    .retry_download(
+      url = file_url,
+      dest = .x
+    )
   }
-  #TODO: update the CLUM fns to read tiffs directly from zip
-  return(fs::dir_ls(
-    fs::path(fs::path_dir(.x), .data_set),
-    recurse = TRUE,
-    glob = "*.tif"
-  ))
+
+  zip_list <- utils::unzip(.x, list = TRUE)$Name
+  return(grep(".tif$", zip_list, value = TRUE))
 }

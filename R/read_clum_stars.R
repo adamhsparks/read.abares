@@ -46,10 +46,10 @@
 #' @references
 #' ABARES 2024, Catchment Scale Land Use of Australia – Update December 2023
 #'  version 2, Australian Bureau of Agricultural and Resource Economics and
-#'  Sciences, Canberra, June, CC BY 4.0, DOI: \doi{10.25814/2w2p-ph98}
+#'  Sciences, Canberra, June, CC BY 4.0, DOI: \doi{10.25814/2w2p-ph98}.
 #'
 #' @source
-#' \doi{10.25814/2w2p-ph98}
+#' \doi{10.25814/2w2p-ph98}.
 #'
 #' @examplesIf interactive()
 #'
@@ -77,11 +77,14 @@ read_clum_stars <- function(
     data_set,
     c("clum_50m_2023_v2", "scale_date_update")
   )
+  if (is.null(x)) {
+    x <- .get_clum(
+      .data_set = data_set
+    )
+  }
 
-  x <- .get_clum(
-    .data_set = data_set,
-    .x = x
-  )
-
-  return(stars::read_stars(paste0("/vsizip//", x), ...))
+  return(stars::read_stars(
+    sprintf("/vsizip//%s/%s.zip/%s", tempdir(), data_set, x),
+    ...
+  ))
 }

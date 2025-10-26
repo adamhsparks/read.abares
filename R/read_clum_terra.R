@@ -77,9 +77,12 @@ read_clum_terra <- function(
     c("clum_50m_2023_v2", "scale_date_update")
   )
 
-  x <- .get_clum(.data_set = data_set, .x = x)
+  x <- .get_clum(.data_set = data_set)
 
-  r <- terra::rast(paste0("/vsizip//", x), ...)
+  r <- terra::rast(
+    sprintf("/vsizip//%s/%s.zip/%s", tempdir(), data_set, x),
+    ...
+  )
 
   if (data_set == "clum_50m_2023_v2") {
     ct <- .create_clum_50m_coltab()
