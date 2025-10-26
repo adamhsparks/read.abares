@@ -27,30 +27,26 @@
 #' <https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip>.
 #'
 #' @dev
-
 .get_topsoil_thickness <- function() {
-  .x <- fs::path(tempdir(), "staiar9cl__05911a01eg_geo___.zip")
-  .y <- "staiar9cl__05911a01eg_geo___/ANZCW1202000149.txt"
-  if (!fs::file_exists(.x)) {
+  .zip <- fs::path(tempdir(), "staiar9cl__05911a01eg_geo____.zip")
+  .meta <- "staiar9cl__05911a01eg_geo____/ANZCW1202000149.txt"
+  .raster <- "staiar9cl__05911a01eg_geo____/thpk_1"
+
+  if (!fs::file_exists(.zip)) {
     .retry_download(
-      "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
-      dest = .x
+      "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo____.zip",
+      dest = .zip
     )
   }
 
-  con <- unz(.x, .y)
-  metadata <- paste(
-    readLines(con),
-    collapse = "\n"
-  )
+  con <- unz(.zip, .meta)
+  on.exit(close(con), add = TRUE)
+  metadata <- paste(readLines(con), collapse = "\n")
 
-  x <- terra::rast(
-    paste0("/vsizip//", .x, "/", .y)
-  )
-
+  x <- terra::rast(paste0("/vsizip//", .zip, "/", .raster))
   x <- terra::init(x, x[]) # remove RAT legend if present
 
-  out <- list(metadata = metadata$text, data = x)
+  out <- list(metadata = metadata, data = x)
   class(out) <- union("read.abares.topsoil.thickness", class(out))
-  return(out)
+  out
 }
