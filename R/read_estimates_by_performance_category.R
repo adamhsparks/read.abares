@@ -31,7 +31,10 @@ read_estimates_by_performance_category <- function(x = NULL) {
     )
   }
 
-  x <- data.table::fread(x)
+  x <- data.table::fread(
+    x,
+    verbose = getOption("read.abares.verbosity") == "verbose"
+  )
   return(x[])
 }
 

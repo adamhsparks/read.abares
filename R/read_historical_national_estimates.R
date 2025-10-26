@@ -33,7 +33,10 @@ read_historical_national_estimates <- function(x = NULL) {
       dest = x
     )
   }
-  x <- data.table::fread(x)
+  x <- data.table::fread(
+    x,
+    verbose = getOption("read.abares.verbosity") == "verbose"
+  )
   data.table::setcolorder(
     x,
     neworder = c("Variable", "Year", "Industry", "Value", "RSE")

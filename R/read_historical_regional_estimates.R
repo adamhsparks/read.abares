@@ -35,7 +35,10 @@ read_historical_regional_estimates <- read_hist_reg_est <- function(
     )
   }
 
-  x <- data.table::fread(x)
+  x <- data.table::fread(
+    x,
+    verbose = getOption("read.abares.verbosity") == "verbose"
+  )
   data.table::setnames(
     x,
     old = c("Variable", "Year", "ABARES region", "Value", "RSE"),

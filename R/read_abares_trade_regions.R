@@ -28,7 +28,11 @@ read_abares_trade_regions <- function(x = NULL) {
       dest = x
     )
   }
-  abares_trade_regions <- data.table::fread(x, fill = TRUE)
+  abares_trade_regions <- data.table::fread(
+    x,
+    fill = TRUE,
+    verbose = getOption("read.abares.verbosity") == "verbose"
+  )
 
   return(abares_trade_regions[])
 }

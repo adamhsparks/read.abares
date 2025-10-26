@@ -30,7 +30,10 @@ read_abares_trade <- function(x = NULL) {
       dest = x
     )
   }
-  abares_trade <- data.table::fread(x)
+  abares_trade <- data.table::fread(
+    x,
+    verbose = getOption("read.abares.verbosity") == "verbose"
+  )
   data.table::setnames(
     abares_trade,
     old = c(

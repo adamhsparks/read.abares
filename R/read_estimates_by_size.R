@@ -33,7 +33,10 @@ read_estimates_by_size <- read_est_by_size <- function(x = NULL) {
       dest = x
     )
   }
-  x <- data.table::fread(x)
+  x <- data.table::fread(
+    x,
+    verbose = getOption("read.abares.verbosity") == "verbose"
+  )
   data.table::setcolorder(
     x,
     neworder = c("Variable", "Year", "Size", "Industry", "Value", "RSE")
