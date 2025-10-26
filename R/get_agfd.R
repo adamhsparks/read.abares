@@ -24,15 +24,14 @@
 #' @dev
 
 .get_agfd <- function(.fixed_prices, .yyyy) {
+  ds <- data.table::fifelse(
+    .fixed_prices,
+    "historical_climate_prices_fixed",
+    "historical_climate_prices"
+  )
   .x <- fs::path(tempdir(), sprintf("%s.zip", ds))
 
   if (!fs::file_exists(.x)) {
-    ds <- data.table::fifelse(
-      .fixed_prices,
-      "historical_climate_prices_fixed",
-      "historical_climate_prices"
-    )
-
     file_url <- data.table::fifelse(
       .fixed_prices,
       "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/3",
