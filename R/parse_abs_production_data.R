@@ -8,6 +8,13 @@
 
 parse_abs_production_data <- function(filename) {
   sheet_names <- readxl::excel_sheets(filename)
+
+  withr::local_options(
+    list(
+      readxl.show_progress = getOption("read.abares.verbosity") == "verbose"
+    )
+  )
+
   x <- lapply(sheet_names, function(X) {
     data.table::as.data.table(readxl::read_excel(
       filename,

@@ -85,6 +85,7 @@ read_clum_stars <- function(
 
   return(stars::read_stars(
     sprintf("/vsizip//%s/%s.zip/%s", tempdir(), data_set, x),
+    quiet = (getOption("read.abares.verbosity") %in% c("quiet", "minimal")),
     ...
   ))
 }
