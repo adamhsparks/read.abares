@@ -36,11 +36,15 @@ read_agfd_stars <- function(
       "{.arg yyyy} must be between 1991 and 2023 inclusive"
     )
   }
-  files <- .get_agfd(
-    .fixed_prices = fixed_prices,
-    .yyyy = yyyy,
-    .x = x
-  )
+  if (x == NULL) {
+    files <- .get_agfd(
+      .fixed_prices = fixed_prices,
+      .yyyy = yyyy,
+      .x = x
+    )
+  } else {
+    files <- .read_ncdf_from_zip(zip_path = x)
+  }
   var <- c(
     "farmno",
     "R_total_hat_ha",

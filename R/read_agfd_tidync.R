@@ -39,11 +39,15 @@ read_agfd_tidync <- function(
       "{.arg yyyy} must be between 1991 and 2023 inclusive"
     )
   }
-  files <- .get_agfd(
-    .fixed_prices = fixed_prices,
-    .yyyy = yyyy,
-    .x = x
-  )
+  if (x == NULL) {
+    files <- .get_agfd(
+      .fixed_prices = fixed_prices,
+      .yyyy = yyyy,
+      .x = x
+    )
+  } else {
+    files <- .read_ncdf_from_zip(zip_path = x)
+  }
   tnc <- purrr::map(files, tidync::tidync)
   names(tnc) <- fs::path_file(files)
   return(tnc)

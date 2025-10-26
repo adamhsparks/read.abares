@@ -194,11 +194,15 @@ read_agfd_dt <- function(
       "{.arg yyyy} must be between 1991 and 2023 inclusive"
     )
   }
-  files <- .get_agfd(
-    .fixed_prices = fixed_prices,
-    .yyyy = yyyy,
-    .x = x
-  )
+  if (x == NULL) {
+    files <- .get_agfd(
+      .fixed_prices = fixed_prices,
+      .yyyy = yyyy,
+      .x = x
+    )
+  } else {
+    files <- .read_ncdf_from_zip(zip_path = x)
+  }
 
   if (length(files) == 0L) {
     # Consistent, explicit empty schema
