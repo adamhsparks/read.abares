@@ -5,7 +5,7 @@
 \alias{read_est_by_size}
 \title{Read ABARES' "Estimates by Size"}
 \source{
-\url{https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv}
+\url{https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv}.
 }
 \usage{
 read_estimates_by_size(x = NULL)
@@ -40,7 +40,7 @@ read_est_by_size()
 \dontshow{\}) # examplesIf}
 }
 \references{
-\url{https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download}
+\url{https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download}.
 }
 \seealso{
 Other Estimates: 
