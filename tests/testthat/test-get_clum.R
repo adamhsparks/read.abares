@@ -1,98 +1,81 @@
-test_that(".get_clum(.x = NULL) builds the dataset folder under tempdir() and returns .tif file listing", {
+test_that(".get_clum() downloads and returns .tif file listing", {
   skip_if_offline()
-
   for (ds_key in c("clum_50m_2023_v2", "scale_date_update")) {
     base_tmp <- tempdir()
     zip_path <- fs::path(base_tmp, sprintf("%s.zip", ds_key))
     ds_dir <- fs::path(base_tmp, ds_key)
-
     fs::dir_create(ds_dir)
-    withr::defer({
-      if (fs::dir_exists(ds_dir)) {
-        fs::dir_delete(ds_dir)
-      }
-      if (fs::file_exists(zip_path)) fs::file_delete(zip_path)
-    })
 
+    # Create dummy .tif files
     f1 <- fs::path(ds_dir, "catchment1.tif")
     f2 <- fs::path(ds_dir, "catchment2.tif")
     writeBin(raw(0L), f1)
     writeBin(raw(0L), f2)
 
-    retry_mock <- function(url, dest, dataset_id, show_progress = TRUE, ...) {
-      fs::file_create(dest)
+    # Create a valid ZIP file with the .tif files
+    old_wd <- setwd(base_tmp)
+    on.exit(setwd(old_wd), add = TRUE)
+    utils::zip(
+      zipfile = zip_path,
+      files = fs::path_rel(c(f1, f2), start = base_tmp)
+    )
+
+    retry_mock <- function(url, dest, ...) {
+      fs::file_copy(zip_path, dest, overwrite = TRUE)
       invisible(dest)
     }
-    unzip_mock <- function(x) invisible(x)
 
     with_mocked_bindings(
       .retry_download = retry_mock,
-      .unzip_file = unzip_mock,
       {
-        out <- .get_clum(.data_set = ds_key, .x = NULL)
-
+        out <- .get_clum(.data_set = ds_key)
+        out_paths <- fs::path(base_tmp, out)
         expect_type(out, "character")
-        expect_true(all(fs::file_exists(out)))
-        expect_setequal(basename(out), c("catchment1.tif", "catchment2.tif"))
-        expect_true(all(dirname(out) == ds_dir))
+        expect_true(all(fs::file_exists(out_paths)))
+        expect_setequal(
+          basename(out_paths),
+          c("catchment1.tif", "catchment2.tif")
+        )
       }
     )
   }
 })
 
-test_that(".get_clum with explicit local zip path (.x) returns .tif listing under sibling folder", {
+test_that(".get_clum returns empty character if no .tif files in archive", {
   skip_if_offline()
-
-  root <- withr::local_tempdir()
-  zip_path <- fs::path(root, "my_clum.zip")
-  ds_key <- "clum_50m_2023_v2"
-  ds_dir <- fs::path(root, ds_key) # <-- fix: directory must match .data_set
-
+  ds_key <- "clum_empty"
+  base_tmp <- tempdir()
+  zip_path <- fs::path(base_tmp, sprintf("%s.zip", ds_key))
+  ds_dir <- fs::path(base_tmp, ds_key)
   fs::dir_create(ds_dir)
-  f1 <- fs::path(ds_dir, "x1.tif")
-  f2 <- fs::path(ds_dir, "x2.tif")
-  writeBin(raw(0L), f1)
-  writeBin(raw(0L), f2)
 
-  unzip_mock <- function(x) invisible(x) # Do nothing
+  # Create a valid ZIP file with no .tif files
+  dummy_file <- fs::path(ds_dir, "readme.txt")
+  writeLines("No tif files here", dummy_file)
 
-  with_mocked_bindings(
-    .unzip_file = unzip_mock,
-    {
-      out <- .get_clum(.data_set = ds_key, .x = zip_path)
-
-      expect_type(out, "character")
-      expect_true(all(fs::file_exists(out)))
-      expect_setequal(basename(out), c("x1.tif", "x2.tif"))
-      expect_true(all(dirname(out) == ds_dir))
-    }
+  old_wd <- setwd(base_tmp)
+  on.exit(setwd(old_wd), add = TRUE)
+  utils::zip(
+    zipfile = zip_path,
+    files = fs::path_rel(dummy_file, start = base_tmp)
   )
-})
 
-
-test_that(".get_clum returns empty character if no .tif files in folder", {
-  skip_if_offline()
-
-  root <- withr::local_tempdir()
-  zip_path <- fs::path(root, "clum_empty.zip")
-  ds_dir <- fs::path(root, "clum_empty")
-
-  fs::dir_create(ds_dir)
-  # no .tif files
-
-  unzip_mock <- function(x) invisible(x) # Do nothing
+  retry_mock <- function(url, dest, ...) {
+    fs::file_copy(zip_path, dest, overwrite = TRUE)
+    invisible(dest)
+  }
 
   with_mocked_bindings(
-    .unzip_file = unzip_mock,
+    .retry_download = retry_mock,
     {
-      out <- .get_clum(.data_set = "clum_empty", .x = zip_path)
+      out <- .get_clum(.data_set = ds_key)
       expect_type(out, "character")
       expect_length(out, 0L)
     }
   )
 })
 
-test_that(".get_clum errors for unknown dataset key when .x is NULL", {
+test_that(".get_clum errors for unknown dataset key", {
   skip_if_offline()
-  expect_error(.get_clum(.data_set = "not_a_key", .x = NULL))
+  expect_error(.get_clum(.data_set = "not_a_key"))
 })
