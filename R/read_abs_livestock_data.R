@@ -35,7 +35,12 @@ read_abs_livestock_data <- function(
   # yet. This should be updated as new releases are made available.
   #
   if (is.null(x)) {
-    if (length(data_set) != 1L || !is.character(data_set) || is.na(data_set)) {
+    if (
+      length(data_set) != 1L ||
+        !is.character(data_set) ||
+        is.na(data_set) ||
+        is.null(data_set)
+    ) {
       cli::cli_abort("{.var data_set} must be a single character string value.")
     }
     # see parse_abs_production_data.R for .find_years()
