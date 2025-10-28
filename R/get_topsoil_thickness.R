@@ -10,7 +10,7 @@
 #'  `NULL` a copy is downloaded from the ABARES website.
 #'
 #' @examples
-#' x <- .get_topsoil_thickness()
+#' x <- .get_topsoil_thickness(.x = NULL)
 #'
 #' x
 #'

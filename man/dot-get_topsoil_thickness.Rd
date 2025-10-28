@@ -26,7 +26,7 @@ with these data. Examples are provided for interacting with the metadata
 directly.
 }
 \examples{
-x <- .get_topsoil_thickness()
+x <- .get_topsoil_thickness(.x = NULL)
 
 x
 
