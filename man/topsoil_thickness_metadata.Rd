@@ -2,7 +2,7 @@
 % Please edit documentation in R/topsoil_thickness_metadata.R
 \name{topsoil_thickness_metadata}
 \alias{topsoil_thickness_metadata}
-\title{Displays the text file Metadata for ABARES' Topsoil Thickness for "Australian Areas of Intensive Agriculture of Layer 1"}
+\title{Prints the text file Metadata for ABARES' Topsoil Thickness for "Australian Areas of Intensive Agriculture of Layer 1"}
 \source{
 \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
 }
@@ -19,7 +19,7 @@ Nothing, called for its side effects, it prints the complete
 metadata file to the \R console.
 }
 \description{
-Displays the complete set of metadata associated with the soil thickness
+Prints the complete set of metadata associated with the soil thickness
 data in your \R console. For including the metadata in documents or other
 methods outside of \R, see \code{.get_topsoil_thickness()} for an example using
 \code{\link[pander:pander]{pander::pander()}} to print the metadata.

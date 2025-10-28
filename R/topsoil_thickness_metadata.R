@@ -1,6 +1,6 @@
-#' Displays the text file Metadata for ABARES' Topsoil Thickness for "Australian Areas of Intensive Agriculture of Layer 1"
+#' Prints the text file Metadata for ABARES' Topsoil Thickness for "Australian Areas of Intensive Agriculture of Layer 1"
 #'
-#' Displays the complete set of metadata associated with the soil thickness
+#' Prints the complete set of metadata associated with the soil thickness
 #'  data in your \R console. For including the metadata in documents or other
 #'  methods outside of \R, see `.get_topsoil_thickness()` for an example using
 #'  [pander::pander()] to print the metadata.
