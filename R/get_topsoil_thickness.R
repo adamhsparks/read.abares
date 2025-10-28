@@ -6,6 +6,9 @@
 #'  with these data. Examples are provided for interacting with the metadata
 #'  directly.
 #'
+#' @param .x Optional path to a local copy of the zipped data file. If it is
+#'  `NULL` a copy is downloaded from the ABARES website.
+#'
 #' @examples
 #' x <- .get_topsoil_thickness()
 #'
@@ -27,23 +30,26 @@
 #' <https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip>.
 #'
 #' @dev
-.get_topsoil_thickness <- function() {
-  .zip <- fs::path(tempdir(), "staiar9cl__05911a01eg_geo____.zip")
+.get_topsoil_thickness <- function(.x) {
   .meta <- "staiar9cl__05911a01eg_geo____/ANZCW1202000149.txt"
   .raster <- "staiar9cl__05911a01eg_geo____/thpk_1"
 
-  if (!fs::file_exists(.zip)) {
-    .retry_download(
-      "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo____.zip",
-      dest = .zip
-    )
+  if (is.null(.x)) {
+    .x <- fs::path(tempdir(), "staiar9cl__05911a01eg_geo____.zip")
+
+    if (!fs::file_exists(.x)) {
+      .retry_download(
+        "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo____.zip",
+        dest = .x
+      )
+    }
   }
 
-  con <- unz(.zip, .meta)
+  con <- unz(.x, .meta)
   on.exit(close(con), add = TRUE)
   metadata <- paste(readLines(con), collapse = "\n")
 
-  x <- terra::rast(paste0("/vsizip//", .zip, "/", .raster))
+  x <- terra::rast(paste0("/vsizip//", .x, "/", .raster))
   x <- terra::init(x, x[]) # remove RAT legend if present
 
   out <- list(metadata = metadata, data = x)

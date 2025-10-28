@@ -7,7 +7,11 @@
 \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}.
 }
 \usage{
-.get_topsoil_thickness()
+.get_topsoil_thickness(.x)
+}
+\arguments{
+\item{.x}{Optional path to a local copy of the zipped data file. If it is
+\code{NULL} a copy is downloaded from the ABARES website.}
 }
 \value{
 A \code{read.abares.topsoil.thickness} object, which is a named \code{list()}
