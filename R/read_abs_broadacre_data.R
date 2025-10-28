@@ -36,7 +36,12 @@ read_abs_broadacre_data <- function(
   x = NULL
 ) {
   if (is.null(x)) {
-    if (length(crops) != 1L || !is.character(crops) || is.na(crops)) {
+    if (
+      length(crops) != 1L ||
+        !is.character(crops) ||
+        is.na(crops) ||
+        is.null(crops)
+    ) {
       cli::cli_abort("{.var crops} must be a single character string value.")
     }
     # see parse_abs_production_data.R for .find_years()
