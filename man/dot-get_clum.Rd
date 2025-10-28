@@ -21,8 +21,8 @@ One of:
 }.}
 }
 \value{
-A list of files containing a spatial data file of or files related
-to Australian catchment scale land use data.
+A vector of filenames of a geotiff file or files related to
+Australian catchment scale land use data.
 }
 \description{
 An internal function used by \code{\link[=read_clum_terra]{read_clum_terra()}} and \code{\link[=read_clum_stars]{read_clum_stars()}} that

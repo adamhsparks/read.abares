@@ -24,8 +24,8 @@
 #'
 #' clum_update
 #'
-#' @returns A list of files containing a spatial data file of or files related
-#' to Australian catchment scale land use data.
+#' @returns A vector of filenames of a geotiff file or files related to
+#'  Australian catchment scale land use data.
 #'
 #' @autoglobal
 #' @dev
