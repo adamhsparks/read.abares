@@ -15,7 +15,7 @@ parse_abs_production_data <- function(filename) {
     )
   )
 
-  x <- lapply(sheet_names, function(X) {
+  x <- purrr::map(sheet_names, function(X) {
     data.table::as.data.table(readxl::read_excel(
       filename,
       sheet = X,
@@ -28,7 +28,7 @@ parse_abs_production_data <- function(filename) {
   x[length(x)] <- NULL # drop last table w/ no data
 
   if (any(grepl("Horticulture", x[[1L]], fixed = TRUE))) {
-    x <- lapply(x, function(y) {
+    x <- purrr::map(x, function(y) {
       region_index <- which(y[[2L]] == "Region") - 1L
       if (length(region_index) && region_index >= 1L) {
         y <- y[y %notin% 1L:region_index]
@@ -46,7 +46,7 @@ parse_abs_production_data <- function(filename) {
       y
     })
   } else {
-    x <- lapply(x, function(y) {
+    x <- purrr::map(x, function(y) {
       region_index <- which(y[[1L]] == "Region") - 1L
       if (length(region_index) && region_index >= 1L) {
         y <- y[y %notin% 1L:region_index]

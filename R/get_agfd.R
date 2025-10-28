@@ -75,7 +75,7 @@
   # Extract only NetCDF files
   utils::unzip(zip_path, files = nc_files, exdir = tempdir())
 
-  return(lapply(nc_files, function(f) {
+  return(purrr::map(nc_files, function(f) {
     fs::path(tmpdir(), f)
   }))
 }
