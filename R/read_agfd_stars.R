@@ -36,7 +36,8 @@ read_agfd_stars <- function(
       "{.arg yyyy} must be between 1991 and 2023 inclusive"
     )
   }
-  if (x == NULL) {
+
+  if (is.null(x) || !nzchar(x)) {
     files <- .get_agfd(
       .fixed_prices = fixed_prices,
       .yyyy = yyyy,
@@ -91,7 +92,7 @@ read_agfd_stars <- function(
   s2 <- NULL
   q_read_ncdf <- purrr::quietly(stars::read_ncdf)
   n_files <- length(files)
-  if (getOption("read.abares.verbosity" == "verbose")) {
+  if (getOption("read.abares.verbosity") == "verbose") {
     # read one file for the message
     s1 <- list(stars::read_ncdf(
       files[1L],
@@ -101,7 +102,7 @@ read_agfd_stars <- function(
     if (length(files) > 1L) {
       # then suppress the rest of the messages
       s2 <- purrr::modify_depth(
-        purrr::map(files[seq_along(2L:n_files)], q_read_ncdf, var = var),
+        purrr::map(files[2L:n_files], q_read_ncdf, var = var),
         1L,
         "result"
       )

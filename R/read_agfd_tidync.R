@@ -39,7 +39,8 @@ read_agfd_tidync <- function(
       "{.arg yyyy} must be between 1991 and 2023 inclusive"
     )
   }
-  if (x == NULL) {
+
+  if (is.null(x) || !nzchar(x)) {
     files <- .get_agfd(
       .fixed_prices = fixed_prices,
       .yyyy = yyyy,
