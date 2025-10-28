@@ -5,7 +5,9 @@
 #'  methods outside of \R, see `.get_topsoil_thickness()` for an example using
 #'  [pander::pander()] to print the metadata.
 #'
-#' @param x A `read.abares.topsoil.thickness` object.
+#' @param x An optional file path to a zip file containing the topsoil thickness
+#'  data from \acronym{ABARES}.  If left as `NULL`, the default value, a copy
+#'  will be downloaded from the \acronym{ABARES} website.
 #'
 #' @note
 #' The original metadata use a title of "Soil Thickness", in the context of this
@@ -26,10 +28,8 @@
 #' @family topsoil thickness
 #'
 #' @export
-print_topsoil_thickness_metadata <- function(x = NULL) {
-  if (missing(x) || is.null(x)) {
-    x <- .get_topsoil_thickness(.x = NULL)
-  }
+topsoil_thickness_metadata <- function(x = NULL) {
+  x <- .get_topsoil_thickness(.x = x)
   loc <- stringr::str_locate(
     x$metadata,
     stringr::fixed("Custodian", ignore_case = FALSE)
