@@ -9,7 +9,8 @@
 #' (\acronym{ABS}, not \acronym{ABARES}, but the data is agricultural and so
 #' it's serviced in this package.
 #'
-#' @param crops A character vector providing the desired cropping data, one of:
+#' @param data_set A character vector providing the desired cropping data, one
+#'  of:
 #'  * winter (default),
 #'  * summer or
 #'  * sugarcane.
@@ -31,31 +32,31 @@
 #' @autoglobal
 
 read_abs_broadacre_data <- function(
-  crops = "winter",
+  data_set = "winter",
   year = "latest",
   x = NULL
 ) {
   if (is.null(x)) {
     if (
-      length(crops) != 1L ||
-        !is.character(crops) ||
-        is.na(crops) ||
-        is.null(crops)
+      length(data_set) != 1L ||
+        !is.character(data_set) ||
+        is.na(data_set) ||
+        is.null(data_set)
     ) {
-      cli::cli_abort("{.var crops} must be a single character string value.")
+      cli::cli_abort("{.var data_set} must be a single character string value.")
     }
     # see parse_abs_production_data.R for .find_years()
     available <- .find_years(data_set = "broadacre")
     year <- rlang::arg_match0(year, c("latest", available))
-    crops <- stringr::str_to_title(crops)
-    crops <- rlang::arg_match0(crops, c("Winter", "Summer", "Sugarcane"))
+    data_set <- stringr::str_to_title(data_set)
+    data_set <- rlang::arg_match0(data_set, c("Winter", "Summer", "Sugarcane"))
 
     # winter broadacre has a different naming scheme than the other two crops
-    if (crops == "Winter") {
-      crops <- "Winter_Broadacre"
+    if (data_set == "Winter") {
+      data_set <- "Winter_Broadacre"
     }
-    if (crops == "Summer" && year == "2022-23") {
-      crops <- "Summer_Broadacre"
+    if (data_set == "Summer" && year == "2022-23") {
+      data_set <- "Summer_Broadacre"
     }
     if (year == "latest") {
       year <- available[[1L]]
@@ -63,13 +64,13 @@ read_abs_broadacre_data <- function(
     base_url <-
       "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops/"
 
-    x <- fs::path(tempdir(), sprintf("%s_crops_file", crops))
+    x <- fs::path(tempdir(), sprintf("%s_crops_file", data_set))
     .retry_download(
       url = sprintf(
         "%s%s/AABDC_%s_%s.xlsx",
         base_url,
         year,
-        crops,
+        data_set,
         gsub("-", "", year, fixed = TRUE)
       ),
       dest = x
