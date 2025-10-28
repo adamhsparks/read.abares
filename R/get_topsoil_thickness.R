@@ -31,15 +31,15 @@
 #'
 #' @dev
 .get_topsoil_thickness <- function(.x) {
-  .meta <- "staiar9cl__05911a01eg_geo____/ANZCW1202000149.txt"
-  .raster <- "staiar9cl__05911a01eg_geo____/thpk_1"
+  .meta <- "staiar9cl__05911a01eg_geo___/ANZCW1202000149.txt"
+  .raster <- "staiar9cl__05911a01eg_geo___/thpk_1"
 
   if (is.null(.x)) {
     .x <- fs::path(tempdir(), "staiar9cl__05911a01eg_geo____.zip")
 
     if (!fs::file_exists(.x)) {
       .retry_download(
-        "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo____.zip",
+        "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
         dest = .x
       )
     }
