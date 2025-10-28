@@ -35,7 +35,7 @@ print_topsoil_thickness_metadata()
 \dontshow{\}) # examplesIf}
 }
 \references{
-\url{https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6}
+<https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6.
 }
 \seealso{
 Other topsoil thickness: 
