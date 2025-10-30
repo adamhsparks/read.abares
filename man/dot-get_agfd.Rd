@@ -27,7 +27,7 @@ Gridded Farm Data" (\acronym{AGFD}) data.
 }
 \examples{
 # this will download the data and then return only 2020 and 2021 years' data
-agfd <- .get_agfd(.fixed_prices = TRUE, .yyyy = 2020:2021, .x = NULL)
+agfd <- .get_agfd(.fixed_prices = TRUE, .yyyy = 2020:2021)
 
 agfd
 
