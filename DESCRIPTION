@@ -48,9 +48,6 @@ Imports:
     withr
 Suggests: 
     bit64,
-    future,
-    future.apply,
-    httptest2,
     knitr,
     pander,
     rmarkdown,
@@ -59,7 +56,6 @@ Suggests:
     spelling,
     testthat (>= 3.0.0),
     vcr (>= 0.6.0),
-    webmockr,
     writexl
 VignetteBuilder: 
     knitr
