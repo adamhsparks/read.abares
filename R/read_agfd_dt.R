@@ -198,8 +198,7 @@ read_agfd_dt <- function(
   if (is.null(x) || !nzchar(x)) {
     files <- .get_agfd(
       .fixed_prices = fixed_prices,
-      .yyyy = yyyy,
-      .x = x
+      .yyyy = yyyy
     )
   } else {
     files <- .read_ncdf_from_zip(zip_path = x)
