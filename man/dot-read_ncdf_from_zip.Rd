@@ -10,7 +10,7 @@
 \item{zip_path}{Path to the ZIP file containing NetCDF files.}
 }
 \value{
-A list of paths to the extracted NetCDF files.
+A vector of paths to the extracted NetCDF files.
 }
 \description{
 Unzip AGFD NetCDF files from ZIP

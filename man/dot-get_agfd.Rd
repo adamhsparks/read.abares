@@ -18,8 +18,8 @@ requested year(s) in your \R session.  Valid years are from 1991 to 2023
 inclusive.}
 }
 \value{
-A \code{list()} object, a list of NetCDF files containing the "Australian
-Gridded Farm Data".
+A vector object, a list of NetCDF file paths containing the
+"Australian Gridded Farm Data" data.
 }
 \description{
 Used by the \code{read_agfd} family of functions, downloads the "Australian
