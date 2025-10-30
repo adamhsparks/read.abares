@@ -18,8 +18,8 @@
 #'
 #' agfd
 #'
-#' @returns A `list()` object, a list of NetCDF files containing the "Australian
-#'   Gridded Farm Data".
+#' @returns A vector object, a list of NetCDF file paths containing the
+#' "Australian Gridded Farm Data" data.
 #' @autoglobal
 #' @dev
 
@@ -51,10 +51,7 @@
   agfd_nc <- .read_ncdf_from_zip(zip_path = .x)
 
   yyyy <- sprintf("c%s", as.character(.yyyy))
-  nm <- names(agfd_nc)
-  if (is.null(nm)) {
-    nm <- agfd_nc
-  }
+  nm <- fs::path_file(agfd_nc)
   agfd_nc <- agfd_nc[grepl(paste(yyyy, collapse = "|"), nm)]
 
   return(agfd_nc)
@@ -63,19 +60,18 @@
 #' Unzip AGFD NetCDF files from ZIP
 #'
 #' @param zip_path Path to the ZIP file containing NetCDF files.
-#' @returns A list of paths to the extracted NetCDF files.
+#' @returns A vector of paths to the extracted NetCDF files.
 #' @dev
 .read_ncdf_from_zip <- function(zip_path) {
-  # List files in the ZIP
-  zip_contents <- utils::unzip(zip_path, list = TRUE)
-
-  # Filter NetCDF files by pattern
-  nc_files <- zip_contents$Name[grepl("//.nc$", zip_contents$Name)]
-
   # Extract only NetCDF files
-  utils::unzip(zip_path, files = nc_files, exdir = tempdir())
+  utils::unzip(zip_path, exdir = tempdir())
 
-  return(purrr::map(nc_files, function(f) {
-    fs::path(tmpdir(), f)
-  }))
+  return(
+    unlist(purrr::map(
+      fs::path_ext_remove(fs::path_file(zip_path)),
+      function(f) {
+        fs::dir_ls(fs::path(tempdir(), f))
+      }
+    ))
+  )
 }
