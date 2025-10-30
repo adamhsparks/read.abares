@@ -50,9 +50,11 @@
 
   agfd_nc <- .read_ncdf_from_zip(zip_path = .x)
 
-  yyyy <- sprintf("c%s", as.character(.yyyy))
+  .yyyy <- as.character(.yyyy)
+  yyyy <- sprintf("c%s", .yyyy)
   nm <- fs::path_file(agfd_nc)
   agfd_nc <- agfd_nc[grepl(paste(yyyy, collapse = "|"), nm)]
+  names(agfd_nc) <- sprintf("year_%s", .yyyy)
 
   return(agfd_nc)
 }
