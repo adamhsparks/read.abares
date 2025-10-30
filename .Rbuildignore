@@ -8,9 +8,7 @@
 ^.covrignore$
 ^\.github$
 ^air\.toml$
-
-
-# flir files
+^tests/testthat/fixtures/vcr$
 ^flir$
 ^man/dot-get_agfd\.Rd$
 ^man/dot-read_ncdf_from_zip\.Rd$

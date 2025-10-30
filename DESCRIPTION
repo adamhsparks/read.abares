@@ -58,6 +58,7 @@ Suggests:
     skimr,
     spelling,
     testthat (>= 3.0.0),
+    vcr (>= 0.6.0),
     webmockr,
     writexl
 VignetteBuilder: 
