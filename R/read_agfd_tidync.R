@@ -17,8 +17,8 @@
 #'
 #' @inherit read_agfd_dt references
 #'
-#' @returns A `list` object of \CRANpkg{tidync} objects of the "Australian
-#'  Gridded Farm Data" with the file names as the list's objects' names.
+#' @returns A list of \CRANpkg{tidync} objects of the "Australian Gridded Farm
+#'  Data" with the NetCDF objects' names as "year_yyyy".
 #'
 #' @examplesIf interactive()
 #'
@@ -40,11 +40,10 @@ read_agfd_tidync <- function(
     )
   }
 
-  if (is.null(x) || !nzchar(x)) {
+  if (is.null(x) || missing(x)) {
     files <- .get_agfd(
       .fixed_prices = fixed_prices,
-      .yyyy = yyyy,
-      .x = x
+      .yyyy = yyyy
     )
   } else {
     files <- .read_ncdf_from_zip(zip_path = x)

@@ -12,7 +12,7 @@
 #' @inherit read_agfd_dt references
 #'
 #' @returns A `list` object of \CRANpkg{stars} objects of the "Australian
-#' Gridded Farm Data" with the file names as the list's  objects' names.
+#'  Gridded Farm Data" with the NetCDF objects' names as "year_yyyy".
 #'
 #' @examplesIf interactive()
 #'
@@ -37,7 +37,7 @@ read_agfd_stars <- function(
     )
   }
 
-  if (is.null(x) || !nzchar(x)) {
+  if (is.null(x) || missing(x)) {
     files <- .get_agfd(
       .fixed_prices = fixed_prices,
       .yyyy = yyyy

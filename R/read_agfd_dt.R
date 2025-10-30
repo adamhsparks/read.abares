@@ -195,7 +195,7 @@ read_agfd_dt <- function(
     )
   }
 
-  if (is.null(x) || !nzchar(x)) {
+  if (is.null(x) || missing(x)) {
     files <- .get_agfd(
       .fixed_prices = fixed_prices,
       .yyyy = yyyy

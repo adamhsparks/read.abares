@@ -30,7 +30,7 @@ downloaded in the active \R session.}
 }
 \value{
 A \code{list} object of \CRANpkg{stars} objects of the "Australian
-Gridded Farm Data" with the file names as the list's  objects' names.
+Gridded Farm Data" with the NetCDF objects' names as "year_yyyy".
 }
 \description{
 Read "Australian Gridded Farm Data" (\acronym{AGFD}) as a list of

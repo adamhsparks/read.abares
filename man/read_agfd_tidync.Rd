@@ -29,8 +29,8 @@ the provided file.  Defaults to \code{NULL}, assuming that the file will be
 downloaded in the active \R session.}
 }
 \value{
-A \code{list} object of \CRANpkg{tidync} objects of the "Australian
-Gridded Farm Data" with the file names as the list's objects' names.
+A list of \CRANpkg{tidync} objects of the "Australian Gridded Farm
+Data" with the NetCDF objects' names as "year_yyyy".
 }
 \description{
 Read "Australian Gridded Farm Data", (\acronym{AGFD}) as a list of
