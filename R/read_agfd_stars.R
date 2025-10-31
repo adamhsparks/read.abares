@@ -43,65 +43,23 @@ read_agfd_stars <- function(
       .yyyy = yyyy
     )
   } else {
-    files <- .read_ncdf_from_zip(zip_path = x)
+    # copy the file to the tempdir for the unzip fn to work properly
+    # we won't touch the original file provided this way
+    files <- .copy_local_agfd_zip(x)
   }
-  var <- c(
-    "farmno",
-    "R_total_hat_ha",
-    "C_total_hat_ha",
-    "FBP_fci_hat_ha",
-    "FBP_fbp_hat_ha",
-    "A_wheat_hat_ha",
-    "H_wheat_dot_hat",
-    "A_barley_hat_ha",
-    "H_barley_dot_hat",
-    "A_sorghum_hat_ha",
-    "H_sorghum_dot_hat",
-    "A_oilseeds_hat_ha",
-    "H_oilseeds_dot_hat",
-    "R_wheat_hat_ha",
-    "R_sorghum_hat_ha",
-    "R_oilseeds_hat_ha",
-    "R_barley_hat_ha",
-    "Q_wheat_hat_ha",
-    "Q_barley_hat_ha",
-    "Q_sorghum_hat_ha",
-    "Q_oilseeds_hat_ha",
-    "S_wheat_cl_hat_ha",
-    "S_sheep_cl_hat_ha",
-    "S_sheep_births_hat_ha",
-    "S_sheep_deaths_hat_ha",
-    "S_beef_cl_hat_ha",
-    "S_beef_births_hat_ha",
-    "S_beef_deaths_hat_ha",
-    "Q_beef_hat_ha",
-    "Q_sheep_hat_ha",
-    "Q_lamb_hat_ha",
-    "R_beef_hat_ha",
-    "R_sheep_hat_ha",
-    "R_lamb_hat_ha",
-    "C_fodder_hat_ha",
-    "C_fert_hat_ha",
-    "C_fuel_hat_ha",
-    "C_chem_hat_ha",
-    "A_total_cropped_ha",
-    "FBP_pfe_hat_ha",
-    "farmland_per_cell"
-  )
   s2 <- NULL
   q_read_ncdf <- purrr::quietly(stars::read_ncdf)
   n_files <- length(files)
   if (getOption("read.abares.verbosity") == "verbose") {
     # read one file for the message
     s1 <- list(stars::read_ncdf(
-      files[1L],
-      var = var
+      files[1L]
     ))
 
     if (length(files) > 1L) {
       # then suppress the rest of the messages
       s2 <- purrr::modify_depth(
-        purrr::map(.x = files[2L:n_files], .f = q_read_ncdf, var = var),
+        purrr::map(.x = files[2L:n_files], .f = q_read_ncdf),
         1L,
         "result"
       )
@@ -110,7 +68,7 @@ read_agfd_stars <- function(
     }
   } else {
     #quietly read all files
-    list(q_read_ncdf, files, var = var)
+    list(q_read_ncdf, files)
   }
 
   names(s1) <- fs::path_file(files)

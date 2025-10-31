@@ -64,7 +64,9 @@
 #' @param zip_path Path to the ZIP file containing NetCDF files.
 #' @returns A vector of paths to the extracted NetCDF files.
 #' @dev
-.read_ncdf_from_zip <- function(zip_path, .fixed_prices) {
+#'
+
+.read_ncdf_from_zip <- function(zip_path = tempdir(), .fixed_prices = TRUE) {
   # Extract only NetCDF files
   utils::unzip(zip_path, exdir = tempdir())
 
@@ -77,4 +79,14 @@
   return(
     unlist(purrr::map(.x = f, .f = fs::dir_ls))
   )
+}
+
+#' Copies local AGFD file to tempdir() so the org file isn't touched
+#' @param x A filepath pointing to the AGFD file provided by the user
+#' @returns A character vector of file paths for AGFD netCDF files
+#' @dev
+.copy_local_agfd_zip <- function(x) {
+  y <- fs::path(tempdir(), fs::path_file(x))
+  fs::file_copy(x, y, overwrite = TRUE)
+  return(.read_ncdf_from_zip(zip_path = y))
 }

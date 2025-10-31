@@ -48,15 +48,14 @@ Imports:
     withr
 Suggests: 
     bit64,
+    httptest2,
     knitr,
     pander,
     rmarkdown,
     roxyglobals,
     skimr,
     spelling,
-    testthat (>= 3.0.0),
-    vcr (>= 0.6.0),
-    writexl
+    testthat (>= 3.0.0)
 VignetteBuilder: 
     knitr
 Config/Needs/build: moodymudskipper/devtag

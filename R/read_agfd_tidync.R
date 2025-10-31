@@ -46,7 +46,9 @@ read_agfd_tidync <- function(
       .yyyy = yyyy
     )
   } else {
-    files <- .read_ncdf_from_zip(zip_path = x)
+    # copy the file to the tempdir for the unzip fn to work properly
+    # we won't touch the original file provided this way
+    files <- .copy_local_agfd_zip(x)
   }
   tnc <- purrr::map(.x = files, .f = tidync::tidync)
   names(tnc) <- fs::path_file(files)

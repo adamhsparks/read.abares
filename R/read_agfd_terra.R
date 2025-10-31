@@ -44,7 +44,9 @@ read_agfd_terra <- function(
       .yyyy = yyyy
     )
   } else {
-    files <- .read_ncdf_from_zip(zip_path = x)
+    # copy the file to the tempdir for the unzip fn to work properly
+    # we won't touch the original file provided this way
+    files <- .copy_local_agfd_zip(x)
   }
   r <- purrr::map(.x = files, .f = terra::rast)
   names(r) <- fs::path_file(files)
