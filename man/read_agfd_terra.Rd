@@ -33,7 +33,7 @@ A list of \code{\link[terra:rast]{terra::rast()}} objects of the "Australian Gri
 Data" with the NetCDF objects' names as "year_yyyy".
 }
 \description{
-Read "Australian Gridded Farm Data", (\acronym{AGFD}) as a \code{\link[terra:rast]{terra::rast()}}
+Read "Australian Gridded Farm Data", (\acronym{AGFD}), as a \code{\link[terra:rast]{terra::rast()}}
 object.
 }
 \details{

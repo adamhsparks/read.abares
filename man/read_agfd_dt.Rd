@@ -39,7 +39,7 @@ A \code{\link[data.table:data.table]{data.table::data.table()}} object of the "A
 Data".
 }
 \description{
-Read "Australian Gridded Farm Data", (\acronym{AGFD}) as a
+Read "Australian Gridded Farm Data", (\acronym{AGFD}), as a
 \code{\link[data.table:data.table]{data.table::data.table()}} object.
 }
 \details{

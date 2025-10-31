@@ -33,7 +33,7 @@ A \code{list} object of \CRANpkg{stars} objects of the "Australian
 Gridded Farm Data" with the NetCDF objects' names as "year_yyyy".
 }
 \description{
-Read "Australian Gridded Farm Data" (\acronym{AGFD}) as a list of
+Read "Australian Gridded Farm Data", (\acronym{AGFD}), as a list of
 \CRANpkg{stars} objects.
 }
 \details{

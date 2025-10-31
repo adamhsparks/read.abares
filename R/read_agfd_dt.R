@@ -1,6 +1,6 @@
 #' Read ABARES' "Australian Gridded Farm Data" (AGFD) NCDF Files as a data.table Object
 #'
-#' Read "Australian Gridded Farm Data", (\acronym{AGFD}) as a
+#' Read "Australian Gridded Farm Data", (\acronym{AGFD}), as a
 #'  [data.table::data.table()] object.
 #
 #' @param yyyy Returns only data for the specified year or years for climate

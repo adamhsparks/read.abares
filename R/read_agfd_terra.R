@@ -1,6 +1,6 @@
 #' Read ABARES' "Australian Gridded Farm Data" (AGFD) NCDF Files with terra
 #'
-#' Read "Australian Gridded Farm Data", (\acronym{AGFD}) as a [terra::rast()]
+#' Read "Australian Gridded Farm Data", (\acronym{AGFD}), as a [terra::rast()]
 #' object.
 #'
 #' @inherit read_agfd_dt details
