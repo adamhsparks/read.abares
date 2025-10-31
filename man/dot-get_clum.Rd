@@ -29,7 +29,7 @@ An internal function used by \code{\link[=read_clum_terra]{read_clum_terra()}} a
 downloads catchment level land use data files.
 }
 \examples{
-clum_update <- .get_clum(.data_set = "scale_date_update", .x = NULL)
+clum_update <- .get_clum(.data_set = "scale_date_update")
 
 clum_update
 
