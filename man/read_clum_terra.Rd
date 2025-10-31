@@ -26,8 +26,8 @@ downloaded in the active \R session.}
 \item{...}{Additional arguments passed to \code{\link[terra:rast]{terra::rast()}}.}
 }
 \value{
-A \code{\link[terra:rast]{terra::rast()}} object that may be one or many layers depending
-upon the requested data set.
+A \CRANpkg{terra} \code{SpatRaster} object that may be one or many layers
+depending upon the requested data set.
 }
 \description{
 Download and import catchment scale "Land Use of Australia" GeoTIFFs using

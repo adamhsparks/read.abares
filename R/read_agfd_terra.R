@@ -11,8 +11,8 @@
 #' @inheritSection read_agfd_dt Data layers
 #' @inherit read_agfd_dt references
 #'
-#' @returns A list of [terra::rast()] objects of the "Australian Gridded Farm
-#'  Data" with the NetCDF objects' names as "year_yyyy".
+#' @returns A list of \CRANpkg{terra} `SpatRaster` objects of the "Australian
+#'  Gridded Farm Data" with the NetCDF objects' names as "year_yyyy".
 #'
 #' @examplesIf interactive()
 #'

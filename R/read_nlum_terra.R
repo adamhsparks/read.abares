@@ -66,8 +66,8 @@
 #'
 #' plot(nlum_terra)
 #'
-#' @returns A [terra::rast()] object that may be one or many layers depending
-#'  upon the requested data set.
+#' @returns A \CRANpkg{terra} `SpatRaster` object that may be one or many layers
+#'  depending upon the requested data set.
 #' @family nlum
 #' @autoglobal
 #' @export

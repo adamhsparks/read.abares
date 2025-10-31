@@ -29,8 +29,8 @@ the provided file.  Defaults to \code{NULL}, assuming that the file will be
 downloaded in the active \R session.}
 }
 \value{
-A list of \code{\link[terra:rast]{terra::rast()}} objects of the "Australian Gridded Farm
-Data" with the NetCDF objects' names as "year_yyyy".
+A list of \CRANpkg{terra} \code{SpatRaster} objects of the "Australian
+Gridded Farm Data" with the NetCDF objects' names as "year_yyyy".
 }
 \description{
 Read "Australian Gridded Farm Data", (\acronym{AGFD}), as a \code{\link[terra:rast]{terra::rast()}}
