@@ -48,7 +48,6 @@ Imports:
     withr
 Suggests: 
     bit64,
-    httptest2,
     knitr,
     pander,
     rmarkdown,
