@@ -12,6 +12,7 @@
 ^flir$
 ^man/dot-get_agfd\.Rd$
 ^man/dot-read_ncdf_from_zip\.Rd$
+^man/dot-copy_local_agfd_zip\.Rd$
 ^man/dot-get_clum\.Rd$
 ^man/dot-get_nlum\.Rd$
 ^man/dot-get_topsoil_thickness\.Rd$
@@ -19,6 +20,7 @@
 ^man/dot-find_years\.Rd$
 ^man/dot-readabares_collaborators\.Rd$
 ^man/read.abares_user_agent\.Rd$
+^man/dot-check_agfd_yyyy\.Rd$
 ^man/dot-set_clum_update_levels\.Rd$
 ^man/dot-create_clum_50m_coltab\.Rd$
 ^man/dot-retry_download\.Rd$

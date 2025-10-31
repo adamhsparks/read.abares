@@ -28,7 +28,6 @@ test_that("read_agfd_tidync() returns tidync objects for each file", {
   skip_if(!nzchar(zip) || !file.exists(zip), "Fixture zip not found")
 
   objs <- read_agfd_tidync(yyyy = 2021:2022, fixed_prices = FALSE, x = zip)
-  # Expect a list of tidync objects or a single tidync; adapt if your API differs
   if (is.list(objs)) {
     expect_true(all(vapply(objs, inherits, logical(1L), "tidync")))
   } else {
@@ -66,8 +65,8 @@ test_that("read_agfd_terra() yields a small SpatRaster", {
 })
 
 test_that(".check_agfd_yyyy() validates year inputs", {
-  expect_error(.check_yyyy("1991"), "must be numeric")
-  expect_error(.check_yyyy(1890), "between 1991 and")
-  expect_error(.check_yyyy(2025), "between 1991 and")
-  expect_silent(.check_yyyy(1991:2023))
+  expect_error(.check_agfd_yyyy("1991"), "must be numeric")
+  expect_error(.check_agfd_yyyy(1890), "between 1991 and")
+  expect_error(.check_agfd_yyyy(2025), "between 1991 and")
+  expect_silent(.check_agfd_yyyy(1991:2023))
 })

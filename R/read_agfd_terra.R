@@ -32,7 +32,7 @@ read_agfd_terra <- function(
   fixed_prices = TRUE,
   x = NULL
 ) {
-  .check_yyyy(.yyyy = yyyy)
+  .check_agfd_yyyy(.yyyy = yyyy)
 
   if (is.null(x) || missing(x)) {
     files <- .get_agfd(
