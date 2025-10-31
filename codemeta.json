@@ -76,42 +76,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "future",
-      "name": "future",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=future"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "future.apply",
-      "name": "future.apply",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=future.apply"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "httptest2",
-      "name": "httptest2",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=httptest2"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "knitr",
       "name": "knitr",
       "provider": {
@@ -194,30 +158,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=testthat"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "webmockr",
-      "name": "webmockr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=webmockr"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "writexl",
-      "name": "writexl",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=writexl"
     }
   ],
   "softwareRequirements": {
@@ -438,7 +378,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "722.619KB",
+  "fileSize": "551.429KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
