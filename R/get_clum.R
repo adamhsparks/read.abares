@@ -20,7 +20,7 @@
 #' * Commodities: \doi{10.25814/zfjz-jt75}.
 #'
 #' @examples
-#' clum_update <- .get_clum(.data_set = "scale_date_update", .x = NULL)
+#' clum_update <- .get_clum(.data_set = "scale_date_update")
 #'
 #' clum_update
 #'
