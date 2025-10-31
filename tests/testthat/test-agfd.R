@@ -1,4 +1,4 @@
-test_that(".get_agfd() returns a list object", {
+test_that(".get_agfd() returns a list object for fixed prices", {
   vcr::use_cassette("_get_agfd_fixed_prices", {
     agfd <- .get_agfd(.fixed_prices = TRUE, .yyyy = 2020:2021)
   })
@@ -28,5 +28,21 @@ test_that("read_agfd_terra returns a list of terra objects", {
     agfd <- read_agfd_terra(fixed_prices = TRUE, yyyy = 2020:2021)
   })
   expect_length(agfd, 2L)
-  expect_s3_class(agfd[[1L]], "terra")
+  expect_s4_class(agfd[[1L]], "SpatRaster")
+})
+
+test_that("read_agfd_tidync returns a list of tidync objects", {
+  vcr::use_cassette("_get_agfd_fixed_prices", {
+    agfd <- read_agfd_tidync(fixed_prices = TRUE, yyyy = 2020:2021)
+  })
+  expect_length(agfd, 2L)
+  expect_s3_class(agfd[[1L]], "tidync")
+})
+
+test_that(".get_agfd() returns a list object for nonfixed prices", {
+  vcr::use_cassette("_get_agfd_nonfixed_prices", {
+    agfd <- .get_agfd(.fixed_prices = FALSE, .yyyy = 2020:2021)
+  })
+  expect_length(agfd, 2L)
+  expect_type(agfd, "character")
 })
