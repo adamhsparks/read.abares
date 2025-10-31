@@ -7,7 +7,7 @@
 .check_agfd_yyyy(.yyyy)
 }
 \arguments{
-\item{yyyy}{A year value for checking}
+\item{.yyyy}{A year value for checking}
 }
 \description{
 Check AGFD years for validity

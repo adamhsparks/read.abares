@@ -216,7 +216,7 @@ read_agfd_dt <- function(
 }
 
 #' Check AGFD years for validity
-#' @param yyyy A year value for checking
+#' @param .yyyy A year value for checking
 #' @dev
 
 .check_agfd_yyyy <- function(.yyyy) {
