@@ -30,10 +30,10 @@ downloaded in the active \R session.}
 }
 \value{
 A list of \CRANpkg{tidync} objects of the "Australian Gridded Farm
-Data" with the NetCDF objects' names as "year_yyyy".
+Data"  with the NetCDF objects' names as "year_yyyy".
 }
 \description{
-Read "Australian Gridded Farm Data", (\acronym{AGFD}) as a list of
+Read "Australian Gridded Farm Data", (\acronym{AGFD}), as a list of
 \code{\link[tidync:tidync]{tidync::tidync()}} objects.
 }
 \details{

@@ -1,6 +1,6 @@
 #' Read ABARES' "Australian Gridded Farm Data" (AGFD) NCDF Files with tidync
 #'
-#' Read "Australian Gridded Farm Data", (\acronym{AGFD}) as a list of
+#' Read "Australian Gridded Farm Data", (\acronym{AGFD}), as a list of
 #'   [tidync::tidync()] objects.
 #'
 #' @inherit read_agfd_dt details
@@ -18,7 +18,7 @@
 #' @inherit read_agfd_dt references
 #'
 #' @returns A list of \CRANpkg{tidync} objects of the "Australian Gridded Farm
-#'  Data" with the NetCDF objects' names as "year_yyyy".
+#'  Data"  with the NetCDF objects' names as "year_yyyy".
 #'
 #' @examplesIf interactive()
 #'
@@ -48,7 +48,7 @@ read_agfd_tidync <- function(
   } else {
     files <- .read_ncdf_from_zip(zip_path = x)
   }
-  tnc <- purrr::map(files, tidync::tidync)
+  tnc <- purrr::map(.x = files, .f = tidync::tidync)
   names(tnc) <- fs::path_file(files)
   return(tnc)
 }
