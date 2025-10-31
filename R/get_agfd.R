@@ -48,7 +48,7 @@
     )
   }
 
-  agfd_nc <- .read_ncdf_from_zip(zip_path = .x)
+  agfd_nc <- .read_ncdf_from_zip(zip_path = .x, .fixed_prices = .fixed_prices)
 
   .yyyy <- as.character(.yyyy)
   yyyy <- sprintf("c%s", .yyyy)
@@ -64,16 +64,17 @@
 #' @param zip_path Path to the ZIP file containing NetCDF files.
 #' @returns A vector of paths to the extracted NetCDF files.
 #' @dev
-.read_ncdf_from_zip <- function(zip_path) {
+.read_ncdf_from_zip <- function(zip_path, .fixed_prices) {
   # Extract only NetCDF files
   utils::unzip(zip_path, exdir = tempdir())
 
+  f <- data.table::fifelse(
+    .fixed_prices,
+    fs::path(tempdir(), "historical_climate_prices_fixed"),
+    fs::path(tempdir(), "historical_climate_and_prices")
+  )
+
   return(
-    unlist(purrr::map(
-      fs::path_ext_remove(fs::path_file(zip_path)),
-      function(f) {
-        fs::dir_ls(fs::path(tempdir(), f))
-      }
-    ))
+    unlist(purrr::map(.x = f, .f = fs::dir_ls))
   )
 }
