@@ -101,7 +101,7 @@ read_agfd_stars <- function(
     if (length(files) > 1L) {
       # then suppress the rest of the messages
       s2 <- purrr::modify_depth(
-        purrr::map(files[2L:n_files], q_read_ncdf, var = var),
+        purrr::map(.x = files[2L:n_files], .x = q_read_ncdf, var = var),
         1L,
         "result"
       )
