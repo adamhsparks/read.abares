@@ -55,6 +55,7 @@ test_that("read_agfd_stars() produces a small stars object", {
   expect_length(s, 2L)
 })
 
+
 test_that("read_agfd_terra() yields a small SpatRaster", {
   zip <- locate_agfd_fixture()
   skip_if(!nzchar(zip) || !file.exists(zip), "Fixture zip not found")
@@ -62,4 +63,11 @@ test_that("read_agfd_terra() yields a small SpatRaster", {
   r <- read_agfd_terra(yyyy = 2022, fixed_prices = TRUE, x = zip)
   expect_s4_class(r[[1L]], "SpatRaster")
   expect_identical(terra::ncell(r), 2L) # 2×2 grid
+})
+
+test_that(".check_agfd_yyyy() validates year inputs", {
+  expect_error(.check_yyyy("1991"), "must be numeric")
+  expect_error(.check_yyyy(1890), "between 1991 and")
+  expect_error(.check_yyyy(2025), "between 1991 and")
+  expect_silent(.check_yyyy(1991:2023))
 })

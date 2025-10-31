@@ -31,11 +31,7 @@ read_agfd_stars <- function(
   fixed_prices = TRUE,
   x = NULL
 ) {
-  if (any(yyyy %notin% 1991:2023)) {
-    cli::cli_abort(
-      "{.arg yyyy} must be between 1991 and 2023 inclusive"
-    )
-  }
+  .check_yyyy(.yyyy = yyyy)
 
   if (is.null(x) || missing(x)) {
     files <- .get_agfd(

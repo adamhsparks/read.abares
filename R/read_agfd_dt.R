@@ -189,11 +189,7 @@ read_agfd_dt <- function(
   fixed_prices = TRUE,
   x = NULL
 ) {
-  if (any(yyyy %notin% 1991:2023)) {
-    cli::cli_abort(
-      "{.arg yyyy} must be between 1991 and 2023 inclusive"
-    )
-  }
+  .check_yyyy(.yyyy = yyyy)
 
   if (is.null(x) || missing(x)) {
     files <- .get_agfd(
@@ -217,4 +213,19 @@ read_agfd_dt <- function(
   rm(tnc_list)
   gc()
   return(dat[])
+}
+
+#' Check AGFD years for validity
+#' @param yyyy A year value for checking
+#' @dev
+
+.check_agfd_yyyy <- function(.yyyy) {
+  if (any(.yyyy %notin% 1991:2023)) {
+    cli::cli_abort(
+      "{.arg yyyy} must be between 1991 and 2023 inclusive"
+    )
+  }
+  if (all(!is.numeric(.yyyy))) {
+    cli::cli_abort("{.arg yyyy} must be numeric.")
+  }
 }
