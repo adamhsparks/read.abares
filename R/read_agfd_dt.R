@@ -225,7 +225,7 @@ read_agfd_dt <- function(
       "{.arg yyyy} must be between 1991 and 2023 inclusive"
     )
   }
-  if (all(!is.numeric(.yyyy))) {
+  if (!any(is.numeric(.yyyy))) {
     cli::cli_abort("{.arg yyyy} must be numeric.")
   }
 }
