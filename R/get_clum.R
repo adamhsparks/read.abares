@@ -62,9 +62,11 @@
 
 #' Copies local CLUM file to tempdir() so the org file isn't touched
 #' @param x A filepath pointing to the CLUM file provided by the user
-#' @returns Invisible `NULL`, called for its side effect of copying the file.
+#' @returns A character vector of geotif file names.
 #' @dev
 .copy_local_clum_zip <- function(x) {
   y <- fs::path(tempdir(), fs::path_file(x))
   fs::file_copy(x, y, overwrite = TRUE)
+  zip_list <- utils::unzip(.x, list = TRUE)$Name
+  return(grep(".tif$", zip_list, value = TRUE))
 }
