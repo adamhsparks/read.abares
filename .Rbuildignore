@@ -14,6 +14,7 @@
 ^man/dot-read_ncdf_from_zip\.Rd$
 ^man/dot-copy_local_agfd_zip\.Rd$
 ^man/dot-get_clum\.Rd$
+^man/dot-copy_local_clum_zip\.Rd$
 ^man/dot-get_nlum\.Rd$
 ^man/dot-get_topsoil_thickness\.Rd$
 ^man/parse_abs_production_data\.Rd$
