@@ -81,6 +81,8 @@ read_clum_stars <- function(
     x <- .get_clum(
       .data_set = data_set
     )
+  } else {
+    .copy_local_clum_zip(x)
   }
 
   return(stars::read_stars(
