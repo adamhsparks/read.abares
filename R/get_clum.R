@@ -67,6 +67,6 @@
 .copy_local_clum_zip <- function(x) {
   y <- fs::path(tempdir(), fs::path_file(x))
   fs::file_copy(x, y, overwrite = TRUE)
-  zip_list <- utils::unzip(.x, list = TRUE)$Name
+  zip_list <- utils::unzip(y, list = TRUE)$Name
   return(grep(".tif$", zip_list, value = TRUE))
 }
