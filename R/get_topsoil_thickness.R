@@ -27,7 +27,7 @@
 #' @references
 #' <https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6>.
 #' @source
-#' <https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip>.
+#' <https://catalog.anrdl.cp1.agriculture.gov.au/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip>
 #'
 #' @dev
 .get_topsoil_thickness <- function(.x) {
@@ -39,7 +39,7 @@
 
     if (!fs::file_exists(.x)) {
       .retry_download(
-        "https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
+        url = "https://catalog.anrdl.cp1.agriculture.gov.au/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip",
         dest = .x
       )
     }
