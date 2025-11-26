@@ -39,7 +39,7 @@
 
 read_aagis_regions <- function(x = NULL) {
   if (is.null(x)) {
-    x <- fs::path(tempdir(), "aagis.zip")
+    x <- fs::path(tempdir(), "aagis_asgs16v1_g5a.shp_.zip")
     if (!fs::file_exists(x)) {
       .retry_download(
         url = "https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip",
@@ -51,7 +51,7 @@ read_aagis_regions <- function(x = NULL) {
   aagis_sf <- sf::st_make_valid(
     sf::st_read(
       dsn = sprintf(
-        "/vsizip//%s/aagis_asgs16v1_g5a.shp_/aagis_asgs16v1_g5a.shp",
+        "/vsizip//%s/aagis_asgs16v1_g5a.shp",
         x
       ),
       quiet = !(getOption("read.abares.verbosity") %in% c("quiet", "minimal"))
