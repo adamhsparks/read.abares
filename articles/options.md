@@ -1,0 +1,74 @@
+# Setting Global Options for read.abares
+
+{read.abares} provides a number of global options that can be set to
+control the behavior of the package. These options can be set using the
+[`options()`](https://rdrr.io/r/base/options.html) function in R, but a
+helper function,
+[`read.abares_options()`](https://adamhsparks.github.io/read.abares/reference/read.abares_options.md)
+is provided for more direct access and convenience.
+
+## Download Options
+
+### User Agent String
+
+{read.abares} provides a default user agent string of `read.abares` but
+you can change it for your own use, *e.g.*, “the user agent should be
+different on continuous integration services, and in development (based
+on, for instance, the GitHub usernames of the developers).”[¹](#fn1) You
+can change the user agent string using the `user_agent` argument in the
+[`read.abares_options()`](https://adamhsparks.github.io/read.abares/reference/read.abares_options.md):
+
+``` r
+read.abares_options(user_agent = "your_custom_user_agent")
+```
+
+### Max Tries
+
+{read.abares} will retry a download if it fails, up to a maximum number
+of retries. By default, this is set to `3`. You may override this using
+the `retries` argument in the
+[`read.abares_options()`](https://adamhsparks.github.io/read.abares/reference/read.abares_options.md):
+
+``` r
+read.abares_options(max_tries = 5) # set retries to 5
+```
+
+### Timeout Connect
+
+{read.abares} defaults to a `timeout_connect` value of 20 seconds. You
+may override this using the `timeout_connect` argument in the
+[`read.abares_options()`](https://adamhsparks.github.io/read.abares/reference/read.abares_options.md):
+
+``` r
+read.abares_options(timeout_connect = 40) # set to 40 seconds
+```
+
+### Timeout
+
+{read.abares} defaults to a `timeout` value of 5000 seconds. You may
+override this using the `timout` argument in the
+[`read.abares_options()`](https://adamhsparks.github.io/read.abares/reference/read.abares_options.md):
+
+``` r
+read.abares_options(timeout = 10000) # set to 10,000 seconds
+```
+
+## Package verbosity
+
+{read.abares} by default provides progress bars for long downloads and
+details when importing some spatial files. You can change this to reduce
+the messages that you receive but not turn off errors. Valid options
+are: \* “verbose” (default), \* “minimal” (provides warning messages and
+error messages), \* “quiet” (provides error messages only). This can be
+changed using the `verbosity` argument in the
+[`read.abares_options()`](https://adamhsparks.github.io/read.abares/reference/read.abares_options.md):
+
+``` r
+read.abares_options(verbosity = "minimal")
+# or 
+read.abares_options(verbosity = "quiet")
+```
+
+------------------------------------------------------------------------
+
+1.  1
