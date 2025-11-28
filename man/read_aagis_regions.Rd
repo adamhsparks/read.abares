@@ -21,7 +21,7 @@ An \CRANpkg{sf} object of the \acronym{AAGIS} regions.
 }
 \description{
 Download import the "Australian Agricultural and Grazing Industries Survey"
-(\acronym{AAGIS}) regions geospatial shapefile.
+(AAGIS) regions geospatial shapefile.
 }
 \note{
 Upon import a few operations are carried out,
