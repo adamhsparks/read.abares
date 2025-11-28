@@ -1,7 +1,7 @@
 #' Read ABARES' "Australian Agricultural and Grazing Industries Survey" (AAGIS) Region Mapping Files
 #'
 #' Download import the "Australian Agricultural and Grazing Industries Survey"
-#'   (\acronym{AAGIS}) regions geospatial shapefile.
+#'   (AAGIS) regions geospatial shapefile.
 #'
 #' @param x A file path providing the file with the data to be imported. The
 #'  file is assumed to be unarchived (*i.e.*, still zipped). This function does
