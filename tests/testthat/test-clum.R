@@ -1,4 +1,18 @@
-# Note: the zip file used in the test is created in setup.R before tests run
+library(terra)
+zip_file <- fs::path_temp("clum_50m_2023_v2.zip")
+create_clum_fixture <- function(zip_file) {
+  clum_50m_2023_v2 <- rast(system.file("ex/elev.tif", package = "terra"))
+  names(clum_50m_2023_v2) <- "clum_50m_2023_v2"
+  writeRaster(
+    clum_50m_2023_v2,
+    filename = fs::path_temp("clum_50m_2023_v2.tif"),
+    overwrite = TRUE
+  )
+  utils::zip(
+    zip_file,
+    files = fs::path_temp("clum_50m_2023_v2.tif")
+  )
+}
 
 test_that("read_clum_stars() works properly", {
   c_stars <- read_clum_stars(zip_file, data_set = "clum_50m_2023_v2")
