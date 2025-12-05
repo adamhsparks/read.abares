@@ -1,5 +1,5 @@
 test_that("read_agfd_dt() reads tiny valid NetCDF from local fixture", {
-  zip <- locate_agfd_fixture()
+  zip <- locate_ncdf_fixture()
   skip_if(!nzchar(zip) || !file.exists(zip), "Fixture zip not found")
 
   dat <- read_agfd_dt(yyyy = 2021:2022, fixed_prices = FALSE, x = zip)
@@ -24,7 +24,7 @@ test_that("read_agfd_dt() reads tiny valid NetCDF from local fixture", {
 })
 
 test_that("read_agfd_tidync() returns tidync objects for each file", {
-  zip <- locate_agfd_fixture()
+  zip <- locate_ncdf_fixture()
   skip_if(!nzchar(zip) || !file.exists(zip), "Fixture zip not found")
 
   objs <- read_agfd_tidync(yyyy = 2021:2022, fixed_prices = FALSE, x = zip)
@@ -36,7 +36,7 @@ test_that("read_agfd_tidync() returns tidync objects for each file", {
 })
 
 test_that("read_agfd_stars() produces a small stars object", {
-  zip <- locate_agfd_fixture()
+  zip <- locate_ncdf_fixture()
   skip_if(!nzchar(zip) || !file.exists(zip), "Fixture zip not found")
 
   s <- suppressMessages(
@@ -56,7 +56,7 @@ test_that("read_agfd_stars() produces a small stars object", {
 
 
 test_that("read_agfd_terra() yields a small SpatRaster", {
-  zip <- locate_agfd_fixture()
+  zip <- locate_ncdf_fixture()
   skip_if(!nzchar(zip) || !file.exists(zip), "Fixture zip not found")
 
   r <- read_agfd_terra(yyyy = 2022, fixed_prices = TRUE, x = zip)
