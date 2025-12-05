@@ -1,6 +1,7 @@
 create_clum_fixture <- function() {
   library(terra)
   clum_50m_2023_v2 <- rast(system.file("ex/elev.tif", package = "terra"))
+  names(clum_50m_2023_v2) <- "clum_50m_2023_v2"
   writeRaster(
     clum_50m_2023_v2,
     filename = fs::path_temp("clum_50m_2023_v2.tif"),
@@ -12,3 +13,5 @@ create_clum_fixture <- function() {
     files = fs::path_temp("clum_50m_2023_v2.tif")
   )
 }
+
+create_clum_fixture()
