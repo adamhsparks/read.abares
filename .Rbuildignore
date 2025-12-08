@@ -17,6 +17,7 @@
 ^man/dot-copy_local_clum_zip\.Rd$
 ^man/dot-get_nlum\.Rd$
 ^man/dot-get_topsoil_thickness\.Rd$
+^man/dot-check_clum_inputs\.Rd$
 ^man/parse_abs_production_data\.Rd$
 ^man/dot-find_years\.Rd$
 ^man/dot-readabares_collaborators\.Rd$

@@ -1,4 +1,4 @@
-#' Check CLUM inputs for stars and terra
+#' Check CLUM inputs for stars and terra Importing
 #'
 #' @param data_set A user provided string value.
 #' @param x A user provided string value.
