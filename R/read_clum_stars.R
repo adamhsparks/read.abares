@@ -70,23 +70,10 @@ read_clum_stars <- function(
   x = NULL,
   ...
 ) {
-  if (length(data_set) != 1L || !is.character(data_set) || is.na(data_set)) {
-    cli::cli_abort("{.var data_set} must be a single character string value.")
-  }
-  data_set <- rlang::arg_match0(
-    data_set,
-    c("clum_50m_2023_v2", "scale_date_update")
-  )
-  if (is.null(x)) {
-    x <- .get_clum(
-      .data_set = data_set
-    )
-  } else {
-    x <- .copy_local_clum_zip(x)
-  }
+  y <- .check_clum_inputs(data_set, x)
 
   return(stars::read_stars(
-    sprintf("/vsizip//%s/%s.zip/%s", tempdir(), data_set, x),
+    sprintf("/vsizip//%s/%s.zip/%s", tempdir(), y$data_set, y$x),
     quiet = (getOption("read.abares.verbosity") %in% c("quiet", "minimal")),
     ...
   ))

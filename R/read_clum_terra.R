@@ -77,16 +77,10 @@ read_clum_terra <- function(
     c("clum_50m_2023_v2", "scale_date_update")
   )
 
-  if (is.null(x)) {
-    x <- .get_clum(
-      .data_set = data_set
-    )
-  } else {
-    x <- .copy_local_clum_zip(x)
-  }
+  y <- .check_clum_inputs(data_set, x)
 
   r <- terra::rast(
-    sprintf("/vsizip//%s/%s.zip/%s", tempdir(), data_set, x),
+    sprintf("/vsizip//%s/%s.zip/%s", tempdir(), data_set, y$x),
     ...
   )
 
