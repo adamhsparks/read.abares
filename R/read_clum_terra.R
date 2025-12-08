@@ -80,7 +80,7 @@ read_clum_terra <- function(
   y <- .check_clum_inputs(data_set, x)
 
   r <- terra::rast(
-    sprintf("/vsizip//%s/%s.zip/%s", tempdir(), data_set, y$x),
+    sprintf("/vsizip//%s/%s.zip/%s", tempdir(), y$data_set, y$x),
     ...
   )
 
