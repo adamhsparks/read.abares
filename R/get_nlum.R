@@ -65,20 +65,3 @@
   zip_list <- utils::unzip(.x, list = TRUE)$Name
   return(grep(".tif$", zip_list, value = TRUE))
 }
-
-
-#' Prints read.abares.nlum.xs Objects
-#'
-#' Custom [base::print()] method for `read.abares.nlum.xs` objects.
-#'
-#' @param x a `read.abares.agfd.nlum.xs` object.
-#' @param ... ignored.
-#' @export
-#' @autoglobal
-#' @noRd
-print.read.abares.agfd.nlum.files <- function(x, ...) {
-  cli::cli_h1("Locally Available ABARES National Scale Land Use Files")
-  cli::cli_ul(basename(x))
-  cli::cat_line()
-  invisible(x)
-}
