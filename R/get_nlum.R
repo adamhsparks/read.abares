@@ -35,7 +35,7 @@
 #' @dev
 
 .get_nlum <- function(.data_set) {
-  .x <- fs::path(tempdir(), sprintf("%s.zip", .data_set))
+  .x <- fs::path_temp(sprintf("%s.zip", .data_set))
 
   if (!fs::file_exists(.x)) {
     file_url <- switch(

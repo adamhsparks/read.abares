@@ -39,7 +39,7 @@
 
 read_aagis_regions <- function(x = NULL) {
   if (is.null(x)) {
-    x <- fs::path(tempdir(), "aagis_asgs16v1_g5a.shp_.zip")
+    x <- fs::path_temp("aagis_asgs16v1_g5a.shp_.zip")
     if (!fs::file_exists(x)) {
       .retry_download(
         url = "https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip",

@@ -25,7 +25,7 @@
 #'
 read_historical_state_estimates <- read_hist_st_est <- function(x = NULL) {
   if (is.null(x)) {
-    x <- fs::path(tempdir(), "fdp-beta-state-historical.csv")
+    x <- fs::path_temp("fdp-beta-state-historical.csv")
 
     .retry_download(
       "https://www.agriculture.gov.au/sites/default/files/documents/fdp-state-historical.csv",

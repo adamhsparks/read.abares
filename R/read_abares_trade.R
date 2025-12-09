@@ -23,7 +23,7 @@
 
 read_abares_trade <- function(x = NULL) {
   if (is.null(x)) {
-    x <- fs::path(tempdir(), "abares_trade_data.zip")
+    x <- fs::path_temp("abares_trade_data.zip")
 
     .retry_download(
       url = "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1033841/1",

@@ -35,7 +35,7 @@
   .raster <- "staiar9cl__05911a01eg_geo___/thpk_1"
 
   if (is.null(.x)) {
-    .x <- fs::path(tempdir(), "staiar9cl__05911a01eg_geo____.zip")
+    .x <- fs::path_temp("staiar9cl__05911a01eg_geo____.zip")
 
     if (!fs::file_exists(.x)) {
       .retry_download(

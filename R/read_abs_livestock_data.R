@@ -60,7 +60,7 @@ read_abs_livestock_data <- function(
     )
     base_url <- "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-livestock/2023-24/AALDC_"
 
-    x <- fs::path(tempdir(), "livestock_file")
+    x <- fs::path_temp("livestock_file")
     .retry_download(
       url = sprintf(
         "%s%s",

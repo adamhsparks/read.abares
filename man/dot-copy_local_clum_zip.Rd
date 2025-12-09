@@ -10,7 +10,7 @@
 \item{x}{A filepath pointing to the CLUM file provided by the user}
 }
 \value{
-A character vector of geotif file names.
+A character vector of geotiff file names.
 }
 \description{
 Copies local CLUM file to tempdir() so the org file isn't touched

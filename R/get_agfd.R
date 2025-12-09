@@ -24,8 +24,7 @@
 #' @dev
 
 .get_agfd <- function(.fixed_prices, .yyyy) {
-  .x <- fs::path(
-    tempdir(),
+  .x <- fs::path_temp(
     sprintf(
       "%s.zip",
       data.table::fifelse(
@@ -72,8 +71,8 @@
 
   f <- data.table::fifelse(
     .fixed_prices,
-    fs::path(tempdir(), "historical_climate_prices_fixed"),
-    fs::path(tempdir(), "historical_climate_and_prices")
+    fs::path_temp("historical_climate_prices_fixed"),
+    fs::path_temp("historical_climate_and_prices")
   )
 
   return(
@@ -86,7 +85,7 @@
 #' @returns A character vector of file paths for AGFD netCDF files
 #' @dev
 .copy_local_agfd_zip <- function(x) {
-  y <- fs::path(tempdir(), fs::path_file(x))
+  y <- fs::path_temp(fs::path_file(x))
   fs::file_copy(x, y, overwrite = TRUE)
   return(.read_ncdf_from_zip(zip_path = y))
 }

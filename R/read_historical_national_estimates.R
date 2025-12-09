@@ -26,7 +26,7 @@
 #'
 read_historical_national_estimates <- function(x = NULL) {
   if (is.null(x)) {
-    x <- fs::path(tempdir(), "fdp-beta-national-historical.csv")
+    x <- fs::path_temp("fdp-beta-national-historical.csv")
 
     .retry_download(
       "https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv",

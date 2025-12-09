@@ -64,7 +64,7 @@ read_abs_broadacre_data <- function(
     base_url <-
       "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops/"
 
-    x <- fs::path(tempdir(), sprintf("%s_crops_file", data_set))
+    x <- fs::path_temp(sprintf("%s_crops_file", data_set))
     .retry_download(
       url = sprintf(
         "%s%s/AABDC_%s_%s.xlsx",

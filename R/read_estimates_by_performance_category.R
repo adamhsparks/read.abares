@@ -23,7 +23,7 @@
 #'
 read_estimates_by_performance_category <- function(x = NULL) {
   if (is.null(x)) {
-    x <- fs::path(tempdir(), "fdp-BySize-ByPerformance.csv")
+    x <- fs::path_temp("fdp-BySize-ByPerformance.csv")
 
     .retry_download(
       "https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv",

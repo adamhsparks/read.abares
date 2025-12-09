@@ -34,7 +34,7 @@ read_abs_horticulture_data <- function(year = "latest", x = NULL) {
     }
     base_url <- "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-horticulture"
 
-    x <- fs::path(tempdir(), "hort_crops_file")
+    x <- fs::path_temp("hort_crops_file")
 
     .retry_download(
       url = sprintf(

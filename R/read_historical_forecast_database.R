@@ -55,7 +55,7 @@
 
 read_historical_forecast_database <- function(x = NULL) {
   if (is.null(x)) {
-    x <- fs::path(tempdir(), "historical_db.xlsx")
+    x <- fs::path_temp("historical_db.xlsx")
 
     .retry_download(
       "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0",
