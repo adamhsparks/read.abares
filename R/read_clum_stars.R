@@ -70,8 +70,7 @@ read_clum_stars <- function(
   x = NULL,
   ...
 ) {
-  y <- .check_clum_inputs(data_set, x)
-
+  y <- .check_clum_inputs(data_set = data_set, x = x)
   return(stars::read_stars(
     sprintf("/vsizip//%s/%s.zip/%s", tempdir(), y$data_set, y$x),
     quiet = (getOption("read.abares.verbosity") %in% c("quiet", "minimal")),

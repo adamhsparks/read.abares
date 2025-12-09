@@ -1,21 +1,23 @@
 library(terra)
 zip_file <- fs::path_temp("clum_50m_2023_v2.zip")
+fs::dir_create(fs::path_temp("clum_50m_2023_v2"))
 create_clum_fixture <- function(zip_file) {
   clum_50m_2023_v2 <- rast(system.file("ex/elev.tif", package = "terra"))
   names(clum_50m_2023_v2) <- "clum_50m_2023_v2"
   writeRaster(
     clum_50m_2023_v2,
-    filename = fs::path_temp("clum_50m_2023_v2.tif"),
+    filename = fs::path_temp("clum_50m_2023_v2/clum_50m_2023_v2.tif"),
     overwrite = TRUE
   )
   utils::zip(
     zip_file,
-    files = fs::path_temp("clum_50m_2023_v2.tif")
+    files = fs::path_temp("clum_50m_2023_v2/clum_50m_2023_v2.tif")
   )
+  fs::dir_delete(fs::path_temp("clum_50m_2023_v2"))
 }
 create_clum_fixture(zip_file)
 test_that("read_clum_stars() works properly", {
-  c_stars <- read_clum_stars(zip_file, data_set = "clum_50m_2023_v2")
+  c_stars <- read_clum_stars(x = zip_file, data_set = "clum_50m_2023_v2")
   expect_equal(unname(dim(c_stars)), c(95, 90))
   expect_named(c_stars, "clum_50m_2023_v2.tif")
 })

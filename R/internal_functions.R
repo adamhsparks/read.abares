@@ -15,10 +15,10 @@
     data_set,
     c("clum_50m_2023_v2", "scale_date_update")
   )
-  x <- switch(
-    is.null(x),
-    .get_clum(.data_set = data_set),
-    .copy_local_clum_zip(x)
-  )
+  if (is.null(x)) {
+    x <- .get_clum(.data_set = data_set)
+  } else {
+    x <- .copy_local_clum_zip(x)
+  }
   return(list("data_set" = data_set, "x" = x))
 }

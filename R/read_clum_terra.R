@@ -69,15 +69,10 @@ read_clum_terra <- function(
   x = NULL,
   ...
 ) {
-  if (length(data_set) != 1L || !is.character(data_set) || is.na(data_set)) {
-    cli::cli_abort("{.var data_set} must be a single character string value.")
-  }
-  data_set <- rlang::arg_match0(
-    data_set,
-    c("clum_50m_2023_v2", "scale_date_update")
+  y <- .check_clum_inputs(
+    data_set = data_set,
+    x = x
   )
-
-  y <- .check_clum_inputs(data_set, x)
 
   r <- terra::rast(
     sprintf("/vsizip//%s/%s.zip/%s", tempdir(), y$data_set, y$x),
