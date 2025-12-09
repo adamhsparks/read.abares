@@ -49,7 +49,7 @@
       "T201011" = "NLUM_v7_250_INPUTS_2010_11_geo_package_20241128",
       "P202021" = "NLUM_v7_250_AgProbabilitySurfaces_2020_21_geo_package_20241128",
       "P201516" = "NLUM_v7_250_AgProbabilitySurfaces_2015_16_geo_package_20241128",
-      "P201011" = "NLUM_v7_250_AgProbabilitySurfaces_2010_11_geo_package_20241128",
+      "P201011" = "NLUM_v7_250_AgProbabilitySurfaces_2010_11_geo_package_20241128"
     )
 
     file_url <-
