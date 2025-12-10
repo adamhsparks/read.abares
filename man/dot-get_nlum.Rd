@@ -23,15 +23,15 @@ One of:
 }.}
 }
 \value{
-A character string value of the file name of the GeoTIFF within the
-downloaded zip file.
+An invisible \code{NULL} called for its side effect of downloading the
+desired file.
 }
 \description{
 An internal function used by \code{\link[=read_nlum_terra]{read_nlum_terra()}} and \code{\link[=read_nlum_stars]{read_nlum_stars()}} that
 downloads national level land use data GeoTIFF file.
 }
 \examples{
-Y202021 <- .get_nlum(.data_set = "Y202021", .x = NULL)
+Y202021 <- .get_nlum(.data_set = "Y202021")
 
 Y202021
 

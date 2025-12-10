@@ -35,7 +35,7 @@ One of:
 \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 }.
-This argument is ignored if \code{file} is provided.}
+This argument is ignored if \code{x} is provided.}
 
 \item{x}{A character string of a file path to a local zip file that has
 been downloaded outside of R that contains the \acronym{NLUM} data.}
