@@ -24,44 +24,43 @@
 #' 4.0. \doi{10.25814/w175-xh85}.
 #'
 #' @examples
-#' Y202021 <- .get_nlum(.data_set = "Y202021", .x = NULL)
+#' Y202021 <- .get_nlum(.data_set = "Y202021")
 #'
 #' Y202021
 #'
-#' @returns A character string value of the file name of the GeoTIFF within the
-#'  downloaded zip file.
+#' @returns An invisible `NULL` called for its side effect of downloading the
+#'  desired file.
 #'
 #' @autoglobal
 #' @dev
 
 .get_nlum <- function(.data_set) {
-  .x <- fs::path_temp(sprintf("%s.zip", .data_set))
+  .zip_file <- switch(
+    .data_set,
+    "Y202021" = "NLUM_v7_250_ALUMV8_2020_21_alb_package_20241128.zip",
+    "Y201516" = "NLUM_v7_250_ALUMV8_2015_16_alb_package_20241128.zip",
+    "Y201011" = "NLUM_v7_250_ALUMV8_2010_11_alb_package_20241128.zip",
+    "C201121" = "NLUM_v7_250_CHANGE_SIMP_2011_to_2021_alb_package_20241128.zip",
+    "T202021" = "NLUM_v7_250_INPUTS_2020_21_geo_package_20241128.zip",
+    "T201516" = "NLUM_v7_250_INPUTS_2015_16_geo_package_20241128.zip",
+    "T201011" = "NLUM_v7_250_INPUTS_2010_11_geo_package_20241128.zip",
+    "P202021" = "NLUM_v7_250_AgProbabilitySurfaces_2020_21_geo_package_20241128.zip",
+    "P201516" = "NLUM_v7_250_AgProbabilitySurfaces_2015_16_geo_package_20241128.zip",
+    "P201011" = "NLUM_v7_250_AgProbabilitySurfaces_2010_11_geo_package_20241128.zip"
+  )
+
+  .x <- fs::path_temp(.zip_file)
 
   if (!fs::file_exists(.x)) {
-    file_url <- switch(
-      .data_set,
-      "Y202021" = "NLUM_v7_250_ALUMV8_2020_21_alb_package_20241128",
-      "Y201516" = "NLUM_v7_250_ALUMV8_2015_16_alb_package_20241128",
-      "Y201011" = "NLUM_v7_250_ALUMV8_2010_11_alb_package_20241128",
-      "C201121" = "NLUM_v7_250_CHANGE_SIMP_2011_to_2021_alb_package_20241128",
-      "T202021" = "NLUM_v7_250_INPUTS_2020_21_geo_package_20241128",
-      "T201516" = "NLUM_v7_250_INPUTS_2015_16_geo_package_20241128",
-      "T201011" = "NLUM_v7_250_INPUTS_2010_11_geo_package_20241128",
-      "P202021" = "NLUM_v7_250_AgProbabilitySurfaces_2020_21_geo_package_20241128",
-      "P201516" = "NLUM_v7_250_AgProbabilitySurfaces_2015_16_geo_package_20241128",
-      "P201011" = "NLUM_v7_250_AgProbabilitySurfaces_2010_11_geo_package_20241128"
-    )
-
     file_url <-
       sprintf(
-        "https://www.agriculture.gov.au/sites/default/files/documents/%s.zip",
-        file_url
+        "https://www.agriculture.gov.au/sites/default/files/documents/%s",
+        .zip_file
       )
     .retry_download(
       url = file_url,
       dest = .x
     )
   }
-  zip_list <- utils::unzip(.x, list = TRUE)$Name
-  return(grep(".tif$", zip_list, value = TRUE))
+  return(invisible(NULL))
 }

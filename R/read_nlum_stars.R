@@ -51,7 +51,7 @@
 #'  \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 #'  \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 #' }.
-#' This argument is ignored if `file` is provided.
+#' This argument is ignored if `x` is provided.
 #' @param x A character string of a file path to a local zip file that has
 #'  been downloaded outside of R that contains the \acronym{NLUM} data.
 #' @param ... Additional arguments passed to [stars::read_stars()], for *e.g.*,
@@ -118,11 +118,14 @@ read_nlum_stars <- function(
         "P202021"
       )
     )
-    x <- .get_nlum(.data_set = data_set)
+    .get_nlum(.data_set = data_set)
+  } else if (is.null(data_set)) {
+    # if no data_set provided, infer from x
+    data_set <- fs::path_ext_remove(fs::path_file(x))
   }
-  return(stars::read_stars(
-    sprintf("/vsizip//%s/%s.zip/%s", tempdir(), data_set, x),
+  stars::read_stars(
+    sprintf("/vsizip//%s/%s.zip/%s.tif", tempdir(), data_set, data_set),
     quiet = (getOption("read.abares.verbosity") %in% c("quiet", "minimal")),
     ...
-  ))
+  )
 }
