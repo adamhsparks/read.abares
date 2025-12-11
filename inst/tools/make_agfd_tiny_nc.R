@@ -3,7 +3,6 @@
 # Requires: ncdf4
 
 fs::dir_create(here::here(), "/inst/tools/historical_climate_prices_fixed")
-library(ncdf4)
 
 make_one <- function(path, seed = 2022) {
   set.seed(seed)
@@ -11,8 +10,8 @@ make_one <- function(path, seed = 2022) {
   lat_vals <- c(-27.50, -27.00)
   lon_vals <- c(152.80, 153.00)
 
-  dim_lat <- ncdim_def("lat", "degrees_north", lat_vals)
-  dim_lon <- ncdim_def("lon", "degrees_east", lon_vals)
+  dim_lat <- ncdf4::ncdim_def("lat", "degrees_north", lat_vals)
+  dim_lon <- ncdf4::ncdim_def("lon", "degrees_east", lon_vals)
 
   # Two AGFD-style variables with CF-compliant units
   var_profit <- ncvar_def(
@@ -30,17 +29,17 @@ make_one <- function(path, seed = 2022) {
     prec = "float"
   )
 
-  nc <- nc_create(path, vars = list(var_profit, var_receipts))
+  nc <- ncdf4::nc_create(path, vars = list(var_profit, var_receipts))
 
   # Fill with synthetic values
-  ncvar_put(nc, var_profit, matrix(round(runif(4, 100, 500), 2), 2, 2))
-  ncvar_put(nc, var_receipts, matrix(round(runif(4, 200, 600), 2), 2, 2))
+  ncdf4::ncvar_put(nc, var_profit, matrix(round(runif(4, 100, 500), 2), 2, 2))
+  ncdf4::ncvar_put(nc, var_receipts, matrix(round(runif(4, 200, 600), 2), 2, 2))
 
   # Minimal global attributes
-  ncatt_put(nc, 0, "title", "AGFD tiny test file (CRAN-safe)")
-  ncatt_put(nc, 0, "source", "Synthetic unit-test data; not ABARES")
+  ncdf4::ncatt_put(nc, 0, "title", "AGFD tiny test file (CRAN-safe)")
+  ncdf4::ncatt_put(nc, 0, "source", "Synthetic unit-test data; not ABARES")
 
-  nc_close(nc)
+  ncdf4::nc_close(nc)
 }
 
 make_one(

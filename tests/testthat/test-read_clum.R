@@ -16,9 +16,9 @@ test_that("read_clum_terra returns a SpatRaster when x is provided", {
   files <- make_zip_with_tif("direct.tif")
   result <- read_clum_terra(x = files$zipfile, data_set = NULL)
   expect_s4_class(result, "SpatRaster")
-  expect_equal(dim(result), c(2, 2, 1))
-  expect_equal(terra::nrow(result), 2)
-  expect_equal(terra::ncol(result), 2)
+  expect_identical(dim(result), c(2, 2, 1))
+  expect_identical(terra::nrow(result), 2)
+  expect_identical(terra::ncol(result), 2)
 })
 
 test_that("read_clum_terra works with mocked .get_lum_files", {
@@ -31,7 +31,7 @@ test_that("read_clum_terra works with mocked .get_lum_files", {
     .get_lum_files = fake_get_lum_files
   )
   expect_s4_class(result, "SpatRaster")
-  expect_equal(dim(result), c(2, 2, 1))
+  expect_identical(dim(result), c(2, 2, 1))
 })
 
 test_that("read_clum_terra propagates errors from .get_lum_files", {
@@ -57,7 +57,7 @@ test_that("read_clum_terra passes ... to terra::rast", {
     .get_lum_files = fake_get_lum_files
   )
   expect_s4_class(result, "SpatRaster")
-  expect_equal(dim(result), c(2, 2, 1))
+  expect_identical(dim(result), c(2, 2, 1))
 })
 
 ## ---- Tests for read_clum_stars ----
@@ -65,8 +65,8 @@ test_that("read_clum_stars returns a stars object when x is provided", {
   files <- make_zip_with_tif("direct.tif")
   result <- read_clum_stars(x = files$zipfile, data_set = NULL)
   expect_s3_class(result, "stars")
-  expect_equal(unname(dim(result)), c(2, 2))
-  expect_equal(names(dim(result)), c("x", "y"))
+  expect_identical(unname(dim(result)), c(2L, 2L))
+  expect_named(dim(result), c("x", "y"))
 })
 
 test_that("read_clum_stars works with mocked .get_lum_files", {
@@ -79,8 +79,8 @@ test_that("read_clum_stars works with mocked .get_lum_files", {
     .get_lum_files = fake_get_lum_files
   )
   expect_s3_class(result, "stars")
-  expect_equal(unname(dim(result)), c(2, 2))
-  expect_equal(names(dim(result)), c("x", "y"))
+  expect_identical(unname(dim(result)), c(2L, 2L))
+  expect_named(dim(result), c("x", "y"))
 })
 
 test_that("read_clum_stars propagates errors from .get_lum_files", {
@@ -106,8 +106,8 @@ test_that("read_clum_stars passes ... to stars::read_stars", {
     .get_lum_files = fake_get_lum_files
   )
   expect_s3_class(result, "stars")
-  expect_equal(unname(dim(result)), c(2, 2))
-  expect_equal(names(dim(result)), c("x", "y"))
+  expect_identical(unname(dim(result)), c(2L, 2L))
+  expect_named(dim(result), c("x", "y"))
 })
 
 ## ---- Tests for CLUM metadata helpers ----
@@ -122,28 +122,28 @@ test_that(".set_clum_update_levels returns a list with correct components", {
 
 test_that("date_levels has correct years", {
   dl <- .set_clum_update_levels()$date_levels
-  expect_equal(dl$int, 2008L:2023L)
-  expect_equal(dl$rast_cat, 2008L:2023L)
-  expect_equal(nrow(dl), 16)
+  expect_identical(dl$int, 2008L:2023L)
+  expect_identical(dl$rast_cat, 2008L:2023L)
+  expect_identical(nrow(dl), 16L)
 })
 
 test_that("update_levels has correct categories", {
   ul <- .set_clum_update_levels()$update_levels
-  expect_equal(ul$int, 0:1)
-  expect_equal(
+  expect_identical(ul$int, 0:1)
+  expect_identical(
     ul$rast_cat,
     c("Not Updated", "Updated Since CLUM Dec. 2020 Release")
   )
-  expect_equal(nrow(ul), 2)
+  expect_identical(nrow(ul), 2L)
 })
 
 test_that("scale_levels has correct scales", {
   sl <- .set_clum_update_levels()$scale_levels
-  expect_equal(
+  expect_identical(
     sl$int,
     c(5000L, 10000L, 20000L, 25000L, 50000L, 100000L, 250000L)
   )
-  expect_equal(
+  expect_identical(
     sl$rast_cat,
     c(
       "1:5,000",
@@ -155,7 +155,7 @@ test_that("scale_levels has correct scales", {
       "1:250,000"
     )
   )
-  expect_equal(nrow(sl), 7)
+  expect_identical(nrow(sl), 7L)
 })
 
 test_that(".create_clum_50m_coltab loads a data.table from Rds file", {
@@ -165,7 +165,7 @@ test_that(".create_clum_50m_coltab loads a data.table from Rds file", {
   expect_type(ct$value, "integer")
   expect_type(ct$color, "character")
   expect_gt(nrow(ct), 0)
-  expect_equal(ct$value[1], 0L)
-  expect_equal(ct$color[1], "#ffffff")
+  expect_identical(ct$value[1], 0L)
+  expect_identical(ct$color[1], "#ffffff")
   expect_true(all(grepl("^#[0-9A-Fa-f]{6}$", ct$color)))
 })

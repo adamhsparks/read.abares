@@ -32,7 +32,7 @@ zipfile <- make_fake_topsoil_zip()
 test_that("read_topsoil_thickness_stars returns a stars object with correct dimensions", {
   result <- read_topsoil_thickness_stars(x = zipfile)
   expect_s3_class(result, "stars")
-  expect_equal(unname(dim(result)), c(2, 2))
+  expect_identical(unname(dim(result)), c(2L, 2L))
 })
 
 test_that("read_topsoil_thickness_stars works with NULL x and mocked download", {
@@ -44,13 +44,13 @@ test_that("read_topsoil_thickness_stars works with NULL x and mocked download", 
     .retry_download = fake_retry_download
   )
   expect_s3_class(result, "stars")
-  expect_equal(unname(dim(result)), c(2, 2))
+  expect_identical(unname(dim(result)), c(2L, 2L))
 })
 
 test_that("read_topsoil_thickness_terra returns a SpatRaster with correct dimensions", {
   result <- read_topsoil_thickness_terra(x = zipfile)
   expect_s4_class(result, "SpatRaster")
-  expect_equal(dim(result), c(2, 2, 1))
+  expect_identical(dim(result), c(2, 2, 1))
 })
 
 test_that("read_topsoil_thickness_terra works with NULL x and mocked download", {
@@ -62,5 +62,5 @@ test_that("read_topsoil_thickness_terra works with NULL x and mocked download", 
     .retry_download = fake_retry_download
   )
   expect_s4_class(result, "SpatRaster")
-  expect_equal(dim(result), c(2, 2, 1))
+  expect_identical(dim(result), c(2, 2, 1))
 })

@@ -21,7 +21,7 @@ test_that("read_nlum_stars returns a stars object when x is provided", {
     .get_lum_files = fake_get_lum_files
   )
   expect_s3_class(result, "stars")
-  expect_equal(unname(dim(result)), c(2, 2))
+  expect_identical(unname(dim(result)), c(2L, 2L))
 })
 
 test_that("read_nlum_stars works with mocked .get_lum_files and data_set", {
@@ -74,7 +74,7 @@ test_that("read_nlum_terra returns a SpatRaster when x is provided", {
     .get_lum_files = fake_get_lum_files
   )
   expect_s4_class(result, "SpatRaster")
-  expect_equal(dim(result), c(2, 2, 1))
+  expect_identical(dim(result), c(2, 2, 1))
 })
 
 test_that("read_nlum_terra works with mocked .get_lum_files and data_set", {
@@ -111,5 +111,5 @@ test_that("read_nlum_terra returns correct number of layers", {
     result <- read_nlum_terra(data_set = "nlum_2023"),
     .get_lum_files = fake_get_lum_files
   )
-  expect_equal(terra::nlyr(result), 1)
+  expect_identical(terra::nlyr(result), 1)
 })
