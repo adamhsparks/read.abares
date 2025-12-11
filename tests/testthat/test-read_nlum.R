@@ -49,7 +49,6 @@ test_that("read_nlum_stars propagates errors from .get_lum_files", {
   )
 })
 
-
 test_that("read_nlum_stars passes ... to stars::read_stars", {
   files <- make_zip_with_tif("nlum_rat.tif")
   fake_get_lum_files <- function(x, data_set, lum) {
