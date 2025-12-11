@@ -54,5 +54,5 @@
 
   out <- list(metadata = metadata, data = x)
   class(out) <- union("read.abares.topsoil.thickness", class(out))
-  out
+  return(out)
 }
