@@ -107,7 +107,7 @@ read_nlum_stars <- function(
   y <- .get_lum_files(x, data_set, lum = "nlum")
   return(stars::read_stars(
     sprintf(
-      "/vsizip/%s/%s",
+      "/vsizip//%s/%s",
       y$file_path,
       y$tiff
     ),

@@ -80,7 +80,7 @@ read_nlum_terra <- function(
   y <- .get_lum_files(x, data_set, lum = "nlum")
   return(terra::rast(
     sprintf(
-      "/vsizip/%s/%s",
+      "/vsizip//%s/%s",
       y$file_path,
       y$tiff
     ),
