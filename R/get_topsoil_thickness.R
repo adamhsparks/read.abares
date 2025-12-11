@@ -49,7 +49,7 @@
   on.exit(close(con), add = TRUE)
   metadata <- paste(readLines(con), collapse = "\n")
 
-  x <- terra::rast(paste0("/vsizip//", .x, "/", .raster))
+  x <- terra::rast(sprintf("/vsizip//%s/%s", .x, .raster))
   x <- terra::init(x, x[]) # remove RAT legend if present
 
   out <- list(metadata = metadata, data = x)
