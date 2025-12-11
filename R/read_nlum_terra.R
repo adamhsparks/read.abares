@@ -76,27 +76,20 @@ read_nlum_terra <- function(
   x = NULL,
   ...
 ) {
-  if (is.null(x)) {
-    data_set <- rlang::arg_match(
-      data_set,
-      c(
-        "Y201011",
-        "Y201516",
-        "Y202021",
-        "C201121",
-        "T201011",
-        "T201516",
-        "T202021",
-        "P201011",
-        "P201516",
-        "P202021"
-      )
-    )
+  if (is.null(x) && !is.null(data_set)) {
     x <- .get_nlum(.data_set = data_set)
+  } else if (!is.null(x) && is.null(data_set)) {
+    # if no data_set provided, infer from x
+    data_set <- fs::path_ext_remove(fs::path_file(x))
+  } else {
+    cli::cli_abort("You must provide only either `x` or `data_set`.")
   }
-
   return(terra::rast(
-    sprintf("/vsizip//%s/%s.zip/%s", tempdir(), data_set, x),
+    sprintf(
+      "/vsizip/%s/%s.tif",
+      x,
+      sub("^(.*?\\d{4}(?:_\\d{2}|_to_\\d{4})(?:_alb)?).*$", "\\1", data_set)
+    ),
     ...
   ))
 }

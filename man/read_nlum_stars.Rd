@@ -38,7 +38,8 @@ One of:
 This argument is ignored if \code{x} is provided.}
 
 \item{x}{A character string of a file path to a local zip file that has
-been downloaded outside of R that contains the \acronym{NLUM} data.}
+been downloaded outside of R that contains the \acronym{NLUM} data.
+This argument is ignored if \code{data_set} is provided.}
 
 \item{...}{Additional arguments passed to \code{\link[stars:read_stars]{stars::read_stars()}}, for \emph{e.g.},
 \code{RAT} if you wish to set the active category when loading any of the

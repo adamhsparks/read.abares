@@ -4,7 +4,7 @@
 \alias{.get_nlum}
 \title{Get ABARES' National Scale "Land Use of Australia" Data}
 \usage{
-.get_nlum(.data_set)
+.get_nlum(.data_set, .x)
 }
 \arguments{
 \item{.data_set}{A string value indicating the GeoTIFF desired for download.
@@ -31,9 +31,7 @@ An internal function used by \code{\link[=read_nlum_terra]{read_nlum_terra()}} a
 downloads national level land use data GeoTIFF file.
 }
 \examples{
-Y202021 <- .get_nlum(.data_set = "Y202021")
-
-Y202021
+.get_nlum(.data_set = "Y202021")
 
 }
 \references{
