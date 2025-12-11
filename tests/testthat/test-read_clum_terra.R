@@ -60,3 +60,60 @@ test_that("read_clum_terra passes ... to terra::rast", {
   expect_s4_class(result, "SpatRaster")
   expect_equal(dim(result), c(2, 2, 1))
 })
+
+test_that(".set_clum_update_levels returns a list with correct components", {
+  res <- .set_clum_update_levels()
+
+  # Check it's a list with named elements
+  expect_type(res, "list")
+  expect_named(res, c("date_levels", "update_levels", "scale_levels"))
+
+  # Each element should be a data.table
+  expect_s3_class(res$date_levels, "data.table")
+  expect_s3_class(res$update_levels, "data.table")
+  expect_s3_class(res$scale_levels, "data.table")
+})
+
+test_that("date_levels has correct years", {
+  res <- .set_clum_update_levels()
+  dl <- res$date_levels
+
+  expect_equal(dl$int, 2008L:2023L)
+  expect_equal(dl$rast_cat, 2008L:2023L)
+  expect_equal(nrow(dl), 16)
+})
+
+test_that("update_levels has correct categories", {
+  res <- .set_clum_update_levels()
+  ul <- res$update_levels
+
+  expect_equal(ul$int, 0:1)
+  expect_equal(
+    ul$rast_cat,
+    c("Not Updated", "Updated Since CLUM Dec. 2020 Release")
+  )
+  expect_equal(nrow(ul), 2)
+})
+
+test_that("scale_levels has correct scales", {
+  res <- .set_clum_update_levels()
+  sl <- res$scale_levels
+
+  expect_equal(
+    sl$int,
+    c(5000L, 10000L, 20000L, 25000L, 50000L, 100000L, 250000L)
+  )
+  expect_equal(
+    sl$rast_cat,
+    c(
+      "1:5,000",
+      "1:10,000",
+      "1:20,000",
+      "1:25,000",
+      "1:50,000",
+      "1:100,000",
+      "1:250,000"
+    )
+  )
+  expect_equal(nrow(sl), 7)
+})
