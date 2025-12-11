@@ -11,13 +11,12 @@ make_zip_with_tif <- function(name = "dummy.tif") {
   list(zipfile = zipfile, tif = name)
 }
 
+## ---- Tests for read_clum_terra ----
 test_that("read_clum_terra returns a SpatRaster when x is provided", {
   files <- make_zip_with_tif("direct.tif")
   result <- read_clum_terra(x = files$zipfile, data_set = NULL)
   expect_s4_class(result, "SpatRaster")
-  # Check dimensions (nrow, ncol)
-  expect_equal(dim(result), c(2, 2, 1)) # rows, cols, layers
-  # Check names of dimensions (terra uses nlyr for layers)
+  expect_equal(dim(result), c(2, 2, 1))
   expect_equal(terra::nrow(result), 2)
   expect_equal(terra::ncol(result), 2)
 })
@@ -61,32 +60,75 @@ test_that("read_clum_terra passes ... to terra::rast", {
   expect_equal(dim(result), c(2, 2, 1))
 })
 
+## ---- Tests for read_clum_stars ----
+test_that("read_clum_stars returns a stars object when x is provided", {
+  files <- make_zip_with_tif("direct.tif")
+  result <- read_clum_stars(x = files$zipfile, data_set = NULL)
+  expect_s3_class(result, "stars")
+  expect_equal(unname(dim(result)), c(2, 2))
+  expect_equal(names(dim(result)), c("x", "y"))
+})
+
+test_that("read_clum_stars works with mocked .get_lum_files", {
+  files <- make_zip_with_tif("mocked.tif")
+  fake_get_lum_files <- function(x, data_set, lum) {
+    list(file_path = files$zipfile, tiff = files$tif)
+  }
+  with_mocked_bindings(
+    result <- read_clum_stars(data_set = "clum_50m_2023_v2"),
+    .get_lum_files = fake_get_lum_files
+  )
+  expect_s3_class(result, "stars")
+  expect_equal(unname(dim(result)), c(2, 2))
+  expect_equal(names(dim(result)), c("x", "y"))
+})
+
+test_that("read_clum_stars propagates errors from .get_lum_files", {
+  fake_get_lum_files <- function(x, data_set, lum) {
+    cli::cli_abort("fake error")
+  }
+  expect_error(
+    with_mocked_bindings(
+      read_clum_stars(data_set = "clum_50m_2023_v2"),
+      .get_lum_files = fake_get_lum_files
+    ),
+    "fake error"
+  )
+})
+
+test_that("read_clum_stars passes ... to stars::read_stars", {
+  files <- make_zip_with_tif("rat.tif")
+  fake_get_lum_files <- function(x, data_set, lum) {
+    list(file_path = files$zipfile, tiff = files$tif)
+  }
+  with_mocked_bindings(
+    result <- read_clum_stars(data_set = "clum_50m_2023_v2", RAT = "category"),
+    .get_lum_files = fake_get_lum_files
+  )
+  expect_s3_class(result, "stars")
+  expect_equal(unname(dim(result)), c(2, 2))
+  expect_equal(names(dim(result)), c("x", "y"))
+})
+
+## ---- Tests for CLUM metadata helpers ----
 test_that(".set_clum_update_levels returns a list with correct components", {
   res <- .set_clum_update_levels()
-
-  # Check it's a list with named elements
   expect_type(res, "list")
   expect_named(res, c("date_levels", "update_levels", "scale_levels"))
-
-  # Each element should be a data.table
   expect_s3_class(res$date_levels, "data.table")
   expect_s3_class(res$update_levels, "data.table")
   expect_s3_class(res$scale_levels, "data.table")
 })
 
 test_that("date_levels has correct years", {
-  res <- .set_clum_update_levels()
-  dl <- res$date_levels
-
+  dl <- .set_clum_update_levels()$date_levels
   expect_equal(dl$int, 2008L:2023L)
   expect_equal(dl$rast_cat, 2008L:2023L)
   expect_equal(nrow(dl), 16)
 })
 
 test_that("update_levels has correct categories", {
-  res <- .set_clum_update_levels()
-  ul <- res$update_levels
-
+  ul <- .set_clum_update_levels()$update_levels
   expect_equal(ul$int, 0:1)
   expect_equal(
     ul$rast_cat,
@@ -96,9 +138,7 @@ test_that("update_levels has correct categories", {
 })
 
 test_that("scale_levels has correct scales", {
-  res <- .set_clum_update_levels()
-  sl <- res$scale_levels
-
+  sl <- .set_clum_update_levels()$scale_levels
   expect_equal(
     sl$int,
     c(5000L, 10000L, 20000L, 25000L, 50000L, 100000L, 250000L)
@@ -118,28 +158,14 @@ test_that("scale_levels has correct scales", {
   expect_equal(nrow(sl), 7)
 })
 
-
 test_that(".create_clum_50m_coltab loads a data.table from Rds file", {
-  # Call the function
   ct <- .create_clum_50m_coltab()
-
-  # Check class
   expect_s3_class(ct, "data.table")
-
-  # Check column names
   expect_named(ct, c("value", "color"))
-
-  # Check column types
   expect_type(ct$value, "integer")
   expect_type(ct$color, "character")
-
-  # Ensure non-empty
   expect_gt(nrow(ct), 0)
-
-  # Spot check: first row should be value 0 and color "#ffffff"
   expect_equal(ct$value[1], 0L)
   expect_equal(ct$color[1], "#ffffff")
-
-  # All colors should look like hex codes
   expect_true(all(grepl("^#[0-9A-Fa-f]{6}$", ct$color)))
 })

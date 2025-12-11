@@ -54,7 +54,8 @@ Suggests:
     roxyglobals,
     skimr,
     spelling,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    zip
 VignetteBuilder: 
     knitr
 Config/Needs/build: moodymudskipper/devtag
