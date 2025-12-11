@@ -55,8 +55,7 @@
     )
   }
 
-  zip_list <- utils::unzip(.x, list = TRUE)$Name
-  return(grep(".tif$", zip_list, value = TRUE))
+  return(.x)
 }
 
 

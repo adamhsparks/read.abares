@@ -70,9 +70,14 @@ read_clum_stars <- function(
   x = NULL,
   ...
 ) {
-  y <- .check_clum_inputs(data_set = data_set, x = x)
+  # see "get_lum_files.R" for details of this fn
+  y <- .get_lum_files(x, data_set, lum = "clum")
   return(stars::read_stars(
-    sprintf("/vsizip//%s/%s.zip/%s", tempdir(), y$data_set, y$x),
+    sprintf(
+      "/vsizip/%s/%s",
+      y$file_path,
+      y$tiff
+    ),
     quiet = (getOption("read.abares.verbosity") %in% c("quiet", "minimal")),
     ...
   ))

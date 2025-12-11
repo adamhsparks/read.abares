@@ -76,19 +76,13 @@ read_nlum_terra <- function(
   x = NULL,
   ...
 ) {
-  if (is.null(x) && !is.null(data_set)) {
-    x <- .get_nlum(.data_set = data_set)
-  } else if (!is.null(x) && is.null(data_set)) {
-    # if no data_set provided, infer from x
-    data_set <- fs::path_ext_remove(fs::path_file(x))
-  } else {
-    cli::cli_abort("You must provide only either `x` or `data_set`.")
-  }
+  # see "get_lum_files.R" for details of this fn
+  y <- .get_lum_files(x, data_set, lum = "nlum")
   return(terra::rast(
     sprintf(
-      "/vsizip/%s/%s.tif",
-      x,
-      sub("^(.*?\\d{4}(?:_\\d{2}|_to_\\d{4})(?:_alb)?).*$", "\\1", data_set)
+      "/vsizip/%s/%s",
+      y$file_path,
+      y$tiff
     ),
     ...
   ))

@@ -69,17 +69,19 @@ read_clum_terra <- function(
   x = NULL,
   ...
 ) {
-  y <- .check_clum_inputs(
-    data_set = data_set,
-    x = x
-  )
+  # see "get_lum_files.R" for details of this fn
+  y <- .get_lum_files(x, data_set, lum = "clum")
 
   r <- terra::rast(
-    sprintf("/vsizip//%s/%s.zip/%s", tempdir(), y$data_set, y$x),
+    sprintf(
+      "/vsizip/%s/%s",
+      y$file_path,
+      y$tiff
+    ),
     ...
   )
 
-  if (data_set == "clum_50m_2023_v2") {
+  if (fs::path_file(terra::sources(r)) == "clum_50m_2023_v2.tif") {
     ct <- .create_clum_50m_coltab()
     terra::coltab(r) <- rep(list(ct), terra::nlyr(r))
   }
