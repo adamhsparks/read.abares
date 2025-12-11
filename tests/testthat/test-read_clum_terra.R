@@ -117,3 +117,29 @@ test_that("scale_levels has correct scales", {
   )
   expect_equal(nrow(sl), 7)
 })
+
+
+test_that(".create_clum_50m_coltab loads a data.table from Rds file", {
+  # Call the function
+  ct <- .create_clum_50m_coltab()
+
+  # Check class
+  expect_s3_class(ct, "data.table")
+
+  # Check column names
+  expect_named(ct, c("value", "color"))
+
+  # Check column types
+  expect_type(ct$value, "integer")
+  expect_type(ct$color, "character")
+
+  # Ensure non-empty
+  expect_gt(nrow(ct), 0)
+
+  # Spot check: first row should be value 0 and color "#ffffff"
+  expect_equal(ct$value[1], 0L)
+  expect_equal(ct$color[1], "#ffffff")
+
+  # All colors should look like hex codes
+  expect_true(all(grepl("^#[0-9A-Fa-f]{6}$", ct$color)))
+})
