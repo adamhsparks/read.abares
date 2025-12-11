@@ -58,8 +58,12 @@ curtin
 de
 dplyr
 dtbl
+ead
+eb
 edu
+eng
 et
+faa
 farmno
 farmpredict
 fbp
@@ -67,7 +71,9 @@ fci
 fert
 fertiliser
 funder
+geonetwork
 geospatial
+geotiff
 geotiffs
 ggplot
 gridded
@@ -82,6 +88,7 @@ metre
 metres
 modelled
 multilayer
+netCDF
 nlum
 oilseeds
 pak
@@ -91,9 +98,12 @@ qml
 rOpenSci
 rast
 sd
+srv
 standardises
+tempdir
 terra
 tidync
 unarchived
 visualise
 www
+yyyy
