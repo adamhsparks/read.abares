@@ -19,8 +19,8 @@ test_that("read_abares_trade_regions reads provided file correctly", {
   )
 
   result <- read_abares_trade_regions(tmp)
-  expect_equal(result$region, c("QLD", "VIC"))
-  expect_equal(result$value, c(1, 2))
+  expect_identical(result$region, c("QLD", "VIC"))
+  expect_identical(result$value, c(1, 2))
 })
 
 test_that("read_abares_trade_regions calls .retry_download when x is NULL", {
@@ -39,7 +39,7 @@ test_that("read_abares_trade_regions calls .retry_download when x is NULL", {
       result <- read_abares_trade_regions()
       expect_true(fs::file_exists(tmp))
       expect_match(captured, "1033841/2")
-      expect_equal(result$region, "Mock")
+      expect_identical(result$region, "Mock")
     },
     .retry_download = mock_retry
   )
@@ -50,7 +50,7 @@ test_that("read_abares_trade_regions skips download if file already exists", {
   write.csv(data.frame(region = "Existing", value = 42), tmp, row.names = FALSE)
 
   result <- read_abares_trade_regions(tmp)
-  expect_equal(result$region, "Existing")
+  expect_identical(result$region, "Existing")
 })
 
 test_that("read_abares_trade_regions errors on invalid path", {

@@ -26,8 +26,8 @@ test_that("read_estimates_by_performance_category reads provided file correctly"
   )
 
   result <- read_estimates_by_performance_category(tmp)
-  expect_equal(result$category, c("X", "Y"))
-  expect_equal(result$value, c(1, 2))
+  expect_identical(result$category, c("X", "Y"))
+  expect_identical(result$value, c(1, 2))
 })
 
 test_that("read_est_by_perf_cat is an alias", {
@@ -43,7 +43,7 @@ test_that("read_est_by_perf_cat is an alias", {
 
   result1 <- read_estimates_by_performance_category(tmp)
   result2 <- read_est_by_perf_cat(tmp)
-  expect_equal(result1, result2)
+  expect_identical(result1, result2)
 })
 
 # Optional: if you know expected columns from ABARES data

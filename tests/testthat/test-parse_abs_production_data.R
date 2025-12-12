@@ -138,7 +138,7 @@ test_that(".find_years extracts financial years correctly", {
   with_mocked_bindings(
     {
       years <- .find_years("broadacre")
-      expect_equal(years, c("2021-22", "2022-23", "2023-24"))
+      expect_identical(years, c("2021-22", "2022-23", "2023-24"))
     },
     .package = "htm2txt",
     gettxt = function(url) fake_text
@@ -151,7 +151,7 @@ test_that(".find_years works for horticulture dataset", {
   with_mocked_bindings(
     {
       years <- .find_years("horticulture")
-      expect_equal(years, c("2019-20", "2020-21"))
+      expect_identical(years, c("2019-20", "2020-21"))
     },
     .package = "htm2txt",
     gettxt = function(url) fake_text
@@ -164,7 +164,7 @@ test_that(".find_years works for livestock dataset", {
   with_mocked_bindings(
     {
       years <- .find_years("livestock")
-      expect_equal(years, c("2018-19", "2019-20", "2020-21", "2021-22"))
+      expect_identical(years, c("2018-19", "2019-20", "2020-21", "2021-22"))
     },
     .package = "htm2txt",
     gettxt = function(url) fake_text

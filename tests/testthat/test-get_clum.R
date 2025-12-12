@@ -44,7 +44,7 @@ test_that(".get_clum returns expected temp file path when file already exists", 
   tmp <- fs::path_temp("scale_date_update.zip")
   fs::file_create(tmp) # Pretend file already exists
   result <- .get_clum("scale_date_update")
-  expect_equal(result, tmp)
+  expect_identical(result, tmp)
   expect_true(fs::file_exists(result))
 })
 
