@@ -1,4 +1,4 @@
-#' Read ABARES' "Estimates by Performance"
+#' Read ABARES' "Estimates by Performance Category" Data
 #'
 #' Fetches and imports \acronym{ABARES} estimates by performance category data.
 #'

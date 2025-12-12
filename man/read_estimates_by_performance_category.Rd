@@ -3,7 +3,7 @@
 \name{read_estimates_by_performance_category}
 \alias{read_estimates_by_performance_category}
 \alias{read_est_by_perf_cat}
-\title{Read ABARES' "Estimates by Performance"}
+\title{Read ABARES' "Estimates by Performance Category" Data}
 \source{
 ()\url{https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv}.
 }
