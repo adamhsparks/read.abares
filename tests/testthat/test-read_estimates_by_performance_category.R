@@ -27,7 +27,7 @@ test_that("read_estimates_by_performance_category reads provided file correctly"
 
   result <- read_estimates_by_performance_category(tmp)
   expect_identical(result$category, c("X", "Y"))
-  expect_identical(result$value, c(1, 2))
+  expect_identical(result$value, c(1L, 2L))
 })
 
 test_that("read_est_by_perf_cat is an alias", {

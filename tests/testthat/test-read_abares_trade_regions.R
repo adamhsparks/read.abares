@@ -20,7 +20,7 @@ test_that("read_abares_trade_regions reads provided file correctly", {
 
   result <- read_abares_trade_regions(tmp)
   expect_identical(result$region, c("QLD", "VIC"))
-  expect_identical(result$value, c(1, 2))
+  expect_identical(result$value, c(1L, 2L))
 })
 
 test_that("read_abares_trade_regions calls .retry_download when x is NULL", {
