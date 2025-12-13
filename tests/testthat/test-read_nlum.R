@@ -1,5 +1,5 @@
 make_zip_with_tif <- function(name = "dummy.tif") {
-  tmpdir <- tempdir()
+  tmpdir <- fs::path_temp()
   tif_file <- file.path(tmpdir, name)
   # Create a trivial raster using terra
   r <- terra::rast(nrows = 2, ncols = 2, vals = 1:4)

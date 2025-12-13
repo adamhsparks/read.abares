@@ -1,5 +1,5 @@
 make_fake_topsoil_zip <- function() {
-  tmpdir <- tempdir()
+  tmpdir <- fs::path_temp()
   subdir <- file.path(tmpdir, "staiar9cl__05911a01eg_geo___")
   dir.create(subdir, showWarnings = FALSE)
 

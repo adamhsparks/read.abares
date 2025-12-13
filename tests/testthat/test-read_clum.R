@@ -1,6 +1,6 @@
 # Helper: create a zip containing a minimal valid GeoTIFF
 make_zip_with_tif <- function(name = "dummy.tif") {
-  tmpdir <- tempdir()
+  tmpdir <- fs::path_temp()
   tif_file <- file.path(tmpdir, name)
   # Create a trivial raster using stars, then write to GeoTIFF
   arr <- array(1:4, dim = c(2, 2))
