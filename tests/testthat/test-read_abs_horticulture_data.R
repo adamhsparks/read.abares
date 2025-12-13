@@ -26,7 +26,7 @@ test_that("read_abs_horticulture_data resolves 'latest' year correctly", {
   fake_years <- c("2023-24", "2022-23")
   fake_find <- function(data_set) fake_years
   fake_retry <- function(url, dest) dest
-  fake_parse <- function(path)
+  fake_parse <- function(path) {
     data.table::data.table(crop = "Apples", value = 10)
   }
   }
