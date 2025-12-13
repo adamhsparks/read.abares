@@ -19,7 +19,9 @@ test_that(".get_agfd returns correct file names for fixed prices", {
 
 test_that(".get_agfd calls .retry_download if file missing", {
   tmpfile <- fs::path_temp("historical_climate_prices.zip")
-  if (fs::file_exists(tmpfile)) fs::file_delete(tmpfile)
+  if (fs::file_exists(tmpfile)) {
+    fs::file_delete(tmpfile)
+  }
 
   called <- FALSE
   with_mocked_bindings(
