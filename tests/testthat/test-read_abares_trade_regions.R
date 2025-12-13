@@ -32,7 +32,9 @@ test_that("read_abares_trade_regions calls .retry_download when x is NULL", {
   }
 
   tmp <- fs::path_temp("trade_regions")
-  if (fs::file_exists(tmp)) fs::file_delete(tmp)
+  if (fs::file_exists(tmp)) {
+    fs::file_delete(tmp)
+  }
 
   with_mocked_bindings(
     {
