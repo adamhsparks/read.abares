@@ -32,7 +32,10 @@ test_that("read_estimates_by_size calls .retry_download when x is NULL", {
       expect_true(called)
       expect_s3_class(result, "data.table")
       expect_identical(data.table::key(result), "Variable")
-      expect_named(result, c("Variable", "Year", "Size", "Industry", "Value", "RSE"))
+      expect_named(
+        result,
+        c("Variable", "Year", "Size", "Industry", "Value", "RSE")
+      )
     },
     .retry_download = fake_retry,
     .env = ns
