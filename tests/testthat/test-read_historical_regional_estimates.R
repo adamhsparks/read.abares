@@ -30,7 +30,10 @@ test_that("read_historical_regional_estimates calls .retry_download when x is NU
       expect_true(called)
       expect_s3_class(result, "data.table")
       expect_identical(data.table::key(result), "Variable")
-      expect_named(result, c("Variable", "Year", "ABARES_region", "Value", "RSE"))
+      expect_named(
+        result,
+        c("Variable", "Year", "ABARES_region", "Value", "RSE")
+      )
       expect_identical(result$ABARES_region, "Region A")
     },
     .retry_download = fake_retry,
