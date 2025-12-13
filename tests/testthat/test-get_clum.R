@@ -7,7 +7,9 @@ test_that(".get_clum constructs correct URL for clum_50m_2023_v2", {
 
   # Ensure the temp file does not exist so .retry_download is called
   tmp <- fs::path_temp("clum_50m_2023_v2.zip")
-  if (fs::file_exists(tmp)) fs::file_delete(tmp)
+  if (fs::file_exists(tmp)) {
+    fs::file_delete(tmp)
+  }
 
   with_mocked_bindings(
     {
