@@ -13,7 +13,8 @@ test_that("read_agfd_dt works with .get_agfd and .copy_local_agfd_zip", {
   fake_get <- function(.fixed_prices, .yyyy) fake_file
   fake_copy <- function(x) fake_file
   fake_tidync <- function(file) "dummy_tidync"
-  fake_hyper <- function(tnc) tibble::tibble(lat = 1, lon = 2)
+
+  fake_hyper <- function(tnc) data.frame(lat = 1, lon = 2)
 
   old_tidync <- tidync::tidync
   old_hyper <- tidync::hyper_tibble

@@ -16,14 +16,15 @@ test_that("parse_abs_production_data parses workbook correctly", {
   # Fake sheet 3 (empty, should be dropped)
   sheet3 <- data.frame(a = character(), b = character())
 
-  # Write workbook
-  writexl::write_xlsx(
+  # Write workbook using openxlsx
+  openxlsx::write.xlsx(
     list(
       Empty1 = sheet1,
       Horticulture = sheet2,
       Empty2 = sheet3
     ),
-    tmpfile
+    tmpfile,
+    rowNames = FALSE
   )
 
   # Run function
@@ -66,9 +67,10 @@ test_that("parse_abs_production_data parses non-horticulture workbook correctly"
   )
   sheet3 <- data.frame(a = character(), b = character())
 
-  writexl::write_xlsx(
+  openxlsx::write.xlsx(
     list(Empty1 = sheet1, Crops = sheet2, Empty2 = sheet3),
-    tmpfile
+    tmpfile,
+    rowNames = FALSE
   )
 
   result <- parse_abs_production_data(tmpfile)
@@ -91,21 +93,25 @@ test_that("parse_abs_production_data parses horticulture workbook with numeric y
   sheet1 <- data.frame(a = character(), b = character())
 
   # Middle sheet: header row includes year labels
+  # Note: constructing this way ensures numeric columns are treated as character in the dataframe
+  # to simulate the raw structure read from Excel before processing
   sheet2 <- data.frame(
     V1 = c("Region codes", "0", "1", "Horticulture"),
     V2 = c("Region", "NSW", "VIC", ""),
     V3 = c("Data item", "Apples - tonnes", "Oranges - tonnes", ""),
     `2023-24` = c("2023-24", "100", "200", ""),
     `2024-25` = c("2024-25", "150", "250", ""),
-    stringsAsFactors = FALSE
+    stringsAsFactors = FALSE,
+    check.names = FALSE
   )
 
   # Last sheet (empty, will be dropped)
   sheet3 <- data.frame(a = character(), b = character())
 
-  writexl::write_xlsx(
+  openxlsx::write.xlsx(
     list(Empty1 = sheet1, HortSheet = sheet2, Empty2 = sheet3),
-    tmpfile
+    tmpfile,
+    rowNames = FALSE
   )
 
   result <- parse_abs_production_data(tmpfile)
