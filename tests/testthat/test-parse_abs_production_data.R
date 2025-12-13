@@ -38,8 +38,8 @@ test_that("parse_abs_production_data parses workbook correctly", {
   ))
 
   # Check factor conversion
-  expect_true(is.factor(result$region))
-  expect_true(is.factor(result$region_code))
+  expect_type(result$region, "integer")
+  expect_type(result$region_code, "integer")
 
   # Check commodity split
   expect_identical(result$commodity, c("Wheat", "Barley"))
@@ -79,8 +79,8 @@ test_that("parse_abs_production_data parses non-horticulture workbook correctly"
   ))
   expect_identical(result$commodity, c("Wheat", "Barley"))
   expect_identical(result$units, c("tonnes", "tonnes"))
-  expect_true(is.factor(result$region))
-  expect_true(is.factor(result$region_code))
+  expect_type(result$region, "integer")
+  expect_type(result$region_code, "integer")
 })
 
 
@@ -125,8 +125,8 @@ test_that("parse_abs_production_data parses horticulture workbook with numeric y
   expect_identical(result$units, c("tonnes", "tonnes"))
 
   # Numeric conversion check
-  expect_true(is.numeric(result$`2023-24`))
-  expect_true(is.numeric(result$`2024-25`))
+  expect_type(result$`2023-24`, "double")
+  expect_type(result$`2024-25`, "double")
   expect_identical(result$`2023-24`, c(100, 200))
   expect_identical(result$`2024-25`, c(150, 250))
 })
