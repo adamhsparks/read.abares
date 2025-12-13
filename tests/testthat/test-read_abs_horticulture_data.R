@@ -52,7 +52,8 @@ test_that("read_abs_horticulture_data accepts explicit year", {
   fake_retry <- function(url, dest) dest
   fake_parse <- function(path) {
     data.table::data.table(crop = "Bananas", value = 20)
-
+  }
+    data.table::data.table(crop = "Bananas", value = 20)
   with_mocked_bindings(
     {
       result <- read_abs_horticulture_data(year = "2022-23")
