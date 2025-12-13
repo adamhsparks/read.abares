@@ -4,7 +4,7 @@
 \alias{.read_ncdf_from_zip}
 \title{Unzip AGFD NetCDF files from ZIP}
 \usage{
-.read_ncdf_from_zip(zip_path = tempdir(), .fixed_prices = TRUE)
+.read_ncdf_from_zip(zip_path = fs::path_temp(), .fixed_prices = TRUE)
 }
 \arguments{
 \item{zip_path}{Path to the ZIP file containing NetCDF files.}

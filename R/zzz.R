@@ -94,12 +94,5 @@
   mapped <- .map_verbosity(verbosity)
   withr::local_options(mapped, .local_envir = penv)
 
-  invisible()
-}
-
-# This exists only for testing purposes and is not used in the package
-#' Internal retry download helper
-#' @keywords internal
-.retry_download <- function(url, dest) {
-  utils::download.file(url, dest, mode = "wb")
+  invisible(NULL)
 }
