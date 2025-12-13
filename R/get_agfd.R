@@ -35,7 +35,7 @@
     )
   )
 
-  if (!fs::file_exists(.x)) {
+  if (!.file_exists(.x)) {
     file_url <- data.table::fifelse(
       .fixed_prices,
       "https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1036161/3",
@@ -65,9 +65,12 @@
 #' @dev
 #'
 
-.read_ncdf_from_zip <- function(zip_path = tempdir(), .fixed_prices = TRUE) {
+.read_ncdf_from_zip <- function(
+  zip_path = fs::path_temp(),
+  .fixed_prices = TRUE
+) {
   # Extract only NetCDF files
-  utils::unzip(zip_path, exdir = tempdir())
+  utils::unzip(zip_path, exdir = fs::path_temp())
 
   f <- data.table::fifelse(
     .fixed_prices,
@@ -88,4 +91,11 @@
   y <- fs::path_temp(fs::path_file(x))
   fs::file_copy(x, y, overwrite = TRUE)
   return(.read_ncdf_from_zip(zip_path = y))
+}
+
+#' Internal wrapper for fs::file_exists
+#'
+#' @dev
+.file_exists <- function(path) {
+  fs::file_exists(path)
 }

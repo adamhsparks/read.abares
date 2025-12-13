@@ -29,7 +29,7 @@
       "Connection" = "Keep-Alive"
     ) |>
     httr2::req_retry(max_tries = .max_tries) |>
-    httr2::req_cache(path = tempdir())
+    httr2::req_cache(path = fs::path_temp())
 
   # Apply conditional modifications
   req <- .apply_conditional_options(req, url)
