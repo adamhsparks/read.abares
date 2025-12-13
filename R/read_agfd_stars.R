@@ -46,32 +46,31 @@ read_agfd_stars <- function(
   s2 <- NULL
   q_read_ncdf <- purrr::quietly(stars::read_ncdf)
   n_files <- length(files)
-  if (getOption("read.abares.verbosity") == "verbose") {
-    # read one file for the message
-    s1 <- list(stars::read_ncdf(
-      files[1L]
-    ))
 
+  if (getOption("read.abares.verbosity") == "verbose") {
+    s1 <- list(stars::read_ncdf(files[1L]))
     if (length(files) > 1L) {
-      # then suppress the rest of the messages
       s2 <- purrr::modify_depth(
         purrr::map(.x = files[2L:n_files], .f = q_read_ncdf),
         1L,
         "result"
       )
-
       s1 <- append(s1, s2)
     }
   } else {
-    #quietly read all files
-    list(q_read_ncdf, files)
+    # quietly read all files
+    s1 <- purrr::modify_depth(
+      purrr::map(.x = files, .f = q_read_ncdf),
+      1L,
+      "result"
+    )
   }
-
   names(s1) <- fs::path_file(files)
 
   if (!is.null(s2)) {
     rm(s2)
   }
+
   gc()
   return(s1)
 }
