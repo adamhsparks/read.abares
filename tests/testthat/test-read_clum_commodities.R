@@ -45,7 +45,9 @@ test_that("read_clum_commodities calls .retry_download when x is NULL", {
   }
 
   tmp <- fs::path_temp("clum_commodities.zip")
-  if (fs::file_exists(tmp)) fs::file_delete(tmp)
+  if (fs::file_exists(tmp)) {
+    fs::file_delete(tmp)
+  }
 
   with_mocked_bindings(
     {
