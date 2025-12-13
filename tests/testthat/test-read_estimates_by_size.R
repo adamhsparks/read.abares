@@ -31,11 +31,8 @@ test_that("read_estimates_by_size calls .retry_download when x is NULL", {
       result <- read_estimates_by_size()
       expect_true(called)
       expect_s3_class(result, "data.table")
-      expect_equal(data.table::key(result), "Variable")
-      expect_equal(
-        names(result),
-        c("Variable", "Year", "Size", "Industry", "Value", "RSE")
-      )
+      expect_identical(data.table::key(result), "Variable")
+      expect_named(result, c("Variable", "Year", "Size", "Industry", "Value", "RSE"))
     },
     .retry_download = fake_retry,
     .env = ns
@@ -63,8 +60,8 @@ test_that("read_estimates_by_size bypasses download when x provided", {
 
   result <- read_estimates_by_size(x = "local.csv")
   expect_s3_class(result, "data.table")
-  expect_equal(result$Variable, "Income")
-  expect_equal(data.table::key(result), "Variable")
+  expect_identical(result$Variable, "Income")
+  expect_identical(data.table::key(result), "Variable")
 })
 
 test_that("read_est_by_size alias works", {
@@ -87,6 +84,6 @@ test_that("read_est_by_size alias works", {
 
   result <- read_est_by_size(x = "alias.csv")
   expect_s3_class(result, "data.table")
-  expect_equal(result$Variable, "Costs")
-  expect_equal(data.table::key(result), "Variable")
+  expect_identical(result$Variable, "Costs")
+  expect_identical(data.table::key(result), "Variable")
 })

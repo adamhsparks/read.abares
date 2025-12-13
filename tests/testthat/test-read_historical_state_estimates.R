@@ -30,11 +30,8 @@ test_that("read_historical_state_estimates calls .retry_download when x is NULL"
       result <- read_historical_state_estimates()
       expect_true(called)
       expect_s3_class(result, "data.table")
-      expect_equal(data.table::key(result), "Variable")
-      expect_equal(
-        names(result),
-        c("Variable", "Year", "State", "Industry", "Value", "RSE")
-      )
+      expect_identical(data.table::key(result), "Variable")
+      expect_named(result, c("Variable", "Year", "State", "Industry", "Value", "RSE"))
     },
     .retry_download = fake_retry,
     .env = ns
@@ -61,8 +58,8 @@ test_that("read_historical_state_estimates bypasses download when x provided", {
 
   result <- read_historical_state_estimates(x = "local.csv")
   expect_s3_class(result, "data.table")
-  expect_equal(result$Variable, "Exports")
-  expect_equal(data.table::key(result), "Variable")
+  expect_identical(result$Variable, "Exports")
+  expect_identical(data.table::key(result), "Variable")
 })
 
 test_that("read_hist_st_est alias works", {
@@ -85,6 +82,6 @@ test_that("read_hist_st_est alias works", {
 
   result <- read_hist_st_est(x = "alias.csv")
   expect_s3_class(result, "data.table")
-  expect_equal(result$Variable, "Imports")
-  expect_equal(data.table::key(result), "Variable")
+  expect_identical(result$Variable, "Imports")
+  expect_identical(data.table::key(result), "Variable")
 })

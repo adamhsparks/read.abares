@@ -31,8 +31,8 @@ test_that("read_estimates_by_performance_category calls .retry_download when x i
       result <- read_estimates_by_performance_category()
       expect_true(called)
       expect_s3_class(result, "data.table")
-      expect_equal(result$Variable, "Profit")
-      expect_equal(result$Performance, "High")
+      expect_identical(result$Variable, "Profit")
+      expect_identical(result$Performance, "High")
     },
     .retry_download = fake_retry,
     .env = ns
@@ -60,8 +60,8 @@ test_that("read_estimates_by_performance_category bypasses download when x provi
 
   result <- read_estimates_by_performance_category(x = "local.csv")
   expect_s3_class(result, "data.table")
-  expect_equal(result$Variable, "Income")
-  expect_equal(result$Performance, "Low")
+  expect_identical(result$Variable, "Income")
+  expect_identical(result$Performance, "Low")
 })
 
 test_that("read_est_by_perf_cat alias works", {
@@ -85,6 +85,6 @@ test_that("read_est_by_perf_cat alias works", {
 
   result <- read_est_by_perf_cat(x = "alias.csv")
   expect_s3_class(result, "data.table")
-  expect_equal(result$Variable, "Costs")
-  expect_equal(result$Performance, "Average")
+  expect_identical(result$Variable, "Costs")
+  expect_identical(result$Performance, "Average")
 })

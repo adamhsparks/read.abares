@@ -28,8 +28,8 @@ test_that("read_abs_broadacre_data calls helpers and returns parsed data", {
     {
       result <- read_abs_broadacre_data(data_set = "winter", year = "latest")
       expect_s3_class(result, "data.table")
-      expect_equal(result$crop, "Wheat")
-      expect_equal(result$value, 100)
+      expect_identical(result$crop, "Wheat")
+      expect_identical(result$value, 100)
     },
     .find_years = fake_find,
     .retry_download = fake_retry,
@@ -53,13 +53,13 @@ test_that("year argument is matched correctly", {
     {
       # explicit year
       result <- read_abs_broadacre_data(data_set = "summer", year = "2022-23")
-      expect_equal(result$crop, "Barley")
+      expect_identical(result$crop, "Barley")
       # latest resolves to first available
       result2 <- read_abs_broadacre_data(
         data_set = "sugarcane",
         year = "latest"
       )
-      expect_equal(result2$crop, "Barley")
+      expect_identical(result2$crop, "Barley")
     },
     .find_years = fake_find,
     .retry_download = fake_retry,
@@ -77,8 +77,8 @@ test_that("x argument bypasses download", {
   with_mocked_bindings(
     {
       result <- read_abs_broadacre_data(x = "local.xlsx")
-      expect_equal(result$crop, "Canola")
-      expect_equal(result$value, 300)
+      expect_identical(result$crop, "Canola")
+      expect_identical(result$value, 300)
     },
     parse_abs_production_data = fake_parse,
     .env = ns

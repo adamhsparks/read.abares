@@ -12,8 +12,8 @@ test_that("read.abares_options retrieves only package-specific options", {
   expect_type(opts, "list")
 
   # Should find our specific options
-  expect_equal(opts$read.abares.test_A, "A")
-  expect_equal(opts$read.abares.test_B, "B")
+  expect_identical(opts$read.abares.test_A, "A")
+  expect_identical(opts$read.abares.test_B, "B")
 
   # Should NOT find unrelated options
   expect_false("other_package.option" %in% names(opts))
@@ -31,7 +31,7 @@ test_that("read.abares_options sets options correctly", {
   read.abares_options(read.abares.verbosity = "quiet")
 
   # Verify it changed globally
-  expect_equal(getOption("read.abares.verbosity"), "quiet")
+  expect_identical(getOption("read.abares.verbosity"), "quiet")
 })
 
 test_that("read.abares_options sets multiple options at once", {
@@ -50,8 +50,8 @@ test_that("read.abares_options sets multiple options at once", {
     read.abares.timeout = 999
   )
 
-  expect_equal(getOption("read.abares.verbosity"), "minimal")
-  expect_equal(getOption("read.abares.timeout"), 999)
+  expect_identical(getOption("read.abares.verbosity"), "minimal")
+  expect_identical(getOption("read.abares.timeout"), 999)
 })
 
 test_that("read.abares_options returns old values when setting (standard R behavior)", {
@@ -64,5 +64,5 @@ test_that("read.abares_options returns old values when setting (standard R behav
 
   expect_type(result, "list")
   expect_named(result, "read.abares.temp_test")
-  expect_equal(result$read.abares.temp_test, "old_value")
+  expect_identical(result$read.abares.temp_test, "old_value")
 })

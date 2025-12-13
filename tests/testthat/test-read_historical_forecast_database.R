@@ -23,5 +23,5 @@ test_that("read_historical_forecast_database reads local file correctly", {
 
   result <- read_historical_forecast_database(tmp)
   expect_s3_class(result, "data.table")
-  expect_equal(result$Month_issued, 3L)
+  expect_identical(result$Month_issued, 3L)
 })

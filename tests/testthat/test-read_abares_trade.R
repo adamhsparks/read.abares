@@ -74,7 +74,7 @@ test_that("read_abares_trade reads and renames columns correctly from CSV", {
   expect_s3_class(result$Trade_code, "factor")
 
   # a quick content check
-  expect_equal(result$Year_month[1], as.Date("2020-01-01"))
+  expect_identical(result$Year_month[1], as.Date("2020-01-01"))
 })
 
 test_that("read_abares_trade reads zipped CSV when path points to a zip", {
@@ -103,7 +103,7 @@ test_that("read_abares_trade reads zipped CSV when path points to a zip", {
     ) %in%
       names(result)
   ))
-  expect_equal(result$Year_month[1], as.Date("2020-01-01"))
+  expect_identical(result$Year_month[1], as.Date("2020-01-01"))
 })
 
 test_that("read_abares_trade triggers .retry_download when x is NULL", {
@@ -143,7 +143,7 @@ test_that("read_abares_trade triggers .retry_download when x is NULL", {
 
   expect_true(called)
   expect_s3_class(result, "data.table")
-  expect_equal(result$Year_month[1], as.Date("2020-01-01"))
+  expect_identical(result$Year_month[1], as.Date("2020-01-01"))
 })
 
 test_that("read_abares_trade errors on invalid path", {

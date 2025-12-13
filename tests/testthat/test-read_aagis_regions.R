@@ -34,7 +34,7 @@ test_that("read_aagis_regions calls .retry_download when x is NULL and file miss
       result <- read_aagis_regions(x = NULL)
       expect_true(called)
       expect_s3_class(result, "sf")
-      expect_equal(result$State, c("WA", "NSW"))
+      expect_identical(result$State, c("WA", "NSW"))
       expect_true("ABARES_region" %in% names(result))
     },
     .retry_download = fake_retry,
@@ -72,6 +72,6 @@ test_that("read_aagis_regions bypasses download when x provided", {
   # no need for with_mocked_bindings here, since we’re not overriding any read.abares symbols
   result <- read_aagis_regions(x = "local.zip")
   expect_s3_class(result, "sf")
-  expect_equal(result$State, "Queensland")
+  expect_identical(result$State, "Queensland")
   expect_true("ABARES_region" %in% names(result))
 })

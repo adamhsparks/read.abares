@@ -24,8 +24,8 @@ test_that("read_abs_livestock_data works for each valid dataset", {
     {
       result <- read_abs_livestock_data(data_set = "livestock_and_products")
       expect_s3_class(result, "data.table")
-      expect_equal(result$animal, "Cattle")
-      expect_equal(result$value, 100)
+      expect_identical(result$animal, "Cattle")
+      expect_identical(result$value, 100)
     },
     .retry_download = fake_retry,
     parse_abs_production_data = fake_parse,
@@ -63,8 +63,8 @@ test_that("read_abs_livestock_data bypasses download when x is provided", {
     {
       result <- read_abs_livestock_data(x = "local.xlsx")
       expect_s3_class(result, "data.table")
-      expect_equal(result$animal, "Sheep")
-      expect_equal(result$value, 200)
+      expect_identical(result$animal, "Sheep")
+      expect_identical(result$value, 200)
     },
     parse_abs_production_data = fake_parse,
     .env = ns

@@ -33,8 +33,8 @@ test_that("read_abs_horticulture_data resolves 'latest' year correctly", {
     {
       result <- read_abs_horticulture_data(year = "latest")
       expect_s3_class(result, "data.table")
-      expect_equal(result$crop, "Apples")
-      expect_equal(result$value, 10)
+      expect_identical(result$crop, "Apples")
+      expect_identical(result$value, 10)
     },
     .find_years = fake_find,
     .retry_download = fake_retry,
@@ -56,8 +56,8 @@ test_that("read_abs_horticulture_data accepts explicit year", {
     {
       result <- read_abs_horticulture_data(year = "2022-23")
       expect_s3_class(result, "data.table")
-      expect_equal(result$crop, "Bananas")
-      expect_equal(result$value, 20)
+      expect_identical(result$crop, "Bananas")
+      expect_identical(result$value, 20)
     },
     .find_years = fake_find,
     .retry_download = fake_retry,
@@ -76,8 +76,8 @@ test_that("read_abs_horticulture_data bypasses download when x is provided", {
     {
       result <- read_abs_horticulture_data(x = "local.xlsx")
       expect_s3_class(result, "data.table")
-      expect_equal(result$crop, "Mangoes")
-      expect_equal(result$value, 30)
+      expect_identical(result$crop, "Mangoes")
+      expect_identical(result$value, 30)
     },
     parse_abs_production_data = fake_parse,
     .env = ns

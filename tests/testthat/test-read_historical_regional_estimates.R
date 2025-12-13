@@ -29,12 +29,9 @@ test_that("read_historical_regional_estimates calls .retry_download when x is NU
       result <- read_historical_regional_estimates()
       expect_true(called)
       expect_s3_class(result, "data.table")
-      expect_equal(data.table::key(result), "Variable")
-      expect_equal(
-        names(result),
-        c("Variable", "Year", "ABARES_region", "Value", "RSE")
-      )
-      expect_equal(result$ABARES_region, "Region A")
+      expect_identical(data.table::key(result), "Variable")
+      expect_named(result, c("Variable", "Year", "ABARES_region", "Value", "RSE"))
+      expect_identical(result$ABARES_region, "Region A")
     },
     .retry_download = fake_retry,
     .env = ns
@@ -60,9 +57,9 @@ test_that("read_historical_regional_estimates bypasses download when x provided"
 
   result <- read_historical_regional_estimates(x = "local.csv")
   expect_s3_class(result, "data.table")
-  expect_equal(result$Variable, "Exports")
-  expect_equal(result$ABARES_region, "Region B")
-  expect_equal(data.table::key(result), "Variable")
+  expect_identical(result$Variable, "Exports")
+  expect_identical(result$ABARES_region, "Region B")
+  expect_identical(data.table::key(result), "Variable")
 })
 
 test_that("read_hist_reg_est alias works", {
@@ -84,7 +81,7 @@ test_that("read_hist_reg_est alias works", {
 
   result <- read_hist_reg_est(x = "alias.csv")
   expect_s3_class(result, "data.table")
-  expect_equal(result$Variable, "Imports")
-  expect_equal(result$ABARES_region, "Region C")
-  expect_equal(data.table::key(result), "Variable")
+  expect_identical(result$Variable, "Imports")
+  expect_identical(result$ABARES_region, "Region C")
+  expect_identical(data.table::key(result), "Variable")
 })

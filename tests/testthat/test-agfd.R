@@ -11,7 +11,7 @@ test_that(".get_agfd returns correct file names for fixed prices", {
     .file_exists = function(path) TRUE,
     {
       result <- .get_agfd(.fixed_prices = TRUE, .yyyy = 2020:2021)
-      expect_equal(names(result), c("year_2020", "year_2021"))
+      expect_named(result, c("year_2020", "year_2021"))
       expect_true(all(grepl("2020|2021", result)))
     }
   )

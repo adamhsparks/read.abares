@@ -31,8 +31,8 @@ test_that("read_agfd_dt works with .get_agfd and .copy_local_agfd_zip", {
     {
       result <- read_agfd_dt(yyyy = 1991)
       expect_s3_class(result, "data.table")
-      expect_equal(result$lat, 1)
-      expect_equal(result$lon, 2)
+      expect_identical(result$lat, 1)
+      expect_identical(result$lon, 2)
     },
     .get_agfd = fake_get,
     .env = ns
@@ -42,8 +42,8 @@ test_that("read_agfd_dt works with .get_agfd and .copy_local_agfd_zip", {
     {
       result <- read_agfd_dt(x = "dummy.zip")
       expect_s3_class(result, "data.table")
-      expect_equal(result$lat, 1)
-      expect_equal(result$lon, 2)
+      expect_identical(result$lat, 1)
+      expect_identical(result$lon, 2)
     },
     .copy_local_agfd_zip = fake_copy,
     .env = ns
@@ -68,7 +68,7 @@ test_that("read_agfd_stars works with .get_agfd and .copy_local_agfd_zip", {
       result <- read_agfd_stars(yyyy = 1991)
       expect_type(result, "list")
       expect_s3_class(result[[1]], "stars")
-      expect_equal(names(result), fs::path_file(fake_file))
+      expect_named(result, fs::path_file(fake_file))
     },
     .get_agfd = fake_get,
     .env = ns
@@ -79,7 +79,7 @@ test_that("read_agfd_stars works with .get_agfd and .copy_local_agfd_zip", {
       result <- read_agfd_stars(x = "dummy.zip")
       expect_type(result, "list")
       expect_s3_class(result[[1]], "stars")
-      expect_equal(names(result), fs::path_file(fake_file))
+      expect_named(result, fs::path_file(fake_file))
     },
     .copy_local_agfd_zip = fake_copy,
     .env = ns
@@ -108,7 +108,7 @@ test_that("read_agfd_terra works with .get_agfd and .copy_local_agfd_zip", {
       result <- read_agfd_terra(yyyy = 1991)
       expect_type(result, "list")
       expect_s4_class(result[[1]], "SpatRaster")
-      expect_equal(names(result), fs::path_file(fake_file))
+      expect_named(result, fs::path_file(fake_file))
     },
     .get_agfd = fake_get,
     .env = ns
@@ -119,7 +119,7 @@ test_that("read_agfd_terra works with .get_agfd and .copy_local_agfd_zip", {
       result <- read_agfd_terra(x = "dummy.zip")
       expect_type(result, "list")
       expect_s4_class(result[[1]], "SpatRaster")
-      expect_equal(names(result), fs::path_file(fake_file))
+      expect_named(result, fs::path_file(fake_file))
     },
     .copy_local_agfd_zip = fake_copy,
     .env = ns
@@ -143,8 +143,8 @@ test_that("read_agfd_tidync works with .get_agfd and .copy_local_agfd_zip", {
     {
       result <- read_agfd_tidync(yyyy = 1991)
       expect_type(result, "list")
-      expect_equal(result[[1]], "dummy_tidync_obj")
-      expect_equal(names(result), fs::path_file(fake_file))
+      expect_identical(result[[1]], "dummy_tidync_obj")
+      expect_named(result, fs::path_file(fake_file))
     },
     .get_agfd = fake_get,
     .env = ns
@@ -154,8 +154,8 @@ test_that("read_agfd_tidync works with .get_agfd and .copy_local_agfd_zip", {
     {
       result <- read_agfd_tidync(x = "dummy.zip")
       expect_type(result, "list")
-      expect_equal(result[[1]], "dummy_tidync_obj")
-      expect_equal(names(result), fs::path_file(fake_file))
+      expect_identical(result[[1]], "dummy_tidync_obj")
+      expect_named(result, fs::path_file(fake_file))
     },
     .copy_local_agfd_zip = fake_copy,
     .env = ns

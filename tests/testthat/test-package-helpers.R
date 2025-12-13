@@ -1,11 +1,11 @@
 test_that(".map_verbosity maps inputs correctly", {
   # These are safe to test because they don't depend on side effects
-  expect_equal(.map_verbosity("quiet")$warn, -1L)
-  expect_equal(.map_verbosity("minimal")$warn, 0L)
+  expect_identical(.map_verbosity("quiet")$warn, -1L)
+  expect_identical(.map_verbosity("minimal")$warn, 0L)
   expect_true(.map_verbosity("verbose")$datatable.showProgress)
 
   # Test defaults
-  expect_equal(.map_verbosity(NULL)$rlib_message_verbosity, "verbose")
+  expect_identical(.map_verbosity(NULL)$rlib_message_verbosity, "verbose")
 })
 
 test_that("read.abares_user_agent constructs correct strings", {
@@ -48,7 +48,7 @@ test_that("Package options are initialized correctly", {
 
   # These checks confirm .init_read_abares_options() did its job
   expect_false(is.null(defaults$timeout))
-  expect_equal(defaults$timeout, 5000L)
-  expect_equal(defaults$tries, 3L)
-  expect_equal(defaults$verb, "verbose")
+  expect_identical(defaults$timeout, 5000L)
+  expect_identical(defaults$tries, 3L)
+  expect_identical(defaults$verb, "verbose")
 })
