@@ -1,4 +1,4 @@
-test_that("read_estimates_by_performance_category calls .retry_download when x is NULL", {
+test_that("read_historical_national_estimates calls .retry_download when x is NULL", {
   ns <- asNamespace("read.abares")
 
   called <- FALSE
@@ -8,12 +8,10 @@ test_that("read_estimates_by_performance_category calls .retry_download when x i
   }
 
   fake_dt <- data.table::data.table(
-    Variable = "Profit",
+    Variable = "Production",
     Year = 2020,
-    Size = "Small",
-    Performance = "High",
     Industry = "Grains",
-    Value = 123,
+    Value = 100,
     RSE = 5
   )
 
@@ -28,27 +26,28 @@ test_that("read_estimates_by_performance_category calls .retry_download when x i
         add = TRUE
       )
 
-      result <- read_estimates_by_performance_category()
+      result <- read_historical_national_estimates()
       expect_true(called)
       expect_s3_class(result, "data.table")
-      expect_equal(result$Variable, "Profit")
-      expect_equal(result$Performance, "High")
+      expect_equal(data.table::key(result), "Variable")
+      expect_equal(
+        names(result),
+        c("Variable", "Year", "Industry", "Value", "RSE")
+      )
     },
     .retry_download = fake_retry,
     .env = ns
   )
 })
 
-test_that("read_estimates_by_performance_category bypasses download when x provided", {
+test_that("read_historical_national_estimates bypasses download when x provided", {
   ns <- asNamespace("read.abares")
 
   fake_dt <- data.table::data.table(
-    Variable = "Income",
+    Variable = "Exports",
     Year = 2021,
-    Size = "Large",
-    Performance = "Low",
     Industry = "Livestock",
-    Value = 456,
+    Value = 200,
     RSE = 10
   )
 
@@ -58,22 +57,20 @@ test_that("read_estimates_by_performance_category bypasses download when x provi
   assignInNamespace("fread", fake_fread, ns = "data.table")
   on.exit(assignInNamespace("fread", old_fread, ns = "data.table"), add = TRUE)
 
-  result <- read_estimates_by_performance_category(x = "local.csv")
+  result <- read_historical_national_estimates(x = "local.csv")
   expect_s3_class(result, "data.table")
-  expect_equal(result$Variable, "Income")
-  expect_equal(result$Performance, "Low")
+  expect_equal(result$Variable, "Exports")
+  expect_equal(data.table::key(result), "Variable")
 })
 
-test_that("read_est_by_perf_cat alias works", {
+test_that("read_hist_nat_est alias works", {
   ns <- asNamespace("read.abares")
 
   fake_dt <- data.table::data.table(
-    Variable = "Costs",
+    Variable = "Imports",
     Year = 2022,
-    Size = "Medium",
-    Performance = "Average",
     Industry = "Mixed",
-    Value = 789,
+    Value = 300,
     RSE = 15
   )
 
@@ -83,8 +80,8 @@ test_that("read_est_by_perf_cat alias works", {
   assignInNamespace("fread", fake_fread, ns = "data.table")
   on.exit(assignInNamespace("fread", old_fread, ns = "data.table"), add = TRUE)
 
-  result <- read_est_by_perf_cat(x = "alias.csv")
+  result <- read_hist_nat_est(x = "alias.csv")
   expect_s3_class(result, "data.table")
-  expect_equal(result$Variable, "Costs")
-  expect_equal(result$Performance, "Average")
+  expect_equal(result$Variable, "Imports")
+  expect_equal(data.table::key(result), "Variable")
 })

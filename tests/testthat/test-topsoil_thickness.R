@@ -64,3 +64,76 @@ test_that("read_topsoil_thickness_terra works with NULL x and mocked download", 
   expect_s4_class(result, "SpatRaster")
   expect_identical(dim(result), c(2, 2, 1))
 })
+
+
+test_that("topsoil_thickness_metadata prints headings and metadata when x is NULL", {
+  ns <- asNamespace("read.abares")
+
+  fake_obj <- list(metadata = "Custodian: ABARES\nOther metadata")
+  fake_get <- function(.x = NULL) fake_obj
+
+  with_mocked_bindings(
+    {
+      output <- testthat::capture_messages({
+        result <- topsoil_thickness_metadata()
+        expect_null(result) # invisible(NULL)
+      })
+      # collapse vector of messages into one string
+      output <- paste(output, collapse = "\n")
+
+      expect_match(
+        output,
+        "Topsoil Thickness for Australian areas of intensive agriculture"
+      )
+      expect_match(output, "Dataset ANZLIC ID ANZCW1202000149")
+      expect_match(output, "Custodian: ABARES")
+    },
+    .get_topsoil_thickness = fake_get,
+    .env = ns
+  )
+})
+
+test_that("topsoil_thickness_metadata works with provided x", {
+  ns <- asNamespace("read.abares")
+
+  fake_obj <- list(metadata = "Custodian: ABARES\nExtra notes")
+  fake_get <- function(.x = "local.zip") fake_obj
+
+  with_mocked_bindings(
+    {
+      output <- testthat::capture_messages({
+        result <- topsoil_thickness_metadata(x = "local.zip")
+        expect_null(result)
+      })
+      output <- paste(output, collapse = "\n")
+
+      expect_match(output, "Custodian: ABARES")
+      expect_match(output, "Topsoil Thickness")
+    },
+    .get_topsoil_thickness = fake_get,
+    .env = ns
+  )
+})
+
+test_that("topsoil_thickness_metadata handles metadata without Custodian gracefully", {
+  ns <- asNamespace("read.abares")
+
+  fake_obj <- list(metadata = "No custodian info here")
+  fake_get <- function(.x = NULL) fake_obj
+
+  with_mocked_bindings(
+    {
+      output <- testthat::capture_messages({
+        result <- topsoil_thickness_metadata()
+        expect_null(result)
+      })
+      output <- paste(output, collapse = "\n")
+
+      # Should still print headings even if Custodian not found
+      expect_match(output, "Topsoil Thickness")
+      expect_match(output, "Dataset ANZLIC ID ANZCW1202000149")
+    },
+    .get_topsoil_thickness = fake_get,
+    .env = ns
+  )
+})
