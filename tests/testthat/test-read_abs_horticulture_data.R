@@ -28,6 +28,7 @@ test_that("read_abs_horticulture_data resolves 'latest' year correctly", {
   fake_retry <- function(url, dest) dest
   fake_parse <- function(path)
     data.table::data.table(crop = "Apples", value = 10)
+  }
 
   with_mocked_bindings(
     {
