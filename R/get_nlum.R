@@ -33,8 +33,8 @@
 #' @dev
 
 .get_nlum <- function(.data_set, .x) {
-  data_set <- rlang::arg_match(
-    data_set,
+  .data_set <- rlang::arg_match(
+    .data_set,
     c(
       "Y201011",
       "Y201516",
@@ -49,7 +49,8 @@
     )
   )
 
-  .data_set <- switch(
+  # map to long filename
+  mapped <- switch(
     .data_set,
     "Y202021" = "NLUM_v7_250_ALUMV8_2020_21_alb_package_20241128",
     "Y201516" = "NLUM_v7_250_ALUMV8_2015_16_alb_package_20241128",
@@ -62,20 +63,18 @@
     "P201516" = "NLUM_v7_250_AgProbabilitySurfaces_2015_16_geo_package_20241128",
     "P201011" = "NLUM_v7_250_AgProbabilitySurfaces_2010_11_geo_package_20241128"
   )
-  .x <- .get_nlum(.data_set = data_set)
-  .x <- fs::path_temp(.data_set, ext = "zip")
 
+  # build temp path
+  .x <- fs::path_temp(mapped, ext = "zip")
+
+  # download if missing
   if (!fs::file_exists(.x)) {
-    file_url <-
-      sprintf(
-        "https://www.agriculture.gov.au/sites/default/files/documents/%s",
-        fs::path_file(.x)
-      )
-    .retry_download(
-      url = file_url,
-      dest = .x
+    file_url <- sprintf(
+      "https://www.agriculture.gov.au/sites/default/files/documents/%s",
+      fs::path_file(.x)
     )
+    .retry_download(url = file_url, dest = .x)
   }
-  # return the file path
+
   return(.x)
 }
