@@ -13,6 +13,7 @@
 ^man/dot-get_agfd\.Rd$
 ^man/dot-read_ncdf_from_zip\.Rd$
 ^man/dot-copy_local_agfd_zip\.Rd$
+^man/dot-file_exists\.Rd$
 ^man/dot-get_clum\.Rd$
 ^man/dot-get_lum_files\.Rd$
 ^man/dot-get_nlum\.Rd$
