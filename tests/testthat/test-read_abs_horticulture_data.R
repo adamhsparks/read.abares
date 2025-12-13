@@ -73,7 +73,8 @@ test_that("read_abs_horticulture_data bypasses download when x is provided", {
 
   fake_parse <- function(path)
     data.table::data.table(crop = "Mangoes", value = 30)
-
+  }
+    data.table::data.table(crop = "Mangoes", value = 30)
   with_mocked_bindings(
     {
       result <- read_abs_horticulture_data(x = "local.xlsx")
