@@ -49,6 +49,7 @@ Imports:
 Suggests: 
     bit64,
     knitr,
+    openxlsx,
     pander,
     rmarkdown,
     roxyglobals,
