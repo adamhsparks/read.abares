@@ -28,7 +28,7 @@
     )
   )
 }
-
+# nocov start
 .onLoad <- function(libname, pkgname) {
   .init_read_abares_options()
 }
@@ -96,3 +96,4 @@
 
   invisible(NULL)
 }
+# nocov end
