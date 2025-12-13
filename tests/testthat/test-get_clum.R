@@ -28,7 +28,9 @@ test_that(".get_clum constructs correct URL for scale_date_update", {
 
   # Ensure the temp file does not exist so .retry_download is called
   tmp <- fs::path_temp("scale_date_update.zip")
-  if (fs::file_exists(tmp)) fs::file_delete(tmp)
+  if (fs::file_exists(tmp)) {
+    fs::file_delete(tmp)
+  }
 
   with_mocked_bindings(
     {
