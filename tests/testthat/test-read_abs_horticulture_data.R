@@ -71,7 +71,7 @@ test_that("read_abs_horticulture_data accepts explicit year", {
 test_that("read_abs_horticulture_data bypasses download when x is provided", {
   ns <- asNamespace("read.abares")
 
-  fake_parse <- function(path)
+  fake_parse <- function(path) {
     data.table::data.table(crop = "Mangoes", value = 30)
   }
     data.table::data.table(crop = "Mangoes", value = 30)
