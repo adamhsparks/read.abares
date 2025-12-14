@@ -1,9 +1,8 @@
 # Read ABARES' "Australian Gridded Farm Data" (AGFD) NCDF Files with terra
 
-Read "Australian Gridded Farm Data", (AGFD) as a
-[`list()`](https://rdrr.io/r/base/list.html) of
+Read "Australian Gridded Farm Data", (AGFD), as a
 [`terra::rast()`](https://rspatial.github.io/terra/reference/rast.html)
-objects.
+object.
 
 ## Usage
 
@@ -42,10 +41,9 @@ read_agfd_terra(yyyy = 1991:2023, fixed_prices = TRUE, x = NULL)
 
 ## Value
 
-A [`list()`](https://rdrr.io/r/base/list.html) object of
-[`terra::rast()`](https://rspatial.github.io/terra/reference/rast.html)
-objects of the "Australian Gridded Farm Data" with the file names as the
-list's objects' names.
+A list of [terra](https://CRAN.R-project.org/package=terra) `SpatRaster`
+objects of the "Australian Gridded Farm Data" with the NetCDF objects'
+names as "year_yyyy".
 
 ## Details
 
@@ -224,6 +222,7 @@ agfd_terra <- read_agfd_terra()
 
 head(agfd_terra)
 
-plot(agfd_terra[[1]])
+# `plot()` is rexported from the `terra` package
+plot(agfd_terra[[1]][[1]])
 }
 ```

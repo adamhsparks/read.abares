@@ -12,7 +12,7 @@ read_hist_reg_est(x = NULL)
 
 ## Source
 
-<https://www.agriculture.gov.au/sites/default/files/documents/fdp-regional-historical.csv>
+<https://www.agriculture.gov.au/sites/default/files/documents/fdp-regional-historical.csv>.
 
 ## Arguments
 
@@ -37,7 +37,7 @@ in this package using a snake_case format and ordered consistently.
 
 ## References
 
-<https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
+<https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>.
 
 ## See also
 

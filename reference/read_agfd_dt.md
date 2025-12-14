@@ -1,6 +1,6 @@
 # Read ABARES' "Australian Gridded Farm Data" (AGFD) NCDF Files as a data.table Object
 
-Read "Australian Gridded Farm Data", (AGFD) as a
+Read "Australian Gridded Farm Data", (AGFD), as a
 [`data.table::data.table()`](https://rdatatable.gitlab.io/data.table/reference/data.table.html)
 object.
 

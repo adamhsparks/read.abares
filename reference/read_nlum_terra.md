@@ -104,12 +104,13 @@ read_nlum_terra(data_set = NULL, x = NULL, ...)
   :   Land use of Australia 2020–21 agricultural commodities probability
       grids
 
-  . This argument is ignored if `file` is provided.
+  . This argument is ignored if `x` is provided.
 
 - x:
 
   A character string of a file path to a local zip file that has been
-  downloaded outside of R that contains the NLUM data.
+  downloaded outside of R that contains the NLUM data. This argument is
+  ignored if `data_set` is provided.
 
 - ...:
 
@@ -118,10 +119,8 @@ read_nlum_terra(data_set = NULL, x = NULL, ...)
 
 ## Value
 
-A
-[`terra::rast()`](https://rspatial.github.io/terra/reference/rast.html)
-object that may be one or many layers depending upon the requested data
-set.
+A [terra](https://CRAN.R-project.org/package=terra) `SpatRaster` object
+that may be one or many layers depending upon the requested data set.
 
 ## Details
 
@@ -165,6 +164,7 @@ these data. The PDF can be accessed in your default web browser by using
 ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau
 of Agricultural and Resource Economics and Sciences, Canberra, November,
 CC BY 4.0. [doi:10.25814/w175-xh85](https://doi.org/10.25814/w175-xh85)
+.
 
 ## See also
 

@@ -12,7 +12,7 @@ read_topsoil_thickness_stars(x = NULL, ...)
 
 ## Source
 
-<https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip>
+<https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip>.
 
 ## Arguments
 
@@ -32,7 +32,7 @@ read_topsoil_thickness_stars(x = NULL, ...)
 
 ## Value
 
-A [stars](https://rdrr.io/r/graphics/stars.html) object of the "Soil
+A [stars](https://CRAN.R-project.org/package=stars) object of the "Soil
 Thickness for Australian Areas of Intensive Agriculture of Layer 1".
 
 ## Note
@@ -43,7 +43,7 @@ object internally rather than reading directly from a file.
 
 ## References
 
-<https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6>
+<https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6>.
 
 ## See also
 

@@ -8,12 +8,12 @@ information.
 ## Usage
 
 ``` r
-read_abs_broadacre_data(crops = "winter", year = "latest", x = NULL)
+read_abs_broadacre_data(data_set = "winter", year = "latest", x = NULL)
 ```
 
 ## Arguments
 
-- crops:
+- data_set:
 
   A character vector providing the desired cropping data, one of:
 

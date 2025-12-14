@@ -47,10 +47,8 @@ read_clum_terra(data_set = "clum_50m_2023_v2", x = NULL, ...)
 
 ## Value
 
-A
-[`terra::rast()`](https://rspatial.github.io/terra/reference/rast.html)
-object that may be one or many layers depending upon the requested data
-set.
+A [terra](https://CRAN.R-project.org/package=terra) `SpatRaster` object
+that may be one or many layers depending upon the requested data set.
 
 ## Details
 

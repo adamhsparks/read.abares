@@ -5,19 +5,19 @@ Fetches topsoil thickness data and associated metadata from ABARES.
 ## Usage
 
 ``` r
-.get_topsoil_thickness(.x = NULL)
+.get_topsoil_thickness(.x)
 ```
 
 ## Source
 
-<https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip>
+<https://catalog.anrdl.cp1.agriculture.gov.au/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip>
 
 ## Arguments
 
 - .x:
 
-  A character string passed that provides a file path to the local
-  directory holding the unzipped files for topsoil thickness.
+  Optional path to a local copy of the zipped data file. If it is `NULL`
+  a copy is downloaded from the ABARES website.
 
 ## Value
 
@@ -26,7 +26,7 @@ A `read.abares.topsoil.thickness` object, which is a named
 [`terra::rast()`](https://rspatial.github.io/terra/reference/rast.html)
 object of the data and text file of metadata.
 
-## Note
+## Details
 
 A custom [`print()`](https://rdrr.io/r/base/print.html) method is
 provided that will print the metadata associated with these data.
@@ -34,7 +34,7 @@ Examples are provided for interacting with the metadata directly.
 
 ## References
 
-<https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6>
+<https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6>.
 
 ## Examples
 

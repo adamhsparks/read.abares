@@ -102,12 +102,13 @@ read_nlum_stars(data_set = NULL, x = NULL, ...)
   :   Land use of Australia 2020–21 agricultural commodities probability
       grids
 
-  . This argument is ignored if `file` is provided.
+  . This argument is ignored if `x` is provided.
 
 - x:
 
   A character string of a file path to a local zip file that has been
-  downloaded outside of R that contains the NLUM data.
+  downloaded outside of R that contains the NLUM data. This argument is
+  ignored if `data_set` is provided.
 
 - ...:
 

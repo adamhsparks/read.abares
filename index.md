@@ -179,6 +179,14 @@ Citing {read.abares}: When citing the use of this package, please use,
 
 ``` r
 library(read.abares)
+#> 
+#> Attaching package: 'read.abares'
+#> The following object is masked from 'package:graphics':
+#> 
+#>     plot
+#> The following objects are masked from 'package:base':
+#> 
+#>     levels, plot
 citation("read.abares")
 #> To cite package 'read.abares' in publications use:
 #> 

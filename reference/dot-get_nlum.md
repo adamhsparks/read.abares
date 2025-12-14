@@ -4,9 +4,7 @@ An internal function used by
 [`read_nlum_terra()`](https://adamhsparks.github.io/read.abares/reference/read_nlum_terra.md)
 and
 [`read_nlum_stars()`](https://adamhsparks.github.io/read.abares/reference/read_nlum_stars.md)
-that downloads national level land use data GeoTIFF file, unzips the
-download file and deletes unnecessary files that are included in the
-download.
+that downloads national level land use data GeoTIFF file.
 
 ## Usage
 
@@ -65,13 +63,10 @@ download.
 
   .
 
-- .x:
-
-  A user specified path to a local zip file containing the data.
-
 ## Value
 
-A list object of NLUM files.
+An invisible `NULL` called for its side effect of downloading the
+desired file.
 
 ## References
 
@@ -83,9 +78,6 @@ CC BY 4.0. [doi:10.25814/w175-xh85](https://doi.org/10.25814/w175-xh85)
 ## Examples
 
 ``` r
-Y202021 <- .get_nlum(.data_set = "Y202021", .x = NULL)
-#> Error in .get_nlum(.data_set = "Y202021", .x = NULL): could not find function ".get_nlum"
-
-Y202021
-#> Error: object 'Y202021' not found
+.get_nlum(.data_set = "Y202021")
+#> Error in .get_nlum(.data_set = "Y202021"): could not find function ".get_nlum"
 ```

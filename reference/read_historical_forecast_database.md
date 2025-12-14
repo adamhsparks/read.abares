@@ -13,7 +13,7 @@ read_historical_forecast(x = NULL)
 
 ## Source
 
-<https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0>
+<https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0>.
 
 ## Arguments
 
@@ -61,7 +61,7 @@ The resulting object will contain the following fields.
 
 ## References
 
-<https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/historical-forecasts#:~:text=About%20the%20historical%20agricultural%20forecast,relevant%20to%20Australian%20agricultural%20markets>
+<https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/historical-forecasts#:~:text=About%20the%20historical%20agricultural%20forecast,relevant%20to%20Australian%20agricultural%20markets>.
 
 ## Examples
 

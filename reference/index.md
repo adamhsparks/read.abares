@@ -47,7 +47,7 @@ Fetch and read the ABARES Estimates data
 
 - [`read_estimates_by_performance_category()`](https://adamhsparks.github.io/read.abares/reference/read_estimates_by_performance_category.md)
   [`read_est_by_perf_cat()`](https://adamhsparks.github.io/read.abares/reference/read_estimates_by_performance_category.md)
-  : Read ABARES' "Estimates by Performance"
+  : Read ABARES' "Estimates by Performance Category" Data
 - [`read_estimates_by_size()`](https://adamhsparks.github.io/read.abares/reference/read_estimates_by_size.md)
   [`read_est_by_size()`](https://adamhsparks.github.io/read.abares/reference/read_estimates_by_size.md)
   : Read ABARES' "Estimates by Size"
@@ -124,7 +124,7 @@ Soil Thickness for Australian areas of intensive agriculture of Layer 1
 View metadata associated with soil thickness data
 
 - [`print_topsoil_thickness_metadata()`](https://adamhsparks.github.io/read.abares/reference/print_topsoil_thickness_metadata.md)
-  : Displays the text file Metadata for ABARES' Topsoil Thickness for
+  : Prints the text file Metadata for ABARES' Topsoil Thickness for
   "Australian Areas of Intensive Agriculture of Layer 1"
 
 ## Trade

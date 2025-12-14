@@ -1,6 +1,6 @@
 # Read ABARES' "Australian Gridded Farm Data" (AGFD) NCDF Files with tidync
 
-Read "Australian Gridded Farm Data", (AGFD) as a list of
+Read "Australian Gridded Farm Data", (AGFD), as a list of
 [`tidync::tidync()`](https://docs.ropensci.org/tidync/reference/tidync.html)
 objects.
 
@@ -41,9 +41,9 @@ read_agfd_tidync(yyyy = 1991:2023, fixed_prices = TRUE, x = NULL)
 
 ## Value
 
-A `list` object of [tidync](https://CRAN.R-project.org/package=tidync)
-objects of the "Australian Gridded Farm Data" with the file names as the
-list's objects' names.
+A list of [tidync](https://CRAN.R-project.org/package=tidync) objects of
+the "Australian Gridded Farm Data" with the NetCDF objects' names as
+"year_yyyy".
 
 ## Details
 

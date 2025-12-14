@@ -123,12 +123,13 @@ One of:</p><dl><dt>Y201011</dt>
 
 
 </dl><p>.
-This argument is ignored if <code>file</code> is provided.</p></dd>
+This argument is ignored if <code>x</code> is provided.</p></dd>
 
 
 <dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
 <dd><p>A character string of a file path to a local zip file that has
-been downloaded outside of R that contains the <acronym>NLUM</acronym> data.</p></dd>
+been downloaded outside of R that contains the <acronym>NLUM</acronym> data.
+This argument is ignored if <code>data_set</code> is provided.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -137,8 +138,8 @@ been downloaded outside of R that contains the <acronym>NLUM</acronym> data.</p>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <code><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">terra::rast()</a></code> object that may be one or many layers depending
-upon the requested data set.</p>
+    <p>A <a href="https://CRAN.R-project.org/package=terra" class="external-link"><span class="pkg">terra</span></a> <code>SpatRaster</code> object that may be one or many layers
+depending upon the requested data set.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -181,7 +182,8 @@ The PDF can be accessed in your default web browser by using
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
 Agricultural and Resource Economics and Sciences, Canberra, November, CC BY
-4.0. <a href="https://doi.org/10.25814/w175-xh85" class="external-link">doi:10.25814/w175-xh85</a></p>
+4.0. <a href="https://doi.org/10.25814/w175-xh85" class="external-link">doi:10.25814/w175-xh85</a>
+.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

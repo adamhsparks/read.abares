@@ -9,7 +9,7 @@ that downloads catchment level land use data files.
 ## Usage
 
 ``` r
-.get_clum(.data_set, .x)
+.get_clum(.data_set)
 ```
 
 ## Source
@@ -37,14 +37,10 @@ that downloads catchment level land use data files.
 
   .
 
-- .x:
-
-  A user specified path to a local zip file containing the data.
-
 ## Value
 
-A list of files containing a spatial data file of or files related to
-Australian catchment scale land use data.
+A vector of filenames of a geotiff file or files related to Australian
+catchment scale land use data.
 
 ## References
 
@@ -56,8 +52,8 @@ and Sciences, Canberra, June, CC BY 4.0, DOI:
 ## Examples
 
 ``` r
-clum_update <- .get_clum(.data_set = "scale_date_update", .x = NULL)
-#> Error in .get_clum(.data_set = "scale_date_update", .x = NULL): could not find function ".get_clum"
+clum_update <- .get_clum(.data_set = "scale_date_update")
+#> Error in .get_clum(.data_set = "scale_date_update"): could not find function ".get_clum"
 
 clum_update
 #> Error: object 'clum_update' not found

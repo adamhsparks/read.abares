@@ -1,6 +1,6 @@
 # Read ABARES' "Australian Gridded Farm Data" (AGFD) NCDF files with stars
 
-Read "Australian Gridded Farm Data" (AGFD) as a list of
+Read "Australian Gridded Farm Data", (AGFD), as a list of
 [stars](https://CRAN.R-project.org/package=stars) objects.
 
 ## Usage
@@ -41,8 +41,8 @@ read_agfd_stars(yyyy = 1991:2003, fixed_prices = TRUE, x = NULL)
 ## Value
 
 A `list` object of [stars](https://CRAN.R-project.org/package=stars)
-objects of the "Australian Gridded Farm Data" with the file names as the
-list's objects' names.
+objects of the "Australian Gridded Farm Data" with the NetCDF objects'
+names as "year_yyyy".
 
 ## Details
 

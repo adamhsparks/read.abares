@@ -1,6 +1,6 @@
-# Displays the text file Metadata for ABARES' Topsoil Thickness for "Australian Areas of Intensive Agriculture of Layer 1"
+# Prints the text file Metadata for ABARES' Topsoil Thickness for "Australian Areas of Intensive Agriculture of Layer 1"
 
-Displays the complete set of metadata associated with the soil thickness
+Prints the complete set of metadata associated with the soil thickness
 data in your R console. For including the metadata in documents or other
 methods outside of R, see
 [`.get_topsoil_thickness()`](https://adamhsparks.github.io/read.abares/reference/dot-get_topsoil_thickness.md)
@@ -22,7 +22,9 @@ print_topsoil_thickness_metadata(x = NULL)
 
 - x:
 
-  A `read.abares.topsoil.thickness` object.
+  An optional file path to a zip file containing the topsoil thickness
+  data from ABARES. If left as `NULL`, the default value, a copy will be
+  downloaded from the ABARES website.
 
 ## Value
 
@@ -37,7 +39,7 @@ with the actual values in the data.
 
 ## References
 
-<https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6>
+\<https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6.
 
 ## See also
 
@@ -49,6 +51,6 @@ Other topsoil thickness:
 
 ``` r
 if (FALSE) { # interactive()
-print_topsoil_thickness_metadata()
+print_print_topsoil_thickness_metadata()
 }
 ```

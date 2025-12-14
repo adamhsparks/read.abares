@@ -1,4 +1,4 @@
-# Read ABARES' "Estimates by Performance"
+# Read ABARES' "Estimates by Performance Category" Data
 
 Fetches and imports ABARES estimates by performance category data.
 
@@ -12,7 +12,7 @@ read_est_by_perf_cat(x = NULL)
 
 ## Source
 
-<https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv>
+()<https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv>.
 
 ## Arguments
 
@@ -37,7 +37,7 @@ in this package using a snake_case format and ordered consistently.
 
 ## References
 
-<https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
+<https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>.
 
 ## See also
 

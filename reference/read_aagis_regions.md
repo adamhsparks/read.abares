@@ -11,7 +11,7 @@ read_aagis_regions(x = NULL)
 
 ## Source
 
-<https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip>
+<https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip>.
 
 ## Arguments
 
@@ -52,7 +52,7 @@ Upon import a few operations are carried out,
 
 ## References
 
-<https://www.agriculture.gov.au/abares/research-topics/surveys/farm-definitions-methods#regions>
+<https://www.agriculture.gov.au/abares/research-topics/surveys/farm-definitions-methods#regions>.
 
 ## Examples
 

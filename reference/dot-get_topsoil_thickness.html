@@ -43,20 +43,20 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">.get_topsoil_thickness</span><span class="op">(</span>.x <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">.get_topsoil_thickness</span><span class="op">(</span><span class="va">.x</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="source">Source<a class="anchor" aria-label="anchor" href="#source"></a></h2>
-    <p><a href="https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip" class="external-link">https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip</a></p>
+    <p><a href="https://catalog.anrdl.cp1.agriculture.gov.au/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip" class="external-link">https://catalog.anrdl.cp1.agriculture.gov.au/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip</a></p>
     </div>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
 <dl><dt id="arg--x">.x<a class="anchor" aria-label="anchor" href="#arg--x"></a></dt>
-<dd><p>A character string passed that provides a file path to the
-local directory holding the unzipped files for topsoil thickness.</p></dd>
+<dd><p>Optional path to a local copy of the zipped data file. If it is
+<code>NULL</code> a copy is downloaded from the ABARES website.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -65,14 +65,14 @@ local directory holding the unzipped files for topsoil thickness.</p></dd>
 with the <code><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">terra::rast()</a></code> object of the data and text file of metadata.</p>
     </div>
     <div class="section level2">
-    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>A custom <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> method is provided that will print the metadata associated
 with these data. Examples are provided for interacting with the metadata
 directly.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p><a href="https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6" class="external-link">https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6</a></p>
+    <p><a href="https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6" class="external-link">https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6</a>.</p>
     </div>
 
     <div class="section level2">
