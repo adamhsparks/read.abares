@@ -16,6 +16,14 @@ First we need to load the {read.abares} library.
 
 ``` r
 library(read.abares)
+#> 
+#> Attaching package: 'read.abares'
+#> The following object is masked from 'package:graphics':
+#> 
+#>     plot
+#> The following objects are masked from 'package:base':
+#> 
+#>     levels, plot
 ```
 
 ## Working with AAGIS Regions Spatial Data
@@ -34,7 +42,7 @@ aagis_regions <- read_aagis_regions()
 plot(aagis_regions)
 ```
 
-![AAGIS regions shapefile](articles/aagis-regions-1.png)
+![AAGIS regions shapefile](aagis-regions-1.png)
 
 AAGIS regions shapefile
 
@@ -58,6 +66,77 @@ shapefile and join the data and visualise some of the data.
 
 ``` r
 aagis_region_data <- read_historical_regional_estimates()
+#>   OpenMP version (_OPENMP)       201811
+#>   omp_get_num_procs()            10
+#>   R_DATATABLE_NUM_PROCS_PERCENT  unset (default 50)
+#>   R_DATATABLE_NUM_THREADS        unset
+#>   R_DATATABLE_THROTTLE           unset (default 1024)
+#>   omp_get_thread_limit()         2147483647
+#>   omp_get_max_threads()          10
+#>   OMP_THREAD_LIMIT               unset
+#>   OMP_NUM_THREADS                unset
+#>   RestoreAfterFork               true
+#>   data.table is using 5 threads with throttle==1024. See ?setDTthreads.
+#> freadR.c has been passed a filename: /var/folders/vz/txwj1tx51txgw7zv_b5c5_3m0000gn/T/Rtmp5Uncbj/fdp-beta-regional-historical.csv
+#> [01] Check arguments
+#>   Using 5 threads (omp_get_max_threads()=10, nth=5)
+#>   NAstrings = [<<NA>>]
+#>   None of the NAstrings look like numbers.
+#>   show progress = 1
+#>   0/1 column will be read as integer
+#>   Y/N column will be read as character
+#> [02] Opening the file
+#>   Opening file /var/folders/vz/txwj1tx51txgw7zv_b5c5_3m0000gn/T/Rtmp5Uncbj/fdp-beta-regional-historical.csv
+#>   File opened, size = 9.39MB (9846892 bytes).
+#>   Memory mapped ok
+#> [03] Detect and skip BOM
+#> [04] Arrange mmap to be \0 terminated
+#>   \n has been found in the input and different lines can end with different line endings (e.g. mixed \n and \r\n in one file). This is common and ideal.
+#> [05] Skipping initial rows if needed
+#>   Positioned on line 1 starting: <<Variable,Year,ABARES region,Va>>
+#> [06] Detect separator, quoting rule, and ncolumns
+#>   Detecting sep automatically ...
+#>   sep=','  with 100 lines of 5 fields using quote rule 0
+#>   Detected 5 columns on line 1. This line is either column names or first data row. Line starts as: <<Variable,Year,ABARES region,Va>>
+#>   Quote rule picked = 0
+#>   fill=false and the most number of columns found is 5
+#> [07] Detect column types, dec, good nrow estimate and whether first row is column names
+#>   sep=',' so dec set to '.'
+#>   Number of sampling jump points = 100 because (9846891 bytes from row 1 to eof) / (2 * 5835 jump0size) == 843
+#>   Type codes (jump 000)    : E7E99  Quote rule 0
+#>   Type codes (jump 100)    : E7E99  Quote rule 0
+#>   'header' determined to be true due to column 2 containing a string on row 1 and a lower type (int32) in the rest of the 10052 sample rows
+#>   =====
+#>   Sampled 10052 rows (handled \n inside quoted fields) at 101 jump points
+#>   Bytes from first data row on line 2 to the end of last row: 9846853
+#>   Line length: mean=66.42 sd=13.33 min=33 max=123
+#>   Estimated number of rows: 9846853 / 66.42 = 148252
+#>   Initial alloc = 247691 rows (148252 + 67%) using bytes/max(mean-2*sd,min) clamped between [1.1*estn, 2.0*estn]
+#>   =====
+#> [08] Assign column names
+#> [09] Apply user overrides on column types
+#>   After 0 type and 0 drop user overrides : E7E99
+#> [10] Allocate memory for the datatable
+#>   Allocating 5 column slots (5 - 0 dropped) with 247691 rows
+#> [11] Read the data
+#>   jumps=[0..10), chunk_size=984685, total_size=9846853
+#> Read 150480 rows x 5 columns from 9.39MB (9846892 bytes) file in 00:00.011 wall clock time
+#> [12] Finalizing the datatable
+#>   Type counts:
+#>          1 : int32     '7'
+#>          2 : float64   '9'
+#>          2 : string    'E'
+#> =============================
+#>    0.000s (  4%) Memory map 0.009GB file
+#>    0.001s (  9%) sep=',' ncol=5 and header detection
+#>    0.000s (  0%) Column type detection using 10052 sample rows
+#>    0.000s (  1%) Allocation of 247691 rows x 5 cols (0.008GB) of which 150480 ( 61%) rows used
+#>    0.010s ( 85%) Reading 10 chunks (0 swept) of 0.939MB (each chunk 15048 rows) using 5 threads
+#>    +    0.002s ( 17%) Parse to row-major thread buffers (grown 0 times)
+#>    +    0.005s ( 41%) Transpose
+#>    +    0.003s ( 28%) Waiting
+#>    0.000s (  0%) Rereading 0 columns due to out-of-sample type exceptions
+#>    0.011s        Total
 ```
 
 Filter the AAGIS region data to represent the total area cropped for the
@@ -114,7 +193,7 @@ ggplot(aagis_dat) +
 ```
 
 ![Plot of AAGIS estimated total area cropped by year and
-region.](articles/aagis-regions-plot-1.png)
+region.](aagis-regions-plot-1.png)
 
 Plot of AAGIS estimated total area cropped by year and region.
 
@@ -162,6 +241,9 @@ only data for the year 2000.
 ``` r
 # A list of {stars} objects for the climate in year 2000
 star <- read_agfd_stars(2000)
+#> no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell
+#> other available variables:
+#>  lon, lat
 #> Will return stars object with 612226 cells.
 #> No projection information found in nc file. 
 #>  Coordinate variable units found to be degrees, 
@@ -221,7 +303,7 @@ head(tdnc[[1]])
 #> # A tibble: 1 × 2
 #>   access              source                                                    
 #>   <dttm>              <chr>                                                     
-#> 1 2025-10-14 12:57:44 /private/var/folders/r4/wwsd3hsn48j5gck6qv6npkpc0000gr/T/…
+#> 1 2025-12-14 09:31:46 /private/var/folders/vz/txwj1tx51txgw7zv_b5c5_3m0000gn/T/…
 #> 
 #> $axis
 #> # A tibble: 84 × 3
@@ -391,7 +473,7 @@ plot(ts_t)
 
 ![Soil Thickness for Australian areas of intensive agriculture of Layer
 1 (A Horizon - top-soil) (derived from soil
-mapping)](articles/plot-topsoil-depth-1.png)
+mapping)](plot-topsoil-depth-1.png)
 
 Soil Thickness for Australian areas of intensive agriculture of Layer 1
 (A Horizon - top-soil) (derived from soil mapping)

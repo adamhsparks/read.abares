@@ -65,7 +65,7 @@
                         <h4 data-toc-skip class="author">Adam H.
 Sparks</h4>
             
-            <h4 data-toc-skip class="date">2025-10-14</h4>
+            <h4 data-toc-skip class="date">2025-12-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/adamhsparks/read.abares/blob/main/vignettes/read.abares.Rmd" class="external-link"><code>vignettes/read.abares.Rmd</code></a></small>
       <div class="d-none name"><code>read.abares.Rmd</code></div>
@@ -86,7 +86,15 @@ Farm Data, which can be downloaded and imported using one of four types
 of object or the soil thickness data, which includes rich metadata.</p>
 <p>First we need to load the {read.abares} library.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adamhsparks/read.abares" class="external-link">read.abares</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'read.abares'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:graphics':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     plot</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     levels, plot</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="working-with-aagis-regions-spatial-data">Working with AAGIS Regions Spatial Data<a class="anchor" aria-label="anchor" href="#working-with-aagis-regions-spatial-data"></a>
 </h2>
@@ -103,7 +111,7 @@ tabular data from the estimates, <em>e.g.</em>,
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">aagis_regions</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="articles/aagis-regions-1.png" alt="AAGIS regions shapefile"><p class="caption">
+<img src="aagis-regions-1.png" alt="AAGIS regions shapefile"><p class="caption">
 AAGIS regions shapefile
 </p>
 </div>
@@ -122,7 +130,78 @@ will use the <code><a href="../reference/read_historical_regional_estimates.html
 to download the AAGIS data for the regions in the AAGIS regions
 shapefile and join the data and visualise some of the data.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">aagis_region_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_historical_regional_estimates.html">read_historical_regional_estimates</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">aagis_region_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_historical_regional_estimates.html">read_historical_regional_estimates</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   OpenMP version (_OPENMP)       201811</span></span>
+<span><span class="co">#&gt;   omp_get_num_procs()            10</span></span>
+<span><span class="co">#&gt;   R_DATATABLE_NUM_PROCS_PERCENT  unset (default 50)</span></span>
+<span><span class="co">#&gt;   R_DATATABLE_NUM_THREADS        unset</span></span>
+<span><span class="co">#&gt;   R_DATATABLE_THROTTLE           unset (default 1024)</span></span>
+<span><span class="co">#&gt;   omp_get_thread_limit()         2147483647</span></span>
+<span><span class="co">#&gt;   omp_get_max_threads()          10</span></span>
+<span><span class="co">#&gt;   OMP_THREAD_LIMIT               unset</span></span>
+<span><span class="co">#&gt;   OMP_NUM_THREADS                unset</span></span>
+<span><span class="co">#&gt;   RestoreAfterFork               true</span></span>
+<span><span class="co">#&gt;   data.table is using 5 threads with throttle==1024. See ?setDTthreads.</span></span>
+<span><span class="co">#&gt; freadR.c has been passed a filename: /var/folders/vz/txwj1tx51txgw7zv_b5c5_3m0000gn/T/Rtmp5Uncbj/fdp-beta-regional-historical.csv</span></span>
+<span><span class="co">#&gt; [01] Check arguments</span></span>
+<span><span class="co">#&gt;   Using 5 threads (omp_get_max_threads()=10, nth=5)</span></span>
+<span><span class="co">#&gt;   NAstrings = [&lt;&lt;NA&gt;&gt;]</span></span>
+<span><span class="co">#&gt;   None of the NAstrings look like numbers.</span></span>
+<span><span class="co">#&gt;   show progress = 1</span></span>
+<span><span class="co">#&gt;   0/1 column will be read as integer</span></span>
+<span><span class="co">#&gt;   Y/N column will be read as character</span></span>
+<span><span class="co">#&gt; [02] Opening the file</span></span>
+<span><span class="co">#&gt;   Opening file /var/folders/vz/txwj1tx51txgw7zv_b5c5_3m0000gn/T/Rtmp5Uncbj/fdp-beta-regional-historical.csv</span></span>
+<span><span class="co">#&gt;   File opened, size = 9.39MB (9846892 bytes).</span></span>
+<span><span class="co">#&gt;   Memory mapped ok</span></span>
+<span><span class="co">#&gt; [03] Detect and skip BOM</span></span>
+<span><span class="co">#&gt; [04] Arrange mmap to be \0 terminated</span></span>
+<span><span class="co">#&gt;   \n has been found in the input and different lines can end with different line endings (e.g. mixed \n and \r\n in one file). This is common and ideal.</span></span>
+<span><span class="co">#&gt; [05] Skipping initial rows if needed</span></span>
+<span><span class="co">#&gt;   Positioned on line 1 starting: &lt;&lt;Variable,Year,ABARES region,Va&gt;&gt;</span></span>
+<span><span class="co">#&gt; [06] Detect separator, quoting rule, and ncolumns</span></span>
+<span><span class="co">#&gt;   Detecting sep automatically ...</span></span>
+<span><span class="co">#&gt;   sep=','  with 100 lines of 5 fields using quote rule 0</span></span>
+<span><span class="co">#&gt;   Detected 5 columns on line 1. This line is either column names or first data row. Line starts as: &lt;&lt;Variable,Year,ABARES region,Va&gt;&gt;</span></span>
+<span><span class="co">#&gt;   Quote rule picked = 0</span></span>
+<span><span class="co">#&gt;   fill=false and the most number of columns found is 5</span></span>
+<span><span class="co">#&gt; [07] Detect column types, dec, good nrow estimate and whether first row is column names</span></span>
+<span><span class="co">#&gt;   sep=',' so dec set to '.'</span></span>
+<span><span class="co">#&gt;   Number of sampling jump points = 100 because (9846891 bytes from row 1 to eof) / (2 * 5835 jump0size) == 843</span></span>
+<span><span class="co">#&gt;   Type codes (jump 000)    : E7E99  Quote rule 0</span></span>
+<span><span class="co">#&gt;   Type codes (jump 100)    : E7E99  Quote rule 0</span></span>
+<span><span class="co">#&gt;   'header' determined to be true due to column 2 containing a string on row 1 and a lower type (int32) in the rest of the 10052 sample rows</span></span>
+<span><span class="co">#&gt;   =====</span></span>
+<span><span class="co">#&gt;   Sampled 10052 rows (handled \n inside quoted fields) at 101 jump points</span></span>
+<span><span class="co">#&gt;   Bytes from first data row on line 2 to the end of last row: 9846853</span></span>
+<span><span class="co">#&gt;   Line length: mean=66.42 sd=13.33 min=33 max=123</span></span>
+<span><span class="co">#&gt;   Estimated number of rows: 9846853 / 66.42 = 148252</span></span>
+<span><span class="co">#&gt;   Initial alloc = 247691 rows (148252 + 67%) using bytes/max(mean-2*sd,min) clamped between [1.1*estn, 2.0*estn]</span></span>
+<span><span class="co">#&gt;   =====</span></span>
+<span><span class="co">#&gt; [08] Assign column names</span></span>
+<span><span class="co">#&gt; [09] Apply user overrides on column types</span></span>
+<span><span class="co">#&gt;   After 0 type and 0 drop user overrides : E7E99</span></span>
+<span><span class="co">#&gt; [10] Allocate memory for the datatable</span></span>
+<span><span class="co">#&gt;   Allocating 5 column slots (5 - 0 dropped) with 247691 rows</span></span>
+<span><span class="co">#&gt; [11] Read the data</span></span>
+<span><span class="co">#&gt;   jumps=[0..10), chunk_size=984685, total_size=9846853</span></span>
+<span><span class="co">#&gt; Read 150480 rows x 5 columns from 9.39MB (9846892 bytes) file in 00:00.011 wall clock time</span></span>
+<span><span class="co">#&gt; [12] Finalizing the datatable</span></span>
+<span><span class="co">#&gt;   Type counts:</span></span>
+<span><span class="co">#&gt;          1 : int32     '7'</span></span>
+<span><span class="co">#&gt;          2 : float64   '9'</span></span>
+<span><span class="co">#&gt;          2 : string    'E'</span></span>
+<span><span class="co">#&gt; =============================</span></span>
+<span><span class="co">#&gt;    0.000s (  4%) Memory map 0.009GB file</span></span>
+<span><span class="co">#&gt;    0.001s (  9%) sep=',' ncol=5 and header detection</span></span>
+<span><span class="co">#&gt;    0.000s (  0%) Column type detection using 10052 sample rows</span></span>
+<span><span class="co">#&gt;    0.000s (  1%) Allocation of 247691 rows x 5 cols (0.008GB) of which 150480 ( 61%) rows used</span></span>
+<span><span class="co">#&gt;    0.010s ( 85%) Reading 10 chunks (0 swept) of 0.939MB (each chunk 15048 rows) using 5 threads</span></span>
+<span><span class="co">#&gt;    +    0.002s ( 17%) Parse to row-major thread buffers (grown 0 times)</span></span>
+<span><span class="co">#&gt;    +    0.005s ( 41%) Transpose</span></span>
+<span><span class="co">#&gt;    +    0.003s ( 28%) Waiting</span></span>
+<span><span class="co">#&gt;    0.000s (  0%) Rereading 0 columns due to out-of-sample type exceptions</span></span>
+<span><span class="co">#&gt;    0.011s        Total</span></span></code></pre></div>
 <p>Filter the AAGIS region data to represent the total area cropped for
 the year of 2023. This will make the next few examples execute much more
 quickly.</p>
@@ -167,7 +246,7 @@ year 2023.</p>
 <span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">Year</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="articles/aagis-regions-plot-1.png" alt="Plot of AAGIS estimated total area cropped by year and region."><p class="caption">
+<img src="aagis-regions-plot-1.png" alt="Plot of AAGIS estimated total area cropped by year and region."><p class="caption">
 Plot of AAGIS estimated total area cropped by year and region.
 </p>
 </div>
@@ -214,6 +293,9 @@ returning only data for the year 2000.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># A list of {stars} objects for the climate in year 2000</span></span>
 <span><span class="va">star</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_agfd_stars.html">read_agfd_stars</a></span><span class="op">(</span><span class="fl">2000</span><span class="op">)</span></span>
+<span><span class="co">#&gt; no 'var' specified, using farmno, R_total_hat_ha, C_total_hat_ha, FBP_fci_hat_ha, FBP_fbp_hat_ha, A_wheat_hat_ha, H_wheat_dot_hat, A_barley_hat_ha, H_barley_dot_hat, A_sorghum_hat_ha, H_sorghum_dot_hat, A_oilseeds_hat_ha, H_oilseeds_dot_hat, R_wheat_hat_ha, R_sorghum_hat_ha, R_oilseeds_hat_ha, R_barley_hat_ha, Q_wheat_hat_ha, Q_barley_hat_ha, Q_sorghum_hat_ha, Q_oilseeds_hat_ha, S_wheat_cl_hat_ha, S_sheep_cl_hat_ha, S_sheep_births_hat_ha, S_sheep_deaths_hat_ha, S_beef_cl_hat_ha, S_beef_births_hat_ha, S_beef_deaths_hat_ha, Q_beef_hat_ha, Q_sheep_hat_ha, Q_lamb_hat_ha, R_beef_hat_ha, R_sheep_hat_ha, R_lamb_hat_ha, C_fodder_hat_ha, C_fert_hat_ha, C_fuel_hat_ha, C_chem_hat_ha, A_total_cropped_ha, FBP_pfe_hat_ha, farmland_per_cell</span></span>
+<span><span class="co">#&gt; other available variables:</span></span>
+<span><span class="co">#&gt;  lon, lat</span></span>
 <span><span class="co">#&gt; Will return stars object with 612226 cells.</span></span>
 <span><span class="co">#&gt; No projection information found in nc file. </span></span>
 <span><span class="co">#&gt;  Coordinate variable units found to be degrees, </span></span>
@@ -266,7 +348,7 @@ object.</p>
 <span><span class="co">#&gt; # A tibble: 1 × 2</span></span>
 <span><span class="co">#&gt;   access              source                                                    </span></span>
 <span><span class="co">#&gt;   &lt;dttm&gt;              &lt;chr&gt;                                                     </span></span>
-<span><span class="co">#&gt; 1 2025-10-14 12:57:44 /private/var/folders/r4/wwsd3hsn48j5gck6qv6npkpc0000gr/T/…</span></span>
+<span><span class="co">#&gt; 1 2025-12-14 09:31:46 /private/var/folders/vz/txwj1tx51txgw7zv_b5c5_3m0000gn/T/…</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $axis</span></span>
 <span><span class="co">#&gt; # A tibble: 84 × 3</span></span>
@@ -1024,7 +1106,7 @@ gracefully.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">ts_t</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="articles/plot-topsoil-depth-1.png" alt="Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)"><p class="caption">
+<img src="plot-topsoil-depth-1.png" alt="Soil Thickness for Australian areas of intensive agriculture of Layer 1 (A Horizon - top-soil) (derived from soil mapping)"><p class="caption">
 Soil Thickness for Australian areas of intensive agriculture of Layer 1
 (A Horizon - top-soil) (derived from soil mapping)
 </p>
