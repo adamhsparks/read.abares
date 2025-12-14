@@ -88,6 +88,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "openxlsx",
+      "name": "openxlsx",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=openxlsx"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "pander",
       "name": "pander",
       "provider": {
@@ -158,6 +170,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=testthat"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "zip",
+      "name": "zip",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=zip"
     }
   ],
   "softwareRequirements": {
@@ -378,7 +402,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "565.406KB",
+  "fileSize": "613.094KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -398,5 +422,10 @@
   "readme": "https://github.com/adamhsparks/read.abares/blob/main/README.md",
   "contIntegration": ["https://github.com/adamhsparks/read.abares/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/adamhsparks/read.abares"],
   "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html#stable", "https://www.repostatus.org/#active"],
+  "review": {
+    "@type": "Review",
+    "url": "https://github.com/ropensci/software-review/issues/667",
+    "provider": "https://ropensci.org"
+  },
   "keywords": ["agriculture", "australia", "data-retrieval", "open-data", "open-datasets", "r", "agriculture-data", "agriculture-dataset", "land-use-classification", "agriculture-trade-data", "land-use-data"]
 }
