@@ -29,12 +29,12 @@ the provided file.  Defaults to \code{NULL}, assuming that the file will be
 downloaded in the active \R session.}
 }
 \value{
-A \code{list()} object of \code{\link[terra:rast]{terra::rast()}} objects of the "Australian
-Gridded Farm Data" with the file names as the list's objects' names.
+A list of \CRANpkg{terra} \code{SpatRaster} objects of the "Australian
+Gridded Farm Data" with the NetCDF objects' names as "year_yyyy".
 }
 \description{
-Read "Australian Gridded Farm Data", (\acronym{AGFD}) as a \code{list()} of
-\code{\link[terra:rast]{terra::rast()}} objects.
+Read "Australian Gridded Farm Data", (\acronym{AGFD}), as a \code{\link[terra:rast]{terra::rast()}}
+object.
 }
 \details{
 From the \href{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-survey-data/australian-gridded-farm-data}{ABARES website}:
@@ -187,7 +187,8 @@ agfd_terra <- read_agfd_terra()
 
 head(agfd_terra)
 
-plot(agfd_terra[[1]])
+# `plot()` is rexported from the `terra` package
+plot(agfd_terra[[1]][[1]])
 \dontshow{\}) # examplesIf}
 }
 \references{

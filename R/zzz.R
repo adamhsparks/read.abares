@@ -28,7 +28,7 @@
     )
   )
 }
-
+# nocov start
 .onLoad <- function(libname, pkgname) {
   .init_read_abares_options()
 }
@@ -94,5 +94,6 @@
   mapped <- .map_verbosity(verbosity)
   withr::local_options(mapped, .local_envir = penv)
 
-  invisible()
+  invisible(NULL)
 }
+# nocov end

@@ -30,14 +30,16 @@
 #'
 #' @family AAGIS
 #'
-#' @references <https://www.agriculture.gov.au/abares/research-topics/surveys/farm-definitions-methods#regions>
-#' @source <https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip>
+#' @references
+#' <https://www.agriculture.gov.au/abares/research-topics/surveys/farm-definitions-methods#regions>.
+#' @source
+#' <https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip>.
 #' @autoglobal
 #' @export
 
 read_aagis_regions <- function(x = NULL) {
   if (is.null(x)) {
-    x <- fs::path(tempdir(), "aagis.zip")
+    x <- fs::path_temp("aagis_asgs16v1_g5a.shp_.zip")
     if (!fs::file_exists(x)) {
       .retry_download(
         url = "https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip",
@@ -45,43 +47,22 @@ read_aagis_regions <- function(x = NULL) {
       )
     }
   }
-  # Create an isolated extraction dir under tempdir()
-  extract_dir <- fs::path(
-    tempdir(),
-    paste0("aagis_extract_", as.integer(Sys.time()), "_", sample.int(1e6, 1))
-  )
-  fs::dir_create(extract_dir)
 
-  # Unzip *only* into our isolated directory
-  utils::unzip(x, exdir = extract_dir)
-
-  on.exit(
-    {
-      if (fs::file_exists(x)) fs::file_delete(x)
-    },
-    add = TRUE
+  aagis_sf <- sf::st_make_valid(
+    sf::st_read(
+      dsn = sprintf(
+        "/vsizip//%s/aagis_asgs16v1_g5a.shp",
+        x
+      ),
+      quiet = !(getOption("read.abares.verbosity") %in% c("quiet", "minimal"))
+    )
   )
 
-  # Search *only* for the exact expected shapefile
-  shp_paths <- fs::dir_ls(
-    fs::path_dir(x),
-    regexp = "aagis_asgs16v1_g5a[.]shp$",
-    recurse = TRUE,
-    type = "file"
-  )
-
-  aagis_sf <- sf::st_read(
-    dsn = shp_paths[[1]],
-    quiet = !(getOption("read.abares.verbosity") %in% c("quiet", "minimal"))
-  )
-
-  aagis_sf <- sf::st_make_valid(aagis_sf)
   aagis_sf["aagis"] <- NULL
   aagis_sf$State <- gsub(" .*$", "", aagis_sf$name)
   names(aagis_sf)[names(aagis_sf) == "name"] <- "ABARES_region"
   names(aagis_sf)[names(aagis_sf) == "class"] <- "Class"
   names(aagis_sf)[names(aagis_sf) == "zone"] <- "Zone"
 
-  fs::file_delete(x)
   aagis_sf
 }

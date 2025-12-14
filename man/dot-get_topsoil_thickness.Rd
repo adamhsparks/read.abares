@@ -4,14 +4,14 @@
 \alias{.get_topsoil_thickness}
 \title{Get ABARES' Topsoil Thickness for "Australian Areas of Intensive Agriculture of Layer 1"}
 \source{
-\url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
+\url{https://catalog.anrdl.cp1.agriculture.gov.au/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
 }
 \usage{
-.get_topsoil_thickness(.x = NULL)
+.get_topsoil_thickness(.x)
 }
 \arguments{
-\item{.x}{A character string passed that provides a file path to the
-local directory holding the unzipped files for topsoil thickness.}
+\item{.x}{Optional path to a local copy of the zipped data file. If it is
+\code{NULL} a copy is downloaded from the ABARES website.}
 }
 \value{
 A \code{read.abares.topsoil.thickness} object, which is a named \code{list()}
@@ -20,7 +20,7 @@ with the \code{\link[terra:rast]{terra::rast()}} object of the data and text fil
 \description{
 Fetches topsoil thickness data and associated metadata from \acronym{ABARES}.
 }
-\note{
+\details{
 A custom \code{print()} method is provided that will print the metadata associated
 with these data. Examples are provided for interacting with the metadata
 directly.
@@ -39,6 +39,6 @@ pander(y)
 
 }
 \references{
-\url{https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6}
+\url{https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6}.
 }
 \keyword{internal}

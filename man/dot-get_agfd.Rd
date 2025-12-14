@@ -4,7 +4,7 @@
 \alias{.get_agfd}
 \title{Get ABARES' "Australian Gridded Farm Data" (AGFD)}
 \usage{
-.get_agfd(.fixed_prices, .yyyy, .x)
+.get_agfd(.fixed_prices, .yyyy)
 }
 \arguments{
 \item{.fixed_prices}{Download historical climate and prices or historical
@@ -16,21 +16,18 @@ upon the setting of \code{.fixed_prices}.  Note that this will still download th
 entire data set, that cannot be avoided, but will only return the
 requested year(s) in your \R session.  Valid years are from 1991 to 2023
 inclusive.}
-
-\item{.x}{A user specified path to a local zip file containing the data.}
 }
 \value{
-A \code{list()} object, a list of NetCDF files containing the "Australian
-Gridded Farm Data".
+A vector object, a list of NetCDF file paths containing the
+"Australian Gridded Farm Data" data.
 }
 \description{
 Used by the \code{read_agfd} family of functions, downloads the "Australian
-Gridded Farm Data" (\acronym{AGFD}) data and unzips the compressed files to
-NetCDF for importing.
+Gridded Farm Data" (\acronym{AGFD}) data.
 }
 \examples{
 # this will download the data and then return only 2020 and 2021 years' data
-agfd <- .get_agfd(.fixed_prices = TRUE, .yyyy = 2020:2021, .x = NULL)
+agfd <- .get_agfd(.fixed_prices = TRUE, .yyyy = 2020:2021)
 
 agfd
 

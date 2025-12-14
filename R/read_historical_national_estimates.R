@@ -12,8 +12,10 @@
 #'  `key`.
 #' @autoglobal
 #' @family Estimates
-#' @references <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
-#' @source <https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv>
+#' @references
+#' <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>.
+#' @source
+#' <https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv>.
 #' @export
 #' @examplesIf interactive()
 #'
@@ -24,14 +26,17 @@
 #'
 read_historical_national_estimates <- function(x = NULL) {
   if (is.null(x)) {
-    x <- fs::path(tempdir(), "fdp-beta-national-historical.csv")
+    x <- fs::path_temp("fdp-beta-national-historical.csv")
 
     .retry_download(
       "https://www.agriculture.gov.au/sites/default/files/documents/fdp-national-historical.csv",
       dest = x
     )
   }
-  x <- data.table::fread(x)
+  x <- data.table::fread(
+    x,
+    verbose = getOption("read.abares.verbosity") == "verbose"
+  )
   data.table::setcolorder(
     x,
     neworder = c("Variable", "Year", "Industry", "Value", "RSE")

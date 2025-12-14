@@ -5,7 +5,7 @@
 \alias{read_historical_forecast}
 \title{Read ABARES' "Historical Forecast Database"}
 \source{
-\url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0}
+\url{https://daff.ent.sirsidynix.net.au/client/en_AU/search/asset/1031941/0}.
 }
 \usage{
 read_historical_forecast_database(x = NULL)
@@ -60,5 +60,5 @@ read_historical_forecast()
 \dontshow{\}) # examplesIf}
 }
 \references{
-\url{https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/historical-forecasts#:~:text=About\%20the\%20historical\%20agricultural\%20forecast,relevant\%20to\%20Australian\%20agricultural\%20markets}
+\url{https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/historical-forecasts#:~:text=About\%20the\%20historical\%20agricultural\%20forecast,relevant\%20to\%20Australian\%20agricultural\%20markets}.
 }

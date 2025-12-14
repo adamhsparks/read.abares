@@ -2,7 +2,7 @@
 % Please edit documentation in R/print_topsoil_thickness_metadata.R
 \name{print_topsoil_thickness_metadata}
 \alias{print_topsoil_thickness_metadata}
-\title{Displays the text file Metadata for ABARES' Topsoil Thickness for "Australian Areas of Intensive Agriculture of Layer 1"}
+\title{Prints the text file Metadata for ABARES' Topsoil Thickness for "Australian Areas of Intensive Agriculture of Layer 1"}
 \source{
 \url{https://anrdl-integration-web-catalog-saxfirxkxt.s3-ap-southeast-2.amazonaws.com/warehouse/staiar9cl__059/staiar9cl__05911a01eg_geo___.zip}
 }
@@ -10,14 +10,16 @@
 print_topsoil_thickness_metadata(x = NULL)
 }
 \arguments{
-\item{x}{A \code{read.abares.topsoil.thickness} object.}
+\item{x}{An optional file path to a zip file containing the topsoil thickness
+data from \acronym{ABARES}.  If left as \code{NULL}, the default value, a copy
+will be downloaded from the \acronym{ABARES} website.}
 }
 \value{
 Nothing, called for its side effects, it prints the complete
 metadata file to the \R console.
 }
 \description{
-Displays the complete set of metadata associated with the soil thickness
+Prints the complete set of metadata associated with the soil thickness
 data in your \R console. For including the metadata in documents or other
 methods outside of \R, see \code{.get_topsoil_thickness()} for an example using
 \code{\link[pander:pander]{pander::pander()}} to print the metadata.
@@ -29,11 +31,11 @@ actual values in the data.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
-print_topsoil_thickness_metadata()
+print_print_topsoil_thickness_metadata()
 \dontshow{\}) # examplesIf}
 }
 \references{
-\url{https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6}
+<https://data.agriculture.gov.au/geonetwork/srv/eng/catalog.search#/metadata/faa9f157-8e17-4b23-b6a7-37eb7920ead6.
 }
 \seealso{
 Other topsoil thickness: 

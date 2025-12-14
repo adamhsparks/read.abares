@@ -1,6 +1,6 @@
 #' Read ABARES' "Australian Gridded Farm Data" (AGFD) NCDF Files as a data.table Object
 #'
-#' Read "Australian Gridded Farm Data", (\acronym{AGFD}) as a
+#' Read "Australian Gridded Farm Data", (\acronym{AGFD}), as a
 #'  [data.table::data.table()] object.
 #
 #' @param yyyy Returns only data for the specified year or years for climate
@@ -189,26 +189,19 @@ read_agfd_dt <- function(
   fixed_prices = TRUE,
   x = NULL
 ) {
-  if (any(yyyy %notin% 1991:2023)) {
-    cli::cli_abort(
-      "{.arg yyyy} must be between 1991 and 2023 inclusive"
-    )
-  }
-  files <- .get_agfd(
-    .fixed_prices = fixed_prices,
-    .yyyy = yyyy,
-    .x = x
-  )
+  .check_agfd_yyyy(.yyyy = yyyy)
 
-  if (length(files) == 0L) {
-    # Consistent, explicit empty schema
-    dat <- data.table::data.table(
-      id = character(),
-      lat = numeric(),
-      lon = numeric()
-    )[0L]
-    return(dat[])
+  if (is.null(x) || missing(x)) {
+    files <- .get_agfd(
+      .fixed_prices = fixed_prices,
+      .yyyy = yyyy
+    )
+  } else {
+    # copy the file to the tempdir for the unzip fn to work properly
+    # we won't touch the original file provided this way
+    files <- .copy_local_agfd_zip(x)
   }
+
   tnc_list <- lapply(files, tidync::tidync)
   names(tnc_list) <- fs::path_file(files)
   dat <- data.table::rbindlist(
@@ -220,4 +213,19 @@ read_agfd_dt <- function(
   rm(tnc_list)
   gc()
   return(dat[])
+}
+
+#' Check AGFD years for validity
+#' @param .yyyy A year value for checking
+#' @dev
+
+.check_agfd_yyyy <- function(.yyyy) {
+  if (any(.yyyy %notin% 1991:2023)) {
+    cli::cli_abort(
+      "{.arg yyyy} must be between 1991 and 2023 inclusive"
+    )
+  }
+  if (!any(is.numeric(.yyyy))) {
+    cli::cli_abort("{.arg yyyy} must be numeric.")
+  }
 }

@@ -12,8 +12,10 @@
 #'  `key`.
 #' @autoglobal
 #' @family Estimates
-#' @references <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
-#' @source <https://www.agriculture.gov.au/sites/default/files/documents/fdp-regional-historical.csv>
+#' @references
+#' <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>.
+#' @source
+#' <https://www.agriculture.gov.au/sites/default/files/documents/fdp-regional-historical.csv>.
 #' @export
 #' @examplesIf interactive()
 #' read_historical_regional_estimates()
@@ -25,7 +27,7 @@ read_historical_regional_estimates <- read_hist_reg_est <- function(
   x = NULL
 ) {
   if (is.null(x)) {
-    x <- fs::path(tempdir(), "fdp-beta-regional-historical.csv")
+    x <- fs::path_temp("fdp-beta-regional-historical.csv")
 
     .retry_download(
       "https://www.agriculture.gov.au/sites/default/files/documents/fdp-regional-historical.csv",
@@ -33,7 +35,10 @@ read_historical_regional_estimates <- read_hist_reg_est <- function(
     )
   }
 
-  x <- data.table::fread(x)
+  x <- data.table::fread(
+    x,
+    verbose = getOption("read.abares.verbosity") == "verbose"
+  )
   data.table::setnames(
     x,
     old = c("Variable", "Year", "ABARES region", "Value", "RSE"),

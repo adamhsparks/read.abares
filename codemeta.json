@@ -76,42 +76,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "future",
-      "name": "future",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=future"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "future.apply",
-      "name": "future.apply",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=future.apply"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "httptest2",
-      "name": "httptest2",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=httptest2"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "knitr",
       "name": "knitr",
       "provider": {
@@ -194,42 +158,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=testthat"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "webmockr",
-      "name": "webmockr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=webmockr"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "writexl",
-      "name": "writexl",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=writexl"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "zip",
-      "name": "zip",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=zip"
     }
   ],
   "softwareRequirements": {
@@ -337,18 +265,6 @@
     },
     "10": {
       "@type": "SoftwareApplication",
-      "identifier": "readtext",
-      "name": "readtext",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=readtext"
-    },
-    "11": {
-      "@type": "SoftwareApplication",
       "identifier": "readxl",
       "name": "readxl",
       "provider": {
@@ -359,7 +275,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=readxl"
     },
-    "12": {
+    "11": {
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
@@ -371,7 +287,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     },
-    "13": {
+    "12": {
       "@type": "SoftwareApplication",
       "identifier": "sf",
       "name": "sf",
@@ -383,7 +299,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=sf"
     },
-    "14": {
+    "13": {
       "@type": "SoftwareApplication",
       "identifier": "stars",
       "name": "stars",
@@ -395,7 +311,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stars"
     },
-    "15": {
+    "14": {
       "@type": "SoftwareApplication",
       "identifier": "stringr",
       "name": "stringr",
@@ -407,7 +323,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stringr"
     },
-    "16": {
+    "15": {
       "@type": "SoftwareApplication",
       "identifier": "terra",
       "name": "terra",
@@ -419,7 +335,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=terra"
     },
-    "17": {
+    "16": {
       "@type": "SoftwareApplication",
       "identifier": "tidync",
       "name": "tidync",
@@ -430,6 +346,11 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=tidync"
+    },
+    "17": {
+      "@type": "SoftwareApplication",
+      "identifier": "utils",
+      "name": "utils"
     },
     "18": {
       "@type": "SoftwareApplication",
@@ -457,7 +378,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "728.653KB",
+  "fileSize": "565.406KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

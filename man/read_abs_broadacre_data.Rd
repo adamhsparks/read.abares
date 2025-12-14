@@ -4,10 +4,11 @@
 \alias{read_abs_broadacre_data}
 \title{Get ABS' Broadacre Crops Production and Value by Australia, State and Territory by Year}
 \usage{
-read_abs_broadacre_data(crops = "winter", year = "latest", x = NULL)
+read_abs_broadacre_data(data_set = "winter", year = "latest", x = NULL)
 }
 \arguments{
-\item{crops}{A character vector providing the desired cropping data, one of:
+\item{data_set}{A character vector providing the desired cropping data, one
+of:
 \itemize{
 \item winter (default),
 \item summer or

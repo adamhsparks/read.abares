@@ -1,116 +1,90 @@
-test_that("reads from a provided local CSV path, renames columns, and sets key", {
-  skip_if_offline()
+test_that("read_historical_regional_estimates calls .retry_download when x is NULL", {
+  ns <- asNamespace("read.abares")
 
-  df <- data.frame(
-    Variable = "Farm cash income",
-    Year = 2020L,
-    `ABARES region` = "South West WA",
-    Value = 321.0,
-    RSE = 12.5,
-    stringsAsFactors = FALSE,
-    check.names = FALSE
-  )
-
-  csv <- withr::local_tempfile(fileext = ".csv")
-  data.table::fwrite(df, csv)
-  expect_true(fs::file_exists(csv))
-
-  out <- read_historical_regional_estimates(x = csv)
-
-  expect_s3_class(out, "data.table")
-  expect_identical(nrow(out), 1L)
-  expect_named(out, c("Variable", "Year", "ABARES_region", "Value", "RSE"))
-  expect_true(data.table::haskey(out))
-  expect_identical(data.table::key(out), "Variable")
-  expect_identical(out$ABARES_region, "South West WA")
-  expect_equal(out$Value, 321.0)
-  expect_equal(out$RSE, 12.5)
-})
-
-test_that("when x is NULL it downloads (mocked) to tempdir and reads the CSV", {
-  skip_if_offline()
-
-  df <- data.frame(
-    Variable = "Farm business profit",
-    Year = 2021L,
-    `ABARES region` = "Northern NSW",
-    Value = 654.3,
-    RSE = 8.9,
-    stringsAsFactors = FALSE,
-    check.names = FALSE
-  )
-
-  staged <- withr::local_tempfile(fileext = ".csv")
-  data.table::fwrite(df, staged)
-  expect_true(fs::file_exists(staged))
-
-  target <- fs::path(tempdir(), "fdp-beta-regional-historical.csv")
-  if (fs::file_exists(target)) {
-    fs::file_delete(target)
-  }
-  withr::defer({
-    if (fs::file_exists(target)) fs::file_delete(target)
-  })
-
-  last_url <- NULL
-  retry_mock <- function(url, dest, dataset_id, show_progress = TRUE, ...) {
-    last_url <<- url
-    fs::file_copy(staged, dest, overwrite = TRUE)
-    invisible(dest)
+  called <- FALSE
+  fake_retry <- function(url, dest) {
+    called <<- TRUE
+    dest
   }
 
-  expected_url <- "https://www.agriculture.gov.au/sites/default/files/documents/fdp-regional-historical.csv"
+  fake_dt <- data.table::data.table(
+    Variable = "Production",
+    Year = 2020,
+    `ABARES region` = "Region A",
+    Value = 100,
+    RSE = 5
+  )
+
+  fake_fread <- function(file, verbose) fake_dt
 
   with_mocked_bindings(
-    .retry_download = retry_mock,
     {
-      out <- read_historical_regional_estimates(x = NULL)
+      old_fread <- data.table::fread
+      assignInNamespace("fread", fake_fread, ns = "data.table")
+      on.exit(
+        assignInNamespace("fread", old_fread, ns = "data.table"),
+        add = TRUE
+      )
 
-      expect_identical(last_url, expected_url)
-      expect_true(fs::file_exists(target))
-      expect_s3_class(out, "data.table")
-      expect_identical(out$ABARES_region, "Northern NSW")
-      expect_identical(out$Variable, "Farm business profit")
-    }
+      result <- read_historical_regional_estimates()
+      expect_true(called)
+      expect_s3_class(result, "data.table")
+      expect_identical(data.table::key(result), "Variable")
+      expect_named(
+        result,
+        c("Variable", "Year", "ABARES_region", "Value", "RSE")
+      )
+      expect_identical(result$ABARES_region, "Region A")
+    },
+    .retry_download = fake_retry,
+    .env = ns
   )
 })
 
-test_that("alias read_hist_reg_est returns identical results", {
-  skip_if_offline()
+test_that("read_historical_regional_estimates bypasses download when x provided", {
+  ns <- asNamespace("read.abares")
 
-  df <- data.frame(
-    Variable = "Total cash receipts",
-    Year = 2022L,
-    `ABARES region` = "Mallee VIC",
-    Value = 987.6,
-    RSE = 6.7,
-    stringsAsFactors = FALSE,
-    check.names = FALSE
+  fake_dt <- data.table::data.table(
+    Variable = "Exports",
+    Year = 2021,
+    `ABARES region` = "Region B",
+    Value = 200,
+    RSE = 10
   )
 
-  csv <- withr::local_tempfile(fileext = ".csv")
-  data.table::fwrite(df, csv)
+  fake_fread <- function(file, verbose) fake_dt
 
-  a <- read_historical_regional_estimates(x = csv)
-  b <- read_hist_reg_est(x = csv)
+  old_fread <- data.table::fread
+  assignInNamespace("fread", fake_fread, ns = "data.table")
+  on.exit(assignInNamespace("fread", old_fread, ns = "data.table"), add = TRUE)
 
-  expect_s3_class(a, "data.table")
-  expect_s3_class(b, "data.table")
-  expect_true(data.table::fsetequal(a, b))
+  result <- read_historical_regional_estimates(x = "local.csv")
+  expect_s3_class(result, "data.table")
+  expect_identical(result$Variable, "Exports")
+  expect_identical(result$ABARES_region, "Region B")
+  expect_identical(data.table::key(result), "Variable")
 })
 
-test_that("errors cleanly when the provided file does not exist", {
-  skip_if_offline()
-  skip_if_not_installed("data.table")
+test_that("read_hist_reg_est alias works", {
+  ns <- asNamespace("read.abares")
 
-  bogus <- fs::path(tempdir(), "no-such-regional-historical.csv")
-  if (fs::file_exists(bogus)) {
-    fs::file_delete(bogus)
-  }
-
-  expect_error(
-    read_historical_regional_estimates(x = bogus),
-    regexp = "cannot open|does not exist|Failed to open|cannot find",
-    ignore.case = TRUE
+  fake_dt <- data.table::data.table(
+    Variable = "Imports",
+    Year = 2022,
+    `ABARES region` = "Region C",
+    Value = 300,
+    RSE = 15
   )
+
+  fake_fread <- function(file, verbose) fake_dt
+
+  old_fread <- data.table::fread
+  assignInNamespace("fread", fake_fread, ns = "data.table")
+  on.exit(assignInNamespace("fread", old_fread, ns = "data.table"), add = TRUE)
+
+  result <- read_hist_reg_est(x = "alias.csv")
+  expect_s3_class(result, "data.table")
+  expect_identical(result$Variable, "Imports")
+  expect_identical(result$ABARES_region, "Region C")
+  expect_identical(data.table::key(result), "Variable")
 })

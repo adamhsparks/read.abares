@@ -36,7 +36,6 @@ Imports:
     httr2,
     lubridate,
     purrr,
-    readtext,
     readxl,
     rlang,
     sf,
@@ -44,22 +43,19 @@ Imports:
     stringr,
     terra,
     tidync,
+    utils,
     whoami,
     withr
 Suggests: 
     bit64,
-    future,
-    future.apply,
-    httptest2,
     knitr,
+    openxlsx,
     pander,
     rmarkdown,
     roxyglobals,
     skimr,
     spelling,
     testthat (>= 3.0.0),
-    webmockr,
-    writexl,
     zip
 VignetteBuilder: 
     knitr

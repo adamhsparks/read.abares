@@ -4,7 +4,6 @@ on:
   push:
     branches: [main, master]
   pull_request:
-    branches: [main, master]
 
 name: R-CMD-check.yaml
 
@@ -45,7 +44,6 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
-          cache-version: 4 # bump this number to invalidate old caches
 
       - uses: r-lib/actions/check-r-package@v2
         with:

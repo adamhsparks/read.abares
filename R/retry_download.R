@@ -10,7 +10,7 @@
 #'
 #' @examples
 #'
-#' f <- fs::path(tempdir(), "fdp-beta-national-historical.csv")
+#' f <- fs::path_temp("fdp-beta-national-historical.csv")
 #' .retry_download(
 #'   url = "https://www.agriculture.gov.au/sites/default/files/documents/fdp-beta-national-historical.csv",
 #'   dest = f
@@ -29,7 +29,7 @@
       "Connection" = "Keep-Alive"
     ) |>
     httr2::req_retry(max_tries = .max_tries) |>
-    httr2::req_cache(path = tempdir())
+    httr2::req_cache(path = fs::path_temp())
 
   # Apply conditional modifications
   req <- .apply_conditional_options(req, url)

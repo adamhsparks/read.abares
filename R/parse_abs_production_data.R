@@ -8,7 +8,14 @@
 
 parse_abs_production_data <- function(filename) {
   sheet_names <- readxl::excel_sheets(filename)
-  x <- lapply(sheet_names, function(X) {
+
+  withr::local_options(
+    list(
+      readxl.show_progress = getOption("read.abares.verbosity") == "verbose"
+    )
+  )
+
+  x <- purrr::map(sheet_names, function(X) {
     data.table::as.data.table(readxl::read_excel(
       filename,
       sheet = X,
@@ -21,10 +28,10 @@ parse_abs_production_data <- function(filename) {
   x[length(x)] <- NULL # drop last table w/ no data
 
   if (any(grepl("Horticulture", x[[1L]], fixed = TRUE))) {
-    x <- lapply(x, function(y) {
+    x <- purrr::map(x, function(y) {
       region_index <- which(y[[2L]] == "Region") - 1L
       if (length(region_index) && region_index >= 1L) {
-        y <- y[-c(1L:region_index)]
+        y <- y[y %notin% 1L:region_index]
       }
       data.table::setnames(y, as.character(unlist(y[1L, ])))
       y <- y[-1L, ]
@@ -39,10 +46,10 @@ parse_abs_production_data <- function(filename) {
       y
     })
   } else {
-    x <- lapply(x, function(y) {
+    x <- purrr::map(x, function(y) {
       region_index <- which(y[[1L]] == "Region") - 1L
       if (length(region_index) && region_index >= 1L) {
-        y <- y[-c(1L:region_index)]
+        y <- y[y %notin% 1L:region_index]
       }
       data.table::setnames(y, as.character(unlist(y[1L, ])))
       y <- y[-1L, ]

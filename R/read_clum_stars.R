@@ -46,10 +46,10 @@
 #' @references
 #' ABARES 2024, Catchment Scale Land Use of Australia – Update December 2023
 #'  version 2, Australian Bureau of Agricultural and Resource Economics and
-#'  Sciences, Canberra, June, CC BY 4.0, DOI: \doi{10.25814/2w2p-ph98}
+#'  Sciences, Canberra, June, CC BY 4.0, DOI: \doi{10.25814/2w2p-ph98}.
 #'
 #' @source
-#' \doi{10.25814/2w2p-ph98}
+#' \doi{10.25814/2w2p-ph98}.
 #'
 #' @examplesIf interactive()
 #'
@@ -70,18 +70,15 @@ read_clum_stars <- function(
   x = NULL,
   ...
 ) {
-  if (length(data_set) != 1L || !is.character(data_set) || is.na(data_set)) {
-    cli::cli_abort("{.var data_set} must be a single character string value.")
-  }
-  data_set <- rlang::arg_match0(
-    data_set,
-    c("clum_50m_2023_v2", "scale_date_update")
-  )
-
-  x <- .get_clum(
-    .data_set = data_set,
-    .x = x
-  )
-
-  return(stars::read_stars(x, ...))
+  # see "get_lum_files.R" for details of this fn
+  y <- .get_lum_files(x, data_set, lum = "clum")
+  return(stars::read_stars(
+    sprintf(
+      "/vsizip/%s/%s",
+      y$file_path,
+      y$tiff
+    ),
+    quiet = (getOption("read.abares.verbosity") %in% c("quiet", "minimal")),
+    ...
+  ))
 }

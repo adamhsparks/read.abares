@@ -35,16 +35,17 @@ One of:
 \item{P201516}{Land use of Australia 2015–16 agricultural commodities probability grids}
 \item{P202021}{Land use of Australia 2020–21 agricultural commodities probability grids}
 }.
-This argument is ignored if \code{file} is provided.}
+This argument is ignored if \code{x} is provided.}
 
 \item{x}{A character string of a file path to a local zip file that has
-been downloaded outside of R that contains the \acronym{NLUM} data.}
+been downloaded outside of R that contains the \acronym{NLUM} data.
+This argument is ignored if \code{data_set} is provided.}
 
 \item{...}{Other arguments passed to \code{\link[terra:rast]{terra::rast()}}.}
 }
 \value{
-A \code{\link[terra:rast]{terra::rast()}} object that may be one or many layers depending
-upon the requested data set.
+A \CRANpkg{terra} \code{SpatRaster} object that may be one or many layers
+depending upon the requested data set.
 }
 \description{
 Download and import national scale "Land Use of Australia v7" GeoTIFFs as
@@ -98,7 +99,7 @@ plot(nlum_terra)
 \references{
 ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
 Agricultural and Resource Economics and Sciences, Canberra, November, CC BY
-4.0. \doi{10.25814/w175-xh85}
+4.0. \doi{10.25814/w175-xh85}.
 }
 \seealso{
 Other nlum: 

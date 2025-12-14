@@ -20,7 +20,8 @@
 #'
 #' livestock_data
 #'
-#' @references <https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-livestock>.
+#' @references
+#' <https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-livestock>.
 #' @returns A [data.table::data.table()] object of the requested data.
 #' @export
 #' @family ABS
@@ -34,7 +35,12 @@ read_abs_livestock_data <- function(
   # yet. This should be updated as new releases are made available.
   #
   if (is.null(x)) {
-    if (length(data_set) != 1L || !is.character(data_set) || is.na(data_set)) {
+    if (
+      length(data_set) != 1L ||
+        !is.character(data_set) ||
+        is.na(data_set) ||
+        is.null(data_set)
+    ) {
       cli::cli_abort("{.var data_set} must be a single character string value.")
     }
     # see parse_abs_production_data.R for .find_years()
@@ -54,7 +60,7 @@ read_abs_livestock_data <- function(
     )
     base_url <- "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-livestock/2023-24/AALDC_"
 
-    x <- fs::path(tempdir(), "livestock_file")
+    x <- fs::path_temp("livestock_file")
     .retry_download(
       url = sprintf(
         "%s%s",

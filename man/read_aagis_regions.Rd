@@ -4,7 +4,7 @@
 \alias{read_aagis_regions}
 \title{Read ABARES' "Australian Agricultural and Grazing Industries Survey" (AAGIS) Region Mapping Files}
 \source{
-\url{https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip}
+\url{https://www.agriculture.gov.au/sites/default/files/documents/aagis_asgs16v1_g5a.shp_.zip}.
 }
 \usage{
 read_aagis_regions(x = NULL)
@@ -46,6 +46,6 @@ plot(aagis)
 \dontshow{\}) # examplesIf}
 }
 \references{
-\url{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-definitions-methods#regions}
+\url{https://www.agriculture.gov.au/abares/research-topics/surveys/farm-definitions-methods#regions}.
 }
 \concept{AAGIS}

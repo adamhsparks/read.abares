@@ -1,6 +1,6 @@
 #' Read ABARES' "Australian Gridded Farm Data" (AGFD) NCDF Files with tidync
 #'
-#' Read "Australian Gridded Farm Data", (\acronym{AGFD}) as a list of
+#' Read "Australian Gridded Farm Data", (\acronym{AGFD}), as a list of
 #'   [tidync::tidync()] objects.
 #'
 #' @inherit read_agfd_dt details
@@ -17,8 +17,8 @@
 #'
 #' @inherit read_agfd_dt references
 #'
-#' @returns A `list` object of \CRANpkg{tidync} objects of the "Australian
-#'  Gridded Farm Data" with the file names as the list's objects' names.
+#' @returns A list of \CRANpkg{tidync} objects of the "Australian Gridded Farm
+#'  Data"  with the NetCDF objects' names as "year_yyyy".
 #'
 #' @examplesIf interactive()
 #'
@@ -34,17 +34,19 @@ read_agfd_tidync <- function(
   fixed_prices = TRUE,
   x = NULL
 ) {
-  if (any(yyyy %notin% 1991:2023)) {
-    cli::cli_abort(
-      "{.arg yyyy} must be between 1991 and 2023 inclusive"
+  .check_agfd_yyyy(.yyyy = yyyy)
+
+  if (is.null(x) || missing(x)) {
+    files <- .get_agfd(
+      .fixed_prices = fixed_prices,
+      .yyyy = yyyy
     )
+  } else {
+    # copy the file to the tempdir for the unzip fn to work properly
+    # we won't touch the original file provided this way
+    files <- .copy_local_agfd_zip(x)
   }
-  files <- .get_agfd(
-    .fixed_prices = fixed_prices,
-    .yyyy = yyyy,
-    .x = x
-  )
-  tnc <- purrr::map(files, tidync::tidync)
+  tnc <- purrr::map(.x = files, .f = tidync::tidync)
   names(tnc) <- fs::path_file(files)
   return(tnc)
 }

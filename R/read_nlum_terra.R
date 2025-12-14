@@ -42,7 +42,7 @@
 #' @references
 #' ABARES 2024, Land use of Australia 2010–11 to 2020–21, Australian Bureau of
 #' Agricultural and Resource Economics and Sciences, Canberra, November, CC BY
-#' 4.0. \doi{10.25814/w175-xh85}
+#' 4.0. \doi{10.25814/w175-xh85}.
 #'
 #' @source
 #' \describe{
@@ -66,8 +66,8 @@
 #'
 #' plot(nlum_terra)
 #'
-#' @returns A [terra::rast()] object that may be one or many layers depending
-#'  upon the requested data set.
+#' @returns A \CRANpkg{terra} `SpatRaster` object that may be one or many layers
+#'  depending upon the requested data set.
 #' @family nlum
 #' @autoglobal
 #' @export
@@ -76,25 +76,14 @@ read_nlum_terra <- function(
   x = NULL,
   ...
 ) {
-  if (is.null(x)) {
-    data_set <- rlang::arg_match(
-      data_set,
-      c(
-        "Y201011",
-        "Y201516",
-        "Y202021",
-        "C201121",
-        "T201011",
-        "T201516",
-        "T202021",
-        "P201011",
-        "P201516",
-        "P202021"
-      )
-    )
-    nlum <- .get_nlum(.data_set = data_set, .x = x)
-  } else {
-    nlum <- .get_nlum(.x = x)
-  }
-  return(terra::rast(grep("tif$", nlum, value = TRUE), ...))
+  # see "get_lum_files.R" for details of this fn
+  y <- .get_lum_files(x, data_set, lum = "nlum")
+  return(terra::rast(
+    sprintf(
+      "/vsizip//%s/%s",
+      y$file_path,
+      y$tiff
+    ),
+    ...
+  ))
 }

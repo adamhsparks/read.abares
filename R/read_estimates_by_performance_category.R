@@ -1,4 +1,4 @@
-#' Read ABARES' "Estimates by Performance"
+#' Read ABARES' "Estimates by Performance Category" Data
 #'
 #' Fetches and imports \acronym{ABARES} estimates by performance category data.
 #'
@@ -9,8 +9,9 @@
 #'
 #' @returns A [data.table::data.table()] object.
 #' @export
-#' @references <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>
-#' @source <https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv>
+#' @references
+#' <https://www.agriculture.gov.au/abares/data/farm-data-portal#data-download>.
+#' @source()<https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv>.
 #' @family Estimates
 #' @autoglobal
 #' @examplesIf interactive()
@@ -22,7 +23,7 @@
 #'
 read_estimates_by_performance_category <- function(x = NULL) {
   if (is.null(x)) {
-    x <- fs::path(tempdir(), "fdp-BySize-ByPerformance.csv")
+    x <- fs::path_temp("fdp-BySize-ByPerformance.csv")
 
     .retry_download(
       "https://www.agriculture.gov.au/sites/default/files/documents/fdp-BySize-ByPerformance.csv",
@@ -30,7 +31,10 @@ read_estimates_by_performance_category <- function(x = NULL) {
     )
   }
 
-  x <- data.table::fread(x)
+  x <- data.table::fread(
+    x,
+    verbose = getOption("read.abares.verbosity") == "verbose"
+  )
   return(x[])
 }
 

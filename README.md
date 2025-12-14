@@ -9,6 +9,7 @@
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R-CMD-check](https://github.com/adamhsparks/read.abares/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/adamhsparks/read.abares/actions/workflows/R-CMD-check.yaml)
 [![Codecov test coverage](https://codecov.io/gh/adamhsparks/read.abares/graph/badge.svg)](https://app.codecov.io/gh/adamhsparks/read.abares)
+[![Status at rOpenSci Software Peer Review](https://badges.ropensci.org/667_status.svg)](https://github.com/ropensci/software-review/issues/667)
 <!-- badges: end -->
 
 An R package for automated downloading and ingestion of data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES).
@@ -137,6 +138,14 @@ Citing {read.abares}: When citing the use of this package, please use,
 
 ``` r
 library(read.abares)
+#> 
+#> Attaching package: 'read.abares'
+#> The following object is masked from 'package:graphics':
+#> 
+#>     plot
+#> The following objects are masked from 'package:base':
+#> 
+#>     levels, plot
 citation("read.abares")
 #> To cite package 'read.abares' in publications use:
 #> 

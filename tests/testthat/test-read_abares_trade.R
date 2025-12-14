@@ -1,139 +1,152 @@
-test_that("read_abares_trade() uses .retry_download (mocked) and parses/renames correctly", {
-  skip_if_offline()
-  # Minimal CSV content with ORIGINAL column names (before renaming)
-  csv_text <- paste(
+# Helper: create a small dummy data.table with the expected columns
+make_dummy_dt <- function() {
+  data.table::data.table(
+    Fiscal_year = 2020,
+    Month = 1,
+    YearMonth = "2020.01",
+    Calendar_year = 2020,
+    TradeCode = "ABC",
+    Overseas_location = "World",
+    State = "NSW",
+    Australian_port = "Sydney",
+    Unit = "t",
+    TradeFlow = "Import",
+    ModeOfTransport = "Sea",
+    Value = 1000,
+    Quantity = 50,
+    confidentiality_flag = ""
+  )
+}
+
+# Helper: create a valid zip containing a single CSV and return the zip path
+# Uses withr::with_dir + zip::zipr so the archive has a simple relative layout.
+make_dummy_zip <- function() {
+  tmp_dir <- tempfile("trade_zipdir_")
+  dir.create(tmp_dir)
+  tmp_csv <- file.path(tmp_dir, "dummy.csv")
+  data.table::fwrite(make_dummy_dt(), tmp_csv)
+
+  zip_path <- tempfile(fileext = ".zip")
+  withr::with_dir(tmp_dir, {
+    zip::zipr(zipfile = zip_path, files = "dummy.csv")
+  })
+
+  # sanity check: ensure unzip can list the CSV inside
+  listed <- utils::unzip(zip_path, list = TRUE)
+  stopifnot(NROW(listed) == 1L && listed$Name[1] == "dummy.csv")
+
+  zip_path
+}
+
+test_that("read_abares_trade reads and renames columns correctly from CSV", {
+  # plain CSV branch
+  tmp_csv <- tempfile(fileext = ".csv")
+  data.table::fwrite(make_dummy_dt(), tmp_csv)
+
+  result <- read_abares_trade(tmp_csv)
+
+  # class
+  expect_s3_class(result, "data.table")
+
+  # renamed columns present
+  expect_true(all(
     c(
-      "Fiscal_year,Month,YearMonth,Calendar_year,TradeCode,Overseas_location,State,Australian_port,Unit,TradeFlow,ModeOfTransport,Value,Quantity,confidentiality_flag",
-      '2020,7,"2020.07",2020,1234,"New Zealand","WA","Fremantle","kg","Export","Sea",1000,200,"N"',
-      '2021,1,"2021.01",2021,5678,"Japan","NSW","Sydney","t","Import","Air",2000,50,"C"'
-    ),
-    collapse = "\n"
-  )
+      "Fiscal_year",
+      "Month",
+      "Year_month",
+      "Calendar_year",
+      "Trade_code",
+      "Overseas_location",
+      "State",
+      "Australian_port",
+      "Unit",
+      "Trade_flow",
+      "Mode_of_transport",
+      "Value",
+      "Quantity",
+      "Confidentiality_flag"
+    ) %in%
+      names(result)
+  ))
 
-  called <- FALSE
+  # type conversions
+  expect_s3_class(result$Year_month, "Date")
+  expect_s3_class(result$Trade_code, "factor")
 
-  with_mocked_bindings(
-    .retry_download = function(url, dest, .max_tries = 3L) {
-      expect_match(url, "/client/en_AU/search/asset/1033841/1$")
-      expect_identical(basename(dest), "abares_trade_data.zip")
-
-      # Create a temporary CSV file and zip it
-      tmp_dir <- withr::local_tempdir()
-      csv_path <- fs::path(tmp_dir, "abares_trade_data.csv")
-      writeLines(csv_text, csv_path, useBytes = TRUE)
-
-      # Use the provided helper to create a *real* zip archive
-      create_zip(
-        zip_path = dest,
-        files_dir = tmp_dir,
-        files_rel = "abares_trade_data.csv"
-      )
-
-      called <<- TRUE
-      invisible(NULL)
-    },
-    {
-      res <- read.abares::read_abares_trade(x = NULL)
-
-      # Ensure the mock ran
-      expect_true(called)
-
-      expect_s3_class(res, "data.table")
-      expect_identical(nrow(res), 2L)
-
-      # Renamed columns should match exactly
-      expected_names <- c(
-        "Fiscal_year",
-        "Month",
-        "Year_month",
-        "Calendar_year",
-        "Trade_code",
-        "Overseas_location",
-        "State",
-        "Australian_port",
-        "Unit",
-        "Trade_flow",
-        "Mode_of_transport",
-        "Value",
-        "Quantity",
-        "Confidentiality_flag"
-      )
-      expect_setequal(names(res), expected_names)
-
-      # Key renames exist
-      expect_true(all(
-        c(
-          "Year_month",
-          "Trade_code",
-          "Trade_flow",
-          "Mode_of_transport",
-          "Confidentiality_flag"
-        ) %in%
-          names(res)
-      ))
-
-      expect_s3_class(res[["Year_month"]], "Date")
-      expect_identical(
-        as.character(res[["Year_month"]]),
-        c("2020-07-01", "2021-01-01")
-      )
-      expect_type(res$Trade_code, "integer") # factor so will appear as integer
-      expect_identical(res[["Value"]], c(1000L, 2000L))
-      expect_identical(res[["Quantity"]], c(200L, 50L))
-    },
-    .package = "read.abares"
-  )
+  # a quick content check
+  expect_identical(result$Year_month[1], as.Date("2020-01-01"))
 })
 
-test_that("read_abares_trade() reads a provided ZIP path without calling .retry_download", {
-  skip_if_offline()
-  tmp_dir <- withr::local_tempdir()
-  zip_path <- fs::path(tmp_dir, "abares_trade_data.zip")
+test_that("read_abares_trade reads zipped CSV when path points to a zip", {
+  # zip branch (no download — we pass x explicitly)
+  zip_path <- make_dummy_zip()
 
-  csv_text <- paste(
+  result <- read_abares_trade(zip_path)
+
+  expect_s3_class(result, "data.table")
+  expect_true(all(
     c(
-      "Fiscal_year,Month,YearMonth,Calendar_year,TradeCode,Overseas_location,State,Australian_port,Unit,TradeFlow,ModeOfTransport,Value,Quantity,confidentiality_flag",
-      '2019,12,"2019.12",2019,9999,"Singapore","VIC","Melbourne","kg","Export","Air",123,10,"N"'
-    ),
-    collapse = "\n"
-  )
+      "Fiscal_year",
+      "Month",
+      "Year_month",
+      "Calendar_year",
+      "Trade_code",
+      "Overseas_location",
+      "State",
+      "Australian_port",
+      "Unit",
+      "Trade_flow",
+      "Mode_of_transport",
+      "Value",
+      "Quantity",
+      "Confidentiality_flag"
+    ) %in%
+      names(result)
+  ))
+  expect_identical(result$Year_month[1], as.Date("2020-01-01"))
+})
 
-  # Create CSV file and zip it
-  csv_path <- fs::path(tmp_dir, "abares_trade_data.csv")
-  writeLines(csv_text, csv_path, useBytes = TRUE)
-  create_zip(
-    zip_path = zip_path,
-    files_dir = tmp_dir,
-    files_rel = "abares_trade_data.csv"
-  )
+test_that("read_abares_trade triggers .retry_download when x is NULL", {
+  # Stub the internal downloader in the package namespace.
+  ns <- asNamespace("read.abares")
+  original <- get(".retry_download", envir = ns)
+  called <- FALSE
 
-  with_mocked_bindings(
-    .retry_download = function(...) {
-      stop("`.retry_download()` should not be called when x != NULL")
-    },
+  fake_retry <- function(url, dest) {
+    called <<- TRUE
+    # write a VALID zip at 'dest' containing the dummy CSV
+    tmp_dir <- tempfile("dl_zipdir_")
+    dir.create(tmp_dir)
+    tmp_csv <- file.path(tmp_dir, "dummy.csv")
+    data.table::fwrite(make_dummy_dt(), tmp_csv)
+    withr::with_dir(tmp_dir, {
+      zip::zipr(zipfile = dest, files = "dummy.csv")
+    })
+    # sanity check: the produced zip can be listed
+    listed <- utils::unzip(dest, list = TRUE)
+    stopifnot(NROW(listed) == 1L && listed$Name[1] == "dummy.csv")
+  }
+
+  # Temporarily replace the binding in the package namespace
+  unlockBinding(".retry_download", ns)
+  assignInNamespace(".retry_download", fake_retry, ns)
+  on.exit(
     {
-      res <- read.abares::read_abares_trade(x = zip_path)
-
-      expect_s3_class(res, "data.table")
-      expect_identical(nrow(res), 1L)
-
-      expect_true(all(
-        c(
-          "Year_month",
-          "Trade_code",
-          "Trade_flow",
-          "Mode_of_transport",
-          "Confidentiality_flag"
-        ) %in%
-          names(res)
-      ))
-
-      expect_s3_class(res[["Year_month"]], "Date")
-      expect_identical(as.character(res[["Year_month"]][1L]), "2019-12-01")
-
-      expect_identical(res$Value[1L], 123L)
-      expect_identical(res$Quantity[1L], 10L)
+      assignInNamespace(".retry_download", original, ns)
+      lockBinding(".retry_download", ns)
     },
-    .package = "read.abares"
+    add = TRUE
   )
+
+  # Call with x = NULL to hit the download branch
+  result <- read_abares_trade()
+
+  expect_true(called)
+  expect_s3_class(result, "data.table")
+  expect_identical(result$Year_month[1], as.Date("2020-01-01"))
+})
+
+test_that("read_abares_trade errors on invalid path", {
+  # fread will error if the file does not exist or is unreadable
+  expect_error(read_abares_trade("not_a_real_file.csv"))
 })

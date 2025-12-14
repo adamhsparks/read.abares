@@ -24,10 +24,8 @@
 #' @export
 
 read_clum_commodities <- function(x = NULL) {
-  talktalk <- !(getOption("read.abares.verbosity") %in% c("quiet", "minimal"))
-
   if (is.null(x)) {
-    x <- fs::path(tempdir(), "clum_commodities.zip")
+    x <- fs::path_temp("clum_commodities.zip")
 
     .retry_download(
       url = "https://data.gov.au/data/dataset/8af26be3-da5d-4255-b554-f615e950e46d/resource/b216cf90-f4f0-4d88-980f-af7d1ad746cb/download/clum_commodities_2023.zip",
@@ -35,12 +33,11 @@ read_clum_commodities <- function(x = NULL) {
     )
   }
   clum_commodities <- sf::st_read(
-    dsn = paste0(
-      "/vsizip//",
-      x,
-      "/CLUM_Commodities_2023/CLUM_Commodities_2023.shp"
+    dsn = sprintf(
+      "/vsizip//%s/CLUM_Commodities_2023/CLUM_Commodities_2023.shp",
+      x
     ),
-    quiet = talktalk
+    quiet = !(getOption("read.abares.verbosity") %in% c("quiet", "minimal"))
   )
   return(sf::st_make_valid(clum_commodities))
 }
