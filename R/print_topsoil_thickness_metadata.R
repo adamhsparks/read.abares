@@ -23,12 +23,12 @@
 #'   metadata file to the \R console.
 #'
 #' @examplesIf interactive()
-#' print_topsoil_thickness_metadata()
+#' print_print_topsoil_thickness_metadata()
 #'
 #' @family topsoil thickness
 #'
 #' @export
-print_topsoil_thickness_metadata <- function(x = NULL) {
+print_print_topsoil_thickness_metadata <- function(x = NULL) {
   x <- .get_topsoil_thickness(.x = x)
   loc <- stringr::str_locate(
     x$metadata,

@@ -66,7 +66,7 @@ test_that("read_topsoil_thickness_terra works with NULL x and mocked download", 
 })
 
 
-test_that("topsoil_thickness_metadata prints headings and metadata when x is NULL", {
+test_that("print_topsoil_thickness_metadata prints headings and metadata when x is NULL", {
   ns <- asNamespace("read.abares")
 
   fake_obj <- list(metadata = "Custodian: ABARES\nOther metadata")
@@ -75,7 +75,7 @@ test_that("topsoil_thickness_metadata prints headings and metadata when x is NUL
   with_mocked_bindings(
     {
       output <- testthat::capture_messages({
-        result <- topsoil_thickness_metadata()
+        result <- print_topsoil_thickness_metadata()
         expect_null(result) # invisible(NULL)
       })
       # collapse vector of messages into one string
@@ -93,7 +93,7 @@ test_that("topsoil_thickness_metadata prints headings and metadata when x is NUL
   )
 })
 
-test_that("topsoil_thickness_metadata works with provided x", {
+test_that("print_topsoil_thickness_metadata works with provided x", {
   ns <- asNamespace("read.abares")
 
   fake_obj <- list(metadata = "Custodian: ABARES\nExtra notes")
@@ -102,7 +102,7 @@ test_that("topsoil_thickness_metadata works with provided x", {
   with_mocked_bindings(
     {
       output <- testthat::capture_messages({
-        result <- topsoil_thickness_metadata(x = "local.zip")
+        result <- print_topsoil_thickness_metadata(x = "local.zip")
         expect_null(result)
       })
       output <- paste(output, collapse = "\n")
@@ -115,7 +115,7 @@ test_that("topsoil_thickness_metadata works with provided x", {
   )
 })
 
-test_that("topsoil_thickness_metadata handles metadata without Custodian gracefully", {
+test_that("print_topsoil_thickness_metadata handles metadata without Custodian gracefully", {
   ns <- asNamespace("read.abares")
 
   fake_obj <- list(metadata = "No custodian info here")
@@ -124,7 +124,7 @@ test_that("topsoil_thickness_metadata handles metadata without Custodian gracefu
   with_mocked_bindings(
     {
       output <- testthat::capture_messages({
-        result <- topsoil_thickness_metadata()
+        result <- print_topsoil_thickness_metadata()
         expect_null(result)
       })
       output <- paste(output, collapse = "\n")
