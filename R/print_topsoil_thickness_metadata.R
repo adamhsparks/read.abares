@@ -28,7 +28,7 @@
 #' @family topsoil thickness
 #'
 #' @export
-print_print_topsoil_thickness_metadata <- function(x = NULL) {
+print_topsoil_thickness_metadata <- function(x = NULL) {
   x <- .get_topsoil_thickness(.x = x)
   loc <- stringr::str_locate(
     x$metadata,
