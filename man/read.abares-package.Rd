@@ -26,7 +26,7 @@ Other contributors:
 \itemize{
   \item Curtin University (\href{https://ror.org/02n415q13}{ROR}) (http://www.curtin.edu.au/) [funder, copyright holder]
   \item Grains Research and Development Corporation (\href{https://ror.org/02xwr1996}{ROR}) (GRDC Project CUR2210-005OPX (AAGI-CU)) [funder, copyright holder]
-  \item Jacob \email{jacob@wujciak.de} (\href{https://orcid.org/0000-0002-7281-3989}{ORCID}) (Assisted with troubleshooting formatting in documentation to display '<' and '>' properly) [contributor]
+  \item Jacob Wujciak-Jens \email{jacob@wujciak.de} (\href{https://orcid.org/0000-0002-7281-3989}{ORCID}) (Assisted with troubleshooting formatting in documentation to display '<' and '>' properly) [contributor]
   \item Nicholas Potter \email{econpotter@gmail.com} (\href{https://orcid.org/0000-0002-3410-3732}{ORCID}) (rOpenSci Review https://github.com/ropensci/software-review/issues/667) [reviewer]
 }
 
