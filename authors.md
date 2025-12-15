@@ -14,7 +14,8 @@
   [![ROR](https://raw.githubusercontent.com/ror-community/ror-logos/main/ror-icon-rgb.svg)](https://ror.org/02xwr1996)  
   GRDC Project CUR2210-005OPX (AAGI-CU)
 
-- **Jacob**. Contributor. [](https://orcid.org/0000-0002-7281-3989)  
+- **Jacob Wujciak-Jens**. Contributor.
+  [](https://orcid.org/0000-0002-7281-3989)  
   Assisted with troubleshooting formatting in documentation to display
   '\<' and '\>' properly
 

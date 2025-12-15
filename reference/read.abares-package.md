@@ -32,7 +32,7 @@ Other contributors:
   ([ROR](https://ror.org/02xwr1996)) (GRDC Project CUR2210-005OPX
   (AAGI-CU)) \[funder, copyright holder\]
 
-- Jacob <jacob@wujciak.de>
+- Jacob Wujciak-Jens <jacob@wujciak.de>
   ([ORCID](https://orcid.org/0000-0002-7281-3989)) (Assisted with
   troubleshooting formatting in documentation to display '\<' and '\>'
   properly) \[contributor\]
