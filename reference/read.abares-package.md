@@ -36,3 +36,7 @@ Other contributors:
   ([ORCID](https://orcid.org/0000-0002-7281-3989)) (Assisted with
   troubleshooting formatting in documentation to display '\<' and '\>'
   properly) \[contributor\]
+
+- Nicholas Potter <econpotter@gmail.com>
+  ([ORCID](https://orcid.org/0000-0002-3410-3732)) (rOpenSci Review
+  https://github.com/ropensci/software-review/issues/667) \[reviewer\]
