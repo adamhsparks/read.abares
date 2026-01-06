@@ -26,8 +26,9 @@
   ],
   "contributor": [
     {
-      "@type": "Organization",
-      "name": "Jacob",
+      "@type": "Person",
+      "givenName": "Jacob",
+      "familyName": "Wujciak-Jens",
       "email": "jacob@wujciak.de",
       "@id": "https://orcid.org/0000-0002-7281-3989"
     }
@@ -402,7 +403,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "616.417KB",
+  "fileSize": "617.244KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

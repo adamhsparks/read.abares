@@ -14,7 +14,9 @@ Authors@R: c(
     person("Jacob", "Wujciak-Jens", , "jacob@wujciak.de", role = "ctb",
            comment = c("Assisted with troubleshooting formatting in documentation to display '<' and '>' properly", ORCID = "0000-0002-7281-3989")),
     person("Nicholas", "Potter", , "econpotter@gmail.com", role = "rev",
-           comment = c("rOpenSci Review https://github.com/ropensci/software-review/issues/667", ORCID = "0000-0002-3410-3732"))
+           comment = c("rOpenSci Review https://github.com/ropensci/software-review/issues/667", ORCID = "0000-0002-3410-3732")),
+    person("María Paula", "Caldas", , "mpaulacaldas@gmail.com", role = "rev",
+           comment = c("rOpenSci Review https://github.com/ropensci/software-review/issues/667", ORCID = "0000-0002-1938-6471"))
   )
 Description: Download and import agricultural data from the Australian
     Bureau of Agricultural and Resource Economics and Sciences (ABARES)
