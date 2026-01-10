@@ -24,9 +24,11 @@ Geopackages
 Geospatial
 Gridded
 ISSN
+Jens
 Licences
 Lifecycle
 MODIS
+María
 Maëlle
 NCDF
 NLUM
@@ -43,6 +45,7 @@ Soh
 Spectroradiometer
 Standardised
 Statistics’
+Wujciak
 YYYXXX
 abares
 al
@@ -70,12 +73,14 @@ fbp
 fci
 fert
 fertiliser
+fs
 funder
 geonetwork
 geospatial
 geotiff
 geotiffs
 ggplot
+github
 gridded
 http
 https
@@ -97,6 +102,7 @@ proj
 qml
 rOpenSci
 rast
+ropensci
 sd
 srv
 standardises
