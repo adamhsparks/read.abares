@@ -1,47 +1,25 @@
-make_zip_with_tif <- function(name = "dummy. tif") {
-  # Create directory and raster
-  test_dir <- fs::path(tempdir(), "test_nlum")
-  fs::dir_create(test_dir, showWarnings = FALSE, recurse = TRUE)
-
-  tif_file <- file.path(test_dir, name)
-  r <- terra::rast(nrows = 2, ncols = 2, vals = 1:4)
-  terra::writeRaster(r, tif_file, overwrite = TRUE, filetype = "GTiff")
-
-  zipfile <- fs::path(
-    tempdir(),
-    paste0(tools::file_path_sans_ext(name), ".zip")
-  )
-
-  zip::zip(
-    zipfile = zipfile,
-    files = name,
-    root = test_dir,
-    mode = "cherry-pick"
-  )
-
-  list(zipfile = zipfile, tif = name)
-}
-
-## -----------------------------
-## Tests for read_nlum_stars
 test_that("read_nlum_stars returns a stars object when x is provided", {
-  files <- make_zip_with_tif("nlum_direct.tif")
+  zipfile <- system.file("testdata", "nlum_test.zip", package = "read.abares")
+
   fake_get_lum_files <- function(x, data_set, lum) {
-    list(file_path = files$zipfile, tiff = files$tif)
+    list(file_path = zipfile, tiff = "nlum_test.tif")
   }
+
   with_mocked_bindings(
-    result <- read_nlum_stars(x = files$zipfile, data_set = NULL),
+    result <- read_nlum_stars(x = zipfile, data_set = NULL),
     .get_lum_files = fake_get_lum_files
   )
   expect_s3_class(result, "stars")
   expect_identical(unname(dim(result)), c(2L, 2L))
 })
 
-test_that("read_nlum_stars works with mocked .get_lum_files and data_set", {
-  files <- make_zip_with_tif("nlum_mocked.tif")
+test_that("read_nlum_stars works with mocked . get_lum_files and data_set", {
+  zipfile <- system.file("testdata", "nlum_test.zip", package = "read.abares")
+
   fake_get_lum_files <- function(x, data_set, lum) {
-    list(file_path = files$zipfile, tiff = files$tif)
+    list(file_path = zipfile, tiff = "nlum_test. tif")
   }
+
   with_mocked_bindings(
     result <- read_nlum_stars(data_set = "nlum_2023"),
     .get_lum_files = fake_get_lum_files
@@ -62,28 +40,30 @@ test_that("read_nlum_stars propagates errors from .get_lum_files", {
   )
 })
 
-test_that("read_nlum_stars passes ... to stars::read_stars", {
-  files <- make_zip_with_tif("nlum_rat.tif")
+test_that("read_nlum_stars passes ...  to stars::read_stars", {
+  zipfile <- system.file("testdata", "nlum_test.zip", package = "read.abares")
+
   fake_get_lum_files <- function(x, data_set, lum) {
-    list(file_path = files$zipfile, tiff = files$tif)
+    list(file_path = zipfile, tiff = "nlum_test.tif")
   }
+
   with_mocked_bindings(
     result <- read_nlum_stars(data_set = "nlum_2023", proxy = TRUE),
     .get_lum_files = fake_get_lum_files
   )
-  # Instead of attr(), check class
   expect_s3_class(result, "stars_proxy")
 })
 
-## -----------------------------
 ## Tests for read_nlum_terra
 test_that("read_nlum_terra returns a SpatRaster when x is provided", {
-  files <- make_zip_with_tif("nlum_direct.tif")
+  zipfile <- system.file("testdata", "nlum_test.zip", package = "read.abares")
+
   fake_get_lum_files <- function(x, data_set, lum) {
-    list(file_path = files$zipfile, tiff = files$tif)
+    list(file_path = zipfile, tiff = "nlum_test.tif")
   }
+
   with_mocked_bindings(
-    result <- read_nlum_terra(x = files$zipfile, data_set = NULL),
+    result <- read_nlum_terra(x = zipfile, data_set = NULL),
     .get_lum_files = fake_get_lum_files
   )
   expect_s4_class(result, "SpatRaster")
@@ -91,10 +71,12 @@ test_that("read_nlum_terra returns a SpatRaster when x is provided", {
 })
 
 test_that("read_nlum_terra works with mocked .get_lum_files and data_set", {
-  files <- make_zip_with_tif("nlum_mocked.tif")
+  zipfile <- system.file("testdata", "nlum_test.zip", package = "read.abares")
+
   fake_get_lum_files <- function(x, data_set, lum) {
-    list(file_path = files$zipfile, tiff = files$tif)
+    list(file_path = zipfile, tiff = "nlum_test. tif")
   }
+
   with_mocked_bindings(
     result <- read_nlum_terra(data_set = "nlum_2023"),
     .get_lum_files = fake_get_lum_files
@@ -116,10 +98,12 @@ test_that("read_nlum_terra propagates errors from .get_lum_files", {
 })
 
 test_that("read_nlum_terra returns correct number of layers", {
-  files <- make_zip_with_tif("nlum_layers.tif")
+  zipfile <- system.file("testdata", "nlum_test.zip", package = "read.abares")
+
   fake_get_lum_files <- function(x, data_set, lum) {
-    list(file_path = files$zipfile, tiff = files$tif)
+    list(file_path = zipfile, tiff = "nlum_test.tif")
   }
+
   with_mocked_bindings(
     result <- read_nlum_terra(data_set = "nlum_2023"),
     .get_lum_files = fake_get_lum_files

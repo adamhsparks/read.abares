@@ -76,14 +76,19 @@ read_nlum_terra <- function(
   x = NULL,
   ...
 ) {
-  # see "get_lum_files.R" for details of this fn
+  # see "get_lum_files. R" for details of this fn
   y <- .get_lum_files(x, data_set, lum = "nlum")
-  return(terra::rast(
-    sprintf(
-      "/vsizip//%s/%s",
-      normalizePath(y$file_path, winslash = "/", mustWork = FALSE),
-      y$tiff
-    ),
-    ...
-  ))
+
+  # Normalize path
+  zip_path <- normalizePath(y$file_path, winslash = "/", mustWork = FALSE)
+
+  # Build vsizip path - handle Unix vs Windows differently
+  if (.Platform$OS.type == "windows") {
+    vsi_path <- sprintf("/vsizip//%s/%s", zip_path, y$tiff)
+  } else {
+    # On Unix/macOS, path already starts with /, so don't double it
+    vsi_path <- sprintf("/vsizip%s/%s", zip_path, y$tiff)
+  }
+
+  return(terra::rast(vsi_path, ...))
 }

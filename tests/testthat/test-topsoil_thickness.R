@@ -1,55 +1,25 @@
-# For test-topsoil_thickness.R
-make_fake_topsoil_zip <- function() {
-  # Create base directory for test
-  test_dir <- fs::path(tempdir(), "test_topsoil")
-  fs::create(test_dir, showWarnings = FALSE, recurve = TRUE)
-
-  # Create the expected subdirectory structure
-  subdir <- fs::path(test_dir, "staiar9cl__05911a01eg_geo___")
-  fs::dir_create(subdir, showWarnings = FALSE)
-
-  # Create a trivial raster
-  r <- terra::rast(nrows = 2, ncols = 2, vals = 1:4)
-
-  # Write it as ESRI Grid into "thpk_1" subdirectory
-  grid_dir <- fs::file.path(subdir, "thpk_1")
-  terra::writeRaster(
-    r,
-    grid_dir,
-    overwrite = TRUE,
-    filetype = "AAIGrid",
-    NAflag = -9999
-  )
-
-  # Metadata file alongside the grid
-  txt_file <- file.path(subdir, "ANZCW1202000149.txt")
-  writeLines("Fake metadata line", txt_file)
-
-  # Create zip file
-  zipfile <- file.path(tempdir(), "test_topsoil.zip")
-
-  zip::zip(
-    zipfile = zipfile,
-    files = "staiar9cl__05911a01eg_geo___",
-    root = test_dir,
-    mode = "cherry-pick"
-  )
-
-  return(zipfile)
-}
-
-zipfile <- make_fake_topsoil_zip()
-
 test_that("read_topsoil_thickness_stars returns a stars object with correct dimensions", {
+  zipfile <- system.file(
+    "testdata",
+    "test_topsoil.zip",
+    package = "read.abares"
+  )
   result <- read_topsoil_thickness_stars(x = zipfile)
   expect_s3_class(result, "stars")
   expect_identical(unname(dim(result)), c(2L, 2L))
 })
 
 test_that("read_topsoil_thickness_stars works with NULL x and mocked download", {
+  zipfile <- system.file(
+    "testdata",
+    "test_topsoil.zip",
+    package = "read.abares"
+  )
+
   fake_retry_download <- function(url, dest) {
     file.copy(zipfile, dest, overwrite = TRUE)
   }
+
   with_mocked_bindings(
     result <- read_topsoil_thickness_stars(x = NULL),
     .retry_download = fake_retry_download
@@ -59,15 +29,27 @@ test_that("read_topsoil_thickness_stars works with NULL x and mocked download", 
 })
 
 test_that("read_topsoil_thickness_terra returns a SpatRaster with correct dimensions", {
+  zipfile <- system.file(
+    "testdata",
+    "test_topsoil.zip",
+    package = "read.abares"
+  )
   result <- read_topsoil_thickness_terra(x = zipfile)
   expect_s4_class(result, "SpatRaster")
   expect_identical(dim(result), c(2, 2, 1))
 })
 
 test_that("read_topsoil_thickness_terra works with NULL x and mocked download", {
+  zipfile <- system.file(
+    "testdata",
+    "test_topsoil.zip",
+    package = "read.abares"
+  )
+
   fake_retry_download <- function(url, dest) {
     file.copy(zipfile, dest, overwrite = TRUE)
   }
+
   with_mocked_bindings(
     result <- read_topsoil_thickness_terra(x = NULL),
     .retry_download = fake_retry_download
@@ -76,20 +58,19 @@ test_that("read_topsoil_thickness_terra works with NULL x and mocked download", 
   expect_identical(dim(result), c(2, 2, 1))
 })
 
-
+# Keep the metadata tests as they were...
 test_that("print_topsoil_thickness_metadata prints headings and metadata when x is NULL", {
   ns <- asNamespace("read.abares")
 
-  fake_obj <- list(metadata = "Custodian: ABARES\nOther metadata")
+  fake_obj <- list(metadata = "Custodian:  ABARES\nOther metadata")
   fake_get <- function(.x = NULL) fake_obj
 
   with_mocked_bindings(
     {
       output <- testthat::capture_messages({
         result <- print_topsoil_thickness_metadata()
-        expect_null(result) # invisible(NULL)
+        expect_null(result)
       })
-      # collapse vector of messages into one string
       output <- paste(output, collapse = "\n")
 
       expect_match(
@@ -107,13 +88,13 @@ test_that("print_topsoil_thickness_metadata prints headings and metadata when x 
 test_that("print_topsoil_thickness_metadata works with provided x", {
   ns <- asNamespace("read.abares")
 
-  fake_obj <- list(metadata = "Custodian: ABARES\nExtra notes")
-  fake_get <- function(.x = "local.zip") fake_obj
+  fake_obj <- list(metadata = "Custodian:  ABARES\nExtra notes")
+  fake_get <- function(.x = "local. zip") fake_obj
 
   with_mocked_bindings(
     {
       output <- testthat::capture_messages({
-        result <- print_topsoil_thickness_metadata(x = "local.zip")
+        result <- print_topsoil_thickness_metadata(x = "local. zip")
         expect_null(result)
       })
       output <- paste(output, collapse = "\n")
@@ -140,7 +121,6 @@ test_that("print_topsoil_thickness_metadata handles metadata without Custodian g
       })
       output <- paste(output, collapse = "\n")
 
-      # Should still print headings even if Custodian not found
       expect_match(output, "Topsoil Thickness")
       expect_match(output, "Dataset ANZLIC ID ANZCW1202000149")
     },

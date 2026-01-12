@@ -49,11 +49,17 @@
   on.exit(close(con), add = TRUE)
   metadata <- paste(readLines(con), collapse = "\n")
 
-  x <- terra::rast(sprintf(
-    "/vsizip//%s/%s",
-    normalizePath(.x, winslash = "/", mustWork = FALSE),
-    .raster
-  ))
+  # Normalize path
+  zip_path <- normalizePath(.x, winslash = "/", mustWork = FALSE)
+
+  # Build vsizip path - handle Unix vs Windows differently
+  if (.Platform$OS.type == "windows") {
+    vsi_path <- sprintf("/vsizip//%s/%s", zip_path, .raster)
+  } else {
+    vsi_path <- sprintf("/vsizip%s/%s", zip_path, .raster)
+  }
+
+  x <- terra::rast(vsi_path)
   x <- terra::init(x, x[]) # remove RAT legend if present
 
   out <- list(metadata = metadata, data = x)
