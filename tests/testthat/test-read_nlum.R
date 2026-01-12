@@ -1,33 +1,23 @@
 make_zip_with_tif <- function(name = "dummy. tif") {
   # Create directory and raster
-  test_dir <- fs::path(fs::path_temp(), "test_nlum")
+  test_dir <- fs::path(tempdir(), "test_nlum")
   fs::dir_create(test_dir, showWarnings = FALSE, recurse = TRUE)
 
-  tif_file <- fs::path(test_dir, name)
+  tif_file <- file.path(test_dir, name)
   r <- terra::rast(nrows = 2, ncols = 2, vals = 1:4)
   terra::writeRaster(r, tif_file, overwrite = TRUE, filetype = "GTiff")
 
-  # Create zip
   zipfile <- fs::path(
-    fs::path_temp(),
+    tempdir(),
     paste0(tools::file_path_sans_ext(name), ".zip")
   )
 
-  # Platform-specific zipping
-  if (.Platform$OS.type == "windows") {
-    # On Windows, use zip:: zipr with root parameter
-    zip::zipr(
-      zipfile = zipfile,
-      files = tif_file,
-      root = test_dir
-    )
-  } else {
-    # On Unix/macOS, use utils::zip
-    curr_dir <- getwd()
-    on.exit(setwd(curr_dir), add = TRUE)
-    setwd(test_dir)
-    utils::zip(zipfile, files = name, flags = "-9Xq")
-  }
+  zip::zip(
+    zipfile = zipfile,
+    files = name,
+    root = test_dir,
+    mode = "cherry-pick"
+  )
 
   list(zipfile = zipfile, tif = name)
 }

@@ -1,7 +1,8 @@
+# For test-topsoil_thickness.R
 make_fake_topsoil_zip <- function() {
   # Create base directory for test
-  test_dir <- fs::path(fs::path_temp(), "test_topsoil")
-  fs::dir_create(test_dir, showWarnings = FALSE, recurse = TRUE)
+  test_dir <- fs::path(tempdir(), "test_topsoil")
+  fs::create(test_dir, showWarnings = FALSE, recurve = TRUE)
 
   # Create the expected subdirectory structure
   subdir <- fs::path(test_dir, "staiar9cl__05911a01eg_geo___")
@@ -11,7 +12,7 @@ make_fake_topsoil_zip <- function() {
   r <- terra::rast(nrows = 2, ncols = 2, vals = 1:4)
 
   # Write it as ESRI Grid into "thpk_1" subdirectory
-  grid_dir <- fs::path(subdir, "thpk_1")
+  grid_dir <- fs::file.path(subdir, "thpk_1")
   terra::writeRaster(
     r,
     grid_dir,
@@ -21,27 +22,18 @@ make_fake_topsoil_zip <- function() {
   )
 
   # Metadata file alongside the grid
-  txt_file <- fs::path(subdir, "ANZCW1202000149.txt")
+  txt_file <- file.path(subdir, "ANZCW1202000149.txt")
   writeLines("Fake metadata line", txt_file)
 
   # Create zip file
-  zipfile <- fs::path(fs::path_temp(), "test_topsoil.zip")
+  zipfile <- file.path(tempdir(), "test_topsoil.zip")
 
-  # Platform-specific zipping
-  if (.Platform$OS.type == "windows") {
-    # On Windows, use zip:: zipr with root parameter
-    zip::zipr(
-      zipfile = zipfile,
-      files = subdir,
-      root = test_dir
-    )
-  } else {
-    # On Unix/macOS, use utils::zip
-    curr_dir <- getwd()
-    on.exit(setwd(curr_dir), add = TRUE)
-    setwd(test_dir)
-    utils::zip(zipfile, files = "staiar9cl__05911a01eg_geo___", flags = "-r9Xq")
-  }
+  zip::zip(
+    zipfile = zipfile,
+    files = "staiar9cl__05911a01eg_geo___",
+    root = test_dir,
+    mode = "cherry-pick"
+  )
 
   return(zipfile)
 }
