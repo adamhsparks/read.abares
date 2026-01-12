@@ -75,7 +75,7 @@ read_clum_stars <- function(
   return(stars::read_stars(
     sprintf(
       "/vsizip/%s/%s",
-      y$file_path,
+      normalizePath(y$file_path, winslash = "/", mustWork = FALSE),
       y$tiff
     ),
     quiet = (getOption("read.abares.verbosity") %in% c("quiet", "minimal")),

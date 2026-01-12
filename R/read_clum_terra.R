@@ -75,7 +75,7 @@ read_clum_terra <- function(
   r <- terra::rast(
     sprintf(
       "/vsizip/%s/%s",
-      y$file_path,
+      normalizePath(y$file_path, winslash = "/", mustWork = FALSE),
       y$tiff
     ),
     ...

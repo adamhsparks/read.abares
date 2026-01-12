@@ -81,7 +81,7 @@ read_nlum_terra <- function(
   return(terra::rast(
     sprintf(
       "/vsizip//%s/%s",
-      y$file_path,
+      normalizePath(y$file_path, winslash = "/", mustWork = FALSE),
       y$tiff
     ),
     ...
