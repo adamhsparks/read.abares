@@ -46,7 +46,7 @@ test_that(".read_ncdf_from_zip extracts files correctly", {
   tmpdir <- fs::path_temp("historical_climate_prices_fixed")
   fs::dir_create(tmpdir) # make sure the folder exists
 
-  ncfile <- file.path(tmpdir, "c2020_test.nc")
+  ncfile <- fs::path(tmpdir, "c2020_test.nc")
   writeLines("dummy", ncfile)
 
   # zip the folder, not just the file
@@ -62,7 +62,7 @@ test_that(".copy_local_agfd_zip copies and reads correctly", {
   tmpdir <- fs::path_temp("historical_climate_prices_fixed")
   fs::dir_create(tmpdir)
 
-  ncfile <- file.path(tmpdir, "c2021_test.nc")
+  ncfile <- fs::path(tmpdir, "c2021_test.nc")
   writeLines("dummy", ncfile)
 
   utils::zip(tmpzip, files = ncfile)

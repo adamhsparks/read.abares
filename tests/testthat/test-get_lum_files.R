@@ -2,7 +2,7 @@
 # Helper: create a temporary zip with a tif
 make_zip_with_tif <- function(name = "dummy.tif") {
   tmpdir <- fs::path_temp()
-  tif_file <- file.path(tmpdir, name)
+  tif_file <- fs::path(tmpdir, name)
   writeLines("fake raster content", tif_file)
   zipfile <- tempfile(fileext = ".zip")
   # Use zip::zipr instead of utils::zip to reliably return a file
@@ -26,7 +26,7 @@ test_that(".check_zip_has_tiff errors if zip does not exist", {
 
 test_that(".check_zip_has_tiff errors if no tif inside", {
   tmpdir <- fs::path_temp()
-  txt_file <- file.path(tmpdir, "dummy.txt")
+  txt_file <- fs::path(tmpdir, "dummy.txt")
   writeLines("not a tif", txt_file)
   zipfile <- tempfile(fileext = ".zip")
   utils::zip(zipfile, files = txt_file, flags = "-j")

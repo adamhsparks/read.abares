@@ -22,8 +22,8 @@ make_dummy_dt <- function() {
 # Uses withr::with_dir + zip::zipr so the archive has a simple relative layout.
 make_dummy_zip <- function() {
   tmp_dir <- tempfile("trade_zipdir_")
-  dir.create(tmp_dir)
-  tmp_csv <- file.path(tmp_dir, "dummy.csv")
+  fs::dir_create(tmp_dir)
+  tmp_csv <- fs::path(tmp_dir, "dummy.csv")
   data.table::fwrite(make_dummy_dt(), tmp_csv)
 
   zip_path <- tempfile(fileext = ".zip")
@@ -116,8 +116,8 @@ test_that("read_abares_trade triggers .retry_download when x is NULL", {
     called <<- TRUE
     # write a VALID zip at 'dest' containing the dummy CSV
     tmp_dir <- tempfile("dl_zipdir_")
-    dir.create(tmp_dir)
-    tmp_csv <- file.path(tmp_dir, "dummy.csv")
+    fs::dir_create(tmp_dir)
+    tmp_csv <- fs::path(tmp_dir, "dummy.csv")
     data.table::fwrite(make_dummy_dt(), tmp_csv)
     withr::with_dir(tmp_dir, {
       zip::zipr(zipfile = dest, files = "dummy.csv")
