@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 [![Status at rOpenSci Software Peer Review](https://badges.ropensci.org/667_status.svg)](https://github.com/ropensci/software-review/issues/667)
 <!-- badges: end -->
 
-An R package for automated downloading and ingestion of data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES).
+An R package for automated downloading and ingestion of data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) and agricultural data from the Australian Bureau of Statistics (ABS).
 
 ## About ABARES
 

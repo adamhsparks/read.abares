@@ -12,7 +12,7 @@
 [![Status at rOpenSci Software Peer Review](https://badges.ropensci.org/667_status.svg)](https://github.com/ropensci/software-review/issues/667)
 <!-- badges: end -->
 
-An R package for automated downloading and ingestion of data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES).
+An R package for automated downloading and ingestion of data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) and agricultural data from the Australian Bureau of Statistics (ABS).
 
 ## About ABARES
 
@@ -138,14 +138,6 @@ Citing {read.abares}: When citing the use of this package, please use,
 
 ``` r
 library(read.abares)
-#> 
-#> Attaching package: 'read.abares'
-#> The following object is masked from 'package:graphics':
-#> 
-#>     plot
-#> The following objects are masked from 'package:base':
-#> 
-#>     levels, plot
 citation("read.abares")
 #> To cite package 'read.abares' in publications use:
 #> 
