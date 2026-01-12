@@ -2,7 +2,7 @@ test_that("read_clum_commodities returns an sf object from provided zip", {
   # fresh temp dir
   tmp_dir <- withr::local_tempdir()
   subdir <- file.path(tmp_dir, "CLUM_Commodities_2023")
-  dir.create(subdir)
+  fs::dir_create(subdir)
 
   # write shapefile set
   shp_path <- file.path(subdir, "CLUM_Commodities_2023.shp")
@@ -11,12 +11,13 @@ test_that("read_clum_commodities returns an sf object from provided zip", {
 
   # zip the folder
   zip_path <- tempfile(fileext = ".zip")
-  # Normalize the zipfile path for Windows
-  zipfile <- normalizePath(zip_path, winslash = "/", mustWork = FALSE)
   # Use with_dir to safely change directory just for the zip operation
   withr::with_dir(tmp_dir, {
-    utils::zip(zipfile = zip_path, files = "CLUM_Commodities_2023")
+    zip::zipr(zipfile = zip_path, files = "CLUM_Commodities_2023")
   })
+
+  # Normalize AFTER creating the zip file
+  zip_path <- normalizePath(zip_path, winslash = "/", mustWork = TRUE)
 
   # call function
   result <- read_clum_commodities(zip_path)

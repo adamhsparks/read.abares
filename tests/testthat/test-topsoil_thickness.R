@@ -1,7 +1,7 @@
 make_fake_topsoil_zip <- function() {
   tmpdir <- fs::path_temp()
-  subdir <- file.path(tmpdir, "staiar9cl__05911a01eg_geo___")
-  dir.create(subdir, showWarnings = FALSE)
+  subdir <- fs::path(tmpdir, "staiar9cl__05911a01eg_geo___")
+  fs::dir_create(subdir, showWarnings = FALSE)
 
   # Create a trivial raster
   r <- terra::rast(nrows = 2, ncols = 2, vals = 1:4)
@@ -17,14 +17,15 @@ make_fake_topsoil_zip <- function() {
   )
 
   # Metadata file alongside the grid
-  txt_file <- file.path(subdir, "ANZCW1202000149.txt")
+  txt_file <- fs::path(subdir, "ANZCW1202000149.txt")
   writeLines("Fake metadata line", txt_file)
 
   # Zip the whole subdir with proper structure
   zipfile <- tempfile(fileext = ".zip")
-  # Normalize the zipfile path for Windows
-  zipfile <- normalizePath(zipfile, winslash = "/", mustWork = FALSE)
   zip::zipr(zipfile, files = subdir)
+
+  # Normalize AFTER creating the zip
+  zipfile <- normalizePath(zipfile, winslash = "/", mustWork = TRUE)
 
   return(zipfile)
 }
