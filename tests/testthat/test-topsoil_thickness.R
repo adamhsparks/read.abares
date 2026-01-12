@@ -22,6 +22,8 @@ make_fake_topsoil_zip <- function() {
 
   # Zip the whole subdir with proper structure
   zipfile <- tempfile(fileext = ".zip")
+  # Normalize the zipfile path for Windows
+  zipfile <- normalizePath(zipfile, winslash = "/", mustWork = FALSE)
   zip::zipr(zipfile, files = subdir)
 
   return(zipfile)

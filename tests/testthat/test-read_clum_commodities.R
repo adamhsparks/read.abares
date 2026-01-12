@@ -11,7 +11,8 @@ test_that("read_clum_commodities returns an sf object from provided zip", {
 
   # zip the folder
   zip_path <- tempfile(fileext = ".zip")
-
+  # Normalize the zipfile path for Windows
+  zipfile <- normalizePath(zip_path, winslash = "/", mustWork = FALSE)
   # Use with_dir to safely change directory just for the zip operation
   withr::with_dir(tmp_dir, {
     utils::zip(zipfile = zip_path, files = "CLUM_Commodities_2023")

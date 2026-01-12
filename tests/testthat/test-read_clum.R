@@ -7,6 +7,8 @@ make_zip_with_tif <- function(name = "dummy.tif") {
   st <- stars::st_as_stars(arr)
   stars::write_stars(st, tif_file)
   zipfile <- tempfile(fileext = ".zip")
+  # Normalize the zipfile path for Windows
+  zipfile <- normalizePath(zipfile, winslash = "/", mustWork = FALSE)
   zip::zipr(zipfile, files = tif_file)
   list(zipfile = zipfile, tif = name)
 }
