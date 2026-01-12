@@ -1,33 +1,42 @@
 test_that("read_clum_commodities returns an sf object from provided zip", {
   # Create base directory for test
-  test_dir <- file.path(tempdir(), "test_clum")
-  dir.create(test_dir, showWarnings = FALSE, recursive = TRUE)
+  test_dir <- fs::path(fs::path_temp(), "test_clum")
+  fs::dir_create(test_dir, showWarnings = FALSE, recurse = TRUE)
 
   # Create expected subdirectory
-  subdir <- file.path(test_dir, "CLUM_Commodities_2023")
-  dir.create(subdir, showWarnings = FALSE)
+  subdir <- fs::path(test_dir, "CLUM_Commodities_2023")
+  fs::dir_create(subdir, showWarnings = FALSE)
 
   # Write shapefile set
-  shp_path <- file.path(subdir, "CLUM_Commodities_2023.shp")
+  shp_path <- fs::path(subdir, "CLUM_Commodities_2023.shp")
   dummy <- sf::st_sf(id = 1, geometry = sf::st_sfc(sf::st_point(c(0, 0))))
   sf::st_write(dummy, shp_path, quiet = TRUE, append = FALSE)
 
   # Create zip file
-  zip_path <- file.path(tempdir(), "test_clum_commodities.zip")
+  zip_path <- fs::path(fs::path_temp(), "test_clum_commodities.zip")
 
-  # Use utils::zip
-  curr_dir <- getwd()
-  on.exit(setwd(curr_dir), add = TRUE)
-  setwd(test_dir)
-
-  utils::zip(zip_path, files = "CLUM_Commodities_2023", flags = "-r9Xq")
+  # Platform-specific zipping
+  if (.Platform$OS.type == "windows") {
+    # On Windows, use zip::zipr with root parameter
+    zip::zipr(
+      zipfile = zip_path,
+      files = subdir,
+      root = test_dir
+    )
+  } else {
+    # On Unix/macOS, use utils::zip
+    curr_dir <- getwd()
+    on.exit(setwd(curr_dir), add = TRUE)
+    setwd(test_dir)
+    utils::zip(zip_path, files = "CLUM_Commodities_2023", flags = "-r9Xq")
+  }
 
   # Call function
   result <- read_clum_commodities(zip_path)
   expect_s3_class(result, "sf")
 })
 
-test_that("read_clum_commodities calls .retry_download when x is NULL", {
+test_that("read_clum_commodities calls . retry_download when x is NULL", {
   captured <- NULL
 
   # Define a stub just for this test
@@ -35,24 +44,32 @@ test_that("read_clum_commodities calls .retry_download when x is NULL", {
     captured <<- url
 
     # Build a valid zip with shapefile set
-    test_dir <- file.path(tempdir(), "test_clum_null")
-    dir.create(test_dir, showWarnings = FALSE, recursive = TRUE)
+    test_dir <- fs::path(fs::path_temp(), "test_clum_null")
+    fs::dir_create(test_dir, showWarnings = FALSE, recurse = TRUE)
 
-    subdir <- file.path(test_dir, "CLUM_Commodities_2023")
-    dir.create(subdir, showWarnings = FALSE)
+    subdir <- fs::path(test_dir, "CLUM_Commodities_2023")
+    fs::dir_create(subdir, showWarnings = FALSE)
 
-    shp_path <- file.path(subdir, "CLUM_Commodities_2023.shp")
+    shp_path <- fs::path(subdir, "CLUM_Commodities_2023.shp")
     dummy <- sf::st_sf(id = 1, geometry = sf::st_sfc(sf::st_point(c(1, 1))))
     sf::st_write(dummy, shp_path, quiet = TRUE, append = FALSE)
 
-    # Use utils::zip
-    curr_dir <- getwd()
-    setwd(test_dir)
-    utils::zip(dest, files = "CLUM_Commodities_2023", flags = "-r9Xq")
-    setwd(curr_dir)
+    # Platform-specific zipping
+    if (.Platform$OS.type == "windows") {
+      zip::zipr(
+        zipfile = dest,
+        files = subdir,
+        root = test_dir
+      )
+    } else {
+      curr_dir <- getwd()
+      setwd(test_dir)
+      utils::zip(dest, files = "CLUM_Commodities_2023", flags = "-r9Xq")
+      setwd(curr_dir)
+    }
   }
 
-  tmp <- fs::path_temp("clum_commodities.zip")
+  tmp <- fs::path_temp("clum_commodities. zip")
   if (fs::file_exists(tmp)) {
     fs::file_delete(tmp)
   }

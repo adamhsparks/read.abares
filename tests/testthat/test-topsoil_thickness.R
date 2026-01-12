@@ -21,19 +21,27 @@ make_fake_topsoil_zip <- function() {
   )
 
   # Metadata file alongside the grid
-  txt_file <- file.path(subdir, "ANZCW1202000149.txt")
+  txt_file <- fs::path(subdir, "ANZCW1202000149.txt")
   writeLines("Fake metadata line", txt_file)
 
   # Create zip file
   zipfile <- fs::path(fs::path_temp(), "test_topsoil.zip")
 
-  # Use utils::zip and change directory to ensure correct structure
-  curr_dir <- getwd()
-  on.exit(setwd(curr_dir), add = TRUE)
-  setwd(test_dir)
-
-  # Zip the subdirectory with recursive flag
-  utils::zip(zipfile, files = "staiar9cl__05911a01eg_geo___", flags = "-r9Xq")
+  # Platform-specific zipping
+  if (.Platform$OS.type == "windows") {
+    # On Windows, use zip:: zipr with root parameter
+    zip::zipr(
+      zipfile = zipfile,
+      files = subdir,
+      root = test_dir
+    )
+  } else {
+    # On Unix/macOS, use utils::zip
+    curr_dir <- getwd()
+    on.exit(setwd(curr_dir), add = TRUE)
+    setwd(test_dir)
+    utils::zip(zipfile, files = "staiar9cl__05911a01eg_geo___", flags = "-r9Xq")
+  }
 
   return(zipfile)
 }
