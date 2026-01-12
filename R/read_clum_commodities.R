@@ -32,10 +32,11 @@ read_clum_commodities <- function(x = NULL) {
       dest = x
     )
   }
-  clum_commodities <- sf::st_read(
+
+  x <- clum_commodities <- sf::st_read(
     dsn = sprintf(
       "/vsizip//%s/CLUM_Commodities_2023/CLUM_Commodities_2023.shp",
-      x
+      normalizePath(x, winslash = "/", mustWork = FALSE)
     ),
     quiet = !(getOption("read.abares.verbosity") %in% c("quiet", "minimal"))
   )
