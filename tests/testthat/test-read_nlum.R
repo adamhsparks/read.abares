@@ -1,13 +1,25 @@
 make_zip_with_tif <- function(name = "dummy.tif") {
-  tmpdir <- fs::path_temp()
-  tif_file <- fs::path(tmpdir, name)
-  # Create a trivial raster using terra
+  # Create directory and raster
+  test_dir <- file.path(tempdir(), "test_nlum")
+  dir.create(test_dir, showWarnings = FALSE, recursive = TRUE)
+
+  tif_file <- file.path(test_dir, name)
   r <- terra::rast(nrows = 2, ncols = 2, vals = 1:4)
   terra::writeRaster(r, tif_file, overwrite = TRUE, filetype = "GTiff")
-  zipfile <- tempfile(fileext = ".zip")
-  zip::zipr(zipfile, files = tif_file)
-  # Normalize AFTER creating the zip
-  zipfile <- normalizePath(zipfile, winslash = "/", mustWork = TRUE)
+
+  # Create zip
+  zipfile <- file.path(
+    tempdir(),
+    paste0(tools::file_path_sans_ext(name), ".zip")
+  )
+
+  # Use utils::zip
+  curr_dir <- getwd()
+  on.exit(setwd(curr_dir), add = TRUE)
+  setwd(test_dir)
+
+  utils::zip(zipfile, files = name, flags = "-9Xq")
+
   list(zipfile = zipfile, tif = name)
 }
 

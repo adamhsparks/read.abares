@@ -1,25 +1,28 @@
 test_that("read_clum_commodities returns an sf object from provided zip", {
-  # fresh temp dir
-  tmp_dir <- withr::local_tempdir()
-  subdir <- file.path(tmp_dir, "CLUM_Commodities_2023")
-  fs::dir_create(subdir)
+  # Create base directory for test
+  test_dir <- file.path(tempdir(), "test_clum")
+  dir.create(test_dir, showWarnings = FALSE, recursive = TRUE)
 
-  # write shapefile set
+  # Create expected subdirectory
+  subdir <- file.path(test_dir, "CLUM_Commodities_2023")
+  dir.create(subdir, showWarnings = FALSE)
+
+  # Write shapefile set
   shp_path <- file.path(subdir, "CLUM_Commodities_2023.shp")
   dummy <- sf::st_sf(id = 1, geometry = sf::st_sfc(sf::st_point(c(0, 0))))
   sf::st_write(dummy, shp_path, quiet = TRUE, append = FALSE)
 
-  # zip the folder
-  zip_path <- tempfile(fileext = ".zip")
-  # Use with_dir to safely change directory just for the zip operation
-  withr::with_dir(tmp_dir, {
-    zip::zipr(zipfile = zip_path, files = "CLUM_Commodities_2023")
-  })
+  # Create zip file
+  zip_path <- file.path(tempdir(), "test_clum_commodities.zip")
 
-  # Normalize AFTER creating the zip file
-  zip_path <- normalizePath(zip_path, winslash = "/", mustWork = TRUE)
+  # Use utils::zip
+  curr_dir <- getwd()
+  on.exit(setwd(curr_dir), add = TRUE)
+  setwd(test_dir)
 
-  # call function
+  utils::zip(zip_path, files = "CLUM_Commodities_2023", flags = "-r9Xq")
+
+  # Call function
   result <- read_clum_commodities(zip_path)
   expect_s3_class(result, "sf")
 })
@@ -27,23 +30,26 @@ test_that("read_clum_commodities returns an sf object from provided zip", {
 test_that("read_clum_commodities calls .retry_download when x is NULL", {
   captured <- NULL
 
-  # define a stub just for this test
+  # Define a stub just for this test
   stub_retry <- function(url, dest) {
     captured <<- url
 
-    # build a valid zip with shapefile set
-    tmp_dir <- withr::local_tempdir()
-    subdir <- file.path(tmp_dir, "CLUM_Commodities_2023")
-    dir.create(subdir)
+    # Build a valid zip with shapefile set
+    test_dir <- file.path(tempdir(), "test_clum_null")
+    dir.create(test_dir, showWarnings = FALSE, recursive = TRUE)
+
+    subdir <- file.path(test_dir, "CLUM_Commodities_2023")
+    dir.create(subdir, showWarnings = FALSE)
 
     shp_path <- file.path(subdir, "CLUM_Commodities_2023.shp")
     dummy <- sf::st_sf(id = 1, geometry = sf::st_sfc(sf::st_point(c(1, 1))))
     sf::st_write(dummy, shp_path, quiet = TRUE, append = FALSE)
 
-    # Zip safely using withr::with_dir inside the mock
-    withr::with_dir(tmp_dir, {
-      utils::zip(zipfile = dest, files = "CLUM_Commodities_2023")
-    })
+    # Use utils::zip
+    curr_dir <- getwd()
+    setwd(test_dir)
+    utils::zip(dest, files = "CLUM_Commodities_2023", flags = "-r9Xq")
+    setwd(curr_dir)
   }
 
   tmp <- fs::path_temp("clum_commodities.zip")
