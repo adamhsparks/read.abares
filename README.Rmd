@@ -56,14 +56,9 @@ Note that for Linux users, you will need to install system libraries to support 
 Linux users, please see[^2].
 
 ```r
-if (!require("remotes")) {
-  install.packages("remotes")
-}
-
-remotes::install_github("adamhsparks/read.abares",
-  dependencies = TRUE,
-  build_vignettes = TRUE
-)
+install.packages("read.abares",
+  repos = c('https://ropensci.r-universe.dev',
+    'https://cloud.r-project.org'))
 ```
 
 Or, if you prefer using [{pak}](https://pak.r-lib.org/index.html), it does have some advantages.
@@ -83,7 +78,7 @@ if (!require("pak")) {
   )
 }
 
-pak::pak("adamhsparks/read.abares", dependencies = TRUE)
+pak::pak("ropensci/read.abares", dependencies = TRUE)
 options(o) # restore default options
 ```
 
