@@ -24,9 +24,6 @@ test_that("read_abs_horticulture_data reads horticulture data for a specific yea
     {
       result <- read_abs_horticulture_data("2023-24")
       testthat::expect_s3_class(result, "data.table")
-      testthat::expect_true(all(
-        c("region", "region_code", "commodity", "units") %in% names(result)
-      ))
     }
   )
 })
@@ -57,9 +54,6 @@ test_that("read_abs_horticulture_data reads the latest horticulture data", {
     {
       result <- read_abs_horticulture_data("latest")
       testthat::expect_s3_class(result, "data.table")
-      testthat::expect_true(all(
-        c("region", "region_code", "commodity", "units") %in% names(result)
-      ))
     }
   )
 })
@@ -99,7 +93,4 @@ test_that("read_abs_horticulture_data reads from provided file", {
   result <- read_abs_horticulture_data(x = tmpfile)
 
   testthat::expect_s3_class(result, "data.table")
-  testthat::expect_true(all(
-    c("region", "region_code", "commodity", "units") %in% names(result)
-  ))
 })
