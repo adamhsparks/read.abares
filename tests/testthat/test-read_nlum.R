@@ -1,5 +1,5 @@
 test_that("read_nlum_stars returns a stars object when x is provided", {
-  zipfile <- system.file("testdata", "nlum_test.zip", package = "read.abares")
+  zipfile <- test_path("testdata", "nlum_test.zip")
 
   fake_get_lum_files <- function(x, data_set, lum) {
     list(file_path = zipfile, tiff = "nlum_test.tif")
@@ -13,11 +13,11 @@ test_that("read_nlum_stars returns a stars object when x is provided", {
   expect_identical(unname(dim(result)), c(2L, 2L))
 })
 
-test_that("read_nlum_stars works with mocked . get_lum_files and data_set", {
-  zipfile <- system.file("testdata", "nlum_test.zip", package = "read.abares")
+test_that("read_nlum_stars works with mocked .get_lum_files and data_set", {
+  zipfile <- test_path("testdata", "nlum_test.zip")
 
   fake_get_lum_files <- function(x, data_set, lum) {
-    list(file_path = zipfile, tiff = "nlum_test. tif")
+    list(file_path = zipfile, tiff = "nlum_test.tif")
   }
 
   with_mocked_bindings(
@@ -41,7 +41,7 @@ test_that("read_nlum_stars propagates errors from .get_lum_files", {
 })
 
 test_that("read_nlum_stars passes ...  to stars::read_stars", {
-  zipfile <- system.file("testdata", "nlum_test.zip", package = "read.abares")
+  zipfile <- test_path("testdata", "nlum_test.zip")
 
   fake_get_lum_files <- function(x, data_set, lum) {
     list(file_path = zipfile, tiff = "nlum_test.tif")
@@ -56,7 +56,7 @@ test_that("read_nlum_stars passes ...  to stars::read_stars", {
 
 ## Tests for read_nlum_terra
 test_that("read_nlum_terra returns a SpatRaster when x is provided", {
-  zipfile <- system.file("testdata", "nlum_test.zip", package = "read.abares")
+  zipfile <- test_path("testdata", "nlum_test.zip")
 
   fake_get_lum_files <- function(x, data_set, lum) {
     list(file_path = zipfile, tiff = "nlum_test.tif")
@@ -71,10 +71,10 @@ test_that("read_nlum_terra returns a SpatRaster when x is provided", {
 })
 
 test_that("read_nlum_terra works with mocked .get_lum_files and data_set", {
-  zipfile <- system.file("testdata", "nlum_test.zip", package = "read.abares")
+  zipfile <- test_path("testdata", "nlum_test.zip")
 
   fake_get_lum_files <- function(x, data_set, lum) {
-    list(file_path = zipfile, tiff = "nlum_test. tif")
+    list(file_path = zipfile, tiff = "nlum_test.tif")
   }
 
   with_mocked_bindings(
@@ -98,7 +98,7 @@ test_that("read_nlum_terra propagates errors from .get_lum_files", {
 })
 
 test_that("read_nlum_terra returns correct number of layers", {
-  zipfile <- system.file("testdata", "nlum_test.zip", package = "read.abares")
+  zipfile <- test_path("testdata", "nlum_test.zip")
 
   fake_get_lum_files <- function(x, data_set, lum) {
     list(file_path = zipfile, tiff = "nlum_test.tif")

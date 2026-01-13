@@ -1,8 +1,7 @@
 test_that("read_topsoil_thickness_stars returns a stars object with correct dimensions", {
-  zipfile <- system.file(
+  zipfile <- test_path(
     "testdata",
     "test_topsoil.zip",
-    package = "read.abares"
   )
   result <- read_topsoil_thickness_stars(x = zipfile)
   expect_s3_class(result, "stars")
@@ -10,10 +9,9 @@ test_that("read_topsoil_thickness_stars returns a stars object with correct dime
 })
 
 test_that("read_topsoil_thickness_stars works with NULL x and mocked download", {
-  zipfile <- system.file(
+  zipfile <- test_path(
     "testdata",
     "test_topsoil.zip",
-    package = "read.abares"
   )
 
   fake_retry_download <- function(url, dest) {
@@ -29,10 +27,10 @@ test_that("read_topsoil_thickness_stars works with NULL x and mocked download", 
 })
 
 test_that("read_topsoil_thickness_terra returns a SpatRaster with correct dimensions", {
-  zipfile <- system.file(
+
+  zipfile <- test_path(
     "testdata",
     "test_topsoil.zip",
-    package = "read.abares"
   )
   result <- read_topsoil_thickness_terra(x = zipfile)
   expect_s4_class(result, "SpatRaster")
