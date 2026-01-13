@@ -13,7 +13,7 @@ read_clum_terra(data_set = "clum_50m_2023_v2", x = NULL, ...)
 
 ## Source
 
-[doi:/10.25814/2w2p-ph98](https://doi.org//10.25814/2w2p-ph98)
+[doi:10.25814/2w2p-ph98](https://doi.org/10.25814/2w2p-ph98)
 
 ## Arguments
 

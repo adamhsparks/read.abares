@@ -69,7 +69,7 @@ using ABARES
 model, which in turn is based on ABARES Agricultural and Grazing
 Industries Survey (AAGIS) data.  
 [Australian Agricultural Drought
-Indicator](https://www.agriculture.gov.au/abares/research-topics/climate/australian-agriculture-drought-indicators-project)
+Indicator](https://www.agriculture.gov.au/abares/research-topics/climate/australian-agricultural-drought-indicators-project)
 (AADI) project (previously known as the Drought Early Warning System
 Project) and were derived using ABARES
 [*farmpredict*](https://www.agriculture.gov.au/abares/research-topics/climate/drought/farmpredict)
