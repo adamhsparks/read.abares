@@ -1,12 +1,12 @@
 test_that("read_clum_commodities returns an sf object from provided zip", {
-  zip_path <- test_path("testdata", "test_clum.zip")
+  zip_path <- test_path("testdata", "test_clum_commodities.zip")
   result <- read_clum_commodities(zip_path)
   expect_s3_class(result, "sf")
 })
 
 test_that("read_clum_commodities calls .retry_download when x is NULL", {
   captured <- NULL
-  zipfile <- test_path("testdata", "test_clum.zip")
+  zipfile <- test_path("testdata", "test_clum_commodities.zip")
 
   stub_retry <- function(url, dest) {
     captured <<- url
