@@ -82,6 +82,7 @@ test_that("read_nlum_terra works with mocked .get_lum_files and data_set", {
     .get_lum_files = fake_get_lum_files
   )
   expect_s4_class(result, "SpatRaster")
+  expect_identical(terra::nlyr(result), 1)
 })
 
 test_that("read_nlum_terra propagates errors from .get_lum_files", {
@@ -95,18 +96,4 @@ test_that("read_nlum_terra propagates errors from .get_lum_files", {
     ),
     "fake error"
   )
-})
-
-test_that("read_nlum_terra returns correct number of layers", {
-  zipfile <- test_path("testdata", "nlum_test.zip")
-
-  fake_get_lum_files <- function(x, data_set, lum) {
-    list(file_path = zipfile, tiff = "nlum_test.tif")
-  }
-
-  with_mocked_bindings(
-    result <- read_nlum_terra(data_set = "nlum_2023"),
-    .get_lum_files = fake_get_lum_files
-  )
-  expect_identical(terra::nlyr(result), 1)
 })
