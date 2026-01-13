@@ -35,18 +35,10 @@ read_clum_commodities <- function(x = NULL) {
   # Normalize path
   zip_path <- normalizePath(x, winslash = "/", mustWork = FALSE)
 
-  # Build vsizip path - handle Unix vs Windows differently
-  if (.Platform$OS.type == "windows") {
-    dsn <- sprintf(
-      "/vsizip//%s/CLUM_Commodities_2023/CLUM_Commodities_2023.shp",
-      zip_path
-    )
-  } else {
-    dsn <- sprintf(
-      "/vsizip%s/CLUM_Commodities_2023/CLUM_Commodities_2023.shp",
-      zip_path
-    )
-  }
+  dsn <- sprintf(
+    "/vsizip//%s/CLUM_Commodities_2023/CLUM_Commodities_2023.shp",
+    zip_path
+  )
 
   clum_commodities <- sf::st_read(
     dsn = dsn,

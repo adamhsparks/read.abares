@@ -52,12 +52,7 @@
   # Normalize path
   zip_path <- normalizePath(.x, winslash = "/", mustWork = FALSE)
 
-  # Build vsizip path - handle Unix vs Windows differently
-  if (.Platform$OS.type == "windows") {
-    vsi_path <- sprintf("/vsizip//%s/%s", zip_path, .raster)
-  } else {
-    vsi_path <- sprintf("/vsizip%s/%s", zip_path, .raster)
-  }
+  vsi_path <- sprintf("/vsizip//%s/%s", zip_path, .raster)
 
   x <- terra::rast(vsi_path)
   x <- terra::init(x, x[]) # remove RAT legend if present

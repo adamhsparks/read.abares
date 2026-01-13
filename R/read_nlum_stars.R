@@ -109,13 +109,7 @@ read_nlum_stars <- function(
   # Normalize path
   zip_path <- normalizePath(y$file_path, winslash = "/", mustWork = FALSE)
 
-  # Build vsizip path - handle Unix vs Windows differently
-  if (.Platform$OS.type == "windows") {
-    vsi_path <- sprintf("/vsizip//%s/%s", zip_path, y$tiff)
-  } else {
-    # On Unix/macOS, path already starts with /, so don't double it
-    vsi_path <- sprintf("/vsizip%s/%s", zip_path, y$tiff)
-  }
+  vsi_path <- sprintf("/vsizip//%s/%s", zip_path, y$tiff)
 
   return(stars::read_stars(
     vsi_path,
