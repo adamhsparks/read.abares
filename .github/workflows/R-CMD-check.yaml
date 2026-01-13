@@ -40,13 +40,13 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
-      - name: Install spatial libraries on macOS
-        if: runner.os == 'macOS'
+      - name: Install and configure spatial libraries on macOS
+        if: runner. os == 'macOS'
         run: |
-          brew install pkg-config
-          brew install gdal
-          brew install proj
-          brew install geos
+          brew install pkg-config gdal proj geos
+          echo "PKG_CONFIG_PATH=$(brew --prefix)/lib/pkgconfig" >> $GITHUB_ENV
+          echo "LDFLAGS=-L$(brew --prefix)/lib" >> $GITHUB_ENV
+          echo "CPPFLAGS=-I$(brew --prefix)/include" >> $GITHUB_ENV
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
