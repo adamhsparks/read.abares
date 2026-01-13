@@ -26,9 +26,9 @@ Description: Download and import agricultural data from the Australian
     geotiffs covering topics including broadacre crops, livestock, soil
     data, commodities and more.
 License: MIT + file LICENSE
-URL: https://github.com/adamhsparks/read.abares,
-    https://adamhsparks.github.io/read.abares/
-BugReports: https://github.com/adamhsparks/read.abares/issues
+URL: https://github.com/ropensci/read.abares,
+    https://docs.ropensci.org/read.abares/
+BugReports: https://github.com/ropensci/read.abares/issues
 Depends: 
     R (>= 4.1.0)
 Imports: 

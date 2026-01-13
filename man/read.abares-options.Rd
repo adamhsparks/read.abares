@@ -12,7 +12,7 @@ The following options can be set via [options()] to control package behavior:
 \describe{
    \item{\code{read.abares.user_agent}}{Character string to set a custom user agent
 for web requests. Default is
-\verb{read.abares R package \{version no.\} https://github.com/adamhsparks/read.abares}.}
+\verb{read.abares R package \{version no.\} https://github.com/ropensci/read.abares}.}
    \item{\code{read.abares.timeout}}{Integer providing the timeout in seconds for
 download operations. Default is \code{2000}.}
 \item{\code{read.abares.timeout_connect}}{Integer providing the connection

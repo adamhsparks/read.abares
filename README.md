@@ -7,7 +7,7 @@
 <!-- badges: start -->
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![R-CMD-check](https://github.com/adamhsparks/read.abares/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/adamhsparks/read.abares/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/ropensci/read.abares/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/read.abares/actions/workflows/R-CMD-check.yaml)
 [![Codecov test coverage](https://codecov.io/gh/adamhsparks/read.abares/graph/badge.svg)](https://app.codecov.io/gh/adamhsparks/read.abares)
 [![Status at rOpenSci Software Peer Review](https://badges.ropensci.org/667_status.svg)](https://github.com/ropensci/software-review/issues/667)
 <!-- badges: end -->
@@ -121,11 +121,11 @@ There are three levels that are offered.
 
 You might note that not all ABARES data are serviced by this package.
 The list is hand-picked to be reasonably useful and maintainable, _i.e._, frequently updated values are not included in this, _e.g._, [Australian crop reports](https://daff.ent.sirsidynix.net.au/client/en_AU/ABARES/search/results?te=ASSET&st=PD#).
-However, if there is a data set that you feel would be useful to be serviced by {read.abares}, please feel free to [open an issue](https://github.com/adamhsparks/read.abares/issues/new) with details about the data set or better yet, open a pull request!
+However, if there is a data set that you feel would be useful to be serviced by {read.abares}, please feel free to [open an issue](https://github.com/ropensci/read.abares/issues/new) with details about the data set or better yet, open a pull request!
 
 ## Metadata
 
-Please report any [issues or bugs](https://github.com/adamhsparks/read.abares/issues).
+Please report any [issues or bugs](https://github.com/ropensci/read.abares/issues).
 
 License: [MIT](https://adamhsparks.github.io/read.abares/LICENSE.md)
 

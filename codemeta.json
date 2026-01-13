@@ -4,9 +4,9 @@
   "identifier": "read.abares",
   "description": "Download and import agricultural data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) <https://www.agriculture.gov.au/abares> and Australian Bureau of Statistics (ABS) <https://www.abs.gov.au>. Data types serviced include spreadsheets, CSV files, geospatial data including shape files and geotiffs covering topics including broadacre crops, livestock, soil data, commodities and more.",
   "name": "read.abares: Download and Import Agricultural Data from the Australian Bureau of\n    Agricultural and Resource Economics and Sciences (ABARES) and\n    Australian Bureau of Statistics (ABS)",
-  "relatedLink": "https://adamhsparks.github.io/read.abares/",
-  "codeRepository": "https://github.com/adamhsparks/read.abares",
-  "issueTracker": "https://github.com/adamhsparks/read.abares/issues",
+  "relatedLink": "https://docs.ropensci.org/read.abares/",
+  "codeRepository": "https://github.com/ropensci/read.abares",
+  "issueTracker": "https://github.com/ropensci/read.abares/issues",
   "license": "https://spdx.org/licenses/MIT",
   "version": "2.0.0",
   "programmingLanguage": {
@@ -403,7 +403,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "619.461KB",
+  "fileSize": "619.417KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -419,9 +419,9 @@
       "description": "R package version 2.0.0"
     }
   ],
-  "releaseNotes": "https://github.com/adamhsparks/read.abares/blob/main/NEWS.md",
-  "readme": "https://github.com/adamhsparks/read.abares/blob/main/README.md",
-  "contIntegration": ["https://github.com/adamhsparks/read.abares/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/adamhsparks/read.abares"],
+  "releaseNotes": "https://github.com/ropensci/read.abares/blob/main/NEWS.md",
+  "readme": "https://github.com/ropensci/read.abares/blob/main/README.md",
+  "contIntegration": ["https://github.com/ropensci/read.abares/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/adamhsparks/read.abares"],
   "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html#stable", "https://www.repostatus.org/#active"],
   "review": {
     "@type": "Review",

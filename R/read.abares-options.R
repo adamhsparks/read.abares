@@ -7,7 +7,7 @@
 #' \describe{
 #'   \item{`read.abares.user_agent`}{Character string to set a custom user agent
 #'    for web requests. Default is
-#'    `read.abares R package {version no.} https://github.com/adamhsparks/read.abares`.}
+#'    `read.abares R package {version no.} https://github.com/ropensci/read.abares`.}
 #'   \item{`read.abares.timeout`}{Integer providing the timeout in seconds for
 #'    download operations. Default is `2000`.}
 #'   \item{`read.abares.timeout_connect`}{Integer providing the connection

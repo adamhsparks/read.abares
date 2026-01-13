@@ -45,7 +45,7 @@ read.abares_user_agent <- function() {
     "read.abares"
   ))
   readabares_r_package_string <- "read.abares R package"
-  readabares_url_string <- "https://github.com/adamhsparks/read.abares"
+  readabares_url_string <- "https://github.com/ropensci/read.abares"
 
   if (nzchar(Sys.getenv("READABARES_CI"))) {
     return(

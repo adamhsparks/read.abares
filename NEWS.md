@@ -95,7 +95,7 @@
 
 - Fixes bug in `get_aagis_regions()` when creating the cached object file
 
-- Fixes "URL" field in DESCRIPTION file (@mpadge <https://github.com/adamhsparks/read.abares/issues/1>)
+- Fixes "URL" field in DESCRIPTION file (@mpadge <https://github.com/ropensci/read.abares/issues/1>)
 
 # read.abares 0.1.0
 
