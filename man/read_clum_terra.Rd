@@ -4,7 +4,7 @@
 \alias{read_clum_terra}
 \title{Read ABARES' Catchment Scale "Land Use of Australia" GeoTIFFs Using terra}
 \source{
-\doi{/10.25814/2w2p-ph98}
+\doi{10.25814/2w2p-ph98}
 }
 \usage{
 read_clum_terra(data_set = "clum_50m_2023_v2", x = NULL, ...)
