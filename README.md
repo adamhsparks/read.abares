@@ -8,7 +8,7 @@
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R-CMD-check](https://github.com/ropensci/read.abares/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/read.abares/actions/workflows/R-CMD-check.yaml)
-[![Codecov test coverage](https://codecov.io/gh/adamhsparks/read.abares/graph/badge.svg)](https://app.codecov.io/gh/adamhsparks/read.abares)
+[![Codecov test coverage](https://codecov.io/gh/ropensci/read.abares/graph/badge.svg)](https://app.codecov.io/gh/ropensci/read.abares)
 [![Status at rOpenSci Software Peer Review](https://badges.ropensci.org/667_status.svg)](https://github.com/ropensci/software-review/issues/667)
 <!-- badges: end -->
 
@@ -49,14 +49,9 @@ Note that for Linux users, you will need to install system libraries to support 
 Linux users, please see[^2].
 
 ```r
-if (!require("remotes")) {
-  install.packages("remotes")
-}
-
-remotes::install_github("adamhsparks/read.abares",
-  dependencies = TRUE,
-  build_vignettes = TRUE
-)
+install.packages("read.abares",
+  repos = c('https://ropensci.r-universe.dev',
+    'https://cloud.r-project.org'))
 ```
 
 Or, if you prefer using [{pak}](https://pak.r-lib.org/index.html), it does have some advantages.
@@ -76,7 +71,7 @@ if (!require("pak")) {
   )
 }
 
-pak::pak("adamhsparks/read.abares", dependencies = TRUE)
+pak::pak("ropensci/read.abares", dependencies = TRUE)
 options(o) # restore default options
 ```
 
