@@ -157,7 +157,7 @@ citation("read.abares")
 
 #### Code of Conduct
 
-Please note that the {read.abares} project is released with a [Contributor Code of Conduct](https://adamhsparks.github.io/read.abares/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
+Please note that the {read.abares} project is released with a [Contributor Code of Conduct](https://ropensci.org/code-of-conduct/). By contributing to this project, you agree to abide by its terms.
 
 [^1]: <https://www.agriculture.gov.au/abares/about>
 [^2]: If you are using Linux, you will likely need to install several system-level libraries, {pak} will do it's best to install most of them but some may not be installable this way.
