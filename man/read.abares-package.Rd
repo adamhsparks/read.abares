@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Download and import agricultural data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) \url{https://www.agriculture.gov.au/abares} and Australian Bureau of Statistics (ABS) \url{https://www.abs.gov.au}. Data types serviced include spreadsheets, comma separated value (CSV) files, geospatial data including shape files and geotiffs covering topics including broadacre crops, livestock, soil data, commodities and more. Unifies field names and formats for data interoptability making analysis easier by standardising names between data formats. Also simplifies importing geospatial data as well as correcting issues in the geospatial data upon import.
+Download and import agricultural data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) \url{https://www.agriculture.gov.au/abares} and Australian Bureau of Statistics (ABS) \url{https://www.abs.gov.au}. Data types serviced include spreadsheets, comma separated value (CSV) files, geospatial data including shape files and geotiffs covering topics including broadacre crops, livestock, soil data, commodities and more. Unifies field names and formats for data interoperability making analysis easier by standardising names between data formats. Also simplifies importing geospatial data as well as correcting issues in the geospatial data upon import.
 }
 \seealso{
 Useful links:
