@@ -1,6 +1,6 @@
 # read.abares 2.0.0
 
-- Accepted into [rOpenSci](https://ropensci.org/) as of 2026-01-13.
+- Accepted into [rOpenSci](https://ropensci.org/) as of 2026-01-13!
 
 ## Breaking changes
 
