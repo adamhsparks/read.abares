@@ -8,7 +8,7 @@
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R-CMD-check](https://github.com/ropensci/read.abares/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/read.abares/actions/workflows/R-CMD-check.yaml)
-[![codecov](https://codecov.io/gh/ropensci/read.abares/graph/badge.svg?token=RJcUkWMSfo)](https://codecov.io/gh/ropensci/read.abares)
+[![codecov](https://codecov.io/gh/ropensci/read.abares/graph/badge.svg?token=RJcUkWMSfo)](https://app.codecov.io/gh/ropensci/read.abares)
 [![Status at rOpenSci Software Peer Review](https://badges.ropensci.org/667_status.svg)](https://github.com/ropensci/software-review/issues/667)
 <!-- badges: end -->
 
@@ -122,7 +122,7 @@ However, if there is a data set that you feel would be useful to be serviced by 
 
 Please report any [issues or bugs](https://github.com/ropensci/read.abares/issues).
 
-License: [MIT](https://adamhsparks.github.io/read.abares/LICENSE.md)
+License: [MIT](https://docs.ropensci.org/read.abares/LICENSE.md)
 
 ### Citations
 
@@ -134,23 +134,11 @@ Citing {read.abares}: When citing the use of this package, please use,
 ``` r
 library(read.abares)
 citation("read.abares")
-#> To cite package 'read.abares' in publications use:
-#> 
-#>   Sparks A (????). _read.abares: Download and Import Agricultural Data
-#>   from the Australian Bureau of Agricultural and Resource Economics and
-#>   Sciences (ABARES) and Australian Bureau of Statistics (ABS)_. R
-#>   package version 2.0.0, <https://adamhsparks.github.io/read.abares/>.
-#> 
-#> A BibTeX entry for LaTeX users is
-#> 
-#>   @Manual{,
-#>     title = {{read.abares}: Download and Import Agricultural Data from the
-#>     Australian Bureau of Agricultural and Resource Economics and Sciences
-#>     (ABARES) and Australian Bureau of Statistics (ABS)},
-#>     author = {Adam H. Sparks},
-#>     note = {R package version 2.0.0},
-#>     url = {https://adamhsparks.github.io/read.abares/},
-#>   }
+#> Error in `parse()`:
+#> ! 8:13: unexpected symbol
+#> 7:   author = c(
+#> 8:     person("Adam
+#>                ^
 ```
 
 ### Contributing

@@ -10,6 +10,7 @@
 ^air\.toml$
 ^inst/tools$
 ^flir$
+^cran-comments\.md$
 ^man/dot-get_agfd\.Rd$
 ^man/dot-read_ncdf_from_zip\.Rd$
 ^man/dot-copy_local_agfd_zip\.Rd$
