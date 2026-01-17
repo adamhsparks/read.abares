@@ -30,7 +30,7 @@ test_that("read.abares_user_agent handles standard users", {
   ua <- read.abares_user_agent()
 
   expect_match(ua, "read\\.abares R package")
-  expect_true(grepl("DEV", ua) || grepl("2\\.[0-9]+\\.[0-9]+", ua))
+  expect_true(grepl("DEV", ua) || grepl("\\d+\\.\\d+\\.\\d+", ua))
 })
 
 test_that("Package options are initialized correctly", {
