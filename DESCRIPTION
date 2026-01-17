@@ -25,7 +25,7 @@ Description: Download and import agricultural data from the Australian
     spreadsheets, comma separated value (CSV) files, geospatial data
     including shape files and geotiffs covering topics including broadacre
     crops, livestock, soil data, commodities and more. Unifies field names
-    and formats for data interoptability making analysis easier by
+    and formats for data interoperability making analysis easier by
     standardising names between data formats. Also simplifies importing
     geospatial data as well as correcting issues in the geospatial data
     upon import.

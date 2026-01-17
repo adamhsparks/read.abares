@@ -9,7 +9,6 @@ Broadacre
 CLUM
 CLUMC
 CMD
-Codecov
 Curtin
 DAFF
 DescriptiveMetadata
@@ -55,6 +54,7 @@ brio
 broadacre
 capitalised
 clum
+codecov
 colour
 colours
 curtin
@@ -87,6 +87,7 @@ https
 httptest
 httr
 installable
+interoptability
 labour
 lon
 metre
@@ -106,6 +107,7 @@ ropensci
 sd
 srv
 standardises
+standardising
 tempdir
 terra
 tidync
