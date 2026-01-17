@@ -2,13 +2,13 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "read.abares",
-  "description": "Download and import agricultural data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) <https://www.agriculture.gov.au/abares> and Australian Bureau of Statistics (ABS) <https://www.abs.gov.au>. Data types serviced include spreadsheets, CSV files, geospatial data including shape files and geotiffs covering topics including broadacre crops, livestock, soil data, commodities and more.",
-  "name": "read.abares: Download and Import Agricultural Data from the Australian Bureau of\n    Agricultural and Resource Economics and Sciences (ABARES) and\n    Australian Bureau of Statistics (ABS)",
+  "description": "Download and import agricultural data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) <https://www.agriculture.gov.au/abares> and Australian Bureau of Statistics (ABS) <https://www.abs.gov.au>. Data types serviced include spreadsheets, comma separated value (CSV) files, geospatial data including shape files and geotiffs covering topics including broadacre crops, livestock, soil data, commodities and more. Unifies field names and formats for data interoptability making analysis easier by standardising names between data formats. Also simplifies importing geospatial data as well as correcting issues in the geospatial data upon import.",
+  "name": "read.abares: Read Data from the Australian Bureau of Agricultural and Resource\n    Economics and Sciences (ABARES) and Australian Bureau of Statistics\n    (ABS)",
   "relatedLink": "https://docs.ropensci.org/read.abares/",
   "codeRepository": "https://github.com/ropensci/read.abares",
   "issueTracker": "https://github.com/ropensci/read.abares/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -403,7 +403,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "619.417KB",
+  "fileSize": "619.194KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -414,14 +414,14 @@
           "familyName": "Sparks"
         }
       ],
-      "name": "{read.abares}: Download and Import Agricultural Data from the\n    Australian Bureau of Agricultural and Resource Economics and Sciences\n    (ABARES) and Australian Bureau of Statistics (ABS)",
-      "url": "https://adamhsparks.github.io/read.abares/",
-      "description": "R package version 2.0.0"
+      "name": "{read.abares}: Read Data from the Australian Bureau of Agricultural\n    and Resource Economics and Sciences (ABARES) and Australian Bureau of\n    Statistics (ABS)",
+      "url": "https://docs.ropensci.org/read.abares/",
+      "description": "R package version 1.0.0"
     }
   ],
   "releaseNotes": "https://github.com/ropensci/read.abares/blob/main/NEWS.md",
   "readme": "https://github.com/ropensci/read.abares/blob/main/README.md",
-  "contIntegration": ["https://github.com/ropensci/read.abares/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/adamhsparks/read.abares"],
+  "contIntegration": ["https://github.com/ropensci/read.abares/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/ropensci/read.abares"],
   "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html#stable", "https://www.repostatus.org/#active"],
   "review": {
     "@type": "Review",
