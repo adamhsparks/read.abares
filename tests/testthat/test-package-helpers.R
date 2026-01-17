@@ -23,7 +23,7 @@ test_that("read.abares_user_agent constructs correct strings", {
 
 test_that("read.abares_user_agent handles standard users", {
   # Ensure CI is off
-  withr::local_envvar(list("READABARES _CI" = ""))
+  withr::local_envvar(list("READABARES_CI" = ""))
 
   # We can't easily mock 'whoami' without extra packages,
   # so we test that it produces A valid string, regardless of DEV/Standard status
