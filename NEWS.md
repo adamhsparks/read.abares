@@ -51,11 +51,11 @@
 
 - [{bit64}](https://cran.r-project.org/package=bit64) has been added to the Suggested packages to help users avoid warning messages when working with data in the console via {data.table}, thanks, @potterzot.
 
-- Alternative installation instructions using {remotes} are provided in the README for users that may prefer or may not use [{pak}](https://cran.r-project.org/package=pak), thanks, @potterzot.
+- Alternative installation instructions using {remotes} are provided in the README for users that may prefer or may not use [{pak}](https://cran.r-project.org/package=pak), thanks, @econpotter.
 
 - The topsoil thickness map now correctly displays proper continuous values rather than classes, thanks, @obrsoil.
 
-- The geospatial vignette examples run more quickly, except for the AAGIS examples, which are still slow due to large downloads, but all local operations in R now run much more quickly, thanks to @potterzot.
+- The geospatial vignette examples run more quickly, except for the AAGIS examples, which are still slow due to large downloads, but all local operations in R now run much more quickly, thanks to @econpotter.
 
 # read.abares 1.0.0
 
