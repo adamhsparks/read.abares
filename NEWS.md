@@ -2,6 +2,8 @@
 
 - Accepted into [rOpenSci](https://ropensci.org/) as of 2026-01-13!
 
+- On [CRAN](https://cran.r-project.org/package=read.abares) as of 2026-01-22!
+
 ## Breaking changes
 
 - `soil_thickness` functions are now `topsoil_thickness` functions, _e.g._, `read_soil_thickness_stars()` is now `read_topsoil_thickness_stars()`.
