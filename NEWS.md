@@ -7,7 +7,7 @@
 ## Breaking changes
 
 - `soil_thickness` functions are now `topsoil_thickness` functions, _e.g._, `read_soil_thickness_stars()` is now `read_topsoil_thickness_stars()`.
-  This is to clarify that the data is for topsoil only and not all soil layers, thanks, @obrsoil!
+  This is to clarify that the data is for topsoil only and not all soil layers, thanks, @obr-soil!
 
 - `get_` functions are now integrated into `read_`, there is no need to call any `get_` functions separately or use piping.
 
