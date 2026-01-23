@@ -50,36 +50,18 @@ Data serviced includes but is not limited to:
 
 ## Quick Start
 
-{read.abares} is not available through CRAN (yet).
-The preferred method is to use [{remotes}](https://remotes.r-lib.org) like so.
-Note that for Linux users, you will need to install system libraries to support geospatial packages in R, _e.g._, {sf} and {terra} as well as some packages for downloading data via [curl](https://curl.se/download.html).
-Linux users, please see[^2].
+{read.abares} is available on CRAN, so you can install it with:
+
+```{r eval = FALSE}
+install.packages("read.abares")
+```
+
+{read.abares} is also available on [rOpenSci's R-universe](https://ropensci.r-universe.dev/) CRAN-like repository and you can install it from there like so:
 
 ```r
 install.packages("read.abares",
   repos = c('https://ropensci.r-universe.dev',
     'https://cloud.r-project.org'))
-```
-
-Or, if you prefer using [{pak}](https://pak.r-lib.org/index.html), it does have some advantages.
-If you are using Linux and will need to install system libraries to support geospatial packages in R, _e.g._, {sf} and {terra}, you can install {read.abares} like so using [{pak}](https://pak.r-lib.org/index.html), this method will try to handle system dependencies for you.
-It may also be a faster installation method as well for any operating system.
-
-```r
-o <- options() # save default options
-options(pkg.build_vignettes = TRUE)
-
-if (!require("pak")) {
-  install.packages("pak",
-    repos = sprintf(
-      "https://r-lib.github.io/p/pak/stable/%s/%s/%s",
-      .Platform$pkgType, R.Version()$os, R.Version()$arch
-    )
-  )
-}
-
-pak::pak("ropensci/read.abares", dependencies = TRUE)
-options(o) # restore default options
 ```
 
 ## Features
@@ -146,10 +128,7 @@ citation("read.abares")
 
 #### Code of Conduct
 
-Please note that the {read.abares} project is released with a [Contributor Code of Conduct](https://ropensci.org/code-of-conduct/). By contributing to this project, you agree to abide by its terms.
+Please note that the {read.abares} project is released with a [Contributor Code of Conduct](https://ropensci.org/code-of-conduct/).
+By contributing to this project, you agree to abide by its terms.
 
 [^1]: <https://www.agriculture.gov.au/abares/about>
-[^2]: If you are using Linux, you will likely need to install several system-level libraries, {pak} will do it's best to install most of them but some may not be installable this way.
-For [Nectar](https://ardc.edu.au/services/ardc-nectar-research-cloud/) with a fresh Ubuntu image, you can use the following command to install system libraries to install {pak} and then {read.abares}.
-In your Linux terminal (not your R console, the "terminal" tab in RStudio should do here in most cases) type:
-`sudo apt update && sudo apt install libcurl4-openssl-dev libgdal-dev gdal-bin libgeos-dev libproj-dev libsqlite3-dev libudunits2-dev libxml2-dev`.
