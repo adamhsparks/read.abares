@@ -59,7 +59,7 @@
 
 - Alternative installation instructions using {remotes} are provided in the README for users that may prefer or may not use [{pak}](https://cran.r-project.org/package=pak), thanks, @econpotter.
 
-- The topsoil thickness map now correctly displays proper continuous values rather than classes, thanks, @obrsoil.
+- The topsoil thickness map now correctly displays proper continuous values rather than classes, thanks, @obr-soil.
 
 - The geospatial vignette examples run more quickly, except for the AAGIS examples, which are still slow due to large downloads, but all local operations in R now run much more quickly, thanks to @econpotter.
 
