@@ -4,11 +4,11 @@
 \name{read.abares-package}
 \alias{read.abares}
 \alias{read.abares-package}
-\title{read.abares: Read Data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) and Australian Bureau of Statistics (ABS)}
+\title{read.abares: Read Australian Agricultural Data from Government Agencies}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Download and import agricultural data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) \url{https://www.agriculture.gov.au/abares} and Australian Bureau of Statistics (ABS) \url{https://www.abs.gov.au}. Data types serviced include spreadsheets, comma separated value (CSV) files, geospatial data including shape files and geotiffs covering topics including broadacre crops, livestock, soil data, commodities and more. Unifies field names and formats for data interoperability making analysis easier by standardising names between data formats. Also simplifies importing geospatial data as well as correcting issues in the geospatial data upon import.
+Downloads and imports agricultural data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) \url{https://www.agriculture.gov.au/abares} and the Australian Bureau of Statistics (ABS) \url{https://www.abs.gov.au}. Supports multiple data formats including spreadsheets, comma‑separated value (CSV) files, and geospatial data such as shapefiles and GeoTIFFs. Covers topics such as broadacre crops, livestock, soils, commodities and related agricultural information. The package standardises field names and data formats to improve interoperability and simplify analysis. It also streamlines the import of geospatial data and corrects common issues found in these data sources upon loading.
 }
 \seealso{
 Useful links:

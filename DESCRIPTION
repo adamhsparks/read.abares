@@ -1,9 +1,7 @@
 Type: Package
 Package: read.abares
-Title: Read Data from the Australian Bureau of Agricultural and Resource
-    Economics and Sciences (ABARES) and Australian Bureau of Statistics
-    (ABS)
-Version: 2.0.0
+Title: Read Australian Agricultural Data from Government Agencies
+Version: 2.0.1
 Authors@R: c(
     person("Adam H.", "Sparks", , "adamhsparks@gmail.com", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0002-0061-8359")),
@@ -18,17 +16,17 @@ Authors@R: c(
     person("María Paula", "Caldas", , "mpaulacaldas@gmail.com", role = "rev",
            comment = c("rOpenSci Review https://github.com/ropensci/software-review/issues/667", ORCID = "0000-0002-1938-6471"))
   )
-Description: Download and import agricultural data from the Australian
+Description: Downloads and imports agricultural data from the Australian
     Bureau of Agricultural and Resource Economics and Sciences (ABARES)
-    <https://www.agriculture.gov.au/abares> and Australian Bureau of
-    Statistics (ABS) <https://www.abs.gov.au>. Data types serviced include
-    spreadsheets, comma separated value (CSV) files, geospatial data
-    including shape files and geotiffs covering topics including broadacre
-    crops, livestock, soil data, commodities and more. Unifies field names
-    and formats for data interoperability making analysis easier by
-    standardising names between data formats. Also simplifies importing
-    geospatial data as well as correcting issues in the geospatial data
-    upon import.
+    <https://www.agriculture.gov.au/abares> and the Australian Bureau of
+    Statistics (ABS) <https://www.abs.gov.au>. Supports multiple data
+    formats including spreadsheets, comma‑separated value (CSV) files, and
+    geospatial data such as shapefiles and GeoTIFFs. Covers topics such as
+    broadacre crops, livestock, soils, commodities and related
+    agricultural information. The package standardises field names and
+    data formats to improve interoperability and simplify analysis. It
+    also streamlines the import of geospatial data and corrects common
+    issues found in these data sources upon loading.
 License: MIT + file LICENSE
 URL: https://github.com/ropensci/read.abares,
     https://docs.ropensci.org/read.abares/
