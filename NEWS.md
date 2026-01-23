@@ -1,6 +1,6 @@
 # read.abares 2.0.1
 
-# Minor changes
+## Minor changes
 
 - Update title in DESCRIPTION to be <65 characters for CRAN compliance.
 
