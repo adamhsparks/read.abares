@@ -2,7 +2,7 @@
 
 
 
-# {read.abares}: Download and Import Agricultural Data from the Australian Bureau of Agricultural and Resource Economics and Sciences (ABARES) and Australian Bureau of Statistics (ABS) <img src="man/figures/logo.png" align="right"/>
+# {read.abares}: Read Australian Agricultural Data from Government Agencies <img src="man/figures/logo.png" align="right"/>
 
 <!-- badges: start -->
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
@@ -134,11 +134,23 @@ Citing {read.abares}: When citing the use of this package, please use,
 ``` r
 library(read.abares)
 citation("read.abares")
-#> Error in `parse()`:
-#> ! 8:13: unexpected symbol
-#> 7:   author = c(
-#> 8:     person("Adam
-#>                ^
+#> To cite package 'read.abares' in publications use:
+#> 
+#>   Sparks A (????). _read.abares: Read Data from the Australian Bureau
+#>   of Agricultural and Resource Economics and Sciences (ABARES) and
+#>   Australian Bureau of Statistics (ABS)_. R package version 2.0.1,
+#>   <https://docs.ropensci.org/read.abares/>.
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Manual{,
+#>     title = {{read.abares}: Read Data from the Australian Bureau of Agricultural
+#>     and Resource Economics and Sciences (ABARES) and Australian Bureau of
+#>     Statistics (ABS)},
+#>     author = {Adam H. Sparks},
+#>     note = {R package version 2.0.1},
+#>     url = {https://docs.ropensci.org/read.abares/},
+#>   }
 ```
 
 ### Contributing
