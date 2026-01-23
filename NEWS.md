@@ -1,3 +1,9 @@
+# read.abares 2.0.1
+
+# Minor changes
+
+- Update title in DESCRIPTION to be <65 characters for CRAN compliance.
+
 # read.abares 2.0.0
 
 - Accepted into [rOpenSci](https://ropensci.org/) as of 2026-01-13!
